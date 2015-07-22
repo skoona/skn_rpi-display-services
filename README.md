@@ -13,7 +13,7 @@ to the service for display on a 4x20 LCD.
 
 
 ## Build:  Autotools project
-Requires ([WiringPi]https://projects.drogon.net/raspberry-pi/wiringpi/download-and-install/) and assume the Pi is using ([Raspbian]https://www.raspberrypi.org/downloads/).
+Requires [WiringPi](https://projects.drogon.net/raspberry-pi/wiringpi/download-and-install/) and assume the Pi is using [Raspbian](https://www.raspberrypi.org/downloads/).
 
     $ ./configure
     $ make
