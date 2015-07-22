@@ -1,4 +1,4 @@
-# Raspberry Pi Locator Service
+# ![Raspberry Pi Display/Locator Service](https://raw.github.com/skoona/skn_rpi-display-services/master/rpi_display.png) Raspberry Pi Display/Locator Service
 
 Package includes two features. One designed to both locate your Pi and provide a list of known services.  The 
 other acts as a central LCD display service, allowing other network devices/nodes to send a one-liner 
@@ -29,7 +29,7 @@ to the service for display on a 4x20 LCD.
       -v, --version  Version printout.
       -h, --help   Show this help screen.
       
-      Format: service_registry_message
+      Format: <delimited-response-message-string>
         delimited-response-message-string : required order -> name,ip,port,line-delimiter...
           format: "name=<service-name>,ip=<service-ipaddress>ddd.ddd.ddd.ddd,port=<service-portnumber>ddddd <line-delimiter>"
             name=<service-name> text_string_with_no_spaces
