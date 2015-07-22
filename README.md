@@ -1,5 +1,5 @@
 # Raspberry Pi Display/Locator Service
-![Raspberry Pi Display/Locator Service](https://raw.github.com/skoona/skn_rpi-display-services/master/rpi_display.png) 
+![Raspberry Pi Display/Locator Service](https://github.com/skoona/skn_rpi-display-services/master/rpi_display.png) 
 
 Package includes two features. One designed to both locate your Pi and provide a list of known services.  The 
 other acts as a central LCD display service, allowing other network devices/nodes to send a one-liner 
