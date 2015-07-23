@@ -18,6 +18,9 @@ to the service for display on a 4x20 LCD.
 ### Configuration Options
 --------------------------------
 
+#### Locator Service
+![Locator Service](https://github.com/skoona/skn_rpi-display-services/raw/master/skn_rpi1.png) 
+
 #### upd_locator_service --help
 
     udp_locator_service -- Provides IPv4 Addres/Port Service info.
@@ -53,6 +56,9 @@ to the service for display on a 4x20 LCD.
       -v, --version  Version printout.
       -h, --help   Show this help screen.
 
+
+#### Display Service
+![Locator Service](https://github.com/skoona/skn_rpi-display-services/raw/master/skn_rpi2.png)
 
 #### lcd_display_service --help
 
