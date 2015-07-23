@@ -12,7 +12,7 @@ to the service for display on a 4x20 LCD.
 |udp_locator_service|Server|any|yes|Maintains a list of known network services accessable via UDP socket.|
 |udp_locator_client|Client|any|yes|Collect services info from Service, which includes that service's ip address.|
 |lcd_display_service|Server|any|yes|Accepts one-line messages over udp and display them on a 4x20 lcd panel.|
-|lcd_display_client|Client|any|no yet|Sends the one-liner composed of various Pi metrics; like cpus, temps, etc.|
+|lcd_display_client|Client|any|initial|Sends the one-liner composed of various Pi metrics; like cpus, temps, etc.|
 
 
 ### Configuration Options
@@ -68,7 +68,7 @@ to the service for display on a 4x20 LCD.
     lcd_display_service -- LCD 4x20 Display Provider.
               Skoona Development <skoona@gmail.com>
     Usage:
-      lcd_display_service [-v] [-m 'text msg'][-d 1|88] [-h|--help]
+      lcd_display_service [-v] [-m 'text msg'] [-r 4|2] [-c 20|16] [-d 1|88] [-h|--help]
     Options:
       -d 1|88 --debug=1  Debug mode=1.
       -r, --rows   Number of rows in physical display.
@@ -80,6 +80,16 @@ to the service for display on a 4x20 LCD.
 
 #### lcd_display_client --help
 Work in progress...
+
+    lcd_display_client -- Send messages to display service.
+              Skoona Development <skoona@gmail.com>
+    Usage:
+      lcd_display_client [-v] [-m 'text msg for display'][-d 1|88] [-h|--help]
+    Options:
+      -d 1|88 --debug=1  Debug mode=1.
+      -m, --message  Message to send to display, default: cpu temps
+      -v, --version  Version printout.
+      -h, --help   Show this help screen.
 
 
 ## Build:  Autotools project

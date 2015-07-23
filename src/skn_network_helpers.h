@@ -42,6 +42,8 @@ extern void signals_cleanup(int sig);
  * Server/Client Communication Routines
 */
 extern int host_socket_init(int port, int rcvTimeout);
+extern PServiceRequest skn_service_request_create(PRegistryEntry pre, int host_socket, char *request);
+extern int skn_udp_service_request(PServiceRequest psr);
 extern int skn_display_manager_message_consumer_startup(PDisplayManager pdm);
 extern void skn_display_manager_message_consumer_shutdown(PDisplayManager pdm);
 

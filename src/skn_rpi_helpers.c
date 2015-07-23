@@ -509,6 +509,13 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
 		skn_logger(SD_NOTICE, "Request data: [%s]\n" , request);
 
 		skn_display_manager_add_line(NULL, request);
+
+        if (sendto(pdm->i_socket, "200 Accepted", strlen("200 Accepted"), 0,(struct sockaddr *) &remaddr, addrlen) < 0)
+        {
+		    skn_logger(SD_EMERG, "SendTo() Failure code=%d, etext=%s", errno, strerror(errno) );
+            break;
+        }
+
     }
 
 	skn_logger(SD_NOTICE, "Display Managager Thread: shutdown complete: (%ld)", exit_code);
@@ -537,12 +544,19 @@ static void skn_display_print_usage(int argc, char *argv[])
   {
 	  skn_logger(" ", "%s -- %s", gd_ch_program_name, gd_ch_program_desc);
 	  skn_logger(" ", "\tSkoona Development <skoona@gmail.com>");
-	  skn_logger(" ", "Usage:\n  %s [-v] [-m 'text msg'][-d 1|88] [-h|--help]", gd_ch_program_name);
-	  skn_logger(" ", "Options:");
-	  skn_logger(" ", "  -d 1|88 --debug=1\tDebug mode=1.");
-	  skn_logger(" ", "  -r, --rows\t\tNumber of rows in physical display.");
-	  skn_logger(" ", "  -c, --cols\t\tNumber of columns in physical display.");
-	  skn_logger(" ", "  -m, --message\tWelcome Message for line 1.");
+
+	  if (strcmp(gd_ch_program_name, "lcd_display_client") != 0) {
+		  skn_logger(" ", "Usage:\n  %s [-v] [-m 'text msg'] [-r 4|2] [-c 20|16] [-d 1|88] [-h|--help]", gd_ch_program_name);
+		  skn_logger(" ", "Options:");
+		  skn_logger(" ", "  -d 1|88 --debug=1\tDebug mode=1.");
+		  skn_logger(" ", "  -r, --rows\t\tNumber of rows in physical display.");
+		  skn_logger(" ", "  -c, --cols\t\tNumber of columns in physical display.");
+	  } else {
+		  skn_logger(" ", "Usage:\n  %s [-v] [-m 'message for display'][-d 1|88] [-h|--help]", gd_ch_program_name);
+		  skn_logger(" ", "Options:");
+		  skn_logger(" ", "  -d 1|88 --debug=1\tDebug mode=1.");
+	  }
+	  skn_logger(" ", "  -m, --message\t Message for line 1.");
 	  skn_logger(" ", "  -v, --version\tVersion printout.");
 	  skn_logger(" ", "  -h, --help\t\tShow this help screen.");
   }

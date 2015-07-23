@@ -109,6 +109,14 @@ typedef struct _serviceRegistry {
     PRegistryEntry entry[ARY_MAX_INTF * 2];
 } ServiceRegistry, *PServiceRegistry;
 
+typedef struct _serviceRequest {
+	char cbName[SZ_CHAR_BUFF];
+	PRegistryEntry pre;
+	char request[SZ_INFO_BUFF];
+	char response[SZ_INFO_BUFF];
+	int socket;
+} ServiceRequest, *PServiceRequest;
+
 /*
  * Char bufs for cpu temperature
 */

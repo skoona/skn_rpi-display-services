@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([skn_rpi-locator-service], [0.2.0], [James Scott Jr. <skoona@gmail.com>], skn_rpi-locator-service-0.2.0.tar.bz2)
+AC_INIT([skn_rpi-locator-service], [0.2.1], [James Scott Jr. <skoona@gmail.com>], skn_rpi-locator-service-0.2.1.tar.bz2)
 
 
 AC_CANONICAL_SYSTEM

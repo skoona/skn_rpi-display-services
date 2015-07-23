@@ -652,6 +652,49 @@ int host_socket_init(int port, int rcvTimeout) {
 	return fd;
 }
 
+PServiceRequest skn_service_request_create(PRegistryEntry pre, int host_socket, char *request) {
+	PServiceRequest psr = NULL;
+	psr = (PServiceRequest)malloc(sizeof(ServiceRequest));
+	memset(psr, 0, sizeof(ServiceRequest));
+	strcpy(psr->cbName, "PServiceRequest");
+	psr->socket = host_socket;
+	psr->pre = pre;
+	strncpy(psr->request, request, SZ_INFO_BUFF-1);
+	return psr;
+}
+int skn_udp_service_request(PServiceRequest psr) {
+    struct sockaddr_in remaddr;           /* remote address */
+    socklen_t addrlen = sizeof(remaddr);  /* length of addresses */
+    signed int vIndex = 0;
+
+	memset(&remaddr,0,sizeof(remaddr));
+	remaddr.sin_family = AF_INET;
+	remaddr.sin_addr.s_addr = inet_addr(psr->pre->ip);
+	remaddr.sin_port=htons(psr->pre->port);
+
+	if (sendto(psr->socket, psr->request, strlen(psr->request), 0,(struct sockaddr *) &remaddr, addrlen) < 0)
+	{
+		skn_logger(SD_WARNING, "ServiceRequest: SendTo() Timed out; Failure code=%d, etext=%s", errno, strerror(errno) );
+		return EXIT_FAILURE;
+	}
+	skn_logger(SD_NOTICE, "ServiceRequest sent to %s:%s:%d", psr->pre->name, psr->pre->ip, psr->pre->port);
+
+	vIndex = recvfrom(psr->socket, psr->response, sizeof(psr->response) -1, 0,(struct sockaddr *) &remaddr, &addrlen);
+	if (vIndex < 1)
+	{
+		skn_logger(SD_WARNING, "ServiceRequest: recvfrom() Failure code=%d, etext=%s", errno, strerror(errno) );
+		return EXIT_FAILURE;
+	}
+	psr->response[vIndex] = 0;
+
+	skn_logger(SD_INFO, "Response() received from [%s] %s:%d",
+			psr->response, inet_ntoa(remaddr.sin_addr), ntohs(remaddr.sin_port));
+
+    return(EXIT_SUCCESS);
+}
+
+
+
 int service_registry_provider(int i_socket, char *response) {
     struct sockaddr_in remaddr;           /* remote address */
     socklen_t addrlen = sizeof(remaddr);  /* length of addresses */
