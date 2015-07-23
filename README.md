@@ -60,6 +60,9 @@ to the service for display on a 4x20 LCD.
 #### Display Service
 ![Locator Service](https://github.com/skoona/skn_rpi-display-services/raw/master/skn_rpi2.png)
 
+    Based on the 'YwRobot Arduino LCM1602 IIC V1'
+    * - which use the I2C controller PCF8574
+
 #### lcd_display_service --help
 
     lcd_display_service -- LCD 4x20 Display Provider.
@@ -73,6 +76,10 @@ to the service for display on a 4x20 LCD.
       -m, --message  Welcome Message for line 1.
       -v, --version  Version printout.
       -h, --help   Show this help screen.
+
+
+#### lcd_display_client --help
+Work in progress...
 
 
 ## Build:  Autotools project
