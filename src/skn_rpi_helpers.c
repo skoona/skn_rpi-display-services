@@ -9,13 +9,16 @@
 /*
  *  Global lcd handle:
 */
-int gd_i_lcd_handle = 0;
 int gd_i_rows = 4;
 int gd_i_cols = 20;
+PDisplayManager gp_structure_pdm = NULL;
 
 
 
 static void skn_display_print_usage(int argc, char *argv[]);
+static PDisplayManager skn_display_manager_create(char * welcome);
+static void skn_display_manager_destroy(PDisplayManager pdm);
+static void * skn_display_manager_message_consumer_thread(void * ptr);
 
 
 /*
@@ -36,7 +39,7 @@ char * skn_scroller_pad_right(char *buffer) {
 	for(hIndex = strlen(buffer); hIndex < gd_i_cols; hIndex++) {
 			buffer[hIndex] = ' ';
 	}
-	buffer[gd_i_cols] = 0;
+	buffer[gd_i_cols-1] = 0;
 
 	return buffer;
 }
@@ -53,7 +56,8 @@ char * skn_scroller_wrap_blanks(char *buffer) {
 	}
 
 	snprintf(worker, (SZ_INFO_BUFF - 1), "%20s%s%20s", " ", buffer, " ");
-	strcpy(buffer, worker);
+	memmove(buffer, worker, SZ_INFO_BUFF-1);
+	buffer[SZ_INFO_BUFF-1] = 0;
 
 	return buffer;
 }
@@ -163,7 +167,7 @@ int generate_cpu_temps_info(char *msg)
   memset(&cpuTemp, 0, sizeof(CpuTemps));
   getCpuTemps(&cpuTemp);
 
-  mLen = snprintf(msg, SZ_INFO_BUFF, "CPU: %s %s", cpuTemp.c, cpuTemp.f) ;
+  mLen = snprintf(msg, SZ_INFO_BUFF-1, "CPU: %s %s", cpuTemp.c, cpuTemp.f) ;
 
   return mLen;
 }
@@ -182,9 +186,12 @@ void skn_lcd_backlight_set (int state)
  *	set to the correct modes, etc.
  *********************************************************************************
 */
-int skn_pcf8574LCDSetup (int backLight)
+int skn_pcf8574LCDSetup (PDisplayManager pdm, int backLight)
 {
-	int iwork = 0;
+/*
+ * Initial I2C Services */
+  wiringPiSetupSys () ;
+  pcf8574Setup (AF_BASE, 0x27) ;
 
 //	Backlight LEDs
   pinMode (AF_BACKLIGHT,  OUTPUT) ;
@@ -194,52 +201,322 @@ int skn_pcf8574LCDSetup (int backLight)
   pinMode (AF_RW, OUTPUT) ; digitalWrite (AF_RW, LOW) ;	// Not used with wiringPi - always in write mode
 
 // The other control pins are initialised with lcdInit ()
-  iwork = gd_i_lcd_handle = lcdInit (gd_i_rows, gd_i_cols, 4, AF_RS, AF_E, AF_DB4,AF_DB5,AF_DB6,AF_DB7, 0,0,0,0) ;
+  pdm->lcd_handle = lcdInit (gd_i_rows, gd_i_cols, 4, AF_RS, AF_E, AF_DB4,AF_DB5,AF_DB6,AF_DB7, 0,0,0,0) ;
 
-  if (gd_i_lcd_handle < 0)
+  if (pdm->lcd_handle < 0)
   {
-    fprintf (stderr, "lcdInit failed\n") ;
-    iwork = EXIT_FAILURE;
+    skn_logger(SD_ERR, "I2C Services failed to initialize. lcdInit(%d)", pdm->lcd_handle);
+  } else {
+	  lcdClear (pdm->lcd_handle) ;
   }
 
-  return iwork;
+  return pdm->lcd_handle;
 }
 
 /**
  * Scrolls a single line across the lcd display
  * - best when wrapped in 20 chars
 */
-int skn_scroller_scroll_line (int position, int line, int columns, const char *msg, int wait)
+int skn_scroller_scroll_lines (PDisplayLine pdl, int lcd_handle, int line) // int position, int line, const char *msg, int wait)
 {
   char buf[40] ;
   signed int hAdjust = 0, mLen = 0, mfLen = 0;
 
-  if (columns >= sizeof(buf)) {
-	  columns = gd_i_cols;
+  mLen = strlen( &(pdl->ch_display_msg[pdl->display_pos]) );
+  if (gd_i_cols < mLen) {
+	  mfLen = pdl->msg_len;
+	  hAdjust = (mfLen - gd_i_cols);
   }
 
-  mLen = strlen(&msg[position]);
-  if (columns < mLen) {
-	  mfLen = strlen(msg);
-	  hAdjust = (mfLen - columns);
-  }
-
-  if (wait == SCROLL_WAIT) {
-    delay(250);
-  }
-
-  snprintf(buf, sizeof(buf) -1 , "%s", &msg[position]) ;
+  snprintf(buf, sizeof(buf) -1 , "%s", &(pdl->ch_display_msg[pdl->display_pos])) ;
   skn_scroller_pad_right(buf);
 
-  lcdPosition (gd_i_lcd_handle, 0, line) ;
-  lcdPuts (gd_i_lcd_handle, buf) ;
+  lcdPosition (lcd_handle, 0, line) ;
+  lcdPuts (lcd_handle, buf) ;
 
-  if (++position > hAdjust) {
-    position = 0 ;
+  if (++pdl->display_pos > hAdjust) {
+	  pdl->display_pos = 0 ;
   }
 
-  return position;
+  return pdl->display_pos;
 }
+
+
+/**
+ * skn_display_manager_select_set
+ * - adds newest to top of double-linked-list
+ * - only keeps 8 in collections
+ * - reuses in top down fashion
+ */
+static PDisplayManager skn_display_manager_create(char * welcome) {
+	int index = 0, next = 0, prev = 0;
+	PDisplayManager pdm = NULL;
+	PDisplayLine pdl = NULL;
+
+	pdm = (PDisplayManager)malloc( sizeof(DisplayManager) );
+	if (pdm == NULL) {
+		skn_logger(SD_ERR, "Display Manager cannot acquire needed resources. %d:%s", errno, strerror(errno));
+		return NULL;
+	}
+
+	memset(pdm, 0, sizeof(DisplayManager));
+	strcpy(pdm->cbName, "PDisplayManager");
+	memmove(pdm->ch_welcome_msg, welcome, SZ_INFO_BUFF-1);
+	pdm->msg_len = strlen(welcome);
+
+	pdm->dsp_cols = gd_i_cols;
+	pdm->dsp_rows = gd_i_rows;
+	pdm->current_line = 0;
+	pdm->next_line = gd_i_rows;
+
+	for (index = 0; index < ARY_MAX_INTF; index++) {
+		pdl = pdm->pdsp_collection[index] = (PDisplayLine)malloc(sizeof(DisplayLine)); // line x
+		memset(pdl, 0, sizeof(DisplayLine));
+		strcpy(pdl->cbName, "PDisplayLine");
+		memmove(pdl->ch_display_msg, welcome, (SZ_INFO_BUFF -1));  // load all with welcome message
+		pdl->ch_display_msg[(SZ_INFO_BUFF-1)] = 0;    // terminate string in case
+		pdl->msg_len = pdm->msg_len; // strlen(welcome);
+		pdl->active = 1;
+		if (pdl->msg_len > gd_i_cols) {
+			pdl->scroll_enabled = 1;
+		}
+	}
+	for (index = 0; index < ARY_MAX_INTF; index++) {               // enable link list routing
+		next = (((index + 1) == ARY_MAX_INTF) ?  0 : (index + 1));
+		prev = (((index - 1) == -1) ?  (ARY_MAX_INTF-1) : (index - 1));
+		pdm->pdsp_collection[index]->next = pdm->pdsp_collection[next];
+		pdm->pdsp_collection[index]->prev = pdm->pdsp_collection[prev];
+	}
+
+	return pdm;
+}
+PDisplayLine skn_display_manager_add_line(PDisplayManager pdmx, char * client_request_message) {
+	PDisplayLine pdl = NULL;
+	PDisplayManager pdm = NULL;
+
+	pdm = ((pdmx == NULL) ? skn_get_display_manager_ref() : pdmx);
+	if (pdm == NULL || client_request_message == NULL) {
+		return NULL;
+	}
+
+	/*
+	 * manage next index */
+	pdl = pdm->pdsp_collection[pdm->next_line++]; // manage next index
+	if (pdm->next_line == ARY_MAX_INTF) {
+		pdm->next_line = 0; // roll it
+	}
+
+	/*
+	 * load new message */
+	memmove(pdl->ch_display_msg, client_request_message, (SZ_INFO_BUFF-1));
+	pdl->ch_display_msg[SZ_INFO_BUFF-1] = 0;    // terminate string in case
+	pdl->msg_len = strlen(pdl->ch_display_msg);
+	pdl->active = 1;
+	pdl->display_pos = 0;
+	if (pdl->msg_len > gd_i_cols) {
+		pdl->scroll_enabled = 1;
+		skn_scroller_wrap_blanks(pdl->ch_display_msg);
+		pdl->ch_display_msg[(SZ_INFO_BUFF-1)] = 0;    // terminate string in case
+	} else {
+		pdl->scroll_enabled = 0;
+	}
+
+	/*
+	 * manage current_line */
+	pdm->pdsp_collection[pdm->current_line]->active = 0;
+	pdm->pdsp_collection[pdm->current_line++]->msg_len = 0;
+	if (pdm->current_line == ARY_MAX_INTF) {
+		pdm->current_line = 0;
+	}
+
+	skn_logger(SD_DEBUG, "DM Added msg=%d:%d:[%s]", pdm->next_line -1, pdl->msg_len, pdl->ch_display_msg);
+
+
+	/* return this line's pointer */
+	return pdl;
+}
+PDisplayManager skn_get_display_manager_ref() {
+	return gp_structure_pdm;
+}
+int skn_display_manager_do_work(char * client_request_message) {
+	int index = 0, dsp_line_number = 0;
+	PDisplayManager pdm = NULL;
+	PDisplayLine pdl = NULL;
+    char ch_lcd_message[3][SZ_INFO_BUFF];
+
+	gp_structure_pdm = pdm = skn_display_manager_create(client_request_message);
+	if (pdm == NULL) {
+		gi_exit_flag = SKN_RUN_MODE_STOP;
+		skn_logger(SD_ERR, "Display Manager cannot acquire needed resources. DMCreate()");
+		return gi_exit_flag;
+	}
+	generate_cpu_temps_info(ch_lcd_message[0]);
+	generate_datetime_info (ch_lcd_message[1]);
+	generate_rpi_model_info(ch_lcd_message[2]);
+	skn_display_manager_add_line(pdm, ch_lcd_message[0]);
+	skn_display_manager_add_line(pdm, ch_lcd_message[1]);
+	skn_display_manager_add_line(pdm, ch_lcd_message[2]);
+
+	if (skn_pcf8574LCDSetup(pdm, HIGH) == -1) {
+		gi_exit_flag = SKN_RUN_MODE_STOP;
+		skn_logger(SD_ERR, "Display Manager cannot acquire needed resources: lcdSetup().");
+		skn_display_manager_destroy(pdm);
+		return gi_exit_flag;
+	}
+
+	if (skn_display_manager_message_consumer_startup(pdm) == EXIT_FAILURE) {
+		gi_exit_flag = SKN_RUN_MODE_STOP;
+		skn_logger(SD_ERR, "Display Manager cannot acquire needed resources: Consumer().");
+		skn_display_manager_destroy(pdm);
+		return gi_exit_flag;
+	}
+
+
+	/*
+	 *  Do the Work
+	 */
+	while(gi_exit_flag == SKN_RUN_MODE_RUN) {
+		dsp_line_number = 0;
+        pdl = pdm->pdsp_collection[pdm->current_line];
+		for (index = 0; index < pdm->dsp_rows; index++) {
+		  if (pdl->active) {
+			  skn_scroller_scroll_lines(pdl, pdm->lcd_handle, dsp_line_number++);
+		      delay(250);
+		  }
+		  pdl = (PDisplayLine)pdl->next;
+		}
+	}
+
+	lcdClear (pdm->lcd_handle) ;
+    skn_lcd_backlight_set (LOW) ;
+
+    /*
+     * Stop UDP Listener
+     */
+    skn_display_manager_message_consumer_shutdown(pdm);
+
+	skn_display_manager_destroy(pdm);
+	gp_structure_pdm = pdm = NULL;
+
+	return gi_exit_flag;
+}
+static void skn_display_manager_destroy(PDisplayManager pdm) {
+	int index = 0;
+
+	// free collection
+	for (index = 0; index < ARY_MAX_INTF; index++) {
+		if (pdm->pdsp_collection[index] != NULL) {
+			free(pdm->pdsp_collection[index]);
+		}
+	}
+	// free manager
+	if (pdm != NULL)
+		free(pdm);
+}
+
+
+/**
+ * skn_display_manager_message_consumer(PDisplayManager pdm)
+ * - returns Socket or EXIT_FAILURE
+ */
+int skn_display_manager_message_consumer_startup(PDisplayManager pdm) {
+    /*
+	 * Start UDP Listener */
+    pdm->i_socket = host_socket_init(SKN_RPI_DISPLAY_SERVICE_PORT, 15);
+	if (pdm->i_socket == EXIT_FAILURE) {
+		skn_logger(SD_EMERG, "DisplayManager: Host Init Failed!");
+    	return EXIT_FAILURE;
+	}
+
+	/*
+	 * Create Thread  */
+	int i_thread_rc = pthread_create( &pdm->dm_thread, NULL, skn_display_manager_message_consumer_thread, (void *)pdm);
+	if (i_thread_rc == -1) {
+		skn_logger(SD_WARNING, "DisplayManager: Create thread failed: %s", strerror(errno));
+		close(pdm->i_socket);
+		return EXIT_FAILURE;
+	}
+	sleep(1); // give thread a chance to start
+
+    skn_logger(SD_NOTICE, "DisplayManager: Thread startup successful");
+
+	return pdm->i_socket;
+}
+/**
+ * skn_display_manager_message_consumer(PDisplayManager pdm) */
+void skn_display_manager_message_consumer_shutdown(PDisplayManager pdm) {
+	void *trc= NULL;
+
+	skn_logger(SD_WARNING, "DisplayManager: Canceling thread.");
+	pthread_cancel(pdm->dm_thread);
+	sleep(1);
+	pthread_join(pdm->dm_thread, &trc);
+	close(pdm->i_socket);
+	skn_logger(SD_NOTICE, "DisplayManager: Thread ended:(%ld)", (long int)trc);
+}
+
+/**
+ * skn_display_manager_message_consumer_thread(PDisplayManager pdm)
+ */
+
+static void * skn_display_manager_message_consumer_thread(void * ptr) {
+	PDisplayManager pdm = (PDisplayManager)ptr;
+    struct sockaddr_in remaddr;           /* remote address */
+    socklen_t addrlen = sizeof(remaddr);  /* length of addresses */
+    IPBroadcastArray aB;
+    char request[SZ_INFO_BUFF];
+    char recvHostName[NI_MAXHOST];
+    signed int rLen = 0, rc = 0;
+    long int exit_code = EXIT_SUCCESS;
+
+    memset(request, 0, sizeof(request));
+    memset(recvHostName, 0, sizeof(recvHostName));
+
+    rc = get_broadcast_ip_array(&aB);
+    if(rc == -1) {
+    	exit_code = rc;
+    	pthread_exit( (void *)exit_code );
+    }
+
+    while (gi_exit_flag == SKN_RUN_MODE_RUN)
+    {
+        memset(&remaddr,0,sizeof(remaddr));
+        remaddr.sin_family = AF_INET;
+        remaddr.sin_port=htons(SKN_RPI_DISPLAY_SERVICE_PORT);
+        remaddr.sin_addr.s_addr = htonl(INADDR_ANY);
+    	addrlen = sizeof(remaddr);
+
+        if ((rLen = recvfrom(pdm->i_socket, request, sizeof(request) - 1, 0,(struct sockaddr *) &remaddr, &addrlen)) < 0)
+        {
+        	if (errno == EAGAIN) {
+        		continue;
+        	}
+		    skn_logger(SD_ERR, "DisplayManager: RcvFrom() Failure code=%d, etext=%s", errno, strerror(errno) );
+		    exit_code = errno;
+            break;
+        }
+        request[rLen] = 0;
+
+        rc = getnameinfo( ((struct sockaddr *)&remaddr), sizeof(struct sockaddr_in),
+        				 recvHostName , NI_MAXHOST , NULL , 0 , NI_DGRAM);
+        if (rc != 0)
+        {
+		    skn_logger(SD_ERR, "GetNameInfo() Failure code=%d, etext=%s", errno, strerror(errno) );
+            break;
+        }
+        skn_logger(SD_NOTICE, "Received request from %s @ %s:%d",
+        				recvHostName, inet_ntoa(remaddr.sin_addr), ntohs(remaddr.sin_port));
+		skn_logger(SD_NOTICE, "Request data: [%s]\n" , request);
+
+		skn_display_manager_add_line(NULL, request);
+    }
+
+	skn_logger(SD_NOTICE, "Display Managager Thread: shutdown complete: (%ld)", exit_code);
+
+	pthread_exit( (void *)exit_code );
+
+}
+
 
 /**************************************************************************
  Function: Print Usage

@@ -219,7 +219,6 @@ static int skn_signal_manager_process_signals(siginfo_t *signal_info)
   return rval;
 }
 
-
 /**
  *  handler_thread()
  *
@@ -442,7 +441,14 @@ static void skn_locator_print_usage(int argc, char *argv[])
   {
 	  skn_logger(" ", "%s -- %s", gd_ch_program_name, gd_ch_program_desc);
 	  skn_logger(" ", "\tSkoona Development <skoona@gmail.com>");
-	  skn_logger(" ", "Usage:\n  %s [-v] [-m 'text msg'][-d 1|88] [-h|--help]", gd_ch_program_name);
+	  if (strcmp(gd_ch_program_name, "udp_locator_client") == 0) {
+		  skn_logger(" ", "Usage:\n  %s [-v] [-m 'text msg'][-d 1|88] [-h|--help]", gd_ch_program_name);
+	  } else {
+		  skn_logger(" ", "Usage:\n  %s [-v] [-m '<delimited-response-message-string>'][-d 1|88] [-h|--help]", gd_ch_program_name);
+		  skn_logger(" ", "  name=<service-name>,ip=<service-ipaddress>ddd.ddd.ddd.ddd,port=<service-portnumber>ddddd <line-delimiter>");
+		  skn_logger(" ", "  REQUIRED   <line-delimiter> is one of these '|', '%', ';'");
+		  skn_logger(" ", "  example: -m 'name=lcd_display_service,ip=192.168.1.15,port=48028|'\n");
+	  }
 	  skn_logger(" ", "Options:");
 	  skn_logger(" ", "  -d 1|88 --debug=1\tDebug mode=1, Debug & no demonize=88.");
 	  skn_logger(" ", "  -m, --message\tRequest/Response message to send.");
@@ -488,7 +494,7 @@ int skn_handle_locator_command_line(int argc, char **argv)
         }
         else
         {
-        	fprintf(stderr, "<5>%s: input param was invalid! %c[%d:%d:%d]\n",
+        	skn_logger(SD_WARNING, "%s: input param was invalid! %c[%d:%d:%d]\n",
         			gd_ch_program_name, (char)opt, longindex, optind, opterr);
           return (EXIT_FAILURE);
         }
@@ -500,18 +506,18 @@ int skn_handle_locator_command_line(int argc, char **argv)
         }
         else
         {
-        	fprintf(stderr, "<5>%s: input param was invalid! %c[%d:%d:%d]\n",
+        	skn_logger(SD_WARNING, "%s: input param was invalid! %c[%d:%d:%d]\n",
         			gd_ch_program_name, (char)opt, longindex, optind, opterr);
           return (EXIT_FAILURE);
         }
         break;
       case 'v':
-    	  fprintf(stderr, "<5>\n\tProgram => %s\n\tVersion => %s\n\tSkoona Development\n\t<skoona@gmail.com>\n",
+    	  skn_logger(SD_WARNING, "\n\tProgram => %s\n\tVersion => %s\n\tSkoona Development\n\t<skoona@gmail.com>\n",
     			  gd_ch_program_name, PACKAGE_VERSION);
         return (EXIT_FAILURE);
         break;
       case '?':
-    	  fprintf(stderr, "<5>%s: unknown input param! %c[%d:%d:%d]\n",
+    	  skn_logger(SD_WARNING, "%s: unknown input param! %c[%d:%d:%d]\n",
     			  gd_ch_program_name, (char)opt, longindex, optind, opterr);
     	  skn_locator_print_usage(argc, argv);
         return (EXIT_FAILURE);
@@ -955,6 +961,7 @@ static int service_registry_response_parse(PServiceRegistry psreg, const char *r
 	free(base);
 	return psreg->count;
 }
+
 
 PServiceRegistry service_registry_get_via_udp_broadcast(int i_socket, char *request) {
     struct sockaddr_in remaddr;           /* remote address */

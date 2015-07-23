@@ -34,23 +34,13 @@ int main(int argc, char *argv[]) {
     	exit(EXIT_FAILURE);
     }
     if (gd_pch_message != NULL) {
-    	strncpy(request, gd_pch_message, sizeof(request));
+    	strncpy(request, gd_pch_message, sizeof(request - 1));
 	    free(gd_pch_message); // from strdup()
 	    gd_pch_message = request;
     } else if (argc == 2) {
     	strcpy(request, argv[1]);
     }
 	skn_logger(SD_DEBUG, "Welcome Message [%s]", request);
-
-
-	// handle signals                   -- threaded (A)
-	// initialize lcd via wiring pi
-	// setup rolling display context
-	// start request listener           -- threaded (B)
-	// -- process request or timer      -- threaded (B)
-	// stop request listener
-	// shutdown lcd        (B)
-	// shutdown signals	   (A)
 
 	/*
 	 * save the real and effective userids */
@@ -77,29 +67,10 @@ int main(int argc, char *argv[]) {
 
 	skn_logger(SD_NOTICE, "Application Active...");
 
-	  int lastPosLine[MAX_DISPLAY_ROWS] = {0, 0, 0, 0};
-	  char ch_lcd_message[MAX_DISPLAY_ROWS][SZ_INFO_BUFF];
 
-	  wiringPiSetupSys () ;
-	  pcf8574Setup (AF_BASE, 0x27) ;
-	  skn_pcf8574LCDSetup (HIGH) ;
-
-	    skn_scroller_wrap_blanks(request);
-		generate_rpi_model_info(ch_lcd_message[3]); skn_scroller_wrap_blanks(ch_lcd_message[3]);
-
-	  while(gi_exit_flag == SKN_RUN_MODE_RUN) {
-		generate_datetime_info(ch_lcd_message[2]);
-		generate_cpu_temps_info(ch_lcd_message[1]); skn_scroller_wrap_blanks(ch_lcd_message[1]);
-
-		lastPosLine[0] = skn_scroller_scroll_line (lastPosLine[0], 0, gd_i_cols, request, SCROLL_WAIT);
-		lastPosLine[1] = skn_scroller_scroll_line (lastPosLine[1], 1, gd_i_cols, ch_lcd_message[1], SCROLL_WAIT);
-		lastPosLine[2] = skn_scroller_scroll_line (lastPosLine[2], 2, gd_i_cols, ch_lcd_message[2], SCROLL_WAIT);
-		lastPosLine[3] = skn_scroller_scroll_line (lastPosLine[3], 3, gd_i_cols, ch_lcd_message[3], SCROLL_WAIT);
-	  }
-
-	  lcdClear (gd_i_lcd_handle) ;
-	  skn_lcd_backlight_set (LOW) ;
-
+	/*
+	 * Do the marvelous work of putting message on display */
+	skn_display_manager_do_work(request);
 
 	/*
 	* Free any allocated resources before exiting
