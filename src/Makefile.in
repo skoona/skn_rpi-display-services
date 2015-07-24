@@ -62,12 +62,13 @@ am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
+CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_lcd_display_client_OBJECTS = lcd_display_client.$(OBJEXT) \
-	skn_network_helpers.$(OBJEXT) skn_rpi_helpers.$(OBJEXT)
+	skn_network_helpers.$(OBJEXT)
 lcd_display_client_OBJECTS = $(am_lcd_display_client_OBJECTS)
 lcd_display_client_DEPENDENCIES =
 lcd_display_client_LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
@@ -90,8 +91,8 @@ udp_locator_service_OBJECTS = $(am_udp_locator_service_OBJECTS)
 udp_locator_service_LDADD = $(LDADD)
 udp_locator_service_LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(udp_locator_service_LDFLAGS) $(LDFLAGS) -o $@
-DEFAULT_INCLUDES = -I.@am__isrc@
-depcomp = $(SHELL) $(top_srcdir)/depcomp
+DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
+depcomp = $(SHELL) $(top_srcdir)/build-aux/depcomp
 am__depfiles_maybe = depfiles
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
@@ -213,8 +214,8 @@ udp_locator_service_SOURCES = udp_locator_service.c skn_network_helpers.c skn_co
 udp_locator_service_LDFLAGS = -pthread -lrt -lm
 udp_locator_client_SOURCES = udp_locator_client.c skn_network_helpers.c skn_common_headers.h skn_network_helpers.h
 udp_locator_client_LDFLAGS = -pthread -lrt -lm
-lcd_display_client_SOURCES = lcd_display_client.c skn_network_helpers.c skn_rpi_helpers.c skn_common_headers.h skn_rpi_helpers.h skn_network_helpers.h
-lcd_display_client_LDFLAGS = -lwiringPi -lwiringPiDev -lpthread
+lcd_display_client_SOURCES = lcd_display_client.c skn_network_helpers.c skn_common_headers.h skn_network_helpers.h
+lcd_display_client_LDFLAGS = -lpthread
 lcd_display_client_LDADD = -L/usr/local/lib -lrt -lm
 lcd_display_service_SOURCES = lcd_display_service.c skn_network_helpers.c skn_rpi_helpers.c skn_common_headers.h skn_rpi_helpers.h skn_network_helpers.h
 lcd_display_service_LDFLAGS = -lwiringPi -lwiringPiDev -lpthread 

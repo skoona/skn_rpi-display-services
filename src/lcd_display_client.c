@@ -6,13 +6,14 @@
 */
 
 #include "skn_network_helpers.h"
-#include "skn_rpi_helpers.h"
+//#include "skn_rpi_helpers.h"
 
 
 int main(int argc, char *argv[])
 {
-    char request[SZ_COMM_BUFF];
+    char request[SZ_INFO_BUFF];
     PRegistryEntry pre = NULL;
+    int vIndex = 0;
 
     memset(request, 0, sizeof(request));
 	strcpy(request, "Raspberry Pi where are you?");
@@ -33,9 +34,6 @@ int main(int argc, char *argv[])
 	    gd_pch_message = request;
     } else if (argc == 2) {
     	strcpy(request, argv[1]);
-    } else {
-    	generate_cpu_temps_info(request);
-	    gd_pch_message = request;
     }
 	skn_logger(SD_DEBUG, "Request Message [%s]", request);
 
@@ -43,7 +41,7 @@ int main(int argc, char *argv[])
 	signals_init();
 
 	/* Create local socket for sending requests */
-	gd_i_socket = host_socket_init(0, 5);
+	gd_i_socket = skn_udp_host_socket_create(0, 5);
 	if (gd_i_socket == EXIT_FAILURE) {
         signals_cleanup(gi_exit_flag);
     	exit(EXIT_FAILURE);		
@@ -63,8 +61,21 @@ int main(int argc, char *argv[])
 
 	// we have the location
 	PServiceRequest pnsr = skn_service_request_create(pre, gd_i_socket, request);
-		skn_udp_service_request(pnsr);
-		free(pnsr);  // Done
+	if (pnsr != NULL) {
+	    skn_logger(SD_NOTICE, "Application Active...");
+
+        do {
+            generate_uname_info(pnsr->request);
+            vIndex = skn_udp_service_request(pnsr);
+            if (vIndex == EXIT_FAILURE) {
+                break;
+            }
+            sleep(1);
+        } while(gd_i_debug != 0 && gi_exit_flag == SKN_RUN_MODE_RUN);
+        free(pnsr);  // Done
+    } else {
+        skn_logger(SD_WARNING, "Unable to create Network Request.");
+    }
 
 	/* Cleanup and shutdown
 	 * - if shutdown was caused by signal handler

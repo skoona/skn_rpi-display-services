@@ -9,6 +9,7 @@
 #define SKN_NETWORK_HELPERS_H__
 
 #include "skn_common_headers.h"
+#include <sys/utsname.h>
 
 //extern PDisplayLine skn_display_manager_add_line(PDisplayManager pdmx, char * client_request_message);
 
@@ -25,11 +26,14 @@ extern char gd_ch_program_desc[SZ_LINE_BUFF];
 extern char *gd_pch_effective_userid;
 extern char gd_ch_ipAddress[NI_MAXHOST];
 extern char gd_ch_intfName[SZ_CHAR_BUFF];
-
+extern int gd_i_display;
 
 /*
  * General Utilities
 */
+extern long skn_get_number_of_cpu_cores();
+extern int generate_uname_info(char *msg);
+extern int generate_datetime_info(char *msg);
 extern uid_t skn_get_userids();
 extern void skn_program_name_and_description_set(const char *name, const char *desc);
 extern char * skn_strip(char * alpha);
@@ -41,7 +45,7 @@ extern void signals_cleanup(int sig);
 /*
  * Server/Client Communication Routines
 */
-extern int host_socket_init(int port, int rcvTimeout);
+extern int skn_udp_host_socket_create(int port, int rcvTimeout);
 extern PServiceRequest skn_service_request_create(PRegistryEntry pre, int host_socket, char *request);
 extern int skn_udp_service_request(PServiceRequest psr);
 extern int skn_display_manager_message_consumer_startup(PDisplayManager pdm);
@@ -55,6 +59,7 @@ extern void get_default_interface_name_and_ipv4_address(char * intf, char * ipv4
 /*
  * Service Registry Public Routines
  */
+extern PServiceRegistry service_registry_valiadated_registry(const char *response);
 extern int service_registry_valiadate_response_format(const char *response);
 extern int service_registry_provider(int i_socket, char *response);
 extern PServiceRegistry service_registry_get_via_udp_broadcast(int i_socket, char *request);

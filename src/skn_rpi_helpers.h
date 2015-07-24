@@ -11,13 +11,13 @@
 
 #include <wiringPi.h>
 #include <pcf8574.h>
+// #include <mcp23008.h>
 #include <lcd.h>
 
 /*
  * Defines for the 'YwRobot Arduino LCM1602 IIC V1'
  * - which use the I2C controller PCF8574
 */
-
 #define	AF_BASE		100
 #define	AF_BACKLIGHT (AF_BASE + 3)
 
@@ -30,6 +30,30 @@
 #define	AF_DB6		(AF_BASE + 6)
 #define	AF_DB7		(AF_BASE + 7)
 
+/*
+ * Defines for the Adafruit IC2/SPI LCD Backpack
+ * - which use the I2C controller MCP23008
+*/
+//
+// #define	AF_BASE		100
+// #define	AF_BACKLIGHT (AF_BASE + 7)
+//
+// #define	AF_E		(AF_BASE + 2)
+// #define	AF_RS		(AF_BASE + 1)
+// #define	AF_RW		(AF_BASE + 0)
+//
+// #define	AF_DB4		(AF_BASE + 3)
+// #define	AF_DB5		(AF_BASE + 4)
+// #define	AF_DB6		(AF_BASE + 5)
+// #define	AF_DB7		(AF_BASE + 6)
+
+
+
+/*
+ *  Global Defines */
+extern int gd_i_rows;
+extern int gd_i_cols;
+extern PDisplayManager gp_structure_pdm;
 
 /*
  * Display Manager Routines */
@@ -49,25 +73,15 @@ extern int skn_signal_manager_shutdown(pthread_t sig_thread, sigset_t *psignal_s
 /* WiringPi LCD Interfaces
 */
 extern void skn_lcd_backlight_set(int state);
-extern int skn_pcf8574LCDSetup (PDisplayManager pdm, int backLight);
+extern int skn_display_service_LCD_setup (PDisplayManager pdm, int backLight);
 
 /* General Utilities
 */
-extern long skn_get_number_of_cpu_cores();
 extern int skn_handle_display_command_line(int argc, char **argv);
 
 /* Scrolling Display Info Messages
 */
 extern int generate_rpi_model_info(char *msg);
-extern int generate_uname_info(char *msg);
-extern int generate_datetime_info(char *msg);
 extern int generate_cpu_temps_info(char *msg);
-
-/*
- *  Global lcd handle:
-*/
-extern int gd_i_rows;
-extern int gd_i_cols;
-extern PDisplayManager gp_structure_pdm;
 
 #endif // SKN_RPI_HELPERS_H__

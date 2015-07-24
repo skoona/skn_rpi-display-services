@@ -12,7 +12,7 @@ to the service for display on a 4x20 LCD.
 |udp_locator_service|Server|any|yes|Maintains a list of known network services accessable via UDP socket.|
 |udp_locator_client|Client|any|yes|Collect services info from Service, which includes that service's ip address.|
 |lcd_display_service|Server|any|yes|Accepts one-line messages over udp and display them on a 4x20 lcd panel.|
-|lcd_display_client|Client|any|initial|Sends the one-liner composed of various Pi metrics; like cpus, temps, etc.|
+|lcd_display_client|Client|any|wip|Sends the one-liner composed of various Pi metrics; like cpus, temps, etc.|
 
 
 ### Configuration Options
@@ -26,14 +26,15 @@ to the service for display on a 4x20 LCD.
     udp_locator_service -- Provides IPv4 Addres/Port Service info.
               Skoona Development <skoona@gmail.com>
     Usage:
-      udp_locator_service [-v] [-m "<delimited-response-message-string>"][-d 1|88] [-h|--help]
+      udp_locator_service [-v] [-s] [-m "<delimited-response-message-string>"][-d 1|88] [-h|--help]
     Options:
-      -d 1|88 --debug=1  Debug mode=1, Debug & no demonize=88.
-      -m, --message  Response message to send.
+      -s, --include-display-service  Includes DisplaySerivce in default Registry response.
+      -d 1|88 --debug=1  Debug mode=1, Debug.
+      -m, --message  ServiceRegistry to send.
       -v, --version  Version printout.
       -h, --help   Show this help screen.
       
-      Format: <delimited-response-message-string>
+      ServiceRegistry Format: <delimited-response-message-string>
         delimited-response-message-string : required order -> name,ip,port,line-delimiter...
           format: "name=<service-name>,ip=<service-ipaddress>ddd.ddd.ddd.ddd,port=<service-portnumber>ddddd <line-delimiter>"
             name=<service-name> text_string_with_no_spaces
@@ -49,10 +50,10 @@ to the service for display on a 4x20 LCD.
     udp_locator_client -- Collect IPv4 Address/Port Service info from all providers.
               Skoona Development <skoona@gmail.com>
     Usage:
-      udp_locator_client [-v] [-m 'text msg'][-d 1|88] [-h|--help]
+      udp_locator_client [-v] [-m 'any text msg'][-d 1|88] [-h|--help]
     Options:
-      -d 1|88 --debug=1  Debug mode=1, Debug & no demonize=88.
-      -m, --message  Request/Response message to send  (any string - content is ignored)
+      -d 1|88 --debug=1  Debug mode=1, Debug.
+      -m, --message  Request message to send  (any string - content is ignored)
       -v, --version  Version printout.
       -h, --help   Show this help screen.
 
@@ -61,14 +62,16 @@ to the service for display on a 4x20 LCD.
 ![Locator Service](https://github.com/skoona/skn_rpi-display-services/raw/master/skn_rpi2.png)
 
     Based on the 'YwRobot Arduino LCM1602 IIC V1'
-    * - which use the I2C controller PCF8574
+    * - which uses the I2C controller PCF8574
+    Can be reconfigured to support 'Adafruit IC2/SPI LCD Backpack'
+    * - which is based on the I2C controller MCP23008
 
 #### lcd_display_service --help
 
     lcd_display_service -- LCD 4x20 Display Provider.
               Skoona Development <skoona@gmail.com>
     Usage:
-      lcd_display_service [-v] [-m 'text msg'] [-r 4|2] [-c 20|16] [-d 1|88] [-h|--help]
+      lcd_display_service [-v] [-m 'Welcome Message'] [-r 4|2] [-c 20|16] [-d 1|88] [-h|--help]
     Options:
       -d 1|88 --debug=1  Debug mode=1.
       -r, --rows   Number of rows in physical display.
@@ -87,7 +90,7 @@ Work in progress...
       lcd_display_client [-v] [-m 'text msg for display'][-d 1|88] [-h|--help]
     Options:
       -d 1|88 --debug=1  Debug mode=1.
-      -m, --message  Message to send to display, default: cpu temps
+      -m, --message  Message to send to display, default: 'uname -a output'
       -v, --version  Version printout.
       -h, --help   Show this help screen.
 
@@ -99,4 +102,10 @@ Requires [WiringPi](https://projects.drogon.net/raspberry-pi/wiringpi/download-a
     $ make
     $ sudo make install
 
+
+## Notes:
+
+- The git branch **clients_only** can be compiled any Linux/Mac platform.
+- Planning to write *systemd* unit scripts as part of package, add the following to rc.local for now.
+  * `/<path>/udp_locator_service >> /tmp/udp_locator_service.log 2>&1 &`
 

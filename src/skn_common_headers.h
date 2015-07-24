@@ -45,6 +45,30 @@
 #define SD_INFO    "<6>"  /* informational */
 #define SD_DEBUG   "<7>"  /* debug-level messages */
 
+/**
+ * #include <sysexits.h>
+ * $ man 3 sysexits
+ *
+ * Program Exit Codes with SystemD in mind
+ * ref: http://refspecs.linuxbase.org/LSB_3.1.1/LSB-Core-generic/LSB-Core-generic/iniscrptact.html
+ *
+	In case of an error while processing any init-script action except
+	for status, the init script shall print an error message and exit
+	with a non-zero status code:
+
+	1	generic or unspecified error (current practice)
+	2	invalid or excess argument(s)
+	3	unimplemented feature (for example, "reload")
+	4	user had insufficient privilege
+	5	program is not installed
+	6	program is not configured
+	7	program is not running
+	8-99	reserved for future LSB use
+	100-149	reserved for distribution use
+	150-199	reserved for application use
+	200-254	reserved
+*
+*/
 
 /*
  * Program Standards passed from compiler
@@ -67,7 +91,7 @@
 #define SZ_INFO_BUFF 256
 #define SZ_CHAR_BUFF 128
 #define SZ_LINE_BUFF 256
-#define SZ_COMM_BUFF 1024
+#define SZ_COMM_BUFF 256
 
 #define ARY_MAX_INTF 8
 #define SKN_RUN_MODE_RUN  0
@@ -81,7 +105,7 @@
 #define SCROLL_WAIT    1
 #define SCROLL_NOWAIT  0
 #define MAX_DISPLAY_ROWS 4
-
+#define PLATFORM_ERROR -1
 
 
 typedef struct _ipBroadcastArray {
@@ -97,8 +121,8 @@ typedef struct _ipBroadcastArray {
 
 typedef struct _serviceEntry {
 	char cbName[SZ_CHAR_BUFF];
-	char name[SZ_CHAR_BUFF];
-	char ip[SZ_CHAR_BUFF];
+	char name[SZ_INFO_BUFF];
+	char ip[SZ_INFO_BUFF];
 	int port;
 } RegistryEntry, *PRegistryEntry;
 

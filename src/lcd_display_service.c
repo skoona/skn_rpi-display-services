@@ -21,7 +21,8 @@ int main(int argc, char *argv[]) {
     char request[SZ_INFO_BUFF];
 
     memset(request, 0, sizeof(request));
-	snprintf(request, sizeof(request), "%02ld Cpus are Online and Available.", skn_get_number_of_cpu_cores() );
+	snprintf(request, sizeof(request), "%02ld Cpus are Online and Available.",
+	                skn_get_number_of_cpu_cores() );
 
     skn_program_name_and_description_set(
     		"lcd_display_service",
@@ -34,7 +35,7 @@ int main(int argc, char *argv[]) {
     	exit(EXIT_FAILURE);
     }
     if (gd_pch_message != NULL) {
-    	strncpy(request, gd_pch_message, sizeof(request - 1));
+    	strncpy(request, gd_pch_message, (SZ_INFO_BUFF - 1));
 	    free(gd_pch_message); // from strdup()
 	    gd_pch_message = request;
     } else if (argc == 2) {
@@ -62,11 +63,7 @@ int main(int argc, char *argv[]) {
 	* - initialize needed resources
 	* - start user threads
 	*/
-	skn_logger(SD_NOTICE, "%s-%s is in startup mode as user(%s)",
-		  gd_ch_program_name, PACKAGE_VERSION, gd_pch_effective_userid);
-
-	skn_logger(SD_NOTICE, "Application Active...");
-
+	skn_logger(SD_NOTICE, "%s-%s is in startup mode as user(%s)", gd_ch_program_name, PACKAGE_VERSION, gd_pch_effective_userid);
 
 	/*
 	 * Do the marvelous work of putting message on display */
