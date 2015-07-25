@@ -17,8 +17,11 @@ char gd_ch_program_desc[SZ_LINE_BUFF];
 char *gd_pch_effective_userid = NULL;
 int gd_i_socket = -1;
 int gd_i_display = 0;
+int gd_i_update = 0;
+int gd_i_unique_registry = 0;
 char gd_ch_ipAddress[NI_MAXHOST];
 char gd_ch_intfName[SZ_CHAR_BUFF];
+char * gd_pch_service_name;
 
 static void skn_locator_print_usage();
 static void exit_handler(int sig);
@@ -445,19 +448,25 @@ static void skn_locator_print_usage() {
     skn_logger(" ", "%s -- %s", gd_ch_program_name, gd_ch_program_desc);
     skn_logger(" ", "\tSkoona Development <skoona@gmail.com>");
     if (strcmp(gd_ch_program_name, "udp_locator_client") == 0) {
-        skn_logger(" ", "Usage:\n  %s [-v] [-m 'any text msg'][-d 1|88] [-h|--help]", gd_ch_program_name);
+        skn_logger(" ", "Usage:\n  %s [-v] [-m 'any text msg'] [-u] [-h|--help]", gd_ch_program_name);
+        skn_logger(" ", "\nOptions:");
+        skn_logger(" ", "  -u, --unique-registry\t List unique entries from all responses.");
+        skn_logger(" ", "  -m, --message\tAny text to send; 'stop' cause service to terminate.");
     } else if (strcmp(gd_ch_program_name, "udp_locator_service") == 0) {
-        skn_logger(" ", "Usage:\n  %s [-s] [-v] [-m '<delimited-response-message-string>'][-d 1|88] [-h|--help]", gd_ch_program_name);
-        skn_logger(" ", "  -s, --include-display-service\tInclude DisplayService entry in default registry.");
-        skn_logger(" ", "  name=<service-name>,ip=<service-ipaddress>ddd.ddd.ddd.ddd,port=<service-portnumber>ddddd <line-delimiter>");
+        skn_logger(" ", "Usage:\n  %s [-s] [-v] [-m '<delimited-response-message-string>'] [-h|--help]", gd_ch_program_name);
+        skn_logger(" ", "  Format: name=<service-name>,ip=<service-ipaddress>ddd.ddd.ddd.ddd,port=<service-portnumber>ddddd <line-delimiter>");
         skn_logger(" ", "  REQUIRED   <line-delimiter> is one of these '|', '%', ';'");
-        skn_logger(" ", "  example: -m 'name=rpi_locator_service,ip=192.168.1.15,port=48028|'\n");
-    } else {
-        skn_logger(" ", "Usage:\n  %s [-v] [-m 'message for display'][-d 1|88] [-h|--help]", gd_ch_program_name);
+        skn_logger(" ", "  example: -m 'name=rpi_locator_service,ip=192.168.1.15,port=48028|name=lcd_display_service, ip=192.168.1.15, port=48029|'");
+        skn_logger(" ", "\nOptions:");
+        skn_logger(" ", "  -s, --include-display-service\tInclude DisplayService entry in default registry.");
+    } else if (strcmp(gd_ch_program_name, "lcd_display_client") == 0) {
+        skn_logger(" ", "Usage:\n  %s [-v] [-m 'message for display'] [-n 1|300] [-a 'my_service_name'] [-h|--help]", gd_ch_program_name);
+        skn_logger(" ", "\nOptions:");
+        skn_logger(" ", "  -a, --alt-service-name=my_service_name");
+        skn_logger(" ", "                          lcd_display_service is default, use this to change name.");
+        skn_logger(" ", "  -m, --message\tRequest message to send.");
+        skn_logger(" ", "  -n, --non-stop=DD\tContinue to send updates every DD seconds until ctrl-break.");
     }
-    skn_logger(" ", "Options:");
-    skn_logger(" ", "  -d 1|88 --debug=1\tDebug mode=1, Debug .");
-    skn_logger(" ", "  -m, --message\tRequest/Response message to send.");
     skn_logger(" ", "  -v, --version\tVersion printout.");
     skn_logger(" ", "  -h, --help\t\tShow this help screen.");
 }
@@ -472,6 +481,9 @@ int skn_handle_locator_command_line(int argc, char **argv) {
     int opt = 0;
     int longindex = 0;
     struct option longopts[] = { { "include-display-service", 0, NULL, 's' }, /* set true if present */
+                                 { "alt-service-name", 1, NULL, 'a' }, /* set true if present */
+                                 { "unique-registry", 0, NULL, 'u' }, /* set true if present */
+                                 { "non-stop", 1, NULL, 'n' }, /* required param if */
                                  { "debug", 1, NULL, 'd' }, /* required param if */
                                  { "message", 1, NULL, 'm' }, /* required param if */
                                  { "version", 0, NULL, 'v' }, /* set true if present */
@@ -485,8 +497,11 @@ int skn_handle_locator_command_line(int argc, char **argv) {
      *  optarg is value attached(-d88) or next element(-d 88) of argv
      *  opterr flags a scanning error
      */
-    while ((opt = getopt_long(argc, argv, "d:m:svh", longopts, &longindex)) != -1) {
+    while ((opt = getopt_long(argc, argv, "d:m:n:a:usvh", longopts, &longindex)) != -1) {
         switch (opt) {
+            case 'u':
+                gd_i_unique_registry = 1;
+                break;
             case 's':
                 gd_i_display = 1;
                 break;
@@ -501,6 +516,22 @@ int skn_handle_locator_command_line(int argc, char **argv) {
             case 'm':
                 if (optarg) {
                     gd_pch_message = strdup(optarg);
+                } else {
+                    skn_logger(SD_WARNING, "%s: input param was invalid! %c[%d:%d:%d]\n", gd_ch_program_name, (char) opt, longindex, optind, opterr);
+                    return (EXIT_FAILURE);
+                }
+                break;
+            case 'n':
+                if (optarg) {
+                    gd_i_update = atoi(optarg);
+                } else {
+                    skn_logger(SD_WARNING, "%s: input param was invalid! %c[%d:%d:%d]\n", gd_ch_program_name, (char) opt, longindex, optind, opterr);
+                    return (EXIT_FAILURE);
+                }
+                break;
+            case 'a':
+                if (optarg) {
+                    gd_pch_service_name = strdup(optarg);
                 } else {
                     skn_logger(SD_WARNING, "%s: input param was invalid! %c[%d:%d:%d]\n", gd_ch_program_name, (char) opt, longindex, optind, opterr);
                     return (EXIT_FAILURE);
@@ -586,7 +617,53 @@ int skn_logger(const char *level, const char *format, ...) {
     return fprintf(stderr, "%s%s\n", logLevel, buffer);
 }
 
-int skn_udp_host_socket_create(int port, int rcvTimeout) {
+/**
+ * skn_udp_host_create_regular_socket()
+ * - creates a dgram socket without broadcast enabled
+ *
+ * - returns i_socket | EXIT_FAILURE
+ */
+int skn_udp_host_create_regular_socket(int port, int rcvTimeout) {
+    struct sockaddr_in addr;
+    int fd, broadcastEnable = 1;
+
+    if ((fd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0) {
+        skn_logger(SD_EMERG, "Create Socket error=%d, etext=%s", errno, strerror(errno));
+        return (EXIT_FAILURE);
+    }
+    if ((setsockopt(fd, SOL_SOCKET, SO_BROADCAST, &broadcastEnable, sizeof(broadcastEnable))) < 0) {
+        skn_logger(SD_EMERG, "Set Socket Broadcast Option error=%d, etext=%s", errno, strerror(errno));
+        return (EXIT_FAILURE);
+    }
+
+    struct timeval tv;
+    tv.tv_sec = rcvTimeout;
+    tv.tv_usec = 0;
+    if ((setsockopt(fd, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv))) < 0) {
+        skn_logger(SD_EMERG, "Set Socket RcvTimeout Option error=%d, etext=%s", errno, strerror(errno));
+        return (EXIT_FAILURE);
+    }
+
+    /* set up local address */
+    memset(&addr, 0, sizeof(addr));
+    addr.sin_family = AF_INET;
+    addr.sin_addr.s_addr = htonl(INADDR_ANY);
+    addr.sin_port = htons(port);
+    if (bind(fd, (struct sockaddr *) &addr, sizeof(addr)) < 0) {
+        skn_logger(SD_EMERG, "Bind to local Socket error=%d, etext=%s", errno, strerror(errno));
+        return (EXIT_FAILURE);
+    }
+
+    return fd;
+}
+
+/**
+ * skn_udp_host_create_broadcast_socket()
+ * - creates a dgram socket with broadcast enabled
+ *
+ * - returns i_socket | EXIT_FAILURE
+ */
+int skn_udp_host_create_broadcast_socket(int port, int rcvTimeout) {
     struct sockaddr_in addr;
     int fd, broadcastEnable = 1;
 
@@ -634,6 +711,12 @@ PServiceRequest skn_service_request_create(PRegistryEntry pre, int host_socket, 
     strncpy(psr->request, request, SZ_INFO_BUFF-1);
     return psr;
 }
+/**
+ * skn_udp_service_request()
+ * - side effects: none
+ *
+ * - returns EXIT_SUCCESS | EXIT_FAILURE
+ */
 int skn_udp_service_request(PServiceRequest psr) {
     struct sockaddr_in remaddr; /* remote address */
     socklen_t addrlen = sizeof(remaddr); /* length of addresses */
@@ -775,7 +858,9 @@ static int service_registry_entry_create(PServiceRegistry psreg, char *name, cha
     }
 
     /* update or create entry */
-    prent = service_registry_find_entry(psreg, name);
+    if (gd_i_unique_registry) {
+        prent = service_registry_find_entry(psreg, name);
+    }
     if (prent == NULL) {
         prent = (PRegistryEntry) malloc(sizeof(RegistryEntry));
         if (prent != NULL) {

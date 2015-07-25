@@ -17,6 +17,12 @@ static PDisplayManager skn_display_manager_create(char * welcome);
 static void skn_display_manager_destroy(PDisplayManager pdm);
 static void * skn_display_manager_message_consumer_thread(void * ptr);
 
+
+/*
+ * Device Methods
+*/
+
+
 /*
  * Utility Methods
 */
@@ -362,7 +368,7 @@ static void skn_display_manager_destroy(PDisplayManager pdm) {
 int skn_display_manager_message_consumer_startup(PDisplayManager pdm) {
     /*
      * Start UDP Listener */
-    pdm->i_socket = skn_udp_host_socket_create(SKN_RPI_DISPLAY_SERVICE_PORT, 15);
+    pdm->i_socket = skn_udp_host_create_broadcast_socket(SKN_RPI_DISPLAY_SERVICE_PORT, 15);
     if (pdm->i_socket == EXIT_FAILURE) {
         skn_logger(SD_EMERG, "DisplayManager: Host Init Failed!");
         return EXIT_FAILURE;
@@ -476,17 +482,17 @@ static void skn_display_print_usage() {
     skn_logger(" ", "\tSkoona Development <skoona@gmail.com>");
 
     if (strcmp(gd_ch_program_name, "lcd_display_service") == 0) {
-        skn_logger(" ", "Usage:\n  %s [-v] [-m 'text msg'] [-r 4|2] [-c 20|16] [-d 1|88] [-h|--help]", gd_ch_program_name);
-        skn_logger(" ", "Options:");
-        skn_logger(" ", "  -d 1|88 --debug=1\tDebug mode=1.");
+        skn_logger(" ", "Usage:\n  %s [-v] [-m 'Welcome Message'] [-r 4|2] [-c 20|16] [-h|--help]", gd_ch_program_name);
+        skn_logger(" ", "\nOptions:");
         skn_logger(" ", "  -r, --rows\t\tNumber of rows in physical display.");
         skn_logger(" ", "  -c, --cols\t\tNumber of columns in physical display.");
     } else {
-        skn_logger(" ", "Usage:\n  %s [-v] [-m 'message for display'][-d 1|88] [-h|--help]", gd_ch_program_name);
-        skn_logger(" ", "Options:");
-        skn_logger(" ", "  -d 1|88 --debug=1\tDebug mode=1.");
+        skn_logger(" ", "Usage:\n  %s [-v] [-m 'message for display'] [-h|--help]", gd_ch_program_name);
+        skn_logger(" ", "\nOptions:");
+        skn_logger(" ", "  -a, --alt-service-name=my_service_name");
+        skn_logger(" ", "                          lcd_display_service is default, use this to change name.");
     }
-    skn_logger(" ", "  -m, --message\t Message for line 1.");
+    skn_logger(" ", "  -m, --message\tWelcome Message for line 1.");
     skn_logger(" ", "  -v, --version\tVersion printout.");
     skn_logger(" ", "  -h, --help\t\tShow this help screen.");
 }
@@ -516,7 +522,7 @@ int skn_handle_display_command_line(int argc, char **argv) {
      *  optarg is value attached(-d88) or next element(-d 88) of argv
      *  opterr flags a scanning error
      */
-    while ((opt = getopt_long(argc, argv, "d:m:r:c:vh", longopts, &longindex)) != -1) {
+    while ((opt = getopt_long(argc, argv, "d:m:r:c:a:vh", longopts, &longindex)) != -1) {
         switch (opt) {
             case 'd':
                 if (optarg) {

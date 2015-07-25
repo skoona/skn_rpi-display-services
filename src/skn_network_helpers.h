@@ -27,6 +27,9 @@ extern char *gd_pch_effective_userid;
 extern char gd_ch_ipAddress[NI_MAXHOST];
 extern char gd_ch_intfName[SZ_CHAR_BUFF];
 extern int gd_i_display;
+extern int gd_i_unique_registry;
+extern int gd_i_update;
+extern char * gd_pch_service_name;
 
 /*
  * General Utilities
@@ -45,7 +48,8 @@ extern void signals_cleanup(int sig);
 /*
  * Server/Client Communication Routines
 */
-extern int skn_udp_host_socket_create(int port, int rcvTimeout);
+extern int skn_udp_host_create_broadcast_socket(int port, int rcvTimeout);
+extern int skn_udp_host_create_regular_socket(int port, int rcvTimeout);
 extern PServiceRequest skn_service_request_create(PRegistryEntry pre, int host_socket, char *request);
 extern int skn_udp_service_request(PServiceRequest psr);
 extern int skn_display_manager_message_consumer_startup(PDisplayManager pdm);

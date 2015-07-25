@@ -107,6 +107,37 @@
 #define MAX_DISPLAY_ROWS 4
 #define PLATFORM_ERROR -1
 
+/*
+ * Defines for the Adafruit IC2/SPI LCD Backpack
+ * - which use the I2C controller MCP23008
+*/
+//
+// #define  AF_BASE     100
+// #define  AF_BACKLIGHT (AF_BASE + 7)
+//
+// #define  AF_E        (AF_BASE + 2)
+// #define  AF_RS       (AF_BASE + 1)
+// #define  AF_RW       (AF_BASE + 0)
+//
+// #define  AF_DB4      (AF_BASE + 3)
+// #define  AF_DB5      (AF_BASE + 4)
+// #define  AF_DB6      (AF_BASE + 5)
+// #define  AF_DB7      (AF_BASE + 6)
+
+typedef struct _IIC {
+    int af_base;
+    int af_backlight;
+
+    int af_e;
+    int af_rs;
+    int af_rw;
+
+    int af_db4;
+    int af_db5;
+    int af_db6;
+    int af_db7;
+} I2C, *PI2C;
+
 
 typedef struct _ipBroadcastArray {
 	char cbName[SZ_CHAR_BUFF];

@@ -82,13 +82,13 @@ lcd_display_service_LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 am_udp_locator_client_OBJECTS = udp_locator_client.$(OBJEXT) \
 	skn_network_helpers.$(OBJEXT)
 udp_locator_client_OBJECTS = $(am_udp_locator_client_OBJECTS)
-udp_locator_client_LDADD = $(LDADD)
+udp_locator_client_DEPENDENCIES =
 udp_locator_client_LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(udp_locator_client_LDFLAGS) $(LDFLAGS) -o $@
 am_udp_locator_service_OBJECTS = udp_locator_service.$(OBJEXT) \
 	skn_network_helpers.$(OBJEXT)
 udp_locator_service_OBJECTS = $(am_udp_locator_service_OBJECTS)
-udp_locator_service_LDADD = $(LDADD)
+udp_locator_service_DEPENDENCIES =
 udp_locator_service_LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(udp_locator_service_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
@@ -210,10 +210,14 @@ target_vendor = @target_vendor@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+ACLOCAL_AMFLAGS = -I m4 --install
+EXTRA_DIST = m4/NOTES
 udp_locator_service_SOURCES = udp_locator_service.c skn_network_helpers.c skn_common_headers.h skn_network_helpers.h
-udp_locator_service_LDFLAGS = -pthread -lrt -lm
+udp_locator_service_LDFLAGS = -lpthread -lrt -lm
+udp_locator_service_LDADD = -L/usr/local/lib -lrt -lm
 udp_locator_client_SOURCES = udp_locator_client.c skn_network_helpers.c skn_common_headers.h skn_network_helpers.h
-udp_locator_client_LDFLAGS = -pthread -lrt -lm
+udp_locator_client_LDFLAGS = -lpthread -lrt -lm
+udp_locator_client_LDADD = -L/usr/local/lib -lrt -lm
 lcd_display_client_SOURCES = lcd_display_client.c skn_network_helpers.c skn_common_headers.h skn_network_helpers.h
 lcd_display_client_LDFLAGS = -lpthread
 lcd_display_client_LDADD = -L/usr/local/lib -lrt -lm

@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 	signals_init();
 
 	/* Create local socket for sending requests */
-	gd_i_socket = skn_udp_host_socket_create(0, 5);
+	gd_i_socket = skn_udp_host_create_broadcast_socket(0, 5);
 	if (gd_i_socket == EXIT_FAILURE) {
         signals_cleanup(gi_exit_flag);
     	exit(EXIT_FAILURE);		
@@ -48,13 +48,18 @@ int main(int argc, char *argv[])
 	 * - could return null if error */
 	PServiceRegistry psr = service_registry_get_via_udp_broadcast(gd_i_socket, request);
 	if (psr != NULL && service_registry_entry_count(psr) != 0) {
+        char *service_name = "lcd_display_service";
+
+        if (gd_pch_service_name != NULL) {
+            service_name = gd_pch_service_name;
+        }
 
 		service_registry_list_entries(psr);
 
 		/* find a single entry */
-		PRegistryEntry pre = service_registry_find_entry(psr, "lcd_display_service");
+		PRegistryEntry pre = service_registry_find_entry(psr, service_name);
 		if (pre != NULL) {
-			skn_logger(SD_INFO, "LCD Display Service is locate at IPv4: %s:%d", pre->ip, pre->port);
+			skn_logger(SD_INFO, "LCD DisplayService (%s) is located at IPv4: %s:%d", pre->name, pre->ip, pre->port);
 		}
     }
 
