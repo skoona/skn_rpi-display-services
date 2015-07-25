@@ -67,16 +67,16 @@ to the service for display on a 4x20 LCD.
 #### Display Service
 ![Locator Service](https://github.com/skoona/skn_rpi-display-services/raw/master/skn_rpi2.png)
 
-> **Supports** on the ('YwRobot Arduino **LCM1602** IIC V1 LCD Backpack')[http://arduino-info.wikispaces.com/LCD-Blue-I2C]
-> - which uses the I2C controller *PCF8574*
+> **Supports** on the ['YwRobot Arduino **LCM1602** IIC V1 LCD Backpack'][http://arduino-info.wikispaces.com/LCD-Blue-I2C]
+> which uses the I2C controller *PCF8574*
     
     
 > Planning to also add support for ['Adafruit **IC2/SPI** LCD Backpack'](https://www.adafruit.com/products/292)
-> - which is based on the I2C controller *MCP23008*
+> which is based on the I2C controller *MCP23008*
 
     
 > Planning to also add support for ['Adafruit **USB/Serial** LCD Backpack'](https://www.adafruit.com/products/782)
-> - which uses */dev/ttyACM0*
+> which uses */dev/ttyACM0*
 
 
 #### lcd_display_service --help
