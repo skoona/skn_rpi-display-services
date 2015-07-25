@@ -14,7 +14,7 @@ AC_CONFIG_MACRO_DIR([m4])
 
 AC_CANONICAL_SYSTEM
 
-AM_INIT_AUTOMAKE([subdir-objects], [0.2.2], [-Wall -Werror -Winline])
+AM_INIT_AUTOMAKE
 AC_CONFIG_FILES(Makefile src/Makefile)
 
 # stricter options -ansi -pedantic

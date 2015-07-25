@@ -2671,9 +2671,18 @@ fi
 
 
 # Define the identity of the package.
- PACKAGE=subdir-objects
- VERSION=0.2.2
+ PACKAGE='skn_rpi-locator-service'
+ VERSION='0.2.2'
 
+
+cat >>confdefs.h <<_ACEOF
+#define PACKAGE "$PACKAGE"
+_ACEOF
+
+
+cat >>confdefs.h <<_ACEOF
+#define VERSION "$VERSION"
+_ACEOF
 
 # Some tools Automake needs.
 

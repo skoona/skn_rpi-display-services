@@ -74,7 +74,8 @@ lcd_display_client_DEPENDENCIES =
 lcd_display_client_LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(lcd_display_client_LDFLAGS) $(LDFLAGS) -o $@
 am_lcd_display_service_OBJECTS = lcd_display_service.$(OBJEXT) \
-	skn_network_helpers.$(OBJEXT) skn_rpi_helpers.$(OBJEXT)
+	skn_network_helpers.$(OBJEXT) skn_rpi_helpers.$(OBJEXT) \
+	skn_signal_manager.$(OBJEXT)
 lcd_display_service_OBJECTS = $(am_lcd_display_service_OBJECTS)
 lcd_display_service_DEPENDENCIES =
 lcd_display_service_LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
@@ -221,7 +222,7 @@ udp_locator_client_LDADD = -L/usr/local/lib -lrt -lm
 lcd_display_client_SOURCES = lcd_display_client.c skn_network_helpers.c skn_common_headers.h skn_network_helpers.h
 lcd_display_client_LDFLAGS = -lpthread
 lcd_display_client_LDADD = -L/usr/local/lib -lrt -lm
-lcd_display_service_SOURCES = lcd_display_service.c skn_network_helpers.c skn_rpi_helpers.c skn_common_headers.h skn_rpi_helpers.h skn_network_helpers.h
+lcd_display_service_SOURCES = lcd_display_service.c skn_network_helpers.c skn_rpi_helpers.c skn_signal_manager.c skn_common_headers.h skn_rpi_helpers.h skn_network_helpers.h
 lcd_display_service_LDFLAGS = -lwiringPi -lwiringPiDev -lpthread 
 lcd_display_service_LDADD = -L/usr/local/lib -lrt -lm
 all: all-am
@@ -321,6 +322,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/lcd_display_service.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/skn_network_helpers.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/skn_rpi_helpers.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/skn_signal_manager.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/udp_locator_client.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/udp_locator_service.Po@am__quote@
 
