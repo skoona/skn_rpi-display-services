@@ -141,11 +141,11 @@ int get_broadcast_ip_array(PIPBroadcastArray paB) {
     paB->defaultIndex = 0;
     strcpy(paB->cbName, "Net Broadcast IPs");
 
-    rc = get_default_interface_name(paB->chDefaultIntfName);
-    if (rc == EXIT_FAILURE) {
-        skn_logger(SD_ERR, "No Default Network Interfaces Found!. Count=%d", rc);
-        return PLATFORM_ERROR;
-    }
+//    rc = get_default_interface_name(paB->chDefaultIntfName);
+//    if (rc == EXIT_FAILURE) {
+//        skn_logger(SD_ERR, "No Default Network Interfaces Found!. Count=%d", rc);
+//        return PLATFORM_ERROR;
+//    }
     rc = getifaddrs(&ifap);
     if (rc != 0) {
         skn_logger(SD_ERR, "No Network Interfaces Found at All ! %d:%d:%s", rc, errno, strerror(errno));
@@ -162,9 +162,12 @@ int get_broadcast_ip_array(PIPBroadcastArray paB) {
 
             strncpy(paB->ifNameStr[paB->count], p->ifa_name, (SZ_CHAR_BUFF -1));
 
-            if (strcmp(paB->chDefaultIntfName, p->ifa_name) == 0) {
+            /* Take first one to be the default */
+            if ((strcmp(paB->maskAddrStr[paB->count], "255.0.0.0") != 0) && (paB->chDefaultIntfName[0] != 0)) {
+                strncpy(paB->chDefaultIntfName, p->ifa_name, (SZ_CHAR_BUFF -1));
                 paB->defaultIndex = paB->count;
             }
+
             paB->count++;
         }
         p = p->ifa_next;
@@ -176,6 +179,7 @@ int get_broadcast_ip_array(PIPBroadcastArray paB) {
 
 /**
  * Retrieves default internet interface name into param
+ * - absolute best way to do this, but not supported on Darwin(i.e OSX)
  * return EXIT_SUCCESS or EXIT_FAILURE
  */
 int get_default_interface_name(char *pchDefaultInterfaceName) {
@@ -679,7 +683,7 @@ int service_registry_valiadate_response_format(const char *response) {
  * Validate the command line response format and return registry
  */
 PServiceRegistry service_registry_valiadated_registry(const char *response) {
-    int errors = 0, index = 0; // false
+    int errors = 0;
 
     PServiceRegistry psr = service_registry_create();
     service_registry_response_parse(psr, response, &errors);

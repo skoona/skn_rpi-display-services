@@ -72,7 +72,7 @@ to the service for display on a 4x20 LCD.
 
         
 > Planning to also add support for ['Adafruit **IC2/SPI** LCD Backpack'](https://www.adafruit.com/products/292)
-> - which is based on the I2C controller *MCP23008*
+> - which is based on the I2C controller *MCP23008* and sometimes the * MCP23017*
 
     
 > Planning to also add support for ['Adafruit **USB/Serial** LCD Backpack'](https://www.adafruit.com/products/782)

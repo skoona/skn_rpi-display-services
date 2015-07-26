@@ -12,18 +12,17 @@ AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 
-AC_CANONICAL_SYSTEM
-
-AM_INIT_AUTOMAKE
+AM_INIT_AUTOMAKE(AC_PACKAGE_NAME, AC_PACKAGE_VERSION)
 AC_CONFIG_FILES(Makefile src/Makefile)
 
 # stricter options -ansi -pedantic
-CFLAGS=-Wall -g -O0 -I/usr/include -I/usr/local/include -pipe
+CFLAGS='-Wall -Wextra -g -O0 -I/usr/include -I/usr/local/include -Winline -pipe'
+AC_SUBST(CFLAGS)
 
 dnl Standard C constructs
 AC_GNU_SOURCE
 AC_HEADER_STDC
-AC_PROG_CC
+AM_PROG_CC_C_O
 AC_PROG_INSTALL
 AC_PROG_MAKE_SET
 
