@@ -23,6 +23,7 @@ char gd_ch_ipAddress[NI_MAXHOST];
 char gd_ch_intfName[SZ_CHAR_BUFF];
 char * gd_pch_service_name;
 
+
 static void skn_locator_print_usage();
 static void exit_handler(int sig);
 
@@ -236,6 +237,8 @@ static void skn_locator_print_usage() {
         skn_logger(" ", "  example: -m 'name=rpi_locator_service,ip=192.168.1.15,port=48028|name=lcd_display_service, ip=192.168.1.15, port=48029|'");
         skn_logger(" ", "\nOptions:");
         skn_logger(" ", "  -s, --include-display-service\tInclude DisplayService entry in default registry.");
+        skn_logger(" ", "  -a, --alt-service-name=my_service_name");
+        skn_logger(" ", "                          lcd_display_service is default, use this to change name.");
     } else if (strcmp(gd_ch_program_name, "lcd_display_client") == 0) {
         skn_logger(" ", "Usage:\n  %s [-v] [-m 'message for display'] [-n 1|300] [-a 'my_service_name'] [-h|--help]", gd_ch_program_name);
         skn_logger(" ", "\nOptions:");
@@ -572,11 +575,15 @@ int service_registry_provider(int i_socket, char *response) {
         return EXIT_FAILURE;
     }
 
+    if (gd_pch_service_name == NULL) {
+        gd_pch_service_name = "lcd_display_service";
+    }
+
     if (strlen(response) < 16) {
         if (gd_i_display) {
             snprintf(response, (SZ_INFO_BUFF - 1),
                      "name=rpi_locator_service,ip=%s,port=%d|"
-                     "name=lcd_display_service,ip=%s,port=%d|",
+                     "name=%s,ip=%s,port=%d|", gd_pch_service_name,
                      aB.ipAddrStr[aB.defaultIndex], SKN_FIND_RPI_PORT,
                      aB.ipAddrStr[aB.defaultIndex], SKN_RPI_DISPLAY_SERVICE_PORT);
         } else {

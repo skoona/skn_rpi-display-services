@@ -126,7 +126,9 @@
 // #define  AF_DB6      (AF_BASE + 5)
 // #define  AF_DB7      (AF_BASE + 6)
 
-typedef struct _IIC {
+typedef struct _IICLCD {
+    char cbName[SZ_CHAR_BUFF];
+    int i2c_address;
     int af_base;
     int af_backlight;
 
@@ -134,6 +136,10 @@ typedef struct _IIC {
     int af_rs;
     int af_rw;
 
+    int af_db0; // 0-3 are not used for 4bit display connections
+    int af_db1;
+    int af_db2;
+    int af_db3;
     int af_db4;
     int af_db5;
     int af_db6;
