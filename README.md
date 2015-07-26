@@ -32,6 +32,8 @@ to the service for display on a 4x20 LCD.
       udp_locator_service [-v] [-s] [-m "<delimited-response-message-string>"] [-h|--help]
 
     Options:
+      -a, --alt-service-name=my_service_name
+                     *lcd_display_service* is default, use this to change name.
       -s, --include-display-service  Includes DisplaySerivce in default Registry response.
                     *Presumes both are located on same machine; otherwise enter with '-m'*
       -m, --message  ServiceRegistry<delimited-response-message-string> to send.
@@ -59,7 +61,9 @@ to the service for display on a 4x20 LCD.
       -a, --alt-service-name=my_service_name
                               *lcd_display_service* is default, use this to change name.
       -u, --unique-registry   List *unique* entries from all responses.
-      -m, --message    Any text to send; 'stop' causes service to terminate.
+      -m, --message    Any text to send; 
+          _'**QUIT!**' causes service to terminate._
+          _'**ADD **<delimited-response-message-string>'  -- add new registry entry into Service_ 
       -v, --version    Version printout.
       -h, --help       Show this help screen.
 
@@ -71,7 +75,7 @@ to the service for display on a 4x20 LCD.
 > - which uses the I2C controller *PCF8574*
 
         
-> Planning to also add support for ['Adafruit **IC2/SPI** LCD Backpack'](https://www.adafruit.com/products/292)
+> Planning to support ['Adafruit **IC2/SPI** LCD Backpack'](https://www.adafruit.com/products/292)
 > - which is based on the I2C controller *MCP23008* and sometimes the * MCP23017*
 
     
@@ -104,6 +108,7 @@ to the service for display on a 4x20 LCD.
       -a, --alt-service-name=my_service_name
                               *lcd_display_service* is default, use this to change name.
       -m, --message           Message to send to display, default: *$ uname -a output*
+          _'**QUIT!**' causes service to terminate._
       -n, --non-stop=1|300    Continue to send updates every DD seconds until ctrl-break.
       -u, --unique-registry   List unique entries from all responses.
       -v, --version           Version printout.
@@ -114,6 +119,7 @@ to the service for display on a 4x20 LCD.
 --------------------------------
 Requires [WiringPi](https://projects.drogon.net/raspberry-pi/wiringpi/download-and-install/) and assume the Pi is using [Raspbian](https://www.raspberrypi.org/downloads/).
 
+    $ autoreconf -isfv            *Should not be required: use only if .configure produces errors*
     $ ./configure
     $ make
     $ sudo make install

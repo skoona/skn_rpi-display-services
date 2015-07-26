@@ -12,8 +12,8 @@ sig_atomic_t gi_exit_flag = SKN_RUN_MODE_RUN; // will hold the signal which caus
 char *gd_pch_message = NULL;
 
 signed int gd_i_debug = 0;
-char gd_ch_program_name[SZ_LINE_BUFF];
-char gd_ch_program_desc[SZ_LINE_BUFF];
+char gd_ch_program_name[SZ_INFO_BUFF];
+char gd_ch_program_desc[SZ_INFO_BUFF];
 char *gd_pch_effective_userid = NULL;
 int gd_i_socket = -1;
 int gd_i_display = 0;
@@ -231,19 +231,19 @@ static void skn_locator_print_usage() {
         skn_logger(" ", "  -u, --unique-registry\t List unique entries from all responses.");
         skn_logger(" ", "  -m, --message\tAny text to send; 'stop' cause service to terminate.");
     } else if (strcmp(gd_ch_program_name, "udp_locator_service") == 0) {
-        skn_logger(" ", "Usage:\n  %s [-s] [-v] [-m '<delimited-response-message-string>'] [-h|--help]", gd_ch_program_name);
+        skn_logger(" ", "Usage:\n  %s [-s] [-v] [-m '<delimited-response-message-string>'] [-a 'my_service_name'] [-h|--help]", gd_ch_program_name);
         skn_logger(" ", "  Format: name=<service-name>,ip=<service-ipaddress>ddd.ddd.ddd.ddd,port=<service-portnumber>ddddd <line-delimiter>");
         skn_logger(" ", "  REQUIRED   <line-delimiter> is one of these '|', '%', ';'");
         skn_logger(" ", "  example: -m 'name=rpi_locator_service,ip=192.168.1.15,port=48028|name=lcd_display_service, ip=192.168.1.15, port=48029|'");
         skn_logger(" ", "\nOptions:");
-        skn_logger(" ", "  -s, --include-display-service\tInclude DisplayService entry in default registry.");
         skn_logger(" ", "  -a, --alt-service-name=my_service_name");
-        skn_logger(" ", "                          lcd_display_service is default, use this to change name.");
+        skn_logger(" ", "                       lcd_display_service is default, use this to change name.");
+        skn_logger(" ", "  -s, --include-display-service\tInclude DisplayService entry in default registry.");
     } else if (strcmp(gd_ch_program_name, "lcd_display_client") == 0) {
         skn_logger(" ", "Usage:\n  %s [-v] [-m 'message for display'] [-n 1|300] [-a 'my_service_name'] [-h|--help]", gd_ch_program_name);
         skn_logger(" ", "\nOptions:");
         skn_logger(" ", "  -a, --alt-service-name=my_service_name");
-        skn_logger(" ", "                          lcd_display_service is default, use this to change name.");
+        skn_logger(" ", "                       lcd_display_service is default, use this to change name.");
         skn_logger(" ", "  -m, --message\tRequest message to send.");
         skn_logger(" ", "  -n, --non-stop=DD\tContinue to send updates every DD seconds until ctrl-break.");
     }
@@ -384,7 +384,7 @@ char * skn_strip(char * alpha) {
 
 int skn_logger(const char *level, const char *format, ...) {
     va_list args;
-    char buffer[SZ_COMM_BUFF];
+    char buffer[SZ_LINE_BUFF];
     const char *logLevel = SD_NOTICE;
 
     va_start(args, format);
@@ -405,14 +405,15 @@ int skn_logger(const char *level, const char *format, ...) {
  */
 int skn_udp_host_create_regular_socket(int port, int rcvTimeout) {
     struct sockaddr_in addr;
-    int fd, broadcastEnable = 1;
+    int fd, reuseEnable = 1;
 
     if ((fd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0) {
         skn_logger(SD_EMERG, "Create Socket error=%d, etext=%s", errno, strerror(errno));
         return (EXIT_FAILURE);
     }
-    if ((setsockopt(fd, SOL_SOCKET, SO_BROADCAST, &broadcastEnable, sizeof(broadcastEnable))) < 0) {
-        skn_logger(SD_EMERG, "Set Socket Broadcast Option error=%d, etext=%s", errno, strerror(errno));
+
+    if ((setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &reuseEnable, sizeof(reuseEnable))) < 0) {
+        skn_logger(SD_EMERG, "Set Socket Reuse Option error=%d, etext=%s", errno, strerror(errno));
         return (EXIT_FAILURE);
     }
 
@@ -555,6 +556,11 @@ int skn_udp_service_request(PServiceRequest psr) {
                     ntohs(remaddr.sin_port)
               );
 
+    if (strcmp(psr->response, "QUIT!") == 0) {
+        skn_logger(SD_NOTICE, "Shutdown Requested!");
+        return EXIT_FAILURE;
+    }
+
     return (EXIT_SUCCESS);
 }
 
@@ -565,7 +571,8 @@ int service_registry_provider(int i_socket, char *response) {
     char request[SZ_INFO_BUFF];
     char recvHostName[SZ_INFO_BUFF];
     signed int rLen = 0, rc = 0;
-    int exit_code = EXIT_SUCCESS;
+    int exit_code = EXIT_SUCCESS, i_response_len = 0;
+
 
     memset(request, 0, sizeof(request));
     memset(recvHostName, 0, sizeof(recvHostName));
@@ -581,14 +588,14 @@ int service_registry_provider(int i_socket, char *response) {
 
     if (strlen(response) < 16) {
         if (gd_i_display) {
-            snprintf(response, (SZ_INFO_BUFF - 1),
+            i_response_len = snprintf(response, (SZ_INFO_BUFF - 1),
                      "name=rpi_locator_service,ip=%s,port=%d|"
                      "name=%s,ip=%s,port=%d|",
                      aB.ipAddrStr[aB.defaultIndex], SKN_FIND_RPI_PORT,
                      gd_pch_service_name,
                      aB.ipAddrStr[aB.defaultIndex], SKN_RPI_DISPLAY_SERVICE_PORT);
         } else {
-            snprintf(response, (SZ_INFO_BUFF - 1),
+            i_response_len = snprintf(response, (SZ_INFO_BUFF - 1),
                             "name=rpi_locator_service,ip=%s,port=%d|",
                             aB.ipAddrStr[aB.defaultIndex], SKN_FIND_RPI_PORT);
         }
@@ -614,8 +621,10 @@ int service_registry_provider(int i_socket, char *response) {
         }
         request[rLen] = 0;
 
-        if (strcmp("stop", request) == 0) {
-            skn_logger(SD_NOTICE, "Shutdown Requested! exit code=%d", gi_exit_flag);
+        /*
+         * Add new registry entry by command */
+        if (strcmp("QUIT!", request) == 0) {
+            skn_logger(SD_NOTICE, "COMMAND: Shutdown Requested! exit code=%d", gi_exit_flag);
             break;
         }
 
@@ -627,6 +636,20 @@ int service_registry_provider(int i_socket, char *response) {
         }
         skn_logger(SD_NOTICE, "Received request from %s @ %s:%d", recvHostName, inet_ntoa(remaddr.sin_addr), ntohs(remaddr.sin_port));
         skn_logger(SD_NOTICE, "Request data: [%s]\n", request);
+
+        /*
+         * Add new registry entry by command */
+        if ((strncmp("ADD ", request, sizeof("ADD ")) == 0) &&
+            (service_registry_valiadate_response_format(&response[4]) == EXIT_SUCCESS)) {
+            if ((response[i_response_len-1] == '|') ||
+                (response[i_response_len-1] == '%') ||
+                (response[i_response_len-1] == ';')) {
+                strncpy(&response[i_response_len], &request[4], ((SZ_COMM_BUFF - 1) - (strlen(response) + strlen(&request[4]))) );
+                i_response_len += (rLen - 4);
+                skn_logger(SD_NOTICE, "COMMAND: Add New RegistryEntry Request Accepted!");
+            }
+        }
+
 
         if (sendto(i_socket, response, strlen(response), 0, (struct sockaddr *) &remaddr, addrlen) < 0) {
             skn_logger(SD_EMERG, "SendTo() Failure code=%d, etext=%s", errno, strerror(errno));

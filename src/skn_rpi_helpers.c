@@ -465,14 +465,10 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
 }
 
 /**************************************************************************
- Function: Print Usage
+ Function: Print Usage for lcd_display_service only
 
  Description:
  Output the command-line options for this daemon.
-
- Params:
- @argc - Standard argument count
- @argv - Standard argument array
 
  Returns:
  returns void always
@@ -480,18 +476,10 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
 static void skn_display_print_usage() {
     skn_logger(" ", "%s -- %s", gd_ch_program_name, gd_ch_program_desc);
     skn_logger(" ", "\tSkoona Development <skoona@gmail.com>");
-
-    if (strcmp(gd_ch_program_name, "lcd_display_service") == 0) {
-        skn_logger(" ", "Usage:\n  %s [-v] [-m 'Welcome Message'] [-r 4|2] [-c 20|16] [-h|--help]", gd_ch_program_name);
-        skn_logger(" ", "\nOptions:");
-        skn_logger(" ", "  -r, --rows\t\tNumber of rows in physical display.");
-        skn_logger(" ", "  -c, --cols\t\tNumber of columns in physical display.");
-    } else {
-        skn_logger(" ", "Usage:\n  %s [-v] [-m 'message for display'] [-h|--help]", gd_ch_program_name);
-        skn_logger(" ", "\nOptions:");
-        skn_logger(" ", "  -a, --alt-service-name=my_service_name");
-        skn_logger(" ", "                          lcd_display_service is default, use this to change name.");
-    }
+    skn_logger(" ", "Usage:\n  %s [-v] [-m 'Welcome Message'] [-r 4|2] [-c 20|16] [-h|--help]", gd_ch_program_name);
+    skn_logger(" ", "\nOptions:");
+    skn_logger(" ", "  -r, --rows\t\tNumber of rows in physical display.");
+    skn_logger(" ", "  -c, --cols\t\tNumber of columns in physical display.");
     skn_logger(" ", "  -m, --message\tWelcome Message for line 1.");
     skn_logger(" ", "  -v, --version\tVersion printout.");
     skn_logger(" ", "  -h, --help\t\tShow this help screen.");
@@ -522,7 +510,7 @@ int skn_handle_display_command_line(int argc, char **argv) {
      *  optarg is value attached(-d88) or next element(-d 88) of argv
      *  opterr flags a scanning error
      */
-    while ((opt = getopt_long(argc, argv, "d:m:r:c:a:vh", longopts, &longindex)) != -1) {
+    while ((opt = getopt_long(argc, argv, "d:m:r:c:vh", longopts, &longindex)) != -1) {
         switch (opt) {
             case 'd':
                 if (optarg) {
