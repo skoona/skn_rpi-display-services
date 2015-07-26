@@ -583,8 +583,9 @@ int service_registry_provider(int i_socket, char *response) {
         if (gd_i_display) {
             snprintf(response, (SZ_INFO_BUFF - 1),
                      "name=rpi_locator_service,ip=%s,port=%d|"
-                     "name=%s,ip=%s,port=%d|", gd_pch_service_name,
+                     "name=%s,ip=%s,port=%d|",
                      aB.ipAddrStr[aB.defaultIndex], SKN_FIND_RPI_PORT,
+                     gd_pch_service_name,
                      aB.ipAddrStr[aB.defaultIndex], SKN_RPI_DISPLAY_SERVICE_PORT);
         } else {
             snprintf(response, (SZ_INFO_BUFF - 1),
