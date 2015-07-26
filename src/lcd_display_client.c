@@ -49,6 +49,8 @@ int main(int argc, char *argv[])
     	exit(EXIT_FAILURE);		
 	}
 
+    skn_logger(SD_NOTICE, "Application Active...");
+
 	/* Get the ServiceRegistry from Provider
 	 * - could return null if error */
 	psr = service_registry_get_via_udp_broadcast(gd_i_socket, request);
@@ -82,8 +84,6 @@ int main(int argc, char *argv[])
 	    pnsr = skn_service_request_create(pre, gd_i_socket, request);
 	}
 	if (pnsr != NULL) {
-	    skn_logger(SD_NOTICE, "Application Active...");
-
         do {
             generate_uname_info(pnsr->request);
             vIndex = skn_udp_service_request(pnsr);
@@ -96,6 +96,8 @@ int main(int argc, char *argv[])
     } else {
         skn_logger(SD_WARNING, "Unable to create Network Request.");
     }
+
+    skn_logger(SD_NOTICE, "Application Shutdown... (%d)", gi_exit_flag);
 
 	/* Cleanup and shutdown
 	 * - if shutdown was caused by signal handler

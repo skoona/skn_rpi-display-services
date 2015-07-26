@@ -25,6 +25,7 @@
 #include <ctype.h>
 #include <stddef.h>
 #include <sys/socket.h>
+#include <sys/time.h> // for clock_gettime()
 #include <netinet/in.h>
 #include <netdb.h>
 #include <arpa/inet.h>

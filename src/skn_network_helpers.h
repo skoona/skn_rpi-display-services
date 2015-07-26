@@ -34,6 +34,7 @@ extern char * gd_pch_service_name;
 /*
  * General Utilities
 */
+extern double skn_duration_in_milliseconds(struct timeval *pstart, struct timeval *pend);
 extern long skn_get_number_of_cpu_cores();
 extern int generate_uname_info(char *msg);
 extern int generate_datetime_info(char *msg);

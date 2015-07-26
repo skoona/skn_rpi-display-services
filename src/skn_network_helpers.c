@@ -488,6 +488,27 @@ PServiceRequest skn_service_request_create(PRegistryEntry pre, int host_socket, 
     strncpy(psr->request, request, SZ_INFO_BUFF-1);
     return psr;
 }
+
+/**
+ * skn_duration_in_microseconds()
+ * - expressed in %1.6us  seconds.miroseconds
+ */
+double skn_duration_in_milliseconds(struct timeval *pstart, struct timeval *pend) {
+    long secs_used = 0;
+    double total_micros_used = 0.0;
+    struct timeval end;
+
+    if (pend == NULL) {   // calc running duration
+        pend = &end;
+        gettimeofday(pend, NULL);
+    }
+
+    secs_used=(pend->tv_sec - pstart->tv_sec); //avoid overflow by subtracting first
+    total_micros_used= ((secs_used*1000000) + pend->tv_usec) - (pstart->tv_usec);
+
+    return total_micros_used / 1000000000; // express in seconds.milliseconds
+}
+
 /**
  * skn_udp_service_request()
  * - side effects: none
@@ -498,6 +519,7 @@ int skn_udp_service_request(PServiceRequest psr) {
     struct sockaddr_in remaddr; /* remote address */
     socklen_t addrlen = sizeof(remaddr); /* length of addresses */
     signed int vIndex = 0;
+    struct timeval start, end;
 
     memset(&remaddr, 0, sizeof(remaddr));
     remaddr.sin_family = AF_INET;
@@ -506,6 +528,7 @@ int skn_udp_service_request(PServiceRequest psr) {
 
     /*
      * SEND */
+    gettimeofday(&start, NULL);
     if (sendto(psr->socket, psr->request, strlen(psr->request), 0, (struct sockaddr *) &remaddr, addrlen) < 0) {
         skn_logger(SD_WARNING, "ServiceRequest: SendTo() Timed out; Failure code=%d, etext=%s", errno, strerror(errno));
         return EXIT_FAILURE;
@@ -520,8 +543,14 @@ int skn_udp_service_request(PServiceRequest psr) {
         return EXIT_FAILURE;
     }
     psr->response[vIndex] = 0;
+    gettimeofday(&end, NULL);
 
-    skn_logger(SD_INFO, "Response() received from [%s] %s:%d", psr->response, inet_ntoa(remaddr.sin_addr), ntohs(remaddr.sin_port));
+    skn_logger(SD_INFO, "Response(%1.6Fs) received from [%s] %s:%d",
+                    skn_duration_in_milliseconds(&start,&end),
+                    psr->response,
+                    inet_ntoa(remaddr.sin_addr),
+                    ntohs(remaddr.sin_port)
+              );
 
     return (EXIT_SUCCESS);
 }
@@ -843,6 +872,7 @@ PServiceRegistry service_registry_get_via_udp_broadcast(int i_socket, char *requ
     char response[SZ_INFO_BUFF];
     char recvHostName[SZ_INFO_BUFF];
     signed int rLen = 0;
+    struct timeval start;
 
     memset(response, 0, sizeof(response));
     memset(recvHostName, 0, sizeof(recvHostName));
@@ -850,6 +880,7 @@ PServiceRegistry service_registry_get_via_udp_broadcast(int i_socket, char *requ
     get_broadcast_ip_array(&aB);
     skn_logger(SD_NOTICE, "Socket Bound to %s", aB.ipAddrStr[aB.defaultIndex]);
 
+    gettimeofday(&start, NULL);
     for (vIndex = 0; vIndex < aB.count; vIndex++) {
         memset(&remaddr, 0, sizeof(remaddr));
         remaddr.sin_family = AF_INET;
@@ -883,7 +914,12 @@ PServiceRegistry service_registry_get_via_udp_broadcast(int i_socket, char *requ
             break;
         }
 
-        skn_logger(SD_INFO, "Response() received from %s @ %s:%d", recvHostName, inet_ntoa(remaddr.sin_addr), ntohs(remaddr.sin_port));
+        skn_logger(SD_INFO, "Response(%1.6fs) received from %s @ %s:%d",
+                        skn_duration_in_milliseconds(&start, NULL),
+                        recvHostName,
+                        inet_ntoa(remaddr.sin_addr),
+                        ntohs(remaddr.sin_port)
+                  );
         service_registry_response_parse(psr, response, NULL);
     }
 
