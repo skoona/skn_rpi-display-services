@@ -17,7 +17,7 @@
 /*
  * Globals defined in skn_network_helpers.c
 */
-extern sig_atomic_t gi_exit_flag;
+extern volatile sig_atomic_t gi_exit_flag;
 extern char *gd_pch_message;
 extern signed int gd_i_debug;
 extern int gd_i_socket;

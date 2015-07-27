@@ -8,7 +8,7 @@
  * Global Exit Flag -- set by signal handler
  * atomic to survive signal handlers
  */
-sig_atomic_t gi_exit_flag = SKN_RUN_MODE_RUN; // will hold the signal which cause exit
+volatile sig_atomic_t gi_exit_flag = SKN_RUN_MODE_RUN; // will hold the signal which cause exit
 char *gd_pch_message = NULL;
 
 signed int gd_i_debug = 0;
@@ -780,6 +780,7 @@ int service_registry_entry_count(PServiceRegistry psr) {
 int service_registry_list_entries(PServiceRegistry psr) {
     int index = 0;
 
+    skn_logger(SD_NOTICE, "\nServiceRegistry:");
     for (index = 0; index < psr->count; index++) {
         skn_logger(SD_INFO, "RegistryEntry(%02d) name=%s, ip=%s, port=%d", index, psr->entry[index]->name, psr->entry[index]->ip, psr->entry[index]->port);
     }
@@ -929,7 +930,7 @@ PServiceRegistry service_registry_get_via_udp_broadcast(int i_socket, char *requ
     }
 
     PServiceRegistry psr = service_registry_create();
-    skn_logger(SD_DEBUG, "Waiting 5 seconds for all responses\n");
+    skn_logger(SD_DEBUG, "Waiting for all responses\n");
     while (gi_exit_flag == SKN_RUN_MODE_RUN) { // depends on a socket timeout of 5 seconds
 
         rLen = recvfrom(i_socket, response, (SZ_INFO_BUFF - 1), 0, (struct sockaddr *) &remaddr, &addrlen);

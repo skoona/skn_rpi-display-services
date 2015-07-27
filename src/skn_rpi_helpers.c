@@ -396,8 +396,6 @@ int skn_display_manager_message_consumer_startup(PDisplayManager pdm) {
 void skn_display_manager_message_consumer_shutdown(PDisplayManager pdm) {
     void *trc = NULL;
 
-    kill(getpid(), SIGINT);
-    sleep(1);
     if (pdm->thread_complete != 0) {
         skn_logger(SD_WARNING, "DisplayManager: Canceling thread.");
         pthread_cancel(pdm->dm_thread);
@@ -484,7 +482,8 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
 
     }
     gi_exit_flag == SKN_RUN_MODE_STOP;  // shutdown
-    kill(getpid(), SIGINT); // cause a shutdown
+    kill(getpid(), SIGUSR1); // cause a shutdown
+    sleep(1);
 
     skn_logger(SD_NOTICE, "Display Manager Thread: shutdown complete: (%ld)", exit_code);
 

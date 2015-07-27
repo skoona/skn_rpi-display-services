@@ -73,7 +73,8 @@ static int skn_signal_manager_process_signals(siginfo_t *signal_info) {
                     pch = "<unknown>";
                     break;
             }
-            skn_logger(SD_NOTICE, "%s received from => %s ?[pid=%d, uid=%d]{Ignored}", strsignal(sig), pch, signal_info->si_pid, signal_info->si_uid);
+            skn_logger(SD_NOTICE, "%s received from => %s ?[pid=%d, uid=%d] signaling application shutdown.", strsignal(sig), pch, signal_info->si_pid, signal_info->si_uid);
+            rval = sig;
             break;
         case SIGCHLD: /* some child ended */
             switch (signal_info->si_code) {
@@ -160,24 +161,29 @@ static int skn_signal_manager_process_signals(siginfo_t *signal_info) {
 static void *skn_signal_manager_handler_thread(void *l_thread_complete) {
     sigset_t signal_set;
     siginfo_t signal_info;
+    struct timespec timeout;
     int sig = 0;
     int rval = 0;
     long *threadC = (long *)l_thread_complete;
 
     *threadC = 1;
 
+    timeout.tv_nsec = 0;
+    timeout.tv_sec = 8;
     sigfillset(&signal_set);
     skn_logger(SD_NOTICE, "SignalHandler: startup successful");
 
     while (gi_exit_flag == SKN_RUN_MODE_RUN) {
         /* wait for any and all signals */
         /* OLD: sigwait (&signal_set, &sig); */
-        sig = sigwaitinfo(&signal_set, &signal_info);
+        sig = sigtimedwait(&signal_set, &signal_info, &timeout);
         if (sig == PLATFORM_ERROR) {
-            skn_logger(SD_WARNING, "SignalHandler: sigwaitinfo() returned an error => {%s}", strerror(errno));
             if (errno == EAGAIN) {
                 continue;
             }
+            skn_logger(SD_WARNING, "SignalHandler: sigwaitinfo() returned an error => {%s}", strerror(errno));
+            gi_exit_flag = SKN_RUN_MODE_STOP;
+            break;
         }
         /* when we get this far, we've  caught a signal */
         rval = skn_signal_manager_process_signals(&signal_info);
@@ -187,7 +193,7 @@ static void *skn_signal_manager_handler_thread(void *l_thread_complete) {
 
     pthread_sigmask(SIG_UNBLOCK, &signal_set, NULL);
 
-    skn_logger(SD_NOTICE, "SignalHandler: shutdown complete");
+    skn_logger(SD_NOTICE, "SignalHandler: Thread Shutdown Complete.");
 
     *threadC = 0;
 
