@@ -780,7 +780,7 @@ int service_registry_entry_count(PServiceRegistry psr) {
 int service_registry_list_entries(PServiceRegistry psr) {
     int index = 0;
 
-    skn_logger(SD_NOTICE, "\nServiceRegistry:");
+    skn_logger(" ", "\nServiceRegistry:");
     for (index = 0; index < psr->count; index++) {
         skn_logger(SD_INFO, "RegistryEntry(%02d) name=%s, ip=%s, port=%d", index, psr->entry[index]->name, psr->entry[index]->ip, psr->entry[index]->port);
     }

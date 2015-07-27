@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
 		/* find a single entry */
 		pre = service_registry_find_entry(psr, service_name);
 		if (pre != NULL) {
-            skn_logger(SD_INFO, "LCD DisplayService (%s) is located at IPv4: %s:%d", pre->name, pre->ip, pre->port);
+            skn_logger(" ", "\nLCD DisplayService (%s) is located at IPv4: %s:%d\n", pre->name, pre->ip, pre->port);
 		}
 
         /*
