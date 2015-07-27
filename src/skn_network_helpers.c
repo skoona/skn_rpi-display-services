@@ -621,13 +621,6 @@ int service_registry_provider(int i_socket, char *response) {
         }
         request[rLen] = 0;
 
-        /*
-         * Add new registry entry by command */
-        if (strcmp("QUIT!", request) == 0) {
-            skn_logger(SD_NOTICE, "COMMAND: Shutdown Requested! exit code=%d", gi_exit_flag);
-            break;
-        }
-
         rc = getnameinfo(((struct sockaddr *) &remaddr), sizeof(struct sockaddr_in), recvHostName, (SZ_INFO_BUFF-1), NULL, 0, NI_DGRAM);
         if (rc != 0) {
             skn_logger(SD_ERR, "GetNameInfo() Failure code=%d, etext=%s", errno, strerror(errno));
@@ -639,8 +632,8 @@ int service_registry_provider(int i_socket, char *response) {
 
         /*
          * Add new registry entry by command */
-        if ((strncmp("ADD ", request, sizeof("ADD ")) == 0) &&
-            (service_registry_valiadate_response_format(&response[4]) == EXIT_SUCCESS)) {
+        if ((strncmp("ADD ", request, sizeof("ADD")) == 0) &&
+            (service_registry_valiadate_response_format(&request[4]) == EXIT_SUCCESS)) {
             if ((response[i_response_len-1] == '|') ||
                 (response[i_response_len-1] == '%') ||
                 (response[i_response_len-1] == ';')) {
@@ -654,6 +647,13 @@ int service_registry_provider(int i_socket, char *response) {
         if (sendto(i_socket, response, strlen(response), 0, (struct sockaddr *) &remaddr, addrlen) < 0) {
             skn_logger(SD_EMERG, "SendTo() Failure code=%d, etext=%s", errno, strerror(errno));
             exit_code = EXIT_FAILURE;
+            break;
+        }
+
+        /*
+         * Shutdown by command */
+        if (strcmp("QUIT!", request) == 0) {
+            skn_logger(SD_NOTICE, "COMMAND: Shutdown Requested! exit code=%d", gi_exit_flag);
             break;
         }
     }
