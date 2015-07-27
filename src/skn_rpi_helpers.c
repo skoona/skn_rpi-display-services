@@ -38,7 +38,7 @@ char * skn_scroller_pad_right(char *buffer) {
     for (hIndex = strlen(buffer); hIndex < gd_i_cols; hIndex++) {
         buffer[hIndex] = ' ';
     }
-    buffer[gd_i_cols - 1] = 0;
+    buffer[gd_i_cols] = 0;
 
     return buffer;
 }
@@ -267,6 +267,7 @@ PDisplayLine skn_display_manager_add_line(PDisplayManager pdmx, char * client_re
     } else {
         pdl->scroll_enabled = 0;
     }
+    pdl->msg_len = strlen(pdl->ch_display_msg);
 
     /*
      * manage current_line */
@@ -337,6 +338,8 @@ int skn_display_manager_do_work(char * client_request_message) {
     lcdClear(pdm->lcd_handle);
     skn_lcd_backlight_set(LOW);
 
+    skn_logger(SD_NOTICE, "Application InActive...");
+
     /*
      * Stop UDP Listener
      */
@@ -393,9 +396,15 @@ int skn_display_manager_message_consumer_startup(PDisplayManager pdm) {
 void skn_display_manager_message_consumer_shutdown(PDisplayManager pdm) {
     void *trc = NULL;
 
-    skn_logger(SD_WARNING, "DisplayManager: Canceling thread.");
-    pthread_cancel(pdm->dm_thread);
+    kill(getpid(), SIGINT);
     sleep(1);
+    if (pdm->thread_complete != 0) {
+        skn_logger(SD_WARNING, "DisplayManager: Canceling thread.");
+        pthread_cancel(pdm->dm_thread);
+        sleep(1);
+    } else {
+        skn_logger(SD_WARNING, "DisplayManager: Thread was already stopped.");
+    }
     pthread_join(pdm->dm_thread, &trc);
     close(pdm->i_socket);
     skn_logger(SD_NOTICE, "DisplayManager: Thread ended:(%ld)", (long int) trc);
@@ -411,7 +420,7 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
     socklen_t addrlen = sizeof(remaddr); /* length of addresses */
     IPBroadcastArray aB;
     char request[SZ_INFO_BUFF];
-    char recvHostName[NI_MAXHOST];
+    char recvHostName[SZ_INFO_BUFF];
     signed int rLen = 0, rc = 0;
     long int exit_code = EXIT_SUCCESS;
 
@@ -424,6 +433,7 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
         pthread_exit((void *) exit_code);
     }
 
+    pdm->thread_complete = 1;
 
     while (gi_exit_flag == SKN_RUN_MODE_RUN) {
         memset(&remaddr, 0, sizeof(remaddr));
@@ -442,7 +452,7 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
         }
         request[rLen] = 0;
 
-        rc = getnameinfo(((struct sockaddr *) &remaddr), sizeof(struct sockaddr_in), recvHostName, NI_MAXHOST, NULL, 0, NI_DGRAM);
+        rc = getnameinfo(((struct sockaddr *) &remaddr), sizeof(struct sockaddr_in), recvHostName, sizeof(recvHostName), NULL, 0, NI_DGRAM);
         if (rc != 0) {
             skn_logger(SD_ERR, "GetNameInfo() Failure code=%d, etext=%s", errno, strerror(errno));
             exit_code = errno;
@@ -451,6 +461,18 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
         skn_logger(SD_NOTICE, "Received request from %s @ %s:%d", recvHostName, inet_ntoa(remaddr.sin_addr), ntohs(remaddr.sin_port));
         skn_logger(SD_NOTICE, "Request data: [%s]\n", request);
 
+        /*
+         * Shutdown by command */
+        if (strcmp("QUIT!", request) == 0) {
+            exit_code = 0;
+            gi_exit_flag == SKN_RUN_MODE_STOP;  // shutdown
+            sleep(1); // give main thread time to react
+            skn_logger(SD_NOTICE, "COMMAND: Shutdown Requested! exit code=%d", exit_code);
+            break;
+        }
+
+        /*
+         * Add receive data to display set */
         skn_display_manager_add_line(NULL, request);
 
         if (sendto(pdm->i_socket, "200 Accepted", strlen("200 Accepted"), 0, (struct sockaddr *) &remaddr, addrlen) < 0) {
@@ -459,18 +481,14 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
             break;
         }
 
-        /*
-         * Shutdown by command */
-        if (strcmp("QUIT!", request) == 0) {
-            exit_code = 0;
-            skn_logger(SD_NOTICE, "COMMAND: Shutdown Requested! exit code=%d", exit_code);
-            break;
-        }
 
     }
     gi_exit_flag == SKN_RUN_MODE_STOP;  // shutdown
+    kill(getpid(), SIGINT); // cause a shutdown
 
-    skn_logger(SD_NOTICE, "Display Managager Thread: shutdown complete: (%ld)", exit_code);
+    skn_logger(SD_NOTICE, "Display Manager Thread: shutdown complete: (%ld)", exit_code);
+
+    pdm->thread_complete = 0;
 
     pthread_exit((void *) exit_code);
 

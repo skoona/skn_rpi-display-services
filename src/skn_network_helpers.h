@@ -24,7 +24,7 @@ extern int gd_i_socket;
 extern char gd_ch_program_name[SZ_INFO_BUFF];
 extern char gd_ch_program_desc[SZ_INFO_BUFF];
 extern char *gd_pch_effective_userid;
-extern char gd_ch_ipAddress[NI_MAXHOST];
+extern char gd_ch_ipAddress[SZ_CHAR_BUFF];
 extern char gd_ch_intfName[SZ_CHAR_BUFF];
 extern int gd_i_display;
 extern int gd_i_unique_registry;

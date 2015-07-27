@@ -61,5 +61,7 @@ int main(int argc, char *argv[])
     if (gd_i_socket) close(gd_i_socket);
     signals_cleanup(gi_exit_flag);
 
+    skn_logger(SD_NOTICE, "\n============================\nShutdown Complete\n============================\n");
+
     exit(exit_code);
 }

@@ -19,7 +19,7 @@ int gd_i_socket = -1;
 int gd_i_display = 0;
 int gd_i_update = 0;
 int gd_i_unique_registry = 0;
-char gd_ch_ipAddress[NI_MAXHOST];
+char gd_ch_ipAddress[SZ_CHAR_BUFF];
 char gd_ch_intfName[SZ_CHAR_BUFF];
 char * gd_pch_service_name;
 
@@ -405,14 +405,14 @@ int skn_logger(const char *level, const char *format, ...) {
  */
 int skn_udp_host_create_regular_socket(int port, int rcvTimeout) {
     struct sockaddr_in addr;
-    int fd, reuseEnable = 1;
+    int i_socket, reuseEnable = 1;
 
-    if ((fd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0) {
+    if ((i_socket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0) {
         skn_logger(SD_EMERG, "Create Socket error=%d, etext=%s", errno, strerror(errno));
         return (EXIT_FAILURE);
     }
 
-    if ((setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &reuseEnable, sizeof(reuseEnable))) < 0) {
+    if ((setsockopt(i_socket, SOL_SOCKET, SO_REUSEADDR, &reuseEnable, sizeof(reuseEnable))) < 0) {
         skn_logger(SD_EMERG, "Set Socket Reuse Option error=%d, etext=%s", errno, strerror(errno));
         return (EXIT_FAILURE);
     }
@@ -420,7 +420,7 @@ int skn_udp_host_create_regular_socket(int port, int rcvTimeout) {
     struct timeval tv;
     tv.tv_sec = rcvTimeout;
     tv.tv_usec = 0;
-    if ((setsockopt(fd, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv))) < 0) {
+    if ((setsockopt(i_socket, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv))) < 0) {
         skn_logger(SD_EMERG, "Set Socket RcvTimeout Option error=%d, etext=%s", errno, strerror(errno));
         return (EXIT_FAILURE);
     }
@@ -430,12 +430,12 @@ int skn_udp_host_create_regular_socket(int port, int rcvTimeout) {
     addr.sin_family = AF_INET;
     addr.sin_addr.s_addr = htonl(INADDR_ANY);
     addr.sin_port = htons(port);
-    if (bind(fd, (struct sockaddr *) &addr, sizeof(addr)) < 0) {
+    if (bind(i_socket, (struct sockaddr *) &addr, sizeof(addr)) < 0) {
         skn_logger(SD_EMERG, "Bind to local Socket error=%d, etext=%s", errno, strerror(errno));
         return (EXIT_FAILURE);
     }
 
-    return fd;
+    return i_socket;
 }
 
 /**
@@ -446,13 +446,13 @@ int skn_udp_host_create_regular_socket(int port, int rcvTimeout) {
  */
 int skn_udp_host_create_broadcast_socket(int port, int rcvTimeout) {
     struct sockaddr_in addr;
-    int fd, broadcastEnable = 1;
+    int i_socket, broadcastEnable = 1;
 
-    if ((fd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0) {
+    if ((i_socket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0) {
         skn_logger(SD_EMERG, "Create Socket error=%d, etext=%s", errno, strerror(errno));
         return (EXIT_FAILURE);
     }
-    if ((setsockopt(fd, SOL_SOCKET, SO_BROADCAST, &broadcastEnable, sizeof(broadcastEnable))) < 0) {
+    if ((setsockopt(i_socket, SOL_SOCKET, SO_BROADCAST, &broadcastEnable, sizeof(broadcastEnable))) < 0) {
         skn_logger(SD_EMERG, "Set Socket Broadcast Option error=%d, etext=%s", errno, strerror(errno));
         return (EXIT_FAILURE);
     }
@@ -460,7 +460,7 @@ int skn_udp_host_create_broadcast_socket(int port, int rcvTimeout) {
     struct timeval tv;
     tv.tv_sec = rcvTimeout;
     tv.tv_usec = 0;
-    if ((setsockopt(fd, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv))) < 0) {
+    if ((setsockopt(i_socket, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv))) < 0) {
         skn_logger(SD_EMERG, "Set Socket RcvTimeout Option error=%d, etext=%s", errno, strerror(errno));
         return (EXIT_FAILURE);
     }
@@ -470,12 +470,12 @@ int skn_udp_host_create_broadcast_socket(int port, int rcvTimeout) {
     addr.sin_family = AF_INET;
     addr.sin_addr.s_addr = htonl(INADDR_ANY);
     addr.sin_port = htons(port);
-    if (bind(fd, (struct sockaddr *) &addr, sizeof(addr)) < 0) {
+    if (bind(i_socket, (struct sockaddr *) &addr, sizeof(addr)) < 0) {
         skn_logger(SD_EMERG, "Bind to local Socket error=%d, etext=%s", errno, strerror(errno));
         return (EXIT_FAILURE);
     }
 
-    return fd;
+    return i_socket;
 }
 
 PServiceRequest skn_service_request_create(PRegistryEntry pre, int host_socket, char *request) {
@@ -909,6 +909,9 @@ PServiceRegistry service_registry_get_via_udp_broadcast(int i_socket, char *requ
     memset(recvHostName, 0, sizeof(recvHostName));
 
     get_broadcast_ip_array(&aB);
+    strncpy(gd_ch_intfName, aB.chDefaultIntfName, SZ_CHAR_BUFF);
+    strncpy(gd_ch_ipAddress, aB.ipAddrStr[aB.defaultIndex], SZ_CHAR_BUFF);
+
     skn_logger(SD_NOTICE, "Socket Bound to %s", aB.ipAddrStr[aB.defaultIndex]);
 
     gettimeofday(&start, NULL);
@@ -923,10 +926,6 @@ PServiceRegistry service_registry_get_via_udp_broadcast(int i_socket, char *requ
             break;
         }
         skn_logger(SD_NOTICE, "Message Broadcasted on %s:%s:%d", aB.ifNameStr[vIndex], aB.broadAddrStr[vIndex], SKN_FIND_RPI_PORT);
-    }
-
-    if (strcmp("stop", request) == 0) {
-        return NULL;
     }
 
     PServiceRegistry psr = service_registry_create();

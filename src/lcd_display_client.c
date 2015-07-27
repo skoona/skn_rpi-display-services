@@ -12,13 +12,15 @@
 int main(int argc, char *argv[])
 {
     char request[SZ_INFO_BUFF];
+    char registry[SZ_CHAR_BUFF];
     PServiceRegistry psr = NULL;
     PRegistryEntry pre = NULL;
     PServiceRequest pnsr = NULL;
     int vIndex = 0;
 
+    memset(registry, 0, sizeof(registry));
     memset(request, 0, sizeof(request));
-	strcpy(request, "Raspberry Pi where are you?");
+	strncpy(registry, "DisplayClient: Raspberry Pi where are you?", sizeof(registry) - 1);
 
     skn_program_name_and_description_set(
     		"lcd_display_client",
@@ -37,7 +39,9 @@ int main(int argc, char *argv[])
     } else if (argc == 2) {
     	strcpy(request, argv[1]);
     }
-	skn_logger(SD_DEBUG, "Request Message [%s]", request);
+
+	skn_logger(SD_DEBUG, "Request  Message [%s]", request);
+	skn_logger(SD_DEBUG, "Registry Message [%s]", registry);
 
 	/* Initialize Signal handler */
 	signals_init();
@@ -53,7 +57,7 @@ int main(int argc, char *argv[])
 
 	/* Get the ServiceRegistry from Provider
 	 * - could return null if error */
-	psr = service_registry_get_via_udp_broadcast(gd_i_socket, request);
+	psr = service_registry_get_via_udp_broadcast(gd_i_socket, registry);
 	if (psr != NULL && service_registry_entry_count(psr) != 0) {
 	    char *service_name = "lcd_display_service";
 
@@ -81,16 +85,20 @@ int main(int argc, char *argv[])
 
 	// we have the location
 	if (pre != NULL) {
+	    if (request[0] == 0) {
+	        snprintf(request, sizeof(request), "[%s] %02ld Cores Available.", gd_ch_ipAddress,
+	                            skn_get_number_of_cpu_cores() );
+	    }
 	    pnsr = skn_service_request_create(pre, gd_i_socket, request);
 	}
 	if (pnsr != NULL) {
         do {
-            generate_uname_info(pnsr->request);
             vIndex = skn_udp_service_request(pnsr);
             if (vIndex == EXIT_FAILURE) {
                 break;
             }
             sleep(gd_i_update);
+            generate_uname_info(pnsr->request);
         } while(gd_i_update != 0 && gi_exit_flag == SKN_RUN_MODE_RUN);
         free(pnsr);  // Done
     } else {

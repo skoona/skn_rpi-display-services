@@ -10,7 +10,7 @@
 
 
 static int skn_signal_manager_process_signals(siginfo_t *signal_info);
-static void *skn_signal_manager_handler_thread(void *real_user_id);
+static void *skn_signal_manager_handler_thread(void *l_thread_complete);
 
 /*
  * process_signals()
@@ -157,11 +157,14 @@ static int skn_signal_manager_process_signals(siginfo_t *signal_info) {
  *      returns and/or set the atomic gint gi_exit_flag
  *      returns last signal
  */
-static void *skn_signal_manager_handler_thread(void *real_user_id) {
+static void *skn_signal_manager_handler_thread(void *l_thread_complete) {
     sigset_t signal_set;
     siginfo_t signal_info;
     int sig = 0;
     int rval = 0;
+    long *threadC = (long *)l_thread_complete;
+
+    *threadC = 1;
 
     sigfillset(&signal_set);
     skn_logger(SD_NOTICE, "SignalHandler: startup successful");
@@ -186,6 +189,8 @@ static void *skn_signal_manager_handler_thread(void *real_user_id) {
 
     skn_logger(SD_NOTICE, "SignalHandler: shutdown complete");
 
+    *threadC = 0;
+
     pthread_exit((void *) (long int) sig);
 
     return NULL;
@@ -195,7 +200,7 @@ static void *skn_signal_manager_handler_thread(void *real_user_id) {
  * Final step
  * - may send trapped signal to app, so requester knows it was honored
  */
-int skn_signal_manager_shutdown(pthread_t sig_thread, sigset_t *psignal_set) {
+int skn_signal_manager_shutdown(pthread_t sig_thread, sigset_t *psignal_set, long *l_thread_complete) {
     void *trc = NULL;
     int rc = EXIT_SUCCESS;
 
@@ -203,8 +208,11 @@ int skn_signal_manager_shutdown(pthread_t sig_thread, sigset_t *psignal_set) {
         gi_exit_flag = SKN_RUN_MODE_STOP; /* shut down the system -- work is done */
         // need to force theads down or interrupt them
         skn_logger(SD_WARNING, "shutdown caused by application!");
-        pthread_cancel(sig_thread);
         sleep(1);
+        if (*l_thread_complete != 0) {
+            pthread_cancel(sig_thread);
+            sleep(1);
+        }
         skn_logger(SD_WARNING, "Collecting (cleanup) threads.");
         pthread_join(sig_thread, &trc);
     } else {
@@ -221,13 +229,13 @@ int skn_signal_manager_shutdown(pthread_t sig_thread, sigset_t *psignal_set) {
 /**
  * Initialize signal manager
  */
-int skn_signal_manager_startup(pthread_t *psig_thread, sigset_t *psignal_set, uid_t *preal_user_id) {
+int skn_signal_manager_startup(pthread_t *psig_thread, sigset_t *psignal_set, long *l_thread_complete) {
     int i_thread_rc = 0; // EXIT_SUCCESS
 
     sigfillset(psignal_set);
     pthread_sigmask(SIG_BLOCK, psignal_set, NULL);
 
-    i_thread_rc = pthread_create(psig_thread, NULL, skn_signal_manager_handler_thread, (void*) preal_user_id);
+    i_thread_rc = pthread_create(psig_thread, NULL, skn_signal_manager_handler_thread, (void*) l_thread_complete);
     if (i_thread_rc == PLATFORM_ERROR) {
         skn_logger(SD_ERR, "Create signal thread failed: %d:%s", errno, strerror(errno));
         pthread_sigmask(SIG_UNBLOCK, psignal_set, NULL);

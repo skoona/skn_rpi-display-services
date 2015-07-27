@@ -214,6 +214,7 @@ typedef struct _DISPLAY_MANAGER {
     int  next_line;  // actual index  -- should be within display_lines of current
     int  lcd_handle;
     pthread_t dm_thread;   // new message thread
+    long thread_complete;
     int  i_socket;
 } DisplayManager, *PDisplayManager;
 

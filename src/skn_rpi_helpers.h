@@ -48,8 +48,8 @@ extern char * skn_scroller_wrap_blanks(char *buffer);
 
 /*
  * Display Manager Communications Routines */
-extern int skn_signal_manager_startup(pthread_t *psig_thread, sigset_t *psignal_set, uid_t *preal_user_id);
-extern int skn_signal_manager_shutdown(pthread_t sig_thread, sigset_t *psignal_set);
+extern int skn_signal_manager_startup(pthread_t *psig_thread, sigset_t *psignal_set, long *l_thread_complete);
+extern int skn_signal_manager_shutdown(pthread_t sig_thread, sigset_t *psignal_set, long *l_thread_complete);
 
 
 /* WiringPi LCD Interfaces

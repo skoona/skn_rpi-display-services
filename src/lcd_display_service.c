@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
 	int index = 0;
 	pthread_t sig_thread;
     sigset_t signal_set;
-    uid_t real_user_id = 0;
+    long l_thread_complete = 0;
 
     char request[SZ_INFO_BUFF];
 
@@ -44,17 +44,13 @@ int main(int argc, char *argv[]) {
 	skn_logger(SD_DEBUG, "Welcome Message [%s]", request);
 
 	/*
-	 * save the real and effective userids */
-	real_user_id = skn_get_userids();
-
-	/*
 	 * Set the global interface name and ip address parms */
     get_default_interface_name_and_ipv4_address(gd_ch_intfName, gd_ch_ipAddress);
 
 	/*
 	* Setup signal handling before we start
 	*/
-	if (skn_signal_manager_startup(&sig_thread, &signal_set, &real_user_id) == EXIT_FAILURE ) {
+	if (skn_signal_manager_startup(&sig_thread, &signal_set, &l_thread_complete) == EXIT_FAILURE ) {
 	  exit(EXIT_FAILURE);
 	}
 
@@ -79,9 +75,10 @@ int main(int argc, char *argv[]) {
 	/*
 	* Cleanup signal handler before exit
 	*/
-	index = skn_signal_manager_shutdown(sig_thread, &signal_set);
+	index = skn_signal_manager_shutdown(sig_thread, &signal_set, &l_thread_complete);
 
 	skn_logger(SD_NOTICE, "Application clean or controlled shutdown complete.");
+    skn_logger(SD_NOTICE, "\n============================\nShutdown Complete\n============================\n");
 
 	exit(index);
 }
