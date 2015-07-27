@@ -424,6 +424,7 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
         pthread_exit((void *) exit_code);
     }
 
+
     while (gi_exit_flag == SKN_RUN_MODE_RUN) {
         memset(&remaddr, 0, sizeof(remaddr));
         remaddr.sin_family = AF_INET;
@@ -444,6 +445,7 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
         rc = getnameinfo(((struct sockaddr *) &remaddr), sizeof(struct sockaddr_in), recvHostName, NI_MAXHOST, NULL, 0, NI_DGRAM);
         if (rc != 0) {
             skn_logger(SD_ERR, "GetNameInfo() Failure code=%d, etext=%s", errno, strerror(errno));
+            exit_code = errno;
             break;
         }
         skn_logger(SD_NOTICE, "Received request from %s @ %s:%d", recvHostName, inet_ntoa(remaddr.sin_addr), ntohs(remaddr.sin_port));
@@ -453,10 +455,20 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
 
         if (sendto(pdm->i_socket, "200 Accepted", strlen("200 Accepted"), 0, (struct sockaddr *) &remaddr, addrlen) < 0) {
             skn_logger(SD_EMERG, "SendTo() Failure code=%d, etext=%s", errno, strerror(errno));
+            exit_code = errno;
+            break;
+        }
+
+        /*
+         * Shutdown by command */
+        if (strcmp("QUIT!", request) == 0) {
+            exit_code = 0;
+            skn_logger(SD_NOTICE, "COMMAND: Shutdown Requested! exit code=%d", exit_code);
             break;
         }
 
     }
+    gi_exit_flag == SKN_RUN_MODE_STOP;  // shutdown
 
     skn_logger(SD_NOTICE, "Display Managager Thread: shutdown complete: (%ld)", exit_code);
 
