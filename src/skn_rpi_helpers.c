@@ -50,13 +50,15 @@ PLCDDevice skn_device_manager_SerialPort(PDisplayManager pdm) {
     }
 
     // set backlight & clear screen
-    char bright[4] = { 0xfe, 0x99, 0x96, 0x00 };
-    char cls[3]   = { 0xfe, 0x58, 0x00 };
-    char home[3]  = { 0xfe, 0x48, 0x00 };
+    const unsigned char backlight[3] = { 0xfe, 0x42, 0x00 };
+    const unsigned char cls[3]   = { 0xfe, 0x58, 0x00 };
+    const unsigned char home[3]  = { 0xfe, 0x48, 0x00 };
 
-    serialPuts (plcd->lcd_handle, bright);
     serialPuts (plcd->lcd_handle, cls);
+    delay(100);
     serialPuts (plcd->lcd_handle, home);
+    delay(100);
+    serialPuts (plcd->lcd_handle, backlight);
 
     return plcd;
 }
@@ -295,7 +297,7 @@ int skn_scroller_scroll_lines(PDisplayLine pdl, int lcd_handle, int line) // int
 {
     char buf[40];
     signed int hAdjust = 0, mLen = 0, mfLen = 0;
-    char sline[5] = {0xfe, 0x47, 0x01, 0x01, 0x00};
+    const unsigned char sline[5] = {0xfe, 0x47, 0x01, 0x01, 0x00};
 
     mLen = strlen(&(pdl->ch_display_msg[pdl->display_pos]));
     if (gd_i_cols < mLen) {
@@ -309,6 +311,7 @@ int skn_scroller_scroll_lines(PDisplayLine pdl, int lcd_handle, int line) // int
     if (strcmp("ser", gd_pch_device_name) == 0 ) {
         sline[3] = line + 1;
         serialPuts(lcd_handle, sline);
+        delay(10);
         serialPuts(lcd_handle, buf);
     } else {
         lcdPosition(lcd_handle, 0, line);
@@ -464,7 +467,7 @@ int skn_display_manager_do_work(char * client_request_message) {
         for (index = 0; index < pdm->dsp_rows; index++) {
             if (pdl->active) {
                 skn_scroller_scroll_lines(pdl, pdm->lcd_handle, dsp_line_number++);
-                delay(160);
+                delay(190);
             }
             pdl = (PDisplayLine) pdl->next;
         }
@@ -482,8 +485,11 @@ int skn_display_manager_do_work(char * client_request_message) {
     }
 
     if (strcmp("ser", gd_pch_device_name) == 0) {
-        char bright[4] = { 0xfe, 0x99, 0x96, 0x00 };
-        serialPuts (pdm->lcd_handle, bright);
+        const unsigned char backlight[3] = { 0xfe, 0x46, 0x00 };
+        const unsigned char cls[3]   = { 0xfe, 0x58, 0x00 };
+
+        serialPuts (pdm->lcd_handle, cls);
+        serialPuts (pdm->lcd_handle, backlight);
         serialClose(pdm->lcd_handle);
     } else {
         lcdClear(pdm->lcd_handle);

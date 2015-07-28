@@ -14,7 +14,7 @@ to the service for display on a 4x20 LCD.
 |udp_locator_service|Server|any|48028|Maintains a list of known network services accessable via UDP socket.|
 |udp_locator_client|Client|any|n/a|Collect services info from Service, which includes that service's ip address.|
 |lcd_display_service|Server|RPi|48029|Accepts one-line messages over udp and display them on a LCD panel.|
-|lcd_display_client|Client|any|wip|Sends the one-liner composed of various Pi metrics; like cpus, temps, etc.|
+|lcd_display_client|Client|any|n/a|Sends the one-liner composed of various Pi metrics; like cpus, temps, etc.|
 
 
 
@@ -75,11 +75,11 @@ to the service for display on a 4x20 LCD.
 > - which uses the I2C controller *PCF8574*
 
         
-> Planning to support ['Adafruit **IC2/SPI** LCD Backpack'](https://www.adafruit.com/products/292)
+> **Supports**  ['Adafruit **IC2/SPI** LCD Backpack'](https://www.adafruit.com/products/292)
 > - which is based on the I2C controller *MCP23008* and sometimes the * MCP23017*
 
     
-> Planning to also add support for ['Adafruit **USB/Serial** LCD Backpack'](https://www.adafruit.com/products/782)
+> **Supports**  for ['Adafruit **USB/Serial** LCD Backpack'](https://www.adafruit.com/products/782)
 > - which uses */dev/ttyACM0*
 
 
@@ -88,11 +88,14 @@ to the service for display on a 4x20 LCD.
     lcd_display_service -- LCD 4x20 Display Provider.
               Skoona Development <skoona@gmail.com>
     Usage:
-      lcd_display_service [-v] [-m 'Welcome Message'] [-r 4|2] [-c 20|16]  [-h|--help]
+      lcd_display_service [-v] [-m 'Welcome Message'] [-r 4|2] [-c 20|16] [-i 39|32] [-t pcf|mcp|ser] [-p string] [-h|--help]
 
     Options:
       -r, --rows     Number of rows in physical display.
       -c, --cols     Number of columns in physical display.
+      -p, --serial-port=string\tSerial port. | '/dev/ttyACM0'
+      -i, --i2c-address=ddd\tI2C decimal address. | 0x27=39, 0x20=32
+      -t, --i2c-chipset=ccc\tI2C Chipset. | pcf|mcp|ser
       -m, --message  Welcome Message for line 1.
       -v, --version  Version printout.
       -h, --help     Show this help screen.

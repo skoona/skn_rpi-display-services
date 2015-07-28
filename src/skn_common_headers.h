@@ -143,7 +143,7 @@
 // #define AF_DB7      (AF_BASE + 7)
 
 /*
- * Defiens for the serial port version
+ * Defines for the serial port version
 */
 // clr   = [ 0xfe, 0x58 ].pack("C*")
 // home  = [ 0xfe, 0x48 ].pack("C*")
@@ -166,6 +166,24 @@
 //  end while true
 //
 // end
+
+// Flags for display on/off control
+//    #define LCD_BLINKON             0x01
+//    #define LCD_CURSORON            0x02
+//    #define LCD_DISPLAYON           0x04
+
+// Flags for display size
+//    #define LCD_2LINE               0x02
+//    #define LCD_4LINE               0x04
+//    #define LCD_16CHAR              0x10
+//    #define LCD_20CHAR              0x14
+
+//  Flags for setting display size
+//    #define LCD_SET2LINE            0x06
+//    #define LCD_SET4LINE            0x05
+//    #define LCD_SET16CHAR           0x04
+//    #define LCD_SET20CHAR           0x03
+
 
 
 typedef struct _IICLCD {

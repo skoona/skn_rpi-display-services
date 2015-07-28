@@ -167,13 +167,13 @@ int get_broadcast_ip_array(PIPBroadcastArray paB) {
     strcpy(paB->cbName, "IPBroadcastArray");
 
     rc = get_default_interface_name(paB->chDefaultIntfName);
-    if (rc == EXIT_FAILURE) {
-        skn_logger(SD_ERR, "No Default Network Interfaces Found!. Count=%d", rc);
+    if (rc == EXIT_FAILURE) { // Alternate method for Mac: 'route -n -A inet'
+        skn_logger(SD_ERR, "No Default Network Interfaces Found!.");
         paB->chDefaultIntfName[0] = 0;
     }
     rc = getifaddrs(&ifap);
     if (rc != 0) {
-        skn_logger(SD_ERR, "No Network Interfaces Found at All ! %d:%d:%s", rc, errno, strerror(errno));
+        skn_logger(SD_ERR, "No Network Interfaces Found at All ! %d:%d:%s", rc, errno, strerror(errno) );
         return (PLATFORM_ERROR);
     }
     p = ifap;
@@ -187,12 +187,8 @@ int get_broadcast_ip_array(PIPBroadcastArray paB) {
 
             strncpy(paB->ifNameStr[paB->count], p->ifa_name, (SZ_CHAR_BUFF -1));
 
-            /* Take first one to be the default */
-            if ((paB->chDefaultIntfName[0] != 0) && (strcmp(paB->chDefaultIntfName, p->ifa_name) != 0) ) {
-                strncpy(paB->chDefaultIntfName, p->ifa_name, (SZ_CHAR_BUFF -1));
-                paB->defaultIndex = paB->count;
-            } else if ((paB->chDefaultIntfName[0] == 0) && (strcmp(paB->maskAddrStr[paB->count], "255.0.0.0") != 0)) {
-                strncpy(paB->chDefaultIntfName, p->ifa_name, (SZ_CHAR_BUFF -1));
+            /* Take match as the default */
+            if (strcmp(paB->chDefaultIntfName, p->ifa_name) == 0) {
                 paB->defaultIndex = paB->count;
             }
 
@@ -209,31 +205,59 @@ int get_broadcast_ip_array(PIPBroadcastArray paB) {
  * Retrieves default internet interface name into param
  * - absolute best way to do this, but not supported on Darwin(i.e OSX)
  * return EXIT_SUCCESS or EXIT_FAILURE
- */
+ *
+ * [jscott@jscott5365m OSX]$ route -n get 0.0.0.0
+ *   route to: default
+ *destination: default
+ *       mask: default
+ *    gateway: 10.21.1.254
+ *  interface: en3
+ *      flags: <UP,GATEWAY,DONE,STATIC,PRCLONING>
+ * recvpipe  sendpipe  ssthresh  rtt,msec    rttvar  hopcount      mtu     expire
+ *       0         0         0         0         0         0      1500         0
+ *
+*/
 int get_default_interface_name(char *pchDefaultInterfaceName) {
     FILE *f_route;
     char line[SZ_INFO_BUFF], *dRoute = NULL, *iName = NULL;
 
     f_route = fopen("/proc/net/route", "r");
-    if (f_route == NULL) {
-        skn_logger(SD_ERR, "Opening RouteInfo Failed: %d:%s", errno, strerror(errno));
-        return EXIT_FAILURE;
+    if (f_route != NULL) {
+        while (fgets(line, SZ_INFO_BUFF - 1, f_route)) {
+            iName = strtok(line, "\t");
+            dRoute = strtok(NULL, "\t");
+
+            if (iName != NULL && dRoute != NULL) {
+                if (strcmp(dRoute, "00000000") == 0) {
+                    strncpy(pchDefaultInterfaceName, iName, (SZ_INFO_BUFF - 1));
+                    break;
+                }
+            }
+        }
+        fclose(f_route);
+
+        return EXIT_SUCCESS;
     }
+    skn_logger(SD_ERR, "Opening ProcFs for RouteInfo Failed: %d:%s, Alternate method will be attempted.", errno, strerror(errno));
 
-    while (fgets(line, SZ_INFO_BUFF - 1, f_route)) {
-        iName = strtok(line, "\t");
-        dRoute = strtok(NULL, "\t");
-
-        if (iName != NULL && dRoute != NULL) {
-            if (strcmp(dRoute, "00000000") == 0) {
-                strncpy(pchDefaultInterfaceName, iName, (SZ_INFO_BUFF - 1));
+    f_route = popen("route -n get 0.0.0.0", "r");
+    if (f_route != NULL) {
+        while (fgets(line, SZ_INFO_BUFF - 1, f_route)) {
+            dRoute = strtok(line, ":");
+            iName = strtok(NULL, "\n");
+            if (strcmp(dRoute, "  interface") == 0) {
+                strncpy(pchDefaultInterfaceName, skn_strip(iName), (SZ_INFO_BUFF - 1));
                 break;
             }
         }
-    }
-    fclose(f_route);
+        fclose(f_route);
 
-    return EXIT_SUCCESS;
+        return EXIT_SUCCESS;
+    } else {
+        skn_logger(SD_ERR, "Alternate method to get RouteInfo Failed: %d:%s", errno, strerror(errno));
+        return EXIT_FAILURE;
+    }
+
 }
 
 /**************************************************************************
