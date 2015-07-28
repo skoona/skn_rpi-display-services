@@ -1,5 +1,4 @@
 
-ACLOCAL_AMFLAGS = -I m4 --install
 EXTRA_DIST = m4/NOTES
 
 bin_PROGRAMS=udp_locator_service udp_locator_client lcd_display_service lcd_display_client
