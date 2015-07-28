@@ -16,7 +16,8 @@ int main(int argc, char *argv[])
     PServiceRegistry psr = NULL;
     PRegistryEntry pre = NULL;
     PServiceRequest pnsr = NULL;
-    int vIndex = 0, host_update_cycle = 0;
+    int vIndex = 0;
+    long host_update_cycle = 0;
 
     memset(registry, 0, sizeof(registry));
     memset(request, 0, sizeof(request));
@@ -86,8 +87,7 @@ int main(int argc, char *argv[])
 	// we have the location
 	if (pre != NULL) {
 	    if (request[0] == 0) {
-	        snprintf(request, sizeof(request), "[%s] %02ld Cores Available.", gd_ch_ipAddress,
-	                            skn_get_number_of_cpu_cores() );
+	        snprintf(request, sizeof(request), "%02ld Cores Available.",  skn_get_number_of_cpu_cores() );
 	    }
 	    pnsr = skn_service_request_create(pre, gd_i_socket, request);
 	}
@@ -100,13 +100,13 @@ int main(int argc, char *argv[])
             sleep(gd_i_update);
 
             switch (host_update_cycle++) {  // cycle through other info
-                case 0;
+                case 0:
                     generate_loadavg_info(pnsr->request);
                     break;
-                case 1;
+                case 1:
                     generate_datetime_info(pnsr->request);
                     break;
-                case 2;
+                case 2:
                     generate_uname_info(pnsr->request);
                     host_update_cycle = 0;
                 break;
@@ -118,8 +118,6 @@ int main(int argc, char *argv[])
     } else {
         skn_logger(SD_WARNING, "Unable to create Network Request.");
     }
-
-    skn_logger(SD_NOTICE, "Application Shutdown... (%d)", gi_exit_flag);
 
 	/* Cleanup and shutdown
 	 * - if shutdown was caused by signal handler

@@ -290,7 +290,7 @@ int skn_display_manager_do_work(char * client_request_message) {
     PDisplayManager pdm = NULL;
     PDisplayLine pdl = NULL;
     char ch_lcd_message[4][SZ_INFO_BUFF];
-    int host_update_cycle = 0;
+    long host_update_cycle = 0;
 
     gp_structure_pdm = pdm = skn_display_manager_create(client_request_message);
     if (pdm == NULL) {
@@ -332,12 +332,12 @@ int skn_display_manager_do_work(char * client_request_message) {
         for (index = 0; index < pdm->dsp_rows; index++) {
             if (pdl->active) {
                 skn_scroller_scroll_lines(pdl, pdm->lcd_handle, dsp_line_number++);
-                delay(200);
+                delay(160);
             }
             pdl = (PDisplayLine) pdl->next;
         }
 
-        if ((host_update_cycle++ % 10) == 0) {
+        if ((host_update_cycle++ % 300) == 0) {  // roughly every five minutes
             generate_cpu_temps_info(ch_lcd_message[0]);
             generate_datetime_info(ch_lcd_message[1]);
             generate_loadavg_info(ch_lcd_message[3]);
@@ -346,6 +346,7 @@ int skn_display_manager_do_work(char * client_request_message) {
             skn_display_manager_add_line(pdm, ch_lcd_message[2]);
             skn_display_manager_add_line(pdm, ch_lcd_message[3]);
         }
+        sleep(0);
     }
 
     lcdClear(pdm->lcd_handle);
@@ -430,8 +431,10 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
     struct sockaddr_in remaddr; /* remote address */
     socklen_t addrlen = sizeof(remaddr); /* length of addresses */
     IPBroadcastArray aB;
+    char strPrefix[SZ_INFO_BUFF];
     char request[SZ_INFO_BUFF];
     char recvHostName[SZ_INFO_BUFF];
+    char *phostname = recvHostName;
     signed int rLen = 0, rc = 0;
     long int exit_code = EXIT_SUCCESS;
 
@@ -470,6 +473,7 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
             break;
         }
         skn_logger(SD_NOTICE, "Received request from %s @ %s:%d", recvHostName, inet_ntoa(remaddr.sin_addr), ntohs(remaddr.sin_port));
+        strsep(&phostname, ".");
         skn_logger(SD_NOTICE, "Request data: [%s]\n", request);
 
         /*
@@ -483,7 +487,8 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
 
         /*
          * Add receive data to display set */
-        skn_display_manager_add_line(NULL, request);
+        snprintf(strPrefix, sizeof(strPrefix) -1 , "%s|%s", gd_ch_hostShortName, request);
+        skn_display_manager_add_line(pdm, strPrefix);
 
         if (sendto(pdm->i_socket, "200 Accepted", strlen("200 Accepted"), 0, (struct sockaddr *) &remaddr, addrlen) < 0) {
             skn_logger(SD_EMERG, "SendTo() Failure code=%d, etext=%s", errno, strerror(errno));
@@ -611,7 +616,7 @@ int skn_handle_display_command_line(int argc, char **argv) {
                 break;
             case 'v':
                 skn_logger(SD_ERR, "\n\tProgram => %s\n\tVersion => %s\n\tSkoona Development\n\t<skoona@gmail.com>\n", gd_ch_program_name,
-                                PACKAGE_VERSION);
+                                "PACKAGE_VERSION");
                 return (EXIT_FAILURE);
                 break;
             case '?':

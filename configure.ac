@@ -12,11 +12,11 @@ AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 
-AM_INIT_AUTOMAKE(AC_PACKAGE_NAME, AC_PACKAGE_VERSION)
+AM_INIT_AUTOMAKE
 AC_CONFIG_FILES(Makefile src/Makefile)
 
 # stricter options -ansi -pedantic
-CFLAGS='-Wall -Wextra -g -O0 -I/usr/include -I/usr/local/include -Winline -pipe -DPACKAGE_NAME=AC_PACKAGE_NAME -DPACKAGE_VERSION=AC_PACKAGE_VERSION'
+CFLAGS='-Wall -Wextra -g -O0 -I/usr/include -I/usr/local/include -Winline -pipe -DPACKAGE_NAME="AC_PACKAGE_NAME" -DPACKAGE_VERSION="AC_PACKAGE_VERSION"'
 AC_SUBST(CFLAGS)
 
 dnl Standard C constructs

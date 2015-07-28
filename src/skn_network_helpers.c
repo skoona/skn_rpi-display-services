@@ -8,7 +8,7 @@
  * Global Exit Flag -- set by signal handler
  * atomic to survive signal handlers
  */
-volatile sig_atomic_t gi_exit_flag = SKN_RUN_MODE_RUN; // will hold the signal which cause exit
+sig_atomic_t gi_exit_flag = SKN_RUN_MODE_RUN; // will hold the signal which cause exit
 char *gd_pch_message = NULL;
 
 signed int gd_i_debug = 0;
@@ -68,7 +68,7 @@ int generate_uname_info(char *msg) {
     if (uname(&info) != 0) {
         mLen = snprintf(msg, SZ_INFO_BUFF -1, "%s", message);
     } else {
-        mLen = snprintf(msg, SZ_INFO_BUFF -1, "%s %s, %s %s | Cores=%d",
+        mLen = snprintf(msg, SZ_INFO_BUFF -1, "%s|%s %s, %s %s | Cores=%ld",
                         info.nodename,
                         info.sysname, info.release, info.version, info.machine,
                         skn_get_number_of_cpu_cores());
@@ -164,13 +164,13 @@ int get_broadcast_ip_array(PIPBroadcastArray paB) {
     memset(paB, 0, sizeof(IPBroadcastArray));
     paB->count = 0;
     paB->defaultIndex = 0;
-    strcpy(paB->cbName, "Net Broadcast IPs");
+    strcpy(paB->cbName, "IPBroadcastArray");
 
-//    rc = get_default_interface_name(paB->chDefaultIntfName);
-//    if (rc == EXIT_FAILURE) {
-//        skn_logger(SD_ERR, "No Default Network Interfaces Found!. Count=%d", rc);
-//        return PLATFORM_ERROR;
-//    }
+    rc = get_default_interface_name(paB->chDefaultIntfName);
+    if (rc == EXIT_FAILURE) {
+        skn_logger(SD_ERR, "No Default Network Interfaces Found!. Count=%d", rc);
+        paB->chDefaultIntfName[0] = 0;
+    }
     rc = getifaddrs(&ifap);
     if (rc != 0) {
         skn_logger(SD_ERR, "No Network Interfaces Found at All ! %d:%d:%s", rc, errno, strerror(errno));
@@ -188,7 +188,10 @@ int get_broadcast_ip_array(PIPBroadcastArray paB) {
             strncpy(paB->ifNameStr[paB->count], p->ifa_name, (SZ_CHAR_BUFF -1));
 
             /* Take first one to be the default */
-            if ((strcmp(paB->maskAddrStr[paB->count], "255.0.0.0") != 0) && (paB->chDefaultIntfName[0] != 0)) {
+            if ((paB->chDefaultIntfName[0] != 0) && (strcmp(paB->chDefaultIntfName, p->ifa_name) != 0) ) {
+                strncpy(paB->chDefaultIntfName, p->ifa_name, (SZ_CHAR_BUFF -1));
+                paB->defaultIndex = paB->count;
+            } else if ((paB->chDefaultIntfName[0] == 0) && (strcmp(paB->maskAddrStr[paB->count], "255.0.0.0") != 0)) {
                 strncpy(paB->chDefaultIntfName, p->ifa_name, (SZ_CHAR_BUFF -1));
                 paB->defaultIndex = paB->count;
             }
@@ -342,7 +345,7 @@ int skn_handle_locator_command_line(int argc, char **argv) {
                 }
                 break;
             case 'v':
-                skn_logger(SD_WARNING, "\n\tProgram => %s\n\tVersion => %s\n\tSkoona Development\n\t<skoona@gmail.com>\n", gd_ch_program_name, PACKAGE_VERSION);
+                skn_logger(SD_WARNING, "\n\tProgram => %s\n\tVersion => %s\n\tSkoona Development\n\t<skoona@gmail.com>\n", gd_ch_program_name, "PACKAGE_VERSION");
                 return (EXIT_FAILURE);
                 break;
             case '?':

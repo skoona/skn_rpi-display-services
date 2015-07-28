@@ -42,6 +42,7 @@ int main(int argc, char *argv[]) {
     	strcpy(request, argv[1]);
     }
     skn_get_userids();
+    skn_logger(SD_NOTICE, "%s-%s is in startup mode as user(%s)", gd_ch_program_name, "PACKAGE_VERSION", gd_pch_effective_userid);
 
 	skn_logger(SD_DEBUG, "Welcome Message [%s]", request);
 
@@ -61,7 +62,6 @@ int main(int argc, char *argv[]) {
 	* - initialize needed resources
 	* - start user threads
 	*/
-	skn_logger(SD_NOTICE, "%s-%s is in startup mode as user(%s)", gd_ch_program_name, PACKAGE_VERSION, gd_pch_effective_userid);
 
 	/*
 	 * Do the marvelous work of putting message on display */
