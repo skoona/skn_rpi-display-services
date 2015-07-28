@@ -41,6 +41,8 @@ int main(int argc, char *argv[]) {
     } else if (argc == 2) {
     	strcpy(request, argv[1]);
     }
+    skn_get_userids();
+
 	skn_logger(SD_DEBUG, "Welcome Message [%s]", request);
 
 	/*

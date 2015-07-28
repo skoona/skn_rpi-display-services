@@ -289,7 +289,8 @@ int skn_display_manager_do_work(char * client_request_message) {
     int index = 0, dsp_line_number = 0;
     PDisplayManager pdm = NULL;
     PDisplayLine pdl = NULL;
-    char ch_lcd_message[3][SZ_INFO_BUFF];
+    char ch_lcd_message[4][SZ_INFO_BUFF];
+    int host_update_cycle = 0;
 
     gp_structure_pdm = pdm = skn_display_manager_create(client_request_message);
     if (pdm == NULL) {
@@ -300,9 +301,11 @@ int skn_display_manager_do_work(char * client_request_message) {
     generate_cpu_temps_info(ch_lcd_message[0]);
     generate_datetime_info(ch_lcd_message[1]);
     generate_rpi_model_info(ch_lcd_message[2]);
+    generate_loadavg_info(ch_lcd_message[3]);
     skn_display_manager_add_line(pdm, ch_lcd_message[0]);
     skn_display_manager_add_line(pdm, ch_lcd_message[1]);
     skn_display_manager_add_line(pdm, ch_lcd_message[2]);
+    skn_display_manager_add_line(pdm, ch_lcd_message[3]);
 
     if (skn_display_service_LCD_setup(pdm, HIGH) == PLATFORM_ERROR) {
         gi_exit_flag = SKN_RUN_MODE_STOP;
@@ -332,6 +335,16 @@ int skn_display_manager_do_work(char * client_request_message) {
                 delay(200);
             }
             pdl = (PDisplayLine) pdl->next;
+        }
+
+        if ((host_update_cycle++ % 10) == 0) {
+            generate_cpu_temps_info(ch_lcd_message[0]);
+            generate_datetime_info(ch_lcd_message[1]);
+            generate_loadavg_info(ch_lcd_message[3]);
+            skn_display_manager_add_line(pdm, ch_lcd_message[0]);
+            skn_display_manager_add_line(pdm, ch_lcd_message[1]);
+            skn_display_manager_add_line(pdm, ch_lcd_message[2]);
+            skn_display_manager_add_line(pdm, ch_lcd_message[3]);
         }
     }
 
@@ -464,7 +477,6 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
         if (strcmp("QUIT!", request) == 0) {
             exit_code = 0;
             gi_exit_flag == SKN_RUN_MODE_STOP;  // shutdown
-            sleep(1); // give main thread time to react
             skn_logger(SD_NOTICE, "COMMAND: Shutdown Requested! exit code=%d", exit_code);
             break;
         }

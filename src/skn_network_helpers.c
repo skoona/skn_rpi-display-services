@@ -21,6 +21,8 @@ int gd_i_update = 0;
 int gd_i_unique_registry = 0;
 char gd_ch_ipAddress[SZ_CHAR_BUFF];
 char gd_ch_intfName[SZ_CHAR_BUFF];
+char gd_ch_hostName[SZ_CHAR_BUFF];
+char gd_ch_hostShortName[SZ_CHAR_BUFF];
 char * gd_pch_service_name;
 
 
@@ -39,6 +41,24 @@ long skn_get_number_of_cpu_cores() {
     return sysconf(_SC_NPROCESSORS_ONLN);
 }
 
+
+int generate_loadavg_info(char *msg) {
+    double loadavg[4];
+    int rc = 0;
+
+    rc = getloadavg(loadavg, 3);
+
+    if (rc != PLATFORM_ERROR) {
+        snprintf(msg, SZ_INFO_BUFF -1, "LoadAvg: 1m=%2.1f, 5m=%2.1f, 15m=%2.1F",
+                 loadavg[0], loadavg[1], loadavg[2]);
+    } else {
+        snprintf(msg, SZ_INFO_BUFF -1, "Load Average: Not Available  %d:%d:%s",
+                 rc, errno, strerror(errno));
+    }
+
+    return rc;
+}
+
 int generate_uname_info(char *msg) {
     struct utsname info;
 
@@ -48,7 +68,10 @@ int generate_uname_info(char *msg) {
     if (uname(&info) != 0) {
         mLen = snprintf(msg, SZ_INFO_BUFF -1, "%s", message);
     } else {
-        mLen = snprintf(msg, SZ_INFO_BUFF -1, "%s:%s %s, %s %s", info.nodename, info.sysname, info.release, info.version, info.machine);
+        mLen = snprintf(msg, SZ_INFO_BUFF -1, "%s %s, %s %s | Cores=%d",
+                        info.nodename,
+                        info.sysname, info.release, info.version, info.machine,
+                        skn_get_number_of_cpu_cores());
     }
     return mLen;
 }
@@ -61,7 +84,8 @@ int generate_datetime_info(char *msg) {
     tim = time(NULL);
     t = localtime(&tim);
 
-    mLen = snprintf(msg, SZ_INFO_BUFF -1, "%02d:%02d:%04d %02d:%02d:%02d", t->tm_mon + 1, t->tm_mday, t->tm_year + 1900,
+    mLen = snprintf(msg, SZ_INFO_BUFF -1, "%02d:%02d:%04d %02d:%02d:%02d",
+                    t->tm_mon + 1, t->tm_mday, t->tm_year + 1900,
                     ((t->tm_hour - TZ_ADJUST) < 0 ? (t->tm_hour - TZ_ADJUST + 12) : (t->tm_hour - TZ_ADJUST)), t->tm_min, t->tm_sec);
 
     return mLen;
@@ -348,8 +372,17 @@ void log_response_message(const char * response) {
 }
 
 void skn_program_name_and_description_set(const char *name, const char *desc) {
+    char hostName[SZ_CHAR_BUFF];
+    char * phostName = hostName;
+
     strncpy(gd_ch_program_name, name, sizeof(gd_ch_program_name) - 1);
     strncpy(gd_ch_program_desc, desc, sizeof(gd_ch_program_desc) - 1);
+
+    gethostname(hostName, sizeof(hostName) - 1);
+        strncpy(gd_ch_hostName, hostName, sizeof(gd_ch_hostName) - 1);
+        strsep(&phostName, ".");
+        strncpy(gd_ch_hostShortName, hostName, sizeof(gd_ch_hostShortName) - 1);
+
 }
 
 /**

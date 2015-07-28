@@ -1,6 +1,6 @@
 dnl Process this file with autoconf to produce a configure script.
 
-AC_INIT([skn_rpi-locator-service], [0.2.2], [James Scott Jr. <skoona@gmail.com>], 
+AC_INIT([skn_rpi-locator-service], [0.2.3], [James Scott Jr. <skoona@gmail.com>], 
         [skn_rpi-locator-service], [https://github.com/skoona/skn_rpi-display-services])
         
 AC_PREREQ([2.69])
@@ -16,7 +16,7 @@ AM_INIT_AUTOMAKE(AC_PACKAGE_NAME, AC_PACKAGE_VERSION)
 AC_CONFIG_FILES(Makefile src/Makefile)
 
 # stricter options -ansi -pedantic
-CFLAGS='-Wall -Wextra -g -O0 -I/usr/include -I/usr/local/include -Winline -pipe'
+CFLAGS='-Wall -Wextra -g -O0 -I/usr/include -I/usr/local/include -Winline -pipe -DPACKAGE_NAME=AC_PACKAGE_NAME -DPACKAGE_VERSION=AC_PACKAGE_VERSION'
 AC_SUBST(CFLAGS)
 
 dnl Standard C constructs
@@ -30,9 +30,6 @@ AC_CHECK_LIB([pthread],[pthread_create])
 
 # AC_CHECK_LIB([wiringPi],[lcdInit])
 # AC_CHECK_LIB([wiringPi],[pcf8574Setup])
-
-# ref: http://www.gnu.org/software/autoconf-archive/ax_pthread.html#ax_pthread
-# AX_PTHREAD
 
 
 AC_OUTPUT

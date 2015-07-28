@@ -26,6 +26,8 @@ extern char gd_ch_program_desc[SZ_INFO_BUFF];
 extern char *gd_pch_effective_userid;
 extern char gd_ch_ipAddress[SZ_CHAR_BUFF];
 extern char gd_ch_intfName[SZ_CHAR_BUFF];
+extern char gd_ch_hostName[SZ_CHAR_BUFF];
+extern char gd_ch_hostShortName[SZ_CHAR_BUFF];
 extern int gd_i_display;
 extern int gd_i_unique_registry;
 extern int gd_i_update;
@@ -34,15 +36,17 @@ extern char * gd_pch_service_name;
 /*
  * General Utilities
 */
-extern double skn_duration_in_milliseconds(struct timeval *pstart, struct timeval *pend);
 extern long skn_get_number_of_cpu_cores();
+extern int generate_loadavg_info(char *msg);
 extern int generate_uname_info(char *msg);
 extern int generate_datetime_info(char *msg);
-extern uid_t skn_get_userids();
+extern double skn_duration_in_milliseconds(struct timeval *pstart, struct timeval *pend);
 extern void skn_program_name_and_description_set(const char *name, const char *desc);
-extern char * skn_strip(char * alpha);
 extern int skn_logger(const char *level, const char *format, ...);
 extern int skn_handle_locator_command_line(int argc, char **argv);
+extern char * skn_strip(char * alpha);
+extern uid_t skn_get_userids();
+
 extern void signals_init();
 extern void signals_cleanup(int sig);
 

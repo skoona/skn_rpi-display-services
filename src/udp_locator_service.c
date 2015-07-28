@@ -38,6 +38,9 @@ int main(int argc, char *argv[])
 	    free(gd_pch_message); // from strdup()
 	    gd_pch_message = response;
     }
+    skn_get_userids();
+
+    skn_logger(SD_NOTICE, "%s-%s is in startup mode as user(%s)", gd_ch_program_name, PACKAGE_VERSION, gd_pch_effective_userid);
 
     if ((strlen(response) > 16) && (service_registry_valiadate_response_format(response) == EXIT_FAILURE)) {
     	skn_logger(SD_EMERG, "Message format is invalid! cannot proceed.");

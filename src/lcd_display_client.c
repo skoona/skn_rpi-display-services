@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
     PServiceRegistry psr = NULL;
     PRegistryEntry pre = NULL;
     PServiceRequest pnsr = NULL;
-    int vIndex = 0;
+    int vIndex = 0, host_update_cycle = 0;
 
     memset(registry, 0, sizeof(registry));
     memset(request, 0, sizeof(request));
@@ -98,9 +98,23 @@ int main(int argc, char *argv[])
                 break;
             }
             sleep(gd_i_update);
-            generate_uname_info(pnsr->request);
+
+            switch (host_update_cycle++) {  // cycle through other info
+                case 0;
+                    generate_loadavg_info(pnsr->request);
+                    break;
+                case 1;
+                    generate_datetime_info(pnsr->request);
+                    break;
+                case 2;
+                    generate_uname_info(pnsr->request);
+                    host_update_cycle = 0;
+                break;
+            }
+
         } while(gd_i_update != 0 && gi_exit_flag == SKN_RUN_MODE_RUN);
         free(pnsr);  // Done
+
     } else {
         skn_logger(SD_WARNING, "Unable to create Network Request.");
     }
