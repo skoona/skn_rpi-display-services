@@ -550,7 +550,7 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
     char strPrefix[SZ_INFO_BUFF];
     char request[SZ_INFO_BUFF];
     char recvHostName[SZ_INFO_BUFF];
-    char *phostname = recvHostName;
+    char *phostname = recvHostName, pch = NULL;
     signed int rLen = 0, rc = 0;
     long int exit_code = EXIT_SUCCESS;
 
@@ -603,8 +603,8 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
 
         /*
          * Add receive data to display set */
-        strsep(&phostname, ".");
-        snprintf(strPrefix, sizeof(strPrefix) -1 , "%s|%s", recvHostName, request);
+        pch = strsep(&phostname, ".");
+        snprintf(strPrefix, sizeof(strPrefix) -1 , "%s|%s", pch, request);
         skn_display_manager_add_line(pdm, strPrefix);
 
         if (sendto(pdm->i_socket, "200 Accepted", strlen("200 Accepted"), 0, (struct sockaddr *) &remaddr, addrlen) < 0) {
