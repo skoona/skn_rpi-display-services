@@ -10,18 +10,173 @@
  */
 int gd_i_rows = 4;
 int gd_i_cols = 20;
+int gd_i_i2c_address = 0x27;
+char *gd_pch_serial_port;
+char *gd_pch_device_name = "PCF8574";
 PDisplayManager gp_structure_pdm = NULL;
 
 static void skn_display_print_usage();
 static PDisplayManager skn_display_manager_create(char * welcome);
 static void skn_display_manager_destroy(PDisplayManager pdm);
 static void * skn_display_manager_message_consumer_thread(void * ptr);
-
+static PLCDDevice skn_device_manager_init_i2c(PDisplayManager pdm);
 
 /*
  * Device Methods
 */
+PLCDDevice skn_device_manager_SerialPort(PDisplayManager pdm) {
+    PLCDDevice plcd =  NULL;
 
+    if (pdm == NULL) {
+        skn_logger(SD_ERR, "Device Manager cannot acquire needed resources. %d:%s", errno, strerror(errno));
+        return NULL;
+    }
+
+    plcd = (PLCDDevice)&pdm->lcd;
+    strncpy(plcd->cbName, "LCDDevice#SerialPort", SZ_CHAR_BUFF-1);
+    if (gd_pch_serial_port != NULL) {
+        strncpy(plcd->ch_serial_port_name, gd_pch_serial_port, SZ_CHAR_BUFF-1);
+    } else {
+        strncpy(plcd->ch_serial_port_name, "/dev/ttyACM0", SZ_CHAR_BUFF-1);
+    }
+
+    plcd->setup = NULL;
+
+    return NULL;
+}
+
+PLCDDevice skn_device_manager_MCP23008(PDisplayManager pdm) {
+    PLCDDevice plcd =  NULL;
+    int base = 0;
+
+    if (pdm == NULL) {
+        skn_logger(SD_ERR, "Device Manager cannot acquire needed resources. %d:%s", errno, strerror(errno));
+        return NULL;
+    }
+
+    plcd = (PLCDDevice)&pdm->lcd;
+    strncpy(plcd->cbName, "LCDDevice#MCP23008", SZ_CHAR_BUFF-1);
+    if (gd_pch_serial_port != NULL) {
+        strncpy(plcd->ch_serial_port_name, gd_pch_serial_port, SZ_CHAR_BUFF-1);
+    } else {
+        strncpy(plcd->ch_serial_port_name, "/dev/ttyACM0", SZ_CHAR_BUFF-1);
+    }
+    if (gd_i_i2c_address != 0) {
+        plcd->i2c_address = gd_i_i2c_address;
+    } else {
+        plcd->i2c_address = 0x20;
+    }
+    base = plcd->af_base = 100;
+    plcd->af_backlight = base + 7;
+    plcd->af_e = base + 2;
+    plcd->af_rs = base + 1;
+    plcd->af_rw = base + 0;
+
+    plcd->af_db4 = base + 3;
+    plcd->af_db5 = base + 4;
+    plcd->af_db6 = base + 5;
+    plcd->af_db7 = base + 6;
+
+    plcd->setup = &mcp23008Setup; //   mcp23008Setup(AF_BASE, 0x20);
+
+    return skn_device_manager_init_i2c(pdm);
+}
+
+PLCDDevice skn_device_manager_PCF8574(PDisplayManager pdm) {
+    PLCDDevice plcd =  NULL;
+    int base = 0;
+
+    if (pdm == NULL) {
+        skn_logger(SD_ERR, "Device Manager cannot acquire needed resources. %d:%s", errno, strerror(errno));
+        return NULL;
+    }
+
+    plcd = (PLCDDevice)&pdm->lcd;
+    memset(plcd, 0, sizeof(LCDDevice));
+    strncpy(plcd->cbName, "LCDDevice#PCF8574", SZ_CHAR_BUFF-1);
+    if (gd_pch_serial_port != NULL) {
+        strncpy(plcd->ch_serial_port_name, gd_pch_serial_port, SZ_CHAR_BUFF-1);
+    } else {
+        strncpy(plcd->ch_serial_port_name, "/dev/ttyACM0", SZ_CHAR_BUFF-1);
+    }
+    if (gd_i_i2c_address != 0) {
+        plcd->i2c_address = gd_i_i2c_address;
+    } else {
+        plcd->i2c_address = 0x27;
+    }
+    base = plcd->af_base = 100;
+    plcd->af_backlight = base + 3;
+    plcd->af_e = base + 2;
+    plcd->af_rs = base + 0;
+    plcd->af_rw = base + 1;
+
+    plcd->af_db4 = base + 4;
+    plcd->af_db5 = base + 5;
+    plcd->af_db6 = base + 6;
+    plcd->af_db7 = base + 7;
+
+    plcd->setup = &pcf8574Setup; // pcf8574Setup(AF_BASE, 0x27);
+
+    return skn_device_manager_init_i2c(pdm);
+}
+
+/*
+ * setBacklightState: */
+void skn_device_manager_backlight(int af_backlight, int state) {
+    digitalWrite(af_backlight, state);
+}
+
+static PLCDDevice skn_device_manager_init_i2c(PDisplayManager pdm) {
+    PLCDDevice plcd = (PLCDDevice)&pdm->lcd;
+
+    // Control signals
+    pinMode(plcd->af_rw, OUTPUT);
+    digitalWrite(plcd->af_rw, LOW); // Not used with wiringPi - always in write mode
+
+    // call the initializer
+    plcd->setup(plcd->af_base, plcd->i2c_address);
+
+    //  Backlight LEDs
+    pinMode(plcd->af_backlight, OUTPUT);
+    skn_device_manager_backlight(plcd->af_backlight, HIGH);
+
+
+    // The other control pins are initialised with lcdInit ()
+    plcd->lcd_handle = pdm->lcd_handle = lcdInit(pdm->dsp_rows, pdm->dsp_cols, 4,
+                                                 plcd->af_rs, plcd->af_e,
+                                                 plcd->af_db4, plcd->af_db5, plcd->af_db6, plcd->af_db7,
+                                                 plcd->af_db0, plcd->af_db1, plcd->af_db2, plcd->af_db3);
+
+    if (pdm->lcd_handle < 0) {
+        skn_logger(SD_ERR, "I2C Services failed to initialize. lcdInit(%d)", pdm->lcd_handle);
+    } else {
+        lcdClear(pdm->lcd_handle);
+    }
+
+    return plcd;
+}
+/*
+ * LCDSetup:
+ *  Setup the pcf8574 or mcp23008 lcd by making sure the additional pins are
+ *  set to the correct modes, etc.
+ *********************************************************************************
+ */
+int skn_device_manager_LCD_setup(PDisplayManager pdm, char *device_name) {
+
+    /*
+     * Initial I2C Services */
+    wiringPiSetupSys();
+    if (strcmp(device_name, "mcp") == 0) {
+        skn_device_manager_MCP23008(pdm);
+    } else if (strcmp(device_name, "SerialPort") == 0) {
+        skn_device_manager_SerialPort(pdm);
+        return EXIT_FAILURE;  // not ready yet
+    } else { // PCF8574
+        skn_device_manager_PCF8574(pdm);
+    }
+
+    return pdm->lcd_handle;
+}
 
 /*
  * Utility Methods
@@ -120,45 +275,6 @@ int generate_cpu_temps_info(char *msg) {
     mLen = snprintf(msg, SZ_INFO_BUFF-1, "CPU: %s %s", cpuTemp.c, cpuTemp.f);
 
     return mLen;
-}
-
-/*
- * setBacklightState: */
-void skn_lcd_backlight_set(int state) {
-    digitalWrite(AF_BACKLIGHT, state);
-}
-
-/*
- * LCDSetup:
- *	Setup the pcf8574 or mcp23008 lcd by making sure the additional pins are
- *	set to the correct modes, etc.
- *********************************************************************************
- */
-int skn_display_service_LCD_setup(PDisplayManager pdm, int backLight) {
-    /*
-     * Initial I2C Services */
-    wiringPiSetupSys();
-    pcf8574Setup(AF_BASE, 0x27);
-//  mcp23008Setup(AF_BASE, 0x20);
-
-//	Backlight LEDs
-    pinMode(AF_BACKLIGHT, OUTPUT);
-    skn_lcd_backlight_set(backLight);
-
-// Control signals
-    pinMode(AF_RW, OUTPUT);
-    digitalWrite(AF_RW, LOW);	// Not used with wiringPi - always in write mode
-
-// The other control pins are initialised with lcdInit ()
-    pdm->lcd_handle = lcdInit(pdm->dsp_rows, pdm->dsp_cols, 4, AF_RS, AF_E, AF_DB4, AF_DB5, AF_DB6, AF_DB7, 0, 0, 0, 0);
-
-    if (pdm->lcd_handle < 0) {
-        skn_logger(SD_ERR, "I2C Services failed to initialize. lcdInit(%d)", pdm->lcd_handle);
-    } else {
-        lcdClear(pdm->lcd_handle);
-    }
-
-    return pdm->lcd_handle;
 }
 
 /**
@@ -307,7 +423,7 @@ int skn_display_manager_do_work(char * client_request_message) {
     skn_display_manager_add_line(pdm, ch_lcd_message[2]);
     skn_display_manager_add_line(pdm, ch_lcd_message[3]);
 
-    if (skn_display_service_LCD_setup(pdm, HIGH) == PLATFORM_ERROR) {
+    if (skn_device_manager_LCD_setup(pdm, gd_pch_device_name) == PLATFORM_ERROR) {
         gi_exit_flag = SKN_RUN_MODE_STOP;
         skn_logger(SD_ERR, "Display Manager cannot acquire needed resources: lcdSetup().");
         skn_display_manager_destroy(pdm);
@@ -350,7 +466,7 @@ int skn_display_manager_do_work(char * client_request_message) {
     }
 
     lcdClear(pdm->lcd_handle);
-    skn_lcd_backlight_set(LOW);
+    skn_device_manager_backlight(pdm->lcd.af_backlight, LOW);
 
     skn_logger(SD_NOTICE, "Application InActive...");
 
@@ -473,7 +589,7 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
             break;
         }
         skn_logger(SD_NOTICE, "Received request from %s @ %s:%d", recvHostName, inet_ntoa(remaddr.sin_addr), ntohs(remaddr.sin_port));
-        strsep(&phostname, ".");
+
         skn_logger(SD_NOTICE, "Request data: [%s]\n", request);
 
         /*
@@ -487,7 +603,8 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
 
         /*
          * Add receive data to display set */
-        snprintf(strPrefix, sizeof(strPrefix) -1 , "%s|%s", gd_ch_hostShortName, request);
+        strsep(&phostname, ".");
+        snprintf(strPrefix, sizeof(strPrefix) -1 , "%s|%s", recvHostName, request);
         skn_display_manager_add_line(pdm, strPrefix);
 
         if (sendto(pdm->i_socket, "200 Accepted", strlen("200 Accepted"), 0, (struct sockaddr *) &remaddr, addrlen) < 0) {
@@ -522,11 +639,14 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
 static void skn_display_print_usage() {
     skn_logger(" ", "%s -- %s", gd_ch_program_name, gd_ch_program_desc);
     skn_logger(" ", "\tSkoona Development <skoona@gmail.com>");
-    skn_logger(" ", "Usage:\n  %s [-v] [-m 'Welcome Message'] [-r 4|2] [-c 20|16] [-h|--help]", gd_ch_program_name);
+    skn_logger(" ", "Usage:\n  %s [-v] [-m 'Welcome Message'] [-r 4|2] [-c 20|16] [-i 39|32] [-t pcf|mcp|ser] [-p string] [-h|--help]", gd_ch_program_name);
     skn_logger(" ", "\nOptions:");
     skn_logger(" ", "  -r, --rows\t\tNumber of rows in physical display.");
     skn_logger(" ", "  -c, --cols\t\tNumber of columns in physical display.");
     skn_logger(" ", "  -m, --message\tWelcome Message for line 1.");
+    skn_logger(" ", "  -p, --serial-port=string\tSerial port. | '/dev/ttyACM0'");
+    skn_logger(" ", "  -i, --i2c-address=ddd\tI2C decimal address. | 0x27=39, 0x20=32");
+    skn_logger(" ", "  -t, --i2c-chipset=ccc\tI2C Chipset.");
     skn_logger(" ", "  -v, --version\tVersion printout.");
     skn_logger(" ", "  -h, --help\t\tShow this help screen.");
 }
@@ -545,6 +665,9 @@ int skn_handle_display_command_line(int argc, char **argv) {
             { "rows", 1, NULL, 'r' }, /* required param if */
             { "cols", 1, NULL, 'c' }, /* required param if */
             { "message", 1, NULL, 'm' }, /* required param if */
+            { "i2c-address", 1, NULL, 'i' }, /* required param if */
+            { "12c-chipset", 1, NULL, 't' }, /* required param if */
+            { "serial-port", 1, NULL, 'p' }, /* required param if */
             { "version", 0, NULL, 'v' }, /* set true if present */
             { "help", 0, NULL, 'h' }, /* set true if present */
             { 0, 0, 0, 0 } };
@@ -556,7 +679,7 @@ int skn_handle_display_command_line(int argc, char **argv) {
      *  optarg is value attached(-d88) or next element(-d 88) of argv
      *  opterr flags a scanning error
      */
-    while ((opt = getopt_long(argc, argv, "d:m:r:c:vh", longopts, &longindex)) != -1) {
+    while ((opt = getopt_long(argc, argv, "d:m:r:c:i:t:p:vh", longopts, &longindex)) != -1) {
         switch (opt) {
             case 'd':
                 if (optarg) {
@@ -611,6 +734,42 @@ int skn_handle_display_command_line(int argc, char **argv) {
                 } else {
                     skn_logger(SD_ERR, "%s: input param was invalid! %c[%d:%d:%d]\n", gd_ch_program_name, (char) opt, longindex, optind,
                                     opterr);
+                    return (EXIT_FAILURE);
+                }
+                break;
+            case 'i':
+                if (optarg) {
+                    gd_i_i2c_address = atoi(optarg);
+                } else {
+                    skn_logger(SD_ERR, "%s: input param was invalid! %c[%d:%d:%d]\n", gd_ch_program_name, (char) opt, longindex, optind,
+                                    opterr);
+                    return (EXIT_FAILURE);
+                }
+                break;
+            case 't':
+                if (optarg) {
+                    gd_pch_device_name = strdup(optarg);
+                    if (((strcmp(gd_pch_device_name, "mcp") != 0) &&
+                       (strcmp(gd_pch_device_name, "pcf") != 0)) ||
+                        (strcmp(gd_pch_device_name, "ser") == 0)) {
+                        skn_logger(SD_ERR, "%s: unsupported option was invalid! %c[%d:%d:%d]\n", gd_ch_program_name, (char) opt, longindex, optind, opterr);
+                        return EXIT_FAILURE;
+                    }
+                } else {
+                    skn_logger(SD_ERR, "%s: input param was invalid! %c[%d:%d:%d]\n", gd_ch_program_name, (char) opt, longindex, optind,
+                                    opterr);
+                    return (EXIT_FAILURE);
+                }
+                break;
+            case 'p':
+                if (optarg) {
+                    gd_pch_serial_port = strdup(optarg);
+                    if (strlen(gd_pch_serial_port) < 5) {
+                        skn_logger(SD_ERR, "%s: input param was invalid! %c[%d:%d:%d]\n", gd_ch_program_name, (char) opt, longindex, optind, opterr);
+                        return EXIT_FAILURE;
+                    }
+                } else {
+                    skn_logger(SD_ERR, "%s: input param was invalid! %c[%d:%d:%d]\n", gd_ch_program_name, (char) opt, longindex, optind, opterr);
                     return (EXIT_FAILURE);
                 }
                 break;

@@ -118,16 +118,60 @@
 // #define  AF_BACKLIGHT (AF_BASE + 7)
 //
 // #define  AF_E        (AF_BASE + 2)
-// #define  AF_RS       (AF_BASE + 1)
 // #define  AF_RW       (AF_BASE + 0)
+// #define  AF_RS       (AF_BASE + 1)
 //
 // #define  AF_DB4      (AF_BASE + 3)
 // #define  AF_DB5      (AF_BASE + 4)
 // #define  AF_DB6      (AF_BASE + 5)
 // #define  AF_DB7      (AF_BASE + 6)
 
+/*
+ * Defines for the 'YwRobot Arduino LCM1602 IIC V1'
+ * - which use the I2C controller PCF8574
+*/
+// #define AF_BASE     100
+// #define AF_BACKLIGHT (AF_BASE + 3)
+//
+// #define AF_E        (AF_BASE + 2)
+// #define AF_RW       (AF_BASE + 1)
+// #define AF_RS       (AF_BASE + 0)
+//
+// #define AF_DB4      (AF_BASE + 4)
+// #define AF_DB5      (AF_BASE + 5)
+// #define AF_DB6      (AF_BASE + 6)
+// #define AF_DB7      (AF_BASE + 7)
+
+/*
+ * Defiens for the serial port version
+*/
+// clr   = [ 0xfe, 0x58 ].pack("C*")
+// home  = [ 0xfe, 0x48 ].pack("C*")
+// line1 = [ 0xfe, 0x47, 0x01, 0x01 ].pack("C*")
+// line2 = [ 0xfe, 0x47, 0x01, 0x02 ].pack("C*")
+// bright = [ 0xfe, 0x99, 0x96 ].pack("C*")
+//
+// SerialPort.open("/dev/ttyACM0", 9600, 8, 1, SerialPort::NONE) do |serial|
+//
+//  serial.syswrite home # clr
+//  serial.syswrite bright
+//
+//  begin
+//    tm = Time.now
+//    serial.syswrite line1
+//    serial.write "   #{tm.strftime('%m-%d-%Y')}"
+//    serial.syswrite line2
+//    serial.write "  #{tm.strftime('%H:%M:%S.%3N')}"
+//    sleep 1
+//  end while true
+//
+// end
+
+
 typedef struct _IICLCD {
     char cbName[SZ_CHAR_BUFF];
+    char ch_serial_port_name[SZ_CHAR_BUFF]; // SerialPort.open("/dev/ttyACM0", 9600, 8, 1, SerialPort::NONE)
+    int  lcd_handle;
     int i2c_address;
     int af_base;
     int af_backlight;
@@ -144,7 +188,8 @@ typedef struct _IICLCD {
     int af_db5;
     int af_db6;
     int af_db7;
-} I2C, *PI2C;
+    int (*setup)(const int, const int);
+} LCDDevice, *PLCDDevice;
 
 
 typedef struct _ipBroadcastArray {
@@ -216,6 +261,7 @@ typedef struct _DISPLAY_MANAGER {
     pthread_t dm_thread;   // new message thread
     long thread_complete;
     int  i_socket;
+    LCDDevice lcd;  // selected device
 } DisplayManager, *PDisplayManager;
 
 

@@ -11,34 +11,25 @@
 
 #include <wiringPi.h>
 #include <pcf8574.h>
-// #include <mcp23008.h>
+#include <mcp23008.h>
+#include <wiringSerial.h>   // http://wiringpi.com/reference/serial-library/
 #include <lcd.h>
-
-/*
- * Defines for the 'YwRobot Arduino LCM1602 IIC V1'
- * - which use the I2C controller PCF8574
-*/
-#define	AF_BASE		100
-#define	AF_BACKLIGHT (AF_BASE + 3)
-
-#define	AF_E		(AF_BASE + 2)
-#define	AF_RW		(AF_BASE + 1)
-#define	AF_RS		(AF_BASE + 0)
-
-#define	AF_DB4		(AF_BASE + 4)
-#define	AF_DB5		(AF_BASE + 5)
-#define	AF_DB6		(AF_BASE + 6)
-#define	AF_DB7		(AF_BASE + 7)
 
 
 /*
  *  Global Defines */
 extern int gd_i_rows;
 extern int gd_i_cols;
+extern int gd_i_i2c_address;
+extern char *gd_pch_serial_port;
+extern char *gd_pch_device_name;
 extern PDisplayManager gp_structure_pdm;
 
 /*
  * Display Manager Routines */
+extern PLCDDevice skn_device_manager_SerialPort(PDisplayManager pdm);
+extern PLCDDevice skn_device_manager_MCP23008(PDisplayManager pdm);
+extern PLCDDevice skn_device_manager_PCF8574(PDisplayManager pdm);
 extern PDisplayManager skn_get_display_manager_ref();
 extern int skn_display_manager_do_work(char * client_request_message);
 extern PDisplayLine skn_display_manager_add_line(PDisplayManager pdmx, char * client_request_message);
@@ -54,8 +45,8 @@ extern int skn_signal_manager_shutdown(pthread_t sig_thread, sigset_t *psignal_s
 
 /* WiringPi LCD Interfaces
 */
-extern void skn_lcd_backlight_set(int state);
-extern int skn_display_service_LCD_setup (PDisplayManager pdm, int backLight);
+extern void skn_device_manager_backlight(int af_backlight, int state);
+extern int skn_device_manager_LCD_setup (PDisplayManager pdm, char *device_name);
 
 /* General Utilities
 */

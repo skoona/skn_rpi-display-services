@@ -68,8 +68,8 @@ int generate_uname_info(char *msg) {
     if (uname(&info) != 0) {
         mLen = snprintf(msg, SZ_INFO_BUFF -1, "%s", message);
     } else {
-        mLen = snprintf(msg, SZ_INFO_BUFF -1, "%s|%s %s, %s %s | Cores=%ld",
-                        info.nodename,
+        mLen = snprintf(msg, SZ_INFO_BUFF -1, "%s %s, %s %s | Cores=%ld",
+//                        info.nodename,
                         info.sysname, info.release, info.version, info.machine,
                         skn_get_number_of_cpu_cores());
     }
