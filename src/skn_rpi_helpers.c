@@ -40,9 +40,25 @@ PLCDDevice skn_device_manager_SerialPort(PDisplayManager pdm) {
         strncpy(plcd->ch_serial_port_name, "/dev/ttyACM0", SZ_CHAR_BUFF-1);
     }
 
-    plcd->setup = NULL;
+    skn_logger(SD_NOTICE, "Device Manager using serialPort [%s]", gd_pch_serial_port);
 
-    return NULL;
+    pdm->lcd_handle = plcd->lcd_handle =  serialOpen (plcd->ch_serial_port_name, 9600);
+    if (plcd->lcd_handle == PLATFORM_ERROR) {
+        skn_logger(SD_ERR, "Device Manager cannot acquire needed resources: SerialPort=%s %d:%s",
+                   plcd->ch_serial_port_name, errno, strerror(errno));
+        return NULL;
+    }
+
+    // set backlight & clear screen
+    char bright[4] = { 0xfe, 0x99, 0x96, 0x00 };
+    char cls[3]   = { 0xfe, 0x58, 0x00 };
+    char home[3]  = { 0xfe, 0x48, 0x00 };
+
+    serialPuts (plcd->lcd_handle, bright);
+    serialPuts (plcd->lcd_handle, cls);
+    serialPuts (plcd->lcd_handle, home);
+
+    return plcd;
 }
 
 PLCDDevice skn_device_manager_MCP23008(PDisplayManager pdm) {
@@ -56,11 +72,6 @@ PLCDDevice skn_device_manager_MCP23008(PDisplayManager pdm) {
 
     plcd = (PLCDDevice)&pdm->lcd;
     strncpy(plcd->cbName, "LCDDevice#MCP23008", SZ_CHAR_BUFF-1);
-    if (gd_pch_serial_port != NULL) {
-        strncpy(plcd->ch_serial_port_name, gd_pch_serial_port, SZ_CHAR_BUFF-1);
-    } else {
-        strncpy(plcd->ch_serial_port_name, "/dev/ttyACM0", SZ_CHAR_BUFF-1);
-    }
     if (gd_i_i2c_address != 0) {
         plcd->i2c_address = gd_i_i2c_address;
     } else {
@@ -94,11 +105,6 @@ PLCDDevice skn_device_manager_PCF8574(PDisplayManager pdm) {
     plcd = (PLCDDevice)&pdm->lcd;
     memset(plcd, 0, sizeof(LCDDevice));
     strncpy(plcd->cbName, "LCDDevice#PCF8574", SZ_CHAR_BUFF-1);
-    if (gd_pch_serial_port != NULL) {
-        strncpy(plcd->ch_serial_port_name, gd_pch_serial_port, SZ_CHAR_BUFF-1);
-    } else {
-        strncpy(plcd->ch_serial_port_name, "/dev/ttyACM0", SZ_CHAR_BUFF-1);
-    }
     if (gd_i_i2c_address != 0) {
         plcd->i2c_address = gd_i_i2c_address;
     } else {
@@ -147,8 +153,9 @@ static PLCDDevice skn_device_manager_init_i2c(PDisplayManager pdm) {
                                                  plcd->af_db4, plcd->af_db5, plcd->af_db6, plcd->af_db7,
                                                  plcd->af_db0, plcd->af_db1, plcd->af_db2, plcd->af_db3);
 
-    if (pdm->lcd_handle < 0) {
+    if (pdm->lcd_handle == PLATFORM_ERROR) {
         skn_logger(SD_ERR, "I2C Services failed to initialize. lcdInit(%d)", pdm->lcd_handle);
+        return NULL;
     } else {
         lcdClear(pdm->lcd_handle);
     }
@@ -162,20 +169,23 @@ static PLCDDevice skn_device_manager_init_i2c(PDisplayManager pdm) {
  *********************************************************************************
  */
 int skn_device_manager_LCD_setup(PDisplayManager pdm, char *device_name) {
-
+    PLCDDevice rc = NULL;
     /*
      * Initial I2C Services */
     wiringPiSetupSys();
     if (strcmp(device_name, "mcp") == 0) {
-        skn_device_manager_MCP23008(pdm);
-    } else if (strcmp(device_name, "SerialPort") == 0) {
-        skn_device_manager_SerialPort(pdm);
-        return EXIT_FAILURE;  // not ready yet
+        rc = skn_device_manager_MCP23008(pdm);
+    } else if (strcmp(device_name, "ser") == 0) {
+        rc = skn_device_manager_SerialPort(pdm);
     } else { // PCF8574
-        skn_device_manager_PCF8574(pdm);
+        rc = skn_device_manager_PCF8574(pdm);
     }
 
-    return pdm->lcd_handle;
+    if (rc == NULL) {
+        return PLATFORM_ERROR;
+    } else {
+        return pdm->lcd_handle;
+    }
 }
 
 /*
@@ -285,6 +295,7 @@ int skn_scroller_scroll_lines(PDisplayLine pdl, int lcd_handle, int line) // int
 {
     char buf[40];
     signed int hAdjust = 0, mLen = 0, mfLen = 0;
+    char sline[5] = {0xfe, 0x47, 0x01, 0x01, 0x00};
 
     mLen = strlen(&(pdl->ch_display_msg[pdl->display_pos]));
     if (gd_i_cols < mLen) {
@@ -295,9 +306,14 @@ int skn_scroller_scroll_lines(PDisplayLine pdl, int lcd_handle, int line) // int
     snprintf(buf, sizeof(buf) - 1, "%s", &(pdl->ch_display_msg[pdl->display_pos]));
     skn_scroller_pad_right(buf);
 
-    lcdPosition(lcd_handle, 0, line);
-    lcdPuts(lcd_handle, buf);
-
+    if (strcmp("ser", gd_pch_device_name) == 0 ) {
+        sline[3] = line + 1;
+        serialPuts(lcd_handle, sline);
+        serialPuts(lcd_handle, buf);
+    } else {
+        lcdPosition(lcd_handle, 0, line);
+        lcdPuts(lcd_handle, buf);
+    }
     if (++pdl->display_pos > hAdjust) {
         pdl->display_pos = 0;
     }
@@ -465,7 +481,13 @@ int skn_display_manager_do_work(char * client_request_message) {
         sleep(0);
     }
 
-    lcdClear(pdm->lcd_handle);
+    if (strcmp("ser", gd_pch_device_name) == 0) {
+        char bright[4] = { 0xfe, 0x99, 0x96, 0x00 };
+        serialPuts (pdm->lcd_handle, bright);
+        serialClose(pdm->lcd_handle);
+    } else {
+        lcdClear(pdm->lcd_handle);
+    }
     skn_device_manager_backlight(pdm->lcd.af_backlight, LOW);
 
     skn_logger(SD_NOTICE, "Application InActive...");
@@ -550,7 +572,7 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
     char strPrefix[SZ_INFO_BUFF];
     char request[SZ_INFO_BUFF];
     char recvHostName[SZ_INFO_BUFF];
-    char *phostname = recvHostName, pch = NULL;
+    char *phostname = (char *)recvHostName, *pch = NULL;
     signed int rLen = 0, rc = 0;
     long int exit_code = EXIT_SUCCESS;
 
@@ -749,10 +771,10 @@ int skn_handle_display_command_line(int argc, char **argv) {
             case 't':
                 if (optarg) {
                     gd_pch_device_name = strdup(optarg);
-                    if (((strcmp(gd_pch_device_name, "mcp") != 0) &&
-                       (strcmp(gd_pch_device_name, "pcf") != 0)) ||
-                        (strcmp(gd_pch_device_name, "ser") == 0)) {
-                        skn_logger(SD_ERR, "%s: unsupported option was invalid! %c[%d:%d:%d]\n", gd_ch_program_name, (char) opt, longindex, optind, opterr);
+                    if ( (strcmp(gd_pch_device_name, "mcp") != 0) &&
+                         (strcmp(gd_pch_device_name, "pcf") != 0) &&
+                         (strcmp(gd_pch_device_name, "ser") != 0)) {
+                        skn_logger(SD_ERR, "%s: unsupported option was invalid! %c[%d:%d:%d] %s\n", gd_ch_program_name, (char) opt, longindex, optind, opterr, gd_pch_device_name);
                         return EXIT_FAILURE;
                     }
                 } else {
