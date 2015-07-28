@@ -50,9 +50,9 @@ PLCDDevice skn_device_manager_SerialPort(PDisplayManager pdm) {
     }
 
     // set backlight & clear screen
-    const unsigned char backlight[3] = { 0xfe, 0x42, 0x00 };
-    const unsigned char cls[3]   = { 0xfe, 0x58, 0x00 };
-    const unsigned char home[3]  = { 0xfe, 0x48, 0x00 };
+    const char backlight[3] = { 0xfe, 0x42, 0x00 };
+    const char cls[3]   = { 0xfe, 0x58, 0x00 };
+    const char home[3]  = { 0xfe, 0x48, 0x00 };
 
     serialPuts (plcd->lcd_handle, cls);
     delay(100);
@@ -297,7 +297,7 @@ int skn_scroller_scroll_lines(PDisplayLine pdl, int lcd_handle, int line) // int
 {
     char buf[40];
     signed int hAdjust = 0, mLen = 0, mfLen = 0;
-    const unsigned char sline[5] = {0xfe, 0x47, 0x01, 0x01, 0x00};
+    char sline[5] = {0xfe, 0x47, 0x01, 0x01, 0x00};
 
     mLen = strlen(&(pdl->ch_display_msg[pdl->display_pos]));
     if (gd_i_cols < mLen) {
@@ -485,8 +485,8 @@ int skn_display_manager_do_work(char * client_request_message) {
     }
 
     if (strcmp("ser", gd_pch_device_name) == 0) {
-        const unsigned char backlight[3] = { 0xfe, 0x46, 0x00 };
-        const unsigned char cls[3]   = { 0xfe, 0x58, 0x00 };
+        const char backlight[3] = { 0xfe, 0x46, 0x00 };
+        const char cls[3]   = { 0xfe, 0x58, 0x00 };
 
         serialPuts (pdm->lcd_handle, cls);
         serialPuts (pdm->lcd_handle, backlight);
