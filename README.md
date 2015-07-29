@@ -5,6 +5,23 @@ Package includes two features. One designed to both locate your Pi and provide a
 other acts as a central LCD display service, allowing other network devices/nodes to send a one-liner 
 to the service for display on a 4x20 LCD.
 
+Each Raspberry Pi, Mac OSX, and Linux node in your network could execute *udp_locator_service* (LocatorService) as
+a backgound program using SystemD, a LaunchD PList, or an init script of some sort.  The LocatorService collects the
+address of the machine it running on and creates a entry in its ServiceRegistry; which it sends to clients that reques it.
+
+This establishes the network of locators, for which a *udp_locator_client* can poll at any time to find your Pi.
+
+Likewise the *lcd_display_service* executes on nodes that also have an LCD Display of some sort; Serial/USB, MCP23008, or PCF8574 based.  It
+is the provider of the *shared LCD Display*, and the target of the *lcd_display_client* (DisplayClient).  DisplayClients query all LocatorServices
+for their active ServiceRegistry, and pickout the default *lcd_display_service* entry, or via command line option *--alt-service-name=my_service_name*.
+
+Once a DisplayService is located, the DisplayClient sends a message to the DisplayService to display; from the command line *-m* option.  Or if the
+DisplayClient has been started in *--non-stop=60* mode, it will send random status messages automatically to the DisplayService; in this case every 30 seconds.
+
+These apps were not intended to be final form applications.  Instead they are well formed starters for your own projects.
+
+Enjoy! 
+
 
 ## Executables
 --------------------------------

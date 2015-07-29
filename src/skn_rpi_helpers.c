@@ -600,7 +600,7 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
     char strPrefix[SZ_INFO_BUFF];
     char request[SZ_INFO_BUFF];
     char recvHostName[SZ_INFO_BUFF];
-    char *phostname = (char *)recvHostName, *pch = NULL;
+    char *pch = NULL;
     signed int rLen = 0, rc = 0;
     long int exit_code = EXIT_SUCCESS;
 
@@ -653,7 +653,7 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
 
         /*
          * Add receive data to display set */
-        pch = strsep(&phostname, ".");
+        pch = strtok(recvHostName, ".");
         snprintf(strPrefix, sizeof(strPrefix) -1 , "%s|%s", pch, request);
         skn_display_manager_add_line(pdm, strPrefix);
 
