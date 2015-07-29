@@ -150,7 +150,7 @@
 // line1 = [ 0xfe, 0x47, 0x01, 0x01 ].pack("C*")
 // line2 = [ 0xfe, 0x47, 0x01, 0x02 ].pack("C*")
 // bright = [ 0xfe, 0x99, 0x96 ].pack("C*")
-//
+// setup  = [ 0xfe, 0xd1, 0x10, 0x02 ].pack("C*")
 // SerialPort.open("/dev/ttyACM0", 9600, 8, 1, SerialPort::NONE) do |serial|
 //
 //  serial.syswrite home # clr

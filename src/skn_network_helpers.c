@@ -748,7 +748,7 @@ static int service_registry_entry_create(PServiceRegistry psreg, char *name, cha
     }
 
     if (psreg->count >= psreg->computedMax) {
-        skn_logger(SD_WARNING, "Capacity Error: Too many! New entry %d:%s exceeds maximum of %d allowed! ", psreg->count, name, psreg->computedMax);
+        skn_logger(SD_WARNING, "Capacity Error: Too many! New entry %d:%s exceeds maximum of %d allowed! Consider using the --unique-registry option.", psreg->count, name, psreg->computedMax);
         if (errors != NULL)
             (*errors)++;
         return EXIT_FAILURE;

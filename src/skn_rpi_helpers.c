@@ -28,7 +28,7 @@ PLCDDevice skn_device_manager_SerialPort(PDisplayManager pdm) {
     PLCDDevice plcd =  NULL;
 
     if (pdm == NULL) {
-        skn_logger(SD_ERR, "Device Manager cannot acquire needed resources. %d:%s", errno, strerror(errno));
+        skn_logger(SD_ERR, "Device Manager failed to acquire needed resources. %d:%s", errno, strerror(errno));
         return NULL;
     }
 
@@ -40,25 +40,36 @@ PLCDDevice skn_device_manager_SerialPort(PDisplayManager pdm) {
         strncpy(plcd->ch_serial_port_name, "/dev/ttyACM0", SZ_CHAR_BUFF-1);
     }
 
-    skn_logger(SD_NOTICE, "Device Manager using serialPort [%s]", gd_pch_serial_port);
+    skn_logger(SD_NOTICE, "Device Manager using  device [%s](%s)", plcd->cbName, gd_pch_serial_port);
 
     pdm->lcd_handle = plcd->lcd_handle =  serialOpen (plcd->ch_serial_port_name, 9600);
     if (plcd->lcd_handle == PLATFORM_ERROR) {
-        skn_logger(SD_ERR, "Device Manager cannot acquire needed resources: SerialPort=%s %d:%s",
+        skn_logger(SD_ERR, "Device Manager failed to acquire needed resources: SerialPort=%s %d:%s",
                    plcd->ch_serial_port_name, errno, strerror(errno));
         return NULL;
     }
 
     // set backlight & clear screen
-    const char backlight[3] = { 0xfe, 0x42, 0x00 };
-    const char cls[3]   = { 0xfe, 0x58, 0x00 };
-    const char home[3]  = { 0xfe, 0x48, 0x00 };
+    char display_on[] = { 0xfe, 0x42, 0x0 };
+    char  cls[]   = { 0xfe, 0x58, 0x0 };
+    char home[]  = { 0xfe, 0x48, 0x0 };
+//    char set_cols_rows[] = {0xfe, 0xd1, gd_i_cols, gd_i_rows, 0x0};
+    char set_contrast[] = {0xfe, 0x50, 0xdc, 0x0};
+    char cursor_off[] = {0xfe, 0x4B, 0x0};
+//    int i = 0;
 
-    serialPuts (plcd->lcd_handle, cls);
-    delay(100);
-    serialPuts (plcd->lcd_handle, home);
-    delay(100);
-    serialPuts (plcd->lcd_handle, backlight);
+//    for (i = 0; i < 4; write(pdm->lcd_handle, &set_cols_rows[i++],1));
+//        sleep(1);
+    serialPuts(pdm->lcd_handle, display_on);
+        sleep(1);
+    serialPuts(pdm->lcd_handle, set_contrast);
+        sleep(1);
+    serialPuts(pdm->lcd_handle, home);
+        sleep(1);
+    serialPuts(pdm->lcd_handle, cursor_off);
+        sleep(1);
+    serialPuts(pdm->lcd_handle, cls);
+        sleep(1);
 
     return plcd;
 }
@@ -68,7 +79,7 @@ PLCDDevice skn_device_manager_MCP23008(PDisplayManager pdm) {
     int base = 0;
 
     if (pdm == NULL) {
-        skn_logger(SD_ERR, "Device Manager cannot acquire needed resources. %d:%s", errno, strerror(errno));
+        skn_logger(SD_ERR, "Device Manager failed to acquire needed resources. %d:%s", errno, strerror(errno));
         return NULL;
     }
 
@@ -79,6 +90,9 @@ PLCDDevice skn_device_manager_MCP23008(PDisplayManager pdm) {
     } else {
         plcd->i2c_address = 0x20;
     }
+
+    skn_logger(SD_NOTICE, "Device Manager using device [%s](%x)", plcd->cbName, plcd->i2c_address);
+
     base = plcd->af_base = 100;
     plcd->af_backlight = base + 7;
     plcd->af_e = base + 2;
@@ -100,7 +114,7 @@ PLCDDevice skn_device_manager_PCF8574(PDisplayManager pdm) {
     int base = 0;
 
     if (pdm == NULL) {
-        skn_logger(SD_ERR, "Device Manager cannot acquire needed resources. %d:%s", errno, strerror(errno));
+        skn_logger(SD_ERR, "Device Manager failed to acquire needed resources. %d:%s", errno, strerror(errno));
         return NULL;
     }
 
@@ -112,6 +126,9 @@ PLCDDevice skn_device_manager_PCF8574(PDisplayManager pdm) {
     } else {
         plcd->i2c_address = 0x27;
     }
+
+    skn_logger(SD_NOTICE, "Device Manager using device [%s](%x)", plcd->cbName, plcd->i2c_address);
+
     base = plcd->af_base = 100;
     plcd->af_backlight = base + 3;
     plcd->af_e = base + 2;
@@ -122,6 +139,7 @@ PLCDDevice skn_device_manager_PCF8574(PDisplayManager pdm) {
     plcd->af_db5 = base + 5;
     plcd->af_db6 = base + 6;
     plcd->af_db7 = base + 7;
+
 
     plcd->setup = &pcf8574Setup; // pcf8574Setup(AF_BASE, 0x27);
 
@@ -172,9 +190,11 @@ static PLCDDevice skn_device_manager_init_i2c(PDisplayManager pdm) {
  */
 int skn_device_manager_LCD_setup(PDisplayManager pdm, char *device_name) {
     PLCDDevice rc = NULL;
+
     /*
      * Initial I2C Services */
     wiringPiSetupSys();
+
     if (strcmp(device_name, "mcp") == 0) {
         rc = skn_device_manager_MCP23008(pdm);
     } else if (strcmp(device_name, "ser") == 0) {
@@ -270,7 +290,7 @@ int generate_rpi_model_info(char *msg) {
     if (model == PI_MODEL_UNKNOWN) {
         mLen = snprintf(msg, SZ_INFO_BUFF -1, "%s", message);
     } else {
-        mLen = snprintf(msg, SZ_INFO_BUFF -1, "Device Type: %s, Cpus: %ld, Revision: %s, Memory: %dMB, Maker: %s %s, %s:%s", piModelNames[model],
+        mLen = snprintf(msg, SZ_INFO_BUFF -1, "Device: %s, Cpus: %ld, Rev: %s, Mem: %dMB, Maker: %s %s, %s:%s", piModelNames[model],
                         skn_get_number_of_cpu_cores(), piRevisionNames[rev], mem, piMakerNames[maker], overVolted ? "[OV]" : "", gd_ch_intfName,
                         gd_ch_ipAddress);
     }
@@ -297,7 +317,7 @@ int skn_scroller_scroll_lines(PDisplayLine pdl, int lcd_handle, int line) // int
 {
     char buf[40];
     signed int hAdjust = 0, mLen = 0, mfLen = 0;
-    char sline[5] = {0xfe, 0x47, 0x01, 0x01, 0x00};
+    char cursor[] = {0xfe, 0x47, 0x01, 0x01, 0x0};
 
     mLen = strlen(&(pdl->ch_display_msg[pdl->display_pos]));
     if (gd_i_cols < mLen) {
@@ -309,10 +329,10 @@ int skn_scroller_scroll_lines(PDisplayLine pdl, int lcd_handle, int line) // int
     skn_scroller_pad_right(buf);
 
     if (strcmp("ser", gd_pch_device_name) == 0 ) {
-        sline[3] = line + 1;
-        serialPuts(lcd_handle, sline);
-        delay(10);
-        serialPuts(lcd_handle, buf);
+        cursor[3] = (unsigned int)line + 1;
+        serialPuts(lcd_handle, cursor);
+        delay(200);
+        write(lcd_handle, buf, gd_i_cols - 1);
     } else {
         lcdPosition(lcd_handle, 0, line);
         lcdPuts(lcd_handle, buf);
@@ -485,11 +505,13 @@ int skn_display_manager_do_work(char * client_request_message) {
     }
 
     if (strcmp("ser", gd_pch_device_name) == 0) {
-        const char backlight[3] = { 0xfe, 0x46, 0x00 };
-        const char cls[3]   = { 0xfe, 0x58, 0x00 };
+        char display_off[] = { 0xfe, 0x46, 0x0 };
+        char cls[]   = { 0xfe, 0x58, 0x0 };
 
-        serialPuts (pdm->lcd_handle, cls);
-        serialPuts (pdm->lcd_handle, backlight);
+        serialPuts(pdm->lcd_handle, cls);
+            delay(200);
+        serialPuts(pdm->lcd_handle, display_off);
+
         serialClose(pdm->lcd_handle);
     } else {
         lcdClear(pdm->lcd_handle);

@@ -30,6 +30,9 @@ to the service for display on a 4x20 LCD.
               Skoona Development <skoona@gmail.com>
     Usage:
       udp_locator_service [-v] [-s] [-m "<delimited-response-message-string>"] [-h|--help]
+      udp_locator_service 
+      udp_locator_service -s -a mcp_display_service
+      udp_locator_service -m 'name=mcp_locator_service, ip=10.100.1.19, port=48028|'
 
     Options:
       -a, --alt-service-name=my_service_name
@@ -49,13 +52,15 @@ to the service for display on a 4x20 LCD.
           REQUIRED   <line-delimiter> is one of these '|', '%', ';'
  
         **example: -m "name=lcd_display_service,ip=192.168.1.15,port=48028|"**
-        ** -m "mame=rpi_locator_service, ip=10.100.1.19, port=48028|name=lcd_display_service, ip=10.100.1.19, port=48029|"**
+        ** -m "name=rpi_locator_service, ip=10.100.1.19, port=48028|name=lcd_display_service, ip=10.100.1.19, port=48029|"**
 
 #### udp_locator_client --help
     udp_locator_client -- Collect IPv4 Address/Port Service info from all providers.
               Skoona Development <skoona@gmail.com>
     Usage:
       udp_locator_client [-v] [-m 'any text msg'] [-u] [-a 'my_service_name'] [-h|--help]
+      udp_locator_client 
+      udp_locator_client -u -a 'my_service_name'
 
     Options:
       -a, --alt-service-name=my_service_name
@@ -73,14 +78,18 @@ to the service for display on a 4x20 LCD.
 
 > **Supports** on the ['YwRobot Arduino **LCM1602** IIC V1 LCD Backpack'](http://arduino-info.wikispaces.com/LCD-Blue-I2C)
 > - which uses the I2C controller *PCF8574*
+> - example: **_lcd_display_service -r4 -c20 -tpcf_**
+> - **This is the default.** example: **_lcd_display_service_**
 
         
 > **Supports**  ['Adafruit **IC2/SPI** LCD Backpack'](https://www.adafruit.com/products/292)
 > - which is based on the I2C controller *MCP23008* and sometimes the * MCP23017*
+> - example: **_lcd_display_service -r4 -c20 -tmcp_**
 
     
 > **Supports**  for ['Adafruit **USB/Serial** LCD Backpack'](https://www.adafruit.com/products/782)
 > - which uses */dev/ttyACM0*
+> - example: **_lcd_display_service -r2 -c16 -p/dev/ttyACM0 -tser_**
 
 
 #### lcd_display_service --help
@@ -106,6 +115,10 @@ to the service for display on a 4x20 LCD.
               Skoona Development <skoona@gmail.com>
     Usage:
       lcd_display_client [-v] [-m 'text msg for display'] [-u] [-n] [-a 'my_service_name'] [-h|--help]
+      lcd_display_client -u -m 'Please show this on shared display.'
+      lcd_display_client -u -m 'Please show this on shared display.' -a 'ser_display_service'
+      lcd_display_client -u -n 60 -a 'ser_display_service'
+      lcd_display_client -u -n 60 -a 'mcp_display_service'
 
     Options:
       -a, --alt-service-name=my_service_name
@@ -127,7 +140,27 @@ Requires [WiringPi](https://projects.drogon.net/raspberry-pi/wiringpi/download-a
     $ make
     $ sudo make install
 
-*Only lcd_display_service requires __WiringPi__*, there is or will be a *client_only* git branch to support serparate compiles of only clients. 
+
+*Only lcd_display_service requires __WiringPi__*, there is a *client_only* git branch to support serparate compiles of only clients. 
+For None RPi clients and LocatorService builds;
+
+* Cleanup:
+
+    $ git stash save
+    $ git stash clear
+
+* Optionally create local branch:
+
+    $ git checkout master
+    $ git pull origin master
+    $ git checkout -b clients_only --track origin/clients_only
+    $ git pull origin clients_only
+
+* Then Build.    
+    $ autoreconf -isfv            
+    $ ./configure
+    $ make
+    $ sudo make install
 
 
 ## Notes:
@@ -135,5 +168,7 @@ Requires [WiringPi](https://projects.drogon.net/raspberry-pi/wiringpi/download-a
 
 - The git branch **clients_only** can be compiled any Linux/Mac platform.
 - Planning to write *systemd* unit scripts as part of package, add the following to rc.local for now.
-  * `/<path>/udp_locator_service >> /tmp/udp_locator_service.log 2>&1 &`
+  * '/<path>/udp_locator_service >> /tmp/udp_locator_service.log 2>&1 &'
+- SINGLE QUOTES vs double quotes work a lot better for command line options.  
+  
 
