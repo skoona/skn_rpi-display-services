@@ -7,7 +7,7 @@ to the service for display on a 4x20 LCD.
 
 Each Raspberry Pi, Mac OSX, and Linux node in your network could execute *udp_locator_service* (LocatorService) as
 a backgound program using SystemD, a LaunchD PList, or an init script of some sort.  The LocatorService collects the
-address of the machine it running on and creates a entry in its ServiceRegistry; which it sends to clients that reques it.
+address of the machine it running on and creates a entry in its ServiceRegistry; which it sends to clients that requests it.
 
 This establishes the network of locators, for which a *udp_locator_client* can poll at any time to find your Pi.
 
@@ -161,10 +161,12 @@ Requires [WiringPi](https://projects.drogon.net/raspberry-pi/wiringpi/download-a
 *Only lcd_display_service requires __WiringPi__*, there is a *client_only* git branch to support serparate compiles of only clients. 
 For None RPi clients and LocatorService builds;
 
+
 * Cleanup:
 
     $ git stash save
     $ git stash clear
+
 
 * Optionally create local branch:
 
@@ -172,6 +174,7 @@ For None RPi clients and LocatorService builds;
     $ git pull origin master
     $ git checkout -b clients_only --track origin/clients_only
     $ git pull origin clients_only
+
 
 * Then Build.    
     $ autoreconf -isfv            
