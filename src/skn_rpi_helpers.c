@@ -152,12 +152,12 @@ void skn_device_manager_backlight(int af_backlight, int state) {
 static PLCDDevice skn_device_manager_init_i2c(PDisplayManager pdm) {
     PLCDDevice plcd = (PLCDDevice)&pdm->lcd;
 
-    // Control signals
-    pinMode(plcd->af_rw, OUTPUT);
-    digitalWrite(plcd->af_rw, LOW); // Not used with wiringPi - always in write mode
-
     // call the initializer
     plcd->setup(plcd->af_base, plcd->i2c_address);
+
+// Control signals
+    pinMode(plcd->af_rw, OUTPUT);
+    digitalWrite(plcd->af_rw, LOW); // Not used with wiringPi - always in write mode
 
     //  Backlight LEDs
     pinMode(plcd->af_backlight, OUTPUT);
