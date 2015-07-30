@@ -369,7 +369,7 @@ int skn_handle_locator_command_line(int argc, char **argv) {
                 }
                 break;
             case 'v':
-                skn_logger(SD_WARNING, "\n\tProgram => %s\n\tVersion => %s\n\tSkoona Development\n\t<skoona@gmail.com>\n", gd_ch_program_name, "PACKAGE_VERSION");
+                skn_logger(SD_WARNING, "\n\tProgram => %s\n\tVersion => %s\n\tSkoona Development\n\t<skoona@gmail.com>\n", gd_ch_program_name, PACKAGE_VERSION);
                 return (EXIT_FAILURE);
                 break;
             case '?':

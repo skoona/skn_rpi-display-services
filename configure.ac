@@ -1,6 +1,6 @@
 dnl Process this file with autoconf to produce a configure script.
 
-AC_INIT([skn_rpi-locator-service], [0.3.0], [James Scott Jr. <skoona@gmail.com>], 
+AC_INIT([skn_rpi-locator-service], [0.3.1], [James Scott Jr. <skoona@gmail.com>], 
         [skn_rpi-locator-service], [https://github.com/skoona/skn_rpi-display-services])
         
 AC_PREREQ([2.69])
@@ -16,7 +16,7 @@ AM_INIT_AUTOMAKE
 AC_CONFIG_FILES(Makefile src/Makefile)
 
 # stricter options -ansi -pedantic
-CFLAGS='-Wall -Wextra -g -O0 -I/usr/include -I/usr/local/include -Winline -pipe -DPACKAGE_NAME="AC_PACKAGE_NAME" -DPACKAGE_VERSION="AC_PACKAGE_VERSION"'
+CFLAGS='-Wall -Wextra -g -O0 -I/usr/include -I/usr/local/include -Winline -pipe -DPACKAGE_NAME=\"AC_PACKAGE_NAME\" -DPACKAGE_VERSION=\"AC_PACKAGE_VERSION\"'
 AC_SUBST(CFLAGS)
 
 dnl Standard C constructs

@@ -42,7 +42,7 @@ int main(int argc, char *argv[]) {
     	strcpy(request, argv[1]);
     }
     skn_get_userids();
-    skn_logger(SD_NOTICE, "%s-%s is in startup mode as user(%s)", gd_ch_program_name, "PACKAGE_VERSION", gd_pch_effective_userid);
+    skn_logger(SD_NOTICE, "%s-%s is in startup mode as user(%s)", gd_ch_program_name, PACKAGE_VERSION, gd_pch_effective_userid);
 
 	skn_logger(SD_DEBUG, "Welcome Message [%s]", request);
 
