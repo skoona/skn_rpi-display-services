@@ -162,13 +162,13 @@ Requires [WiringPi](https://projects.drogon.net/raspberry-pi/wiringpi/download-a
 For None RPi clients and LocatorService builds;
 
 
-* Cleanup:
+  Cleanup:
 
     $ git stash save
     $ git stash clear
 
 
-* Optionally create local branch:
+  Optionally create local branch:
 
     $ git checkout master
     $ git pull origin master
@@ -176,7 +176,8 @@ For None RPi clients and LocatorService builds;
     $ git pull origin clients_only
 
 
-* Then Build.    
+  Then Build.    
+  
     $ autoreconf -isfv            
     $ ./configure
     $ make

@@ -1,3 +1,3 @@
 #
-ACLOCAL_AMFLAGS='-Im4'
+ACLOCAL_AMFLAGS=-Im4 --install
 SUBDIRS=src
