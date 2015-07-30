@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
 	signals_init();
 
 	/* Create local socket for sending requests */
-	gd_i_socket = skn_udp_host_create_broadcast_socket(0, 2);
+	gd_i_socket = skn_udp_host_create_broadcast_socket(0, 4);
 	if (gd_i_socket == EXIT_FAILURE) {
         signals_cleanup(gi_exit_flag);
     	exit(EXIT_FAILURE);		
@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
         /*
          * Switch to non-broadcast type socket */
         close(gd_i_socket); gd_i_socket = -1;
-        gd_i_socket = skn_udp_host_create_regular_socket(0, 3);
+        gd_i_socket = skn_udp_host_create_regular_socket(0, 8);
         if (gd_i_socket == EXIT_FAILURE) {
             if (psr != NULL) service_registry_destroy(psr);
             signals_cleanup(gi_exit_flag);
