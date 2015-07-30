@@ -161,22 +161,22 @@ static int skn_signal_manager_process_signals(siginfo_t *signal_info) {
 static void *skn_signal_manager_handler_thread(void *l_thread_complete) {
     sigset_t signal_set;
     siginfo_t signal_info;
-    struct timespec timeout;
+//    struct timespec timeout;
     int sig = 0;
     int rval = 0;
     long *threadC = (long *)l_thread_complete;
 
     *threadC = 1;
 
-    timeout.tv_nsec = 0;
-    timeout.tv_sec = 8;
+//    timeout.tv_nsec = 0;
+//    timeout.tv_sec = 8;
     sigfillset(&signal_set);
     skn_logger(SD_NOTICE, "SignalHandler: startup successful");
 
     while (gi_exit_flag == SKN_RUN_MODE_RUN) {
         /* wait for any and all signals */
         /* OLD: sigwait (&signal_set, &sig); */
-        sig = sigtimedwait(&signal_set, &signal_info, &timeout);
+        sig = sigwaitinfo(&signal_set, &signal_info);
         if (sig == PLATFORM_ERROR) {
             if (errno == EAGAIN) {
                 continue;

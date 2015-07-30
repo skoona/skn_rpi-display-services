@@ -50,25 +50,22 @@ PLCDDevice skn_device_manager_SerialPort(PDisplayManager pdm) {
     }
 
     // set backlight & clear screen
-    char display_on[] = { 0xfe, 0x42, 0x0 };
-    char  cls[]   = { 0xfe, 0x58, 0x0 };
-    char home[]  = { 0xfe, 0x48, 0x0 };
-//    char set_cols_rows[] = {0xfe, 0xd1, gd_i_cols, gd_i_rows, 0x0};
-    char set_contrast[] = {0xfe, 0x50, 0xdc, 0x0};
-    char cursor_off[] = {0xfe, 0x4B, 0x0};
-//    int i = 0;
+    char display_on[] = { 0xfe, 0x42 };
+    char  cls[]   = { 0xfe, 0x58 };
+    char home[]  = { 0xfe, 0x48 };
+//    char set_cols_rows[] = {0xfe, 0xd1, gd_i_cols, gd_i_rows };
+    char set_contrast[] = {0xfe, 0x50, 0xdc};
+    char cursor_off[] = {0xfe, 0x4B };
 
-//    for (i = 0; i < 4; write(pdm->lcd_handle, &set_cols_rows[i++],1));
-//        sleep(1);
-    serialPuts(pdm->lcd_handle, display_on);
+    write(pdm->lcd_handle, display_on, sizeof(display_on));
         sleep(1);
-    serialPuts(pdm->lcd_handle, set_contrast);
+    write(pdm->lcd_handle, set_contrast, sizeof(set_contrast));
         sleep(1);
-    serialPuts(pdm->lcd_handle, home);
+    write(pdm->lcd_handle, home, sizeof(home));
         sleep(1);
-    serialPuts(pdm->lcd_handle, cursor_off);
+    write(pdm->lcd_handle, cursor_off, sizeof(cursor_off));
         sleep(1);
-    serialPuts(pdm->lcd_handle, cls);
+    write(pdm->lcd_handle, cls, sizeof(cls));
         sleep(1);
 
     return plcd;
@@ -91,7 +88,7 @@ PLCDDevice skn_device_manager_MCP23008(PDisplayManager pdm) {
         plcd->i2c_address = 0x20;
     }
 
-    skn_logger(SD_NOTICE, "Device Manager using device [%s](%x)", plcd->cbName, plcd->i2c_address);
+    skn_logger(SD_NOTICE, "Device Manager using device [%s](0x%02x)", plcd->cbName, plcd->i2c_address);
 
     base = plcd->af_base = 100;
     plcd->af_backlight = base + 7;
@@ -127,7 +124,7 @@ PLCDDevice skn_device_manager_PCF8574(PDisplayManager pdm) {
         plcd->i2c_address = 0x27;
     }
 
-    skn_logger(SD_NOTICE, "Device Manager using device [%s](%x)", plcd->cbName, plcd->i2c_address);
+    skn_logger(SD_NOTICE, "Device Manager using device [%s](0x%02x)", plcd->cbName, plcd->i2c_address);
 
     base = plcd->af_base = 100;
     plcd->af_backlight = base + 3;
@@ -236,12 +233,14 @@ char * skn_scroller_pad_right(char *buffer) {
  */
 char * skn_scroller_wrap_blanks(char *buffer) {
     char worker[SZ_INFO_BUFF];
+    char col_width_padding[16];
 
     if (buffer == NULL || strlen(buffer) > SZ_INFO_BUFF) {
         return NULL;
     }
 
-    snprintf(worker, (SZ_INFO_BUFF - 1), "%20s%s%20s", " ", buffer, " ");
+    snprintf(col_width_padding, 16, "%%%ds%%s%%%ds", gd_i_cols, gd_i_cols);
+    snprintf(worker, (SZ_INFO_BUFF - 1), col_width_padding, " ", buffer, " ");
     memmove(buffer, worker, SZ_INFO_BUFF-1);
     buffer[SZ_INFO_BUFF - 1] = 0;
 
@@ -317,7 +316,7 @@ int skn_scroller_scroll_lines(PDisplayLine pdl, int lcd_handle, int line) // int
 {
     char buf[40];
     signed int hAdjust = 0, mLen = 0, mfLen = 0;
-    char cursor[] = {0xfe, 0x47, 0x01, 0x01, 0x0};
+    char set_col_row_position[] = {0xfe, 0x47, 0x01, 0x01};
 
     mLen = strlen(&(pdl->ch_display_msg[pdl->display_pos]));
     if (gd_i_cols < mLen) {
@@ -329,8 +328,8 @@ int skn_scroller_scroll_lines(PDisplayLine pdl, int lcd_handle, int line) // int
     skn_scroller_pad_right(buf);
 
     if (strcmp("ser", gd_pch_device_name) == 0 ) {
-        cursor[3] = (unsigned int)line + 1;
-        serialPuts(lcd_handle, cursor);
+        set_col_row_position[3] = (unsigned int)line + 1;
+        write(lcd_handle, set_col_row_position, sizeof(set_col_row_position));
         delay(200);
         write(lcd_handle, buf, gd_i_cols - 1);
     } else {
@@ -453,10 +452,10 @@ int skn_display_manager_do_work(char * client_request_message) {
         skn_logger(SD_ERR, "Display Manager cannot acquire needed resources. DMCreate()");
         return gi_exit_flag;
     }
-    generate_cpu_temps_info(ch_lcd_message[0]);
-    generate_datetime_info(ch_lcd_message[1]);
-    generate_rpi_model_info(ch_lcd_message[2]);
-    generate_loadavg_info(ch_lcd_message[3]);
+    generate_datetime_info (ch_lcd_message[0]);
+    generate_rpi_model_info(ch_lcd_message[1]);
+    generate_cpu_temps_info(ch_lcd_message[2]);
+    generate_loadavg_info  (ch_lcd_message[3]);
     skn_display_manager_add_line(pdm, ch_lcd_message[0]);
     skn_display_manager_add_line(pdm, ch_lcd_message[1]);
     skn_display_manager_add_line(pdm, ch_lcd_message[2]);
@@ -493,9 +492,9 @@ int skn_display_manager_do_work(char * client_request_message) {
         }
 
         if ((host_update_cycle++ % 300) == 0) {  // roughly every five minutes
-            generate_cpu_temps_info(ch_lcd_message[0]);
-            generate_datetime_info(ch_lcd_message[1]);
-            generate_loadavg_info(ch_lcd_message[3]);
+            generate_datetime_info (ch_lcd_message[0]);
+            generate_cpu_temps_info(ch_lcd_message[2]);
+            generate_loadavg_info  (ch_lcd_message[3]);
             skn_display_manager_add_line(pdm, ch_lcd_message[0]);
             skn_display_manager_add_line(pdm, ch_lcd_message[1]);
             skn_display_manager_add_line(pdm, ch_lcd_message[2]);
@@ -505,12 +504,12 @@ int skn_display_manager_do_work(char * client_request_message) {
     }
 
     if (strcmp("ser", gd_pch_device_name) == 0) {
-        char display_off[] = { 0xfe, 0x46, 0x0 };
-        char cls[]   = { 0xfe, 0x58, 0x0 };
+        char display_off[] = { 0xfe, 0x46 };
+        char cls[]   = { 0xfe, 0x58 };
 
-        serialPuts(pdm->lcd_handle, cls);
+        write(pdm->lcd_handle, cls, sizeof(cls));
             delay(200);
-        serialPuts(pdm->lcd_handle, display_off);
+        write(pdm->lcd_handle, display_off, sizeof(display_off));
 
         serialClose(pdm->lcd_handle);
     } else {
