@@ -95,18 +95,24 @@ Enjoy!
 
 > **Supports** on the ['YwRobot Arduino **LCM1602** IIC V1 LCD Backpack'](http://arduino-info.wikispaces.com/LCD-Blue-I2C)
 > - which uses the I2C controller *PCF8574*
-> - example: **_lcd_display_service -r4 -c20 -tpcf_**
+> - example: **_lcd_display_service -r4 -c20 -t pcf_**
 > - **This is the default.** example: **_lcd_display_service_**
 
         
 > **Supports**  ['Adafruit **IC2/SPI** LCD Backpack'](https://www.adafruit.com/products/292)
-> - which is based on the I2C controller *MCP23008* and sometimes the * MCP23017*
-> - example: **_lcd_display_service -r4 -c20 -tmcp_**
+> - which is based on the I2C controller *MCP23008*
+> - example: **_lcd_display_service -r4 -c20 -t mcp_**
+
+        
+> **Supports**  ['Adafruit RGB Negative 16x2 LCD+Keypad Kit'](https://www.adafruit.com/products/1110)
+> - which is based on the I2C controller * MCP23017*
+> - example: **_lcd_display_service -r2 -c16 -t mc7_**
+> - Untested: I don't have one to test
 
     
 > **Supports**  for ['Adafruit **USB/Serial** LCD Backpack'](https://www.adafruit.com/products/782)
 > - which uses */dev/ttyACM0*
-> - example: **_lcd_display_service -r2 -c16 -p/dev/ttyACM0 -tser_**
+> - example: **_lcd_display_service -r2 -c16 -p /dev/ttyACM0 -t ser_**
 
 
 #### lcd_display_service --help
@@ -114,14 +120,14 @@ Enjoy!
     lcd_display_service -- LCD 4x20 Display Provider.
               Skoona Development <skoona@gmail.com>
     Usage:
-      lcd_display_service [-v] [-m 'Welcome Message'] [-r 4|2] [-c 20|16] [-i 39|32] [-t pcf|mcp|ser] [-p string] [-h|--help]
+      lcd_display_service [-v] [-m 'Welcome Message'] [-r 4|2] [-c 20|16] [-i 39|32] [-t pcf|mcp|ser|mc7] [-p string] [-h|--help]
 
     Options:
-      -r, --rows     Number of rows in physical display.
-      -c, --cols     Number of columns in physical display.
-      -p, --serial-port=string\tSerial port. | '/dev/ttyACM0'
-      -i, --i2c-address=ddd\tI2C decimal address. | 0x27=39, 0x20=32
-      -t, --i2c-chipset=ccc\tI2C Chipset. | pcf|mcp|ser
+      -r, --rows=dd  Number of rows in physical display.
+      -c, --cols=dd  Number of columns in physical display.
+      -p, --serial-port=string\tSerial port.      | ['/dev/ttyACM0']
+      -i, --i2c-address=ddd\tI2C decimal address. | [0x27=39, 0x20=32]
+      -t, --i2c-chipset=ccc\tI2C Chipset.         | [pcf|mcp|ser|mc7]
       -m, --message  Welcome Message for line 1.
       -v, --version  Version printout.
       -h, --help     Show this help screen.

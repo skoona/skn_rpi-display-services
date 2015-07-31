@@ -70,7 +70,44 @@ PLCDDevice skn_device_manager_SerialPort(PDisplayManager pdm) {
 
     return plcd;
 }
+PLCDDevice skn_device_manager_MCP23017(PDisplayManager pdm) {
+    PLCDDevice plcd =  NULL;
+    int base = 0;
 
+    if (pdm == NULL) {
+        skn_logger(SD_ERR, "Device Manager failed to acquire needed resources. %d:%s", errno, strerror(errno));
+        return NULL;
+    }
+
+    plcd = (PLCDDevice)&pdm->lcd;
+    strncpy(plcd->cbName, "LCDDevice#MCP23017", SZ_CHAR_BUFF-1);
+    if (gd_i_i2c_address != 0) {
+        plcd->i2c_address = gd_i_i2c_address;
+    } else {
+        plcd->i2c_address = 0x20;
+    }
+
+    skn_logger(SD_NOTICE, "Device Manager using device [%s](0x%02x)", plcd->cbName, plcd->i2c_address);
+
+    base = plcd->af_base = 100;
+    plcd->af_backlight = base + 8;
+    plcd->af_red = base + 6;
+    plcd->af_green = base + 7;
+    plcd->af_blue = base + 8;
+
+    plcd->af_e  = base + 13;
+    plcd->af_rs = base + 15;
+    plcd->af_rw = base + 14;
+
+    plcd->af_db4 = base + 12;
+    plcd->af_db5 = base + 11;
+    plcd->af_db6 = base + 10;
+    plcd->af_db7 = base + 9;
+
+    plcd->setup = &mcp23017Setup; //   mcp23017Setup(AF_BASE, 0x20);
+
+    return skn_device_manager_init_i2c(pdm);
+}
 PLCDDevice skn_device_manager_MCP23008(PDisplayManager pdm) {
     PLCDDevice plcd =  NULL;
     int base = 0;
@@ -160,8 +197,18 @@ static PLCDDevice skn_device_manager_init_i2c(PDisplayManager pdm) {
     digitalWrite(plcd->af_rw, LOW); // Not used with wiringPi - always in write mode
 
     //  Backlight LEDs
-    pinMode(plcd->af_backlight, OUTPUT);
-    skn_device_manager_backlight(plcd->af_backlight, HIGH);
+    if (strcmp(gd_pch_device_name, "mc7") == 0) {
+        pinMode(plcd->af_red, OUTPUT);
+        skn_device_manager_backlight(plcd->af_red, HIGH);
+        pinMode(plcd->af_green, OUTPUT);
+        skn_device_manager_backlight(plcd->af_green, HIGH);
+        pinMode(plcd->af_blue, OUTPUT);
+        skn_device_manager_backlight(plcd->af_blue, HIGH);
+    } else {
+        pinMode(plcd->af_backlight, OUTPUT);
+        skn_device_manager_backlight(plcd->af_backlight, HIGH);
+    }
+
 
 
     // The other control pins are initialised with lcdInit ()
@@ -194,6 +241,8 @@ int skn_device_manager_LCD_setup(PDisplayManager pdm, char *device_name) {
 
     if (strcmp(device_name, "mcp") == 0) {
         rc = skn_device_manager_MCP23008(pdm);
+    } else if (strcmp(device_name, "mc7") == 0) {
+        rc = skn_device_manager_MCP23017(pdm);
     } else if (strcmp(device_name, "ser") == 0) {
         rc = skn_device_manager_SerialPort(pdm);
     } else { // PCF8574
@@ -516,7 +565,13 @@ int skn_display_manager_do_work(char * client_request_message) {
         serialClose(pdm->lcd_handle);
     } else {
         lcdClear(pdm->lcd_handle);
-        skn_device_manager_backlight(pdm->lcd.af_backlight, LOW);
+        if (strcmp(gd_pch_device_name, "mc7") == 0) {
+                skn_device_manager_backlight(pdm->lcd.af_red, LOW);
+                skn_device_manager_backlight(pdm->lcd.af_green, LOW);
+                skn_device_manager_backlight(pdm->lcd.af_blue, LOW);
+        } else {
+            skn_device_manager_backlight(pdm->lcd.af_backlight, LOW);
+        }
     }
 
     skn_logger(SD_NOTICE, "Application InActive...");
@@ -690,14 +745,14 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
 static void skn_display_print_usage() {
     skn_logger(" ", "%s -- %s", gd_ch_program_name, gd_ch_program_desc);
     skn_logger(" ", "\tSkoona Development <skoona@gmail.com>");
-    skn_logger(" ", "Usage:\n  %s [-v] [-m 'Welcome Message'] [-r 4|2] [-c 20|16] [-i 39|32] [-t pcf|mcp|ser] [-p string] [-h|--help]", gd_ch_program_name);
+    skn_logger(" ", "Usage:\n  %s [-v] [-m 'Welcome Message'] [-r 4|2] [-c 20|16] [-i 39|32] [-t pcf|mcp|mc7|ser] [-p string] [-h|--help]", gd_ch_program_name);
     skn_logger(" ", "\nOptions:");
-    skn_logger(" ", "  -r, --rows\t\tNumber of rows in physical display.");
-    skn_logger(" ", "  -c, --cols\t\tNumber of columns in physical display.");
+    skn_logger(" ", "  -r, --rows=dd\t\tNumber of rows in physical display.");
+    skn_logger(" ", "  -c, --cols=dd\t\tNumber of columns in physical display.");
     skn_logger(" ", "  -m, --message\tWelcome Message for line 1.");
-    skn_logger(" ", "  -p, --serial-port=string\tSerial port. | '/dev/ttyACM0'");
-    skn_logger(" ", "  -i, --i2c-address=ddd\tI2C decimal address. | 0x27=39, 0x20=32");
-    skn_logger(" ", "  -t, --i2c-chipset=ccc\tI2C Chipset.");
+    skn_logger(" ", "  -p, --serial-port=string\tSerial port.      | ['/dev/ttyACM0']");
+    skn_logger(" ", "  -i, --i2c-address=ddd\tI2C decimal address. | [0x27=39, 0x20=32]");
+    skn_logger(" ", "  -t, --i2c-chipset=pcf\tI2C Chipset.         | [pcf|mc7|mcp|ser]");
     skn_logger(" ", "  -v, --version\tVersion printout.");
     skn_logger(" ", "  -h, --help\t\tShow this help screen.");
 }
@@ -801,6 +856,7 @@ int skn_handle_display_command_line(int argc, char **argv) {
                 if (optarg) {
                     gd_pch_device_name = strdup(optarg);
                     if ( (strcmp(gd_pch_device_name, "mcp") != 0) &&
+                         (strcmp(gd_pch_device_name, "mc7") != 0) &&
                          (strcmp(gd_pch_device_name, "pcf") != 0) &&
                          (strcmp(gd_pch_device_name, "ser") != 0)) {
                         skn_logger(SD_ERR, "%s: unsupported option was invalid! %c[%d:%d:%d] %s\n", gd_ch_program_name, (char) opt, longindex, optind, opterr, gd_pch_device_name);

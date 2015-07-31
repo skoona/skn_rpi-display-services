@@ -12,6 +12,7 @@
 #include <wiringPi.h>
 #include <pcf8574.h>
 #include <mcp23008.h>
+#include <mcp23017.h>
 #include <wiringSerial.h>   // http://wiringpi.com/reference/serial-library/
 #include <lcd.h>
 
@@ -29,6 +30,7 @@ extern PDisplayManager gp_structure_pdm;
  * Display Manager Routines */
 extern PLCDDevice skn_device_manager_SerialPort(PDisplayManager pdm);
 extern PLCDDevice skn_device_manager_MCP23008(PDisplayManager pdm);
+extern PLCDDevice skn_device_manager_MCP23017(PDisplayManager pdm);
 extern PLCDDevice skn_device_manager_PCF8574(PDisplayManager pdm);
 extern PDisplayManager skn_get_display_manager_ref();
 extern int skn_display_manager_do_work(char * client_request_message);
