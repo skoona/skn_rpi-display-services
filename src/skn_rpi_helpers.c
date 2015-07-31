@@ -12,7 +12,7 @@ int gd_i_rows = 4;
 int gd_i_cols = 20;
 int gd_i_i2c_address = 0x27;
 char *gd_pch_serial_port;
-char *gd_pch_device_name = "PCF8574";
+char *gd_pch_device_name = "pcf";
 PDisplayManager gp_structure_pdm = NULL;
 
 static void skn_display_print_usage();
@@ -57,8 +57,6 @@ PLCDDevice skn_device_manager_SerialPort(PDisplayManager pdm) {
     char set_contrast[] = {0xfe, 0x50, 0xdc};
     char cursor_off[] = {0xfe, 0x4B };
 
-    write(pdm->lcd_handle, display_on, sizeof(display_on));
-        sleep(1);
     write(pdm->lcd_handle, set_contrast, sizeof(set_contrast));
         sleep(1);
     write(pdm->lcd_handle, home, sizeof(home));
@@ -66,6 +64,8 @@ PLCDDevice skn_device_manager_SerialPort(PDisplayManager pdm) {
     write(pdm->lcd_handle, cursor_off, sizeof(cursor_off));
         sleep(1);
     write(pdm->lcd_handle, cls, sizeof(cls));
+        sleep(1);
+    write(pdm->lcd_handle, display_on, sizeof(display_on));
         sleep(1);
 
     return plcd;
@@ -376,13 +376,15 @@ static PDisplayManager skn_display_manager_create(char * welcome) {
         strcpy(pdl->cbName, "PDisplayLine");
         strncpy(pdl->ch_display_msg, welcome, (SZ_INFO_BUFF -1));  // load all with welcome message
         pdl->ch_display_msg[(SZ_INFO_BUFF - 1)] = 0;    // terminate string in case
-        pdl->msg_len = pdm->msg_len; // strlen(welcome);
+        pdl->msg_len = pdm->msg_len;
         pdl->active = 1;
         if (pdl->msg_len > gd_i_cols) {
             pdl->scroll_enabled = 1;
+            skn_scroller_wrap_blanks(pdl->ch_display_msg);
+            pdl->ch_display_msg[(SZ_INFO_BUFF - 1)] = 0;    // terminate string in case
+            pdl->msg_len = strlen(pdl->ch_display_msg);
         }
-    }
-    for (index = 0; index < ARY_MAX_INTF; index++) {               // enable link list routing
+        // enable link list routing
         next = (((index + 1) == ARY_MAX_INTF) ? 0 : (index + 1));
         prev = (((index - 1) == -1) ? (ARY_MAX_INTF - 1) : (index - 1));
         pdm->pdsp_collection[index]->next = pdm->pdsp_collection[next];
@@ -418,10 +420,10 @@ PDisplayLine skn_display_manager_add_line(PDisplayManager pdmx, char * client_re
         pdl->scroll_enabled = 1;
         skn_scroller_wrap_blanks(pdl->ch_display_msg);
         pdl->ch_display_msg[(SZ_INFO_BUFF - 1)] = 0;    // terminate string in case
+        pdl->msg_len = strlen(pdl->ch_display_msg);
     } else {
         pdl->scroll_enabled = 0;
     }
-    pdl->msg_len = strlen(pdl->ch_display_msg);
 
     /*
      * manage current_line */
@@ -491,7 +493,7 @@ int skn_display_manager_do_work(char * client_request_message) {
             pdl = (PDisplayLine) pdl->next;
         }
 
-        if ((host_update_cycle++ % 300) == 0) {  // roughly every five minutes
+        if ((host_update_cycle++ % 900) == 0) {  // roughly every fifteen minutes
             generate_datetime_info (ch_lcd_message[0]);
             generate_cpu_temps_info(ch_lcd_message[2]);
             generate_loadavg_info  (ch_lcd_message[3]);
@@ -507,15 +509,15 @@ int skn_display_manager_do_work(char * client_request_message) {
         char display_off[] = { 0xfe, 0x46 };
         char cls[]   = { 0xfe, 0x58 };
 
-        write(pdm->lcd_handle, cls, sizeof(cls));
-            delay(200);
         write(pdm->lcd_handle, display_off, sizeof(display_off));
+            delay(200);
+        write(pdm->lcd_handle, cls, sizeof(cls));
 
         serialClose(pdm->lcd_handle);
     } else {
         lcdClear(pdm->lcd_handle);
+        skn_device_manager_backlight(pdm->lcd.af_backlight, LOW);
     }
-    skn_device_manager_backlight(pdm->lcd.af_backlight, LOW);
 
     skn_logger(SD_NOTICE, "Application InActive...");
 

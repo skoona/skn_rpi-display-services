@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
 	if (pnsr != NULL) {
         do {
             vIndex = skn_udp_service_request(pnsr);
-            if (vIndex == EXIT_FAILURE) {
+            if ((vIndex == EXIT_FAILURE) && (gd_i_update == 0)) { // ignore if non-stop is set
                 break;
             }
             sleep(gd_i_update);
