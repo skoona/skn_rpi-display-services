@@ -384,13 +384,13 @@ static PDisplayManager skn_display_manager_create(char * welcome) {
             pdl->ch_display_msg[(SZ_INFO_BUFF - 1)] = 0;    // terminate string in case
             pdl->msg_len = strlen(pdl->ch_display_msg);
         }
-        // enable link list routing
-        next = (((index + 1) == ARY_MAX_INTF) ? 0 : (index + 1));
-        prev = (((index - 1) == -1) ? (ARY_MAX_INTF - 1) : (index - 1));
-        pdm->pdsp_collection[index]->next = pdm->pdsp_collection[next];
-        pdm->pdsp_collection[index]->prev = pdm->pdsp_collection[prev];
     }
-
+    for (index = 0; index < ARY_MAX_INTF; index++) {               // enable link list routing
+            next = (((index + 1) == ARY_MAX_INTF) ? 0 : (index + 1));
+            prev = (((index - 1) == -1) ? (ARY_MAX_INTF - 1) : (index - 1));
+            pdm->pdsp_collection[index]->next = pdm->pdsp_collection[next];
+            pdm->pdsp_collection[index]->prev = pdm->pdsp_collection[prev];
+    }
     return pdm;
 }
 PDisplayLine skn_display_manager_add_line(PDisplayManager pdmx, char * client_request_message) {
