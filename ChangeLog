@@ -1,0 +1,7 @@
+08/01/2015 Found DisplayService Failing after 24 hours
+  - Signal Thread was active
+  - DisplayManager thread was active and receiving message
+  - do_work() was not cycling; I suspect var host_update_cycle, to be the cause.
+  - Reset host_update_cycle to odd number  after each cycle.
+
+
