@@ -1,0 +1,15 @@
+# /usr/lib/systemd/system/udplocator.service
+
+[Unit]
+Description=Provides a background service/client which can be used to "locate your pi" on the lan, using up broadcast technique.
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/udp_locator_service 
+RestartSec=60
+Restart=on-success
+TimeoutSec=40
+
+[Install]
+WantedBy=multi-user.target

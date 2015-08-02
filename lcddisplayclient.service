@@ -1,0 +1,15 @@
+# /usr/lib/systemd/system/lcddisplayclient.service
+
+[Unit]
+Description=Sends the one-liner composed of various Linux metrics; like cpus, loadavg, etc.
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/lcd_display_client -u -n 330 
+RestartSec=60
+Restart=always
+TimeoutSec=40
+
+[Install]
+WantedBy=multi-user.target

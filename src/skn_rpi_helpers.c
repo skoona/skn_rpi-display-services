@@ -359,9 +359,9 @@ int generate_cpu_temps_info(char *msg) {
 
 /**
  * Scrolls a single line across the lcd display
- * - best when wrapped in 20 chars
+ * - best when wrapped in column chars on each side
  */
-int skn_scroller_scroll_lines(PDisplayLine pdl, int lcd_handle, int line) // int position, int line, const char *msg, int wait)
+int skn_scroller_scroll_lines(PDisplayLine pdl, int lcd_handle, int line)
 {
     char buf[40];
     signed int hAdjust = 0, mLen = 0, mfLen = 0;
@@ -482,7 +482,7 @@ PDisplayLine skn_display_manager_add_line(PDisplayManager pdmx, char * client_re
         pdm->current_line = 0;
     }
 
-    skn_logger(SD_DEBUG, "DM Added msg=%d:%d:[%s]", pdm->next_line - 1, pdl->msg_len, pdl->ch_display_msg);
+    skn_logger(SD_DEBUG, "DM Added msg=%d:%d:[%s]", ((pdm->next_line - 1) < 0 ? 0 : (pdm->next_line - 1)), pdl->msg_len, pdl->ch_display_msg);
 
     /* return this line's pointer */
     return pdl;
@@ -535,9 +535,9 @@ int skn_display_manager_do_work(char * client_request_message) {
         dsp_line_number = 0;
         pdl = pdm->pdsp_collection[pdm->current_line];
         for (index = 0; index < pdm->dsp_rows; index++) {
-            if (pdl->active) {
+            if (pdl->active == 1) {
                 skn_scroller_scroll_lines(pdl, pdm->lcd_handle, dsp_line_number++);
-                delay(190);
+                delay(180);
             }
             pdl = (PDisplayLine) pdl->next;
         }
@@ -550,6 +550,7 @@ int skn_display_manager_do_work(char * client_request_message) {
             skn_display_manager_add_line(pdm, ch_lcd_message[1]);
             skn_display_manager_add_line(pdm, ch_lcd_message[2]);
             skn_display_manager_add_line(pdm, ch_lcd_message[3]);
+            host_update_cycle = 1;
         }
         sleep(0);
     }
@@ -559,7 +560,7 @@ int skn_display_manager_do_work(char * client_request_message) {
         char cls[]   = { 0xfe, 0x58 };
 
         write(pdm->lcd_handle, display_off, sizeof(display_off));
-            delay(200);
+            sleep(1);
         write(pdm->lcd_handle, cls, sizeof(cls));
 
         serialClose(pdm->lcd_handle);
