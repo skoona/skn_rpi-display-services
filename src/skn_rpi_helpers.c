@@ -379,7 +379,7 @@ int skn_scroller_scroll_lines(PDisplayLine pdl, int lcd_handle, int line)
     if (strcmp("ser", gd_pch_device_name) == 0 ) {
         set_col_row_position[3] = (unsigned int)line + 1;
         write(lcd_handle, set_col_row_position, sizeof(set_col_row_position));
-        delay(200);
+        skn_time_delay(0.2); // delay(200);
         write(lcd_handle, buf, gd_i_cols - 1);
     } else {
         lcdPosition(lcd_handle, 0, line);
@@ -537,7 +537,7 @@ int skn_display_manager_do_work(char * client_request_message) {
         for (index = 0; index < pdm->dsp_rows; index++) {
             if (pdl->active == 1) {
                 skn_scroller_scroll_lines(pdl, pdm->lcd_handle, dsp_line_number++);
-                delay(180);
+                skn_time_delay(0.18); // delay(180);
             }
             pdl = (PDisplayLine) pdl->next;
         }

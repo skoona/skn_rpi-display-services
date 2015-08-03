@@ -92,6 +92,17 @@ int generate_datetime_info(char *msg) {
 }
 
 /**
+ * Traditional Millisecond delay.
+ */
+int skn_time_delay(double delay_time) {
+    struct timespec timeout;
+    if (delay_time == 0.0 || delay_time == 0) delay_time = 0.001;
+    timeout.tv_sec = (time_t) delay_time;  // extract integer only
+    timeout.tv_nsec = (long) ((delay_time - timeout.tv_sec) * 1000000000L); // 1e+9
+    return nanosleep(&timeout, NULL);
+}
+
+/**
  * Setup effective and real userid
  */
 uid_t skn_get_userids() {
@@ -240,12 +251,12 @@ int get_default_interface_name(char *pchDefaultInterfaceName) {
     }
     skn_logger(SD_ERR, "Opening ProcFs for RouteInfo Failed: %d:%s, Alternate method will be attempted.", errno, strerror(errno));
 
-    f_route = popen("route -n get 0.0.0.0", "r");
+    f_route = popen("route -n get 0.0.0.0", "r"); // for linux 'route -n -A inet', with interface at line_word[7]
     if (f_route != NULL) {
         while (fgets(line, SZ_INFO_BUFF - 1, f_route)) {
             dRoute = strtok(line, ":");
             iName = strtok(NULL, "\n");
-            if (strcmp(dRoute, "  interface") == 0) {
+            if (strcmp(skn_strip(dRoute), "interface") == 0) {
                 strncpy(pchDefaultInterfaceName, skn_strip(iName), (SZ_INFO_BUFF - 1));
                 break;
             }

@@ -44,6 +44,7 @@ extern double skn_duration_in_milliseconds(struct timeval *pstart, struct timeva
 extern void skn_program_name_and_description_set(const char *name, const char *desc);
 extern int skn_logger(const char *level, const char *format, ...);
 extern int skn_handle_locator_command_line(int argc, char **argv);
+extern int skn_time_delay(double delay_time);
 extern char * skn_strip(char * alpha);
 extern uid_t skn_get_userids();
 
