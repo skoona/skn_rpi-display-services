@@ -52,8 +52,7 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 bin_PROGRAMS = udp_locator_service$(EXEEXT) \
-	udp_locator_client$(EXEEXT) lcd_display_client$(EXEEXT) \
-	lcd_display_service$(EXEEXT)
+	udp_locator_client$(EXEEXT) lcd_display_client$(EXEEXT)
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -72,13 +71,6 @@ lcd_display_client_OBJECTS = $(am_lcd_display_client_OBJECTS)
 lcd_display_client_DEPENDENCIES =
 lcd_display_client_LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(lcd_display_client_LDFLAGS) $(LDFLAGS) -o $@
-am_lcd_display_service_OBJECTS = lcd_display_service.$(OBJEXT) \
-	skn_network_helpers.$(OBJEXT) skn_rpi_helpers.$(OBJEXT) \
-	skn_signal_manager.$(OBJEXT)
-lcd_display_service_OBJECTS = $(am_lcd_display_service_OBJECTS)
-lcd_display_service_DEPENDENCIES =
-lcd_display_service_LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
-	$(lcd_display_service_LDFLAGS) $(LDFLAGS) -o $@
 am_udp_locator_client_OBJECTS = udp_locator_client.$(OBJEXT) \
 	skn_network_helpers.$(OBJEXT)
 udp_locator_client_OBJECTS = $(am_udp_locator_client_OBJECTS)
@@ -99,11 +91,10 @@ COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 CCLD = $(CC)
 LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(lcd_display_client_SOURCES) $(lcd_display_service_SOURCES) \
-	$(udp_locator_client_SOURCES) $(udp_locator_service_SOURCES)
-DIST_SOURCES = $(lcd_display_client_SOURCES) \
-	$(lcd_display_service_SOURCES) $(udp_locator_client_SOURCES) \
+SOURCES = $(lcd_display_client_SOURCES) $(udp_locator_client_SOURCES) \
 	$(udp_locator_service_SOURCES)
+DIST_SOURCES = $(lcd_display_client_SOURCES) \
+	$(udp_locator_client_SOURCES) $(udp_locator_service_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -287,9 +278,6 @@ clean-binPROGRAMS:
 lcd_display_client$(EXEEXT): $(lcd_display_client_OBJECTS) $(lcd_display_client_DEPENDENCIES) $(EXTRA_lcd_display_client_DEPENDENCIES) 
 	@rm -f lcd_display_client$(EXEEXT)
 	$(lcd_display_client_LINK) $(lcd_display_client_OBJECTS) $(lcd_display_client_LDADD) $(LIBS)
-lcd_display_service$(EXEEXT): $(lcd_display_service_OBJECTS) $(lcd_display_service_DEPENDENCIES) $(EXTRA_lcd_display_service_DEPENDENCIES) 
-	@rm -f lcd_display_service$(EXEEXT)
-	$(lcd_display_service_LINK) $(lcd_display_service_OBJECTS) $(lcd_display_service_LDADD) $(LIBS)
 udp_locator_client$(EXEEXT): $(udp_locator_client_OBJECTS) $(udp_locator_client_DEPENDENCIES) $(EXTRA_udp_locator_client_DEPENDENCIES) 
 	@rm -f udp_locator_client$(EXEEXT)
 	$(udp_locator_client_LINK) $(udp_locator_client_OBJECTS) $(udp_locator_client_LDADD) $(LIBS)
@@ -304,10 +292,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/lcd_display_client.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/lcd_display_service.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/skn_network_helpers.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/skn_rpi_helpers.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/skn_signal_manager.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/udp_locator_client.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/udp_locator_service.Po@am__quote@
 
