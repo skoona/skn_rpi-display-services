@@ -28,7 +28,7 @@ PLCDDevice skn_device_manager_SerialPort(PDisplayManager pdm) {
     PLCDDevice plcd =  NULL;
 
     if (pdm == NULL) {
-        skn_logger(SD_ERR, "Device Manager failed to acquire needed resources. %d:%s", errno, strerror(errno));
+        skn_logger(SD_ERR, "DeviceManager failed to acquire needed resources. %d:%s", errno, strerror(errno));
         return NULL;
     }
 
@@ -40,11 +40,11 @@ PLCDDevice skn_device_manager_SerialPort(PDisplayManager pdm) {
         strncpy(plcd->ch_serial_port_name, "/dev/ttyACM0", SZ_CHAR_BUFF-1);
     }
 
-    skn_logger(SD_NOTICE, "Device Manager using  device [%s](%s)", plcd->cbName, gd_pch_serial_port);
+    skn_logger(SD_NOTICE, "DeviceManager using  device [%s](%s)", plcd->cbName, gd_pch_serial_port);
 
     pdm->lcd_handle = plcd->lcd_handle =  serialOpen (plcd->ch_serial_port_name, 9600);
     if (plcd->lcd_handle == PLATFORM_ERROR) {
-        skn_logger(SD_ERR, "Device Manager failed to acquire needed resources: SerialPort=%s %d:%s",
+        skn_logger(SD_ERR, "DeviceManager failed to acquire needed resources: SerialPort=%s %d:%s",
                    plcd->ch_serial_port_name, errno, strerror(errno));
         return NULL;
     }
@@ -75,7 +75,7 @@ PLCDDevice skn_device_manager_MCP23017(PDisplayManager pdm) {
     int base = 0;
 
     if (pdm == NULL) {
-        skn_logger(SD_ERR, "Device Manager failed to acquire needed resources. %d:%s", errno, strerror(errno));
+        skn_logger(SD_ERR, "DeviceManager failed to acquire needed resources. %d:%s", errno, strerror(errno));
         return NULL;
     }
 
@@ -87,7 +87,7 @@ PLCDDevice skn_device_manager_MCP23017(PDisplayManager pdm) {
         plcd->i2c_address = 0x20;
     }
 
-    skn_logger(SD_NOTICE, "Device Manager using device [%s](0x%02x)", plcd->cbName, plcd->i2c_address);
+    skn_logger(SD_NOTICE, "DeviceManager using device [%s](0x%02x)", plcd->cbName, plcd->i2c_address);
 
     base = plcd->af_base = 100;
     plcd->af_backlight = base + 8;
@@ -113,7 +113,7 @@ PLCDDevice skn_device_manager_MCP23008(PDisplayManager pdm) {
     int base = 0;
 
     if (pdm == NULL) {
-        skn_logger(SD_ERR, "Device Manager failed to acquire needed resources. %d:%s", errno, strerror(errno));
+        skn_logger(SD_ERR, "DeviceManager failed to acquire needed resources. %d:%s", errno, strerror(errno));
         return NULL;
     }
 
@@ -125,7 +125,7 @@ PLCDDevice skn_device_manager_MCP23008(PDisplayManager pdm) {
         plcd->i2c_address = 0x20;
     }
 
-    skn_logger(SD_NOTICE, "Device Manager using device [%s](0x%02x)", plcd->cbName, plcd->i2c_address);
+    skn_logger(SD_NOTICE, "DeviceManager using device [%s](0x%02x)", plcd->cbName, plcd->i2c_address);
 
     base = plcd->af_base = 100;
     plcd->af_backlight = base + 7;
@@ -148,7 +148,7 @@ PLCDDevice skn_device_manager_PCF8574(PDisplayManager pdm) {
     int base = 0;
 
     if (pdm == NULL) {
-        skn_logger(SD_ERR, "Device Manager failed to acquire needed resources. %d:%s", errno, strerror(errno));
+        skn_logger(SD_ERR, "DeviceManager failed to acquire needed resources. %d:%s", errno, strerror(errno));
         return NULL;
     }
 
@@ -161,7 +161,7 @@ PLCDDevice skn_device_manager_PCF8574(PDisplayManager pdm) {
         plcd->i2c_address = 0x27;
     }
 
-    skn_logger(SD_NOTICE, "Device Manager using device [%s](0x%02x)", plcd->cbName, plcd->i2c_address);
+    skn_logger(SD_NOTICE, "DeviceManager using device [%s](0x%02x)", plcd->cbName, plcd->i2c_address);
 
     base = plcd->af_base = 100;
     plcd->af_backlight = base + 3;
@@ -534,6 +534,7 @@ int skn_display_manager_do_work(char * client_request_message) {
     while (gi_exit_flag == SKN_RUN_MODE_RUN) {
         dsp_line_number = 0;
         pdl = pdm->pdsp_collection[pdm->current_line];
+	
         for (index = 0; index < pdm->dsp_rows; index++) {
             if (pdl->active == 1) {
                 skn_scroller_scroll_lines(pdl, pdm->lcd_handle, dsp_line_number++);
@@ -552,7 +553,7 @@ int skn_display_manager_do_work(char * client_request_message) {
             skn_display_manager_add_line(pdm, ch_lcd_message[3]);
             host_update_cycle = 1;
         }
-        sleep(0);
+       //  sleep(0);   suspected to be the cause of the 'uninterruptible sleep' state for main thread
     }
 
     if (strcmp("ser", gd_pch_device_name) == 0) {
@@ -700,15 +701,6 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
         skn_logger(SD_NOTICE, "Request data: [%s]\n", request);
 
         /*
-         * Shutdown by command */
-        if (strcmp("QUIT!", request) == 0) {
-            exit_code = 0;
-            gi_exit_flag == SKN_RUN_MODE_STOP;  // shutdown
-            skn_logger(SD_NOTICE, "COMMAND: Shutdown Requested! exit code=%d", exit_code);
-            break;
-        }
-
-        /*
          * Add receive data to display set */
         pch = strtok(recvHostName, ".");
         snprintf(strPrefix, sizeof(strPrefix) -1 , "%s|%s", pch, request);
@@ -720,6 +712,14 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
             break;
         }
 
+        /*
+         * Shutdown by command */
+        if (strcmp("QUIT!", request) == 0) {
+            exit_code = 0;
+            gi_exit_flag == SKN_RUN_MODE_STOP;  // shutdown
+            skn_logger(SD_NOTICE, "COMMAND: Shutdown Requested! exit code=%d", exit_code);
+            break;
+        }
 
     }
     gi_exit_flag == SKN_RUN_MODE_STOP;  // shutdown

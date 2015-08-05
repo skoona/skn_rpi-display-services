@@ -1,6 +1,6 @@
 dnl Process this file with autoconf to produce a configure script.
 
-AC_INIT([skn_rpi-locator-service], [0.4.2], [James Scott Jr. <skoona@gmail.com>], 
+AC_INIT([skn_rpi-locator-service], [0.4.4], [James Scott Jr. <skoona@gmail.com>], 
         [skn_rpi-locator-service], [https://github.com/skoona/skn_rpi-display-services])
         
 AC_PREREQ([2.69])

@@ -1,3 +1,4 @@
+# Makefile.am  Remove lcd_display_service for Clients_Only build
 
 bin_PROGRAMS=udp_locator_service udp_locator_client lcd_display_client lcd_display_service
 

@@ -171,7 +171,7 @@ static void *skn_signal_manager_handler_thread(void *l_thread_complete) {
 //    timeout.tv_nsec = 0;
 //    timeout.tv_sec = 8;
     sigfillset(&signal_set);
-    skn_logger(SD_NOTICE, "SignalHandler: startup successful");
+    skn_logger(SD_NOTICE, "SignalManager: startup successful");
 
     while (gi_exit_flag == SKN_RUN_MODE_RUN) {
         /* wait for any and all signals */
@@ -181,7 +181,7 @@ static void *skn_signal_manager_handler_thread(void *l_thread_complete) {
             if (errno == EAGAIN) {
                 continue;
             }
-            skn_logger(SD_WARNING, "SignalHandler: sigwaitinfo() returned an error => {%s}", strerror(errno));
+            skn_logger(SD_WARNING, "SignalManager: sigwaitinfo() returned an error => {%s}", strerror(errno));
             gi_exit_flag = SKN_RUN_MODE_STOP;
             break;
         }
@@ -193,7 +193,7 @@ static void *skn_signal_manager_handler_thread(void *l_thread_complete) {
 
     pthread_sigmask(SIG_UNBLOCK, &signal_set, NULL);
 
-    skn_logger(SD_NOTICE, "SignalHandler: Thread Shutdown Complete.");
+    skn_logger(SD_NOTICE, "SignalManager: Thread Shutdown Complete.");
 
     *threadC = 0;
 

@@ -4,4 +4,12 @@
   - do_work() was not cycling; I suspect var host_update_cycle, to be the cause.
   - Reset host_update_cycle to odd number  after each cycle.
 
+08/03/2015 Still Failing after X hours of operation
+ - Originally thought it was caused by host_update_cycle int rolling over; not true
+ - Considered the delay() sleep method might be failing; wrote my own using nanosleep()
+ - Still Failed after updating sleep routines.  Must be Thread interactions...
+
+08/04/2015 Tracking down the cause of main thread freeze.
+- sleep(0); suspected to be the cause of the 'uninterruptible sleep' state for main thread
+- no other cause I can think of, since tests show no threading conflicts by design and practice.
 

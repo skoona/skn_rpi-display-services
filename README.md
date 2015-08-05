@@ -1,5 +1,5 @@
 # Raspberry Pi Display/Locator Service
-![Raspberry Pi Display/Locator Service](https://github.com/skoona/skn_rpi-display-services/raw/master/rpi_display.png) 
+![Raspberry Pi Display/Locator Service](https://github.com/skoona/skn_rpi-display-services/raw/master/images/rpi_display.png) 
 
 Package includes two features. One designed to both locate your Pi and provide a list of known services.  The 
 other acts as a central LCD display service, allowing other network devices/nodes to send a one-liner 
@@ -28,7 +28,7 @@ Enjoy!
 
 |Program|Type|Platform|Port|Description|
 |---|---|---|---|---|
-|udp_locator_service|Server|any|48028|Maintains a list of known network services accessable via UDP socket.|
+|udp_locator_service|Server|any|48028|Maintains a list of known network services accessible via UDP socket.|
 |udp_locator_client|Client|any|n/a|Collect services info from Service, which includes that service's ip address.|
 |lcd_display_service|Server|RPi|48029|Accepts one-line messages over udp and display them on a LCD panel.|
 |lcd_display_client|Client|any|n/a|Sends the one-liner composed of various Pi metrics; like cpus, temps, etc.|
@@ -39,7 +39,7 @@ Enjoy!
 --------------------------------
 
 #### Locator Service
-![Locator Service](https://github.com/skoona/skn_rpi-display-services/raw/master/skn_rpi1.png) 
+![Locator Service](https://github.com/skoona/skn_rpi-display-services/raw/master/images/skn_rpi1.png) 
 
 #### upd_locator_service --help
 
@@ -91,7 +91,7 @@ Enjoy!
 
 
 #### Display Service.
-![Locator Service](https://github.com/skoona/skn_rpi-display-services/raw/master/skn_rpi2.png)
+![Locator Service](https://github.com/skoona/skn_rpi-display-services/raw/master/images/skn_rpi2.png)
 
 > **Supports** on the ['YwRobot Arduino **LCM1602** IIC V1 LCD Backpack'](http://arduino-info.wikispaces.com/LCD-Blue-I2C)
 > - which uses the I2C controller *PCF8574*
