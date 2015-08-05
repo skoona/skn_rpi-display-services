@@ -579,9 +579,10 @@ double skn_duration_in_milliseconds(struct timeval *pstart, struct timeval *pend
     }
 
     secs_used=(pend->tv_sec - pstart->tv_sec); //avoid overflow by subtracting first
-    total_micros_used= ((secs_used*1000000) + pend->tv_usec) - (pstart->tv_usec);
+    total_micros_used = secs_used * 1000.0; // sec to ms
+    total_micros_used += (pend->tv_usec - pstart->tv_usec) / 1000.0; // us to ms
 
-    return total_micros_used / 1000000000; // express in seconds.milliseconds
+    return total_micros_used / 1000.0; // express in seconds.milliseconds
 }
 
 /**
@@ -605,7 +606,8 @@ int skn_udp_service_request(PServiceRequest psr) {
      * SEND */
     gettimeofday(&start, NULL);
     if (sendto(psr->socket, psr->request, strlen(psr->request), 0, (struct sockaddr *) &remaddr, addrlen) < 0) {
-        skn_logger(SD_WARNING, "ServiceRequest: SendTo() Timed out; Failure code=%d, etext=%s", errno, strerror(errno));
+        gettimeofday(&end, NULL);
+        skn_logger(SD_WARNING, "ServiceRequest: SendTo(%1.6f) Timed out; Failure code=%d, etext=%s", skn_duration_in_milliseconds(&start,&end), errno, strerror(errno));
         return EXIT_FAILURE;
     }
     skn_logger(SD_NOTICE, "ServiceRequest sent to %s:%s:%d", psr->pre->name, psr->pre->ip, psr->pre->port);
@@ -614,7 +616,8 @@ int skn_udp_service_request(PServiceRequest psr) {
      * RECEIVE */
     vIndex = recvfrom(psr->socket, psr->response, (SZ_INFO_BUFF - 1), 0, (struct sockaddr *) &remaddr, &addrlen);
     if (vIndex == PLATFORM_ERROR) {
-        skn_logger(SD_WARNING, "ServiceRequest: recvfrom() Failure code=%d, etext=%s", errno, strerror(errno));
+        gettimeofday(&end, NULL);
+        skn_logger(SD_WARNING, "ServiceRequest: recvfrom(%1.6f) Failure code=%d, etext=%s", skn_duration_in_milliseconds(&start,&end), errno, strerror(errno));
         return EXIT_FAILURE;
     }
     psr->response[vIndex] = 0;
