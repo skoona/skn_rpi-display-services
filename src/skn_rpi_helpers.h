@@ -49,6 +49,7 @@ extern int skn_signal_manager_shutdown(pthread_t sig_thread, sigset_t *psignal_s
 */
 extern void skn_device_manager_backlight(int af_backlight, int state);
 extern int skn_device_manager_LCD_setup (PDisplayManager pdm, char *device_name);
+extern int skn_device_manager_LCD_shutdown(PDisplayManager pdm);
 
 /* General Utilities
 */

@@ -171,7 +171,7 @@ static void *skn_signal_manager_handler_thread(void *l_thread_complete) {
 //    timeout.tv_nsec = 0;
 //    timeout.tv_sec = 8;
     sigfillset(&signal_set);
-    skn_logger(SD_NOTICE, "SignalManager: startup successful");
+    skn_logger(SD_NOTICE, "SignalManager: Startup Successful...");
 
     while (gi_exit_flag == SKN_RUN_MODE_RUN) {
         /* wait for any and all signals */

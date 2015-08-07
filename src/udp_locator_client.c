@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 	signals_init();
 
 	/* Create local socket for sending requests */
-	gd_i_socket = skn_udp_host_create_broadcast_socket(0, 8);
+	gd_i_socket = skn_udp_host_create_broadcast_socket(0, 8.0);
 	if (gd_i_socket == EXIT_FAILURE) {
         signals_cleanup(gi_exit_flag);
     	exit(EXIT_FAILURE);		

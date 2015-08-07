@@ -255,6 +255,28 @@ int skn_device_manager_LCD_setup(PDisplayManager pdm, char *device_name) {
         return pdm->lcd_handle;
     }
 }
+int skn_device_manager_LCD_shutdown(PDisplayManager pdm) {
+    if (strcmp("ser", gd_pch_device_name) == 0) {
+        char display_off[] = { 0xfe, 0x46 };
+        char cls[]   = { 0xfe, 0x58 };
+
+        write(pdm->lcd_handle, display_off, sizeof(display_off));
+            sleep(1);
+        write(pdm->lcd_handle, cls, sizeof(cls));
+
+        serialClose(pdm->lcd_handle);
+    } else {
+        lcdClear(pdm->lcd_handle);
+        if (strcmp(gd_pch_device_name, "mc7") == 0) {
+            skn_device_manager_backlight(pdm->lcd.af_red, LOW);
+            skn_device_manager_backlight(pdm->lcd.af_green, LOW);
+            skn_device_manager_backlight(pdm->lcd.af_blue, LOW);
+        } else {
+            skn_device_manager_backlight(pdm->lcd.af_backlight, LOW);
+        }
+    }
+    return EXIT_SUCCESS;
+}
 
 /*
  * Utility Methods
@@ -505,7 +527,8 @@ int skn_display_manager_do_work(char * client_request_message) {
     }
     generate_datetime_info (ch_lcd_message[0]);
     generate_rpi_model_info(ch_lcd_message[1]);
-    generate_cpu_temps_info(ch_lcd_message[2]);
+//    generate_cpu_temps_info(ch_lcd_message[2]);
+    generate_uname_info    (ch_lcd_message[2]);
     generate_loadavg_info  (ch_lcd_message[3]);
     skn_display_manager_add_line(pdm, ch_lcd_message[0]);
     skn_display_manager_add_line(pdm, ch_lcd_message[1]);
@@ -526,7 +549,7 @@ int skn_display_manager_do_work(char * client_request_message) {
         return gi_exit_flag;
     }
 
-    skn_logger(SD_NOTICE, "Application Active...");
+    skn_logger(SD_NOTICE, "Application Active... ");
 
     /*
      *  Do the Work
@@ -545,7 +568,7 @@ int skn_display_manager_do_work(char * client_request_message) {
 
         if ((host_update_cycle++ % 900) == 0) {  // roughly every fifteen minutes
             generate_datetime_info (ch_lcd_message[0]);
-            generate_cpu_temps_info(ch_lcd_message[2]);
+//            generate_cpu_temps_info(ch_lcd_message[2]);
             generate_loadavg_info  (ch_lcd_message[3]);
             skn_display_manager_add_line(pdm, ch_lcd_message[0]);
             skn_display_manager_add_line(pdm, ch_lcd_message[1]);
@@ -553,28 +576,9 @@ int skn_display_manager_do_work(char * client_request_message) {
             skn_display_manager_add_line(pdm, ch_lcd_message[3]);
             host_update_cycle = 1;
         }
-       //  sleep(0);   suspected to be the cause of the 'uninterruptible sleep' state for main thread
     }
 
-    if (strcmp("ser", gd_pch_device_name) == 0) {
-        char display_off[] = { 0xfe, 0x46 };
-        char cls[]   = { 0xfe, 0x58 };
-
-        write(pdm->lcd_handle, display_off, sizeof(display_off));
-            sleep(1);
-        write(pdm->lcd_handle, cls, sizeof(cls));
-
-        serialClose(pdm->lcd_handle);
-    } else {
-        lcdClear(pdm->lcd_handle);
-        if (strcmp(gd_pch_device_name, "mc7") == 0) {
-                skn_device_manager_backlight(pdm->lcd.af_red, LOW);
-                skn_device_manager_backlight(pdm->lcd.af_green, LOW);
-                skn_device_manager_backlight(pdm->lcd.af_blue, LOW);
-        } else {
-            skn_device_manager_backlight(pdm->lcd.af_backlight, LOW);
-        }
-    }
+    skn_device_manager_LCD_shutdown(pdm);
 
     skn_logger(SD_NOTICE, "Application InActive...");
 
@@ -609,7 +613,7 @@ static void skn_display_manager_destroy(PDisplayManager pdm) {
 int skn_display_manager_message_consumer_startup(PDisplayManager pdm) {
     /*
      * Start UDP Listener */
-    pdm->i_socket = skn_udp_host_create_broadcast_socket(SKN_RPI_DISPLAY_SERVICE_PORT, 15);
+    pdm->i_socket = skn_udp_host_create_broadcast_socket(SKN_RPI_DISPLAY_SERVICE_PORT, 30.0);
     if (pdm->i_socket == EXIT_FAILURE) {
         skn_logger(SD_EMERG, "DisplayManager: Host Init Failed!");
         return EXIT_FAILURE;
@@ -625,7 +629,7 @@ int skn_display_manager_message_consumer_startup(PDisplayManager pdm) {
     }
     sleep(1); // give thread a chance to start
 
-    skn_logger(SD_NOTICE, "DisplayManager: Thread startup successful");
+    skn_logger(SD_NOTICE, "DisplayManager: Thread startup successful... ");
 
     return pdm->i_socket;
 }
@@ -662,7 +666,7 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
     signed int rLen = 0, rc = 0;
     long int exit_code = EXIT_SUCCESS;
 
-    memset(request, 0, sizeof(request));
+    bzero(request, sizeof(request));
     memset(recvHostName, 0, sizeof(recvHostName));
 
     rc = get_broadcast_ip_array(&aB);
@@ -679,9 +683,9 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
         remaddr.sin_port = htons(SKN_RPI_DISPLAY_SERVICE_PORT);
         remaddr.sin_addr.s_addr = htonl(INADDR_ANY);
         addrlen = sizeof(remaddr);
-
+//                                                                        V- MSG_DONTWAIT or O_NONBLOCK flag with the F_SETFL fcntl(2)
         if ((rLen = recvfrom(pdm->i_socket, request, sizeof(request) - 1, 0, (struct sockaddr *) &remaddr, &addrlen)) < 0) {
-            if (errno == EAGAIN) {
+            if (errno == EAGAIN || errno == EWOULDBLOCK) {
                 continue;
             }
             skn_logger(SD_ERR, "DisplayManager: RcvFrom() Failure code=%d, etext=%s", errno, strerror(errno));
@@ -690,15 +694,13 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
         }
         request[rLen] = 0;
 
-        rc = getnameinfo(((struct sockaddr *) &remaddr), sizeof(struct sockaddr_in), recvHostName, sizeof(recvHostName), NULL, 0, NI_DGRAM);
+        rc = getnameinfo(((struct sockaddr *) &remaddr), sizeof(struct sockaddr_in), recvHostName, sizeof(recvHostName) - 1, NULL, 0, NI_DGRAM);
         if (rc != 0) {
             skn_logger(SD_ERR, "GetNameInfo() Failure code=%d, etext=%s", errno, strerror(errno));
             exit_code = errno;
             break;
         }
         skn_logger(SD_NOTICE, "Received request from %s @ %s:%d", recvHostName, inet_ntoa(remaddr.sin_addr), ntohs(remaddr.sin_port));
-
-        skn_logger(SD_NOTICE, "Request data: [%s]\n", request);
 
         /*
          * Add receive data to display set */
@@ -707,7 +709,7 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
         skn_display_manager_add_line(pdm, strPrefix);
 
         if (sendto(pdm->i_socket, "200 Accepted", strlen("200 Accepted"), 0, (struct sockaddr *) &remaddr, addrlen) < 0) {
-            skn_logger(SD_EMERG, "SendTo() Failure code=%d, etext=%s", errno, strerror(errno));
+            skn_logger(SD_ERR, "SendTo() Failure code=%d, etext=%s", errno, strerror(errno));
             exit_code = errno;
             break;
         }
@@ -723,8 +725,8 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
 
     }
     gi_exit_flag == SKN_RUN_MODE_STOP;  // shutdown
-    kill(getpid(), SIGUSR1); // cause a shutdown
-    sleep(1);
+//    kill(getpid(), SIGUSR1); // cause a shutdown
+    skn_time_delay(0.5);
 
     skn_logger(SD_NOTICE, "Display Manager Thread: shutdown complete: (%ld)", exit_code);
 

@@ -474,7 +474,7 @@ int skn_logger(const char *level, const char *format, ...) {
  *
  * - returns i_socket | EXIT_FAILURE
  */
-int skn_udp_host_create_regular_socket(int port, int rcvTimeout) {
+int skn_udp_host_create_regular_socket(int port, double rcvTimeout) {
     struct sockaddr_in addr;
     int i_socket, reuseEnable = 1;
 
@@ -490,7 +490,7 @@ int skn_udp_host_create_regular_socket(int port, int rcvTimeout) {
 
     struct timeval tv;
     tv.tv_sec = rcvTimeout;
-    tv.tv_usec = 0;
+    tv.tv_usec = (long)(rcvTimeout - tv.tv_sec) * 1000000L;
     if ((setsockopt(i_socket, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv))) < 0) {
         skn_logger(SD_EMERG, "Set Socket RcvTimeout Option error=%d, etext=%s", errno, strerror(errno));
         return (EXIT_FAILURE);
@@ -515,7 +515,7 @@ int skn_udp_host_create_regular_socket(int port, int rcvTimeout) {
  *
  * - returns i_socket | EXIT_FAILURE
  */
-int skn_udp_host_create_broadcast_socket(int port, int rcvTimeout) {
+int skn_udp_host_create_broadcast_socket(int port, double rcvTimeout) {
     struct sockaddr_in addr;
     int i_socket, broadcastEnable = 1;
 
@@ -530,7 +530,7 @@ int skn_udp_host_create_broadcast_socket(int port, int rcvTimeout) {
 
     struct timeval tv;
     tv.tv_sec = rcvTimeout;
-    tv.tv_usec = 0;
+    tv.tv_usec = (long)(rcvTimeout - tv.tv_sec) * 1000000L;
     if ((setsockopt(i_socket, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv))) < 0) {
         skn_logger(SD_EMERG, "Set Socket RcvTimeout Option error=%d, etext=%s", errno, strerror(errno));
         return (EXIT_FAILURE);
@@ -623,7 +623,7 @@ int skn_udp_service_request(PServiceRequest psr) {
     psr->response[vIndex] = 0;
     gettimeofday(&end, NULL);
 
-    skn_logger(SD_INFO, "Response(%1.6Fs) received from [%s] %s:%d",
+    skn_logger(SD_INFO, "Response(%1.3fs) received from [%s] %s:%d",
                     skn_duration_in_milliseconds(&start,&end),
                     psr->response,
                     inet_ntoa(remaddr.sin_addr),
@@ -1019,7 +1019,7 @@ PServiceRegistry service_registry_get_via_udp_broadcast(int i_socket, char *requ
             break;
         }
 
-        skn_logger(SD_INFO, "Response(%1.6fs) received from %s @ %s:%d",
+        skn_logger(SD_INFO, "Response(%1.3fs) received from %s @ %s:%d",
                         skn_duration_in_milliseconds(&start, NULL),
                         recvHostName,
                         inet_ntoa(remaddr.sin_addr),

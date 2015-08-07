@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
     /* Initialize Signal handler */
     signals_init();
 
-	gd_i_socket = skn_udp_host_create_broadcast_socket(SKN_FIND_RPI_PORT, 20);
+	gd_i_socket = skn_udp_host_create_broadcast_socket(SKN_FIND_RPI_PORT, 20.0);
 	if (gd_i_socket == EXIT_FAILURE) {
 		skn_logger(SD_EMERG, "Application Host Init Failed! ExitCode=%d", exit_code);
         signals_cleanup(gi_exit_flag);

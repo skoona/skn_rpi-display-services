@@ -54,8 +54,8 @@ extern void signals_cleanup(int sig);
 /*
  * Server/Client Communication Routines
 */
-extern int skn_udp_host_create_broadcast_socket(int port, int rcvTimeout);
-extern int skn_udp_host_create_regular_socket(int port, int rcvTimeout);
+extern int skn_udp_host_create_broadcast_socket(int port, double rcvTimeout);
+extern int skn_udp_host_create_regular_socket(int port, double rcvTimeout);
 extern PServiceRequest skn_service_request_create(PRegistryEntry pre, int host_socket, char *request);
 extern int skn_udp_service_request(PServiceRequest psr);
 extern int skn_display_manager_message_consumer_startup(PDisplayManager pdm);

@@ -71,14 +71,13 @@ int main(int argc, char *argv[]) {
 	* - collect user threads
 	* - close open resources
 	*/
-	skn_logger(SD_NOTICE, "Application Shutdown beginning...");
+	skn_logger(SD_NOTICE, "Application beginning orderly shutdown...");
 
 	/*
 	* Cleanup signal handler before exit
 	*/
 	index = skn_signal_manager_shutdown(sig_thread, &signal_set, &l_thread_complete);
 
-	skn_logger(SD_NOTICE, "Application clean or controlled shutdown complete.");
     skn_logger(SD_NOTICE, "\n============================\nShutdown Complete\n============================\n");
 
 	exit(index);
