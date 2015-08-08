@@ -398,17 +398,6 @@ int skn_handle_locator_command_line(int argc, char **argv) {
     return EXIT_SUCCESS;
 }
 
-void log_response_message(const char * response) {
-    char * worker = NULL, *parser = NULL, *base = strdup(response);
-    parser = base;
-    skn_logger(SD_NOTICE, "Response Message:");
-    while ((((worker = strsep(&parser, "|")) != NULL) || ((worker = strsep(&parser, "%")) != NULL) || ((worker = strsep(&parser, ";")) != NULL))
-                    && (strlen(worker) > 16)) {
-        skn_logger(SD_NOTICE, "[%s]", worker);
-    }
-    free(base);
-}
-
 void skn_program_name_and_description_set(const char *name, const char *desc) {
     char hostName[SZ_CHAR_BUFF];
     char * phostName = hostName;
@@ -674,7 +663,7 @@ int service_registry_provider(int i_socket, char *response) {
                             aB.ipAddrStr[aB.defaultIndex], SKN_FIND_RPI_PORT);
         }
     }
-    log_response_message(response);
+    service_registry_entry_response_message_log(response);
 
     skn_logger(SD_DEBUG, "Socket Bound to %s:%s", aB.chDefaultIntfName, aB.ipAddrStr[aB.defaultIndex]);
 
@@ -735,8 +724,14 @@ int service_registry_provider(int i_socket, char *response) {
     return exit_code;
 }
 
-/**
+/*
  * Remote Service Registry routines
+*/
+/**
+ * service_registry_create()
+ *
+ * - Collection of Services and their locations
+ * - Returns the Registry
  */
 static PServiceRegistry service_registry_create() {
     PServiceRegistry psreg = NULL;
@@ -751,6 +746,13 @@ static PServiceRegistry service_registry_create() {
 
     return psreg;
 }
+
+/**
+ * service_registry_entry_create()
+ *
+ * - Create a Service Entry and adds it to the Registry collection
+ * - Returns EXIT_FAILURE/SUCCESS
+*/
 static int service_registry_entry_create(PServiceRegistry psreg, char *name, char *ip, char *port, int *errors) {
     PRegistryEntry prent = NULL;
 
@@ -798,8 +800,11 @@ static int service_registry_entry_create(PServiceRegistry psreg, char *name, cha
 }
 
 /**
- * Validate the command line response format
- */
+ * service_registry_valiadate_response_format()
+ *
+ * - Validates a text registry entry format
+ * - Returns EXIT_FAILURE/SUCCESS
+*/
 int service_registry_valiadate_response_format(const char *response) {
     int errors = 0; // false
 
@@ -813,9 +818,13 @@ int service_registry_valiadate_response_format(const char *response) {
         return EXIT_SUCCESS; // true
     }
 }
+
 /**
- * Validate the command line response format and return registry
- */
+ * service_registry_valiadated_registry()
+ *
+ * - Validate the text formatted entry and return registry collection
+ * - Returns a Registry with one entry
+*/
 PServiceRegistry service_registry_valiadated_registry(const char *response) {
     int errors = 0;
 
@@ -829,6 +838,30 @@ PServiceRegistry service_registry_valiadated_registry(const char *response) {
     return psr;
 }
 
+/**
+ * service_registry_entry_response_message_log()
+ *
+ * - Prints each pair of values from a text registry entry
+*/
+void service_registry_entry_response_message_log(const char * response) {
+    char * worker = NULL, *parser = NULL, *base = strdup(response);
+    parser = base;
+    skn_logger(SD_NOTICE, "Response Message:");
+    while (( ((worker = strsep(&parser, "|")) != NULL) ||
+          ((worker = strsep(&parser, "%")) != NULL) ||
+          ((worker = strsep(&parser, ";")) != NULL)) &&
+          (strlen(worker) > 8)) {
+        skn_logger(SD_NOTICE, "[%s]", worker);
+    }
+    free(base);
+}
+
+/**
+ * service_registry_find_entry()
+ *
+ * - Finds an existing entry
+ * - Returns EXIT_FAILURE/SUCCESS
+*/
 PRegistryEntry service_registry_find_entry(PServiceRegistry psreg, char *serviceName) {
     PRegistryEntry prent = NULL;
     int index = 0;
@@ -847,10 +880,16 @@ PRegistryEntry service_registry_find_entry(PServiceRegistry psreg, char *service
     return prent;
 }
 
+/**
+ * Returns the number of services in registry
+ */
 int service_registry_entry_count(PServiceRegistry psr) {
     return psr->count;
 }
 
+/**
+ * Logs each entry in service registry
+ */
 int service_registry_list_entries(PServiceRegistry psr) {
     int index = 0;
 
@@ -862,27 +901,34 @@ int service_registry_list_entries(PServiceRegistry psr) {
 }
 
 /**
- * compute the address of each field on demand, from struct
- */
-void * service_registry_get_entry_ref(PRegistryEntry prent, char *field) {
+ * service_registry_get_entry_field_ref()
+ * - compute the address of each field on demand, from struct
+ * - Returns the address offset of the registry field requested
+*/
+void * service_registry_get_entry_field_ref(PRegistryEntry prent, char *field) {
     int index = 0;
     void * result = NULL;
-    char * names[4] = { "name", "ip", "port",
-    NULL };
-    int offsets[4] = { offsetof(RegistryEntry, name), offsetof(RegistryEntry, ip), offsetof(RegistryEntry, port), 0 };
+    char * names[4] = { "name", "ip", "port", NULL };
+    int offsets[4] = { offsetof(RegistryEntry, name),
+                       offsetof(RegistryEntry, ip),
+                       offsetof(RegistryEntry, port),
+                       0
+                     };
     for (index = 0; names[index] != NULL; index++) {
         if (strcmp(names[index], field) == 0) {
             result = (void *) prent + offsets[index];
             break;
         }
     }
-
     return result;
 }
 
 /**
- * compute the address of each field on demand, from local vars
- */
+ * service_registry_entry_create_helper()
+ * - Determines which field should be updated
+ * - compute the address of each field on demand, from local vars
+ * - Returns the address offset of the registry field requested
+*/
 static void * service_registry_entry_create_helper(char *key, char **name, char **ip, char **port) {
     int index = 0;
     char * guess = NULL;
@@ -911,16 +957,22 @@ static void * service_registry_entry_create_helper(char *key, char **name, char 
 }
 
 /**
+ * service_registry_response_parse()
+ *
  * Parse this response message, guess spellings, skip invalid, export error count
  *
- name=rpi_locator_service,ip=10.100.1.19,port=48028|
- name=lcd_display_service,ip=10.100.1.19,port=48029|
+ * Format: name=rpi_locator_service,ip=10.100.1.19,port=48028|
+ *         name=lcd_display_service,ip=10.100.1.19,port=48029|
+ *
  *  the vertical bar char '|' is the line separator, % and ; are also supported
  *
- */
+*/
 static int service_registry_response_parse(PServiceRegistry psreg, const char *response, int *errors) {
     int control = 1;
-    char *base = NULL, *psep = NULL, *resp = NULL, *line = NULL, *keypair = NULL, *element = NULL, *name = NULL, *ip = NULL, *pport = NULL, **meta = NULL;
+    char *base = NULL, *psep = NULL, *resp = NULL, *line = NULL,
+         *keypair = NULL, *element = NULL,
+         *name = NULL, *ip = NULL, *pport = NULL,
+         **meta = NULL;
 
     base = resp = strdup(response);
 
@@ -970,6 +1022,14 @@ static int service_registry_response_parse(PServiceRegistry psreg, const char *r
     return psreg->count;
 }
 
+/**
+ * service_registry_get_via_udp_broadcast()
+ *
+ * - Retrieves entries from every service that responds to the broadcast
+ *   parses and builds a new Registry of all entries, or unique entries.
+ *
+ * - Returns Populated Registry
+*/
 PServiceRegistry service_registry_get_via_udp_broadcast(int i_socket, char *request) {
     struct sockaddr_in remaddr; /* remote address */
     socklen_t addrlen = sizeof(remaddr); /* length of addresses */
@@ -1019,7 +1079,7 @@ PServiceRegistry service_registry_get_via_udp_broadcast(int i_socket, char *requ
             break;
         }
 
-        skn_logger(SD_INFO, "Response(%1.3fs) received from %s @ %s:%d",
+        skn_logger(SD_DEBUG, "Response(%1.3fs) received from %s @ %s:%d",
                         skn_duration_in_milliseconds(&start, NULL),
                         recvHostName,
                         inet_ntoa(remaddr.sin_addr),
@@ -1031,14 +1091,18 @@ PServiceRegistry service_registry_get_via_udp_broadcast(int i_socket, char *requ
     return (psr);
 }
 
+/**
+ * service_registry_destroy()
+ * - Free each entry, then the Registry itself.
+*/
 void service_registry_destroy(PServiceRegistry psreg) {
     int index = 0;
 
     if (psreg == NULL)
         return;
 
-    while (index < psreg->count) {
-        free(psreg->entry[index++]);
+    for (index = 0; index < psreg->count; index++) {
+        free(psreg->entry[index]);
     }
     free(psreg);
 }

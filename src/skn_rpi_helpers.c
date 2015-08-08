@@ -283,44 +283,10 @@ int skn_device_manager_LCD_shutdown(PDisplayManager pdm) {
 */
 
 /**
- * skn_scroller_pad_right
- * - fills remaining with spaces and 0 terminates
- * - buffer   message to adjust
- */
-char * skn_scroller_pad_right(char *buffer) {
-    int hIndex = 0;
-
-    for (hIndex = strlen(buffer); hIndex < gd_i_cols; hIndex++) {
-        buffer[hIndex] = ' ';
-    }
-    buffer[gd_i_cols] = 0;
-
-    return buffer;
-}
-
-/**
- * skn_scroller_wrap_blanks
- *  - builds str with 20 chars in front, and 20 at right end
- */
-char * skn_scroller_wrap_blanks(char *buffer) {
-    char worker[SZ_INFO_BUFF];
-    char col_width_padding[16];
-
-    if (buffer == NULL || strlen(buffer) > SZ_INFO_BUFF) {
-        return NULL;
-    }
-
-    snprintf(col_width_padding, 16, "%%%ds%%s%%%ds", gd_i_cols, gd_i_cols);
-    snprintf(worker, (SZ_INFO_BUFF - 1), col_width_padding, " ", buffer, " ");
-    memmove(buffer, worker, SZ_INFO_BUFF-1);
-    buffer[SZ_INFO_BUFF - 1] = 0;
-
-    return buffer;
-}
-
-/**
- * Return CPU Temp as millicentigrade
- */
+ * DO NOT USE THIS IN MODULES THAT HANDLE A I2C Based LCD
+ * RPi cannot handle I2C and GetCpuTemp() without locking the process
+ * in an uniterrupted sleep; forcing a power cycle.
+*/
 long getCpuTemps(PCpuTemps temps) {
     long lRaw = 0;
     int rc = 0;
@@ -367,6 +333,11 @@ int generate_rpi_model_info(char *msg) {
     return mLen;
 }
 
+/**
+ * DO NOT USE THIS IN MODULES THAT HANDLE A I2C Based LCD
+ * RPi cannot handle I2C and GetCpuTemp() without locking the process
+ * in an uniterrupted sleep; forcing a power cycle.
+*/
 int generate_cpu_temps_info(char *msg) {
     static CpuTemps cpuTemp;
     int mLen = 0;
@@ -377,6 +348,42 @@ int generate_cpu_temps_info(char *msg) {
     mLen = snprintf(msg, SZ_INFO_BUFF-1, "CPU: %s %s", cpuTemp.c, cpuTemp.f);
 
     return mLen;
+}
+
+/**
+ * skn_scroller_pad_right
+ * - fills remaining with spaces and 0 terminates
+ * - buffer   message to adjust
+ */
+char * skn_scroller_pad_right(char *buffer) {
+    int hIndex = 0;
+
+    for (hIndex = strlen(buffer); hIndex < gd_i_cols; hIndex++) {
+        buffer[hIndex] = ' ';
+    }
+    buffer[gd_i_cols] = 0;
+
+    return buffer;
+}
+
+/**
+ * skn_scroller_wrap_blanks
+ *  - builds str with 20 chars in front, and 20 at right end
+ */
+char * skn_scroller_wrap_blanks(char *buffer) {
+    char worker[SZ_INFO_BUFF];
+    char col_width_padding[16];
+
+    if (buffer == NULL || strlen(buffer) > SZ_INFO_BUFF) {
+        return NULL;
+    }
+
+    snprintf(col_width_padding, 16, "%%%ds%%s%%%ds", gd_i_cols, gd_i_cols);
+    snprintf(worker, (SZ_INFO_BUFF - 1), col_width_padding, " ", buffer, " ");
+    memmove(buffer, worker, SZ_INFO_BUFF-1);
+    buffer[SZ_INFO_BUFF - 1] = 0;
+
+    return buffer;
 }
 
 /**
@@ -441,7 +448,7 @@ static PDisplayManager skn_display_manager_create(char * welcome) {
     pdm->current_line = 0;
     pdm->next_line = gd_i_rows;
 
-    for (index = 0; index < ARY_MAX_INTF; index++) {
+    for (index = 0; index < ARY_MAX_DM_LINES; index++) {
         pdl = pdm->pdsp_collection[index] = (PDisplayLine) malloc(sizeof(DisplayLine)); // line x
         memset(pdl, 0, sizeof(DisplayLine));
         strcpy(pdl->cbName, "PDisplayLine");
@@ -456,9 +463,9 @@ static PDisplayManager skn_display_manager_create(char * welcome) {
             pdl->msg_len = strlen(pdl->ch_display_msg);
         }
     }
-    for (index = 0; index < ARY_MAX_INTF; index++) {               // enable link list routing
-            next = (((index + 1) == ARY_MAX_INTF) ? 0 : (index + 1));
-            prev = (((index - 1) == -1) ? (ARY_MAX_INTF - 1) : (index - 1));
+    for (index = 0; index < ARY_MAX_DM_LINES; index++) {               // enable link list routing
+            next = (((index + 1) == ARY_MAX_DM_LINES) ? 0 : (index + 1));
+            prev = (((index - 1) == -1) ? (ARY_MAX_DM_LINES - 1) : (index - 1));
             pdm->pdsp_collection[index]->next = pdm->pdsp_collection[next];
             pdm->pdsp_collection[index]->prev = pdm->pdsp_collection[prev];
     }
@@ -476,7 +483,7 @@ PDisplayLine skn_display_manager_add_line(PDisplayManager pdmx, char * client_re
     /*
      * manage next index */
     pdl = pdm->pdsp_collection[pdm->next_line++]; // manage next index
-    if (pdm->next_line == ARY_MAX_INTF) {
+    if (pdm->next_line == ARY_MAX_DM_LINES) {
         pdm->next_line = 0; // roll it
     }
 
@@ -500,7 +507,7 @@ PDisplayLine skn_display_manager_add_line(PDisplayManager pdmx, char * client_re
      * manage current_line */
     pdm->pdsp_collection[pdm->current_line]->active = 0;
     pdm->pdsp_collection[pdm->current_line++]->msg_len = 0;
-    if (pdm->current_line == ARY_MAX_INTF) {
+    if (pdm->current_line == ARY_MAX_DM_LINES) {
         pdm->current_line = 0;
     }
 
@@ -596,7 +603,7 @@ static void skn_display_manager_destroy(PDisplayManager pdm) {
     int index = 0;
 
     // free collection
-    for (index = 0; index < ARY_MAX_INTF; index++) {
+    for (index = 0; index < ARY_MAX_DM_LINES; index++) {
         if (pdm->pdsp_collection[index] != NULL) {
             free(pdm->pdsp_collection[index]);
         }

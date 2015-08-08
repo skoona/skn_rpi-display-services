@@ -96,6 +96,8 @@
 #define SZ_COMM_BUFF 256
 
 #define ARY_MAX_INTF 8
+#define ARY_MAX_REGISTRY 24
+#define ARY_MAX_DM_LINES 24
 #define SKN_RUN_MODE_RUN  0
 #define SKN_RUN_MODE_STOP 1
 
@@ -258,8 +260,8 @@ typedef struct _serviceEntry {
 typedef struct _serviceRegistry {
 	char cbName[SZ_CHAR_BUFF];
     int count;  // current number of entries
-    int computedMax; // computed container size
-    PRegistryEntry entry[ARY_MAX_INTF * 2];
+    int computedMax; // computed container size of .entry
+    PRegistryEntry entry[ARY_MAX_REGISTRY];
 } ServiceRegistry, *PServiceRegistry;
 
 typedef struct _serviceRequest {
@@ -299,7 +301,7 @@ typedef struct _DISPLAY_MANAGER {
     int  display_pos;
     int  dsp_rows;
     int  dsp_cols;
-	PDisplayLine pdsp_collection[ARY_MAX_INTF]; // all available lines
+	PDisplayLine pdsp_collection[ARY_MAX_DM_LINES]; // all available lines
 	int  current_line; // top of display
     int  next_line;  // actual index  -- should be within display_lines of current
     int  lcd_handle;

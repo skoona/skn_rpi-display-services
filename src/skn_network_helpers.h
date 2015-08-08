@@ -63,7 +63,7 @@ extern void skn_display_manager_message_consumer_shutdown(PDisplayManager pdm);
 
 extern int get_default_interface_name(char *pchDefaultInterfaceName);
 extern int get_broadcast_ip_array(PIPBroadcastArray paB);
-extern void log_response_message(const char * response);
+extern void service_registry_entry_response_message_log(const char * response);
 extern void get_default_interface_name_and_ipv4_address(char * intf, char * ipv4);
 
 /*
@@ -76,7 +76,7 @@ extern PServiceRegistry service_registry_get_via_udp_broadcast(int i_socket, cha
 extern int service_registry_entry_count(PServiceRegistry psr);
 extern int service_registry_list_entries(PServiceRegistry psr);
 extern PRegistryEntry service_registry_find_entry(PServiceRegistry psreg, char *serviceName);
-extern void * service_registry_get_entry_ref(PRegistryEntry prent, char *field);
+extern void * service_registry_get_entry_field_ref(PRegistryEntry prent, char *field);
 extern void service_registry_destroy(PServiceRegistry psreg);
 
 #endif // SKN_NETWORK_HELPERS_H__

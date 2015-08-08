@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
 
     if ((strlen(response) > 16) && (service_registry_valiadate_response_format(response) == EXIT_FAILURE)) {
     	skn_logger(SD_EMERG, "Message format is invalid! cannot proceed.");
-    	log_response_message(response);
+    	service_registry_entry_response_message_log(response);
     	exit(EXIT_FAILURE);
     }
 
