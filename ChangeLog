@@ -13,3 +13,7 @@
 - sleep(0); suspected to be the cause of the 'uninterruptible sleep' state for main thread
 - no other cause I can think of, since tests show no threading conflicts by design and practice.
 
+08/08/2015 Found source of 'uninterruptible sleep' to be conflict between I2C operations and 
+- GetCpuTemp() or reading '/sys/class/thermal/thermal_zone0/temp'.  Apparently, the RPi has
+- internal firmware issue with the concurency of these operation.  Remove getCpuTemp() from
+- use in the lcd_display_service.

@@ -96,7 +96,7 @@
 #define SZ_COMM_BUFF 256
 
 #define ARY_MAX_INTF 8
-#define ARY_MAX_REGISTRY 24
+#define ARY_MAX_REGISTRY 128
 #define ARY_MAX_DM_LINES 24
 #define SKN_RUN_MODE_RUN  0
 #define SKN_RUN_MODE_STOP 1

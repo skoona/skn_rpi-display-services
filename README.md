@@ -2,8 +2,8 @@
 ![Raspberry Pi Display/Locator Service](https://github.com/skoona/skn_rpi-display-services/raw/master/images/rpi_display.png) 
 
 Package includes two features. One designed to both locate your Pi and provide a list of known services.  The 
-other acts as a central LCD display service, allowing other network devices/nodes to send a one-liner 
-to the service for display on a 4x20 LCD.
+other acts as a central LCD display service, allowing other network devices/nodes to send a one-liners 
+to the service for display on its LCD.
 
 Each Raspberry Pi, Mac OSX, and Linux node in your network could execute *udp_locator_service* (LocatorService) as
 a backgound program using SystemD, a LaunchD PList, or an init script of some sort.  The LocatorService collects the
@@ -32,7 +32,6 @@ Enjoy!
 |udp_locator_client|Client|any|n/a|Collect services info from Service, which includes that service's ip address.|
 |lcd_display_service|Server|RPi|48029|Accepts one-line messages over udp and display them on a LCD panel.|
 |lcd_display_client|Client|any|n/a|Sends the one-liner composed of various Pi metrics; like cpus, temps, etc.|
-
 
 
 ### Configuration Options
@@ -197,5 +196,10 @@ For None RPi clients and LocatorService builds;
 - Planning to write *systemd* unit scripts as part of package, add the following to rc.local for now.
   * '/<path>/udp_locator_service >> /tmp/udp_locator_service.log 2>&1 &'
 - SINGLE QUOTES vs double quotes work a lot better for command line options.  
+
   
+## Known Issues:
+-------------------------------
+
+> 08/08/2015 Found that concurrent I2C operations for LCD updates and reads from */sys/class/thermal/thermal_zone0/temp* cause the *lcd_display_service* to lockup with a process state of *uninterruptible sleep*.  This is caused by the RPi's internal firmware, with no immediate resolution.  To work around this issue, I have removed calls to getCpuTemp() from the lcd_display_service program.
 
