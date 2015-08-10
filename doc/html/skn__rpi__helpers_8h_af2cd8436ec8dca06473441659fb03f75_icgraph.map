@@ -1,0 +1,5 @@
+<map id="skn_scroller_pad_right" name="skn_scroller_pad_right">
+<area shape="rect" id="node3" href="$skn__rpi__helpers_8h.html#a4f78720f41ceb03e6b6111a358c7aea1" title="skn_scroller_scroll\l_lines" alt="" coords="211,5,341,49"/>
+<area shape="rect" id="node5" href="$skn__rpi__helpers_8h.html#a0e93b40f29ab2df743c934be34500c15" title="skn_display_manager\l_do_work" alt="" coords="390,5,541,49"/>
+<area shape="rect" id="node7" href="$lcd__display__service_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="590,13,640,41"/>
+</map>

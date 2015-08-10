@@ -1,0 +1,5 @@
+<map id="skn_device_manager_MCP23017" name="skn_device_manager_MCP23017">
+<area shape="rect" id="node3" href="$skn__rpi__helpers_8h.html#a58c9a50b0307d45138f4a6f2e6ba7a76" title="skn_device_manager\l_LCD_setup" alt="" coords="203,5,351,49"/>
+<area shape="rect" id="node5" href="$skn__rpi__helpers_8h.html#a0e93b40f29ab2df743c934be34500c15" title="skn_display_manager\l_do_work" alt="" coords="400,5,552,49"/>
+<area shape="rect" id="node7" href="$lcd__display__service_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="600,13,650,41"/>
+</map>

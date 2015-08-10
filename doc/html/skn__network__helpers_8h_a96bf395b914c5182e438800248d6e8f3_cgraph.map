@@ -1,0 +1,5 @@
+<map id="get_default_interface_name_and_ipv4_address" name="get_default_interface_name_and_ipv4_address">
+<area shape="rect" id="node3" href="$skn__network__helpers_8c.html#a0b4821586a5c3d59096cb20dc6b28b2a" title="get_broadcast_ip_array" alt="" coords="233,13,394,41"/>
+<area shape="rect" id="node5" href="$skn__network__helpers_8c.html#a6d284e9250411e031cfa4ecb19583696" title="get_default_interface_name" alt="" coords="443,13,629,41"/>
+<area shape="rect" id="node7" href="$skn__network__helpers_8c.html#a925d0a1de13d0d0178e52f0d6be4b97f" title="skn_strip" alt="" coords="677,13,752,41"/>
+</map>

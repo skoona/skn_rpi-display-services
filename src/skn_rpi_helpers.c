@@ -620,7 +620,7 @@ static void skn_display_manager_destroy(PDisplayManager pdm) {
 int skn_display_manager_message_consumer_startup(PDisplayManager pdm) {
     /*
      * Start UDP Listener */
-    pdm->i_socket = skn_udp_host_create_broadcast_socket(SKN_RPI_DISPLAY_SERVICE_PORT, 30.0);
+    pdm->i_socket = skn_udp_host_create_regular_socket(SKN_RPI_DISPLAY_SERVICE_PORT, 30.0);
     if (pdm->i_socket == EXIT_FAILURE) {
         skn_logger(SD_EMERG, "DisplayManager: Host Init Failed!");
         return EXIT_FAILURE;

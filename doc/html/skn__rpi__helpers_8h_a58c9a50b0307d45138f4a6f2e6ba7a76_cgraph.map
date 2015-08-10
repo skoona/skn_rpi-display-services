@@ -1,0 +1,8 @@
+<map id="skn_device_manager_LCD_setup" name="skn_device_manager_LCD_setup">
+<area shape="rect" id="node3" href="$skn__rpi__helpers_8c.html#a343fa5773d09ffd114adc3425f3c6bde" title="skn_device_manager\l_MCP23008" alt="" coords="203,5,351,49"/>
+<area shape="rect" id="node9" href="$skn__rpi__helpers_8c.html#aeeb817184dce0d96e05d4cdd6940db70" title="skn_device_manager\l_MCP23017" alt="" coords="203,73,351,117"/>
+<area shape="rect" id="node12" href="$skn__rpi__helpers_8c.html#a9a6dccab4be976ca76eb960076dca0a0" title="skn_device_manager\l_PCF8574" alt="" coords="203,141,351,185"/>
+<area shape="rect" id="node15" href="$skn__rpi__helpers_8c.html#aa70aa8be6de3ef378d2d92839dae79c0" title="skn_device_manager\l_SerialPort" alt="" coords="203,209,351,253"/>
+<area shape="rect" id="node5" href="$skn__rpi__helpers_8c.html#a6e967d6169dd92b30845335ab426c59b" title="skn_device_manager\l_init_i2c" alt="" coords="401,73,549,117"/>
+<area shape="rect" id="node7" href="$skn__rpi__helpers_8c.html#a18bf9699f8b6ad05aff925d9deb31be1" title="skn_device_manager\l_backlight" alt="" coords="598,73,746,117"/>
+</map>

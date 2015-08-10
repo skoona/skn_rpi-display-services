@@ -1,0 +1,4 @@
+<map id="skn_scroller_scroll_lines" name="skn_scroller_scroll_lines">
+<area shape="rect" id="node3" href="$skn__rpi__helpers_8c.html#af2cd8436ec8dca06473441659fb03f75" title="skn_scroller_pad_right" alt="" coords="185,5,340,33"/>
+<area shape="rect" id="node5" href="$skn__network__helpers_8c.html#a802d742c15476782fbbea1528f76dea5" title="skn_time_delay" alt="" coords="206,57,320,85"/>
+</map>

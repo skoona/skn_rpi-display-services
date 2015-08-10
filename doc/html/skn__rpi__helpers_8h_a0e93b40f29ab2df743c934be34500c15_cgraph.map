@@ -1,0 +1,30 @@
+<map id="skn_display_manager_do_work" name="skn_display_manager_do_work">
+<area shape="rect" id="node3" href="$skn__network__helpers_8c.html#a8aa6a7a3ba2390cf536e26c6cd2aa840" title="generate_datetime_info" alt="" coords="231,69,393,97"/>
+<area shape="rect" id="node5" href="$skn__network__helpers_8c.html#af451ef71d607d9188e02af7079f14263" title="generate_loadavg_info" alt="" coords="233,121,391,149"/>
+<area shape="rect" id="node7" href="$skn__rpi__helpers_8c.html#a0410c7c96c2188c945cea294ae074ff9" title="generate_rpi_model_info" alt="" coords="228,225,396,253"/>
+<area shape="rect" id="node11" href="$skn__network__helpers_8c.html#aaf8b0dfb11a3800bb249c6cf90a2537a" title="generate_uname_info" alt="" coords="236,173,388,201"/>
+<area shape="rect" id="node14" href="$skn__rpi__helpers_8c.html#a58c9a50b0307d45138f4a6f2e6ba7a76" title="skn_device_manager\l_LCD_setup" alt="" coords="238,277,386,321"/>
+<area shape="rect" id="node30" href="$skn__rpi__helpers_8c.html#aad63cb41e99a588cea9609a100cc9333" title="skn_device_manager\l_LCD_shutdown" alt="" coords="717,298,865,342"/>
+<area shape="rect" id="node33" href="$skn__rpi__helpers_8c.html#a73890d642bf9cbb1de78675d587d79a3" title="skn_display_manager\l_add_line" alt="" coords="715,455,866,499"/>
+<area shape="rect" id="node39" href="$skn__rpi__helpers_8c.html#a3b806c833fce33e93ad36909a2561353" title="skn_display_manager\l_create" alt="" coords="715,387,866,431"/>
+<area shape="rect" id="node42" href="$skn__rpi__helpers_8c.html#a7c4eede6a3dd9f0a33125bd573fd44eb" title="skn_display_manager\l_destroy" alt="" coords="236,498,388,542"/>
+<area shape="rect" id="node44" href="$skn__rpi__helpers_8c.html#a34ce4afdf4f5f20fc109e749fb87c573" title="skn_display_manager\l_message_consumer_shutdown" alt="" coords="205,566,419,610"/>
+<area shape="rect" id="node46" href="$skn__rpi__helpers_8c.html#aee27f71a8f457def69c26d516ae821ab" title="skn_display_manager\l_message_consumer_startup" alt="" coords="214,634,410,678"/>
+<area shape="rect" id="node57" href="$skn__network__helpers_8c.html#a802d742c15476782fbbea1528f76dea5" title="skn_time_delay" alt="" coords="734,683,848,711"/>
+<area shape="rect" id="node61" href="$skn__rpi__helpers_8c.html#a4f78720f41ceb03e6b6111a358c7aea1" title="skn_scroller_scroll\l_lines" alt="" coords="247,702,377,746"/>
+<area shape="rect" id="node9" href="$skn__network__helpers_8c.html#a9b607e33be05bf0479127f233a58fab7" title="skn_get_number_of_cpu\l_cores" alt="" coords="480,5,648,49"/>
+<area shape="rect" id="node16" href="$skn__rpi__helpers_8c.html#a343fa5773d09ffd114adc3425f3c6bde" title="skn_device_manager\l_MCP23008" alt="" coords="490,209,638,253"/>
+<area shape="rect" id="node22" href="$skn__rpi__helpers_8c.html#aeeb817184dce0d96e05d4cdd6940db70" title="skn_device_manager\l_MCP23017" alt="" coords="490,277,638,321"/>
+<area shape="rect" id="node25" href="$skn__rpi__helpers_8c.html#a9a6dccab4be976ca76eb960076dca0a0" title="skn_device_manager\l_PCF8574" alt="" coords="490,141,638,185"/>
+<area shape="rect" id="node28" href="$skn__rpi__helpers_8c.html#aa70aa8be6de3ef378d2d92839dae79c0" title="skn_device_manager\l_SerialPort" alt="" coords="490,73,638,117"/>
+<area shape="rect" id="node18" href="$skn__rpi__helpers_8c.html#a6e967d6169dd92b30845335ab426c59b" title="skn_device_manager\l_init_i2c" alt="" coords="717,219,865,263"/>
+<area shape="rect" id="node20" href="$skn__rpi__helpers_8c.html#a18bf9699f8b6ad05aff925d9deb31be1" title="skn_device_manager\l_backlight" alt="" coords="946,259,1094,303"/>
+<area shape="rect" id="node35" href="$skn__rpi__helpers_8c.html#abc8758d786bdcff4bb0ec7ab05adfca1" title="skn_get_display_manager_ref" alt="" coords="920,463,1120,491"/>
+<area shape="rect" id="node37" href="$skn__rpi__helpers_8c.html#ae945b3a41d43db4d0c52f522d663d415" title="skn_scroller_wrap_blanks" alt="" coords="933,403,1107,431"/>
+<area shape="rect" id="node48" href="$skn__rpi__helpers_8c.html#ad17a8b378ba944f87beef66dbf0f47b0" title="skn_display_manager\l_message_consumer_thread" alt="" coords="467,615,661,659"/>
+<area shape="rect" id="node59" href="$skn__network__helpers_8c.html#a25427bc0b7f087d1135c92dd3704f210" title="skn_udp_host_create\l_regular_socket" alt="" coords="490,547,638,591"/>
+<area shape="rect" id="node50" href="$skn__network__helpers_8c.html#a0b4821586a5c3d59096cb20dc6b28b2a" title="get_broadcast_ip_array" alt="" coords="710,623,871,651"/>
+<area shape="rect" id="node52" href="$skn__network__helpers_8c.html#a6d284e9250411e031cfa4ecb19583696" title="get_default_interface_name" alt="" coords="927,623,1113,651"/>
+<area shape="rect" id="node54" href="$skn__network__helpers_8c.html#a925d0a1de13d0d0178e52f0d6be4b97f" title="skn_strip" alt="" coords="1168,623,1243,651"/>
+<area shape="rect" id="node63" href="$skn__rpi__helpers_8c.html#af2cd8436ec8dca06473441659fb03f75" title="skn_scroller_pad_right" alt="" coords="486,735,642,763"/>
+</map>

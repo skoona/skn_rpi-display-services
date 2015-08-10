@@ -1,0 +1,4 @@
+<map id="skn_device_manager_MCP23008" name="skn_device_manager_MCP23008">
+<area shape="rect" id="node3" href="$skn__rpi__helpers_8c.html#a6e967d6169dd92b30845335ab426c59b" title="skn_device_manager\l_init_i2c" alt="" coords="203,5,351,49"/>
+<area shape="rect" id="node5" href="$skn__rpi__helpers_8c.html#a18bf9699f8b6ad05aff925d9deb31be1" title="skn_device_manager\l_backlight" alt="" coords="401,5,549,49"/>
+</map>
