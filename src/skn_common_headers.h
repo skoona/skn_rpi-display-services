@@ -33,6 +33,7 @@
 #include <ifaddrs.h>
 #include <time.h>
 #include <stdarg.h>
+#include <math.h>
 
 
 //#include <systemd/sd-daemon.h>

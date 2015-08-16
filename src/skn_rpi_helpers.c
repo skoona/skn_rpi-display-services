@@ -343,9 +343,11 @@ int generate_cpu_temps_info(char *msg) {
     int mLen = 0;
 
     memset(&cpuTemp, 0, sizeof(CpuTemps));
-    getCpuTemps(&cpuTemp);
-
-    mLen = snprintf(msg, SZ_INFO_BUFF-1, "CPU: %s %s", cpuTemp.c, cpuTemp.f);
+    if ( getCpuTemps(&cpuTemp) != -1 ) {
+        mLen = snprintf(msg, SZ_INFO_BUFF-1, "CPU: %s %s", cpuTemp.c, cpuTemp.f);
+    } else {
+        mLen = snprintf(msg, SZ_INFO_BUFF-1, "Temp: N/A");
+    }
 
     return mLen;
 }

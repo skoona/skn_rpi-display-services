@@ -1,63 +1,62 @@
 /**
- * udp_locator_client.c
- * - Client
+ * para_display_client.c
+ * - Parallella (Epiphany III) Display Temperature Client
  *
- * cmdline: ./udp_locator_client -m "<request-message-string>"
+ * cmdline: ./para_display_client -m "<request-message-string>"
 */
 
 #include "skn_network_helpers.h"
 
+#define kXADCPATH  "/sys/bus/iio/devices/iio:device0/"
 
-/**
- * DO NOT USE THIS IN MODULES THAT HANDLE A I2C Based LCD
- * RPi cannot handle I2C and GetCpuTemp() without locking the process
- * in an uniterrupted sleep; forcing a power cycle.
-*/
-long getCpuTemps(PCpuTemps temps) {
-    long lRaw = 0;
-    int rc = 0;
 
-    FILE *sysFs = fopen("/sys/class/thermal/thermal_zone0/temp", "r");
-    if (sysFs == NULL) {
-        skn_logger(SD_WARNING, "Warning: Failed to OPEN CPU temperature: %d:%s\n", errno, strerror(errno));
-        return -1;
-    }
+int GetConstants(int *nOffset, float *fScale) {
+  char  strRead[SZ_INFO_BUFF];
+  FILE *sysfile;
 
-    rc = fscanf(sysFs, "%ld", &lRaw);
-    fclose(sysFs);
+  if((sysfile = fopen(kXADCPATH "in_temp0_offset", "ra")) == NULL) {
+    fprintf(stderr, "ERROR: Can't open offset device file\n");
+    return 1;
+  }
+  fgets(strRead, SZ_INFO_BUFF-1, sysfile);
+  fclose(sysfile);
+  *nOffset = atoi(strRead);
 
-    if (rc != 1 || lRaw < 0) {
-        skn_logger(SD_WARNING, "Warning: Failed to READ CPU temperature: %d:%s\n", strerror(errno));
-        return -1;
-    }
+  if((sysfile = fopen(kXADCPATH "in_temp0_scale", "ra")) == NULL) {
+    fprintf(stderr, "ERROR: Can't open scale device file\n");
+    return 2;
+  }
+  fgets(strRead, SZ_INFO_BUFF-1, sysfile);
+  fclose(sysfile);
+  *fScale = atof(strRead);
 
-    if (temps != NULL) { // populate struct
-        snprintf(temps->c, sizeof(temps->c), "%3.1f%cC", (double )(lRaw / 1000.0), 223);
-        snprintf(temps->f, sizeof(temps->f), "%3.1f%cF", (double )(lRaw / 1000.0 * 9 / 5 + 32), 223);
-        temps->raw = lRaw;
-        strncpy(temps->cbName, "CpuTemps", sizeof(temps->cbName) - 1);
-    }
-
-    return lRaw;
+  return 0;
 }
 
 /**
- * DO NOT USE THIS IN MODULES THAT HANDLE A I2C Based LCD
- * RPi cannot handle I2C and GetCpuTemp() without locking the process
- * in an uniterrupted sleep; forcing a power cycle.
-*/
-int generate_cpu_temps_info(char *msg) {
-    static CpuTemps cpuTemp;
-    int mLen = 0;
+ * Zynq chips temperature
+ */
+int GetTemp(double *fTemp, double *cTemp, int nOffset, float fScale) {
+  FILE *sysfile;
+  char  strRead[SZ_INFO_BUFF];
+  int  nRaw;
 
-    memset(&cpuTemp, 0, sizeof(CpuTemps));
-    if ( getCpuTemps(&cpuTemp) != -1 ) {
-        mLen = snprintf(msg, SZ_INFO_BUFF-1, "%s %s", cpuTemp.c, cpuTemp.f);
-    } else {
-        mLen = snprintf(msg, SZ_INFO_BUFF-1, "Temp: N/A");
-    }
+  if(nOffset == 0 || fScale == 0.0)
+    return 1;
 
-    return mLen;
+  if((sysfile = fopen(kXADCPATH "in_temp0_raw", "ra")) == NULL) {
+    return 2;
+  }
+
+  fgets(strRead, SZ_INFO_BUFF-1, sysfile);
+  fclose(sysfile);
+  nRaw = atoi(strRead);
+
+  *fTemp = (double ) (nRaw + nOffset) * fScale / 1000.0;
+
+  *cTemp = (double ) (*fTemp - 32.0) * 5 / 9;
+
+  return 0;
 }
 
 
@@ -69,21 +68,22 @@ int main(int argc, char *argv[])
     PRegistryEntry pre = NULL;
     PServiceRequest pnsr = NULL;
     int vIndex = 0;
-    long host_update_cycle = 0;
+    int      nOffset = 0;
+    float    fScale = 0.0;
 
     memset(registry, 0, sizeof(registry));
     memset(request, 0, sizeof(request));
 	strncpy(registry, "DisplayClient: Raspberry Pi where are you?", sizeof(registry) - 1);
 
     skn_program_name_and_description_set(
-    		"lcd_display_client",
-			"Send messages to the Display Service."
+    		"para_display_client",
+			"Send Epiphany III ( Zynq ) Temperature to Display Service."
 			);
 
 	/* Parse any command line options,
 	 * like request string override */
     if (skn_handle_locator_command_line(argc, argv) == EXIT_FAILURE) {
-    	    exit(EXIT_FAILURE);
+        exit(EXIT_FAILURE);
     }
     if (gd_pch_message != NULL) {
     	    strncpy(request, gd_pch_message, sizeof(request));
@@ -96,6 +96,12 @@ int main(int argc, char *argv[])
 	skn_logger(SD_DEBUG, "Request  Message [%s]", request);
 	skn_logger(SD_DEBUG, "Registry Message [%s]", registry);
 
+    // get some platform constants
+    if(GetConstants(&nOffset, &fScale)) {
+        skn_logger(SD_ERR, "GetConstants() Failed! Shutting Down!");
+        exit(EXIT_FAILURE);
+    }
+
 	/* Initialize Signal handler */
 	signals_init();
 
@@ -103,7 +109,7 @@ int main(int argc, char *argv[])
 	gd_i_socket = skn_udp_host_create_broadcast_socket(0, 4.0);
 	if (gd_i_socket == EXIT_FAILURE) {
         signals_cleanup(gi_exit_flag);
-    	    exit(EXIT_FAILURE);
+    	exit(EXIT_FAILURE);		
 	}
 
     skn_logger(SD_NOTICE, "Application Active...");
@@ -135,7 +141,6 @@ int main(int argc, char *argv[])
         }
     }
 
-
 	// we have the location
 	if (pre != NULL) {
 	    if (request[0] == 0) {
@@ -144,6 +149,8 @@ int main(int argc, char *argv[])
 	    pnsr = skn_service_request_create(pre, gd_i_socket, request);
 	}
 	if (pnsr != NULL) {
+        double fTemp = 0.0;
+        double cTemp = 0.0;
         do {
             vIndex = skn_udp_service_request(pnsr);
             if ((vIndex == EXIT_FAILURE) && (gd_i_update == 0)) { // ignore if non-stop is set
@@ -151,21 +158,9 @@ int main(int argc, char *argv[])
             }
             sleep(gd_i_update);
 
-            switch (host_update_cycle++) {  // cycle through other info
-                case 0:
-                    generate_loadavg_info(pnsr->request);
-                    break;
-                case 1:
-                    generate_datetime_info(pnsr->request);
-                    break;
-                case 2:
-                    generate_uname_info(pnsr->request);
-                break;
-                case 3:
-                    generate_cpu_temps_info(pnsr->request);
-                    host_update_cycle = 0;
-                break;
-            }
+            GetTemp(&fTemp, &cTemp, nOffset, fScale);
+            snprintf(pnsr->request, sizeof(pnsr->request) -1,  "%.1f%cf %.1f%cc", fTemp, 223, cTemp, 223);
+
 
         } while(gd_i_update != 0 && gi_exit_flag == SKN_RUN_MODE_RUN);
         free(pnsr);  // Done

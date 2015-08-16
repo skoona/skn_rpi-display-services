@@ -520,6 +520,7 @@ int skn_udp_host_create_broadcast_socket(int port, double rcvTimeout) {
     struct timeval tv;
     tv.tv_sec = rcvTimeout;
     tv.tv_usec = (long)(rcvTimeout - tv.tv_sec) * 1000000L;
+    skn_logger(SD_INFO, "Set Socket RcvTimeout Option set to: tv_sec=%ld, tv_usec=%ld", tv.tv_sec, tv.tv_usec);
     if ((setsockopt(i_socket, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv))) < 0) {
         skn_logger(SD_EMERG, "Set Socket RcvTimeout Option error=%d, etext=%s", errno, strerror(errno));
         return (EXIT_FAILURE);
