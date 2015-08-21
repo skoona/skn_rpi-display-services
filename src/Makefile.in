@@ -15,7 +15,7 @@
 
 @SET_MAKE@
 
-# Makefile.am  Remove lcd_display_service for Clients_Only build
+# Makefile.am  Remove (WiringPi) or lcd_display_service, a2d_display_client for Clients_Only(Linux/OSX) build
 
 VPATH = @srcdir@
 am__make_dryrun = \
@@ -53,7 +53,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 bin_PROGRAMS = udp_locator_service$(EXEEXT) \
 	udp_locator_client$(EXEEXT) lcd_display_client$(EXEEXT) \
-	para_display_client$(EXEEXT) lcd_display_service$(EXEEXT)
+	para_display_client$(EXEEXT) lcd_display_service$(EXEEXT) \
+	a2d_display_client$(EXEEXT)
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -66,6 +67,12 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
+am_a2d_display_client_OBJECTS = a2d_display_client.$(OBJEXT) \
+	skn_network_helpers.$(OBJEXT)
+a2d_display_client_OBJECTS = $(am_a2d_display_client_OBJECTS)
+a2d_display_client_DEPENDENCIES =
+a2d_display_client_LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
+	$(a2d_display_client_LDFLAGS) $(LDFLAGS) -o $@
 am_lcd_display_client_OBJECTS = lcd_display_client.$(OBJEXT) \
 	skn_network_helpers.$(OBJEXT)
 lcd_display_client_OBJECTS = $(am_lcd_display_client_OBJECTS)
@@ -105,12 +112,13 @@ COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 CCLD = $(CC)
 LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(lcd_display_client_SOURCES) $(lcd_display_service_SOURCES) \
-	$(para_display_client_SOURCES) $(udp_locator_client_SOURCES) \
-	$(udp_locator_service_SOURCES)
-DIST_SOURCES = $(lcd_display_client_SOURCES) \
+SOURCES = $(a2d_display_client_SOURCES) $(lcd_display_client_SOURCES) \
 	$(lcd_display_service_SOURCES) $(para_display_client_SOURCES) \
 	$(udp_locator_client_SOURCES) $(udp_locator_service_SOURCES)
+DIST_SOURCES = $(a2d_display_client_SOURCES) \
+	$(lcd_display_client_SOURCES) $(lcd_display_service_SOURCES) \
+	$(para_display_client_SOURCES) $(udp_locator_client_SOURCES) \
+	$(udp_locator_service_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -215,11 +223,14 @@ lcd_display_client_SOURCES = lcd_display_client.c skn_network_helpers.c skn_comm
 lcd_display_client_LDFLAGS = -lpthread -lm
 lcd_display_client_LDADD = -L/usr/local/lib 
 lcd_display_service_SOURCES = lcd_display_service.c skn_network_helpers.c skn_rpi_helpers.c skn_signal_manager.c skn_common_headers.h skn_rpi_helpers.h skn_network_helpers.h
-lcd_display_service_LDFLAGS = -lwiringPi -lwiringPiDev -lpthread -lrt -lm  
-lcd_display_service_LDADD = -L/usr/local/lib -lrt -lm
+lcd_display_service_LDFLAGS = -lpthread -lrt -lm -lwiringPi -lwiringPiDev
+lcd_display_service_LDADD = -L/usr/local/lib
 para_display_client_SOURCES = para_display_client.c skn_network_helpers.c skn_common_headers.h skn_network_helpers.h
 para_display_client_LDFLAGS = -lpthread -lm 
 para_display_client_LDADD = -L/usr/local/lib 
+a2d_display_client_SOURCES = a2d_display_client.c skn_network_helpers.c skn_common_headers.h skn_network_helpers.h
+a2d_display_client_LDFLAGS = -lpthread -lm -lrt -lwiringPi
+a2d_display_client_LDADD = -L/usr/local/lib 
 all: all-am
 
 .SUFFIXES:
@@ -294,6 +305,9 @@ uninstall-binPROGRAMS:
 
 clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
+a2d_display_client$(EXEEXT): $(a2d_display_client_OBJECTS) $(a2d_display_client_DEPENDENCIES) $(EXTRA_a2d_display_client_DEPENDENCIES) 
+	@rm -f a2d_display_client$(EXEEXT)
+	$(a2d_display_client_LINK) $(a2d_display_client_OBJECTS) $(a2d_display_client_LDADD) $(LIBS)
 lcd_display_client$(EXEEXT): $(lcd_display_client_OBJECTS) $(lcd_display_client_DEPENDENCIES) $(EXTRA_lcd_display_client_DEPENDENCIES) 
 	@rm -f lcd_display_client$(EXEEXT)
 	$(lcd_display_client_LINK) $(lcd_display_client_OBJECTS) $(lcd_display_client_LDADD) $(LIBS)
@@ -316,6 +330,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/a2d_display_client.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/lcd_display_client.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/lcd_display_service.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/para_display_client.Po@am__quote@

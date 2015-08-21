@@ -31,7 +31,9 @@ Enjoy!
 |udp_locator_service|Server|any|48028|Maintains a list of known network services accessible via UDP socket.|
 |udp_locator_client|Client|any|n/a|Collect services info from Service, which includes that service's ip address.|
 |lcd_display_service|Server|RPi|48029|Accepts one-line messages over udp and display them on a LCD panel.|
-|lcd_display_client|Client|any|n/a|Sends the one-liner composed of various Pi metrics; like cpus, temps, etc.|
+|lcd_display_client|Client|any|n/a|Sends one-liner composed of various Pi metrics; like cpus, temps, etc.|
+|para_display_client|Client|Parallella|n/a|Sends one-liner with Zynq chip's temperature.|
+|a2d_display_client|Client|Rpi|n/a|Sends one-liner with measured temp and light sensor values from *AD/DA Shield Module For Raspberry Pi *|
 
 
 ### Configuration Options
@@ -114,6 +116,14 @@ Enjoy!
 > - example: **_lcd_display_service -r2 -c16 -p /dev/ttyACM0 -t ser_**
 
 
+> **Supports** for ['AD / DA Shield Module For Raspberry Pi'](http://www.amazon.com/Shield-Module-For-Raspberry-Arduino/dp/B00WGW48A8)
+> - which is based on the I2C controller *PCF8591T* to access:
+> - - on-board temperature sensor; *NTC, MF58103J3950, B value 3950K, 1 K ohm 5% Cantherm* 
+> - - on-board light sensors; *GL5537-1 CdS Photoresistor*
+> - example: **_a2d_display_client -i 73_**
+
+
+
 #### lcd_display_service --help
 
     lcd_display_service -- LCD 4x20 Display Provider.
@@ -124,14 +134,14 @@ Enjoy!
     Options:
       -r, --rows=dd  Number of rows in physical display.
       -c, --cols=dd  Number of columns in physical display.
-      -p, --serial-port=string\tSerial port.      | ['/dev/ttyACM0']
-      -i, --i2c-address=ddd\tI2C decimal address. | [0x27=39, 0x20=32]
-      -t, --i2c-chipset=ccc\tI2C Chipset.         | [pcf|mcp|ser|mc7]
+      -p, --serial-port=string Serial port.       | ['/dev/ttyACM0']
+      -i, --i2c-address=ddd  I2C decimal address. | [0x27=39, 0x20=32]
+      -t, --i2c-chipset=ccc  I2C Chipset.         | [pcf|mcp|ser|mc7]
       -m, --message  Welcome Message for line 1.
       -v, --version  Version printout.
       -h, --help     Show this help screen.
 
-#### lcd_display_client --help
+#### [lcd|para|a2d]_display_client --help
 
     lcd_display_client -- Send messages to display service.
               Skoona Development <skoona@gmail.com>
@@ -141,6 +151,8 @@ Enjoy!
       lcd_display_client -u -m 'Please show this on shared display.' -a 'ser_display_service'
       lcd_display_client -u -n 60 -a 'ser_display_service'
       lcd_display_client -u -n 60 -a 'mcp_display_service'
+      para_display_client -n 330
+      a2d_display_client -i 73 -n 330
 
     Options:
       -a, --alt-service-name=my_service_name
@@ -149,6 +161,7 @@ Enjoy!
           _'**QUIT!**' causes service to terminate._
       -n, --non-stop=1|300    Continue to send updates every DD seconds until ctrl-break.
       -u, --unique-registry   List unique entries from all responses.
+      -i, --i2c-address=ddd   I2C decimal address. | [0x49=73, 0x20=32]         
       -v, --version           Version printout.
       -h, --help              Show this help screen.
 
