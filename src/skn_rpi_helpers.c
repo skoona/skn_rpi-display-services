@@ -10,7 +10,6 @@
  */
 int gd_i_rows = 4;
 int gd_i_cols = 20;
-int gd_i_i2c_address = 0x27;
 char *gd_pch_serial_port;
 char *gd_pch_device_name = "pcf";
 PDisplayManager gp_structure_pdm = NULL;

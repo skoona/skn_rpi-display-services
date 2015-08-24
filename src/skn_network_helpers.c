@@ -24,7 +24,7 @@ char gd_ch_intfName[SZ_CHAR_BUFF];
 char gd_ch_hostName[SZ_CHAR_BUFF];
 char gd_ch_hostShortName[SZ_CHAR_BUFF];
 char * gd_pch_service_name;
-
+int gd_i_i2c_address = 0;
 
 static void skn_locator_print_usage();
 static void exit_handler(int sig);
@@ -308,6 +308,13 @@ static void skn_locator_print_usage() {
         skn_logger(" ", "                       lcd_display_service is default, use this to change name.");
         skn_logger(" ", "  -m, --message\tRequest message to send.");
         skn_logger(" ", "  -n, --non-stop=DD\tContinue to send updates every DD seconds until ctrl-break.");
+    } else if (strcmp(gd_ch_program_name, "a2d_display_client") == 0) {
+        skn_logger(" ", "Usage:\n  %s [-v] [-n 1|300] [-i ddd] [-a 'my_service_name'] [-h|--help]", gd_ch_program_name);
+        skn_logger(" ", "\nOptions:");
+        skn_logger(" ", "  -a, --alt-service-name=my_service_name");
+        skn_logger(" ", "                       lcd_display_service is default, use this to change target.");
+        skn_logger(" ", "  -i, --i2c-address=ddd\tI2C decimal address. | [0x27=39, 0x20=32]");
+        skn_logger(" ", "  -n, --non-stop=DD\tContinue to send updates every DD seconds until ctrl-break.");
     }
     skn_logger(" ", "  -v, --version\tVersion printout.");
     skn_logger(" ", "  -h, --help\t\tShow this help screen.");
@@ -328,6 +335,7 @@ int skn_handle_locator_command_line(int argc, char **argv) {
                                  { "non-stop", 1, NULL, 'n' }, /* required param if */
                                  { "debug", 1, NULL, 'd' }, /* required param if */
                                  { "message", 1, NULL, 'm' }, /* required param if */
+                                 { "i2c-address", 1, NULL, 'i' }, /* required param if */
                                  { "version", 0, NULL, 'v' }, /* set true if present */
                                  { "help", 0, NULL, 'h' }, /* set true if present */
                                  { 0, 0, 0, 0 } };
@@ -339,7 +347,7 @@ int skn_handle_locator_command_line(int argc, char **argv) {
      *  optarg is value attached(-d88) or next element(-d 88) of argv
      *  opterr flags a scanning error
      */
-    while ((opt = getopt_long(argc, argv, "d:m:n:a:usvh", longopts, &longindex)) != -1) {
+    while ((opt = getopt_long(argc, argv, "d:m:n:i:a:usvh", longopts, &longindex)) != -1) {
         switch (opt) {
             case 'u':
                 gd_i_unique_registry = 1;
@@ -376,6 +384,15 @@ int skn_handle_locator_command_line(int argc, char **argv) {
                     gd_pch_service_name = strdup(optarg);
                 } else {
                     skn_logger(SD_WARNING, "%s: input param was invalid! %c[%d:%d:%d]\n", gd_ch_program_name, (char) opt, longindex, optind, opterr);
+                    return (EXIT_FAILURE);
+                }
+                break;
+            case 'i':
+                if (optarg) {
+                    gd_i_i2c_address = atoi(optarg);
+                } else {
+                    skn_logger(SD_ERR, "%s: input param was invalid! %c[%d:%d:%d]\n", gd_ch_program_name, (char) opt, longindex, optind,
+                                    opterr);
                     return (EXIT_FAILURE);
                 }
                 break;

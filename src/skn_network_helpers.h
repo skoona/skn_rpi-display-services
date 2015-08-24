@@ -32,6 +32,7 @@ extern int gd_i_display;
 extern int gd_i_unique_registry;
 extern int gd_i_update;
 extern char * gd_pch_service_name;
+extern int gd_i_i2c_address;
 
 /*
  * General Utilities

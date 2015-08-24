@@ -17,7 +17,6 @@
 
 #include "skn_network_helpers.h"
 
-
 int main(int argc, char *argv[])
 {
 	int exit_code = EXIT_SUCCESS;
