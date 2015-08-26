@@ -77,20 +77,51 @@ double steinhartAdcToCelsius(int rawADC) {
 }
 
 /**
- * Free Air Temps
- */
-int GetModuleTemp(char *buffer) {
+ * Inputs ADC Value from Thermistor and outputs Temperature in Celsius
+ *
+ * Utilizes the Beta Factor Equation:
+ *  1/T = 1/To + 1/B * ln(R/Ro)
+ * I'm concerned about R1, in resistance, which is really 1K not 10K
+ * https://learn.adafruit.com/thermistor/using-a-thermistor
+*/
+double betaAdcToCelsius(int rawADC) {
+  double kelvin = 0.0, celsius = 0.0;
+
+  kelvin = adcToOhms(rawADC) / THERMISTORNOMINAL;  // (R/Ro)
+  kelvin = log(kelvin);                            // ln(R/Ro)
+  kelvin /= BCOEFFICIENT;                          // 1/B * ln(R/Ro)
+  kelvin += 1.0 / (TEMPERATURENOMINAL + 273.15);   // + (1/To)
+  kelvin = 1.0 / kelvin;                           // Invert
+
+  celsius = kelvin - 273.15;                       // convert to C from Kelvins
+
+  return celsius + calibrationOffset; // Return the Temperature in C, with correction offset
+}
+
+/**
+ * Averages sensor value from five reads
+*/
+double readAverageSensorValue(int sensor) {
     int rvalue[MAXREADS+3], index;
-    double fTemp = 0.0, cTemp = 0.0, value = 0.0;
 
     /*
      * Temperature Sensor */
     for (index = 0, rvalue[MAXREADS] = 0; index < MAXREADS; index++) {
-        rvalue[index] = analogRead(A2D_THERM) ;
+        rvalue[index] = analogRead(sensor) ;
         rvalue[MAXREADS] += rvalue[index];
         delay(10);
     }
-    value = rvalue[MAXREADS] / MAXREADS * 1.0;
+
+    return rvalue[MAXREADS] / MAXREADS * 1.0;
+}
+
+/**
+ * Free Air Temps
+ */
+int GetModuleTemp(char *buffer) {
+    double fTemp = 0.0, cTemp = 0.0, value = 0.0;
+
+    value = readAverageSensorValue(A2D_THERM);
 
     /*
      * Steinhart Method */
@@ -108,14 +139,14 @@ int GetModuleTemp(char *buffer) {
  * Photo Resistor  Brightness Indicator
  */
 int GetModuleBright(char *buffer) {
-    int rvalue = 0;
     double value = 0.0;
     char *plights;
 
     /*
      * Photo Sensor Lumens */
-    rvalue = analogRead(A2D_PHOTO) ;
-    value = rvalue * 1.0;
+    value = readAverageSensorValue(A2D_PHOTO) ;
+    value = 256.0 - value;
+
     if (value < 2.5) {
         plights = "Dark";
     } else if (value < 50.0) {
