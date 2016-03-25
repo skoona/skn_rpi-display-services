@@ -726,13 +726,13 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
          * Shutdown by command */
         if (strcmp("QUIT!", request) == 0) {
             exit_code = 0;
-            gi_exit_flag == SKN_RUN_MODE_STOP;  // shutdown
+            gi_exit_flag = SKN_RUN_MODE_STOP;  // shutdown
             skn_logger(SD_NOTICE, "COMMAND: Shutdown Requested! exit code=%d", exit_code);
             break;
         }
 
     }
-    gi_exit_flag == SKN_RUN_MODE_STOP;  // shutdown
+    gi_exit_flag = SKN_RUN_MODE_STOP;  // shutdown
 //    kill(getpid(), SIGUSR1); // cause a shutdown
     skn_time_delay(0.5);
 
