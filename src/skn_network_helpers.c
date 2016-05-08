@@ -724,7 +724,6 @@ int service_registry_provider(int i_socket, char *response) {
             }
         }
 
-
         if (sendto(i_socket, response, strlen(response), 0, (struct sockaddr *) &remaddr, addrlen) < 0) {
             skn_logger(SD_EMERG, "SendTo() Failure code=%d, etext=%s", errno, strerror(errno));
             exit_code = EXIT_FAILURE;

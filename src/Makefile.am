@@ -1,6 +1,11 @@
 # Makefile.am  Remove (WiringPi) or lcd_display_service, a2d_display_client for Clients_Only(Linux/OSX) build
 
-bin_PROGRAMS=udp_locator_service udp_locator_client lcd_display_client para_display_client lcd_display_service a2d_display_client
+if OSXBUILD
+bin_PROGRAMS=udp_locator_service udp_locator_client lcd_display_client
+else 
+bin_PROGRAMS=lcd_display_service udp_locator_service udp_locator_client lcd_display_client para_display_client a2d_display_client
+endif
+
 
 udp_locator_service_SOURCES=udp_locator_service.c skn_network_helpers.c skn_common_headers.h skn_network_helpers.h
 udp_locator_service_LDFLAGS = -lpthread -lm

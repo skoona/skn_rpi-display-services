@@ -12,7 +12,9 @@ AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 
-AM_INIT_AUTOMAKE
+AM_INIT_AUTOMAKE([foreign])
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES])
+
 AC_CONFIG_FILES(Makefile src/Makefile)
 
 # stricter options -ansi -pedantic
@@ -22,14 +24,21 @@ AC_SUBST(CFLAGS)
 dnl Standard C constructs
 AC_GNU_SOURCE
 AC_HEADER_STDC
-AM_PROG_CC_C_O
+AC_PROG_CC
 AC_PROG_INSTALL
 AC_PROG_MAKE_SET
 
-AC_CHECK_LIB([pthread],[pthread_create])
+AC_CHECK_LIB([pthread],[pthread_create],
+  [AC_MSG_RESULT([pthread library is ready to use])],
+  [AC_MSG_FAILURE([Unable to identify pthread_create method in pthread or pthread not available.])]
+)
 
-# AC_CHECK_LIB([wiringPi],[lcdInit])
-# AC_CHECK_LIB([wiringPi],[pcf8574Setup])
+AM_CONDITIONAL([OSXBUILD], [test "x$_system_type" = "xDarwin"])
+AM_COND_IF([OSXBUILD],  
+   [AC_MSG_RESULT([Building udp_locator_service and limited clients only for OSX platforms])],
+   [AC_CHECK_LIB([wiringPi],[lcdInit], [AC_MSG_RESULT([Building all components for NON-OSX platforms])],[AC_MSG_FAILURE([WiringPi is Required])])]
+)
+
 
 
 AC_OUTPUT
