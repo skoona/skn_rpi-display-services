@@ -1,9 +1,9 @@
-# Makefile.am  Remove (WiringPi) or lcd_display_service, a2d_display_client for Clients_Only(Linux/OSX) build
+# Makefile.am  Without WiringPi only the basic locator and limited clients can be built
 
-if OSXBUILD
 bin_PROGRAMS=udp_locator_service udp_locator_client lcd_display_client
-else 
-bin_PROGRAMS=lcd_display_service udp_locator_service udp_locator_client lcd_display_client para_display_client a2d_display_client
+
+if WIRINGPI
+bin_PROGRAMS += lcd_display_service para_display_client a2d_display_client
 endif
 
 
