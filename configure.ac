@@ -19,7 +19,7 @@ AM_SILENT_RULES
 AC_CONFIG_FILES(Makefile src/Makefile)
 
 # stricter options -ansi -pedantic
-CFLAGS='-Wall -Wextra -g -O0 -I/usr/include -I/usr/local/include -Winline -pipe -DPACKAGE_NAME=\"AC_PACKAGE_NAME\" -DPACKAGE_VERSION=\"AC_PACKAGE_VERSION\"'
+CFLAGS='-Wall -Wextra -g -O0 -I/usr/include -I/usr/local/include -Winline -pipe -DPACKAGE_NAME="\"AC_PACKAGE_NAME\"" -DPACKAGE_VERSION="\"AC_PACKAGE_VERSION\""'
 AC_SUBST(CFLAGS)
 
 dnl Standard C constructs
@@ -31,11 +31,13 @@ AC_PROG_MAKE_SET
 
 AC_CHECK_LIB([pthread],[pthread_create],
   AC_MSG_RESULT([pthread library is ready to use]),
-  AC_MSG_FAILURE([Unable to identify pthread_create method in pthread or pthread not available.])
+  AC_MSG_FAILURE([Unable to identify pthread_create method in pthread or pthread not available.], [1])
 )
 
 AC_CHECK_LIB([wiringPi],[wiringPiSetup],
+       AC_MSG_RESULT([Building all services and clients.])
        AM_CONDITIONAL([WIRINGPI], [test "xY" = "xY"]),
+       AC_MSG_RESULT([Building basic services and clients non-wiringPi.])
        AM_CONDITIONAL([WIRINGPI], [test "xY" = "xX"]),
       [-lwiringPiDev -lrt -lm -lpthread]
 )
