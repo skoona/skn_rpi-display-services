@@ -176,36 +176,14 @@ Requires [WiringPi](https://projects.drogon.net/raspberry-pi/wiringpi/download-a
     $ sudo make install
 
 
-*Only lcd_display_service requires __WiringPi__*, there is a *client_only* git branch to support serparate compiles of only clients. 
-For None RPi clients and LocatorService builds;
+*Only lcd_display_service requires __WiringPi__*, builds automatically determine if wiringPi is available and build what is available to build.
 
-
-  Cleanup:
-
-    $ git stash save
-    $ git stash clear
-
-
-  Optionally create local branch:
-
-    $ git checkout master
-    $ git pull origin master
-    $ git checkout -b clients_only --track origin/clients_only
-    $ git pull origin clients_only
-
-
-  Then Build.    
-  
-    $ autoreconf -isfv            
-    $ ./configure
-    $ make
-    $ sudo make install
 
 
 ## Notes:
 --------------------------------
 
-- The git branch **clients_only** can be compiled any Linux/Mac platform.
+- WiringPi is a required library for display_service and some of the disply clients.  If WiringPI is not present, which is the case with OSX and most Linuxs, then the autoconf will build the udp_locator_service and a limited set of clients.  When WiringPi is available all services and clients are built.
 - Planning to write *systemd* unit scripts as part of package, add the following to rc.local for now.
   * '/<path>/udp_locator_service >> /tmp/udp_locator_service.log 2>&1 &'
 - SINGLE QUOTES vs double quotes work a lot better for command line options.  
