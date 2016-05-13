@@ -1,0 +1,5 @@
+<map id="udp_initialize_message_send" name="udp_initialize_message_send">
+<area shape="rect" id="node2" href="$cmd_d_c_8c.html#a00c5b52bdcb7caec07d08b05b8c1dced" title="cb_udp_comm_request\l_handler" alt="" coords="255,5,415,44"/>
+<area shape="rect" id="node3" href="$cmd_d_c_8c.html#aa8a19e68e54683fa324bcee1ecfd3942" title="cb_udp_comm_response\l_handler" alt="" coords="250,68,421,107"/>
+<area shape="rect" id="node4" href="$cmd_d_c_8c.html#a8288aea959581188e5bd29430935a6ed" title="skn_get_timestamp" alt="" coords="469,75,606,100"/>
+</map>

@@ -1,0 +1,125 @@
+\hypertarget{udp__locator__client_8c}{}\section{src/udp\+\_\+locator\+\_\+client.c File Reference}
+\label{udp__locator__client_8c}\index{src/udp\+\_\+locator\+\_\+client.\+c@{src/udp\+\_\+locator\+\_\+client.\+c}}
+{\ttfamily \#include \char`\"{}skn\+\_\+network\+\_\+helpers.\+h\char`\"{}}\\*
+Include dependency graph for udp\+\_\+locator\+\_\+client.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{udp__locator__client_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{udp__locator__client_8c_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{udp__locator__client_8c_a0ddf1224851353fc92bfbff6f499fa97}{}\index{udp\+\_\+locator\+\_\+client.\+c@{udp\+\_\+locator\+\_\+client.\+c}!main@{main}}
+\index{main@{main}!udp\+\_\+locator\+\_\+client.\+c@{udp\+\_\+locator\+\_\+client.\+c}}
+\subsubsection[{main(int argc, char $\ast$argv[])}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\label{udp__locator__client_8c_a0ddf1224851353fc92bfbff6f499fa97}
+\hyperlink{udp__locator__client_8c}{udp\+\_\+locator\+\_\+client.\+c}
+\begin{DoxyItemize}
+\item Client
+\end{DoxyItemize}
+
+cmdline\+: ./udp\+\_\+locator\+\_\+client -\/m \char`\"{}$<$request-\/message-\/string$>$\char`\"{} 
+
+Definition at line 11 of file udp\+\_\+locator\+\_\+client.\+c.
+
+
+
+References gd\+\_\+i\+\_\+socket, gd\+\_\+pch\+\_\+message, gd\+\_\+pch\+\_\+service\+\_\+name, gi\+\_\+exit\+\_\+flag, \+\_\+service\+Entry\+::ip, \+\_\+service\+Entry\+::name, \+\_\+service\+Entry\+::port, S\+D\+\_\+\+D\+E\+B\+U\+G, service\+\_\+registry\+\_\+destroy(), service\+\_\+registry\+\_\+entry\+\_\+count(), service\+\_\+registry\+\_\+find\+\_\+entry(), service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast(), service\+\_\+registry\+\_\+list\+\_\+entries(), signals\+\_\+cleanup(), signals\+\_\+init(), skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line(), skn\+\_\+program\+\_\+name\+\_\+and\+\_\+description\+\_\+set(), skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+broadcast\+\_\+socket(), and S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+F\+F.
+
+
+\begin{DoxyCode}
+12 \{
+13     \textcolor{keywordtype}{char} request[\hyperlink{cmd_d_c_8c_a352051a682a5205841c1bda6e30bb30d}{SZ\_COMM\_BUFF}];
+14 
+15     memset(request, 0, \textcolor{keyword}{sizeof}(request));
+16     strcpy(request, \textcolor{stringliteral}{"Raspberry Pi where are you?"});
+17 
+18     \hyperlink{skn__network__helpers_8c_ac2672efa5ece276743c6558dfe82d01a}{skn\_program\_name\_and\_description\_set}(
+19             \textcolor{stringliteral}{"udp\_locator\_client"},
+20             \textcolor{stringliteral}{"Collect IPv4 Address/Port Service info from all providers."}
+21             );
+22 
+23     \textcolor{comment}{/* Parse any command line options,}
+24 \textcolor{comment}{     * like request string override */}
+25     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a665c441c1f789eb555b1c23ed43de890}{skn\_handle\_locator\_command\_line}(argc, argv) == EXIT\_FAILURE) \{
+26         exit(EXIT\_FAILURE);
+27     \}
+28     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a0bb2e7571c22c0455842aba8cf1d97dc}{gd\_pch\_message} != NULL) \{
+29         strncpy(request, \hyperlink{skn__network__helpers_8c_a0bb2e7571c22c0455842aba8cf1d97dc}{gd\_pch\_message}, \textcolor{keyword}{sizeof}(request));
+30         free(\hyperlink{skn__network__helpers_8c_a0bb2e7571c22c0455842aba8cf1d97dc}{gd\_pch\_message}); \textcolor{comment}{// from strdup()}
+31         \hyperlink{skn__network__helpers_8c_a0bb2e7571c22c0455842aba8cf1d97dc}{gd\_pch\_message} = request;
+32     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (argc == 2) \{
+33         strcpy(request, argv[1]);
+34     \}
+35     skn\_logger(\hyperlink{skn__common__headers_8h_a3ace3381f5b69f4a46fc35b70844a5dc}{SD\_DEBUG}, \textcolor{stringliteral}{"Request Message [%s]"}, request);
+36 
+37     \textcolor{comment}{/* Initialize Signal handler */}
+38     \hyperlink{skn__network__helpers_8c_a6af44fa0e0746d3d2a804fea1e84dacd}{signals\_init}();
+39 
+40     \textcolor{comment}{/* Create local socket for sending requests */}
+41     \hyperlink{skn__network__helpers_8c_a62c4e1910a12d9a04a12768154853712}{gd\_i\_socket} = \hyperlink{skn__network__helpers_8c_a4f9f7e0f50cb3073d9c6e5a6a0d5240d}{skn\_udp\_host\_create\_broadcast\_socket}(0, 8.
+      0);
+42     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a62c4e1910a12d9a04a12768154853712}{gd\_i\_socket} == EXIT\_FAILURE) \{
+43         \hyperlink{skn__network__helpers_8c_ac256e2066453ab0ff82322aa24b161df}{signals\_cleanup}(\hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag});
+44         exit(EXIT\_FAILURE);     
+45     \}
+46 
+47     \textcolor{comment}{/* Get the ServiceRegistry from Provider}
+48 \textcolor{comment}{     * - could return null if error */}
+49     \hyperlink{struct__service_registry}{PServiceRegistry} psr = 
+      \hyperlink{skn__network__helpers_8c_a8a291f1cb8d18e45a3e9b6bc9e3798a6}{service\_registry\_get\_via\_udp\_broadcast}(
+      \hyperlink{skn__network__helpers_8c_a62c4e1910a12d9a04a12768154853712}{gd\_i\_socket}, request);
+50     \textcolor{keywordflow}{if} (psr != NULL && \hyperlink{skn__network__helpers_8c_a88465ff1322cb437fd3b7a1e036fd017}{service\_registry\_entry\_count}(psr) != 0) \{
+51         \textcolor{keywordtype}{char} *service\_name = \textcolor{stringliteral}{"lcd\_display\_service"};
+52 
+53         \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a2f908b49598a49ea624bfcc3e2175b7c}{gd\_pch\_service\_name} != NULL) \{
+54             service\_name = \hyperlink{skn__network__helpers_8c_a2f908b49598a49ea624bfcc3e2175b7c}{gd\_pch\_service\_name};
+55         \}
+56 
+57         \hyperlink{skn__network__helpers_8c_a16d6920592f2a64c9cab22cb26ef28e1}{service\_registry\_list\_entries}(psr);
+58 
+59         \textcolor{comment}{/* find a single entry */}
+60         \hyperlink{struct__service_entry}{PRegistryEntry} pre = \hyperlink{skn__network__helpers_8c_ab5ed70a05f4e20dac13298ae16530069}{service\_registry\_find\_entry}(psr, 
+      service\_name);
+61         \textcolor{keywordflow}{if} (pre != NULL) \{
+62             skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"\(\backslash\)nLCD DisplayService (%s) is located at IPv4: %s:%d\(\backslash\)n"}, pre->
+      \hyperlink{struct__service_entry_aa66dcf0806f67276d049ac75c6153768}{name}, pre->\hyperlink{struct__service_entry_a70b1db0895fbe31c07c8799cb57c678a}{ip}, pre->\hyperlink{struct__service_entry_ac8a3a40de5eee937afb42faea4d18bb2}{port});
+63         \}
+64     \}
+65 
+66     \textcolor{comment}{/* Cleanup and shutdown}
+67 \textcolor{comment}{     * - if shutdown was caused by signal handler}
+68 \textcolor{comment}{     *   then a termination signal will be sent via signal()}
+69 \textcolor{comment}{     *   otherwise, a normal exit occurs}
+70 \textcolor{comment}{     */}
+71     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a62c4e1910a12d9a04a12768154853712}{gd\_i\_socket}) close(\hyperlink{skn__network__helpers_8c_a62c4e1910a12d9a04a12768154853712}{gd\_i\_socket});
+72     \textcolor{keywordflow}{if} (psr != NULL) \hyperlink{skn__network__helpers_8c_a819c12fc7c8ff576b1aaad69bc098840}{service\_registry\_destroy}(psr);
+73     \hyperlink{skn__network__helpers_8c_ac256e2066453ab0ff82322aa24b161df}{signals\_cleanup}(\hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag});
+74 
+75     exit(EXIT\_SUCCESS);
+76 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{udp__locator__client_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph}
+\end{center}
+\end{figure}
+
+

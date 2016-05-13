@@ -43,6 +43,7 @@ var skn__network__helpers_8c =
     [ "gd_ch_program_name", "skn__network__helpers_8c.html#a1849cb923d68be6854cc346022fc79d7", null ],
     [ "gd_i_debug", "skn__network__helpers_8c.html#a923b2adbdc0dac852905dc95eaa73a37", null ],
     [ "gd_i_display", "skn__network__helpers_8c.html#ad3af8f8dd9f2ca01a415370a99bc465e", null ],
+    [ "gd_i_i2c_address", "skn__network__helpers_8c.html#a2c55396bf337471f9f99a939974fcdbe", null ],
     [ "gd_i_socket", "skn__network__helpers_8c.html#a62c4e1910a12d9a04a12768154853712", null ],
     [ "gd_i_unique_registry", "skn__network__helpers_8c.html#ae64a8fff2241990ec523dafe18f7864c", null ],
     [ "gd_i_update", "skn__network__helpers_8c.html#a49e7c0da0f26a1f505934e5610ead123", null ],

@@ -1,0 +1,1803 @@
+\hypertarget{cmd_d_c_8c}{}\section{cmd\+D\+C/cmd\+D\+C.c File Reference}
+\label{cmd_d_c_8c}\index{cmd\+D\+C/cmd\+D\+C.\+c@{cmd\+D\+C/cmd\+D\+C.\+c}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$glib.\+h$>$}\\*
+{\ttfamily \#include $<$gio/gio.\+h$>$}\\*
+{\ttfamily \#include $<$glib-\/unix.\+h$>$}\\*
+{\ttfamily \#include $<$gio/gnetworking.\+h$>$}\\*
+{\ttfamily \#include $<$ifaddrs.\+h$>$}\\*
+Include dependency graph for cmd\+D\+C.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cmd_d_c_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct__ip_broadcast_array}{\+\_\+ip\+Broadcast\+Array}
+\item 
+struct \hyperlink{struct__signal_data}{\+\_\+signal\+Data}
+\item 
+struct \hyperlink{struct__registry_data}{\+\_\+registry\+Data}
+\item 
+struct \hyperlink{struct__control_data}{\+\_\+control\+Data}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{cmd_d_c_8c_aa326a05d5e30f9e9a4bb0b4469d5d0c0}{P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N}~\char`\"{}0.\+9.\+0\char`\"{}
+\item 
+\#define \hyperlink{cmd_d_c_8c_a1c0439e4355794c09b64274849eb0279}{P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+M\+E}~\char`\"{}cmd\+D\+C\char`\"{}
+\item 
+\#define \hyperlink{cmd_d_c_8c_a714627d9e7b71b55548e2ddda429d3fb}{P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N}~\char`\"{}Send Message to Raspberry Pi\textquotesingle{}s on the network.\char`\"{}
+\item 
+\#define \hyperlink{cmd_d_c_8c_a8e8475ded7103e72515667b568ed64c7}{G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+N\+E}~0
+\item 
+\#define \hyperlink{cmd_d_c_8c_adf765361163d05006ff697149bbaf2ee}{U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+R\+T}~48029
+\item 
+\#define \hyperlink{cmd_d_c_8c_a76bd5a574aad0fa67de6c9804853f191}{U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+R\+T}~48028
+\item 
+\#define \hyperlink{cmd_d_c_8c_af16df2ad6ba0bf1f5283361eb89a979d}{U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+R\+T}~48027
+\item 
+\#define \hyperlink{cmd_d_c_8c_aeed5f98eabe9b11442a6fe0aad5b5be0}{U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+R\+T}~48026
+\item 
+\#define \hyperlink{cmd_d_c_8c_ac10012e31213e44ecaf5d4c1dd3c8719}{M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+E\+S}~600000
+\item 
+\#define \hyperlink{cmd_d_c_8c_ac66d92e429586a7c5d0424fe6ad105dd}{M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L}~10
+\item 
+\#define \hyperlink{cmd_d_c_8c_ac08ad1b127f1c9743c5592ffb796423f}{S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+F\+F}~32
+\item 
+\#define \hyperlink{cmd_d_c_8c_ac21e8a77d073e7a5383c92bb485992c8}{S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+F\+F}~64
+\item 
+\#define \hyperlink{cmd_d_c_8c_a152ca8fa1a2eac39d1badafb6c6cef8c}{S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+F\+F}~256
+\item 
+\#define \hyperlink{cmd_d_c_8c_ab5903aa853c3769389e570c8490feb1e}{S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+F\+F}~512
+\item 
+\#define \hyperlink{cmd_d_c_8c_a3c73a8961a16a0dfbb87b5a7317bacd2}{S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+F\+F}~256
+\item 
+\#define \hyperlink{cmd_d_c_8c_a3122b900b1a34ceff868e0d51217e357}{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+E\+L}~48
+\item 
+\#define \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F}~256
+\item 
+\#define \hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F}~128
+\item 
+\#define \hyperlink{cmd_d_c_8c_a77ca0b062f899750ee20c0170e5bedc4}{S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+F\+F}~512
+\item 
+\#define \hyperlink{cmd_d_c_8c_a352051a682a5205841c1bda6e30bb30d}{S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+F\+F}~256
+\item 
+\#define \hyperlink{cmd_d_c_8c_a8091fbaa709d661a678a82a62fab638b}{S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+R\+T}~0
+\item 
+\#define \hyperlink{cmd_d_c_8c_a00b19837422a3b13d82b9a525e92ef51}{A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+T\+F}~8
+\item 
+\#define \hyperlink{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R}~-\/1
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{struct__ip_broadcast_array}{\+\_\+ip\+Broadcast\+Array} \hyperlink{cmd_d_c_8c_a83c26957f648dd04df183020ab03c60d}{I\+P\+Broadcast\+Array}
+\item 
+typedef struct \hyperlink{struct__ip_broadcast_array}{\+\_\+ip\+Broadcast\+Array} $\ast$ \hyperlink{cmd_d_c_8c_a916d712cacebc2faeda930352280c361}{P\+I\+P\+Broadcast\+Array}
+\item 
+typedef struct \hyperlink{struct__signal_data}{\+\_\+signal\+Data} \hyperlink{cmd_d_c_8c_a4d86cbb761613143e4ee60218efdfbaa}{U\+Signal\+Data}
+\item 
+typedef struct \hyperlink{struct__signal_data}{\+\_\+signal\+Data} $\ast$ \hyperlink{cmd_d_c_8c_acdc6976ac4ccc0f13bc99bb5b9361a6e}{P\+U\+Signal\+Data}
+\item 
+typedef struct \hyperlink{struct__registry_data}{\+\_\+registry\+Data} \hyperlink{cmd_d_c_8c_aac252e0f10021267858720b8e772c0fc}{Reg\+Data}
+\item 
+typedef struct \hyperlink{struct__registry_data}{\+\_\+registry\+Data} $\ast$ \hyperlink{cmd_d_c_8c_a57f677cfc01b955d9d3783e5422f36a8}{P\+Reg\+Data}
+\item 
+typedef struct \hyperlink{struct__registry_data}{\+\_\+registry\+Data} $\ast$$\ast$ \hyperlink{cmd_d_c_8c_a0b249e07431f112b20e1708c3162d8a0}{P\+P\+Reg\+Data}
+\item 
+typedef struct \hyperlink{struct__control_data}{\+\_\+control\+Data} \hyperlink{cmd_d_c_8c_aad121cd36cd8851b2a3cd81fd0e41388}{Control\+Data}
+\item 
+typedef struct \hyperlink{struct__control_data}{\+\_\+control\+Data} $\ast$ \hyperlink{cmd_d_c_8c_aa6bae802f1b23385cd660e89a1e4fc75}{P\+Control\+Data}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+gchar $\ast$ \hyperlink{cmd_d_c_8c_a8288aea959581188e5bd29430935a6ed}{skn\+\_\+get\+\_\+timestamp} ()
+\item 
+gint \hyperlink{cmd_d_c_8c_ae59da66ef51690f71da087514886fd12}{udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name} (\hyperlink{cmd_d_c_8c_a57f677cfc01b955d9d3783e5422f36a8}{P\+Reg\+Data} pr, gchar $\ast$pch\+\_\+name)
+\item 
+\hyperlink{cmd_d_c_8c_a0b249e07431f112b20e1708c3162d8a0}{P\+P\+Reg\+Data} \hyperlink{cmd_d_c_8c_a568a9919cfd345f6c1a41a2ec7c4b1ca}{udp\+\_\+registry\+\_\+response\+\_\+parser} (\hyperlink{cmd_d_c_8c_a57f677cfc01b955d9d3783e5422f36a8}{P\+Reg\+Data} msg, gchar $\ast$response)
+\item 
+gchar $\ast$ \hyperlink{cmd_d_c_8c_af4d9de57a3cb296036c837a644009ef5}{skn\+\_\+gio\+\_\+condition\+\_\+to\+\_\+string} (G\+I\+O\+Condition condition)
+\item 
+gboolean \hyperlink{cmd_d_c_8c_a793c6b3e5c7a5abc993d8cfbe963629d}{udp\+\_\+initialize\+\_\+message\+\_\+send} (\hyperlink{cmd_d_c_8c_aa6bae802f1b23385cd660e89a1e4fc75}{P\+Control\+Data} pctrl)
+\item 
+static gboolean \hyperlink{cmd_d_c_8c_a76ad4de5945cff6e20dbeff46bda868b}{cb\+\_\+unix\+\_\+signal\+\_\+handler} (\hyperlink{cmd_d_c_8c_acdc6976ac4ccc0f13bc99bb5b9361a6e}{P\+U\+Signal\+Data} psig)
+\item 
+static gboolean \hyperlink{cmd_d_c_8c_a00c5b52bdcb7caec07d08b05b8c1dced}{cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler} (\hyperlink{cmd_d_c_8c_aa6bae802f1b23385cd660e89a1e4fc75}{P\+Control\+Data} pctrl)
+\item 
+static gboolean \hyperlink{cmd_d_c_8c_aa8a19e68e54683fa324bcee1ecfd3942}{cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler} (G\+Socket $\ast$g\+Sock, G\+I\+O\+Condition condition, \hyperlink{cmd_d_c_8c_aa6bae802f1b23385cd660e89a1e4fc75}{P\+Control\+Data} pctrl)
+\item 
+static gboolean \hyperlink{cmd_d_c_8c_a385b710fd30ba190b3b96e814424ff80}{cb\+\_\+udp\+\_\+broadcast\+\_\+response\+\_\+handler} (G\+Socket $\ast$g\+Sock, G\+I\+O\+Condition condition, \hyperlink{cmd_d_c_8c_aa6bae802f1b23385cd660e89a1e4fc75}{P\+Control\+Data} pctrl)
+\item 
+static gboolean \hyperlink{cmd_d_c_8c_a160bb2056d3842ef84fd7211ed6ec385}{cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler} (\hyperlink{cmd_d_c_8c_aa6bae802f1b23385cd660e89a1e4fc75}{P\+Control\+Data} pctrl)
+\item 
+\hyperlink{cmd_d_c_8c_a916d712cacebc2faeda930352280c361}{P\+I\+P\+Broadcast\+Array} \hyperlink{cmd_d_c_8c_a72be87baa67e532c78af054acf935d6c}{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address} (char $\ast$intf, char $\ast$ipv4)
+\item 
+gint \hyperlink{cmd_d_c_8c_a0dfc1a6916909805dc7fd2d8c471e0e3}{skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array} (\hyperlink{cmd_d_c_8c_a916d712cacebc2faeda930352280c361}{P\+I\+P\+Broadcast\+Array} pa\+B)
+\item 
+gint \hyperlink{cmd_d_c_8c_afc164e6efc7bdcdbacba97ba6f6c2a19}{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name} (char $\ast$pch\+Default\+Interface\+Name)
+\item 
+gboolean \hyperlink{cmd_d_c_8c_af376243f65a3fd761050836d1293b0d9}{skn\+\_\+udp\+\_\+network\+\_\+broadcast\+\_\+all\+\_\+interfaces} (G\+Socket $\ast$g\+Sock, \hyperlink{cmd_d_c_8c_a916d712cacebc2faeda930352280c361}{P\+I\+P\+Broadcast\+Array} pab)
+\item 
+gchar $\ast$ \hyperlink{cmd_d_c_8c_a73ed6790a0276f43dfea595f4cedffa4}{skn\+\_\+strip} (gchar $\ast$alpha)
+\item 
+\hyperlink{cmd_d_c_8c_a916d712cacebc2faeda930352280c361}{P\+I\+P\+Broadcast\+Array} \hyperlink{cmd_d_c_8c_a4f733621137368e762c5db74a3cec52b}{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address} (gchar $\ast$intf, gchar $\ast$ipv4)
+\item 
+int \hyperlink{cmd_d_c_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{cmd_d_c_8c_a00b19837422a3b13d82b9a525e92ef51}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+T\+F@{A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+T\+F}}
+\index{A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+T\+F@{A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+T\+F}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+T\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+T\+F~8}\label{cmd_d_c_8c_a00b19837422a3b13d82b9a525e92ef51}
+
+
+Definition at line 62 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by get\+\_\+broadcast\+\_\+ip\+\_\+array(), and skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array().
+
+\hypertarget{cmd_d_c_8c_a8e8475ded7103e72515667b568ed64c7}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+N\+E@{G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+N\+E}}
+\index{G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+N\+E@{G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+N\+E}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+N\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+N\+E~0}\label{cmd_d_c_8c_a8e8475ded7103e72515667b568ed64c7}
+
+
+Definition at line 38 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by main().
+
+\hypertarget{cmd_d_c_8c_ac10012e31213e44ecaf5d4c1dd3c8719}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+E\+S@{M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+E\+S}}
+\index{M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+E\+S@{M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+E\+S}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+E\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+E\+S~600000}\label{cmd_d_c_8c_ac10012e31213e44ecaf5d4c1dd3c8719}
+
+
+Definition at line 46 of file cmd\+D\+C.\+c.
+
+\hypertarget{cmd_d_c_8c_ac66d92e429586a7c5d0424fe6ad105dd}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L@{M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L}}
+\index{M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L@{M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L~10}\label{cmd_d_c_8c_ac66d92e429586a7c5d0424fe6ad105dd}
+
+
+Definition at line 47 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by main().
+
+\hypertarget{cmd_d_c_8c_a714627d9e7b71b55548e2ddda429d3fb}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N@{P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N}}
+\index{P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N@{P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N~\char`\"{}Send Message to Raspberry Pi\textquotesingle{}s on the network.\char`\"{}}\label{cmd_d_c_8c_a714627d9e7b71b55548e2ddda429d3fb}
+
+
+Definition at line 25 of file cmd\+D\+C.\+c.
+
+\hypertarget{cmd_d_c_8c_a1c0439e4355794c09b64274849eb0279}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+M\+E@{P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+M\+E}}
+\index{P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+M\+E@{P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+M\+E}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+M\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+M\+E~\char`\"{}cmd\+D\+C\char`\"{}}\label{cmd_d_c_8c_a1c0439e4355794c09b64274849eb0279}
+
+
+Definition at line 22 of file cmd\+D\+C.\+c.
+
+\hypertarget{cmd_d_c_8c_aa326a05d5e30f9e9a4bb0b4469d5d0c0}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N@{P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N}}
+\index{P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N@{P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N~\char`\"{}0.\+9.\+0\char`\"{}}\label{cmd_d_c_8c_aa326a05d5e30f9e9a4bb0b4469d5d0c0}
+\hyperlink{cmd_d_c_8c}{cmd\+D\+C.\+c} I\+O\+T/\+Raspberry\+Pi message display client gcc -\/v {\ttfamily pkg-\/config -\/-\/cflags -\/-\/libs glib-\/2.\+0 gio-\/2.\+0} -\/\+O3 -\/\+Wall -\/o cmd\+D\+C \hyperlink{cmd_d_c_8c}{cmd\+D\+C.\+c}
+
+Program Flow\+:
+\begin{DoxyEnumerate}
+\item Initialize -\/$>$ parse\+\_\+options
+\item upd\+\_\+broad -\/$>$ loop -\/$>$ receive\+\_\+broadcast\+\_\+message\+\_\+and\+\_\+update\+\_\+regitry
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item udp\+\_\+timeout -\/$>$ loop -\/$>$ find\+\_\+display\+\_\+service\+\_\+in\+\_\+registry -\/$>$ intialize\+\_\+message\+\_\+sender
+\item upd\+\_\+socket -\/$>$ loop -\/$>$ receive\+\_\+message -\/$>$ log\+\_\+to\+\_\+\+\_\+console
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item unix\+\_\+signal -\/$>$ loop -\/$>$ close\+\_\+loop
+\item Cleanup -\/$>$ exit 
+\end{DoxyEnumerate}
+
+Definition at line 19 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by main(), skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line(), and skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line().
+
+\hypertarget{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R@{P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R}}
+\index{P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R@{P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R~-\/1}\label{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}
+
+
+Definition at line 63 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by generate\+\_\+loadavg\+\_\+info(), get\+\_\+broadcast\+\_\+ip\+\_\+array(), get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address(), service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast(), service\+\_\+registry\+\_\+provider(), skn\+\_\+device\+\_\+manager\+\_\+init\+\_\+i2c(), skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup(), skn\+\_\+device\+\_\+manager\+\_\+\+Serial\+Port(), skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work(), skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array(), skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address(), skn\+\_\+signal\+\_\+manager\+\_\+handler\+\_\+thread(), skn\+\_\+signal\+\_\+manager\+\_\+startup(), and skn\+\_\+udp\+\_\+service\+\_\+request().
+
+\hypertarget{cmd_d_c_8c_a8091fbaa709d661a678a82a62fab638b}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+R\+T@{S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+R\+T}}
+\index{S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+R\+T@{S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+R\+T}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+R\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+R\+T~0}\label{cmd_d_c_8c_a8091fbaa709d661a678a82a62fab638b}
+
+
+Definition at line 61 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by main(), and udp\+\_\+initialize\+\_\+message\+\_\+send().
+
+\hypertarget{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F}}
+\index{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F~128}\label{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}
+
+
+Definition at line 57 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by get\+\_\+broadcast\+\_\+ip\+\_\+array(), get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address(), main(), service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast(), skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23008(), skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23017(), skn\+\_\+device\+\_\+manager\+\_\+\+P\+C\+F8574(), skn\+\_\+device\+\_\+manager\+\_\+\+Serial\+Port(), skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array(), skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address(), and skn\+\_\+program\+\_\+name\+\_\+and\+\_\+description\+\_\+set().
+
+\hypertarget{cmd_d_c_8c_a3122b900b1a34ceff868e0d51217e357}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+E\+L@{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+E\+L}}
+\index{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+E\+L@{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+E\+L}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+E\+L}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+E\+L~48}\label{cmd_d_c_8c_a3122b900b1a34ceff868e0d51217e357}
+
+
+Definition at line 55 of file cmd\+D\+C.\+c.
+
+\hypertarget{cmd_d_c_8c_a352051a682a5205841c1bda6e30bb30d}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+F\+F}}
+\index{S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+F\+F}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+F\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+F\+F~256}\label{cmd_d_c_8c_a352051a682a5205841c1bda6e30bb30d}
+
+
+Definition at line 59 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by main(), and service\+\_\+registry\+\_\+provider().
+
+\hypertarget{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F}}
+\index{S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F~256}\label{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}
+
+
+Definition at line 56 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by generate\+\_\+cpu\+\_\+temps\+\_\+info(), generate\+\_\+datetime\+\_\+info(), generate\+\_\+loadavg\+\_\+info(), generate\+\_\+rpi\+\_\+model\+\_\+info(), generate\+\_\+uname\+\_\+info(), get\+\_\+default\+\_\+interface\+\_\+name(), Get\+Constants(), Get\+Module\+Bright(), Get\+Module\+Temp(), Get\+Temp(), main(), service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast(), service\+\_\+registry\+\_\+provider(), skn\+\_\+display\+\_\+manager\+\_\+add\+\_\+line(), skn\+\_\+display\+\_\+manager\+\_\+create(), skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work(), skn\+\_\+display\+\_\+manager\+\_\+message\+\_\+consumer\+\_\+thread(), skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name(), skn\+\_\+scroller\+\_\+wrap\+\_\+blanks(), skn\+\_\+service\+\_\+request\+\_\+create(), and skn\+\_\+udp\+\_\+service\+\_\+request().
+
+\hypertarget{cmd_d_c_8c_a77ca0b062f899750ee20c0170e5bedc4}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+F\+F}}
+\index{S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+F\+F}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+F\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+F\+F~512}\label{cmd_d_c_8c_a77ca0b062f899750ee20c0170e5bedc4}
+
+
+Definition at line 58 of file cmd\+D\+C.\+c.
+
+\hypertarget{cmd_d_c_8c_ab5903aa853c3769389e570c8490feb1e}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+F\+F}}
+\index{S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+F\+F}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+F\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+F\+F~512}\label{cmd_d_c_8c_ab5903aa853c3769389e570c8490feb1e}
+
+
+Definition at line 52 of file cmd\+D\+C.\+c.
+
+\hypertarget{cmd_d_c_8c_ac21e8a77d073e7a5383c92bb485992c8}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+F\+F}}
+\index{S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+F\+F}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+F\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+F\+F~64}\label{cmd_d_c_8c_ac21e8a77d073e7a5383c92bb485992c8}
+
+
+Definition at line 50 of file cmd\+D\+C.\+c.
+
+\hypertarget{cmd_d_c_8c_a3c73a8961a16a0dfbb87b5a7317bacd2}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+F\+F}}
+\index{S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+F\+F}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+F\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+F\+F~256}\label{cmd_d_c_8c_a3c73a8961a16a0dfbb87b5a7317bacd2}
+
+
+Definition at line 53 of file cmd\+D\+C.\+c.
+
+\hypertarget{cmd_d_c_8c_a152ca8fa1a2eac39d1badafb6c6cef8c}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+F\+F}}
+\index{S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+F\+F}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+F\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+F\+F~256}\label{cmd_d_c_8c_a152ca8fa1a2eac39d1badafb6c6cef8c}
+
+
+Definition at line 51 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by udp\+\_\+registry\+\_\+response\+\_\+parser().
+
+\hypertarget{cmd_d_c_8c_ac08ad1b127f1c9743c5592ffb796423f}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+F\+F}}
+\index{S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+F\+F}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+F\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+F\+F~32}\label{cmd_d_c_8c_ac08ad1b127f1c9743c5592ffb796423f}
+
+
+Definition at line 49 of file cmd\+D\+C.\+c.
+
+\hypertarget{cmd_d_c_8c_a76bd5a574aad0fa67de6c9804853f191}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+R\+T@{U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+R\+T}}
+\index{U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+R\+T@{U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+R\+T}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+R\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+R\+T~48028}\label{cmd_d_c_8c_a76bd5a574aad0fa67de6c9804853f191}
+
+
+Definition at line 43 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by skn\+\_\+udp\+\_\+network\+\_\+broadcast\+\_\+all\+\_\+interfaces().
+
+\hypertarget{cmd_d_c_8c_aeed5f98eabe9b11442a6fe0aad5b5be0}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+R\+T@{U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+R\+T}}
+\index{U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+R\+T@{U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+R\+T}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+R\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+R\+T~48026}\label{cmd_d_c_8c_aeed5f98eabe9b11442a6fe0aad5b5be0}
+
+
+Definition at line 45 of file cmd\+D\+C.\+c.
+
+\hypertarget{cmd_d_c_8c_adf765361163d05006ff697149bbaf2ee}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+R\+T@{U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+R\+T}}
+\index{U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+R\+T@{U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+R\+T}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+R\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+R\+T~48029}\label{cmd_d_c_8c_adf765361163d05006ff697149bbaf2ee}
+
+
+Definition at line 42 of file cmd\+D\+C.\+c.
+
+\hypertarget{cmd_d_c_8c_af16df2ad6ba0bf1f5283361eb89a979d}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+R\+T@{U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+R\+T}}
+\index{U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+R\+T@{U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+R\+T}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+R\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+R\+T~48027}\label{cmd_d_c_8c_af16df2ad6ba0bf1f5283361eb89a979d}
+
+
+Definition at line 44 of file cmd\+D\+C.\+c.
+
+
+
+\subsection{Typedef Documentation}
+\hypertarget{cmd_d_c_8c_aad121cd36cd8851b2a3cd81fd0e41388}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!Control\+Data@{Control\+Data}}
+\index{Control\+Data@{Control\+Data}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{Control\+Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+control\+Data}  {\bf Control\+Data}}\label{cmd_d_c_8c_aad121cd36cd8851b2a3cd81fd0e41388}
+\hypertarget{cmd_d_c_8c_a83c26957f648dd04df183020ab03c60d}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!I\+P\+Broadcast\+Array@{I\+P\+Broadcast\+Array}}
+\index{I\+P\+Broadcast\+Array@{I\+P\+Broadcast\+Array}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{I\+P\+Broadcast\+Array}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+ip\+Broadcast\+Array}  {\bf I\+P\+Broadcast\+Array}}\label{cmd_d_c_8c_a83c26957f648dd04df183020ab03c60d}
+\hypertarget{cmd_d_c_8c_aa6bae802f1b23385cd660e89a1e4fc75}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!P\+Control\+Data@{P\+Control\+Data}}
+\index{P\+Control\+Data@{P\+Control\+Data}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{P\+Control\+Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+control\+Data} $\ast$ {\bf P\+Control\+Data}}\label{cmd_d_c_8c_aa6bae802f1b23385cd660e89a1e4fc75}
+\hypertarget{cmd_d_c_8c_a916d712cacebc2faeda930352280c361}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!P\+I\+P\+Broadcast\+Array@{P\+I\+P\+Broadcast\+Array}}
+\index{P\+I\+P\+Broadcast\+Array@{P\+I\+P\+Broadcast\+Array}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{P\+I\+P\+Broadcast\+Array}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+ip\+Broadcast\+Array} $\ast$ {\bf P\+I\+P\+Broadcast\+Array}}\label{cmd_d_c_8c_a916d712cacebc2faeda930352280c361}
+\hypertarget{cmd_d_c_8c_a0b249e07431f112b20e1708c3162d8a0}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!P\+P\+Reg\+Data@{P\+P\+Reg\+Data}}
+\index{P\+P\+Reg\+Data@{P\+P\+Reg\+Data}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{P\+P\+Reg\+Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+registry\+Data} $\ast$$\ast$ {\bf P\+P\+Reg\+Data}}\label{cmd_d_c_8c_a0b249e07431f112b20e1708c3162d8a0}
+\hypertarget{cmd_d_c_8c_a57f677cfc01b955d9d3783e5422f36a8}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!P\+Reg\+Data@{P\+Reg\+Data}}
+\index{P\+Reg\+Data@{P\+Reg\+Data}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{P\+Reg\+Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+registry\+Data} $\ast$ {\bf P\+Reg\+Data}}\label{cmd_d_c_8c_a57f677cfc01b955d9d3783e5422f36a8}
+\hypertarget{cmd_d_c_8c_acdc6976ac4ccc0f13bc99bb5b9361a6e}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!P\+U\+Signal\+Data@{P\+U\+Signal\+Data}}
+\index{P\+U\+Signal\+Data@{P\+U\+Signal\+Data}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{P\+U\+Signal\+Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+signal\+Data} $\ast$ {\bf P\+U\+Signal\+Data}}\label{cmd_d_c_8c_acdc6976ac4ccc0f13bc99bb5b9361a6e}
+\hypertarget{cmd_d_c_8c_aac252e0f10021267858720b8e772c0fc}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!Reg\+Data@{Reg\+Data}}
+\index{Reg\+Data@{Reg\+Data}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{Reg\+Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+registry\+Data}  {\bf Reg\+Data}}\label{cmd_d_c_8c_aac252e0f10021267858720b8e772c0fc}
+\hypertarget{cmd_d_c_8c_a4d86cbb761613143e4ee60218efdfbaa}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!U\+Signal\+Data@{U\+Signal\+Data}}
+\index{U\+Signal\+Data@{U\+Signal\+Data}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{U\+Signal\+Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+signal\+Data}  {\bf U\+Signal\+Data}}\label{cmd_d_c_8c_a4d86cbb761613143e4ee60218efdfbaa}
+
+
+\subsection{Function Documentation}
+\hypertarget{cmd_d_c_8c_a385b710fd30ba190b3b96e814424ff80}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!cb\+\_\+udp\+\_\+broadcast\+\_\+response\+\_\+handler@{cb\+\_\+udp\+\_\+broadcast\+\_\+response\+\_\+handler}}
+\index{cb\+\_\+udp\+\_\+broadcast\+\_\+response\+\_\+handler@{cb\+\_\+udp\+\_\+broadcast\+\_\+response\+\_\+handler}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{cb\+\_\+udp\+\_\+broadcast\+\_\+response\+\_\+handler(\+G\+Socket $\ast$g\+Sock, G\+I\+O\+Condition condition, P\+Control\+Data pctrl)}]{\setlength{\rightskip}{0pt plus 5cm}static gboolean cb\+\_\+udp\+\_\+broadcast\+\_\+response\+\_\+handler (
+\begin{DoxyParamCaption}
+\item[{G\+Socket $\ast$}]{g\+Sock, }
+\item[{G\+I\+O\+Condition}]{condition, }
+\item[{{\bf P\+Control\+Data}}]{pctrl}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{cmd_d_c_8c_a385b710fd30ba190b3b96e814424ff80}
+
+
+Definition at line 553 of file cmd\+D\+C.\+c.
+
+
+
+References \+\_\+control\+Data\+::ch\+\_\+display\+\_\+service\+\_\+name, \+\_\+registry\+Data\+::ch\+\_\+from, \+\_\+registry\+Data\+::ch\+\_\+ip, \+\_\+registry\+Data\+::ch\+\_\+name, \+\_\+registry\+Data\+::ch\+\_\+port, \+\_\+registry\+Data\+::ch\+\_\+timestamp, \+\_\+control\+Data\+::gl\+Registry, \+\_\+control\+Data\+::loop, \+\_\+registry\+Data\+::pch\+\_\+message, \+\_\+control\+Data\+::resolver, skn\+\_\+get\+\_\+timestamp(), skn\+\_\+gio\+\_\+condition\+\_\+to\+\_\+string(), and udp\+\_\+registry\+\_\+response\+\_\+parser().
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+553                                                                                                            
+         \{
+554     GError *error = NULL;
+555     GSocketAddress *gsRmtAddr = NULL;
+556     GInetAddress *gsAddr = NULL;
+557     \hyperlink{struct__registry_data}{PRegData} message = NULL;
+558     \hyperlink{struct__registry_data}{PRegData} msg = NULL;
+559     \hyperlink{struct__registry_data}{PRegData} *msgs;
+560     gchar * rmtHost = NULL;
+561     gssize gss\_receive = 0;
+562     gchar *stamp = \hyperlink{cmd_d_c_8c_a8288aea959581188e5bd29430935a6ed}{skn\_get\_timestamp}();
+563     gint h\_index = 0;
+564     gchar *converted = NULL;
+565 
+566 
+567     \textcolor{keywordflow}{if} ((condition & G\_IO\_HUP) || (condition & G\_IO\_ERR) || (condition & G\_IO\_NVAL)) \{  \textcolor{comment}{/* SHUTDOWN THE
+       MAIN LOOP */}
+568         g\_message(\textcolor{stringliteral}{"DisplayService::cb\_udp\_broadcast\_response\_handler(error) Operational Error / Shutdown
+       Signaled => %s\(\backslash\)n"}, \hyperlink{cmd_d_c_8c_af4d9de57a3cb296036c837a644009ef5}{skn\_gio\_condition\_to\_string}(condition));
+569         g\_main\_loop\_quit(pctrl->\hyperlink{struct__control_data_ae1b70bafbd5eb568c6ca339664959216}{loop});
+570         \textcolor{keywordflow}{return} ( G\_SOURCE\_REMOVE );
+571     \}
+572     \textcolor{keywordflow}{if} (condition != G\_IO\_IN) \{
+573         g\_message(\textcolor{stringliteral}{"DisplayService::cb\_udp\_broadcast\_response\_handler(error) NOT G\_IO\_IN => %s\(\backslash\)n"}, 
+      \hyperlink{cmd_d_c_8c_af4d9de57a3cb296036c837a644009ef5}{skn\_gio\_condition\_to\_string}(condition));
+574         \textcolor{keywordflow}{return} (G\_SOURCE\_CONTINUE);
+575     \}
+576 
+577     \textcolor{comment}{/*}
+578 \textcolor{comment}{     * Allocate a new queue message and read incoming request directly into it */}
+579     message = g\_new0(\hyperlink{struct__registry_data}{RegData},1);
+580 
+581     \textcolor{comment}{/*}
+582 \textcolor{comment}{     * If socket times out before reading data any operation will error with 'G\_IO\_ERROR\_TIMED\_OUT'.}
+583 \textcolor{comment}{     * Read Request Message and get Requestor IP Address or Name}
+584 \textcolor{comment}{    */}
+585     gss\_receive = g\_socket\_receive\_from (gSock, &gsRmtAddr, message->\hyperlink{struct__registry_data_aad089cfecaeccff2c9c6bb7a97d46706}{pch\_message}, \textcolor{keyword}{sizeof}(message
+      ->\hyperlink{struct__registry_data_aad089cfecaeccff2c9c6bb7a97d46706}{pch\_message}), NULL, &error);
+586     \textcolor{keywordflow}{if} (error != NULL) \{ \textcolor{comment}{// gss\_receive = Number of bytes read, or 0 if the connection was closed by the
+       peer, or -1 on error}
+587         g\_error(\textcolor{stringliteral}{"g\_socket\_receive\_from() => %s"}, error->message);
+588         g\_clear\_error(&error);
+589         g\_free(message);
+590         g\_free(stamp);
+591         \textcolor{keywordflow}{return} (G\_SOURCE\_CONTINUE);
+592     \}
+593     \textcolor{keywordflow}{if} (gss\_receive > 0 ) \{
+594         \textcolor{keywordflow}{if} (G\_IS\_INET\_SOCKET\_ADDRESS(gsRmtAddr) ) \{
+595             gsAddr = g\_inet\_socket\_address\_get\_address( G\_INET\_SOCKET\_ADDRESS(gsRmtAddr) );
+596             \textcolor{keywordflow}{if} ( G\_IS\_INET\_ADDRESS(gsAddr) ) \{
+597                 g\_object\_ref(gsAddr);
+598                 rmtHost = g\_resolver\_lookup\_by\_address (pctrl->\hyperlink{struct__control_data_afe33a7083e1ecc9ba50a69644ed4a753}{resolver}, gsAddr, NULL, NULL);
+599                 \textcolor{keywordflow}{if} (NULL == rmtHost) \{
+600                     rmtHost = g\_inet\_address\_to\_string ( gsAddr);
+601                 \}
+602             \}
+603         \}
+604 
+605         \textcolor{comment}{/*}
+606 \textcolor{comment}{         * Convert to UTF8}
+607 \textcolor{comment}{         */}
+608         converted = g\_convert (message->\hyperlink{struct__registry_data_aad089cfecaeccff2c9c6bb7a97d46706}{pch\_message}, gss\_receive, \textcolor{stringliteral}{"UTF-8"}, \textcolor{stringliteral}{"ISO-8859-1"}, NULL, 
+      NULL, NULL);
+609         \textcolor{keywordflow}{if} (NULL != converted) \{
+610             g\_utf8\_strncpy(message->\hyperlink{struct__registry_data_aad089cfecaeccff2c9c6bb7a97d46706}{pch\_message}, converted, \textcolor{keyword}{sizeof}(message->
+      \hyperlink{struct__registry_data_aad089cfecaeccff2c9c6bb7a97d46706}{pch\_message}));
+611             g\_free(converted);
+612         \}
+613 
+614         g\_utf8\_strncpy(message->\hyperlink{struct__registry_data_a362a4edf89daafe79565053dd70892c4}{ch\_timestamp}, stamp, \textcolor{keyword}{sizeof}(message->
+      \hyperlink{struct__registry_data_a362a4edf89daafe79565053dd70892c4}{ch\_timestamp}));
+615         g\_utf8\_strncpy(message->\hyperlink{struct__registry_data_a5fac46820690525a9d8b3f0185bca587}{ch\_from},      rmtHost, \textcolor{keyword}{sizeof}(message->
+      \hyperlink{struct__registry_data_a5fac46820690525a9d8b3f0185bca587}{ch\_from}));
+616         \textcolor{keywordflow}{if} ( (msgs = \hyperlink{cmd_d_c_8c_a568a9919cfd345f6c1a41a2ec7c4b1ca}{udp\_registry\_response\_parser}(message, message->
+      \hyperlink{struct__registry_data_aad089cfecaeccff2c9c6bb7a97d46706}{pch\_message})) != NULL ) \{
+617             \textcolor{comment}{/*}
+618 \textcolor{comment}{             * Send it to be processed by a message handler */}
+619             g\_free(message);
+620             h\_index = 0;
+621             msg = (\hyperlink{cmd_d_c_8c_a57f677cfc01b955d9d3783e5422f36a8}{PRegData})msgs[h\_index];
+622             \textcolor{keywordflow}{while} ( msg != NULL ) \{
+623                 g\_print(\textcolor{stringliteral}{"[%s]REGISTRY From=%s, Node=%s, IP=%s, Port=%s\(\backslash\)n"}, msg->
+      \hyperlink{struct__registry_data_a362a4edf89daafe79565053dd70892c4}{ch\_timestamp}, msg->\hyperlink{struct__registry_data_a5fac46820690525a9d8b3f0185bca587}{ch\_from}, msg->\hyperlink{struct__registry_data_a4764e2a72c3ba9177b6c4803cfa03f72}{ch\_name}, msg->\hyperlink{struct__registry_data_a814e064e77a6aac5866c88cb51acd971}{ch\_ip}, msg->
+      \hyperlink{struct__registry_data_a74f03616af9ec9770266cb7988fe1a71}{ch\_port});
+624                 \textcolor{keywordflow}{if} (g\_strcmp0(pctrl->\hyperlink{struct__control_data_a94aa04264eafaa65a7a869a540bbdf93}{ch\_display\_service\_name}, msg->
+      \hyperlink{struct__registry_data_a4764e2a72c3ba9177b6c4803cfa03f72}{ch\_name}) == 0) \{
+625                     pctrl->\hyperlink{struct__control_data_a34b1729bc0b37c9dce0327ea4cd8a812}{glRegistry} = g\_list\_prepend(pctrl->
+      \hyperlink{struct__control_data_a34b1729bc0b37c9dce0327ea4cd8a812}{glRegistry}, msg);
+626                 \} \textcolor{keywordflow}{else} \{
+627                     g\_free(msg);
+628                 \}
+629                 msg = (\hyperlink{cmd_d_c_8c_a57f677cfc01b955d9d3783e5422f36a8}{PRegData})msgs[++h\_index];
+630             \}
+631             g\_free(msgs);
+632         \} \textcolor{keywordflow}{else} \{
+633             g\_free(message);
+634         \}
+635     \}
+636     g\_free(stamp);
+637     g\_free(rmtHost);
+638 
+639     \textcolor{keywordflow}{if} ( G\_IS\_INET\_ADDRESS(gsAddr) )
+640         g\_object\_unref(gsAddr);
+641 
+642     \textcolor{keywordflow}{if} ( G\_IS\_INET\_SOCKET\_ADDRESS(gsRmtAddr) )
+643         g\_object\_unref(gsRmtAddr);
+644 
+645     \textcolor{keywordflow}{return} (G\_SOURCE\_CONTINUE);
+646 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cmd_d_c_8c_a385b710fd30ba190b3b96e814424ff80_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=299pt]{cmd_d_c_8c_a385b710fd30ba190b3b96e814424ff80_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{cmd_d_c_8c_a00c5b52bdcb7caec07d08b05b8c1dced}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler@{cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler}}
+\index{cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler@{cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler(\+P\+Control\+Data pctrl)}]{\setlength{\rightskip}{0pt plus 5cm}static gboolean cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+Control\+Data}}]{pctrl}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{cmd_d_c_8c_a00c5b52bdcb7caec07d08b05b8c1dced}
+
+
+Definition at line 526 of file cmd\+D\+C.\+c.
+
+
+
+References \+\_\+control\+Data\+::ch\+\_\+display\+\_\+service\+\_\+name, \+\_\+control\+Data\+::ch\+\_\+message, \+\_\+control\+Data\+::g\+Error\+Count, \+\_\+control\+Data\+::gs\+D\+S\+Addr, \+\_\+control\+Data\+::g\+Sock, and \+\_\+control\+Data\+::loop.
+
+
+
+Referenced by udp\+\_\+initialize\+\_\+message\+\_\+send().
+
+
+\begin{DoxyCode}
+526                                                                 \{
+527     GError *error = NULL;
+528 
+529     \textcolor{keywordflow}{if} ( NULL == pctrl) \{  \textcolor{comment}{/* SHUTDOWN THE MAIN LOOP */}
+530         g\_message(\textcolor{stringliteral}{"DisplayClient::cb\_udp\_comm\_request\_handler(error) Invalid Pointer"});
+531         \textcolor{keywordflow}{return} ( G\_SOURCE\_REMOVE );
+532     \}
+533 
+534     g\_socket\_send\_to (pctrl->\hyperlink{struct__control_data_a49b267275036fc3ac9b7d9e53b0625e1}{gSock}, pctrl->\hyperlink{struct__control_data_a11c618822b208569a5d28206407326d5}{gsDSAddr}, pctrl->
+      \hyperlink{struct__control_data_a16162d5fe851704d7ea50ff16525b94c}{ch\_message}, strlen(pctrl->\hyperlink{struct__control_data_a16162d5fe851704d7ea50ff16525b94c}{ch\_message}), NULL, &error);
+535     \textcolor{keywordflow}{if} (error != NULL) \{  \textcolor{comment}{// gss\_send = Number of bytes written (which may be less than size ), or -1 on
+       error}
+536         g\_error(\textcolor{stringliteral}{"g\_socket\_send\_to() => %s"}, error->message);
+537         g\_clear\_error(&error);
+538         pctrl->\hyperlink{struct__control_data_a0dcc9f369186f6cf7c99b2178be66e58}{gErrorCount} += 1;
+539         \textcolor{keywordflow}{if}(pctrl->\hyperlink{struct__control_data_a0dcc9f369186f6cf7c99b2178be66e58}{gErrorCount} > 10) \{
+540             g\_message(\textcolor{stringliteral}{"DisplayClient::cb\_udp\_comm\_request\_handler(error) Display Service @ %s, Not
+       Responding!"}, pctrl->\hyperlink{struct__control_data_a94aa04264eafaa65a7a869a540bbdf93}{ch\_display\_service\_name});
+541             g\_main\_loop\_quit(pctrl->\hyperlink{struct__control_data_ae1b70bafbd5eb568c6ca339664959216}{loop});
+542             \textcolor{keywordflow}{return} ( G\_SOURCE\_REMOVE );
+543         \} \textcolor{keywordflow}{else} \{
+544             \textcolor{keywordflow}{return} (G\_SOURCE\_CONTINUE);
+545         \}
+546     \}
+547 
+548     g\_print(\textcolor{stringliteral}{"%s\(\backslash\)n"}, pctrl->\hyperlink{struct__control_data_a16162d5fe851704d7ea50ff16525b94c}{ch\_message}); \textcolor{comment}{// Todo not needed}
+549 
+550     \textcolor{keywordflow}{return} (G\_SOURCE\_CONTINUE);
+551 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cmd_d_c_8c_a00c5b52bdcb7caec07d08b05b8c1dced_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{cmd_d_c_8c_aa8a19e68e54683fa324bcee1ecfd3942}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler@{cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler}}
+\index{cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler@{cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler(\+G\+Socket $\ast$g\+Sock, G\+I\+O\+Condition condition, P\+Control\+Data pctrl)}]{\setlength{\rightskip}{0pt plus 5cm}static gboolean cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler (
+\begin{DoxyParamCaption}
+\item[{G\+Socket $\ast$}]{g\+Sock, }
+\item[{G\+I\+O\+Condition}]{condition, }
+\item[{{\bf P\+Control\+Data}}]{pctrl}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{cmd_d_c_8c_aa8a19e68e54683fa324bcee1ecfd3942}
+
+
+Definition at line 468 of file cmd\+D\+C.\+c.
+
+
+
+References \+\_\+control\+Data\+::ch\+\_\+request, \+\_\+control\+Data\+::ch\+\_\+response, \+\_\+control\+Data\+::g\+Error\+Count, \+\_\+control\+Data\+::resolver, and skn\+\_\+get\+\_\+timestamp().
+
+
+
+Referenced by udp\+\_\+initialize\+\_\+message\+\_\+send().
+
+
+\begin{DoxyCode}
+468                                                                                                          \{
+469     GError *error = NULL;
+470     gssize gss\_receive = 0;
+471     gchar *stamp = \hyperlink{cmd_d_c_8c_a8288aea959581188e5bd29430935a6ed}{skn\_get\_timestamp}();
+472     gchar * rmtHost = NULL;
+473     GSocketAddress *gsRmtAddr = NULL;
+474     GInetAddress *gsAddr = NULL;
+475     gchar *converted = NULL;
+476 
+477     \textcolor{keywordflow}{if} ( NULL == pctrl) \{  \textcolor{comment}{/* SHUTDOWN THE MAIN LOOP */}
+478         g\_message(\textcolor{stringliteral}{"DisplayClient::cb\_udp\_comm\_response\_handler(error) Invalid Pointer"});
+479         \textcolor{keywordflow}{return} ( G\_SOURCE\_REMOVE );
+480     \}
+481 
+482     gss\_receive = g\_socket\_receive\_from(gSock, &gsRmtAddr, pctrl->\hyperlink{struct__control_data_a948c37bbe26f5bdd4841b65384155edf}{ch\_request}, \textcolor{keyword}{sizeof}(pctrl->
+      \hyperlink{struct__control_data_a948c37bbe26f5bdd4841b65384155edf}{ch\_request}), NULL, &error);
+483     \textcolor{keywordflow}{if} (error != NULL) \{ \textcolor{comment}{// gss\_receive = Number of bytes read, or 0 if the connection was closed by the
+       peer, or -1 on error}
+484         g\_error(\textcolor{stringliteral}{"g\_socket\_receive() => %s"}, error->message);
+485         g\_clear\_error(&error);
+486     \}
+487     \textcolor{keywordflow}{if} (gss\_receive > 0 ) \{
+488         pctrl->\hyperlink{struct__control_data_a948c37bbe26f5bdd4841b65384155edf}{ch\_request}[gss\_receive] = 0;
+489         \textcolor{keywordflow}{if} (G\_IS\_INET\_SOCKET\_ADDRESS(gsRmtAddr) ) \{
+490             gsAddr = g\_inet\_socket\_address\_get\_address( G\_INET\_SOCKET\_ADDRESS(gsRmtAddr) );
+491             \textcolor{keywordflow}{if} ( G\_IS\_INET\_ADDRESS(gsAddr) ) \{
+492                 g\_object\_ref(gsAddr);
+493                 rmtHost = g\_resolver\_lookup\_by\_address (pctrl->\hyperlink{struct__control_data_afe33a7083e1ecc9ba50a69644ed4a753}{resolver}, gsAddr, NULL, NULL);
+494                 \textcolor{keywordflow}{if} (NULL == rmtHost) \{
+495                     rmtHost = g\_inet\_address\_to\_string ( gsAddr);
+496                 \}
+497             \}
+498         \}
+499 
+500         \textcolor{comment}{/*}
+501 \textcolor{comment}{         * Convert to UTF8 */}
+502         converted = g\_convert (pctrl->\hyperlink{struct__control_data_a948c37bbe26f5bdd4841b65384155edf}{ch\_request}, gss\_receive, \textcolor{stringliteral}{"UTF-8"}, \textcolor{stringliteral}{"ISO-8859-1"}, NULL, NULL,
+       NULL);
+503         \textcolor{keywordflow}{if} (NULL != converted) \{
+504             g\_utf8\_strncpy(pctrl->\hyperlink{struct__control_data_a948c37bbe26f5bdd4841b65384155edf}{ch\_request}, converted, \textcolor{keyword}{sizeof}(pctrl->
+      \hyperlink{struct__control_data_a948c37bbe26f5bdd4841b65384155edf}{ch\_request}));
+505             g\_free(converted);
+506         \}
+507 
+508         g\_snprintf(pctrl->\hyperlink{struct__control_data_a9423e8582b05e2dde58b7302bee5559b}{ch\_response}, \textcolor{keyword}{sizeof}(pctrl->\hyperlink{struct__control_data_a9423e8582b05e2dde58b7302bee5559b}{ch\_response}), \textcolor{stringliteral}{"[%s]RESPONSE
+       From=%s, Msg=%s"}, stamp, rmtHost, pctrl->\hyperlink{struct__control_data_a948c37bbe26f5bdd4841b65384155edf}{ch\_request});
+509         pctrl->\hyperlink{struct__control_data_a0dcc9f369186f6cf7c99b2178be66e58}{gErrorCount} = 0;  \textcolor{comment}{// reset send errors}
+510     \} \textcolor{keywordflow}{else} \{
+511         g\_snprintf(pctrl->\hyperlink{struct__control_data_a9423e8582b05e2dde58b7302bee5559b}{ch\_response}, \textcolor{keyword}{sizeof}(pctrl->\hyperlink{struct__control_data_a9423e8582b05e2dde58b7302bee5559b}{ch\_response}), \textcolor{stringliteral}{"%s"}, \textcolor{stringliteral}{"Error:
+       Input not Usable!"});
+512     \}
+513 
+514     g\_print(\textcolor{stringliteral}{"%s\(\backslash\)n"}, pctrl->\hyperlink{struct__control_data_a9423e8582b05e2dde58b7302bee5559b}{ch\_response});
+515     g\_free(stamp);
+516 
+517     \textcolor{keywordflow}{if} ( G\_IS\_INET\_ADDRESS(gsAddr) )
+518         g\_object\_unref(gsAddr);
+519 
+520     \textcolor{keywordflow}{if} ( G\_IS\_INET\_SOCKET\_ADDRESS(gsRmtAddr) )
+521         g\_object\_unref(gsRmtAddr);
+522 
+523     \textcolor{keywordflow}{return} (G\_SOURCE\_CONTINUE);
+524 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=347pt]{cmd_d_c_8c_aa8a19e68e54683fa324bcee1ecfd3942_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cmd_d_c_8c_aa8a19e68e54683fa324bcee1ecfd3942_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{cmd_d_c_8c_a160bb2056d3842ef84fd7211ed6ec385}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler@{cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler}}
+\index{cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler@{cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler(\+P\+Control\+Data pctrl)}]{\setlength{\rightskip}{0pt plus 5cm}static gboolean cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+Control\+Data}}]{pctrl}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{cmd_d_c_8c_a160bb2056d3842ef84fd7211ed6ec385}
+
+
+Definition at line 689 of file cmd\+D\+C.\+c.
+
+
+
+References \+\_\+control\+Data\+::ch\+\_\+display\+\_\+service\+\_\+name, \+\_\+registry\+Data\+::ch\+\_\+ip, \+\_\+registry\+Data\+::ch\+\_\+name, \+\_\+registry\+Data\+::ch\+\_\+port, \+\_\+control\+Data\+::g\+Broadcast\+Socket, \+\_\+control\+Data\+::gl\+Registry, \+\_\+control\+Data\+::g\+Msg\+Delay, \+\_\+control\+Data\+::g\+Ready, \+\_\+control\+Data\+::g\+Registry\+Queries, \+\_\+control\+Data\+::gs\+D\+S\+Addr, \+\_\+control\+Data\+::pa\+B, skn\+\_\+udp\+\_\+network\+\_\+broadcast\+\_\+all\+\_\+interfaces(), udp\+\_\+initialize\+\_\+message\+\_\+send(), and udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name().
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+689                                                                    \{
+690     GList *registry = NULL;
+691     \hyperlink{struct__registry_data}{PRegData} preg = NULL;
+692     GInetAddress *anyAddr = NULL;
+693 
+694     g\_return\_val\_if\_fail((NULL != pctrl), G\_SOURCE\_REMOVE);
+695 
+696     \textcolor{comment}{/*}
+697 \textcolor{comment}{     * Find in Registry the selected service name */}
+698     \textcolor{keywordflow}{if} (g\_list\_length(pctrl->\hyperlink{struct__control_data_a34b1729bc0b37c9dce0327ea4cd8a812}{glRegistry}) < 1) \{
+699         pctrl->\hyperlink{struct__control_data_ab4837eb7cc16bf85fe0bd839a428eaa5}{gRegistryQueries}++;
+700 
+701         \textcolor{keywordflow}{if} ((pctrl->\hyperlink{struct__control_data_ab4837eb7cc16bf85fe0bd839a428eaa5}{gRegistryQueries} % 15) == 0) \{  \textcolor{comment}{// every 30 seconds redo query}
+702             g\_print(\textcolor{stringliteral}{"[REGISTRY] Looking for [%s] in Rpi Registry every 30 seconds.  StandBy...\(\backslash\)n"}, pctrl->
+      \hyperlink{struct__control_data_a94aa04264eafaa65a7a869a540bbdf93}{ch\_display\_service\_name});
+703             \hyperlink{cmd_d_c_8c_af376243f65a3fd761050836d1293b0d9}{skn\_udp\_network\_broadcast\_all\_interfaces}(pctrl->
+      \hyperlink{struct__control_data_a05fab30fce92ebe541d9dd98220c60ef}{gBroadcastSocket}, pctrl->\hyperlink{struct__control_data_a93f6e099a56c0d476607b4bd5a9dfa58}{paB});
+704         \}
+705 
+706         \textcolor{keywordflow}{return} (G\_SOURCE\_CONTINUE);
+707     \}
+708 
+709     \textcolor{keywordflow}{if} ( NULL == (registry = g\_list\_find\_custom (pctrl->\hyperlink{struct__control_data_a34b1729bc0b37c9dce0327ea4cd8a812}{glRegistry}, pctrl->
+      \hyperlink{struct__control_data_a94aa04264eafaa65a7a869a540bbdf93}{ch\_display\_service\_name}, (GCompareFunc)
+      \hyperlink{cmd_d_c_8c_ae59da66ef51690f71da087514886fd12}{udp\_registry\_find\_by\_name})) ) \{
+710         \textcolor{keywordflow}{return} (G\_SOURCE\_CONTINUE);
+711     \}
+712 
+713     preg = registry->data; \textcolor{comment}{// now extract ip and port}
+714     \textcolor{comment}{/* Display Service Address */}
+715 
+716     anyAddr = g\_inet\_address\_new\_from\_string(preg->\hyperlink{struct__registry_data_a814e064e77a6aac5866c88cb51acd971}{ch\_ip}); \textcolor{comment}{// g\_object\_unref(dIP) when done}
+717     \textcolor{keywordflow}{if} (NULL == anyAddr) \{
+718         g\_error(\textcolor{stringliteral}{"g\_inet\_address\_new\_from\_string() Failed => %s, %s"}, preg->
+      \hyperlink{struct__registry_data_a4764e2a72c3ba9177b6c4803cfa03f72}{ch\_name}, preg->\hyperlink{struct__registry_data_a814e064e77a6aac5866c88cb51acd971}{ch\_ip});
+719         \textcolor{keywordflow}{return}(G\_SOURCE\_CONTINUE);
+720     \}
+721     pctrl->\hyperlink{struct__control_data_a11c618822b208569a5d28206407326d5}{gsDSAddr} = g\_inet\_socket\_address\_new(anyAddr,  g\_ascii\_strtoll(preg->
+      \hyperlink{struct__registry_data_a74f03616af9ec9770266cb7988fe1a71}{ch\_port}, NULL, 10));
+722         g\_object\_unref(anyAddr);
+723 
+724     pctrl->\hyperlink{struct__control_data_a04238362a20b6616913d869fc464e4b2}{gReady} = \hyperlink{cmd_d_c_8c_a793c6b3e5c7a5abc993d8cfbe963629d}{udp\_initialize\_message\_send}(pctrl);
+725 
+726     \textcolor{keywordflow}{if} (pctrl->\hyperlink{struct__control_data_a04238362a20b6616913d869fc464e4b2}{gReady}) \{
+727         g\_print(\textcolor{stringliteral}{"[REGISTRY] FOUND %s on ip %s:%s, sending your message %d seconds.\(\backslash\)n\(\backslash\)n"}, preg->
+      \hyperlink{struct__registry_data_a4764e2a72c3ba9177b6c4803cfa03f72}{ch\_name}, preg->\hyperlink{struct__registry_data_a814e064e77a6aac5866c88cb51acd971}{ch\_ip}, preg->\hyperlink{struct__registry_data_a74f03616af9ec9770266cb7988fe1a71}{ch\_port}, pctrl->\hyperlink{struct__control_data_a277ea878a8491fa38269b6c762a05389}{gMsgDelay});
+728         \textcolor{keywordflow}{return} (G\_SOURCE\_REMOVE);
+729     \} \textcolor{keywordflow}{else} \{
+730         \textcolor{keywordflow}{return} (G\_SOURCE\_CONTINUE);
+731     \}
+732 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cmd_d_c_8c_a160bb2056d3842ef84fd7211ed6ec385_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=273pt]{cmd_d_c_8c_a160bb2056d3842ef84fd7211ed6ec385_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{cmd_d_c_8c_a76ad4de5945cff6e20dbeff46bda868b}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!cb\+\_\+unix\+\_\+signal\+\_\+handler@{cb\+\_\+unix\+\_\+signal\+\_\+handler}}
+\index{cb\+\_\+unix\+\_\+signal\+\_\+handler@{cb\+\_\+unix\+\_\+signal\+\_\+handler}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{cb\+\_\+unix\+\_\+signal\+\_\+handler(\+P\+U\+Signal\+Data psig)}]{\setlength{\rightskip}{0pt plus 5cm}static gboolean cb\+\_\+unix\+\_\+signal\+\_\+handler (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+U\+Signal\+Data}}]{psig}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{cmd_d_c_8c_a76ad4de5945cff6e20dbeff46bda868b}
+
+
+Definition at line 734 of file cmd\+D\+C.\+c.
+
+
+
+References \+\_\+signal\+Data\+::loop, and \+\_\+signal\+Data\+::signal\+Name.
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+734                                                           \{
+735     g\_message(\textcolor{stringliteral}{"DisplayClient::cb\_unix\_signal\_handler() %s Unix Signal Received => Shutdown Initiated!\(\backslash\)n"}, 
+      psig->\hyperlink{struct__signal_data_a6b2ce59a22a4ccc54e1d7a54e641d08f}{signalName});
+736     g\_main\_loop\_quit(psig->\hyperlink{struct__signal_data_ae85864980ae30c1878e7149c26442544}{loop});
+737     \textcolor{keywordflow}{return} ( G\_SOURCE\_REMOVE );
+738 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=275pt]{cmd_d_c_8c_a76ad4de5945cff6e20dbeff46bda868b_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{cmd_d_c_8c_a3c04138a5bfe5d72780bb7e82a18e627}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!main@{main}}
+\index{main@{main}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{main(int argc, char $\ast$$\ast$argv)}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}\label{cmd_d_c_8c_a3c04138a5bfe5d72780bb7e82a18e627}
+
+
+Definition at line 740 of file cmd\+D\+C.\+c.
+
+
+
+References cb\+\_\+udp\+\_\+broadcast\+\_\+response\+\_\+handler(), cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler(), cb\+\_\+unix\+\_\+signal\+\_\+handler(), \+\_\+control\+Data\+::ch\+\_\+display\+\_\+service\+\_\+name, \+\_\+control\+Data\+::ch\+\_\+intf\+Name, \+\_\+control\+Data\+::ch\+\_\+message, \+\_\+control\+Data\+::ch\+\_\+this\+\_\+ip, F\+A\+L\+S\+E, G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+N\+E, \+\_\+control\+Data\+::g\+Broadcast\+Socket, \+\_\+control\+Data\+::g\+Comm\+Source, \+\_\+control\+Data\+::g\+Error\+Count, \+\_\+control\+Data\+::gl\+Registry, \+\_\+control\+Data\+::g\+Msg\+Delay, \+\_\+control\+Data\+::g\+Ready, \+\_\+control\+Data\+::g\+Reg\+Count, \+\_\+control\+Data\+::g\+Registry\+Queries, \+\_\+control\+Data\+::gs\+Addr, \+\_\+control\+Data\+::gs\+D\+S\+Addr, \+\_\+control\+Data\+::g\+Sock, \+\_\+signal\+Data\+::loop, \+\_\+control\+Data\+::loop, M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L, \+\_\+control\+Data\+::pa\+B, \+\_\+control\+Data\+::resolver, \+\_\+control\+Data\+::sig\+Hup, \+\_\+control\+Data\+::sig\+Int, \+\_\+signal\+Data\+::signal\+Name, \+\_\+control\+Data\+::sig\+Term, skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address(), S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+R\+T, skn\+\_\+udp\+\_\+network\+\_\+broadcast\+\_\+all\+\_\+interfaces(), and T\+R\+U\+E.
+
+
+\begin{DoxyCode}
+740                                 \{
+741 
+742     \hyperlink{struct__control_data}{ControlData} cData;
+743     GSource * gBroadSource = NULL;
+744     GError *error = NULL;
+745     GSocket *gSock;
+746     GSocketAddress *gsAddr = NULL;
+747     GInetAddress *anyAddr = NULL;
+748 
+749     gchar * pch\_display\_service\_name = NULL;
+750     gchar * pch\_message = NULL;
+751 
+752     cData.\hyperlink{struct__control_data_a277ea878a8491fa38269b6c762a05389}{gMsgDelay} = \hyperlink{cmd_d_c_8c_ac66d92e429586a7c5d0424fe6ad105dd}{MSG\_DELAY\_INTERVAL};
+753     cData.\hyperlink{struct__control_data_a0dcc9f369186f6cf7c99b2178be66e58}{gErrorCount} = 0;
+754     cData.\hyperlink{struct__control_data_a81bfc0d50c23ebe6708e065659d11eb8}{gRegCount} = 0;
+755     cData.\hyperlink{struct__control_data_ab4837eb7cc16bf85fe0bd839a428eaa5}{gRegistryQueries} = 0;
+756     cData.\hyperlink{struct__control_data_a04238362a20b6616913d869fc464e4b2}{gReady} = \hyperlink{skn__common__headers_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE};
+757 
+758     cData.\hyperlink{struct__control_data_a34b1729bc0b37c9dce0327ea4cd8a812}{glRegistry} = NULL;
+759     cData.\hyperlink{struct__control_data_af45dc1f0c4806eaac0a57da17db50fdb}{sigTerm}.\hyperlink{struct__signal_data_a6b2ce59a22a4ccc54e1d7a54e641d08f}{signalName} = \textcolor{stringliteral}{"SIGTERM"};
+760     cData.\hyperlink{struct__control_data_ae8ad5b5af46f4ab4bcd6ffb41e83385b}{sigInt}.\hyperlink{struct__signal_data_a6b2ce59a22a4ccc54e1d7a54e641d08f}{signalName} = \textcolor{stringliteral}{"SIGINT"};
+761     cData.\hyperlink{struct__control_data_a551d0ecd4ceb9fc4ce8eebe5a984dc4c}{sigHup}.\hyperlink{struct__signal_data_a6b2ce59a22a4ccc54e1d7a54e641d08f}{signalName} = \textcolor{stringliteral}{"SIGHUP"};
+762     cData.\hyperlink{struct__control_data_a0dcc9f369186f6cf7c99b2178be66e58}{gErrorCount} = 0;
+763     cData.\hyperlink{struct__control_data_afe33a7083e1ecc9ba50a69644ed4a753}{resolver} = g\_resolver\_get\_default();
+764 
+765     GOptionContext *gOptions = NULL;
+766     GOptionEntry pgmOptions[] = \{
+767        \{\textcolor{stringliteral}{"display\_service\_name"}, \textcolor{charliteral}{'a'}, \hyperlink{cmd_d_c_8c_a8e8475ded7103e72515667b568ed64c7}{G\_OPTION\_FLAG\_NONE}, G\_OPTION\_ARG\_STRING, &
+      pch\_display\_service\_name, \textcolor{stringliteral}{"DisplayService Name"}, \textcolor{stringliteral}{"gtk\_display\_service"}\},
+768        \{\textcolor{stringliteral}{"display\_message"}, \textcolor{charliteral}{'m'}, \hyperlink{cmd_d_c_8c_a8e8475ded7103e72515667b568ed64c7}{G\_OPTION\_FLAG\_NONE}, G\_OPTION\_ARG\_STRING, &pch\_message, \textcolor{stringliteral}{"
+      Message to send to DisplayService"}, \textcolor{stringliteral}{"single-quoted-string"}\},
+769        \{\textcolor{stringliteral}{"message\_interval\_delay"}, \textcolor{charliteral}{'n'}, \hyperlink{cmd_d_c_8c_a8e8475ded7103e72515667b568ed64c7}{G\_OPTION\_FLAG\_NONE}, G\_OPTION\_ARG\_INT, &cData.
+      \hyperlink{struct__control_data_a277ea878a8491fa38269b6c762a05389}{gMsgDelay}, \textcolor{stringliteral}{"Send one message every Interval."}, \textcolor{stringliteral}{"[1 to 300] seconds, default no-repeat"}\},
+770        \{NULL\}
+771     \};
+772 
+773     gOptions = g\_option\_context\_new (\textcolor{stringliteral}{"UDP message display client for IOT."});
+774     g\_option\_context\_add\_main\_entries (gOptions, pgmOptions, NULL);
+775     g\_option\_context\_parse (gOptions, &argc, &argv, &error);
+776     \textcolor{keywordflow}{if} (error != NULL) \{
+777         g\_error(\textcolor{stringliteral}{"g\_option\_context\_parse() => %s"}, error->message);
+778         g\_clear\_error(&error);
+779         exit(EXIT\_FAILURE);
+780     \}
+781     g\_option\_context\_free(gOptions);
+782 
+783     \textcolor{keywordflow}{if} (NULL == pch\_message) \{
+784         g\_utf8\_strncpy(cData.\hyperlink{struct__control_data_a16162d5fe851704d7ea50ff16525b94c}{ch\_message}, \textcolor{stringliteral}{"GTK-+3.0 Rocks with GLIB-2.0 on any platform! (cldc)"}, \textcolor{keyword}{
+      sizeof}(cData.\hyperlink{struct__control_data_a16162d5fe851704d7ea50ff16525b94c}{ch\_message}));
+785     \} \textcolor{keywordflow}{else} \{
+786         g\_utf8\_strncpy(cData.\hyperlink{struct__control_data_a16162d5fe851704d7ea50ff16525b94c}{ch\_message}, pch\_message, \textcolor{keyword}{sizeof}(cData.
+      \hyperlink{struct__control_data_a16162d5fe851704d7ea50ff16525b94c}{ch\_message}));
+787         g\_free(pch\_message);
+788     \}
+789     \textcolor{keywordflow}{if} (NULL == pch\_display\_service\_name) \{
+790         g\_utf8\_strncpy(cData.\hyperlink{struct__control_data_a94aa04264eafaa65a7a869a540bbdf93}{ch\_display\_service\_name}, \textcolor{stringliteral}{"gtk\_display\_service"}, \textcolor{keyword}{sizeof}(
+      cData.\hyperlink{struct__control_data_a94aa04264eafaa65a7a869a540bbdf93}{ch\_display\_service\_name}));
+791     \} \textcolor{keywordflow}{else} \{
+792         g\_utf8\_strncpy(cData.\hyperlink{struct__control_data_a94aa04264eafaa65a7a869a540bbdf93}{ch\_display\_service\_name}, pch\_display\_service\_name, \textcolor{keyword}{
+      sizeof}(cData.\hyperlink{struct__control_data_a94aa04264eafaa65a7a869a540bbdf93}{ch\_display\_service\_name}));
+793         g\_free(pch\_display\_service\_name);
+794     \}
+795     \textcolor{keywordflow}{if} (0 == cData.\hyperlink{struct__control_data_a277ea878a8491fa38269b6c762a05389}{gMsgDelay}) \{
+796         cData.\hyperlink{struct__control_data_a277ea878a8491fa38269b6c762a05389}{gMsgDelay} = \hyperlink{cmd_d_c_8c_ac66d92e429586a7c5d0424fe6ad105dd}{MSG\_DELAY\_INTERVAL};
+797     \}
+798 
+799     cData.\hyperlink{struct__control_data_a93f6e099a56c0d476607b4bd5a9dfa58}{paB} = NULL;
+800     cData.\hyperlink{struct__control_data_a93f6e099a56c0d476607b4bd5a9dfa58}{paB} = \hyperlink{cmd_d_c_8c_a72be87baa67e532c78af054acf935d6c}{skn\_get\_default\_interface\_name\_and\_ipv4\_address}
+      ((\textcolor{keywordtype}{char} *)&cData.\hyperlink{struct__control_data_adac6cf5482e4bbabb442f8ab27e4bc62}{ch\_intfName}, (\textcolor{keywordtype}{char} *)&cData.\hyperlink{struct__control_data_ac48fc4263dd4a6bad484b93fbf1ffe1b}{ch\_this\_ip});
+801     \textcolor{keywordflow}{if} (NULL == cData.\hyperlink{struct__control_data_a93f6e099a56c0d476607b4bd5a9dfa58}{paB}) \{
+802         g\_error(\textcolor{stringliteral}{"skn\_skn\_get\_default\_interface\_name\_and\_ipv4\_address() => Unable to discover network
+       interface or non-available."});
+803         exit(EXIT\_FAILURE);
+804     \}
+805 
+806     cData.\hyperlink{struct__control_data_a551d0ecd4ceb9fc4ce8eebe5a984dc4c}{sigHup}.\hyperlink{struct__signal_data_ae85864980ae30c1878e7149c26442544}{loop} = cData.\hyperlink{struct__control_data_af45dc1f0c4806eaac0a57da17db50fdb}{sigTerm}.\hyperlink{struct__signal_data_ae85864980ae30c1878e7149c26442544}{loop} = cData.\hyperlink{struct__control_data_ae8ad5b5af46f4ab4bcd6ffb41e83385b}{sigInt}.
+      \hyperlink{struct__signal_data_ae85864980ae30c1878e7149c26442544}{loop} = cData.\hyperlink{struct__control_data_ae1b70bafbd5eb568c6ca339664959216}{loop} =  g\_main\_loop\_new(NULL, \hyperlink{skn__common__headers_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE});
+807 
+808     \textcolor{comment}{/*}
+809 \textcolor{comment}{     * Create broadcast UDP Socket for receiving messages */}
+810     cData.\hyperlink{struct__control_data_a05fab30fce92ebe541d9dd98220c60ef}{gBroadcastSocket} = gSock = g\_socket\_new(G\_SOCKET\_FAMILY\_IPV4, 
+      G\_SOCKET\_TYPE\_DATAGRAM, G\_SOCKET\_PROTOCOL\_UDP, &error);
+811     \textcolor{keywordflow}{if} (error != NULL) \{
+812         g\_error(\textcolor{stringliteral}{"g\_socket\_new(broadcast) => %s"}, error->message);
+813         g\_clear\_error(&error);
+814         exit(EXIT\_FAILURE);
+815     \}
+816     g\_socket\_set\_broadcast(gSock, \hyperlink{skn__common__headers_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE});
+817 
+818     anyAddr = g\_inet\_address\_new\_any(G\_SOCKET\_FAMILY\_IPV4);
+819     gsAddr  = g\_inet\_socket\_address\_new(anyAddr, \hyperlink{cmd_d_c_8c_a8091fbaa709d661a678a82a62fab638b}{SKN\_UDP\_ANY\_PORT});
+820         g\_object\_unref(anyAddr);
+821 
+822     g\_socket\_bind(gSock, gsAddr, \hyperlink{skn__common__headers_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}, &error);
+823     \textcolor{keywordflow}{if} (error != NULL) \{
+824         g\_error(\textcolor{stringliteral}{"g\_socket\_bind() => %s"}, error->message);
+825         g\_clear\_error(&error);
+826         exit(EXIT\_FAILURE);
+827     \}
+828 
+829     gBroadSource = g\_socket\_create\_source(gSock, G\_IO\_IN, NULL);
+830         g\_source\_ref(gBroadSource);
+831         g\_source\_set\_callback (gBroadSource, (GSourceFunc) 
+      \hyperlink{cmd_d_c_8c_a385b710fd30ba190b3b96e814424ff80}{cb\_udp\_broadcast\_response\_handler}, &cData, NULL); \textcolor{comment}{// its really a
+       GSocketSourceFunc}
+832         g\_source\_attach (gBroadSource, NULL);
+833 
+834     \textcolor{comment}{/*}
+835 \textcolor{comment}{     * Handle ctrl-break and kill signals cleanly */}
+836     g\_unix\_signal\_add (SIGINT, (GSourceFunc) \hyperlink{cmd_d_c_8c_a76ad4de5945cff6e20dbeff46bda868b}{cb\_unix\_signal\_handler}, &cData.
+      \hyperlink{struct__control_data_ae8ad5b5af46f4ab4bcd6ffb41e83385b}{sigInt}); \textcolor{comment}{// SIGINT signal (Ctrl+C)}
+837     g\_unix\_signal\_add (SIGHUP, (GSourceFunc) \hyperlink{cmd_d_c_8c_a76ad4de5945cff6e20dbeff46bda868b}{cb\_unix\_signal\_handler}, &cData.
+      \hyperlink{struct__control_data_a551d0ecd4ceb9fc4ce8eebe5a984dc4c}{sigHup});
+838     g\_unix\_signal\_add (SIGTERM,(GSourceFunc) \hyperlink{cmd_d_c_8c_a76ad4de5945cff6e20dbeff46bda868b}{cb\_unix\_signal\_handler}, &cData.
+      \hyperlink{struct__control_data_af45dc1f0c4806eaac0a57da17db50fdb}{sigTerm});
+839 
+840     \textcolor{comment}{/*}
+841 \textcolor{comment}{     * Broadcast Registry Request: 10.100.1.255 */}
+842     \textcolor{keywordflow}{if} ( \hyperlink{cmd_d_c_8c_af376243f65a3fd761050836d1293b0d9}{skn\_udp\_network\_broadcast\_all\_interfaces}(gSock, cData.
+      \hyperlink{struct__control_data_a93f6e099a56c0d476607b4bd5a9dfa58}{paB}) ) \{
+843         \textcolor{comment}{/*}
+844 \textcolor{comment}{         * Setup 2secTimer to find display\_service before starting rest  */}
+845         g\_timeout\_add (2000, (GSourceFunc)\hyperlink{cmd_d_c_8c_a160bb2056d3842ef84fd7211ed6ec385}{cb\_udp\_registry\_select\_handler}, &
+      cData);
+846 
+847         g\_print(\textcolor{stringliteral}{"[REGISTRY] Looking for [%s] in Rpi Registry.  StandBy...\(\backslash\)n"}, cData.
+      \hyperlink{struct__control_data_a94aa04264eafaa65a7a869a540bbdf93}{ch\_display\_service\_name});
+848 
+849         g\_main\_loop\_run(cData.\hyperlink{struct__control_data_ae1b70bafbd5eb568c6ca339664959216}{loop});
+850     \}
+851 
+852     g\_main\_loop\_unref(cData.\hyperlink{struct__control_data_ae1b70bafbd5eb568c6ca339664959216}{loop});
+853 
+854     g\_source\_unref(gBroadSource);
+855     g\_object\_unref(gSock);
+856     g\_object\_unref(gsAddr);
+857 
+858     \textcolor{keywordflow}{if} (cData.\hyperlink{struct__control_data_a04238362a20b6616913d869fc464e4b2}{gReady}) \{
+859         g\_source\_unref(cData.\hyperlink{struct__control_data_abfbd9e642ba240fa5985f63d60886de4}{gCommSource});
+860         g\_object\_unref(cData.\hyperlink{struct__control_data_a49b267275036fc3ac9b7d9e53b0625e1}{gSock});
+861         g\_object\_unref(cData.\hyperlink{struct__control_data_a11c618822b208569a5d28206407326d5}{gsDSAddr});
+862         g\_object\_unref(cData.\hyperlink{struct__control_data_a8a43853386551af4c746fd4b882eb2bf}{gsAddr});
+863     \}
+864 
+865     g\_free(cData.\hyperlink{struct__control_data_a93f6e099a56c0d476607b4bd5a9dfa58}{paB});
+866     g\_list\_free\_full(cData.\hyperlink{struct__control_data_a34b1729bc0b37c9dce0327ea4cd8a812}{glRegistry}, (GDestroyNotify)g\_free);
+867 
+868     g\_message(\textcolor{stringliteral}{"cmdDC: normal shutdown..."});
+869 
+870     exit(EXIT\_SUCCESS);
+871 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cmd_d_c_8c_a3c04138a5bfe5d72780bb7e82a18e627_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{cmd_d_c_8c_a0dfc1a6916909805dc7fd2d8c471e0e3}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array@{skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array}}
+\index{skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array@{skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array(\+P\+I\+P\+Broadcast\+Array pa\+B)}]{\setlength{\rightskip}{0pt plus 5cm}gint skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+I\+P\+Broadcast\+Array}}]{pa\+B}
+\end{DoxyParamCaption}
+)}\label{cmd_d_c_8c_a0dfc1a6916909805dc7fd2d8c471e0e3}
+Collect I\+P and Broadcast Addresses for this machine
+
+
+\begin{DoxyItemize}
+\item Affects the P\+I\+P\+Broadcast\+Array
+\item Return -\/1 on error, or count of interfaces
+\item contains this ip\+Address in pa\+B-\/$>$ip\+Addr\+Str\mbox{[}pa\+B-\/$>$default\+Index\mbox{]} 
+\end{DoxyItemize}
+
+Definition at line 185 of file cmd\+D\+C.\+c.
+
+
+
+References A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+T\+F, \+\_\+ip\+Broadcast\+Array\+::broad\+Addr\+Str, \+\_\+ip\+Broadcast\+Array\+::cb\+Name, \+\_\+ip\+Broadcast\+Array\+::ch\+Default\+Intf\+Name, \+\_\+ip\+Broadcast\+Array\+::count, \+\_\+ip\+Broadcast\+Array\+::default\+Index, \+\_\+ip\+Broadcast\+Array\+::if\+Name\+Str, \+\_\+ip\+Broadcast\+Array\+::ip\+Addr\+Str, \+\_\+ip\+Broadcast\+Array\+::mask\+Addr\+Str, P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R, skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name(), and S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F.
+
+
+
+Referenced by skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address().
+
+
+\begin{DoxyCode}
+185                                                        \{
+186     \textcolor{keyword}{struct }ifaddrs * ifap;
+187     \textcolor{keyword}{struct }ifaddrs * p;
+188     gint rc = 0;
+189 
+190     memset(paB, 0, \textcolor{keyword}{sizeof}(\hyperlink{struct__ip_broadcast_array}{IPBroadcastArray}));
+191     paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count} = 0;
+192     paB->\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex} = 0;
+193     strcpy(paB->\hyperlink{struct__ip_broadcast_array_a0f592bd31dcc3ce00a349f04ff6bd1ba}{cbName}, \textcolor{stringliteral}{"IPBroadcastArray"});
+194 
+195     rc = \hyperlink{cmd_d_c_8c_afc164e6efc7bdcdbacba97ba6f6c2a19}{skn\_get\_default\_interface\_name}(paB->
+      \hyperlink{struct__ip_broadcast_array_a06dab8742df19b5aec8538842617778d}{chDefaultIntfName});
+196     \textcolor{keywordflow}{if} (rc == EXIT\_FAILURE) \{ \textcolor{comment}{// Alternate method for Mac: 'route -n -A inet'}
+197         g\_warning(\textcolor{stringliteral}{"[REGISTRY] No Default Network Interfaces Found!."});
+198         paB->\hyperlink{struct__ip_broadcast_array_a06dab8742df19b5aec8538842617778d}{chDefaultIntfName}[0] = 0;
+199     \}
+200     rc = getifaddrs(&ifap);
+201     \textcolor{keywordflow}{if} (rc != 0) \{
+202         g\_warning(\textcolor{stringliteral}{"[REGISTRY] No Network Interfaces Found at All ! %d:%d:%s"}, rc, errno, strerror(errno) );
+203         \textcolor{keywordflow}{return} (\hyperlink{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{PLATFORM\_ERROR});
+204     \}
+205     p = ifap;
+206 
+207     \textcolor{keywordflow}{while} (p && (paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count} < \hyperlink{cmd_d_c_8c_a00b19837422a3b13d82b9a525e92ef51}{ARY\_MAX\_INTF})) \{
+208         \textcolor{keywordflow}{if} (p->ifa\_addr != NULL && p->ifa\_addr->sa\_family == AF\_INET && ((p->ifa\_flags & IFF\_BROADCAST) > 0
+      )) \{
+209 
+210             inet\_ntop(p->ifa\_addr->sa\_family, &((\textcolor{keyword}{struct} sockaddr\_in *) p->ifa\_addr)->sin\_addr, paB->
+      \hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count}], (\hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF} - 1));
+211             inet\_ntop(p->ifa\_addr->sa\_family, &((\textcolor{keyword}{struct} sockaddr\_in *) p->ifa\_netmask)->sin\_addr, paB->
+      \hyperlink{struct__ip_broadcast_array_a9241c1fbfb22a3ecfe4777863a063eb3}{maskAddrStr}[paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count}], (\hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF} - 1));
+212             inet\_ntop(p->ifa\_addr->sa\_family, &((\textcolor{keyword}{struct} sockaddr\_in *) p->ifa\_broadaddr)->sin\_addr, paB->
+      \hyperlink{struct__ip_broadcast_array_af40943e174ba847fa0218cfa6051e277}{broadAddrStr}[paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count}], (\hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF} - 1));
+213 
+214             strncpy(paB->\hyperlink{struct__ip_broadcast_array_a193b90f271c061e8bf1593bab6a182c9}{ifNameStr}[paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count}], p->ifa\_name, (
+      \hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF} -1));
+215 
+216             \textcolor{comment}{/* Take match as the default */}
+217             \textcolor{keywordflow}{if} (strcmp(paB->\hyperlink{struct__ip_broadcast_array_a06dab8742df19b5aec8538842617778d}{chDefaultIntfName}, p->ifa\_name) == 0) \{
+218                 paB->\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex} = paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count};
+219             \}
+220 
+221             paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count}++;
+222         \}
+223         p = p->ifa\_next;
+224     \} \textcolor{comment}{// end while}
+225     freeifaddrs(ifap);
+226 
+227     \textcolor{keywordflow}{return} (paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count});
+228 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cmd_d_c_8c_a0dfc1a6916909805dc7fd2d8c471e0e3_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cmd_d_c_8c_a0dfc1a6916909805dc7fd2d8c471e0e3_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{cmd_d_c_8c_afc164e6efc7bdcdbacba97ba6f6c2a19}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name@{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name}}
+\index{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name@{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name(char $\ast$pch\+Default\+Interface\+Name)}]{\setlength{\rightskip}{0pt plus 5cm}gint skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{pch\+Default\+Interface\+Name}
+\end{DoxyParamCaption}
+)}\label{cmd_d_c_8c_afc164e6efc7bdcdbacba97ba6f6c2a19}
+Retrieves default internet interface name into param
+\begin{DoxyItemize}
+\item absolute best way to do this, but not supported on Darwin(i.\+e O\+S\+X) return E\+X\+I\+T\+\_\+\+S\+U\+C\+C\+E\+S\+S or E\+X\+I\+T\+\_\+\+F\+A\+I\+L\+U\+R\+E
+\end{DoxyItemize}
+
+\mbox{[}jscott O\+S\+X\mbox{]}\$ route -\/n get 0.\+0.\+0.\+0 route to\+: default destination\+: default mask\+: default gateway\+: 10.\+21.\+1.\+254 interface\+: en3 flags\+: $<$U\+P,G\+A\+T\+E\+W\+A\+Y,D\+O\+N\+E,S\+T\+A\+T\+I\+C,P\+R\+C\+L\+O\+N\+I\+N\+G$>$ recvpipe sendpipe ssthresh rtt,msec rttvar hopcount mtu expire 0 0 0 0 0 0 1500 0 
+
+Definition at line 246 of file cmd\+D\+C.\+c.
+
+
+
+References skn\+\_\+strip(), and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F.
+
+
+
+Referenced by skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array().
+
+
+\begin{DoxyCode}
+246                                                                    \{
+247     FILE *f\_route;
+248     \textcolor{keywordtype}{char} line[\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}], *dRoute = NULL, *iName = NULL;
+249 
+250     f\_route = fopen(\textcolor{stringliteral}{"/proc/net/route"}, \textcolor{stringliteral}{"r"});
+251     \textcolor{keywordflow}{if} (f\_route != NULL) \{
+252         \textcolor{keywordflow}{while} (fgets(line, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1, f\_route)) \{
+253             iName = strtok(line, \textcolor{stringliteral}{"\(\backslash\)t"});
+254             dRoute = strtok(NULL, \textcolor{stringliteral}{"\(\backslash\)t"});
+255 
+256             \textcolor{keywordflow}{if} (iName != NULL && dRoute != NULL) \{
+257                 \textcolor{keywordflow}{if} (strcmp(dRoute, \textcolor{stringliteral}{"00000000"}) == 0) \{
+258                     strncpy(pchDefaultInterfaceName, iName, (\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1));
+259                     \textcolor{keywordflow}{break};
+260                 \}
+261             \}
+262         \}
+263         fclose(f\_route);
+264 
+265         \textcolor{keywordflow}{return} (EXIT\_SUCCESS);
+266     \}
+267    g\_print(\textcolor{stringliteral}{"[REGISTRY] Opening ProcFs for RouteInfo Failed: %d:%s, Alternate method will be attempted.\(\backslash\)n"}, 
+      errno, strerror(errno));
+268 
+269     f\_route = popen(\textcolor{stringliteral}{"route -n get 0.0.0.0"}, \textcolor{stringliteral}{"r"}); \textcolor{comment}{// for linux 'route -n -A inet', with interface at
+       line\_word[7]}
+270     \textcolor{keywordflow}{if} (f\_route != NULL) \{
+271         \textcolor{keywordflow}{while} (fgets(line, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1, f\_route)) \{
+272             dRoute = strtok(line, \textcolor{stringliteral}{":"});
+273             iName = strtok(NULL, \textcolor{stringliteral}{"\(\backslash\)n"});
+274             \textcolor{keywordflow}{if} (strcmp(\hyperlink{cmd_d_c_8c_a73ed6790a0276f43dfea595f4cedffa4}{skn\_strip}(dRoute), \textcolor{stringliteral}{"interface"}) == 0) \{
+275                 strncpy(pchDefaultInterfaceName, \hyperlink{cmd_d_c_8c_a73ed6790a0276f43dfea595f4cedffa4}{skn\_strip}(iName), (
+      \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1));
+276                 \textcolor{keywordflow}{break};
+277             \}
+278         \}
+279         fclose(f\_route);
+280 
+281         \textcolor{keywordflow}{return} (EXIT\_SUCCESS);
+282     \} \textcolor{keywordflow}{else} \{
+283         g\_warning(\textcolor{stringliteral}{"[REGISTRY] Alternate method to get RouteInfo Failed: %d:%s"}, errno, strerror(errno));
+284         \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+285     \}
+286 
+287 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=333pt]{cmd_d_c_8c_afc164e6efc7bdcdbacba97ba6f6c2a19_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cmd_d_c_8c_afc164e6efc7bdcdbacba97ba6f6c2a19_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{cmd_d_c_8c_a72be87baa67e532c78af054acf935d6c}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address@{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address}}
+\index{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address@{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address(char $\ast$intf, char $\ast$ipv4)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+I\+P\+Broadcast\+Array} skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{intf, }
+\item[{char $\ast$}]{ipv4}
+\end{DoxyParamCaption}
+)}\label{cmd_d_c_8c_a72be87baa67e532c78af054acf935d6c}
+
+
+Referenced by main().
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=288pt]{cmd_d_c_8c_a72be87baa67e532c78af054acf935d6c_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{cmd_d_c_8c_a4f733621137368e762c5db74a3cec52b}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address@{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address}}
+\index{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address@{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address(gchar $\ast$intf, gchar $\ast$ipv4)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+I\+P\+Broadcast\+Array} skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address (
+\begin{DoxyParamCaption}
+\item[{gchar $\ast$}]{intf, }
+\item[{gchar $\ast$}]{ipv4}
+\end{DoxyParamCaption}
+)}\label{cmd_d_c_8c_a4f733621137368e762c5db74a3cec52b}
+
+
+Definition at line 165 of file cmd\+D\+C.\+c.
+
+
+
+References \+\_\+ip\+Broadcast\+Array\+::ch\+Default\+Intf\+Name, \+\_\+ip\+Broadcast\+Array\+::default\+Index, \+\_\+ip\+Broadcast\+Array\+::ip\+Addr\+Str, P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R, skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array(), and S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F.
+
+
+\begin{DoxyCode}
+165                                                                                               \{
+166     \hyperlink{struct__ip_broadcast_array}{PIPBroadcastArray} paB = g\_new0(\hyperlink{struct__ip_broadcast_array}{IPBroadcastArray}, 1);
+167 
+168     \textcolor{keywordflow}{if} (\hyperlink{cmd_d_c_8c_a0dfc1a6916909805dc7fd2d8c471e0e3}{skn\_get\_broadcast\_ip\_array}(paB) != 
+      \hyperlink{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{PLATFORM\_ERROR}) \{
+169         g\_utf8\_strncpy(intf, paB->\hyperlink{struct__ip_broadcast_array_a06dab8742df19b5aec8538842617778d}{chDefaultIntfName}, 
+      \hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF});
+170         g\_utf8\_strncpy(ipv4, paB->\hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[paB->\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex}], 
+      \hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF});
+171     \} \textcolor{keywordflow}{else} \{
+172         g\_warning(\textcolor{stringliteral}{"[REGISTRY] InterfaceName and Address: unable to access information."});
+173         \textcolor{keywordflow}{return}(NULL);
+174     \}
+175     \textcolor{keywordflow}{return} (paB);
+176 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cmd_d_c_8c_a4f733621137368e762c5db74a3cec52b_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{cmd_d_c_8c_a8288aea959581188e5bd29430935a6ed}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!skn\+\_\+get\+\_\+timestamp@{skn\+\_\+get\+\_\+timestamp}}
+\index{skn\+\_\+get\+\_\+timestamp@{skn\+\_\+get\+\_\+timestamp}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{skn\+\_\+get\+\_\+timestamp()}]{\setlength{\rightskip}{0pt plus 5cm}gchar $\ast$ skn\+\_\+get\+\_\+timestamp (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{cmd_d_c_8c_a8288aea959581188e5bd29430935a6ed}
+
+
+Definition at line 323 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+broadcast\+\_\+response\+\_\+handler(), and cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler().
+
+
+\begin{DoxyCode}
+323                             \{
+324     GDateTime   *stamp = g\_date\_time\_new\_now\_local();
+325     gchar *response = g\_date\_time\_format(stamp,\textcolor{stringliteral}{"%F.%T"});
+326 
+327     \textcolor{keywordflow}{return}(response);
+328 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cmd_d_c_8c_a8288aea959581188e5bd29430935a6ed_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{cmd_d_c_8c_af4d9de57a3cb296036c837a644009ef5}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!skn\+\_\+gio\+\_\+condition\+\_\+to\+\_\+string@{skn\+\_\+gio\+\_\+condition\+\_\+to\+\_\+string}}
+\index{skn\+\_\+gio\+\_\+condition\+\_\+to\+\_\+string@{skn\+\_\+gio\+\_\+condition\+\_\+to\+\_\+string}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{skn\+\_\+gio\+\_\+condition\+\_\+to\+\_\+string(\+G\+I\+O\+Condition condition)}]{\setlength{\rightskip}{0pt plus 5cm}gchar $\ast$ skn\+\_\+gio\+\_\+condition\+\_\+to\+\_\+string (
+\begin{DoxyParamCaption}
+\item[{G\+I\+O\+Condition}]{condition}
+\end{DoxyParamCaption}
+)}\label{cmd_d_c_8c_af4d9de57a3cb296036c837a644009ef5}
+
+
+Definition at line 330 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+broadcast\+\_\+response\+\_\+handler().
+
+
+\begin{DoxyCode}
+330                                                             \{
+331     gchar *value = NULL;
+332 
+333     \textcolor{keywordflow}{switch}(condition) \{
+334         \textcolor{keywordflow}{case} G\_IO\_IN:
+335             value = \textcolor{stringliteral}{"There is data to read."};
+336             \textcolor{keywordflow}{break};
+337         \textcolor{keywordflow}{case} G\_IO\_OUT:
+338             value = \textcolor{stringliteral}{"Data can be written (without blocking)."};
+339             \textcolor{keywordflow}{break};
+340         \textcolor{keywordflow}{case} G\_IO\_PRI:
+341             value = \textcolor{stringliteral}{"There is urgent data to read."};
+342             \textcolor{keywordflow}{break};
+343         \textcolor{keywordflow}{case} G\_IO\_ERR:
+344             value = \textcolor{stringliteral}{"Error condition."};
+345             \textcolor{keywordflow}{break};
+346         \textcolor{keywordflow}{case} G\_IO\_HUP:
+347             value = \textcolor{stringliteral}{"Hung up (the connection has been broken, usually for pipes and sockets)."};
+348             \textcolor{keywordflow}{break};
+349         \textcolor{keywordflow}{case} G\_IO\_NVAL:
+350             value = \textcolor{stringliteral}{"Invalid request. The file descriptor is not open."};
+351             \textcolor{keywordflow}{break};
+352         \textcolor{keywordflow}{default}:
+353             value = \textcolor{stringliteral}{"Unknown GIOCondition!"};
+354     \}
+355 
+356     \textcolor{keywordflow}{return} (value);
+357 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cmd_d_c_8c_af4d9de57a3cb296036c837a644009ef5_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{cmd_d_c_8c_a73ed6790a0276f43dfea595f4cedffa4}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!skn\+\_\+strip@{skn\+\_\+strip}}
+\index{skn\+\_\+strip@{skn\+\_\+strip}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{skn\+\_\+strip(gchar $\ast$alpha)}]{\setlength{\rightskip}{0pt plus 5cm}gchar $\ast$ skn\+\_\+strip (
+\begin{DoxyParamCaption}
+\item[{gchar $\ast$}]{alpha}
+\end{DoxyParamCaption}
+)}\label{cmd_d_c_8c_a73ed6790a0276f43dfea595f4cedffa4}
+Remove Trailing and Leading Blanks
+\begin{DoxyItemize}
+\item caution\+: pointers from argv are readonly and segfault on \textquotesingle{}alpha\mbox{[}end\mbox{]} = 0\textquotesingle{} 
+\end{DoxyItemize}
+
+Definition at line 139 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name().
+
+
+\begin{DoxyCode}
+139                                  \{
+140     \textcolor{keywordflow}{if} (alpha == NULL || strlen(alpha) < 1)
+141         \textcolor{keywordflow}{return}(alpha);
+142 
+143     \textcolor{keywordtype}{int} len = strlen(alpha);
+144     \textcolor{keywordtype}{int} end = len - 1;
+145     \textcolor{keywordtype}{int} start = 0;
+146 
+147     \textcolor{comment}{// use isgraph() or !isspace() vs isalnum() to allow ['|' ';' '%']}
+148     \textcolor{keywordflow}{while} ( !g\_unichar\_isgraph(alpha[end]) && end > 0 ) \{ \textcolor{comment}{// remove trailing non-alphanumeric chars}
+149         alpha[end--] = 0;
+150     \}
+151 
+152     len = strlen(alpha);
+153     \textcolor{keywordflow}{while} ( !g\_unichar\_isalnum(alpha[start]) && start < len ) \{ \textcolor{comment}{// find first non-alpha stricter}
+154         start++;
+155     \}
+156     \textcolor{keywordflow}{if} (start < len && start > 0) \{  \textcolor{comment}{// move in place}
+157         end = len - start;
+158         memmove(&alpha[0], &alpha[start], end);
+159         alpha[end] = 0;
+160     \}
+161 
+162     \textcolor{keywordflow}{return}(alpha);
+163 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cmd_d_c_8c_a73ed6790a0276f43dfea595f4cedffa4_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{cmd_d_c_8c_af376243f65a3fd761050836d1293b0d9}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!skn\+\_\+udp\+\_\+network\+\_\+broadcast\+\_\+all\+\_\+interfaces@{skn\+\_\+udp\+\_\+network\+\_\+broadcast\+\_\+all\+\_\+interfaces}}
+\index{skn\+\_\+udp\+\_\+network\+\_\+broadcast\+\_\+all\+\_\+interfaces@{skn\+\_\+udp\+\_\+network\+\_\+broadcast\+\_\+all\+\_\+interfaces}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{skn\+\_\+udp\+\_\+network\+\_\+broadcast\+\_\+all\+\_\+interfaces(\+G\+Socket $\ast$g\+Sock, P\+I\+P\+Broadcast\+Array pab)}]{\setlength{\rightskip}{0pt plus 5cm}gboolean skn\+\_\+udp\+\_\+network\+\_\+broadcast\+\_\+all\+\_\+interfaces (
+\begin{DoxyParamCaption}
+\item[{G\+Socket $\ast$}]{g\+Sock, }
+\item[{{\bf P\+I\+P\+Broadcast\+Array}}]{pa\+B}
+\end{DoxyParamCaption}
+)}\label{cmd_d_c_8c_af376243f65a3fd761050836d1293b0d9}
+Send a registry request on the broadcast ip of all interfaces
+
+
+\begin{DoxyParams}{Parameters}
+{\em g\+Sock} & I\+N G\+Lib active/bound socket with broadcast enabled \\
+\hline
+{\em ch\+\_\+request} & I\+N Greetings message, anytext \\
+\hline
+{\em ch\+\_\+intf\+Name} & O\+U\+T Default Ethernet Interface Name \\
+\hline
+{\em ch\+\_\+ip\+Address} & O\+U\+T Default Ethernet I\+P Address \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on success, 
+\end{DoxyReturn}
+
+
+Definition at line 297 of file cmd\+D\+C.\+c.
+
+
+
+References \+\_\+ip\+Broadcast\+Array\+::broad\+Addr\+Str, \+\_\+ip\+Broadcast\+Array\+::count, \+\_\+ip\+Broadcast\+Array\+::default\+Index, \+\_\+ip\+Broadcast\+Array\+::if\+Name\+Str, \+\_\+ip\+Broadcast\+Array\+::ip\+Addr\+Str, T\+R\+U\+E, and U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+R\+T.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler(), and main().
+
+
+\begin{DoxyCode}
+297                                                                                          \{
+298     \textcolor{keyword}{struct }sockaddr\_in remaddr; \textcolor{comment}{/* remote address */}
+299     socklen\_t addrlen = \textcolor{keyword}{sizeof}(remaddr); \textcolor{comment}{/* length of addresses */}
+300     gchar *request = \textcolor{stringliteral}{"urn:rpilocator - Rpi Where Are You?"};
+301     gint vIndex = 0;
+302     gint i\_socket = g\_socket\_get\_fd(gSock);
+303 
+304     g\_print(\textcolor{stringliteral}{"[REGISTRY] Socket Bound to %s\(\backslash\)n"}, paB->\hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[paB->
+      \hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex}]);
+305 
+306 
+307     \textcolor{keywordflow}{for} (vIndex = 0; vIndex < paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count}; vIndex++) \{
+308         memset(&remaddr, 0, \textcolor{keyword}{sizeof}(remaddr));
+309         remaddr.sin\_family = AF\_INET;
+310         remaddr.sin\_addr.s\_addr = inet\_addr(paB->\hyperlink{struct__ip_broadcast_array_af40943e174ba847fa0218cfa6051e277}{broadAddrStr}[vIndex]);
+311         remaddr.sin\_port = htons(\hyperlink{cmd_d_c_8c_a76bd5a574aad0fa67de6c9804853f191}{UDP\_BROADCAST\_PORT});
+312 
+313         \textcolor{keywordflow}{if} (sendto(i\_socket, request, strlen(request), 0, (\textcolor{keyword}{struct} sockaddr *) &remaddr, addrlen) < 0) \{
+314             g\_warning(\textcolor{stringliteral}{"SendTo() Timed out; Failure code=%d, etext=%s"}, errno, strerror(errno));
+315             \textcolor{keywordflow}{break};
+316         \}
+317         g\_print(\textcolor{stringliteral}{"[REGISTRY] Query Broadcasted on %s:%s:%d\(\backslash\)n"}, paB->\hyperlink{struct__ip_broadcast_array_a193b90f271c061e8bf1593bab6a182c9}{ifNameStr}[vIndex], paB->
+      \hyperlink{struct__ip_broadcast_array_af40943e174ba847fa0218cfa6051e277}{broadAddrStr}[vIndex], \hyperlink{cmd_d_c_8c_a76bd5a574aad0fa67de6c9804853f191}{UDP\_BROADCAST\_PORT});
+318     \}
+319 
+320     \textcolor{keywordflow}{return}(\hyperlink{skn__common__headers_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE});
+321 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cmd_d_c_8c_af376243f65a3fd761050836d1293b0d9_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{cmd_d_c_8c_a793c6b3e5c7a5abc993d8cfbe963629d}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!udp\+\_\+initialize\+\_\+message\+\_\+send@{udp\+\_\+initialize\+\_\+message\+\_\+send}}
+\index{udp\+\_\+initialize\+\_\+message\+\_\+send@{udp\+\_\+initialize\+\_\+message\+\_\+send}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{udp\+\_\+initialize\+\_\+message\+\_\+send(\+P\+Control\+Data pctrl)}]{\setlength{\rightskip}{0pt plus 5cm}gboolean udp\+\_\+initialize\+\_\+message\+\_\+send (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+Control\+Data}}]{pctrl}
+\end{DoxyParamCaption}
+)}\label{cmd_d_c_8c_a793c6b3e5c7a5abc993d8cfbe963629d}
+
+
+Definition at line 648 of file cmd\+D\+C.\+c.
+
+
+
+References cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler(), cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler(), F\+A\+L\+S\+E, \+\_\+control\+Data\+::g\+Comm\+Source, \+\_\+control\+Data\+::g\+Msg\+Delay, \+\_\+control\+Data\+::gs\+Addr, \+\_\+control\+Data\+::g\+Sock, S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+R\+T, and T\+R\+U\+E.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler().
+
+
+\begin{DoxyCode}
+648                                                          \{
+649     GError *error = NULL;
+650     GInetAddress *anyAddr = NULL;
+651 
+652     g\_return\_val\_if\_fail((NULL != pctrl), G\_SOURCE\_REMOVE);
+653 
+654     pctrl->\hyperlink{struct__control_data_a49b267275036fc3ac9b7d9e53b0625e1}{gSock} = g\_socket\_new(G\_SOCKET\_FAMILY\_IPV4, G\_SOCKET\_TYPE\_DATAGRAM, G\_SOCKET\_PROTOCOL\_UDP, &
+      error);
+655     \textcolor{keywordflow}{if} (error != NULL) \{
+656         g\_error(\textcolor{stringliteral}{"g\_socket\_new() => %s"}, error->message);
+657         g\_clear\_error(&error);
+658         \textcolor{keywordflow}{return}(\hyperlink{skn__common__headers_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE});
+659     \}
+660 
+661     anyAddr = g\_inet\_address\_new\_any(G\_SOCKET\_FAMILY\_IPV4);
+662     pctrl->\hyperlink{struct__control_data_a8a43853386551af4c746fd4b882eb2bf}{gsAddr} = g\_inet\_socket\_address\_new(anyAddr, \hyperlink{cmd_d_c_8c_a8091fbaa709d661a678a82a62fab638b}{SKN\_UDP\_ANY\_PORT});
+663         g\_object\_unref(anyAddr);
+664 
+665     g\_socket\_bind(pctrl->\hyperlink{struct__control_data_a49b267275036fc3ac9b7d9e53b0625e1}{gSock}, pctrl->\hyperlink{struct__control_data_a8a43853386551af4c746fd4b882eb2bf}{gsAddr}, \hyperlink{skn__common__headers_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}, &error);
+666     \textcolor{keywordflow}{if} (error != NULL) \{
+667         g\_error(\textcolor{stringliteral}{"g\_socket\_bind() => %s"}, error->message);
+668         g\_clear\_error(&error);
+669         exit(\hyperlink{skn__common__headers_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE});
+670     \}
+671 
+672     pctrl->\hyperlink{struct__control_data_abfbd9e642ba240fa5985f63d60886de4}{gCommSource} = g\_socket\_create\_source (pctrl->\hyperlink{struct__control_data_a49b267275036fc3ac9b7d9e53b0625e1}{gSock}, G\_IO\_IN, NULL);
+673         g\_source\_set\_callback (pctrl->\hyperlink{struct__control_data_abfbd9e642ba240fa5985f63d60886de4}{gCommSource}, (GSourceFunc) 
+      \hyperlink{cmd_d_c_8c_aa8a19e68e54683fa324bcee1ecfd3942}{cb\_udp\_comm\_response\_handler}, pctrl, NULL); \textcolor{comment}{// its really a GSocketSourceFunc}
+674         g\_source\_attach (pctrl->\hyperlink{struct__control_data_abfbd9e642ba240fa5985f63d60886de4}{gCommSource}, NULL);
+675 
+676     \textcolor{comment}{/*}
+677 \textcolor{comment}{     * Setup Timer to drive repeated Message to Display Service  */}
+678     g\_timeout\_add ((pctrl->\hyperlink{struct__control_data_a277ea878a8491fa38269b6c762a05389}{gMsgDelay} * 1000), (GSourceFunc)
+      \hyperlink{cmd_d_c_8c_a00c5b52bdcb7caec07d08b05b8c1dced}{cb\_udp\_comm\_request\_handler}, pctrl);
+679 
+680 
+681     \textcolor{keywordflow}{return} (\hyperlink{skn__common__headers_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE});
+682 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cmd_d_c_8c_a793c6b3e5c7a5abc993d8cfbe963629d_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cmd_d_c_8c_a793c6b3e5c7a5abc993d8cfbe963629d_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{cmd_d_c_8c_ae59da66ef51690f71da087514886fd12}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name@{udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name}}
+\index{udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name@{udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name(\+P\+Reg\+Data pr, gchar $\ast$pch\+\_\+name)}]{\setlength{\rightskip}{0pt plus 5cm}gint udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+Reg\+Data}}]{pr, }
+\item[{gchar $\ast$}]{pch\+\_\+name}
+\end{DoxyParamCaption}
+)}\label{cmd_d_c_8c_ae59da66ef51690f71da087514886fd12}
+
+
+Definition at line 685 of file cmd\+D\+C.\+c.
+
+
+
+References \+\_\+registry\+Data\+::ch\+\_\+name.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler().
+
+
+\begin{DoxyCode}
+685                                                              \{
+686     \textcolor{keywordflow}{return}( g\_strcmp0(pr->\hyperlink{struct__registry_data_a4764e2a72c3ba9177b6c4803cfa03f72}{ch\_name}, pch\_name) );
+687 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cmd_d_c_8c_ae59da66ef51690f71da087514886fd12_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{cmd_d_c_8c_a568a9919cfd345f6c1a41a2ec7c4b1ca}{}\index{cmd\+D\+C.\+c@{cmd\+D\+C.\+c}!udp\+\_\+registry\+\_\+response\+\_\+parser@{udp\+\_\+registry\+\_\+response\+\_\+parser}}
+\index{udp\+\_\+registry\+\_\+response\+\_\+parser@{udp\+\_\+registry\+\_\+response\+\_\+parser}!cmd\+D\+C.\+c@{cmd\+D\+C.\+c}}
+\subsubsection[{udp\+\_\+registry\+\_\+response\+\_\+parser(\+P\+Reg\+Data msg, gchar $\ast$response)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+P\+Reg\+Data} udp\+\_\+registry\+\_\+response\+\_\+parser (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+Reg\+Data}}]{msg, }
+\item[{gchar $\ast$}]{response}
+\end{DoxyParamCaption}
+)}\label{cmd_d_c_8c_a568a9919cfd345f6c1a41a2ec7c4b1ca}
+Parse this response message
+
+Format\+: name=rpi\+\_\+locator\+\_\+service,ip=10.\+100.\+1.\+19,port=48028$\vert$ name=lcd\+\_\+display\+\_\+service,ip=10.\+100.\+1.\+19,port=48029$\vert$
+
+the vertical bar char \textquotesingle{}$\vert$\textquotesingle{} is the line separator, \% and ; are also supported 
+
+Definition at line 368 of file cmd\+D\+C.\+c.
+
+
+
+References \+\_\+registry\+Data\+::ch\+\_\+ip, \+\_\+registry\+Data\+::ch\+\_\+name, \+\_\+registry\+Data\+::ch\+\_\+port, F\+A\+L\+S\+E, S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+F\+F, and T\+R\+U\+E.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+broadcast\+\_\+response\+\_\+handler().
+
+
+\begin{DoxyCode}
+368                                                                       \{
+369     gboolean rc = \hyperlink{skn__common__headers_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE};
+370     gboolean final\_rc = \hyperlink{skn__common__headers_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE};
+371     gchar ** lines = NULL;
+372     gchar *current\_line = NULL;
+373     gchar ** entries = NULL;
+374     gchar *current\_entry = NULL;
+375     gchar ** key\_value = NULL;
+376     \hyperlink{struct__registry_data}{PRegData} *msgs;
+377     \hyperlink{struct__registry_data}{PRegData} preg = NULL;
+378     gint h\_index = 0;
+379     gint v\_index = 0;
+380     gint o\_index = 0;
+381     gint a\_count = 0;
+382     gint e\_count = 0;
+383 
+384     \textcolor{keywordflow}{if} (g\_utf8\_strchr(response, -1, \textcolor{charliteral}{'|'}) == NULL) \{  \textcolor{comment}{// must be a registry entry}
+385         \textcolor{keywordflow}{return} (NULL);
+386     \}
+387 
+388     lines = g\_strsplit\_set(response, \textcolor{stringliteral}{"|;%"}, -1);  \textcolor{comment}{// get whole entries}
+389     \textcolor{keywordflow}{if} ((NULL == lines) || (g\_strv\_length(lines) < 1)) \{
+390         \textcolor{keywordflow}{return}(NULL);
+391     \}
+392 
+393     a\_count = g\_strv\_length(lines);
+394     msgs = g\_new0(\hyperlink{struct__registry_data}{PRegData}, a\_count);
+395     \textcolor{keywordflow}{for}(o\_index = 0; o\_index < a\_count; o\_index += 1) \{
+396         msgs[o\_index] = g\_new0(\hyperlink{struct__registry_data}{RegData}, 1);
+397         memmove(msgs[o\_index], msg, \textcolor{keyword}{sizeof}(\hyperlink{struct__registry_data}{RegData}));
+398     \}
+399 
+400     o\_index = 0;
+401     current\_line = lines[h\_index];
+402     \textcolor{keywordflow}{while} ((NULL != current\_line) && (h\_index < a\_count)) \{   \textcolor{comment}{// do each entry}
+403         \textcolor{keywordflow}{if}(g\_utf8\_strlen(current\_line, -1) < 1) \{
+404             current\_line = lines[++h\_index];
+405             \textcolor{keywordflow}{continue};
+406         \}
+407 
+408         v\_index = 0;
+409         entries = g\_strsplit\_set(current\_line, \textcolor{stringliteral}{","}, -1);
+410         current\_entry = entries[v\_index];
+411         e\_count = g\_strv\_length(entries);
+412         preg = msgs[o\_index];
+413         rc = \hyperlink{skn__common__headers_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE};
+414 
+415         \textcolor{keywordflow}{while}((NULL != current\_entry) && (v\_index < e\_count)) \{
+416             \textcolor{keywordflow}{if}(g\_utf8\_strlen(current\_entry, -1) < 1) \{
+417                 current\_entry = entries[++v\_index];
+418                 \textcolor{keywordflow}{continue};
+419             \}
+420 
+421             \textcolor{comment}{// get name, ip, port}
+422 
+423             key\_value = g\_strsplit\_set(current\_entry, \textcolor{stringliteral}{"="}, -1);
+424             \textcolor{keywordflow}{if}((key\_value != NULL) && (g\_strv\_length(key\_value) > 0)) \{
+425                 \textcolor{keywordflow}{if}(g\_strrstr(key\_value[0], \textcolor{stringliteral}{"a"}) != NULL) \{
+426                     final\_rc = rc = \hyperlink{skn__common__headers_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE};
+427                     g\_utf8\_strncpy(preg->\hyperlink{struct__registry_data_a4764e2a72c3ba9177b6c4803cfa03f72}{ch\_name}, key\_value[1], 
+      \hyperlink{cmd_d_c_8c_a152ca8fa1a2eac39d1badafb6c6cef8c}{SZ\_RMTADDR\_BUFF});
+428                 \}
+429                 \textcolor{keywordflow}{if}(g\_strrstr(key\_value[0], \textcolor{stringliteral}{"i"}) != NULL) \{
+430                     final\_rc = rc = \hyperlink{skn__common__headers_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE};
+431                     g\_utf8\_strncpy(preg->\hyperlink{struct__registry_data_a814e064e77a6aac5866c88cb51acd971}{ch\_ip}, key\_value[1], 
+      \hyperlink{cmd_d_c_8c_a152ca8fa1a2eac39d1badafb6c6cef8c}{SZ\_RMTADDR\_BUFF});
+432                 \}
+433                 \textcolor{keywordflow}{if}(g\_strrstr(key\_value[0], \textcolor{stringliteral}{"o"}) != NULL) \{
+434                     final\_rc = rc = \hyperlink{skn__common__headers_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE};
+435                     g\_utf8\_strncpy(preg->\hyperlink{struct__registry_data_a74f03616af9ec9770266cb7988fe1a71}{ch\_port}, key\_value[1], 
+      \hyperlink{cmd_d_c_8c_a152ca8fa1a2eac39d1badafb6c6cef8c}{SZ\_RMTADDR\_BUFF});
+436                 \}
+437             \}
+438             g\_strfreev(key\_value);
+439             current\_entry = entries[++v\_index];
+440         \} \textcolor{comment}{// end entries}
+441 
+442         \textcolor{keywordflow}{if} (rc && (g\_utf8\_strlen(preg->\hyperlink{struct__registry_data_a814e064e77a6aac5866c88cb51acd971}{ch\_ip}, -1) > 6)) \{   \textcolor{comment}{// only move if used and valid}
+443             o\_index += 1;
+444         \}
+445         g\_strfreev(entries);
+446 
+447         h\_index +=1;
+448         current\_line = lines[h\_index];
+449     \} \textcolor{comment}{// end lines}
+450     g\_strfreev(lines);
+451 
+452     \textcolor{keywordflow}{if} (final\_rc) \{
+453         \textcolor{keywordflow}{while}(o\_index < a\_count) \{
+454             g\_free(msgs[o\_index]);
+455             msgs[o\_index++] = NULL;
+456         \}
+457         \textcolor{keywordflow}{return}(msgs);
+458     \} \textcolor{keywordflow}{else} \{
+459         \textcolor{keywordflow}{while}(o\_index < a\_count) \{
+460             g\_free(msgs[o\_index]);
+461             msgs[o\_index++] = NULL;
+462         \}
+463         g\_free(msgs);
+464         \textcolor{keywordflow}{return}(NULL);
+465     \}
+466 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cmd_d_c_8c_a568a9919cfd345f6c1a41a2ec7c4b1ca_icgraph}
+\end{center}
+\end{figure}
+
+

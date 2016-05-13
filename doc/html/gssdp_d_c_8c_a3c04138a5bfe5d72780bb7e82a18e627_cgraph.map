@@ -1,0 +1,12 @@
+<map id="main" name="main">
+<area shape="rect" id="node2" href="$gssdp_d_c_8c.html#a160bb2056d3842ef84fd7211ed6ec385" title="cb_udp_registry_select\l_handler" alt="" coords="114,5,272,44"/>
+<area shape="rect" id="node8" href="$gssdp_d_c_8c.html#a76ad4de5945cff6e20dbeff46bda868b" title="cb_unix_signal_handler" alt="" coords="112,68,274,93"/>
+<area shape="rect" id="node9" href="$gssdp_d_c_8c.html#a72be87baa67e532c78af054acf935d6c" title="skn_get_default_interface\l_name_and_ipv4_address" alt="" coords="104,117,282,156"/>
+<area shape="rect" id="node10" href="$gssdp_d_c_8c.html#ad23c80e6ad30767eaf3b5aa482aaa92c" title="skn_gssdp_browse" alt="" coords="360,168,496,193"/>
+<area shape="rect" id="node3" href="$gssdp_d_c_8c.html#a793c6b3e5c7a5abc993d8cfbe963629d" title="udp_initialize_message_send" alt="" coords="330,12,526,37"/>
+<area shape="rect" id="node7" href="$gssdp_d_c_8c.html#a89aa9faf97e2476a930be98a8d58c0fb" title="udp_registry_find_by_name" alt="" coords="335,61,521,87"/>
+<area shape="rect" id="node4" href="$gssdp_d_c_8c.html#aa8a19e68e54683fa324bcee1ecfd3942" title="cb_udp_comm_response\l_handler" alt="" coords="588,5,759,44"/>
+<area shape="rect" id="node6" href="$gssdp_d_c_8c.html#a00c5b52bdcb7caec07d08b05b8c1dced" title="cb_udp_comm_request\l_handler" alt="" coords="593,68,754,107"/>
+<area shape="rect" id="node5" href="$gssdp_d_c_8c.html#a6ea2e6ee5c8f0d51a98539842634f217" title="skn_get_timestamp" alt="" coords="820,77,957,103"/>
+<area shape="rect" id="node11" href="$gssdp_d_c_8c.html#a4411abcfc33e91d9cd018b10fba67897" title="cb_gssdp_resource_available" alt="" coords="574,143,772,168"/>
+</map>

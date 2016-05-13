@@ -1,0 +1,2667 @@
+\hypertarget{skn__network__helpers_8c}{}\section{src/skn\+\_\+network\+\_\+helpers.c File Reference}
+\label{skn__network__helpers_8c}\index{src/skn\+\_\+network\+\_\+helpers.\+c@{src/skn\+\_\+network\+\_\+helpers.\+c}}
+{\ttfamily \#include \char`\"{}skn\+\_\+network\+\_\+helpers.\+h\char`\"{}}\\*
+Include dependency graph for skn\+\_\+network\+\_\+helpers.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{skn__network__helpers_8c_aabf69b42c470c2372e0854132e22cc70}{skn\+\_\+locator\+\_\+print\+\_\+usage} ()
+\item 
+static void \hyperlink{skn__network__helpers_8c_a49f6d3bb9d22d5b9cf5c7eb6175318d1}{exit\+\_\+handler} (int sig)
+\item 
+static void $\ast$ \hyperlink{skn__network__helpers_8c_ae671be512539874689abbab598f9f65a}{service\+\_\+registry\+\_\+entry\+\_\+create\+\_\+helper} (char $\ast$key, char $\ast$$\ast$name, char $\ast$$\ast$ip, char $\ast$$\ast$port)
+\item 
+static \hyperlink{skn__common__headers_8h_af679d9e5696daacf5f1b8699edb652ab}{P\+Service\+Registry} \hyperlink{skn__network__helpers_8c_afb305f4b4db81aad61bd5e4e6ecaf6fd}{service\+\_\+registry\+\_\+create} ()
+\item 
+static int \hyperlink{skn__network__helpers_8c_a5e51f7d19b5d689be44036a57e056e7a}{service\+\_\+registry\+\_\+entry\+\_\+create} (\hyperlink{skn__common__headers_8h_af679d9e5696daacf5f1b8699edb652ab}{P\+Service\+Registry} psreg, char $\ast$name, char $\ast$ip, char $\ast$port, int $\ast$errors)
+\item 
+static int \hyperlink{skn__network__helpers_8c_a25149d495d462b7600eb6715da868200}{service\+\_\+registry\+\_\+response\+\_\+parse} (\hyperlink{skn__common__headers_8h_af679d9e5696daacf5f1b8699edb652ab}{P\+Service\+Registry} psreg, const char $\ast$response, int $\ast$errors)
+\item 
+long \hyperlink{skn__network__helpers_8c_a9b607e33be05bf0479127f233a58fab7}{skn\+\_\+get\+\_\+number\+\_\+of\+\_\+cpu\+\_\+cores} ()
+\item 
+int \hyperlink{skn__network__helpers_8c_af451ef71d607d9188e02af7079f14263}{generate\+\_\+loadavg\+\_\+info} (char $\ast$msg)
+\item 
+int \hyperlink{skn__network__helpers_8c_aaf8b0dfb11a3800bb249c6cf90a2537a}{generate\+\_\+uname\+\_\+info} (char $\ast$msg)
+\item 
+int \hyperlink{skn__network__helpers_8c_a8aa6a7a3ba2390cf536e26c6cd2aa840}{generate\+\_\+datetime\+\_\+info} (char $\ast$msg)
+\item 
+int \hyperlink{skn__network__helpers_8c_a802d742c15476782fbbea1528f76dea5}{skn\+\_\+time\+\_\+delay} (double delay\+\_\+time)
+\item 
+uid\+\_\+t \hyperlink{skn__network__helpers_8c_a63e61152e590620edc7757d782c60a79}{skn\+\_\+get\+\_\+userids} ()
+\item 
+void \hyperlink{skn__network__helpers_8c_a6af44fa0e0746d3d2a804fea1e84dacd}{signals\+\_\+init} ()
+\item 
+void \hyperlink{skn__network__helpers_8c_ac256e2066453ab0ff82322aa24b161df}{signals\+\_\+cleanup} (int sig)
+\item 
+void \hyperlink{skn__network__helpers_8c_a96bf395b914c5182e438800248d6e8f3}{get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address} (char $\ast$intf, char $\ast$ipv4)
+\item 
+int \hyperlink{skn__network__helpers_8c_a0b4821586a5c3d59096cb20dc6b28b2a}{get\+\_\+broadcast\+\_\+ip\+\_\+array} (\hyperlink{cmd_d_c_8c_a916d712cacebc2faeda930352280c361}{P\+I\+P\+Broadcast\+Array} pa\+B)
+\item 
+int \hyperlink{skn__network__helpers_8c_a6d284e9250411e031cfa4ecb19583696}{get\+\_\+default\+\_\+interface\+\_\+name} (char $\ast$pch\+Default\+Interface\+Name)
+\item 
+int \hyperlink{skn__network__helpers_8c_a665c441c1f789eb555b1c23ed43de890}{skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line} (int argc, char $\ast$$\ast$argv)
+\item 
+void \hyperlink{skn__network__helpers_8c_ac2672efa5ece276743c6558dfe82d01a}{skn\+\_\+program\+\_\+name\+\_\+and\+\_\+description\+\_\+set} (const char $\ast$name, const char $\ast$desc)
+\item 
+char $\ast$ \hyperlink{skn__network__helpers_8c_a925d0a1de13d0d0178e52f0d6be4b97f}{skn\+\_\+strip} (char $\ast$alpha)
+\item 
+int \hyperlink{skn__network__helpers_8c_a25427bc0b7f087d1135c92dd3704f210}{skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+regular\+\_\+socket} (int port, double rcv\+Timeout)
+\item 
+int \hyperlink{skn__network__helpers_8c_a4f9f7e0f50cb3073d9c6e5a6a0d5240d}{skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+broadcast\+\_\+socket} (int port, double rcv\+Timeout)
+\item 
+\hyperlink{skn__common__headers_8h_a09c39b109fec01639de4bcbf7c481f18}{P\+Service\+Request} \hyperlink{skn__network__helpers_8c_a922ccd04b4dc28211ff08c4c62462544}{skn\+\_\+service\+\_\+request\+\_\+create} (\hyperlink{skn__common__headers_8h_ac4f78e564b456af8e033cbc1275db23e}{P\+Registry\+Entry} pre, int host\+\_\+socket, char $\ast$request)
+\item 
+double \hyperlink{skn__network__helpers_8c_ad7f2202ecfe8bb131545b23ea3c26e91}{skn\+\_\+duration\+\_\+in\+\_\+milliseconds} (struct timeval $\ast$pstart, struct timeval $\ast$pend)
+\item 
+int \hyperlink{skn__network__helpers_8c_ad8304e97f9bccee1cd899a61b91ae677}{skn\+\_\+udp\+\_\+service\+\_\+request} (\hyperlink{skn__common__headers_8h_a09c39b109fec01639de4bcbf7c481f18}{P\+Service\+Request} psr)
+\item 
+int \hyperlink{skn__network__helpers_8c_ad148412119d5d8373da1a6859aafda41}{service\+\_\+registry\+\_\+provider} (int i\+\_\+socket, char $\ast$response)
+\item 
+int \hyperlink{skn__network__helpers_8c_a866cf7e5524cc49a76448c59395a622e}{service\+\_\+registry\+\_\+valiadate\+\_\+response\+\_\+format} (const char $\ast$response)
+\item 
+\hyperlink{skn__common__headers_8h_af679d9e5696daacf5f1b8699edb652ab}{P\+Service\+Registry} \hyperlink{skn__network__helpers_8c_aae9b1fb439eead75521f80120886867e}{service\+\_\+registry\+\_\+valiadated\+\_\+registry} (const char $\ast$response)
+\item 
+void \hyperlink{skn__network__helpers_8c_ad0e63e9d3365fb8818a5ca21179abb3e}{service\+\_\+registry\+\_\+entry\+\_\+response\+\_\+message\+\_\+log} (const char $\ast$response)
+\item 
+\hyperlink{skn__common__headers_8h_ac4f78e564b456af8e033cbc1275db23e}{P\+Registry\+Entry} \hyperlink{skn__network__helpers_8c_ab5ed70a05f4e20dac13298ae16530069}{service\+\_\+registry\+\_\+find\+\_\+entry} (\hyperlink{skn__common__headers_8h_af679d9e5696daacf5f1b8699edb652ab}{P\+Service\+Registry} psreg, char $\ast$service\+Name)
+\item 
+int \hyperlink{skn__network__helpers_8c_a88465ff1322cb437fd3b7a1e036fd017}{service\+\_\+registry\+\_\+entry\+\_\+count} (\hyperlink{skn__common__headers_8h_af679d9e5696daacf5f1b8699edb652ab}{P\+Service\+Registry} psr)
+\item 
+int \hyperlink{skn__network__helpers_8c_a16d6920592f2a64c9cab22cb26ef28e1}{service\+\_\+registry\+\_\+list\+\_\+entries} (\hyperlink{skn__common__headers_8h_af679d9e5696daacf5f1b8699edb652ab}{P\+Service\+Registry} psr)
+\item 
+void $\ast$ \hyperlink{skn__network__helpers_8c_a6e35caa22b36caec7dcb3b6585cbb7e3}{service\+\_\+registry\+\_\+get\+\_\+entry\+\_\+field\+\_\+ref} (\hyperlink{skn__common__headers_8h_ac4f78e564b456af8e033cbc1275db23e}{P\+Registry\+Entry} prent, char $\ast$field)
+\item 
+\hyperlink{skn__common__headers_8h_af679d9e5696daacf5f1b8699edb652ab}{P\+Service\+Registry} \hyperlink{skn__network__helpers_8c_a8a291f1cb8d18e45a3e9b6bc9e3798a6}{service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast} (int i\+\_\+socket, char $\ast$request)
+\item 
+void \hyperlink{skn__network__helpers_8c_a819c12fc7c8ff576b1aaad69bc098840}{service\+\_\+registry\+\_\+destroy} (\hyperlink{skn__common__headers_8h_af679d9e5696daacf5f1b8699edb652ab}{P\+Service\+Registry} psreg)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+sig\+\_\+atomic\+\_\+t \hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\+\_\+exit\+\_\+flag} = \hyperlink{skn__common__headers_8h_a3f5142b81a9ee977aedfd69a61281920}{S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+R\+U\+N}
+\item 
+char $\ast$ \hyperlink{skn__network__helpers_8c_a0bb2e7571c22c0455842aba8cf1d97dc}{gd\+\_\+pch\+\_\+message} = N\+U\+L\+L
+\item 
+signed int \hyperlink{skn__network__helpers_8c_a923b2adbdc0dac852905dc95eaa73a37}{gd\+\_\+i\+\_\+debug} = 0
+\item 
+char \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\+\_\+ch\+\_\+program\+\_\+name} \mbox{[}\hyperlink{skn__common__headers_8h_a442d5e93bd9c9d8eb4532aba62b5f86c}{S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F}\mbox{]}
+\item 
+char \hyperlink{skn__network__helpers_8c_a7dfc34fe01828952972b6ae778b4f022}{gd\+\_\+ch\+\_\+program\+\_\+desc} \mbox{[}\hyperlink{skn__common__headers_8h_a442d5e93bd9c9d8eb4532aba62b5f86c}{S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F}\mbox{]}
+\item 
+char $\ast$ \hyperlink{skn__network__helpers_8c_af2e3031da262a9990e0ef895e20cdd0e}{gd\+\_\+pch\+\_\+effective\+\_\+userid} = N\+U\+L\+L
+\item 
+int \hyperlink{skn__network__helpers_8c_a62c4e1910a12d9a04a12768154853712}{gd\+\_\+i\+\_\+socket} = -\/1
+\item 
+int \hyperlink{skn__network__helpers_8c_ad3af8f8dd9f2ca01a415370a99bc465e}{gd\+\_\+i\+\_\+display} = 0
+\item 
+int \hyperlink{skn__network__helpers_8c_a49e7c0da0f26a1f505934e5610ead123}{gd\+\_\+i\+\_\+update} = 0
+\item 
+int \hyperlink{skn__network__helpers_8c_ae64a8fff2241990ec523dafe18f7864c}{gd\+\_\+i\+\_\+unique\+\_\+registry} = 0
+\item 
+char \hyperlink{skn__network__helpers_8c_aee48900a4a99c0480e3f1dfb6c4f38c7}{gd\+\_\+ch\+\_\+ip\+Address} \mbox{[}\hyperlink{skn__common__headers_8h_a8d2978ad614b0de81c60483e706d9306}{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F}\mbox{]}
+\item 
+char \hyperlink{skn__network__helpers_8c_ac317f6dfab7bc91b9e2d717a7a1b8fcb}{gd\+\_\+ch\+\_\+intf\+Name} \mbox{[}\hyperlink{skn__common__headers_8h_a8d2978ad614b0de81c60483e706d9306}{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F}\mbox{]}
+\item 
+char \hyperlink{skn__network__helpers_8c_af45afdaf27876f134e053f2c7744efe9}{gd\+\_\+ch\+\_\+host\+Name} \mbox{[}\hyperlink{skn__common__headers_8h_a8d2978ad614b0de81c60483e706d9306}{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F}\mbox{]}
+\item 
+char \hyperlink{skn__network__helpers_8c_a7e072c565373b2bcba1b27b8f0528c1c}{gd\+\_\+ch\+\_\+host\+Short\+Name} \mbox{[}\hyperlink{skn__common__headers_8h_a8d2978ad614b0de81c60483e706d9306}{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F}\mbox{]}
+\item 
+char $\ast$ \hyperlink{skn__network__helpers_8c_a2f908b49598a49ea624bfcc3e2175b7c}{gd\+\_\+pch\+\_\+service\+\_\+name}
+\item 
+int \hyperlink{skn__network__helpers_8c_a2c55396bf337471f9f99a939974fcdbe}{gd\+\_\+i\+\_\+i2c\+\_\+address} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{skn__network__helpers_8c_a49f6d3bb9d22d5b9cf5c7eb6175318d1}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!exit\+\_\+handler@{exit\+\_\+handler}}
+\index{exit\+\_\+handler@{exit\+\_\+handler}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{exit\+\_\+handler(int sig)}]{\setlength{\rightskip}{0pt plus 5cm}static void exit\+\_\+handler (
+\begin{DoxyParamCaption}
+\item[{int}]{sig}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{skn__network__helpers_8c_a49f6d3bb9d22d5b9cf5c7eb6175318d1}
+Control-\/\+C Program exit ref\+: \href{http://www.cons.org/cracauer/sigint.html}{\tt http\+://www.\+cons.\+org/cracauer/sigint.\+html} \href{http://www.chemie.fu-berlin.de/chemnet/use/info/libc/libc_21.html#SEC361}{\tt http\+://www.\+chemie.\+fu-\/berlin.\+de/chemnet/use/info/libc/libc\+\_\+21.\+html\#\+S\+E\+C361} 
+
+Definition at line 130 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References gi\+\_\+exit\+\_\+flag, and S\+D\+\_\+\+N\+O\+T\+I\+C\+E.
+
+
+
+Referenced by signals\+\_\+init().
+
+
+\begin{DoxyCode}
+130                                   \{
+131     \hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag} = sig;
+132     skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"Program Exiting, from signal=%d:%s\(\backslash\)n"}, sig, strsignal(sig));
+133 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=326pt]{skn__network__helpers_8c_a49f6d3bb9d22d5b9cf5c7eb6175318d1_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_a8aa6a7a3ba2390cf536e26c6cd2aa840}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!generate\+\_\+datetime\+\_\+info@{generate\+\_\+datetime\+\_\+info}}
+\index{generate\+\_\+datetime\+\_\+info@{generate\+\_\+datetime\+\_\+info}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{generate\+\_\+datetime\+\_\+info(char $\ast$msg)}]{\setlength{\rightskip}{0pt plus 5cm}int generate\+\_\+datetime\+\_\+info (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{msg}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_a8aa6a7a3ba2390cf536e26c6cd2aa840}
+
+
+Definition at line 79 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F, and T\+Z\+\_\+\+A\+D\+J\+U\+S\+T.
+
+
+
+Referenced by main(), and skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work().
+
+
+\begin{DoxyCode}
+79                                       \{
+80     \textcolor{keywordtype}{int} mLen = 0;
+81     \textcolor{keyword}{struct }tm *t;
+82     time\_t tim;
+83 
+84     tim = time(NULL);
+85     t = localtime(&tim);
+86 
+87     mLen = snprintf(msg, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} -1, \textcolor{stringliteral}{"%02d:%02d:%04d %02d:%02d:%02d"},
+88                     t->tm\_mon + 1, t->tm\_mday, t->tm\_year + 1900,
+89                     ((t->tm\_hour - \hyperlink{skn__common__headers_8h_a43b19fdfa560dfa392d708c35bc58b37}{TZ\_ADJUST}) < 0 ? (t->tm\_hour - 
+      \hyperlink{skn__common__headers_8h_a43b19fdfa560dfa392d708c35bc58b37}{TZ\_ADJUST} + 12) : (t->tm\_hour - \hyperlink{skn__common__headers_8h_a43b19fdfa560dfa392d708c35bc58b37}{TZ\_ADJUST})), t->tm\_min, t->tm\_sec);
+90 
+91     \textcolor{keywordflow}{return} mLen;
+92 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_a8aa6a7a3ba2390cf536e26c6cd2aa840_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_af451ef71d607d9188e02af7079f14263}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!generate\+\_\+loadavg\+\_\+info@{generate\+\_\+loadavg\+\_\+info}}
+\index{generate\+\_\+loadavg\+\_\+info@{generate\+\_\+loadavg\+\_\+info}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{generate\+\_\+loadavg\+\_\+info(char $\ast$msg)}]{\setlength{\rightskip}{0pt plus 5cm}int generate\+\_\+loadavg\+\_\+info (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{msg}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_af451ef71d607d9188e02af7079f14263}
+
+
+Definition at line 45 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R, and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F.
+
+
+
+Referenced by main(), and skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work().
+
+
+\begin{DoxyCode}
+45                                      \{
+46     \textcolor{keywordtype}{double} loadavg[4];
+47     \textcolor{keywordtype}{int} rc = 0;
+48 
+49     rc = getloadavg(loadavg, 3);
+50 
+51     \textcolor{keywordflow}{if} (rc != \hyperlink{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{PLATFORM\_ERROR}) \{
+52         snprintf(msg, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} -1, \textcolor{stringliteral}{"LoadAvg: 1m=%2.1f, 5m=%2.1f, 15m=%2.1F"},
+53                  loadavg[0], loadavg[1], loadavg[2]);
+54     \} \textcolor{keywordflow}{else} \{
+55         snprintf(msg, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} -1, \textcolor{stringliteral}{"Load Average: Not Available  %d:%d:%s"},
+56                  rc, errno, strerror(errno));
+57     \}
+58 
+59     \textcolor{keywordflow}{return} rc;
+60 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_af451ef71d607d9188e02af7079f14263_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_aaf8b0dfb11a3800bb249c6cf90a2537a}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!generate\+\_\+uname\+\_\+info@{generate\+\_\+uname\+\_\+info}}
+\index{generate\+\_\+uname\+\_\+info@{generate\+\_\+uname\+\_\+info}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{generate\+\_\+uname\+\_\+info(char $\ast$msg)}]{\setlength{\rightskip}{0pt plus 5cm}int generate\+\_\+uname\+\_\+info (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{msg}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_aaf8b0dfb11a3800bb249c6cf90a2537a}
+
+
+Definition at line 62 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References skn\+\_\+get\+\_\+number\+\_\+of\+\_\+cpu\+\_\+cores(), and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F.
+
+
+
+Referenced by main(), and skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work().
+
+
+\begin{DoxyCode}
+62                                    \{
+63     \textcolor{keyword}{struct }utsname info;
+64 
+65     \textcolor{keywordtype}{int} mLen = 0;
+66     \textcolor{keywordtype}{char} * message = \textcolor{stringliteral}{"uname() api failed."};
+67 
+68     \textcolor{keywordflow}{if} (uname(&info) != 0) \{
+69         mLen = snprintf(msg, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} -1, \textcolor{stringliteral}{"%s"}, message);
+70     \} \textcolor{keywordflow}{else} \{
+71         mLen = snprintf(msg, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} -1, \textcolor{stringliteral}{"%s %s, %s %s | Cores=%ld"},
+72 \textcolor{comment}{//                        info.nodename,}
+73                         info.sysname, info.release, info.version, info.machine,
+74                         \hyperlink{skn__network__helpers_8c_a9b607e33be05bf0479127f233a58fab7}{skn\_get\_number\_of\_cpu\_cores}());
+75     \}
+76     \textcolor{keywordflow}{return} mLen;
+77 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_aaf8b0dfb11a3800bb249c6cf90a2537a_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_aaf8b0dfb11a3800bb249c6cf90a2537a_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_a0b4821586a5c3d59096cb20dc6b28b2a}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!get\+\_\+broadcast\+\_\+ip\+\_\+array@{get\+\_\+broadcast\+\_\+ip\+\_\+array}}
+\index{get\+\_\+broadcast\+\_\+ip\+\_\+array@{get\+\_\+broadcast\+\_\+ip\+\_\+array}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{get\+\_\+broadcast\+\_\+ip\+\_\+array(\+P\+I\+P\+Broadcast\+Array pa\+B)}]{\setlength{\rightskip}{0pt plus 5cm}int get\+\_\+broadcast\+\_\+ip\+\_\+array (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+I\+P\+Broadcast\+Array}}]{pa\+B}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_a0b4821586a5c3d59096cb20dc6b28b2a}
+Collect I\+P and Broadcast Addresses for this machine
+
+
+\begin{DoxyItemize}
+\item Affects the P\+I\+P\+Broadcast\+Array
+\item Return -\/1 on error, or count of interfaces
+\item contains this ip\+Address in pa\+B-\/$>$ip\+Addr\+Str\mbox{[}pa\+B-\/$>$default\+Index\mbox{]} 
+\end{DoxyItemize}
+
+Definition at line 170 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+T\+F, \+\_\+ip\+Broadcast\+Array\+::broad\+Addr\+Str, \+\_\+ip\+Broadcast\+Array\+::cb\+Name, \+\_\+ip\+Broadcast\+Array\+::ch\+Default\+Intf\+Name, \+\_\+ip\+Broadcast\+Array\+::count, \+\_\+ip\+Broadcast\+Array\+::default\+Index, get\+\_\+default\+\_\+interface\+\_\+name(), \+\_\+ip\+Broadcast\+Array\+::if\+Name\+Str, \+\_\+ip\+Broadcast\+Array\+::ip\+Addr\+Str, \+\_\+ip\+Broadcast\+Array\+::mask\+Addr\+Str, P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R, S\+D\+\_\+\+E\+R\+R, and S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F.
+
+
+
+Referenced by get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address(), service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast(), service\+\_\+registry\+\_\+provider(), and skn\+\_\+display\+\_\+manager\+\_\+message\+\_\+consumer\+\_\+thread().
+
+
+\begin{DoxyCode}
+170                                                   \{
+171     \textcolor{keyword}{struct }ifaddrs * ifap;
+172     \textcolor{keyword}{struct }ifaddrs * p;
+173     \textcolor{keywordtype}{int} rc = 0;
+174 
+175     memset(paB, 0, \textcolor{keyword}{sizeof}(\hyperlink{struct__ip_broadcast_array}{IPBroadcastArray}));
+176     paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count} = 0;
+177     paB->\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex} = 0;
+178     strcpy(paB->\hyperlink{struct__ip_broadcast_array_a0f592bd31dcc3ce00a349f04ff6bd1ba}{cbName}, \textcolor{stringliteral}{"IPBroadcastArray"});
+179 
+180     rc = \hyperlink{skn__network__helpers_8c_a6d284e9250411e031cfa4ecb19583696}{get\_default\_interface\_name}(paB->
+      \hyperlink{struct__ip_broadcast_array_a06dab8742df19b5aec8538842617778d}{chDefaultIntfName});
+181     \textcolor{keywordflow}{if} (rc == EXIT\_FAILURE) \{ \textcolor{comment}{// Alternate method for Mac: 'route -n -A inet'}
+182         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"No Default Network Interfaces Found!."});
+183         paB->\hyperlink{struct__ip_broadcast_array_a06dab8742df19b5aec8538842617778d}{chDefaultIntfName}[0] = 0;
+184     \}
+185     rc = getifaddrs(&ifap);
+186     \textcolor{keywordflow}{if} (rc != 0) \{
+187         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"No Network Interfaces Found at All ! %d:%d:%s"}, rc, errno, strerror(errno
+      ) );
+188         \textcolor{keywordflow}{return} (\hyperlink{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{PLATFORM\_ERROR});
+189     \}
+190     p = ifap;
+191 
+192     \textcolor{keywordflow}{while} (p && paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count} < \hyperlink{cmd_d_c_8c_a00b19837422a3b13d82b9a525e92ef51}{ARY\_MAX\_INTF}) \{
+193         \textcolor{keywordflow}{if} (p->ifa\_addr != NULL && p->ifa\_addr->sa\_family == AF\_INET && ((p->ifa\_flags & IFF\_BROADCAST) > 0
+      )) \{
+194 
+195             inet\_ntop(p->ifa\_addr->sa\_family, &((\textcolor{keyword}{struct} sockaddr\_in *) p->ifa\_addr)->sin\_addr, paB->
+      \hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count}], (\hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF} - 1));
+196             inet\_ntop(p->ifa\_addr->sa\_family, &((\textcolor{keyword}{struct} sockaddr\_in *) p->ifa\_netmask)->sin\_addr, paB->
+      \hyperlink{struct__ip_broadcast_array_a9241c1fbfb22a3ecfe4777863a063eb3}{maskAddrStr}[paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count}], (\hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF} - 1));
+197             inet\_ntop(p->ifa\_addr->sa\_family, &((\textcolor{keyword}{struct} sockaddr\_in *) p->ifa\_broadaddr)->sin\_addr, paB->
+      \hyperlink{struct__ip_broadcast_array_af40943e174ba847fa0218cfa6051e277}{broadAddrStr}[paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count}], (\hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF} - 1));
+198 
+199             strncpy(paB->\hyperlink{struct__ip_broadcast_array_a193b90f271c061e8bf1593bab6a182c9}{ifNameStr}[paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count}], p->ifa\_name, (
+      \hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF} -1));
+200 
+201             \textcolor{comment}{/* Take match as the default */}
+202             \textcolor{keywordflow}{if} (strcmp(paB->\hyperlink{struct__ip_broadcast_array_a06dab8742df19b5aec8538842617778d}{chDefaultIntfName}, p->ifa\_name) == 0) \{
+203                 paB->\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex} = paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count};
+204             \}
+205 
+206             paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count}++;
+207         \}
+208         p = p->ifa\_next;
+209     \} \textcolor{comment}{// end while}
+210     freeifaddrs(ifap);
+211 
+212     \textcolor{keywordflow}{return} paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count};
+213 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_a0b4821586a5c3d59096cb20dc6b28b2a_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_a0b4821586a5c3d59096cb20dc6b28b2a_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_a6d284e9250411e031cfa4ecb19583696}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!get\+\_\+default\+\_\+interface\+\_\+name@{get\+\_\+default\+\_\+interface\+\_\+name}}
+\index{get\+\_\+default\+\_\+interface\+\_\+name@{get\+\_\+default\+\_\+interface\+\_\+name}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{get\+\_\+default\+\_\+interface\+\_\+name(char $\ast$pch\+Default\+Interface\+Name)}]{\setlength{\rightskip}{0pt plus 5cm}int get\+\_\+default\+\_\+interface\+\_\+name (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{pch\+Default\+Interface\+Name}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_a6d284e9250411e031cfa4ecb19583696}
+Retrieves default internet interface name into param
+\begin{DoxyItemize}
+\item absolute best way to do this, but not supported on Darwin(i.\+e O\+S\+X) return E\+X\+I\+T\+\_\+\+S\+U\+C\+C\+E\+S\+S or E\+X\+I\+T\+\_\+\+F\+A\+I\+L\+U\+R\+E
+\end{DoxyItemize}
+
+\mbox{[}jscott O\+S\+X\mbox{]}\$ route -\/n get 0.\+0.\+0.\+0 route to\+: default destination\+: default mask\+: default gateway\+: 10.\+21.\+1.\+254 interface\+: en3 flags\+: $<$U\+P,G\+A\+T\+E\+W\+A\+Y,D\+O\+N\+E,S\+T\+A\+T\+I\+C,P\+R\+C\+L\+O\+N\+I\+N\+G$>$ recvpipe sendpipe ssthresh rtt,msec rttvar hopcount mtu expire 0 0 0 0 0 0 1500 0 
+
+Definition at line 231 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References S\+D\+\_\+\+E\+R\+R, skn\+\_\+strip(), and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F.
+
+
+
+Referenced by get\+\_\+broadcast\+\_\+ip\+\_\+array().
+
+
+\begin{DoxyCode}
+231                                                               \{
+232     FILE *f\_route;
+233     \textcolor{keywordtype}{char} line[\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}], *dRoute = NULL, *iName = NULL;
+234 
+235     f\_route = fopen(\textcolor{stringliteral}{"/proc/net/route"}, \textcolor{stringliteral}{"r"});
+236     \textcolor{keywordflow}{if} (f\_route != NULL) \{
+237         \textcolor{keywordflow}{while} (fgets(line, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1, f\_route)) \{
+238             iName = strtok(line, \textcolor{stringliteral}{"\(\backslash\)t"});
+239             dRoute = strtok(NULL, \textcolor{stringliteral}{"\(\backslash\)t"});
+240 
+241             \textcolor{keywordflow}{if} (iName != NULL && dRoute != NULL) \{
+242                 \textcolor{keywordflow}{if} (strcmp(dRoute, \textcolor{stringliteral}{"00000000"}) == 0) \{
+243                     strncpy(pchDefaultInterfaceName, iName, (\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1));
+244                     \textcolor{keywordflow}{break};
+245                 \}
+246             \}
+247         \}
+248         fclose(f\_route);
+249 
+250         \textcolor{keywordflow}{return} EXIT\_SUCCESS;
+251     \}
+252     skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"Opening ProcFs for RouteInfo Failed: %d:%s, Alternate method will be
+       attempted."}, errno, strerror(errno));
+253 
+254     f\_route = popen(\textcolor{stringliteral}{"route -n get 0.0.0.0"}, \textcolor{stringliteral}{"r"}); \textcolor{comment}{// for linux 'route -n -A inet', with interface at
+       line\_word[7]}
+255     \textcolor{keywordflow}{if} (f\_route != NULL) \{
+256         \textcolor{keywordflow}{while} (fgets(line, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1, f\_route)) \{
+257             dRoute = strtok(line, \textcolor{stringliteral}{":"});
+258             iName = strtok(NULL, \textcolor{stringliteral}{"\(\backslash\)n"});
+259             \textcolor{keywordflow}{if} (strcmp(\hyperlink{skn__network__helpers_8c_a925d0a1de13d0d0178e52f0d6be4b97f}{skn\_strip}(dRoute), \textcolor{stringliteral}{"interface"}) == 0) \{
+260                 strncpy(pchDefaultInterfaceName, \hyperlink{skn__network__helpers_8c_a925d0a1de13d0d0178e52f0d6be4b97f}{skn\_strip}(iName), (
+      \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1));
+261                 \textcolor{keywordflow}{break};
+262             \}
+263         \}
+264         fclose(f\_route);
+265 
+266         \textcolor{keywordflow}{return} EXIT\_SUCCESS;
+267     \} \textcolor{keywordflow}{else} \{
+268         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"Alternate method to get RouteInfo Failed: %d:%s"}, errno, strerror(errno))
+      ;
+269         \textcolor{keywordflow}{return} EXIT\_FAILURE;
+270     \}
+271 
+272 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{skn__network__helpers_8c_a6d284e9250411e031cfa4ecb19583696_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_a6d284e9250411e031cfa4ecb19583696_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_a96bf395b914c5182e438800248d6e8f3}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address@{get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address}}
+\index{get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address@{get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address(char $\ast$intf, char $\ast$ipv4)}]{\setlength{\rightskip}{0pt plus 5cm}void get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{intf, }
+\item[{char $\ast$}]{ipv4}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_a96bf395b914c5182e438800248d6e8f3}
+
+
+Definition at line 152 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References \+\_\+ip\+Broadcast\+Array\+::ch\+Default\+Intf\+Name, \+\_\+ip\+Broadcast\+Array\+::default\+Index, get\+\_\+broadcast\+\_\+ip\+\_\+array(), \+\_\+ip\+Broadcast\+Array\+::ip\+Addr\+Str, P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R, S\+D\+\_\+\+E\+R\+R, and S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F.
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+152                                                                            \{
+153     \hyperlink{struct__ip_broadcast_array}{IPBroadcastArray} aB;
+154 
+155     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a0b4821586a5c3d59096cb20dc6b28b2a}{get\_broadcast\_ip\_array}(&aB) != \hyperlink{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{PLATFORM\_ERROR}) \{
+156         memcpy(intf, aB.\hyperlink{struct__ip_broadcast_array_a06dab8742df19b5aec8538842617778d}{chDefaultIntfName}, \hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF});
+157         memcpy(ipv4, aB.\hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[aB.\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex}], 
+      \hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF});
+158     \} \textcolor{keywordflow}{else} \{
+159         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"InterfaceName and Address: unable to access information."});
+160     \}
+161 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_a96bf395b914c5182e438800248d6e8f3_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=288pt]{skn__network__helpers_8c_a96bf395b914c5182e438800248d6e8f3_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_afb305f4b4db81aad61bd5e4e6ecaf6fd}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!service\+\_\+registry\+\_\+create@{service\+\_\+registry\+\_\+create}}
+\index{service\+\_\+registry\+\_\+create@{service\+\_\+registry\+\_\+create}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{service\+\_\+registry\+\_\+create()}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf P\+Service\+Registry} service\+\_\+registry\+\_\+create (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{skn__network__helpers_8c_afb305f4b4db81aad61bd5e4e6ecaf6fd}
+\hyperlink{skn__network__helpers_8c_afb305f4b4db81aad61bd5e4e6ecaf6fd}{service\+\_\+registry\+\_\+create()}
+
+
+\begin{DoxyItemize}
+\item Collection of Services and their locations
+\item Returns the Registry 
+\end{DoxyItemize}
+
+Definition at line 753 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References \+\_\+service\+Registry\+::cb\+Name, \+\_\+service\+Registry\+::computed\+Max, \+\_\+service\+Registry\+::count, and \+\_\+service\+Registry\+::entry.
+
+
+
+Referenced by service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast(), service\+\_\+registry\+\_\+valiadate\+\_\+response\+\_\+format(), and service\+\_\+registry\+\_\+valiadated\+\_\+registry().
+
+
+\begin{DoxyCode}
+753                                                   \{
+754     \hyperlink{struct__service_registry}{PServiceRegistry} psreg = NULL;
+755 
+756     psreg = (\hyperlink{skn__common__headers_8h_af679d9e5696daacf5f1b8699edb652ab}{PServiceRegistry}) malloc(\textcolor{keyword}{sizeof}(\hyperlink{struct__service_registry}{ServiceRegistry}));
+757     \textcolor{keywordflow}{if} (psreg != NULL) \{
+758         memset(psreg, 0, \textcolor{keyword}{sizeof}(\hyperlink{struct__service_registry}{ServiceRegistry}));
+759         strcpy(psreg->\hyperlink{struct__service_registry_ab822dc7bf25dc0eb498e81f81581e448}{cbName}, \textcolor{stringliteral}{"PServiceRegistry"});
+760         psreg->\hyperlink{struct__service_registry_afc84b25f775a67d768cf4915db3c7115}{computedMax} = (\textcolor{keyword}{sizeof}(psreg->\hyperlink{struct__service_registry_ad35429e298009925477ba528ea500fe8}{entry}) / \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{void} *));
+761         psreg->\hyperlink{struct__service_registry_a68062b14c6c9cb411e3602be664425bc}{count} = 0;
+762     \}
+763 
+764     \textcolor{keywordflow}{return} psreg;
+765 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_afb305f4b4db81aad61bd5e4e6ecaf6fd_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_a819c12fc7c8ff576b1aaad69bc098840}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!service\+\_\+registry\+\_\+destroy@{service\+\_\+registry\+\_\+destroy}}
+\index{service\+\_\+registry\+\_\+destroy@{service\+\_\+registry\+\_\+destroy}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{service\+\_\+registry\+\_\+destroy(\+P\+Service\+Registry psreg)}]{\setlength{\rightskip}{0pt plus 5cm}void service\+\_\+registry\+\_\+destroy (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+Service\+Registry}}]{psreg}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_a819c12fc7c8ff576b1aaad69bc098840}
+\hyperlink{skn__network__helpers_8c_a819c12fc7c8ff576b1aaad69bc098840}{service\+\_\+registry\+\_\+destroy()}
+\begin{DoxyItemize}
+\item Free each entry, then the Registry itself. 
+\end{DoxyItemize}
+
+Definition at line 1115 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References \+\_\+service\+Registry\+::count, and \+\_\+service\+Registry\+::entry.
+
+
+
+Referenced by main(), and service\+\_\+registry\+\_\+valiadate\+\_\+response\+\_\+format().
+
+
+\begin{DoxyCode}
+1115                                                       \{
+1116     \textcolor{keywordtype}{int} index = 0;
+1117 
+1118     \textcolor{keywordflow}{if} (psreg == NULL)
+1119         \textcolor{keywordflow}{return};
+1120 
+1121     \textcolor{keywordflow}{for} (index = 0; index < psreg->\hyperlink{struct__service_registry_a68062b14c6c9cb411e3602be664425bc}{count}; index++) \{
+1122         free(psreg->\hyperlink{struct__service_registry_ad35429e298009925477ba528ea500fe8}{entry}[index]);
+1123     \}
+1124     free(psreg);
+1125 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_a819c12fc7c8ff576b1aaad69bc098840_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_a88465ff1322cb437fd3b7a1e036fd017}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!service\+\_\+registry\+\_\+entry\+\_\+count@{service\+\_\+registry\+\_\+entry\+\_\+count}}
+\index{service\+\_\+registry\+\_\+entry\+\_\+count@{service\+\_\+registry\+\_\+entry\+\_\+count}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{service\+\_\+registry\+\_\+entry\+\_\+count(\+P\+Service\+Registry psr)}]{\setlength{\rightskip}{0pt plus 5cm}int service\+\_\+registry\+\_\+entry\+\_\+count (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+Service\+Registry}}]{psr}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_a88465ff1322cb437fd3b7a1e036fd017}
+Returns the number of services in registry 
+
+Definition at line 903 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References \+\_\+service\+Registry\+::count.
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+903                                                        \{
+904     \textcolor{keywordflow}{return} psr->\hyperlink{struct__service_registry_a68062b14c6c9cb411e3602be664425bc}{count};
+905 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=267pt]{skn__network__helpers_8c_a88465ff1322cb437fd3b7a1e036fd017_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_a5e51f7d19b5d689be44036a57e056e7a}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!service\+\_\+registry\+\_\+entry\+\_\+create@{service\+\_\+registry\+\_\+entry\+\_\+create}}
+\index{service\+\_\+registry\+\_\+entry\+\_\+create@{service\+\_\+registry\+\_\+entry\+\_\+create}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{service\+\_\+registry\+\_\+entry\+\_\+create(\+P\+Service\+Registry psreg, char $\ast$name, char $\ast$ip, char $\ast$port, int $\ast$errors)}]{\setlength{\rightskip}{0pt plus 5cm}static int service\+\_\+registry\+\_\+entry\+\_\+create (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+Service\+Registry}}]{psreg, }
+\item[{char $\ast$}]{name, }
+\item[{char $\ast$}]{ip, }
+\item[{char $\ast$}]{port, }
+\item[{int $\ast$}]{errors}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{skn__network__helpers_8c_a5e51f7d19b5d689be44036a57e056e7a}
+\hyperlink{skn__network__helpers_8c_a5e51f7d19b5d689be44036a57e056e7a}{service\+\_\+registry\+\_\+entry\+\_\+create()}
+
+
+\begin{DoxyItemize}
+\item Create a Service Entry and adds it to the Registry collection
+\item Returns E\+X\+I\+T\+\_\+\+F\+A\+I\+L\+U\+R\+E/\+S\+U\+C\+C\+E\+S\+S 
+\end{DoxyItemize}
+
+Definition at line 773 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References \+\_\+service\+Entry\+::cb\+Name, \+\_\+service\+Registry\+::computed\+Max, \+\_\+service\+Registry\+::count, \+\_\+service\+Registry\+::entry, gd\+\_\+i\+\_\+unique\+\_\+registry, \+\_\+service\+Entry\+::ip, \+\_\+service\+Entry\+::name, \+\_\+service\+Entry\+::port, S\+D\+\_\+\+D\+E\+B\+U\+G, S\+D\+\_\+\+W\+A\+R\+N\+I\+N\+G, and service\+\_\+registry\+\_\+find\+\_\+entry().
+
+
+
+Referenced by service\+\_\+registry\+\_\+response\+\_\+parse().
+
+
+\begin{DoxyCode}
+773                                                                                                            
+           \{
+774     \hyperlink{struct__service_entry}{PRegistryEntry} prent = NULL;
+775 
+776     \textcolor{keywordflow}{if} ((psreg == NULL) || (name == NULL) || (ip == NULL) || (port == NULL)) \{
+777         skn\_logger(\hyperlink{skn__common__headers_8h_a3ace3381f5b69f4a46fc35b70844a5dc}{SD\_DEBUG}, \textcolor{stringliteral}{"Parse failure missing value: (%s,%s,%s)"}, name, ip, port);
+778         \textcolor{keywordflow}{if} (errors != NULL)
+779             (*errors)++;
+780         \textcolor{keywordflow}{return} EXIT\_FAILURE;
+781     \}
+782 
+783     \textcolor{keywordflow}{if} (psreg->\hyperlink{struct__service_registry_a68062b14c6c9cb411e3602be664425bc}{count} >= psreg->\hyperlink{struct__service_registry_afc84b25f775a67d768cf4915db3c7115}{computedMax}) \{
+784         skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"Capacity Error: Too many! New entry %d:%s exceeds maximum of %d
+       allowed! Consider using the --unique-registry option."}, psreg->\hyperlink{struct__service_registry_a68062b14c6c9cb411e3602be664425bc}{count}, name, psreg->
+      \hyperlink{struct__service_registry_afc84b25f775a67d768cf4915db3c7115}{computedMax});
+785         \textcolor{keywordflow}{if} (errors != NULL)
+786             (*errors)++;
+787         \textcolor{keywordflow}{return} EXIT\_FAILURE;
+788     \}
+789 
+790     \textcolor{comment}{/* update or create entry */}
+791     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_ae64a8fff2241990ec523dafe18f7864c}{gd\_i\_unique\_registry}) \{
+792         prent = \hyperlink{skn__network__helpers_8c_ab5ed70a05f4e20dac13298ae16530069}{service\_registry\_find\_entry}(psreg, name);
+793     \}
+794     \textcolor{keywordflow}{if} (prent == NULL) \{
+795         prent = (\hyperlink{skn__common__headers_8h_ac4f78e564b456af8e033cbc1275db23e}{PRegistryEntry}) malloc(\textcolor{keyword}{sizeof}(\hyperlink{struct__service_entry}{RegistryEntry}));
+796         \textcolor{keywordflow}{if} (prent != NULL) \{
+797             psreg->\hyperlink{struct__service_registry_ad35429e298009925477ba528ea500fe8}{entry}[psreg->\hyperlink{struct__service_registry_a68062b14c6c9cb411e3602be664425bc}{count}] = prent;
+798             psreg->\hyperlink{struct__service_registry_a68062b14c6c9cb411e3602be664425bc}{count}++;
+799         \}
+800     \}
+801 
+802     \textcolor{keywordflow}{if} (prent != NULL) \{
+803         memset(prent, 0, \textcolor{keyword}{sizeof}(\hyperlink{struct__service_entry}{RegistryEntry}));
+804         strcpy(prent->\hyperlink{struct__service_entry_ac654e9e33bf977ee6c36c46af83fbdd4}{cbName}, \textcolor{stringliteral}{"PRegistryEntry"});
+805         strcpy(prent->\hyperlink{struct__service_entry_aa66dcf0806f67276d049ac75c6153768}{name}, name);
+806         strcpy(prent->\hyperlink{struct__service_entry_a70b1db0895fbe31c07c8799cb57c678a}{ip}, ip);
+807         prent->\hyperlink{struct__service_entry_ac8a3a40de5eee937afb42faea4d18bb2}{port} = atoi(port);
+808     \} \textcolor{keywordflow}{else} \{
+809         skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"Internal Memory Error: Could not allocate memory for entry %d:%s
+       !"}, name, psreg->\hyperlink{struct__service_registry_a68062b14c6c9cb411e3602be664425bc}{count});
+810         \textcolor{keywordflow}{if} (errors != NULL)
+811             (*errors)++;
+812 
+813         \textcolor{keywordflow}{return} EXIT\_FAILURE;
+814     \}
+815 
+816     \textcolor{keywordflow}{return} psreg->\hyperlink{struct__service_registry_a68062b14c6c9cb411e3602be664425bc}{count};
+817 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=338pt]{skn__network__helpers_8c_a5e51f7d19b5d689be44036a57e056e7a_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_a5e51f7d19b5d689be44036a57e056e7a_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_ae671be512539874689abbab598f9f65a}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!service\+\_\+registry\+\_\+entry\+\_\+create\+\_\+helper@{service\+\_\+registry\+\_\+entry\+\_\+create\+\_\+helper}}
+\index{service\+\_\+registry\+\_\+entry\+\_\+create\+\_\+helper@{service\+\_\+registry\+\_\+entry\+\_\+create\+\_\+helper}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{service\+\_\+registry\+\_\+entry\+\_\+create\+\_\+helper(char $\ast$key, char $\ast$$\ast$name, char $\ast$$\ast$ip, char $\ast$$\ast$port)}]{\setlength{\rightskip}{0pt plus 5cm}static void $\ast$ service\+\_\+registry\+\_\+entry\+\_\+create\+\_\+helper (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{key, }
+\item[{char $\ast$$\ast$}]{name, }
+\item[{char $\ast$$\ast$}]{ip, }
+\item[{char $\ast$$\ast$}]{port}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{skn__network__helpers_8c_ae671be512539874689abbab598f9f65a}
+\hyperlink{skn__network__helpers_8c_ae671be512539874689abbab598f9f65a}{service\+\_\+registry\+\_\+entry\+\_\+create\+\_\+helper()}
+\begin{DoxyItemize}
+\item Determines which field should be updated
+\item compute the address of each field on demand, from local vars
+\item Returns the address offset of the registry field requested 
+\end{DoxyItemize}
+
+Definition at line 949 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References skn\+\_\+strip().
+
+
+
+Referenced by service\+\_\+registry\+\_\+response\+\_\+parse().
+
+
+\begin{DoxyCode}
+949                                                                                                    \{
+950     \textcolor{keywordtype}{int} index = 0;
+951     \textcolor{keywordtype}{char} * guess = NULL;
+952     \textcolor{keywordtype}{void} * result = NULL;
+953     \textcolor{keywordtype}{char} * names[4] = \{ \textcolor{stringliteral}{"name"}, \textcolor{stringliteral}{"ip"}, \textcolor{stringliteral}{"port"}, NULL \};
+954     \textcolor{keywordtype}{void} * offsets[] = \{ name, ip, port, NULL \};
+955 
+956     \hyperlink{skn__network__helpers_8c_a925d0a1de13d0d0178e52f0d6be4b97f}{skn\_strip}(key); \textcolor{comment}{// cleanup first}
+957     \textcolor{keywordflow}{for} (index = 0; names[index] != NULL; index++) \{ \textcolor{comment}{// find direct match}
+958         \textcolor{keywordflow}{if} (strcmp(names[index], key) == 0) \{
+959             result = offsets[index];
+960             \textcolor{keywordflow}{break};
+961         \}
+962     \}
+963     \textcolor{keywordflow}{if} (result == NULL) \{ \textcolor{comment}{// try to guess what the key is}
+964         \textcolor{keywordflow}{if} ((guess = strstr(key, \textcolor{stringliteral}{"e"})) != NULL) \{
+965             result = offsets[0];
+966         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ((guess = strstr(key, \textcolor{stringliteral}{"i"})) != NULL) \{
+967             result = offsets[1];
+968         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ((guess = strstr(key, \textcolor{stringliteral}{"t"})) != NULL) \{
+969             result = offsets[2];
+970         \}
+971     \}
+972 
+973     \textcolor{keywordflow}{return} result;
+974 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=286pt]{skn__network__helpers_8c_ae671be512539874689abbab598f9f65a_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_ae671be512539874689abbab598f9f65a_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_ad0e63e9d3365fb8818a5ca21179abb3e}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!service\+\_\+registry\+\_\+entry\+\_\+response\+\_\+message\+\_\+log@{service\+\_\+registry\+\_\+entry\+\_\+response\+\_\+message\+\_\+log}}
+\index{service\+\_\+registry\+\_\+entry\+\_\+response\+\_\+message\+\_\+log@{service\+\_\+registry\+\_\+entry\+\_\+response\+\_\+message\+\_\+log}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{service\+\_\+registry\+\_\+entry\+\_\+response\+\_\+message\+\_\+log(const char $\ast$response)}]{\setlength{\rightskip}{0pt plus 5cm}void service\+\_\+registry\+\_\+entry\+\_\+response\+\_\+message\+\_\+log (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{response}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_ad0e63e9d3365fb8818a5ca21179abb3e}
+\hyperlink{skn__network__helpers_8c_ad0e63e9d3365fb8818a5ca21179abb3e}{service\+\_\+registry\+\_\+entry\+\_\+response\+\_\+message\+\_\+log()}
+
+
+\begin{DoxyItemize}
+\item Prints each pair of values from a text registry entry 
+\end{DoxyItemize}
+
+Definition at line 863 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References S\+D\+\_\+\+N\+O\+T\+I\+C\+E.
+
+
+
+Referenced by main(), and service\+\_\+registry\+\_\+provider().
+
+
+\begin{DoxyCode}
+863                                                                         \{
+864     \textcolor{keywordtype}{char} * worker = NULL, *parser = NULL, *base = strdup(response);
+865     parser = base;
+866     skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"Response Message:"});
+867     \textcolor{keywordflow}{while} (( ((worker = strsep(&parser, \textcolor{stringliteral}{"|"})) != NULL) ||
+868           ((worker = strsep(&parser, \textcolor{stringliteral}{"%"})) != NULL) ||
+869           ((worker = strsep(&parser, \textcolor{stringliteral}{";"})) != NULL)) &&
+870           (strlen(worker) > 8)) \{
+871         skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"[%s]"}, worker);
+872     \}
+873     free(base);
+874 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_ad0e63e9d3365fb8818a5ca21179abb3e_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_ab5ed70a05f4e20dac13298ae16530069}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!service\+\_\+registry\+\_\+find\+\_\+entry@{service\+\_\+registry\+\_\+find\+\_\+entry}}
+\index{service\+\_\+registry\+\_\+find\+\_\+entry@{service\+\_\+registry\+\_\+find\+\_\+entry}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{service\+\_\+registry\+\_\+find\+\_\+entry(\+P\+Service\+Registry psreg, char $\ast$service\+Name)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+Registry\+Entry} service\+\_\+registry\+\_\+find\+\_\+entry (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+Service\+Registry}}]{psreg, }
+\item[{char $\ast$}]{service\+Name}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_ab5ed70a05f4e20dac13298ae16530069}
+\hyperlink{skn__network__helpers_8c_ab5ed70a05f4e20dac13298ae16530069}{service\+\_\+registry\+\_\+find\+\_\+entry()}
+
+
+\begin{DoxyItemize}
+\item Finds an existing entry
+\item Returns E\+X\+I\+T\+\_\+\+F\+A\+I\+L\+U\+R\+E/\+S\+U\+C\+C\+E\+S\+S 
+\end{DoxyItemize}
+
+Definition at line 882 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References \+\_\+service\+Registry\+::entry, and \+\_\+service\+Entry\+::name.
+
+
+
+Referenced by main(), and service\+\_\+registry\+\_\+entry\+\_\+create().
+
+
+\begin{DoxyCode}
+882                                                                                       \{
+883     \hyperlink{struct__service_entry}{PRegistryEntry} prent = NULL;
+884     \textcolor{keywordtype}{int} index = 0;
+885 
+886     \textcolor{keywordflow}{if} (psreg == NULL)
+887         \textcolor{keywordflow}{return} NULL;
+888 
+889     \textcolor{keywordflow}{while} (index < psreg->count) \{
+890         \textcolor{keywordflow}{if} (strcmp(serviceName, psreg->\hyperlink{struct__service_registry_ad35429e298009925477ba528ea500fe8}{entry}[index]->\hyperlink{struct__service_entry_aa66dcf0806f67276d049ac75c6153768}{name}) == 0) \{
+891             prent = psreg->\hyperlink{struct__service_registry_ad35429e298009925477ba528ea500fe8}{entry}[index];
+892             \textcolor{keywordflow}{break};
+893         \}
+894         index++;
+895     \}
+896 
+897     \textcolor{keywordflow}{return} prent;
+898 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_ab5ed70a05f4e20dac13298ae16530069_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_a6e35caa22b36caec7dcb3b6585cbb7e3}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!service\+\_\+registry\+\_\+get\+\_\+entry\+\_\+field\+\_\+ref@{service\+\_\+registry\+\_\+get\+\_\+entry\+\_\+field\+\_\+ref}}
+\index{service\+\_\+registry\+\_\+get\+\_\+entry\+\_\+field\+\_\+ref@{service\+\_\+registry\+\_\+get\+\_\+entry\+\_\+field\+\_\+ref}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{service\+\_\+registry\+\_\+get\+\_\+entry\+\_\+field\+\_\+ref(\+P\+Registry\+Entry prent, char $\ast$field)}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ service\+\_\+registry\+\_\+get\+\_\+entry\+\_\+field\+\_\+ref (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+Registry\+Entry}}]{prent, }
+\item[{char $\ast$}]{field}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_a6e35caa22b36caec7dcb3b6585cbb7e3}
+\hyperlink{skn__network__helpers_8c_a6e35caa22b36caec7dcb3b6585cbb7e3}{service\+\_\+registry\+\_\+get\+\_\+entry\+\_\+field\+\_\+ref()}
+\begin{DoxyItemize}
+\item compute the address of each field on demand, from struct
+\item Returns the address offset of the registry field requested 
+\end{DoxyItemize}
+
+Definition at line 925 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+\begin{DoxyCode}
+925                                                                                \{
+926     \textcolor{keywordtype}{int} index = 0;
+927     \textcolor{keywordtype}{void} * result = NULL;
+928     \textcolor{keywordtype}{char} * names[4] = \{ \textcolor{stringliteral}{"name"}, \textcolor{stringliteral}{"ip"}, \textcolor{stringliteral}{"port"}, NULL \};
+929     \textcolor{keywordtype}{int} offsets[4] = \{ offsetof(\hyperlink{struct__service_entry}{RegistryEntry}, name),
+930                        offsetof(\hyperlink{struct__service_entry}{RegistryEntry}, ip),
+931                        offsetof(\hyperlink{struct__service_entry}{RegistryEntry}, port),
+932                        0
+933                      \};
+934     \textcolor{keywordflow}{for} (index = 0; names[index] != NULL; index++) \{
+935         \textcolor{keywordflow}{if} (strcmp(names[index], field) == 0) \{
+936             result = (\textcolor{keywordtype}{void} *) prent + offsets[index];
+937             \textcolor{keywordflow}{break};
+938         \}
+939     \}
+940     \textcolor{keywordflow}{return} result;
+941 \}
+\end{DoxyCode}
+\hypertarget{skn__network__helpers_8c_a8a291f1cb8d18e45a3e9b6bc9e3798a6}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast@{service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast}}
+\index{service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast@{service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast(int i\+\_\+socket, char $\ast$request)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+Service\+Registry} service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast (
+\begin{DoxyParamCaption}
+\item[{int}]{i\+\_\+socket, }
+\item[{char $\ast$}]{request}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_a8a291f1cb8d18e45a3e9b6bc9e3798a6}
+\hyperlink{skn__network__helpers_8c_a8a291f1cb8d18e45a3e9b6bc9e3798a6}{service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast()}
+
+
+\begin{DoxyItemize}
+\item Retrieves entries from every service that responds to the broadcast parses and builds a new Registry of all entries, or unique entries.
+\item Returns Populated Registry 
+\end{DoxyItemize}
+
+Definition at line 1050 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References \+\_\+ip\+Broadcast\+Array\+::broad\+Addr\+Str, \+\_\+ip\+Broadcast\+Array\+::ch\+Default\+Intf\+Name, \+\_\+ip\+Broadcast\+Array\+::count, \+\_\+ip\+Broadcast\+Array\+::default\+Index, gd\+\_\+ch\+\_\+intf\+Name, gd\+\_\+ch\+\_\+ip\+Address, get\+\_\+broadcast\+\_\+ip\+\_\+array(), gi\+\_\+exit\+\_\+flag, \+\_\+ip\+Broadcast\+Array\+::if\+Name\+Str, \+\_\+ip\+Broadcast\+Array\+::ip\+Addr\+Str, P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R, S\+D\+\_\+\+D\+E\+B\+U\+G, S\+D\+\_\+\+E\+M\+E\+R\+G, S\+D\+\_\+\+N\+O\+T\+I\+C\+E, S\+D\+\_\+\+W\+A\+R\+N\+I\+N\+G, service\+\_\+registry\+\_\+create(), service\+\_\+registry\+\_\+response\+\_\+parse(), skn\+\_\+duration\+\_\+in\+\_\+milliseconds(), S\+K\+N\+\_\+\+F\+I\+N\+D\+\_\+\+R\+P\+I\+\_\+\+P\+O\+R\+T, S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+R\+U\+N, S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F, and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F.
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+1050                                                                                      \{
+1051     \textcolor{keyword}{struct }sockaddr\_in remaddr; \textcolor{comment}{/* remote address */}
+1052     socklen\_t addrlen = \textcolor{keyword}{sizeof}(remaddr); \textcolor{comment}{/* length of addresses */}
+1053     \hyperlink{struct__ip_broadcast_array}{IPBroadcastArray} aB;
+1054     \textcolor{keywordtype}{int} vIndex = 0;
+1055     \textcolor{keywordtype}{char} response[\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}];
+1056     \textcolor{keywordtype}{char} recvHostName[\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}];
+1057     \textcolor{keywordtype}{signed} \textcolor{keywordtype}{int} rLen = 0;
+1058     \textcolor{keyword}{struct }timeval start;
+1059 
+1060     memset(response, 0, \textcolor{keyword}{sizeof}(response));
+1061     memset(recvHostName, 0, \textcolor{keyword}{sizeof}(recvHostName));
+1062 
+1063     \hyperlink{skn__network__helpers_8c_a0b4821586a5c3d59096cb20dc6b28b2a}{get\_broadcast\_ip\_array}(&aB);
+1064     strncpy(\hyperlink{skn__network__helpers_8c_ac317f6dfab7bc91b9e2d717a7a1b8fcb}{gd\_ch\_intfName}, aB.\hyperlink{struct__ip_broadcast_array_a06dab8742df19b5aec8538842617778d}{chDefaultIntfName}, 
+      \hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF});
+1065     strncpy(\hyperlink{skn__network__helpers_8c_aee48900a4a99c0480e3f1dfb6c4f38c7}{gd\_ch\_ipAddress}, aB.\hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[aB.
+      \hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex}], \hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF});
+1066 
+1067     skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"Socket Bound to %s"}, aB.\hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[aB.
+      \hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex}]);
+1068 
+1069     gettimeofday(&start, NULL);
+1070     \textcolor{keywordflow}{for} (vIndex = 0; vIndex < aB.\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count}; vIndex++) \{
+1071         memset(&remaddr, 0, \textcolor{keyword}{sizeof}(remaddr));
+1072         remaddr.sin\_family = AF\_INET;
+1073         remaddr.sin\_addr.s\_addr = inet\_addr(aB.\hyperlink{struct__ip_broadcast_array_af40943e174ba847fa0218cfa6051e277}{broadAddrStr}[vIndex]);
+1074         remaddr.sin\_port = htons(\hyperlink{skn__common__headers_8h_a811ab3c1ca8c51a13852fdbd51707202}{SKN\_FIND\_RPI\_PORT});
+1075 
+1076         \textcolor{keywordflow}{if} (sendto(i\_socket, request, strlen(request), 0, (\textcolor{keyword}{struct} sockaddr *) &remaddr, addrlen) < 0) \{
+1077             skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"SendTo() Timed out; Failure code=%d, etext=%s"}, errno, 
+      strerror(errno));
+1078             \textcolor{keywordflow}{break};
+1079         \}
+1080         skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"Message Broadcasted on %s:%s:%d"}, aB.
+      \hyperlink{struct__ip_broadcast_array_a193b90f271c061e8bf1593bab6a182c9}{ifNameStr}[vIndex], aB.\hyperlink{struct__ip_broadcast_array_af40943e174ba847fa0218cfa6051e277}{broadAddrStr}[vIndex], 
+      \hyperlink{skn__common__headers_8h_a811ab3c1ca8c51a13852fdbd51707202}{SKN\_FIND\_RPI\_PORT});
+1081     \}
+1082 
+1083     \hyperlink{struct__service_registry}{PServiceRegistry} psr = \hyperlink{skn__network__helpers_8c_afb305f4b4db81aad61bd5e4e6ecaf6fd}{service\_registry\_create}();
+1084     skn\_logger(\hyperlink{skn__common__headers_8h_a3ace3381f5b69f4a46fc35b70844a5dc}{SD\_DEBUG}, \textcolor{stringliteral}{"Waiting for all responses\(\backslash\)n"});
+1085     \textcolor{keywordflow}{while} (\hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag} == \hyperlink{skn__common__headers_8h_a3f5142b81a9ee977aedfd69a61281920}{SKN\_RUN\_MODE\_RUN}) \{ \textcolor{comment}{// depends on a socket timeout
+       of 5 seconds}
+1086 
+1087         rLen = recvfrom(i\_socket, response, (\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1), 0, (\textcolor{keyword}{struct} sockaddr *) &remaddr
+      , &addrlen);
+1088         \textcolor{keywordflow}{if} (rLen == \hyperlink{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{PLATFORM\_ERROR}) \{  \textcolor{comment}{// EAGAIN}
+1089             \textcolor{keywordflow}{break};
+1090         \}
+1091         response[rLen] = 0;
+1092 
+1093         rLen = getnameinfo(((\textcolor{keyword}{struct} sockaddr *) &remaddr), \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} sockaddr\_in), recvHostName, (
+      \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} -1), NULL, 0, NI\_DGRAM);
+1094         \textcolor{keywordflow}{if} (rLen != 0) \{
+1095             skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"getnameinfo() failed: %s\(\backslash\)n"}, gai\_strerror(rLen));
+1096             \textcolor{keywordflow}{break};
+1097         \}
+1098 
+1099         skn\_logger(\hyperlink{skn__common__headers_8h_a3ace3381f5b69f4a46fc35b70844a5dc}{SD\_DEBUG}, \textcolor{stringliteral}{"Response(%1.3fs) received from %s @ %s:%d"},
+1100                         \hyperlink{skn__network__helpers_8c_ad7f2202ecfe8bb131545b23ea3c26e91}{skn\_duration\_in\_milliseconds}(&start, NULL),
+1101                         recvHostName,
+1102                         inet\_ntoa(remaddr.sin\_addr),
+1103                         ntohs(remaddr.sin\_port)
+1104                   );
+1105         \hyperlink{skn__network__helpers_8c_a25149d495d462b7600eb6715da868200}{service\_registry\_response\_parse}(psr, response, NULL);
+1106     \}
+1107 
+1108     \textcolor{keywordflow}{return} (psr);
+1109 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_a8a291f1cb8d18e45a3e9b6bc9e3798a6_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=260pt]{skn__network__helpers_8c_a8a291f1cb8d18e45a3e9b6bc9e3798a6_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_a16d6920592f2a64c9cab22cb26ef28e1}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!service\+\_\+registry\+\_\+list\+\_\+entries@{service\+\_\+registry\+\_\+list\+\_\+entries}}
+\index{service\+\_\+registry\+\_\+list\+\_\+entries@{service\+\_\+registry\+\_\+list\+\_\+entries}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{service\+\_\+registry\+\_\+list\+\_\+entries(\+P\+Service\+Registry psr)}]{\setlength{\rightskip}{0pt plus 5cm}int service\+\_\+registry\+\_\+list\+\_\+entries (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+Service\+Registry}}]{psr}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_a16d6920592f2a64c9cab22cb26ef28e1}
+Logs each entry in service registry 
+
+Definition at line 910 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References \+\_\+service\+Registry\+::count, \+\_\+service\+Registry\+::entry, \+\_\+service\+Entry\+::ip, \+\_\+service\+Entry\+::name, \+\_\+service\+Entry\+::port, and S\+D\+\_\+\+I\+N\+F\+O.
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+910                                                         \{
+911     \textcolor{keywordtype}{int} index = 0;
+912 
+913     skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"\(\backslash\)nServiceRegistry:"});
+914     \textcolor{keywordflow}{for} (index = 0; index < psr->\hyperlink{struct__service_registry_a68062b14c6c9cb411e3602be664425bc}{count}; index++) \{
+915         skn\_logger(\hyperlink{skn__common__headers_8h_a1bcf100bcdd91eacaf0b05d83c88aedf}{SD\_INFO}, \textcolor{stringliteral}{"RegistryEntry(%02d) name=%s, ip=%s, port=%d"}, index, psr->
+      \hyperlink{struct__service_registry_ad35429e298009925477ba528ea500fe8}{entry}[index]->\hyperlink{struct__service_entry_aa66dcf0806f67276d049ac75c6153768}{name}, psr->\hyperlink{struct__service_registry_ad35429e298009925477ba528ea500fe8}{entry}[index]->\hyperlink{struct__service_entry_a70b1db0895fbe31c07c8799cb57c678a}{ip}, psr->\hyperlink{struct__service_registry_ad35429e298009925477ba528ea500fe8}{entry}[index]->
+      \hyperlink{struct__service_entry_ac8a3a40de5eee937afb42faea4d18bb2}{port});
+916     \}
+917     \textcolor{keywordflow}{return} index;
+918 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=257pt]{skn__network__helpers_8c_a16d6920592f2a64c9cab22cb26ef28e1_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_ad148412119d5d8373da1a6859aafda41}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!service\+\_\+registry\+\_\+provider@{service\+\_\+registry\+\_\+provider}}
+\index{service\+\_\+registry\+\_\+provider@{service\+\_\+registry\+\_\+provider}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{service\+\_\+registry\+\_\+provider(int i\+\_\+socket, char $\ast$response)}]{\setlength{\rightskip}{0pt plus 5cm}int service\+\_\+registry\+\_\+provider (
+\begin{DoxyParamCaption}
+\item[{int}]{i\+\_\+socket, }
+\item[{char $\ast$}]{response}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_ad148412119d5d8373da1a6859aafda41}
+
+
+Definition at line 648 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References \+\_\+ip\+Broadcast\+Array\+::ch\+Default\+Intf\+Name, \+\_\+ip\+Broadcast\+Array\+::default\+Index, gd\+\_\+i\+\_\+display, gd\+\_\+pch\+\_\+service\+\_\+name, get\+\_\+broadcast\+\_\+ip\+\_\+array(), gi\+\_\+exit\+\_\+flag, \+\_\+ip\+Broadcast\+Array\+::ip\+Addr\+Str, P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R, S\+D\+\_\+\+D\+E\+B\+U\+G, S\+D\+\_\+\+E\+M\+E\+R\+G, S\+D\+\_\+\+E\+R\+R, S\+D\+\_\+\+N\+O\+T\+I\+C\+E, service\+\_\+registry\+\_\+entry\+\_\+response\+\_\+message\+\_\+log(), service\+\_\+registry\+\_\+valiadate\+\_\+response\+\_\+format(), S\+K\+N\+\_\+\+F\+I\+N\+D\+\_\+\+R\+P\+I\+\_\+\+P\+O\+R\+T, S\+K\+N\+\_\+\+R\+P\+I\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+S\+E\+R\+V\+I\+C\+E\+\_\+\+P\+O\+R\+T, S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+R\+U\+N, S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+F\+F, and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F.
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+648                                                             \{
+649     \textcolor{keyword}{struct }sockaddr\_in remaddr; \textcolor{comment}{/* remote address */}
+650     socklen\_t addrlen = \textcolor{keyword}{sizeof}(remaddr); \textcolor{comment}{/* length of addresses */}
+651     \hyperlink{struct__ip_broadcast_array}{IPBroadcastArray} aB;
+652     \textcolor{keywordtype}{char} request[\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}];
+653     \textcolor{keywordtype}{char} recvHostName[\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}];
+654     \textcolor{keywordtype}{signed} \textcolor{keywordtype}{int} rLen = 0, rc = 0;
+655     \textcolor{keywordtype}{int} exit\_code = EXIT\_SUCCESS, i\_response\_len = 0;
+656 
+657 
+658     memset(request, 0, \textcolor{keyword}{sizeof}(request));
+659     memset(recvHostName, 0, \textcolor{keyword}{sizeof}(recvHostName));
+660 
+661     rc = \hyperlink{skn__network__helpers_8c_a0b4821586a5c3d59096cb20dc6b28b2a}{get\_broadcast\_ip\_array}(&aB);
+662     \textcolor{keywordflow}{if} (rc == \hyperlink{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{PLATFORM\_ERROR}) \{
+663         \textcolor{keywordflow}{return} EXIT\_FAILURE;
+664     \}
+665 
+666     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a2f908b49598a49ea624bfcc3e2175b7c}{gd\_pch\_service\_name} == NULL) \{
+667         \hyperlink{skn__network__helpers_8c_a2f908b49598a49ea624bfcc3e2175b7c}{gd\_pch\_service\_name} = \textcolor{stringliteral}{"lcd\_display\_service"};
+668     \}
+669 
+670     \textcolor{keywordflow}{if} (strlen(response) < 16) \{
+671         \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_ad3af8f8dd9f2ca01a415370a99bc465e}{gd\_i\_display}) \{
+672             i\_response\_len = snprintf(response, (\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1),
+673                      \textcolor{stringliteral}{"name=rpi\_locator\_service,ip=%s,port=%d|"}
+674                      \textcolor{stringliteral}{"name=%s,ip=%s,port=%d|"},
+675                      aB.\hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[aB.\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex}], 
+      \hyperlink{skn__common__headers_8h_a811ab3c1ca8c51a13852fdbd51707202}{SKN\_FIND\_RPI\_PORT},
+676                      \hyperlink{skn__network__helpers_8c_a2f908b49598a49ea624bfcc3e2175b7c}{gd\_pch\_service\_name},
+677                      aB.\hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[aB.\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex}], 
+      \hyperlink{skn__common__headers_8h_a438e6442bfb3d18e1846357cf7379216}{SKN\_RPI\_DISPLAY\_SERVICE\_PORT});
+678         \} \textcolor{keywordflow}{else} \{
+679             i\_response\_len = snprintf(response, (\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1),
+680                             \textcolor{stringliteral}{"name=rpi\_locator\_service,ip=%s,port=%d|"},
+681                             aB.\hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[aB.\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex}], 
+      \hyperlink{skn__common__headers_8h_a811ab3c1ca8c51a13852fdbd51707202}{SKN\_FIND\_RPI\_PORT});
+682         \}
+683     \}
+684     \hyperlink{skn__network__helpers_8c_ad0e63e9d3365fb8818a5ca21179abb3e}{service\_registry\_entry\_response\_message\_log}(response);
+685 
+686     skn\_logger(\hyperlink{skn__common__headers_8h_a3ace3381f5b69f4a46fc35b70844a5dc}{SD\_DEBUG}, \textcolor{stringliteral}{"Socket Bound to %s:%s"}, aB.\hyperlink{struct__ip_broadcast_array_a06dab8742df19b5aec8538842617778d}{chDefaultIntfName}, aB.
+      \hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[aB.\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex}]);
+687 
+688     \textcolor{keywordflow}{while} (\hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag} == \hyperlink{skn__common__headers_8h_a3f5142b81a9ee977aedfd69a61281920}{SKN\_RUN\_MODE\_RUN}) \{
+689         memset(&remaddr, 0, \textcolor{keyword}{sizeof}(remaddr));
+690         remaddr.sin\_family = AF\_INET;
+691         remaddr.sin\_port = htons(\hyperlink{skn__common__headers_8h_a811ab3c1ca8c51a13852fdbd51707202}{SKN\_FIND\_RPI\_PORT});
+692         remaddr.sin\_addr.s\_addr = htonl(INADDR\_ANY);
+693         addrlen = \textcolor{keyword}{sizeof}(remaddr);
+694 
+695         \textcolor{keywordflow}{if} ((rLen = recvfrom(i\_socket, request, (\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1), 0, (\textcolor{keyword}{struct} sockaddr *) &
+      remaddr, &addrlen)) < 0) \{
+696             \textcolor{keywordflow}{if} (errno == EAGAIN) \{
+697                 \textcolor{keywordflow}{continue};
+698             \}
+699             skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"RcvFrom() Failure code=%d, etext=%s"}, errno, strerror(errno));
+700             exit\_code = EXIT\_FAILURE;
+701             \textcolor{keywordflow}{break};
+702         \}
+703         request[rLen] = 0;
+704 
+705         rc = getnameinfo(((\textcolor{keyword}{struct} sockaddr *) &remaddr), \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} sockaddr\_in), recvHostName, (
+      \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}-1), NULL, 0, NI\_DGRAM);
+706         \textcolor{keywordflow}{if} (rc != 0) \{
+707             skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"GetNameInfo() Failure code=%d, etext=%s"}, errno, strerror(errno));
+708             exit\_code = EXIT\_FAILURE;
+709             \textcolor{keywordflow}{break};
+710         \}
+711         skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"Received request from %s @ %s:%d"}, recvHostName, inet\_ntoa(remaddr.
+      sin\_addr), ntohs(remaddr.sin\_port));
+712         skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"Request data: [%s]\(\backslash\)n"}, request);
+713 
+714         \textcolor{comment}{/*}
+715 \textcolor{comment}{         * Add new registry entry by command */}
+716         \textcolor{keywordflow}{if} ((strncmp(\textcolor{stringliteral}{"ADD "}, request, \textcolor{keyword}{sizeof}(\textcolor{stringliteral}{"ADD"})) == 0) &&
+717             (\hyperlink{skn__network__helpers_8c_a866cf7e5524cc49a76448c59395a622e}{service\_registry\_valiadate\_response\_format}(&request[
+      4]) == EXIT\_SUCCESS)) \{
+718             \textcolor{keywordflow}{if} ((response[i\_response\_len-1] == \textcolor{charliteral}{'|'}) ||
+719                 (response[i\_response\_len-1] == \textcolor{charliteral}{'%'}) ||
+720                 (response[i\_response\_len-1] == \textcolor{charliteral}{';'})) \{
+721                 strncpy(&response[i\_response\_len], &request[4], ((\hyperlink{cmd_d_c_8c_a352051a682a5205841c1bda6e30bb30d}{SZ\_COMM\_BUFF} - 1) - (strlen(
+      response) + strlen(&request[4]))) );
+722                 i\_response\_len += (rLen - 4);
+723                 skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"COMMAND: Add New RegistryEntry Request Accepted!"});
+724             \}
+725         \}
+726 
+727         \textcolor{keywordflow}{if} (sendto(i\_socket, response, strlen(response), 0, (\textcolor{keyword}{struct} sockaddr *) &remaddr, addrlen) < 0) \{
+728             skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"SendTo() Failure code=%d, etext=%s"}, errno, strerror(errno));
+729             exit\_code = EXIT\_FAILURE;
+730             \textcolor{keywordflow}{break};
+731         \}
+732 
+733         \textcolor{comment}{/*}
+734 \textcolor{comment}{         * Shutdown by command */}
+735         \textcolor{keywordflow}{if} (strcmp(\textcolor{stringliteral}{"QUIT!"}, request) == 0) \{
+736             skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"COMMAND: Shutdown Requested! exit code=%d"}, 
+      \hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag});
+737             \textcolor{keywordflow}{break};
+738         \}
+739     \}
+740 
+741     \textcolor{keywordflow}{return} exit\_code;
+742 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_ad148412119d5d8373da1a6859aafda41_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=281pt]{skn__network__helpers_8c_ad148412119d5d8373da1a6859aafda41_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_a25149d495d462b7600eb6715da868200}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!service\+\_\+registry\+\_\+response\+\_\+parse@{service\+\_\+registry\+\_\+response\+\_\+parse}}
+\index{service\+\_\+registry\+\_\+response\+\_\+parse@{service\+\_\+registry\+\_\+response\+\_\+parse}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{service\+\_\+registry\+\_\+response\+\_\+parse(\+P\+Service\+Registry psreg, const char $\ast$response, int $\ast$errors)}]{\setlength{\rightskip}{0pt plus 5cm}static int service\+\_\+registry\+\_\+response\+\_\+parse (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+Service\+Registry}}]{psreg, }
+\item[{const char $\ast$}]{response, }
+\item[{int $\ast$}]{errors}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{skn__network__helpers_8c_a25149d495d462b7600eb6715da868200}
+\hyperlink{skn__network__helpers_8c_a25149d495d462b7600eb6715da868200}{service\+\_\+registry\+\_\+response\+\_\+parse()}
+
+Parse this response message, guess spellings, skip invalid, export error count
+
+Format\+: name=rpi\+\_\+locator\+\_\+service,ip=10.\+100.\+1.\+19,port=48028$\vert$ name=lcd\+\_\+display\+\_\+service,ip=10.\+100.\+1.\+19,port=48029$\vert$
+
+the vertical bar char \textquotesingle{}$\vert$\textquotesingle{} is the line separator, \% and ; are also supported 
+
+Definition at line 987 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References \+\_\+service\+Registry\+::count, S\+D\+\_\+\+W\+A\+R\+N\+I\+N\+G, service\+\_\+registry\+\_\+entry\+\_\+create(), service\+\_\+registry\+\_\+entry\+\_\+create\+\_\+helper(), and skn\+\_\+strip().
+
+
+
+Referenced by service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast(), service\+\_\+registry\+\_\+valiadate\+\_\+response\+\_\+format(), and service\+\_\+registry\+\_\+valiadated\+\_\+registry().
+
+
+\begin{DoxyCode}
+987                                                                                                       \{
+988     \textcolor{keywordtype}{int} control = 1;
+989     \textcolor{keywordtype}{char} *base = NULL, *psep = NULL, *resp = NULL, *line = NULL,
+990          *keypair = NULL, *element = NULL,
+991          *name = NULL, *ip = NULL, *pport = NULL,
+992          **meta = NULL;
+993 
+994     base = resp = strdup(response);
+995 
+996     \textcolor{keywordflow}{if} (strstr(response, \textcolor{stringliteral}{"|"})) \{
+997         psep = \textcolor{stringliteral}{"|"};
+998     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strstr(response, \textcolor{stringliteral}{"%"})) \{
+999         psep = \textcolor{stringliteral}{"%"};
+1000     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strstr(response, \textcolor{stringliteral}{";"})) \{
+1001         psep = \textcolor{stringliteral}{";"};
+1002     \}
+1003 
+1004     \textcolor{keywordflow}{while} ((line = strsep(&resp, psep)) != NULL) \{
+1005         \textcolor{keywordflow}{if} (strlen(line) < 16) \{
+1006             \textcolor{keywordflow}{continue};
+1007         \}
+1008 
+1009         pport = ip = name = NULL;
+1010         \textcolor{keywordflow}{while} ((keypair = strsep(&line, \textcolor{stringliteral}{","})) != NULL) \{
+1011             \textcolor{keywordflow}{if} (strlen(keypair) < 1) \{
+1012                 \textcolor{keywordflow}{continue};
+1013             \}
+1014 
+1015             control = 1;
+1016             element = strstr(keypair, \textcolor{stringliteral}{"="});
+1017             \textcolor{keywordflow}{if} (element != NULL) \{
+1018                 element[0] = 0;
+1019                 meta = \hyperlink{skn__network__helpers_8c_ae671be512539874689abbab598f9f65a}{service\_registry\_entry\_create\_helper}(keypair, &
+      name, &ip, &pport);
+1020                 \textcolor{keywordflow}{if} (meta != NULL && (element[1] != 0)) \{
+1021                     *meta = \hyperlink{skn__network__helpers_8c_a925d0a1de13d0d0178e52f0d6be4b97f}{skn\_strip}(++element);
+1022                 \} \textcolor{keywordflow}{else} \{
+1023                     control = 0;
+1024                     \textcolor{keywordflow}{if} (errors != NULL)
+1025                         (*errors)++;
+1026                     skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"Response format failure: for name=%s, ip=%s, port=%s,
+       first failing entry: [%s]"}, name, ip, pport, keypair);
+1027                     \textcolor{keywordflow}{break};
+1028                 \}
+1029             \}
+1030         \} \textcolor{comment}{// end while line}
+1031 
+1032         \textcolor{keywordflow}{if} (control == 1) \{ \textcolor{comment}{// catch a breakout caused by no value}
+1033             \hyperlink{skn__network__helpers_8c_a5e51f7d19b5d689be44036a57e056e7a}{service\_registry\_entry\_create}(psreg, name, ip, pport, errors);
+1034         \}
+1035 
+1036     \} \textcolor{comment}{// end while buffer}
+1037 
+1038     free(base);
+1039     \textcolor{keywordflow}{return} psreg->\hyperlink{struct__service_registry_a68062b14c6c9cb411e3602be664425bc}{count};
+1040 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_a25149d495d462b7600eb6715da868200_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_a25149d495d462b7600eb6715da868200_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_a866cf7e5524cc49a76448c59395a622e}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!service\+\_\+registry\+\_\+valiadate\+\_\+response\+\_\+format@{service\+\_\+registry\+\_\+valiadate\+\_\+response\+\_\+format}}
+\index{service\+\_\+registry\+\_\+valiadate\+\_\+response\+\_\+format@{service\+\_\+registry\+\_\+valiadate\+\_\+response\+\_\+format}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{service\+\_\+registry\+\_\+valiadate\+\_\+response\+\_\+format(const char $\ast$response)}]{\setlength{\rightskip}{0pt plus 5cm}int service\+\_\+registry\+\_\+valiadate\+\_\+response\+\_\+format (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{response}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_a866cf7e5524cc49a76448c59395a622e}
+\hyperlink{skn__network__helpers_8c_a866cf7e5524cc49a76448c59395a622e}{service\+\_\+registry\+\_\+valiadate\+\_\+response\+\_\+format()}
+
+
+\begin{DoxyItemize}
+\item Validates a text registry entry format
+\item Returns E\+X\+I\+T\+\_\+\+F\+A\+I\+L\+U\+R\+E/\+S\+U\+C\+C\+E\+S\+S 
+\end{DoxyItemize}
+
+Definition at line 825 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References service\+\_\+registry\+\_\+create(), service\+\_\+registry\+\_\+destroy(), and service\+\_\+registry\+\_\+response\+\_\+parse().
+
+
+
+Referenced by main(), and service\+\_\+registry\+\_\+provider().
+
+
+\begin{DoxyCode}
+825                                                                      \{
+826     \textcolor{keywordtype}{int} errors = 0; \textcolor{comment}{// false}
+827 
+828     \hyperlink{struct__service_registry}{PServiceRegistry} psr = \hyperlink{skn__network__helpers_8c_afb305f4b4db81aad61bd5e4e6ecaf6fd}{service\_registry\_create}();
+829     \hyperlink{skn__network__helpers_8c_a25149d495d462b7600eb6715da868200}{service\_registry\_response\_parse}(psr, response, &errors);
+830     \hyperlink{skn__network__helpers_8c_a819c12fc7c8ff576b1aaad69bc098840}{service\_registry\_destroy}(psr);
+831 
+832     \textcolor{keywordflow}{if} (errors > 0) \{
+833         \textcolor{keywordflow}{return} EXIT\_FAILURE; \textcolor{comment}{// false}
+834     \} \textcolor{keywordflow}{else} \{
+835         \textcolor{keywordflow}{return} EXIT\_SUCCESS; \textcolor{comment}{// true}
+836     \}
+837 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_a866cf7e5524cc49a76448c59395a622e_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_a866cf7e5524cc49a76448c59395a622e_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_aae9b1fb439eead75521f80120886867e}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!service\+\_\+registry\+\_\+valiadated\+\_\+registry@{service\+\_\+registry\+\_\+valiadated\+\_\+registry}}
+\index{service\+\_\+registry\+\_\+valiadated\+\_\+registry@{service\+\_\+registry\+\_\+valiadated\+\_\+registry}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{service\+\_\+registry\+\_\+valiadated\+\_\+registry(const char $\ast$response)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+Service\+Registry} service\+\_\+registry\+\_\+valiadated\+\_\+registry (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{response}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_aae9b1fb439eead75521f80120886867e}
+\hyperlink{skn__network__helpers_8c_aae9b1fb439eead75521f80120886867e}{service\+\_\+registry\+\_\+valiadated\+\_\+registry()}
+
+
+\begin{DoxyItemize}
+\item Validate the text formatted entry and return registry collection
+\item Returns a Registry with one entry 
+\end{DoxyItemize}
+
+Definition at line 845 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References service\+\_\+registry\+\_\+create(), and service\+\_\+registry\+\_\+response\+\_\+parse().
+
+
+\begin{DoxyCode}
+845                                                                             \{
+846     \textcolor{keywordtype}{int} errors = 0;
+847 
+848     \hyperlink{struct__service_registry}{PServiceRegistry} psr = \hyperlink{skn__network__helpers_8c_afb305f4b4db81aad61bd5e4e6ecaf6fd}{service\_registry\_create}();
+849     \hyperlink{skn__network__helpers_8c_a25149d495d462b7600eb6715da868200}{service\_registry\_response\_parse}(psr, response, &errors);
+850     \textcolor{keywordflow}{if} (errors > 0) \{
+851         free(psr);
+852         \textcolor{keywordflow}{return} NULL; \textcolor{comment}{// false}
+853     \}
+854 
+855     \textcolor{keywordflow}{return} psr;
+856 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_aae9b1fb439eead75521f80120886867e_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_ac256e2066453ab0ff82322aa24b161df}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!signals\+\_\+cleanup@{signals\+\_\+cleanup}}
+\index{signals\+\_\+cleanup@{signals\+\_\+cleanup}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{signals\+\_\+cleanup(int sig)}]{\setlength{\rightskip}{0pt plus 5cm}void signals\+\_\+cleanup (
+\begin{DoxyParamCaption}
+\item[{int}]{sig}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_ac256e2066453ab0ff82322aa24b161df}
+
+
+Definition at line 141 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References gi\+\_\+exit\+\_\+flag, and S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+R\+U\+N.
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+141                               \{
+142     signal(SIGINT, SIG\_DFL);
+143     signal(SIGQUIT, SIG\_DFL);
+144     signal(SIGTERM, SIG\_DFL);
+145 
+146     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag} > \hyperlink{skn__common__headers_8h_a3f5142b81a9ee977aedfd69a61281920}{SKN\_RUN\_MODE\_RUN}) \{ \textcolor{comment}{// exit caused by some interrupt --
+       otherwise it would be exactly 0}
+147         kill(getpid(), sig);
+148     \}
+149 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{skn__network__helpers_8c_ac256e2066453ab0ff82322aa24b161df_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_a6af44fa0e0746d3d2a804fea1e84dacd}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!signals\+\_\+init@{signals\+\_\+init}}
+\index{signals\+\_\+init@{signals\+\_\+init}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{signals\+\_\+init()}]{\setlength{\rightskip}{0pt plus 5cm}void signals\+\_\+init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_a6af44fa0e0746d3d2a804fea1e84dacd}
+
+
+Definition at line 135 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References exit\+\_\+handler().
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+135                     \{
+136     signal(SIGINT, \hyperlink{skn__network__helpers_8c_a49f6d3bb9d22d5b9cf5c7eb6175318d1}{exit\_handler});  \textcolor{comment}{// Ctrl-C}
+137     signal(SIGQUIT, \hyperlink{skn__network__helpers_8c_a49f6d3bb9d22d5b9cf5c7eb6175318d1}{exit\_handler});  \textcolor{comment}{// Quit}
+138     signal(SIGTERM, \hyperlink{skn__network__helpers_8c_a49f6d3bb9d22d5b9cf5c7eb6175318d1}{exit\_handler});  \textcolor{comment}{// Normal kill command}
+139 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=252pt]{skn__network__helpers_8c_a6af44fa0e0746d3d2a804fea1e84dacd_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{skn__network__helpers_8c_a6af44fa0e0746d3d2a804fea1e84dacd_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_ad7f2202ecfe8bb131545b23ea3c26e91}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!skn\+\_\+duration\+\_\+in\+\_\+milliseconds@{skn\+\_\+duration\+\_\+in\+\_\+milliseconds}}
+\index{skn\+\_\+duration\+\_\+in\+\_\+milliseconds@{skn\+\_\+duration\+\_\+in\+\_\+milliseconds}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{skn\+\_\+duration\+\_\+in\+\_\+milliseconds(struct timeval $\ast$pstart, struct timeval $\ast$pend)}]{\setlength{\rightskip}{0pt plus 5cm}double skn\+\_\+duration\+\_\+in\+\_\+milliseconds (
+\begin{DoxyParamCaption}
+\item[{struct timeval $\ast$}]{pstart, }
+\item[{struct timeval $\ast$}]{pend}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_ad7f2202ecfe8bb131545b23ea3c26e91}
+skn\+\_\+duration\+\_\+in\+\_\+microseconds()
+\begin{DoxyItemize}
+\item expressed in \%1.\+6us seconds.\+miroseconds 
+\end{DoxyItemize}
+
+Definition at line 578 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+Referenced by service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast(), and skn\+\_\+udp\+\_\+service\+\_\+request().
+
+
+\begin{DoxyCode}
+578                                                                                   \{
+579     \textcolor{keywordtype}{long} secs\_used = 0;
+580     \textcolor{keywordtype}{double} total\_micros\_used = 0.0;
+581     \textcolor{keyword}{struct }timeval end;
+582 
+583     \textcolor{keywordflow}{if} (pend == NULL) \{   \textcolor{comment}{// calc running duration}
+584         pend = &end;
+585         gettimeofday(pend, NULL);
+586     \}
+587 
+588     secs\_used=(pend->tv\_sec - pstart->tv\_sec); \textcolor{comment}{//avoid overflow by subtracting first}
+589     total\_micros\_used = secs\_used * 1000.0; \textcolor{comment}{// sec to ms}
+590     total\_micros\_used += (pend->tv\_usec - pstart->tv\_usec) / 1000.0; \textcolor{comment}{// us to ms}
+591 
+592     \textcolor{keywordflow}{return} total\_micros\_used / 1000.0; \textcolor{comment}{// express in seconds.milliseconds}
+593 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_ad7f2202ecfe8bb131545b23ea3c26e91_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_a9b607e33be05bf0479127f233a58fab7}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!skn\+\_\+get\+\_\+number\+\_\+of\+\_\+cpu\+\_\+cores@{skn\+\_\+get\+\_\+number\+\_\+of\+\_\+cpu\+\_\+cores}}
+\index{skn\+\_\+get\+\_\+number\+\_\+of\+\_\+cpu\+\_\+cores@{skn\+\_\+get\+\_\+number\+\_\+of\+\_\+cpu\+\_\+cores}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{skn\+\_\+get\+\_\+number\+\_\+of\+\_\+cpu\+\_\+cores()}]{\setlength{\rightskip}{0pt plus 5cm}long skn\+\_\+get\+\_\+number\+\_\+of\+\_\+cpu\+\_\+cores (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_a9b607e33be05bf0479127f233a58fab7}
+
+
+Definition at line 40 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+Referenced by generate\+\_\+rpi\+\_\+model\+\_\+info(), generate\+\_\+uname\+\_\+info(), and main().
+
+
+\begin{DoxyCode}
+40                                    \{
+41     \textcolor{keywordflow}{return} sysconf(\_SC\_NPROCESSORS\_ONLN);
+42 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_a9b607e33be05bf0479127f233a58fab7_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_a63e61152e590620edc7757d782c60a79}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!skn\+\_\+get\+\_\+userids@{skn\+\_\+get\+\_\+userids}}
+\index{skn\+\_\+get\+\_\+userids@{skn\+\_\+get\+\_\+userids}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{skn\+\_\+get\+\_\+userids()}]{\setlength{\rightskip}{0pt plus 5cm}uid\+\_\+t skn\+\_\+get\+\_\+userids (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_a63e61152e590620edc7757d782c60a79}
+Setup effective and real userid 
+
+Definition at line 108 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References gd\+\_\+pch\+\_\+effective\+\_\+userid.
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+108                         \{
+109     uid\_t real\_user\_id = 0;
+110     uid\_t effective\_user\_id = 0;
+111     \textcolor{keyword}{struct }passwd *userinfo = NULL;
+112 
+113     real\_user\_id = getuid();
+114     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_af2e3031da262a9990e0ef895e20cdd0e}{gd\_pch\_effective\_userid} != NULL) \{
+115         userinfo = getpwnam(\hyperlink{skn__network__helpers_8c_af2e3031da262a9990e0ef895e20cdd0e}{gd\_pch\_effective\_userid});
+116         effective\_user\_id = userinfo->pw\_uid;
+117     \} \textcolor{keywordflow}{else} \{
+118         effective\_user\_id = geteuid();
+119         userinfo = getpwuid(effective\_user\_id);
+120         \hyperlink{skn__network__helpers_8c_af2e3031da262a9990e0ef895e20cdd0e}{gd\_pch\_effective\_userid} = userinfo->pw\_name;
+121     \}
+122 
+123     \textcolor{keywordflow}{return} real\_user\_id;
+124 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=242pt]{skn__network__helpers_8c_a63e61152e590620edc7757d782c60a79_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_a665c441c1f789eb555b1c23ed43de890}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line@{skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line}}
+\index{skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line@{skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line(int argc, char $\ast$$\ast$argv)}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_a665c441c1f789eb555b1c23ed43de890}
+
+
+Definition at line 329 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References gd\+\_\+ch\+\_\+program\+\_\+name, gd\+\_\+i\+\_\+debug, gd\+\_\+i\+\_\+display, gd\+\_\+i\+\_\+i2c\+\_\+address, gd\+\_\+i\+\_\+unique\+\_\+registry, gd\+\_\+i\+\_\+update, gd\+\_\+pch\+\_\+message, gd\+\_\+pch\+\_\+service\+\_\+name, P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N, S\+D\+\_\+\+E\+R\+R, S\+D\+\_\+\+W\+A\+R\+N\+I\+N\+G, and skn\+\_\+locator\+\_\+print\+\_\+usage().
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+329                                                            \{
+330     \textcolor{keywordtype}{int} opt = 0;
+331     \textcolor{keywordtype}{int} longindex = 0;
+332     \textcolor{keyword}{struct }option longopts[] = \{ \{ \textcolor{stringliteral}{"include-display-service"}, 0, NULL, \textcolor{charliteral}{'s'} \}, \textcolor{comment}{/* set true if present */}
+333                                  \{ \textcolor{stringliteral}{"alt-service-name"}, 1, NULL, \textcolor{charliteral}{'a'} \}, \textcolor{comment}{/* set true if present */}
+334                                  \{ \textcolor{stringliteral}{"unique-registry"}, 0, NULL, \textcolor{charliteral}{'u'} \}, \textcolor{comment}{/* set true if present */}
+335                                  \{ \textcolor{stringliteral}{"non-stop"}, 1, NULL, \textcolor{charliteral}{'n'} \}, \textcolor{comment}{/* required param if */}
+336                                  \{ \textcolor{stringliteral}{"debug"}, 1, NULL, \textcolor{charliteral}{'d'} \}, \textcolor{comment}{/* required param if */}
+337                                  \{ \textcolor{stringliteral}{"message"}, 1, NULL, \textcolor{charliteral}{'m'} \}, \textcolor{comment}{/* required param if */}
+338                                  \{ \textcolor{stringliteral}{"i2c-address"}, 1, NULL, \textcolor{charliteral}{'i'} \}, \textcolor{comment}{/* required param if */}
+339                                  \{ \textcolor{stringliteral}{"version"}, 0, NULL, \textcolor{charliteral}{'v'} \}, \textcolor{comment}{/* set true if present */}
+340                                  \{ \textcolor{stringliteral}{"help"}, 0, NULL, \textcolor{charliteral}{'h'} \}, \textcolor{comment}{/* set true if present */}
+341                                  \{ 0, 0, 0, 0 \} \};
+342 
+343     \textcolor{comment}{/*}
+344 \textcolor{comment}{     * Get commandline options}
+345 \textcolor{comment}{     *  longindex is the current index into longopts}
+346 \textcolor{comment}{     *  optind is current/last index into argv}
+347 \textcolor{comment}{     *  optarg is value attached(-d88) or next element(-d 88) of argv}
+348 \textcolor{comment}{     *  opterr flags a scanning error}
+349 \textcolor{comment}{     */}
+350     \textcolor{keywordflow}{while} ((opt = getopt\_long(argc, argv, \textcolor{stringliteral}{"d:m:n:i:a:usvh"}, longopts, &longindex)) != -1) \{
+351         \textcolor{keywordflow}{switch} (opt) \{
+352             \textcolor{keywordflow}{case} \textcolor{charliteral}{'u'}:
+353                 \hyperlink{skn__network__helpers_8c_ae64a8fff2241990ec523dafe18f7864c}{gd\_i\_unique\_registry} = 1;
+354                 \textcolor{keywordflow}{break};
+355             \textcolor{keywordflow}{case} \textcolor{charliteral}{'s'}:
+356                 \hyperlink{skn__network__helpers_8c_ad3af8f8dd9f2ca01a415370a99bc465e}{gd\_i\_display} = 1;
+357                 \textcolor{keywordflow}{break};
+358             \textcolor{keywordflow}{case} \textcolor{charliteral}{'d'}:
+359                 \textcolor{keywordflow}{if} (optarg) \{
+360                     \hyperlink{skn__network__helpers_8c_a923b2adbdc0dac852905dc95eaa73a37}{gd\_i\_debug} = atoi(optarg);
+361                 \} \textcolor{keywordflow}{else} \{
+362                     skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"%s: input param was invalid! %c[%d:%d:%d]\(\backslash\)n"}, 
+      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, (\textcolor{keywordtype}{char}) opt, longindex, optind, opterr);
+363                     \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+364                 \}
+365                 \textcolor{keywordflow}{break};
+366             \textcolor{keywordflow}{case} \textcolor{charliteral}{'m'}:
+367                 \textcolor{keywordflow}{if} (optarg) \{
+368                     \hyperlink{skn__network__helpers_8c_a0bb2e7571c22c0455842aba8cf1d97dc}{gd\_pch\_message} = strdup(optarg);
+369                 \} \textcolor{keywordflow}{else} \{
+370                     skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"%s: input param was invalid! %c[%d:%d:%d]\(\backslash\)n"}, 
+      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, (\textcolor{keywordtype}{char}) opt, longindex, optind, opterr);
+371                     \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+372                 \}
+373                 \textcolor{keywordflow}{break};
+374             \textcolor{keywordflow}{case} \textcolor{charliteral}{'n'}:
+375                 \textcolor{keywordflow}{if} (optarg) \{
+376                     \hyperlink{skn__network__helpers_8c_a49e7c0da0f26a1f505934e5610ead123}{gd\_i\_update} = atoi(optarg);
+377                 \} \textcolor{keywordflow}{else} \{
+378                     skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"%s: input param was invalid! %c[%d:%d:%d]\(\backslash\)n"}, 
+      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, (\textcolor{keywordtype}{char}) opt, longindex, optind, opterr);
+379                     \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+380                 \}
+381                 \textcolor{keywordflow}{break};
+382             \textcolor{keywordflow}{case} \textcolor{charliteral}{'a'}:
+383                 \textcolor{keywordflow}{if} (optarg) \{
+384                     \hyperlink{skn__network__helpers_8c_a2f908b49598a49ea624bfcc3e2175b7c}{gd\_pch\_service\_name} = strdup(optarg);
+385                 \} \textcolor{keywordflow}{else} \{
+386                     skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"%s: input param was invalid! %c[%d:%d:%d]\(\backslash\)n"}, 
+      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, (\textcolor{keywordtype}{char}) opt, longindex, optind, opterr);
+387                     \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+388                 \}
+389                 \textcolor{keywordflow}{break};
+390             \textcolor{keywordflow}{case} \textcolor{charliteral}{'i'}:
+391                 \textcolor{keywordflow}{if} (optarg) \{
+392                     \hyperlink{skn__network__helpers_8c_a2c55396bf337471f9f99a939974fcdbe}{gd\_i\_i2c\_address} = atoi(optarg);
+393                 \} \textcolor{keywordflow}{else} \{
+394                     skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"%s: input param was invalid! %c[%d:%d:%d]\(\backslash\)n"}, 
+      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, (\textcolor{keywordtype}{char}) opt, longindex, optind,
+395                                     opterr);
+396                     \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+397                 \}
+398                 \textcolor{keywordflow}{break};
+399             \textcolor{keywordflow}{case} \textcolor{charliteral}{'v'}:
+400                 skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)tProgram => %s\(\backslash\)n\(\backslash\)tVersion => %s\(\backslash\)n\(\backslash\)tSkoona Development
+      \(\backslash\)n\(\backslash\)t<skoona@gmail.com>\(\backslash\)n"}, \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, \hyperlink{cmd_d_c_8c_aa326a05d5e30f9e9a4bb0b4469d5d0c0}{PACKAGE\_VERSION});
+401                 \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+402                 \textcolor{keywordflow}{break};
+403             \textcolor{keywordflow}{case} \textcolor{charliteral}{'?'}:
+404                 skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"%s: unknown input param! %c[%d:%d:%d]\(\backslash\)n"}, 
+      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, (\textcolor{keywordtype}{char}) opt, longindex, optind, opterr);
+405                 \hyperlink{skn__network__helpers_8c_aabf69b42c470c2372e0854132e22cc70}{skn\_locator\_print\_usage}();
+406                 \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+407                 \textcolor{keywordflow}{break};
+408             \textcolor{keywordflow}{default}: \textcolor{comment}{/* help and default */}
+409                 \hyperlink{skn__network__helpers_8c_aabf69b42c470c2372e0854132e22cc70}{skn\_locator\_print\_usage}();
+410                 \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+411                 \textcolor{keywordflow}{break};
+412         \}
+413     \}
+414 
+415     \textcolor{keywordflow}{return} EXIT\_SUCCESS;
+416 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{skn__network__helpers_8c_a665c441c1f789eb555b1c23ed43de890_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=256pt]{skn__network__helpers_8c_a665c441c1f789eb555b1c23ed43de890_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_aabf69b42c470c2372e0854132e22cc70}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!skn\+\_\+locator\+\_\+print\+\_\+usage@{skn\+\_\+locator\+\_\+print\+\_\+usage}}
+\index{skn\+\_\+locator\+\_\+print\+\_\+usage@{skn\+\_\+locator\+\_\+print\+\_\+usage}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{skn\+\_\+locator\+\_\+print\+\_\+usage()}]{\setlength{\rightskip}{0pt plus 5cm}static void skn\+\_\+locator\+\_\+print\+\_\+usage (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{skn__network__helpers_8c_aabf69b42c470c2372e0854132e22cc70}
+
+
+Definition at line 287 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References gd\+\_\+ch\+\_\+program\+\_\+desc, and gd\+\_\+ch\+\_\+program\+\_\+name.
+
+
+
+Referenced by skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line().
+
+
+\begin{DoxyCode}
+287                                       \{
+288     skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"%s -- %s"}, \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, 
+      \hyperlink{skn__network__helpers_8c_a7dfc34fe01828952972b6ae778b4f022}{gd\_ch\_program\_desc});
+289     skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"\(\backslash\)tSkoona Development <skoona@gmail.com>"});
+290     \textcolor{keywordflow}{if} (strcmp(\hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, \textcolor{stringliteral}{"udp\_locator\_client"}) == 0) \{
+291         skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"Usage:\(\backslash\)n  %s [-v] [-m 'any text msg'] [-u] [-h|--help]"}, 
+      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name});
+292         skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"\(\backslash\)nOptions:"});
+293         skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"  -u, --unique-registry\(\backslash\)t List unique entries from all responses."});
+294         skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"  -m, --message\(\backslash\)tAny text to send; 'stop' cause service to terminate."});
+295     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(\hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, \textcolor{stringliteral}{"udp\_locator\_service"}) == 0) \{
+296         skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"Usage:\(\backslash\)n  %s [-s] [-v] [-m '<delimited-response-message-string>'] [-a
+       'my\_service\_name'] [-h|--help]"}, \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name});
+297         skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"  Format:
+       name=<service-name>,ip=<service-ipaddress>ddd.ddd.ddd.ddd,port=<service-portnumber>ddddd <line-delimiter>"});
+298         skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"  REQUIRED   <line-delimiter> is one of these '|', '%', ';'"});
+299         skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"  example: -m
+       'name=rpi\_locator\_service,ip=192.168.1.15,port=48028|name=lcd\_display\_service, ip=192.168.1.15, port=48029|'"});
+300         skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"\(\backslash\)nOptions:"});
+301         skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"  -a, --alt-service-name=my\_service\_name"});
+302         skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"                       lcd\_display\_service is default, use this to change name."});
+303         skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"  -s, --include-display-service\(\backslash\)tInclude DisplayService entry in default registry.
+      "});
+304     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(\hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, \textcolor{stringliteral}{"lcd\_display\_client"}) == 0) \{
+305         skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"Usage:\(\backslash\)n  %s [-v] [-m 'message for display'] [-n 1|300] [-a 'my\_service\_name']
+       [-h|--help]"}, \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name});
+306         skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"\(\backslash\)nOptions:"});
+307         skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"  -a, --alt-service-name=my\_service\_name"});
+308         skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"                       lcd\_display\_service is default, use this to change name."});
+309         skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"  -m, --message\(\backslash\)tRequest message to send."});
+310         skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"  -n, --non-stop=DD\(\backslash\)tContinue to send updates every DD seconds until ctrl-break."})
+      ;
+311     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(\hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, \textcolor{stringliteral}{"a2d\_display\_client"}) == 0) \{
+312         skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"Usage:\(\backslash\)n  %s [-v] [-n 1|300] [-i ddd] [-a 'my\_service\_name'] [-h|--help]"}, 
+      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name});
+313         skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"\(\backslash\)nOptions:"});
+314         skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"  -a, --alt-service-name=my\_service\_name"});
+315         skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"                       lcd\_display\_service is default, use this to change target."}
+      );
+316         skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"  -i, --i2c-address=ddd\(\backslash\)tI2C decimal address. | [0x27=39, 0x20=32]"});
+317         skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"  -n, --non-stop=DD\(\backslash\)tContinue to send updates every DD seconds until ctrl-break."})
+      ;
+318     \}
+319     skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"  -v, --version\(\backslash\)tVersion printout."});
+320     skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"  -h, --help\(\backslash\)t\(\backslash\)tShow this help screen."});
+321 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_aabf69b42c470c2372e0854132e22cc70_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_ac2672efa5ece276743c6558dfe82d01a}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!skn\+\_\+program\+\_\+name\+\_\+and\+\_\+description\+\_\+set@{skn\+\_\+program\+\_\+name\+\_\+and\+\_\+description\+\_\+set}}
+\index{skn\+\_\+program\+\_\+name\+\_\+and\+\_\+description\+\_\+set@{skn\+\_\+program\+\_\+name\+\_\+and\+\_\+description\+\_\+set}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{skn\+\_\+program\+\_\+name\+\_\+and\+\_\+description\+\_\+set(const char $\ast$name, const char $\ast$desc)}]{\setlength{\rightskip}{0pt plus 5cm}void skn\+\_\+program\+\_\+name\+\_\+and\+\_\+description\+\_\+set (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{name, }
+\item[{const char $\ast$}]{desc}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_ac2672efa5ece276743c6558dfe82d01a}
+
+
+Definition at line 418 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References gd\+\_\+ch\+\_\+host\+Name, gd\+\_\+ch\+\_\+host\+Short\+Name, gd\+\_\+ch\+\_\+program\+\_\+desc, gd\+\_\+ch\+\_\+program\+\_\+name, and S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F.
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+418                                                                               \{
+419     \textcolor{keywordtype}{char} hostName[\hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF}];
+420     \textcolor{keywordtype}{char} * phostName = hostName;
+421 
+422     strncpy(\hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, name, \textcolor{keyword}{sizeof}(
+      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}) - 1);
+423     strncpy(\hyperlink{skn__network__helpers_8c_a7dfc34fe01828952972b6ae778b4f022}{gd\_ch\_program\_desc}, desc, \textcolor{keyword}{sizeof}(
+      \hyperlink{skn__network__helpers_8c_a7dfc34fe01828952972b6ae778b4f022}{gd\_ch\_program\_desc}) - 1);
+424 
+425     gethostname(hostName, \textcolor{keyword}{sizeof}(hostName) - 1);
+426         strncpy(\hyperlink{skn__network__helpers_8c_af45afdaf27876f134e053f2c7744efe9}{gd\_ch\_hostName}, hostName, \textcolor{keyword}{sizeof}(\hyperlink{skn__network__helpers_8c_af45afdaf27876f134e053f2c7744efe9}{gd\_ch\_hostName}) - 1);
+427         strsep(&phostName, \textcolor{stringliteral}{"."});
+428         strncpy(\hyperlink{skn__network__helpers_8c_a7e072c565373b2bcba1b27b8f0528c1c}{gd\_ch\_hostShortName}, hostName, \textcolor{keyword}{sizeof}(
+      \hyperlink{skn__network__helpers_8c_a7e072c565373b2bcba1b27b8f0528c1c}{gd\_ch\_hostShortName}) - 1);
+429 
+430 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=281pt]{skn__network__helpers_8c_ac2672efa5ece276743c6558dfe82d01a_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_a922ccd04b4dc28211ff08c4c62462544}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!skn\+\_\+service\+\_\+request\+\_\+create@{skn\+\_\+service\+\_\+request\+\_\+create}}
+\index{skn\+\_\+service\+\_\+request\+\_\+create@{skn\+\_\+service\+\_\+request\+\_\+create}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{skn\+\_\+service\+\_\+request\+\_\+create(\+P\+Registry\+Entry pre, int host\+\_\+socket, char $\ast$request)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+Service\+Request} skn\+\_\+service\+\_\+request\+\_\+create (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+Registry\+Entry}}]{pre, }
+\item[{int}]{host\+\_\+socket, }
+\item[{char $\ast$}]{request}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_a922ccd04b4dc28211ff08c4c62462544}
+
+
+Definition at line 559 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References \+\_\+service\+Request\+::cb\+Name, \+\_\+service\+Request\+::pre, \+\_\+service\+Request\+::request, \+\_\+service\+Request\+::socket, and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F.
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+559                                                                                                \{
+560     \hyperlink{struct__service_request}{PServiceRequest} psr = NULL;
+561 
+562     \textcolor{keywordflow}{if} (pre == NULL) \{
+563         \textcolor{keywordflow}{return} NULL;
+564     \}
+565     psr = (\hyperlink{skn__common__headers_8h_a09c39b109fec01639de4bcbf7c481f18}{PServiceRequest}) malloc(\textcolor{keyword}{sizeof}(\hyperlink{struct__service_request}{ServiceRequest}));
+566     memset(psr, 0, \textcolor{keyword}{sizeof}(\hyperlink{struct__service_request}{ServiceRequest}));
+567     strcpy(psr->\hyperlink{struct__service_request_aab7831722782ba05f0c94087598a941e}{cbName}, \textcolor{stringliteral}{"PServiceRequest"});
+568     psr->\hyperlink{struct__service_request_aa867fef3928c7511f50a494662311d13}{socket} = host\_socket;
+569     psr->\hyperlink{struct__service_request_acf8d45e7f9cb65b555217aae74cd72c5}{pre} = pre;
+570     strncpy(psr->\hyperlink{struct__service_request_ad347b2a07388ec9d9d33756f1a1ef235}{request}, request, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}-1);
+571     \textcolor{keywordflow}{return} psr;
+572 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=261pt]{skn__network__helpers_8c_a922ccd04b4dc28211ff08c4c62462544_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_a925d0a1de13d0d0178e52f0d6be4b97f}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!skn\+\_\+strip@{skn\+\_\+strip}}
+\index{skn\+\_\+strip@{skn\+\_\+strip}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{skn\+\_\+strip(char $\ast$alpha)}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ skn\+\_\+strip (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{alpha}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_a925d0a1de13d0d0178e52f0d6be4b97f}
+Remove Trailing and Leading Blanks
+\begin{DoxyItemize}
+\item caution\+: pointers from argv are readonly and segfault on \textquotesingle{}alpha\mbox{[}end\mbox{]} = 0\textquotesingle{} 
+\end{DoxyItemize}
+
+Definition at line 436 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+Referenced by get\+\_\+default\+\_\+interface\+\_\+name(), service\+\_\+registry\+\_\+entry\+\_\+create\+\_\+helper(), and service\+\_\+registry\+\_\+response\+\_\+parse().
+
+
+\begin{DoxyCode}
+436                                \{
+437     \textcolor{keywordflow}{if} (alpha == NULL || strlen(alpha) < 1)
+438         \textcolor{keywordflow}{return} alpha;
+439 
+440     \textcolor{keywordtype}{int} len = strlen(alpha);
+441     \textcolor{keywordtype}{int} end = len - 1;
+442     \textcolor{keywordtype}{int} start = 0;
+443 
+444     \textcolor{comment}{// use isgraph() or !isspace() vs isalnum() to allow ['|' ';' '%']}
+445     \textcolor{keywordflow}{while} (isgraph(alpha[end]) == 0 && end > 0) \{ \textcolor{comment}{// remove trailing non-alphanumeric chars}
+446         alpha[end--] = 0;
+447     \}
+448 
+449     len = strlen(alpha);
+450     \textcolor{keywordflow}{while} ((isalnum(alpha[start]) == 0) && start < len) \{ \textcolor{comment}{// find first non-alpha stricter}
+451         start++;
+452     \}
+453     \textcolor{keywordflow}{if} (start < len && start > 0) \{  \textcolor{comment}{// move in place}
+454         end = len - start;
+455         memmove(&alpha[0], &alpha[start], end);
+456         alpha[end] = 0;
+457     \}
+458 
+459     \textcolor{keywordflow}{return} alpha;
+460 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_a925d0a1de13d0d0178e52f0d6be4b97f_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_a802d742c15476782fbbea1528f76dea5}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!skn\+\_\+time\+\_\+delay@{skn\+\_\+time\+\_\+delay}}
+\index{skn\+\_\+time\+\_\+delay@{skn\+\_\+time\+\_\+delay}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{skn\+\_\+time\+\_\+delay(double delay\+\_\+time)}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+time\+\_\+delay (
+\begin{DoxyParamCaption}
+\item[{double}]{delay\+\_\+time}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_a802d742c15476782fbbea1528f76dea5}
+Traditional Millisecond delay. 
+
+Definition at line 97 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+Referenced by skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work(), skn\+\_\+display\+\_\+manager\+\_\+message\+\_\+consumer\+\_\+thread(), and skn\+\_\+scroller\+\_\+scroll\+\_\+lines().
+
+
+\begin{DoxyCode}
+97                                       \{
+98     \textcolor{keyword}{struct }timespec timeout;
+99     \textcolor{keywordflow}{if} (delay\_time == 0.0 || delay\_time == 0) delay\_time = 0.001;
+100     timeout.tv\_sec = (time\_t) delay\_time;  \textcolor{comment}{// extract integer only}
+101     timeout.tv\_nsec = (long) ((delay\_time - timeout.tv\_sec) * 1000000000L); \textcolor{comment}{// 1e+9}
+102     \textcolor{keywordflow}{return} nanosleep(&timeout, NULL);
+103 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_a802d742c15476782fbbea1528f76dea5_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_a4f9f7e0f50cb3073d9c6e5a6a0d5240d}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+broadcast\+\_\+socket@{skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+broadcast\+\_\+socket}}
+\index{skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+broadcast\+\_\+socket@{skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+broadcast\+\_\+socket}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+broadcast\+\_\+socket(int port, double rcv\+Timeout)}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+broadcast\+\_\+socket (
+\begin{DoxyParamCaption}
+\item[{int}]{port, }
+\item[{double}]{rcv\+Timeout}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_a4f9f7e0f50cb3073d9c6e5a6a0d5240d}
+\hyperlink{skn__network__helpers_8c_a4f9f7e0f50cb3073d9c6e5a6a0d5240d}{skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+broadcast\+\_\+socket()}
+\begin{DoxyItemize}
+\item creates a dgram socket with broadcast enabled
+\item returns i\+\_\+socket $\vert$ E\+X\+I\+T\+\_\+\+F\+A\+I\+L\+U\+R\+E 
+\end{DoxyItemize}
+
+Definition at line 524 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References S\+D\+\_\+\+E\+M\+E\+R\+G, and S\+D\+\_\+\+I\+N\+F\+O.
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+524                                                                       \{
+525     \textcolor{keyword}{struct }sockaddr\_in addr;
+526     \textcolor{keywordtype}{int} i\_socket, broadcastEnable = 1;
+527 
+528     \textcolor{keywordflow}{if} ((i\_socket = socket(AF\_INET, SOCK\_DGRAM, IPPROTO\_UDP)) < 0) \{
+529         skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"Create Socket error=%d, etext=%s"}, errno, strerror(errno));
+530         \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+531     \}
+532     \textcolor{keywordflow}{if} ((setsockopt(i\_socket, SOL\_SOCKET, SO\_BROADCAST, &broadcastEnable, \textcolor{keyword}{sizeof}(broadcastEnable))) < 0) \{
+533         skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"Set Socket Broadcast Option error=%d, etext=%s"}, errno, strerror(
+      errno));
+534         \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+535     \}
+536 
+537     \textcolor{keyword}{struct }timeval tv;
+538     tv.tv\_sec = rcvTimeout;
+539     tv.tv\_usec = (long)(rcvTimeout - tv.tv\_sec) * 1000000L;
+540     skn\_logger(\hyperlink{skn__common__headers_8h_a1bcf100bcdd91eacaf0b05d83c88aedf}{SD\_INFO}, \textcolor{stringliteral}{"Set Socket RcvTimeout Option set to: tv\_sec=%ld, tv\_usec=%ld"}, tv.tv\_sec, 
+      tv.tv\_usec);
+541     \textcolor{keywordflow}{if} ((setsockopt(i\_socket, SOL\_SOCKET, SO\_RCVTIMEO, &tv, \textcolor{keyword}{sizeof}(tv))) < 0) \{
+542         skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"Set Socket RcvTimeout Option error=%d, etext=%s"}, errno, strerror(
+      errno));
+543         \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+544     \}
+545 
+546     \textcolor{comment}{/* set up local address */}
+547     memset(&addr, 0, \textcolor{keyword}{sizeof}(addr));
+548     addr.sin\_family = AF\_INET;
+549     addr.sin\_addr.s\_addr = htonl(INADDR\_ANY);
+550     addr.sin\_port = htons(port);
+551     \textcolor{keywordflow}{if} (bind(i\_socket, (\textcolor{keyword}{struct} sockaddr *) &addr, \textcolor{keyword}{sizeof}(addr)) < 0) \{
+552         skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"Bind to local Socket error=%d, etext=%s"}, errno, strerror(errno));
+553         \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+554     \}
+555 
+556     \textcolor{keywordflow}{return} i\_socket;
+557 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=265pt]{skn__network__helpers_8c_a4f9f7e0f50cb3073d9c6e5a6a0d5240d_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_a25427bc0b7f087d1135c92dd3704f210}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+regular\+\_\+socket@{skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+regular\+\_\+socket}}
+\index{skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+regular\+\_\+socket@{skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+regular\+\_\+socket}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+regular\+\_\+socket(int port, double rcv\+Timeout)}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+regular\+\_\+socket (
+\begin{DoxyParamCaption}
+\item[{int}]{port, }
+\item[{double}]{rcv\+Timeout}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_a25427bc0b7f087d1135c92dd3704f210}
+\hyperlink{skn__network__helpers_8c_a25427bc0b7f087d1135c92dd3704f210}{skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+regular\+\_\+socket()}
+\begin{DoxyItemize}
+\item creates a dgram socket without broadcast enabled
+\item returns i\+\_\+socket $\vert$ E\+X\+I\+T\+\_\+\+F\+A\+I\+L\+U\+R\+E 
+\end{DoxyItemize}
+
+Definition at line 483 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References S\+D\+\_\+\+E\+M\+E\+R\+G.
+
+
+
+Referenced by main(), and skn\+\_\+display\+\_\+manager\+\_\+message\+\_\+consumer\+\_\+startup().
+
+
+\begin{DoxyCode}
+483                                                                     \{
+484     \textcolor{keyword}{struct }sockaddr\_in addr;
+485     \textcolor{keywordtype}{int} i\_socket, reuseEnable = 1;
+486 
+487     \textcolor{keywordflow}{if} ((i\_socket = socket(AF\_INET, SOCK\_DGRAM, IPPROTO\_UDP)) < 0) \{
+488         skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"Create Socket error=%d, etext=%s"}, errno, strerror(errno));
+489         \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+490     \}
+491 
+492     \textcolor{keywordflow}{if} ((setsockopt(i\_socket, SOL\_SOCKET, SO\_REUSEADDR, &reuseEnable, \textcolor{keyword}{sizeof}(reuseEnable))) < 0) \{
+493         skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"Set Socket Reuse Option error=%d, etext=%s"}, errno, strerror(errno));
+494         \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+495     \}
+496 
+497     \textcolor{keyword}{struct }timeval tv;
+498     tv.tv\_sec = rcvTimeout;
+499     tv.tv\_usec = (long)(rcvTimeout - tv.tv\_sec) * 1000000L;
+500     \textcolor{keywordflow}{if} ((setsockopt(i\_socket, SOL\_SOCKET, SO\_RCVTIMEO, &tv, \textcolor{keyword}{sizeof}(tv))) < 0) \{
+501         skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"Set Socket RcvTimeout Option error=%d, etext=%s"}, errno, strerror(
+      errno));
+502         \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+503     \}
+504 
+505     \textcolor{comment}{/* set up local address */}
+506     memset(&addr, 0, \textcolor{keyword}{sizeof}(addr));
+507     addr.sin\_family = AF\_INET;
+508     addr.sin\_addr.s\_addr = htonl(INADDR\_ANY);
+509     addr.sin\_port = htons(port);
+510     \textcolor{keywordflow}{if} (bind(i\_socket, (\textcolor{keyword}{struct} sockaddr *) &addr, \textcolor{keyword}{sizeof}(addr)) < 0) \{
+511         skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"Bind to local Socket error=%d, etext=%s"}, errno, strerror(errno));
+512         \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+513     \}
+514 
+515     \textcolor{keywordflow}{return} i\_socket;
+516 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_a25427bc0b7f087d1135c92dd3704f210_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__network__helpers_8c_ad8304e97f9bccee1cd899a61b91ae677}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!skn\+\_\+udp\+\_\+service\+\_\+request@{skn\+\_\+udp\+\_\+service\+\_\+request}}
+\index{skn\+\_\+udp\+\_\+service\+\_\+request@{skn\+\_\+udp\+\_\+service\+\_\+request}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{skn\+\_\+udp\+\_\+service\+\_\+request(\+P\+Service\+Request psr)}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+udp\+\_\+service\+\_\+request (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+Service\+Request}}]{psr}
+\end{DoxyParamCaption}
+)}\label{skn__network__helpers_8c_ad8304e97f9bccee1cd899a61b91ae677}
+\hyperlink{skn__network__helpers_8c_ad8304e97f9bccee1cd899a61b91ae677}{skn\+\_\+udp\+\_\+service\+\_\+request()}
+\begin{DoxyItemize}
+\item side effects\+: none
+\item returns E\+X\+I\+T\+\_\+\+S\+U\+C\+C\+E\+S\+S $\vert$ E\+X\+I\+T\+\_\+\+F\+A\+I\+L\+U\+R\+E 
+\end{DoxyItemize}
+
+Definition at line 601 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+References \+\_\+service\+Entry\+::ip, \+\_\+service\+Entry\+::name, P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R, \+\_\+service\+Entry\+::port, \+\_\+service\+Request\+::pre, \+\_\+service\+Request\+::request, \+\_\+service\+Request\+::response, S\+D\+\_\+\+I\+N\+F\+O, S\+D\+\_\+\+N\+O\+T\+I\+C\+E, S\+D\+\_\+\+W\+A\+R\+N\+I\+N\+G, skn\+\_\+duration\+\_\+in\+\_\+milliseconds(), \+\_\+service\+Request\+::socket, and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F.
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+601                                                  \{
+602     \textcolor{keyword}{struct }sockaddr\_in remaddr; \textcolor{comment}{/* remote address */}
+603     socklen\_t addrlen = \textcolor{keyword}{sizeof}(remaddr); \textcolor{comment}{/* length of addresses */}
+604     \textcolor{keywordtype}{signed} \textcolor{keywordtype}{int} vIndex = 0;
+605     \textcolor{keyword}{struct }timeval start, end;
+606 
+607     memset(&remaddr, 0, \textcolor{keyword}{sizeof}(remaddr));
+608     remaddr.sin\_family = AF\_INET;
+609     remaddr.sin\_addr.s\_addr = inet\_addr(psr->\hyperlink{struct__service_request_acf8d45e7f9cb65b555217aae74cd72c5}{pre}->\hyperlink{struct__service_entry_a70b1db0895fbe31c07c8799cb57c678a}{ip});
+610     remaddr.sin\_port = htons(psr->\hyperlink{struct__service_request_acf8d45e7f9cb65b555217aae74cd72c5}{pre}->\hyperlink{struct__service_entry_ac8a3a40de5eee937afb42faea4d18bb2}{port});
+611 
+612     \textcolor{comment}{/*}
+613 \textcolor{comment}{     * SEND */}
+614     gettimeofday(&start, NULL);
+615     \textcolor{keywordflow}{if} (sendto(psr->\hyperlink{struct__service_request_aa867fef3928c7511f50a494662311d13}{socket}, psr->\hyperlink{struct__service_request_ad347b2a07388ec9d9d33756f1a1ef235}{request}, strlen(psr->\hyperlink{struct__service_request_ad347b2a07388ec9d9d33756f1a1ef235}{request}), 0, (\textcolor{keyword}{struct} sockaddr *) 
+      &remaddr, addrlen) < 0) \{
+616         gettimeofday(&end, NULL);
+617         skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"ServiceRequest: SendTo(%1.6f) Timed out; Failure code=%d,
+       etext=%s"}, \hyperlink{skn__network__helpers_8c_ad7f2202ecfe8bb131545b23ea3c26e91}{skn\_duration\_in\_milliseconds}(&start,&end), errno, strerror(errno));
+618         \textcolor{keywordflow}{return} EXIT\_FAILURE;
+619     \}
+620     skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"ServiceRequest sent to %s:%s:%d"}, psr->\hyperlink{struct__service_request_acf8d45e7f9cb65b555217aae74cd72c5}{pre}->
+      \hyperlink{struct__service_entry_aa66dcf0806f67276d049ac75c6153768}{name}, psr->\hyperlink{struct__service_request_acf8d45e7f9cb65b555217aae74cd72c5}{pre}->\hyperlink{struct__service_entry_a70b1db0895fbe31c07c8799cb57c678a}{ip}, psr->\hyperlink{struct__service_request_acf8d45e7f9cb65b555217aae74cd72c5}{pre}->\hyperlink{struct__service_entry_ac8a3a40de5eee937afb42faea4d18bb2}{port});
+621 
+622     \textcolor{comment}{/*}
+623 \textcolor{comment}{     * RECEIVE */}
+624     vIndex = recvfrom(psr->\hyperlink{struct__service_request_aa867fef3928c7511f50a494662311d13}{socket}, psr->\hyperlink{struct__service_request_ad4e98b9d21fad17ba82dba6a9b5f6562}{response}, (\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1), 0, (\textcolor{keyword}{struct} 
+      sockaddr *) &remaddr, &addrlen);
+625     \textcolor{keywordflow}{if} (vIndex == \hyperlink{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{PLATFORM\_ERROR}) \{
+626         gettimeofday(&end, NULL);
+627         skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"ServiceRequest: recvfrom(%1.6f) Failure code=%d, etext=%s"}, 
+      \hyperlink{skn__network__helpers_8c_ad7f2202ecfe8bb131545b23ea3c26e91}{skn\_duration\_in\_milliseconds}(&start,&end), errno, strerror(errno));
+628         \textcolor{keywordflow}{return} EXIT\_FAILURE;
+629     \}
+630     psr->\hyperlink{struct__service_request_ad4e98b9d21fad17ba82dba6a9b5f6562}{response}[vIndex] = 0;
+631     gettimeofday(&end, NULL);
+632 
+633     skn\_logger(\hyperlink{skn__common__headers_8h_a1bcf100bcdd91eacaf0b05d83c88aedf}{SD\_INFO}, \textcolor{stringliteral}{"Response(%1.3fs) received from [%s] %s:%d"},
+634                     \hyperlink{skn__network__helpers_8c_ad7f2202ecfe8bb131545b23ea3c26e91}{skn\_duration\_in\_milliseconds}(&start,&end),
+635                     psr->\hyperlink{struct__service_request_ad4e98b9d21fad17ba82dba6a9b5f6562}{response},
+636                     inet\_ntoa(remaddr.sin\_addr),
+637                     ntohs(remaddr.sin\_port)
+638               );
+639 
+640     \textcolor{keywordflow}{if} (strcmp(psr->\hyperlink{struct__service_request_ad4e98b9d21fad17ba82dba6a9b5f6562}{response}, \textcolor{stringliteral}{"QUIT!"}) == 0) \{
+641         skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"Shutdown Requested!"});
+642         \textcolor{keywordflow}{return} EXIT\_FAILURE;
+643     \}
+644 
+645     \textcolor{keywordflow}{return} (EXIT\_SUCCESS);
+646 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__network__helpers_8c_ad8304e97f9bccee1cd899a61b91ae677_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=284pt]{skn__network__helpers_8c_ad8304e97f9bccee1cd899a61b91ae677_icgraph}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{skn__network__helpers_8c_af45afdaf27876f134e053f2c7744efe9}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!gd\+\_\+ch\+\_\+host\+Name@{gd\+\_\+ch\+\_\+host\+Name}}
+\index{gd\+\_\+ch\+\_\+host\+Name@{gd\+\_\+ch\+\_\+host\+Name}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{gd\+\_\+ch\+\_\+host\+Name}]{\setlength{\rightskip}{0pt plus 5cm}char gd\+\_\+ch\+\_\+host\+Name\mbox{[}{\bf S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F}\mbox{]}}\label{skn__network__helpers_8c_af45afdaf27876f134e053f2c7744efe9}
+
+
+Definition at line 24 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+Referenced by skn\+\_\+program\+\_\+name\+\_\+and\+\_\+description\+\_\+set().
+
+\hypertarget{skn__network__helpers_8c_a7e072c565373b2bcba1b27b8f0528c1c}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!gd\+\_\+ch\+\_\+host\+Short\+Name@{gd\+\_\+ch\+\_\+host\+Short\+Name}}
+\index{gd\+\_\+ch\+\_\+host\+Short\+Name@{gd\+\_\+ch\+\_\+host\+Short\+Name}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{gd\+\_\+ch\+\_\+host\+Short\+Name}]{\setlength{\rightskip}{0pt plus 5cm}char gd\+\_\+ch\+\_\+host\+Short\+Name\mbox{[}{\bf S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F}\mbox{]}}\label{skn__network__helpers_8c_a7e072c565373b2bcba1b27b8f0528c1c}
+
+
+Definition at line 25 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+Referenced by skn\+\_\+program\+\_\+name\+\_\+and\+\_\+description\+\_\+set().
+
+\hypertarget{skn__network__helpers_8c_ac317f6dfab7bc91b9e2d717a7a1b8fcb}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!gd\+\_\+ch\+\_\+intf\+Name@{gd\+\_\+ch\+\_\+intf\+Name}}
+\index{gd\+\_\+ch\+\_\+intf\+Name@{gd\+\_\+ch\+\_\+intf\+Name}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{gd\+\_\+ch\+\_\+intf\+Name}]{\setlength{\rightskip}{0pt plus 5cm}char gd\+\_\+ch\+\_\+intf\+Name\mbox{[}{\bf S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F}\mbox{]}}\label{skn__network__helpers_8c_ac317f6dfab7bc91b9e2d717a7a1b8fcb}
+
+
+Definition at line 23 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+Referenced by generate\+\_\+rpi\+\_\+model\+\_\+info(), main(), and service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast().
+
+\hypertarget{skn__network__helpers_8c_aee48900a4a99c0480e3f1dfb6c4f38c7}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!gd\+\_\+ch\+\_\+ip\+Address@{gd\+\_\+ch\+\_\+ip\+Address}}
+\index{gd\+\_\+ch\+\_\+ip\+Address@{gd\+\_\+ch\+\_\+ip\+Address}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{gd\+\_\+ch\+\_\+ip\+Address}]{\setlength{\rightskip}{0pt plus 5cm}char gd\+\_\+ch\+\_\+ip\+Address\mbox{[}{\bf S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F}\mbox{]}}\label{skn__network__helpers_8c_aee48900a4a99c0480e3f1dfb6c4f38c7}
+
+
+Definition at line 22 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+Referenced by generate\+\_\+rpi\+\_\+model\+\_\+info(), main(), and service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast().
+
+\hypertarget{skn__network__helpers_8c_a7dfc34fe01828952972b6ae778b4f022}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!gd\+\_\+ch\+\_\+program\+\_\+desc@{gd\+\_\+ch\+\_\+program\+\_\+desc}}
+\index{gd\+\_\+ch\+\_\+program\+\_\+desc@{gd\+\_\+ch\+\_\+program\+\_\+desc}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{gd\+\_\+ch\+\_\+program\+\_\+desc}]{\setlength{\rightskip}{0pt plus 5cm}char gd\+\_\+ch\+\_\+program\+\_\+desc\mbox{[}{\bf S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F}\mbox{]}}\label{skn__network__helpers_8c_a7dfc34fe01828952972b6ae778b4f022}
+
+
+Definition at line 16 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+Referenced by skn\+\_\+display\+\_\+print\+\_\+usage(), skn\+\_\+locator\+\_\+print\+\_\+usage(), and skn\+\_\+program\+\_\+name\+\_\+and\+\_\+description\+\_\+set().
+
+\hypertarget{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!gd\+\_\+ch\+\_\+program\+\_\+name@{gd\+\_\+ch\+\_\+program\+\_\+name}}
+\index{gd\+\_\+ch\+\_\+program\+\_\+name@{gd\+\_\+ch\+\_\+program\+\_\+name}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{gd\+\_\+ch\+\_\+program\+\_\+name}]{\setlength{\rightskip}{0pt plus 5cm}char gd\+\_\+ch\+\_\+program\+\_\+name\mbox{[}{\bf S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F}\mbox{]}}\label{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}
+
+
+Definition at line 15 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+Referenced by main(), skn\+\_\+display\+\_\+print\+\_\+usage(), skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line(), skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line(), skn\+\_\+locator\+\_\+print\+\_\+usage(), and skn\+\_\+program\+\_\+name\+\_\+and\+\_\+description\+\_\+set().
+
+\hypertarget{skn__network__helpers_8c_a923b2adbdc0dac852905dc95eaa73a37}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!gd\+\_\+i\+\_\+debug@{gd\+\_\+i\+\_\+debug}}
+\index{gd\+\_\+i\+\_\+debug@{gd\+\_\+i\+\_\+debug}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{gd\+\_\+i\+\_\+debug}]{\setlength{\rightskip}{0pt plus 5cm}signed int gd\+\_\+i\+\_\+debug = 0}\label{skn__network__helpers_8c_a923b2adbdc0dac852905dc95eaa73a37}
+
+
+Definition at line 14 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+Referenced by skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line(), and skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line().
+
+\hypertarget{skn__network__helpers_8c_ad3af8f8dd9f2ca01a415370a99bc465e}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!gd\+\_\+i\+\_\+display@{gd\+\_\+i\+\_\+display}}
+\index{gd\+\_\+i\+\_\+display@{gd\+\_\+i\+\_\+display}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{gd\+\_\+i\+\_\+display}]{\setlength{\rightskip}{0pt plus 5cm}int gd\+\_\+i\+\_\+display = 0}\label{skn__network__helpers_8c_ad3af8f8dd9f2ca01a415370a99bc465e}
+
+
+Definition at line 19 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+Referenced by service\+\_\+registry\+\_\+provider(), and skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line().
+
+\hypertarget{skn__network__helpers_8c_a2c55396bf337471f9f99a939974fcdbe}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!gd\+\_\+i\+\_\+i2c\+\_\+address@{gd\+\_\+i\+\_\+i2c\+\_\+address}}
+\index{gd\+\_\+i\+\_\+i2c\+\_\+address@{gd\+\_\+i\+\_\+i2c\+\_\+address}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{gd\+\_\+i\+\_\+i2c\+\_\+address}]{\setlength{\rightskip}{0pt plus 5cm}int gd\+\_\+i\+\_\+i2c\+\_\+address = 0}\label{skn__network__helpers_8c_a2c55396bf337471f9f99a939974fcdbe}
+
+
+Definition at line 27 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+Referenced by main(), skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23008(), skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23017(), skn\+\_\+device\+\_\+manager\+\_\+\+P\+C\+F8574(), skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line(), and skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line().
+
+\hypertarget{skn__network__helpers_8c_a62c4e1910a12d9a04a12768154853712}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!gd\+\_\+i\+\_\+socket@{gd\+\_\+i\+\_\+socket}}
+\index{gd\+\_\+i\+\_\+socket@{gd\+\_\+i\+\_\+socket}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{gd\+\_\+i\+\_\+socket}]{\setlength{\rightskip}{0pt plus 5cm}int gd\+\_\+i\+\_\+socket = -\/1}\label{skn__network__helpers_8c_a62c4e1910a12d9a04a12768154853712}
+
+
+Definition at line 18 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+Referenced by main().
+
+\hypertarget{skn__network__helpers_8c_ae64a8fff2241990ec523dafe18f7864c}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!gd\+\_\+i\+\_\+unique\+\_\+registry@{gd\+\_\+i\+\_\+unique\+\_\+registry}}
+\index{gd\+\_\+i\+\_\+unique\+\_\+registry@{gd\+\_\+i\+\_\+unique\+\_\+registry}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{gd\+\_\+i\+\_\+unique\+\_\+registry}]{\setlength{\rightskip}{0pt plus 5cm}int gd\+\_\+i\+\_\+unique\+\_\+registry = 0}\label{skn__network__helpers_8c_ae64a8fff2241990ec523dafe18f7864c}
+
+
+Definition at line 21 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+Referenced by service\+\_\+registry\+\_\+entry\+\_\+create(), and skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line().
+
+\hypertarget{skn__network__helpers_8c_a49e7c0da0f26a1f505934e5610ead123}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!gd\+\_\+i\+\_\+update@{gd\+\_\+i\+\_\+update}}
+\index{gd\+\_\+i\+\_\+update@{gd\+\_\+i\+\_\+update}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{gd\+\_\+i\+\_\+update}]{\setlength{\rightskip}{0pt plus 5cm}int gd\+\_\+i\+\_\+update = 0}\label{skn__network__helpers_8c_a49e7c0da0f26a1f505934e5610ead123}
+
+
+Definition at line 20 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+Referenced by main(), and skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line().
+
+\hypertarget{skn__network__helpers_8c_af2e3031da262a9990e0ef895e20cdd0e}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!gd\+\_\+pch\+\_\+effective\+\_\+userid@{gd\+\_\+pch\+\_\+effective\+\_\+userid}}
+\index{gd\+\_\+pch\+\_\+effective\+\_\+userid@{gd\+\_\+pch\+\_\+effective\+\_\+userid}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{gd\+\_\+pch\+\_\+effective\+\_\+userid}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ gd\+\_\+pch\+\_\+effective\+\_\+userid = N\+U\+L\+L}\label{skn__network__helpers_8c_af2e3031da262a9990e0ef895e20cdd0e}
+
+
+Definition at line 17 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+Referenced by main(), and skn\+\_\+get\+\_\+userids().
+
+\hypertarget{skn__network__helpers_8c_a0bb2e7571c22c0455842aba8cf1d97dc}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!gd\+\_\+pch\+\_\+message@{gd\+\_\+pch\+\_\+message}}
+\index{gd\+\_\+pch\+\_\+message@{gd\+\_\+pch\+\_\+message}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{gd\+\_\+pch\+\_\+message}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ gd\+\_\+pch\+\_\+message = N\+U\+L\+L}\label{skn__network__helpers_8c_a0bb2e7571c22c0455842aba8cf1d97dc}
+
+
+Definition at line 12 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+Referenced by main(), skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line(), and skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line().
+
+\hypertarget{skn__network__helpers_8c_a2f908b49598a49ea624bfcc3e2175b7c}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!gd\+\_\+pch\+\_\+service\+\_\+name@{gd\+\_\+pch\+\_\+service\+\_\+name}}
+\index{gd\+\_\+pch\+\_\+service\+\_\+name@{gd\+\_\+pch\+\_\+service\+\_\+name}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{gd\+\_\+pch\+\_\+service\+\_\+name}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ gd\+\_\+pch\+\_\+service\+\_\+name}\label{skn__network__helpers_8c_a2f908b49598a49ea624bfcc3e2175b7c}
+
+
+Definition at line 26 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+Referenced by main(), service\+\_\+registry\+\_\+provider(), and skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line().
+
+\hypertarget{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{}\index{skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}!gi\+\_\+exit\+\_\+flag@{gi\+\_\+exit\+\_\+flag}}
+\index{gi\+\_\+exit\+\_\+flag@{gi\+\_\+exit\+\_\+flag}!skn\+\_\+network\+\_\+helpers.\+c@{skn\+\_\+network\+\_\+helpers.\+c}}
+\subsubsection[{gi\+\_\+exit\+\_\+flag}]{\setlength{\rightskip}{0pt plus 5cm}sig\+\_\+atomic\+\_\+t gi\+\_\+exit\+\_\+flag = {\bf S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+R\+U\+N}}\label{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}
+skn\+Network\+Helpers.\+c 
+
+Definition at line 11 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+Referenced by exit\+\_\+handler(), main(), service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast(), service\+\_\+registry\+\_\+provider(), signals\+\_\+cleanup(), skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work(), skn\+\_\+display\+\_\+manager\+\_\+message\+\_\+consumer\+\_\+thread(), skn\+\_\+signal\+\_\+manager\+\_\+handler\+\_\+thread(), skn\+\_\+signal\+\_\+manager\+\_\+process\+\_\+signals(), and skn\+\_\+signal\+\_\+manager\+\_\+shutdown().
+

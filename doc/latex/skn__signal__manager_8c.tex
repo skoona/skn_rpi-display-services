@@ -1,0 +1,410 @@
+\hypertarget{skn__signal__manager_8c}{}\section{src/skn\+\_\+signal\+\_\+manager.c File Reference}
+\label{skn__signal__manager_8c}\index{src/skn\+\_\+signal\+\_\+manager.\+c@{src/skn\+\_\+signal\+\_\+manager.\+c}}
+{\ttfamily \#include \char`\"{}skn\+\_\+network\+\_\+helpers.\+h\char`\"{}}\\*
+Include dependency graph for skn\+\_\+signal\+\_\+manager.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__signal__manager_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{skn__signal__manager_8c_a952fd087d64fc95b287a5b8e131434bd}{skn\+\_\+signal\+\_\+manager\+\_\+process\+\_\+signals} (siginfo\+\_\+t $\ast$signal\+\_\+info)
+\item 
+static void $\ast$ \hyperlink{skn__signal__manager_8c_a34a43eb05460c12308ab975a3add1e6d}{skn\+\_\+signal\+\_\+manager\+\_\+handler\+\_\+thread} (void $\ast$l\+\_\+thread\+\_\+complete)
+\item 
+int \hyperlink{skn__signal__manager_8c_aa3e16c859e3977df7056461e57fdf683}{skn\+\_\+signal\+\_\+manager\+\_\+shutdown} (pthread\+\_\+t sig\+\_\+thread, sigset\+\_\+t $\ast$psignal\+\_\+set, long $\ast$l\+\_\+thread\+\_\+complete)
+\item 
+int \hyperlink{skn__signal__manager_8c_a9de94515b5dc0bcdcb813f6b17a6956e}{skn\+\_\+signal\+\_\+manager\+\_\+startup} (pthread\+\_\+t $\ast$psig\+\_\+thread, sigset\+\_\+t $\ast$psignal\+\_\+set, long $\ast$l\+\_\+thread\+\_\+complete)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{skn__signal__manager_8c_a34a43eb05460c12308ab975a3add1e6d}{}\index{skn\+\_\+signal\+\_\+manager.\+c@{skn\+\_\+signal\+\_\+manager.\+c}!skn\+\_\+signal\+\_\+manager\+\_\+handler\+\_\+thread@{skn\+\_\+signal\+\_\+manager\+\_\+handler\+\_\+thread}}
+\index{skn\+\_\+signal\+\_\+manager\+\_\+handler\+\_\+thread@{skn\+\_\+signal\+\_\+manager\+\_\+handler\+\_\+thread}!skn\+\_\+signal\+\_\+manager.\+c@{skn\+\_\+signal\+\_\+manager.\+c}}
+\subsubsection[{skn\+\_\+signal\+\_\+manager\+\_\+handler\+\_\+thread(void $\ast$l\+\_\+thread\+\_\+complete)}]{\setlength{\rightskip}{0pt plus 5cm}static void $\ast$ skn\+\_\+signal\+\_\+manager\+\_\+handler\+\_\+thread (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{l\+\_\+thread\+\_\+complete}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{skn__signal__manager_8c_a34a43eb05460c12308ab975a3add1e6d}
+handler\+\_\+thread()
+
+Trap linux signals for the whole multi-\/threaded application.
+
+Params\+: real\+\_\+user\+\_\+id -- demos passing a ptr or value into thread context.
+
+Returns/\+Affects\+: returns and/or set the atomic gint gi\+\_\+exit\+\_\+flag returns last signal 
+
+Definition at line 161 of file skn\+\_\+signal\+\_\+manager.\+c.
+
+
+
+References gi\+\_\+exit\+\_\+flag, P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R, S\+D\+\_\+\+N\+O\+T\+I\+C\+E, S\+D\+\_\+\+W\+A\+R\+N\+I\+N\+G, S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+R\+U\+N, S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+S\+T\+O\+P, and skn\+\_\+signal\+\_\+manager\+\_\+process\+\_\+signals().
+
+
+
+Referenced by skn\+\_\+signal\+\_\+manager\+\_\+startup().
+
+
+\begin{DoxyCode}
+161                                                                         \{
+162     sigset\_t signal\_set;
+163     siginfo\_t signal\_info;
+164 \textcolor{comment}{//    struct timespec timeout;}
+165     \textcolor{keywordtype}{int} sig = 0;
+166     \textcolor{keywordtype}{int} rval = 0;
+167     \textcolor{keywordtype}{long} *threadC = (\textcolor{keywordtype}{long} *)l\_thread\_complete;
+168 
+169     *threadC = 1;
+170 
+171 \textcolor{comment}{//    timeout.tv\_nsec = 0;}
+172 \textcolor{comment}{//    timeout.tv\_sec = 8;}
+173     sigfillset(&signal\_set);
+174     skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"SignalManager: Startup Successful..."});
+175 
+176     \textcolor{keywordflow}{while} (\hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag} == \hyperlink{skn__common__headers_8h_a3f5142b81a9ee977aedfd69a61281920}{SKN\_RUN\_MODE\_RUN}) \{
+177         \textcolor{comment}{/* wait for any and all signals */}
+178         \textcolor{comment}{/* OLD: sigwait (&signal\_set, &sig); */}
+179         sig = sigwaitinfo(&signal\_set, &signal\_info);
+180         \textcolor{keywordflow}{if} (sig == \hyperlink{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{PLATFORM\_ERROR}) \{
+181             \textcolor{keywordflow}{if} (errno == EAGAIN) \{
+182                 \textcolor{keywordflow}{continue};
+183             \}
+184             skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"SignalManager: sigwaitinfo() returned an error => \{%s\}"}, 
+      strerror(errno));
+185             \hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag} = \hyperlink{skn__common__headers_8h_a6ea8f978e9fdfefe8437e3a7decbad7f}{SKN\_RUN\_MODE\_STOP};
+186             \textcolor{keywordflow}{break};
+187         \}
+188         \textcolor{comment}{/* when we get this far, we've  caught a signal */}
+189         rval = \hyperlink{skn__signal__manager_8c_a952fd087d64fc95b287a5b8e131434bd}{skn\_signal\_manager\_process\_signals}(&signal\_info);
+190         \hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag} = rval;
+191 
+192     \} \textcolor{comment}{/* end-while */}
+193 
+194     pthread\_sigmask(SIG\_UNBLOCK, &signal\_set, NULL);
+195 
+196     skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"SignalManager: Thread Shutdown Complete."});
+197 
+198     *threadC = 0;
+199 
+200     pthread\_exit((\textcolor{keywordtype}{void} *) (\textcolor{keywordtype}{long} \textcolor{keywordtype}{int}) sig);
+201 
+202     \textcolor{keywordflow}{return} NULL;
+203 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=333pt]{skn__signal__manager_8c_a34a43eb05460c12308ab975a3add1e6d_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__signal__manager_8c_a34a43eb05460c12308ab975a3add1e6d_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__signal__manager_8c_a952fd087d64fc95b287a5b8e131434bd}{}\index{skn\+\_\+signal\+\_\+manager.\+c@{skn\+\_\+signal\+\_\+manager.\+c}!skn\+\_\+signal\+\_\+manager\+\_\+process\+\_\+signals@{skn\+\_\+signal\+\_\+manager\+\_\+process\+\_\+signals}}
+\index{skn\+\_\+signal\+\_\+manager\+\_\+process\+\_\+signals@{skn\+\_\+signal\+\_\+manager\+\_\+process\+\_\+signals}!skn\+\_\+signal\+\_\+manager.\+c@{skn\+\_\+signal\+\_\+manager.\+c}}
+\subsubsection[{skn\+\_\+signal\+\_\+manager\+\_\+process\+\_\+signals(siginfo\+\_\+t $\ast$signal\+\_\+info)}]{\setlength{\rightskip}{0pt plus 5cm}static int skn\+\_\+signal\+\_\+manager\+\_\+process\+\_\+signals (
+\begin{DoxyParamCaption}
+\item[{siginfo\+\_\+t $\ast$}]{signal\+\_\+info}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{skn__signal__manager_8c_a952fd087d64fc95b287a5b8e131434bd}
+
+
+Definition at line 28 of file skn\+\_\+signal\+\_\+manager.\+c.
+
+
+
+References gi\+\_\+exit\+\_\+flag, and S\+D\+\_\+\+N\+O\+T\+I\+C\+E.
+
+
+
+Referenced by skn\+\_\+signal\+\_\+manager\+\_\+handler\+\_\+thread().
+
+
+\begin{DoxyCode}
+28                                                                       \{
+29     \textcolor{keywordtype}{int} rval = \hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag}; \textcolor{comment}{/* use existing value */}
+30     \textcolor{keywordtype}{int} sig = 0;
+31     \textcolor{keywordtype}{char} *pch = \textcolor{stringliteral}{"<unknown>"};
+32 
+33     assert(signal\_info != NULL);
+34 
+35     sig = signal\_info->si\_signo;
+36 
+37     \textcolor{comment}{/*}
+38 \textcolor{comment}{     * look to see what signal has been caught}
+39 \textcolor{comment}{     */}
+40     \textcolor{keywordflow}{switch} (sig) \{
+41         \textcolor{keywordflow}{case} SIGHUP: \textcolor{comment}{/* often used to reload configuration */}
+42 \textcolor{comment}{//      rval = 33; /* flag a reload of the ip address info */}
+43             skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"%s received: Requesting IP Address Info reload => [pid=%d,
+       uid=%d]"}, strsignal(sig), signal\_info->si\_pid,
+44                        signal\_info->si\_uid);
+45             \textcolor{keywordflow}{break};
+46         \textcolor{keywordflow}{case} SIGUSR1: \textcolor{comment}{/* Any user function */}
+47             \textcolor{keywordflow}{switch} (signal\_info->si\_code) \{
+48                 \textcolor{keywordflow}{case} SI\_USER:
+49                     pch = \textcolor{stringliteral}{"kill(2) or raise(3)"};
+50                     \textcolor{keywordflow}{break};
+51                 \textcolor{keywordflow}{case} SI\_KERNEL:
+52                     pch = \textcolor{stringliteral}{"Sent by the kernel."};
+53                     \textcolor{keywordflow}{break};
+54                 \textcolor{keywordflow}{case} SI\_QUEUE:
+55                     pch = \textcolor{stringliteral}{"sigqueue(2)"};
+56                     \textcolor{keywordflow}{break};
+57                 \textcolor{keywordflow}{case} SI\_TIMER:
+58                     pch = \textcolor{stringliteral}{"POSIX timer expired"};
+59                     \textcolor{keywordflow}{break};
+60                 \textcolor{keywordflow}{case} SI\_MESGQ:
+61                     pch = \textcolor{stringliteral}{"POSIX message queue state changed"};
+62                     \textcolor{keywordflow}{break};
+63                 \textcolor{keywordflow}{case} SI\_ASYNCIO:
+64                     pch = \textcolor{stringliteral}{"AIO completed"};
+65                     \textcolor{keywordflow}{break};
+66                 \textcolor{keywordflow}{case} SI\_SIGIO:
+67                     pch = \textcolor{stringliteral}{"queued SIGIO"};
+68                     \textcolor{keywordflow}{break};
+69                 \textcolor{keywordflow}{case} SI\_TKILL:
+70                     pch = \textcolor{stringliteral}{"tkill(2) or tgkill(2)"};
+71                     \textcolor{keywordflow}{break};
+72                 \textcolor{keywordflow}{default}:
+73                     pch = \textcolor{stringliteral}{"<unknown>"};
+74                     \textcolor{keywordflow}{break};
+75             \}
+76             skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"%s received from => %s ?[pid=%d, uid=%d] signaling application
+       shutdown."}, strsignal(sig), pch, signal\_info->si\_pid, signal\_info->si\_uid);
+77             rval = sig;
+78             \textcolor{keywordflow}{break};
+79         \textcolor{keywordflow}{case} SIGCHLD: \textcolor{comment}{/* some child ended */}
+80             \textcolor{keywordflow}{switch} (signal\_info->si\_code) \{
+81                 \textcolor{keywordflow}{case} CLD\_EXITED:
+82                     pch = \textcolor{stringliteral}{"child has exited"};
+83                     \textcolor{keywordflow}{break};
+84                 \textcolor{keywordflow}{case} CLD\_KILLED:
+85                     pch = \textcolor{stringliteral}{"child was killed"};
+86                     \textcolor{keywordflow}{break};
+87                 \textcolor{keywordflow}{case} CLD\_DUMPED:
+88                     pch = \textcolor{stringliteral}{"child terminated abnormally"};
+89                     \textcolor{keywordflow}{break};
+90                 \textcolor{keywordflow}{case} CLD\_TRAPPED:
+91                     pch = \textcolor{stringliteral}{"traced child has trapped"};
+92                     \textcolor{keywordflow}{break};
+93                 \textcolor{keywordflow}{case} CLD\_STOPPED:
+94                     pch = \textcolor{stringliteral}{"child has stopped"};
+95                     \textcolor{keywordflow}{break};
+96                 \textcolor{keywordflow}{case} CLD\_CONTINUED:
+97                     pch = \textcolor{stringliteral}{"stopped child has continued"};
+98                     \textcolor{keywordflow}{break};
+99                 \textcolor{keywordflow}{default}:
+100                     pch = \textcolor{stringliteral}{"<unknown>"};
+101                     \textcolor{keywordflow}{break};
+102             \}
+103             skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"%s received for pid => %d, w/rc => %d for this reason => %s
+       \{Ignored\}"}, strsignal(sig), signal\_info->si\_pid,
+104                        signal\_info->si\_status, pch);
+105             \textcolor{keywordflow}{break};
+106         \textcolor{keywordflow}{case} SIGQUIT: \textcolor{comment}{/* often used to signal an orderly shutdown */}
+107         \textcolor{keywordflow}{case} SIGINT: \textcolor{comment}{/* often used to signal an orderly shutdown */}
+108         \textcolor{keywordflow}{case} SIGPWR: \textcolor{comment}{/* Power Failure */}
+109         \textcolor{keywordflow}{case} SIGKILL: \textcolor{comment}{/* Fatal Exit flag */}
+110         \textcolor{keywordflow}{case} SIGTERM: \textcolor{comment}{/* Immediately Fatal Exit flag */}
+111         \textcolor{keywordflow}{default}:
+112             \textcolor{keywordflow}{switch} (signal\_info->si\_code) \{
+113                 \textcolor{keywordflow}{case} SI\_USER:
+114                     pch = \textcolor{stringliteral}{"kill(2) or raise(3)"};
+115                     \textcolor{keywordflow}{break};
+116                 \textcolor{keywordflow}{case} SI\_KERNEL:
+117                     pch = \textcolor{stringliteral}{"Sent by the kernel."};
+118                     \textcolor{keywordflow}{break};
+119                 \textcolor{keywordflow}{case} SI\_QUEUE:
+120                     pch = \textcolor{stringliteral}{"sigqueue(2)"};
+121                     \textcolor{keywordflow}{break};
+122                 \textcolor{keywordflow}{case} SI\_TIMER:
+123                     pch = \textcolor{stringliteral}{"POSIX timer expired"};
+124                     \textcolor{keywordflow}{break};
+125                 \textcolor{keywordflow}{case} SI\_MESGQ:
+126                     pch = \textcolor{stringliteral}{"POSIX message queue state changed"};
+127                     \textcolor{keywordflow}{break};
+128                 \textcolor{keywordflow}{case} SI\_ASYNCIO:
+129                     pch = \textcolor{stringliteral}{"AIO completed"};
+130                     \textcolor{keywordflow}{break};
+131                 \textcolor{keywordflow}{case} SI\_SIGIO:
+132                     pch = \textcolor{stringliteral}{"queued SIGIO"};
+133                     \textcolor{keywordflow}{break};
+134                 \textcolor{keywordflow}{case} SI\_TKILL:
+135                     pch = \textcolor{stringliteral}{"tkill(2) or tgkill(2)"};
+136                     \textcolor{keywordflow}{break};
+137                 \textcolor{keywordflow}{default}:
+138                     pch = \textcolor{stringliteral}{"<unknown>"};
+139                     \textcolor{keywordflow}{break};
+140             \}
+141             skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"%s received from => %s ?[pid=%d, uid=%d]\{Exiting\}"}, strsignal(
+      sig), pch, signal\_info->si\_pid, signal\_info->si\_uid);
+142             rval = sig;
+143             \textcolor{keywordflow}{break};
+144     \} \textcolor{comment}{/* end switch */}
+145 
+146     \textcolor{keywordflow}{return} rval;
+147 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__signal__manager_8c_a952fd087d64fc95b287a5b8e131434bd_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__signal__manager_8c_aa3e16c859e3977df7056461e57fdf683}{}\index{skn\+\_\+signal\+\_\+manager.\+c@{skn\+\_\+signal\+\_\+manager.\+c}!skn\+\_\+signal\+\_\+manager\+\_\+shutdown@{skn\+\_\+signal\+\_\+manager\+\_\+shutdown}}
+\index{skn\+\_\+signal\+\_\+manager\+\_\+shutdown@{skn\+\_\+signal\+\_\+manager\+\_\+shutdown}!skn\+\_\+signal\+\_\+manager.\+c@{skn\+\_\+signal\+\_\+manager.\+c}}
+\subsubsection[{skn\+\_\+signal\+\_\+manager\+\_\+shutdown(pthread\+\_\+t sig\+\_\+thread, sigset\+\_\+t $\ast$psignal\+\_\+set, long $\ast$l\+\_\+thread\+\_\+complete)}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+signal\+\_\+manager\+\_\+shutdown (
+\begin{DoxyParamCaption}
+\item[{pthread\+\_\+t}]{sig\+\_\+thread, }
+\item[{sigset\+\_\+t $\ast$}]{psignal\+\_\+set, }
+\item[{long $\ast$}]{l\+\_\+thread\+\_\+complete}
+\end{DoxyParamCaption}
+)}\label{skn__signal__manager_8c_aa3e16c859e3977df7056461e57fdf683}
+Final step
+\begin{DoxyItemize}
+\item may send trapped signal to app, so requester knows it was honored 
+\end{DoxyItemize}
+
+Definition at line 209 of file skn\+\_\+signal\+\_\+manager.\+c.
+
+
+
+References gi\+\_\+exit\+\_\+flag, S\+D\+\_\+\+N\+O\+T\+I\+C\+E, S\+D\+\_\+\+W\+A\+R\+N\+I\+N\+G, and S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+S\+T\+O\+P.
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+209                                                                                                       \{
+210     \textcolor{keywordtype}{void} *trc = NULL;
+211     \textcolor{keywordtype}{int} rc = EXIT\_SUCCESS;
+212 
+213     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag} <= \hyperlink{skn__common__headers_8h_a6ea8f978e9fdfefe8437e3a7decbad7f}{SKN\_RUN\_MODE\_STOP}) \{
+214         \hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag} = \hyperlink{skn__common__headers_8h_a6ea8f978e9fdfefe8437e3a7decbad7f}{SKN\_RUN\_MODE\_STOP}; \textcolor{comment}{/* shut down the system -- work is
+       done */}
+215         \textcolor{comment}{// need to force theads down or interrupt them}
+216         skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"shutdown caused by application!"});
+217         sleep(1);
+218         \textcolor{keywordflow}{if} (*l\_thread\_complete != 0) \{
+219             pthread\_cancel(sig\_thread);
+220             sleep(1);
+221         \}
+222         skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"Collecting (cleanup) threads."});
+223         pthread\_join(sig\_thread, &trc);
+224     \} \textcolor{keywordflow}{else} \{
+225         rc = EXIT\_FAILURE;
+226         skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"Collecting signal thread's return code."});
+227         pthread\_join(sig\_thread, &trc);
+228         skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"Signal thread was ended by a %d:%s signal."}, 
+      \hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag}, strsignal((\textcolor{keywordtype}{int}) (\textcolor{keywordtype}{long} \textcolor{keywordtype}{int}) trc));
+229     \}
+230     pthread\_sigmask(SIG\_UNBLOCK, psignal\_set, NULL);
+231 
+232     \textcolor{keywordflow}{return} rc;
+233 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=262pt]{skn__signal__manager_8c_aa3e16c859e3977df7056461e57fdf683_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__signal__manager_8c_a9de94515b5dc0bcdcb813f6b17a6956e}{}\index{skn\+\_\+signal\+\_\+manager.\+c@{skn\+\_\+signal\+\_\+manager.\+c}!skn\+\_\+signal\+\_\+manager\+\_\+startup@{skn\+\_\+signal\+\_\+manager\+\_\+startup}}
+\index{skn\+\_\+signal\+\_\+manager\+\_\+startup@{skn\+\_\+signal\+\_\+manager\+\_\+startup}!skn\+\_\+signal\+\_\+manager.\+c@{skn\+\_\+signal\+\_\+manager.\+c}}
+\subsubsection[{skn\+\_\+signal\+\_\+manager\+\_\+startup(pthread\+\_\+t $\ast$psig\+\_\+thread, sigset\+\_\+t $\ast$psignal\+\_\+set, long $\ast$l\+\_\+thread\+\_\+complete)}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+signal\+\_\+manager\+\_\+startup (
+\begin{DoxyParamCaption}
+\item[{pthread\+\_\+t $\ast$}]{psig\+\_\+thread, }
+\item[{sigset\+\_\+t $\ast$}]{psignal\+\_\+set, }
+\item[{long $\ast$}]{l\+\_\+thread\+\_\+complete}
+\end{DoxyParamCaption}
+)}\label{skn__signal__manager_8c_a9de94515b5dc0bcdcb813f6b17a6956e}
+Initialize signal manager 
+
+Definition at line 238 of file skn\+\_\+signal\+\_\+manager.\+c.
+
+
+
+References P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R, S\+D\+\_\+\+E\+R\+R, and skn\+\_\+signal\+\_\+manager\+\_\+handler\+\_\+thread().
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+238                                                                                                        \{
+239     \textcolor{keywordtype}{int} i\_thread\_rc = 0; \textcolor{comment}{// EXIT\_SUCCESS}
+240 
+241     sigfillset(psignal\_set);
+242     pthread\_sigmask(SIG\_BLOCK, psignal\_set, NULL);
+243 
+244     i\_thread\_rc = pthread\_create(psig\_thread, NULL, 
+      \hyperlink{skn__signal__manager_8c_a34a43eb05460c12308ab975a3add1e6d}{skn\_signal\_manager\_handler\_thread}, (\textcolor{keywordtype}{void}*) l\_thread\_complete);
+245     \textcolor{keywordflow}{if} (i\_thread\_rc == \hyperlink{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{PLATFORM\_ERROR}) \{
+246         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"Create signal thread failed: %d:%s"}, errno, strerror(errno));
+247         pthread\_sigmask(SIG\_UNBLOCK, psignal\_set, NULL);
+248         i\_thread\_rc = EXIT\_FAILURE;
+249     \}
+250     sleep(1); \textcolor{comment}{// give thread a chance to start}
+251 
+252     \textcolor{keywordflow}{return} i\_thread\_rc;
+253 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__signal__manager_8c_a9de94515b5dc0bcdcb813f6b17a6956e_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=262pt]{skn__signal__manager_8c_a9de94515b5dc0bcdcb813f6b17a6956e_icgraph}
+\end{center}
+\end{figure}
+
+

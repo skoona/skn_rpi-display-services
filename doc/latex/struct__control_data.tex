@@ -1,0 +1,679 @@
+\hypertarget{struct__control_data}{}\section{\+\_\+control\+Data Struct Reference}
+\label{struct__control_data}\index{\+\_\+control\+Data@{\+\_\+control\+Data}}
+
+
+Collaboration diagram for \+\_\+control\+Data\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{struct__control_data__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+G\+Main\+Loop $\ast$ \hyperlink{struct__control_data_ae1b70bafbd5eb568c6ca339664959216}{loop}
+\item 
+\hyperlink{cmd_d_c_8c_a4d86cbb761613143e4ee60218efdfbaa}{U\+Signal\+Data} \hyperlink{struct__control_data_af45dc1f0c4806eaac0a57da17db50fdb}{sig\+Term}
+\item 
+\hyperlink{cmd_d_c_8c_a4d86cbb761613143e4ee60218efdfbaa}{U\+Signal\+Data} \hyperlink{struct__control_data_ae8ad5b5af46f4ab4bcd6ffb41e83385b}{sig\+Int}
+\item 
+\hyperlink{cmd_d_c_8c_a4d86cbb761613143e4ee60218efdfbaa}{U\+Signal\+Data} \hyperlink{struct__control_data_a551d0ecd4ceb9fc4ce8eebe5a984dc4c}{sig\+Hup}
+\item 
+G\+Source $\ast$ \hyperlink{struct__control_data_abfbd9e642ba240fa5985f63d60886de4}{g\+Comm\+Source}
+\item 
+G\+Socket $\ast$ \hyperlink{struct__control_data_a49b267275036fc3ac9b7d9e53b0625e1}{g\+Sock}
+\item 
+G\+Socket $\ast$ \hyperlink{struct__control_data_a05fab30fce92ebe541d9dd98220c60ef}{g\+Broadcast\+Socket}
+\item 
+G\+Socket\+Address $\ast$ \hyperlink{struct__control_data_a11c618822b208569a5d28206407326d5}{gs\+D\+S\+Addr}
+\item 
+G\+Socket\+Address $\ast$ \hyperlink{struct__control_data_a8a43853386551af4c746fd4b882eb2bf}{gs\+Addr}
+\item 
+G\+Resolver $\ast$ \hyperlink{struct__control_data_afe33a7083e1ecc9ba50a69644ed4a753}{resolver}
+\item 
+G\+List $\ast$ \hyperlink{struct__control_data_a34b1729bc0b37c9dce0327ea4cd8a812}{gl\+Registry}
+\item 
+\hyperlink{cmd_d_c_8c_a916d712cacebc2faeda930352280c361}{P\+I\+P\+Broadcast\+Array} \hyperlink{struct__control_data_a93f6e099a56c0d476607b4bd5a9dfa58}{pa\+B}
+\item 
+guint \hyperlink{struct__control_data_ab4837eb7cc16bf85fe0bd839a428eaa5}{g\+Registry\+Queries}
+\item 
+guint \hyperlink{struct__control_data_a81bfc0d50c23ebe6708e065659d11eb8}{g\+Reg\+Count}
+\item 
+guint \hyperlink{struct__control_data_a0dcc9f369186f6cf7c99b2178be66e58}{g\+Error\+Count}
+\item 
+guint \hyperlink{struct__control_data_a277ea878a8491fa38269b6c762a05389}{g\+Msg\+Delay}
+\item 
+gboolean \hyperlink{struct__control_data_a04238362a20b6616913d869fc464e4b2}{g\+Ready}
+\item 
+gchar \hyperlink{struct__control_data_adac6cf5482e4bbabb442f8ab27e4bc62}{ch\+\_\+intf\+Name} \mbox{[}\hyperlink{gtk_d_s_8c_a152ca8fa1a2eac39d1badafb6c6cef8c}{S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+F\+F}\mbox{]}
+\item 
+gchar \hyperlink{struct__control_data_ac48fc4263dd4a6bad484b93fbf1ffe1b}{ch\+\_\+this\+\_\+ip} \mbox{[}\hyperlink{gtk_d_s_8c_a152ca8fa1a2eac39d1badafb6c6cef8c}{S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+F\+F}\mbox{]}
+\item 
+gchar \hyperlink{struct__control_data_a94aa04264eafaa65a7a869a540bbdf93}{ch\+\_\+display\+\_\+service\+\_\+name} \mbox{[}\hyperlink{gtk_d_s_8c_a152ca8fa1a2eac39d1badafb6c6cef8c}{S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+F\+F}\mbox{]}
+\item 
+gchar \hyperlink{struct__control_data_a16162d5fe851704d7ea50ff16525b94c}{ch\+\_\+message} \mbox{[}\hyperlink{gtk_d_s_8c_ab5903aa853c3769389e570c8490feb1e}{S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+F\+F}\mbox{]}
+\item 
+gchar \hyperlink{struct__control_data_a948c37bbe26f5bdd4841b65384155edf}{ch\+\_\+request} \mbox{[}\hyperlink{gtk_d_s_8c_ab5903aa853c3769389e570c8490feb1e}{S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+F\+F}\mbox{]}
+\item 
+gchar \hyperlink{struct__control_data_a9423e8582b05e2dde58b7302bee5559b}{ch\+\_\+response} \mbox{[}\hyperlink{gtk_d_s_8c_a3c73a8961a16a0dfbb87b5a7317bacd2}{S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+F\+F}\mbox{]}
+\item 
+guint \hyperlink{struct__control_data_a719187f5c3c94da5aa08616db7820b98}{g\+Source\+Id}
+\item 
+guint \hyperlink{struct__control_data_ae9e5e76959a76812d94ee8f83ae2eef5}{g\+Broad\+Source\+Id}
+\item 
+G\+Socket $\ast$ \hyperlink{struct__control_data_a3023250e01849cb311a7207746a3b64e}{gb\+Sock}
+\item 
+gchar \hyperlink{struct__control_data_a243b075becb92f2f37f56f60f738efb1}{ch\+\_\+read} \mbox{[}\hyperlink{gtk_d_s_8c_ab5903aa853c3769389e570c8490feb1e}{S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+F\+F}\mbox{]}
+\item 
+gchar $\ast$ \hyperlink{struct__control_data_a2197fd3d9315510193866dbedbd3cc8b}{pch\+\_\+service\+\_\+name}
+\item 
+guint \hyperlink{struct__control_data_a78b36762a9d85d027fc5e41576ade4f7}{g\+U\+D\+P\+Port}
+\item 
+G\+S\+S\+D\+P\+Client $\ast$ \hyperlink{struct__control_data_a05dec2c5c598d299306a41430093b6de}{gssdp\+\_\+rgroup\+\_\+client}
+\item 
+G\+S\+S\+D\+P\+Resource\+Browser $\ast$ \hyperlink{struct__control_data_a796910b4ad0830538301efd69811c2c6}{resource\+\_\+browser}
+\item 
+gboolean \hyperlink{struct__control_data_a772b5b4e4d92eee73100445963cbe682}{one\+Shot}
+\item 
+gchar $\ast$ \hyperlink{struct__control_data_aae1d10aba11260e77341d9f5fa6055e2}{pch\+\_\+search}
+\item 
+guint \hyperlink{struct__control_data_a4be65550b087ca645572b8ebc726250d}{g\+Msg\+Source\+Id}
+\item 
+guint \hyperlink{struct__control_data_a96ccde7cdcba6f4f52f472f95ddaf782}{g\+Reg\+Source\+Id}
+\item 
+guint \hyperlink{struct__control_data_a599cefa2edf28b0cf58f9180a3be0a19}{g\+Comm\+Source\+Id}
+\item 
+guint \hyperlink{struct__control_data_a4132cf34364874408e8b15be539e654d}{g\+G\+S\+S\+D\+P\+Reg\+Source\+Id}
+\item 
+guint \hyperlink{struct__control_data_ae797898f8e5ad5c3128da674f86520d1}{g\+Msg\+Count}
+\item 
+guint \hyperlink{struct__control_data_a841eb51dde0376a7540a23e65933e822}{g\+G\+S\+S\+D\+P\+Reg\+Count}
+\item 
+gint \hyperlink{struct__control_data_aae36ce9466663c5765139bb92e9f8d49}{g\+Status\+Context\+Id}
+\item 
+guint \hyperlink{struct__control_data_aa53ce6d64a23cb93cc0c98e0835b6449}{g\+Small}
+\item 
+G\+S\+S\+D\+P\+Resource\+Group $\ast$ \hyperlink{struct__control_data_ab8684a42dc1f2e00247d7278d47046b9}{resource\+\_\+group}
+\item 
+G\+Async\+Queue $\ast$ \hyperlink{struct__control_data_adc74ddf3f6a7535eee87d39ed80ee7dd}{queue\+Message}
+\item 
+G\+Async\+Queue $\ast$ \hyperlink{struct__control_data_a09b9467cd00be5a9ecac2386429ab65a}{queue\+Registry}
+\item 
+G\+Async\+Queue $\ast$ \hyperlink{struct__control_data_ad4c1f099018b51b0faeae870d284819d}{queue\+G\+S\+S\+D\+P\+Registry}
+\item 
+Gtk\+Widget $\ast$ \hyperlink{struct__control_data_a661ed960369e640e5f56da1abe7c2168}{status\+Bar}
+\item 
+Gtk\+Widget $\ast$ \hyperlink{struct__control_data_adb6c2830054c6309779d676082e94447}{pg1\+Target}
+\item 
+Gtk\+Widget $\ast$ \hyperlink{struct__control_data_a201f826ab99699df83a85c5e4572ffb2}{pg2\+Target}
+\item 
+Gtk\+Widget $\ast$ \hyperlink{struct__control_data_a67d45a0e9ba1fcaabea3600dfee830b9}{pg3\+Target}
+\item 
+gchar \hyperlink{struct__control_data_aa6d5e703090d185edd3e0b5224542ce5}{ch\+\_\+status\+\_\+message} \mbox{[}\hyperlink{gtk_d_s_8c_ab5903aa853c3769389e570c8490feb1e}{S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+F\+F}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 90 of file cmd\+D\+C.\+c.
+
+
+
+\subsection{Field Documentation}
+\hypertarget{struct__control_data_a94aa04264eafaa65a7a869a540bbdf93}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!ch\+\_\+display\+\_\+service\+\_\+name@{ch\+\_\+display\+\_\+service\+\_\+name}}
+\index{ch\+\_\+display\+\_\+service\+\_\+name@{ch\+\_\+display\+\_\+service\+\_\+name}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{ch\+\_\+display\+\_\+service\+\_\+name}]{\setlength{\rightskip}{0pt plus 5cm}gchar \+\_\+control\+Data\+::ch\+\_\+display\+\_\+service\+\_\+name}\label{struct__control_data_a94aa04264eafaa65a7a869a540bbdf93}
+
+
+Definition at line 110 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+broadcast\+\_\+response\+\_\+handler(), cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler(), cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler(), and main().
+
+\hypertarget{struct__control_data_adac6cf5482e4bbabb442f8ab27e4bc62}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!ch\+\_\+intf\+Name@{ch\+\_\+intf\+Name}}
+\index{ch\+\_\+intf\+Name@{ch\+\_\+intf\+Name}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{ch\+\_\+intf\+Name}]{\setlength{\rightskip}{0pt plus 5cm}gchar \+\_\+control\+Data\+::ch\+\_\+intf\+Name}\label{struct__control_data_adac6cf5482e4bbabb442f8ab27e4bc62}
+
+
+Definition at line 108 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by main().
+
+\hypertarget{struct__control_data_a16162d5fe851704d7ea50ff16525b94c}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!ch\+\_\+message@{ch\+\_\+message}}
+\index{ch\+\_\+message@{ch\+\_\+message}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{ch\+\_\+message}]{\setlength{\rightskip}{0pt plus 5cm}gchar \+\_\+control\+Data\+::ch\+\_\+message}\label{struct__control_data_a16162d5fe851704d7ea50ff16525b94c}
+
+
+Definition at line 111 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler(), and main().
+
+\hypertarget{struct__control_data_a243b075becb92f2f37f56f60f738efb1}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!ch\+\_\+read@{ch\+\_\+read}}
+\index{ch\+\_\+read@{ch\+\_\+read}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{ch\+\_\+read}]{\setlength{\rightskip}{0pt plus 5cm}gchar \+\_\+control\+Data\+::ch\+\_\+read\mbox{[}{\bf S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+F\+F}\mbox{]}}\label{struct__control_data_a243b075becb92f2f37f56f60f738efb1}
+
+
+Definition at line 96 of file cmd\+D\+S.\+c.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+request\+\_\+handler().
+
+\hypertarget{struct__control_data_a948c37bbe26f5bdd4841b65384155edf}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!ch\+\_\+request@{ch\+\_\+request}}
+\index{ch\+\_\+request@{ch\+\_\+request}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{ch\+\_\+request}]{\setlength{\rightskip}{0pt plus 5cm}gchar \+\_\+control\+Data\+::ch\+\_\+request}\label{struct__control_data_a948c37bbe26f5bdd4841b65384155edf}
+
+
+Definition at line 112 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler(), and cb\+\_\+udp\+\_\+request\+\_\+handler().
+
+\hypertarget{struct__control_data_a9423e8582b05e2dde58b7302bee5559b}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!ch\+\_\+response@{ch\+\_\+response}}
+\index{ch\+\_\+response@{ch\+\_\+response}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{ch\+\_\+response}]{\setlength{\rightskip}{0pt plus 5cm}gchar \+\_\+control\+Data\+::ch\+\_\+response}\label{struct__control_data_a9423e8582b05e2dde58b7302bee5559b}
+
+
+Definition at line 113 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler(), and cb\+\_\+udp\+\_\+request\+\_\+handler().
+
+\hypertarget{struct__control_data_aa6d5e703090d185edd3e0b5224542ce5}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!ch\+\_\+status\+\_\+message@{ch\+\_\+status\+\_\+message}}
+\index{ch\+\_\+status\+\_\+message@{ch\+\_\+status\+\_\+message}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{ch\+\_\+status\+\_\+message}]{\setlength{\rightskip}{0pt plus 5cm}gchar \+\_\+control\+Data\+::ch\+\_\+status\+\_\+message\mbox{[}{\bf S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+F\+F}\mbox{]}}\label{struct__control_data_aa6d5e703090d185edd3e0b5224542ce5}
+
+
+Definition at line 141 of file gtk\+D\+S.\+c.
+
+\hypertarget{struct__control_data_ac48fc4263dd4a6bad484b93fbf1ffe1b}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!ch\+\_\+this\+\_\+ip@{ch\+\_\+this\+\_\+ip}}
+\index{ch\+\_\+this\+\_\+ip@{ch\+\_\+this\+\_\+ip}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{ch\+\_\+this\+\_\+ip}]{\setlength{\rightskip}{0pt plus 5cm}gchar \+\_\+control\+Data\+::ch\+\_\+this\+\_\+ip}\label{struct__control_data_ac48fc4263dd4a6bad484b93fbf1ffe1b}
+
+
+Definition at line 109 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+broadcast\+\_\+response\+\_\+handler(), gssdp\+\_\+publish(), and main().
+
+\hypertarget{struct__control_data_a05fab30fce92ebe541d9dd98220c60ef}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!g\+Broadcast\+Socket@{g\+Broadcast\+Socket}}
+\index{g\+Broadcast\+Socket@{g\+Broadcast\+Socket}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{g\+Broadcast\+Socket}]{\setlength{\rightskip}{0pt plus 5cm}G\+Socket$\ast$ \+\_\+control\+Data\+::g\+Broadcast\+Socket}\label{struct__control_data_a05fab30fce92ebe541d9dd98220c60ef}
+
+
+Definition at line 97 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler(), and main().
+
+\hypertarget{struct__control_data_ae9e5e76959a76812d94ee8f83ae2eef5}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!g\+Broad\+Source\+Id@{g\+Broad\+Source\+Id}}
+\index{g\+Broad\+Source\+Id@{g\+Broad\+Source\+Id}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{g\+Broad\+Source\+Id}]{\setlength{\rightskip}{0pt plus 5cm}guint \+\_\+control\+Data\+::g\+Broad\+Source\+Id}\label{struct__control_data_ae9e5e76959a76812d94ee8f83ae2eef5}
+
+
+Definition at line 91 of file cmd\+D\+S.\+c.
+
+
+
+Referenced by main().
+
+\hypertarget{struct__control_data_a3023250e01849cb311a7207746a3b64e}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!gb\+Sock@{gb\+Sock}}
+\index{gb\+Sock@{gb\+Sock}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{gb\+Sock}]{\setlength{\rightskip}{0pt plus 5cm}G\+Socket $\ast$ \+\_\+control\+Data\+::gb\+Sock}\label{struct__control_data_a3023250e01849cb311a7207746a3b64e}
+
+
+Definition at line 95 of file cmd\+D\+S.\+c.
+
+
+
+Referenced by cb\+\_\+registry\+\_\+refresh(), and main().
+
+\hypertarget{struct__control_data_abfbd9e642ba240fa5985f63d60886de4}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!g\+Comm\+Source@{g\+Comm\+Source}}
+\index{g\+Comm\+Source@{g\+Comm\+Source}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{g\+Comm\+Source}]{\setlength{\rightskip}{0pt plus 5cm}G\+Source $\ast$ \+\_\+control\+Data\+::g\+Comm\+Source}\label{struct__control_data_abfbd9e642ba240fa5985f63d60886de4}
+
+
+Definition at line 95 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by main(), and udp\+\_\+initialize\+\_\+message\+\_\+send().
+
+\hypertarget{struct__control_data_a599cefa2edf28b0cf58f9180a3be0a19}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!g\+Comm\+Source\+Id@{g\+Comm\+Source\+Id}}
+\index{g\+Comm\+Source\+Id@{g\+Comm\+Source\+Id}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{g\+Comm\+Source\+Id}]{\setlength{\rightskip}{0pt plus 5cm}guint \+\_\+control\+Data\+::g\+Comm\+Source\+Id}\label{struct__control_data_a599cefa2edf28b0cf58f9180a3be0a19}
+
+
+Definition at line 116 of file gtk\+D\+S.\+c.
+
+
+
+Referenced by main().
+
+\hypertarget{struct__control_data_a0dcc9f369186f6cf7c99b2178be66e58}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!g\+Error\+Count@{g\+Error\+Count}}
+\index{g\+Error\+Count@{g\+Error\+Count}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{g\+Error\+Count}]{\setlength{\rightskip}{0pt plus 5cm}guint \+\_\+control\+Data\+::g\+Error\+Count}\label{struct__control_data_a0dcc9f369186f6cf7c99b2178be66e58}
+
+
+Definition at line 105 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler(), cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler(), and main().
+
+\hypertarget{struct__control_data_a841eb51dde0376a7540a23e65933e822}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!g\+G\+S\+S\+D\+P\+Reg\+Count@{g\+G\+S\+S\+D\+P\+Reg\+Count}}
+\index{g\+G\+S\+S\+D\+P\+Reg\+Count@{g\+G\+S\+S\+D\+P\+Reg\+Count}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{g\+G\+S\+S\+D\+P\+Reg\+Count}]{\setlength{\rightskip}{0pt plus 5cm}guint \+\_\+control\+Data\+::g\+G\+S\+S\+D\+P\+Reg\+Count}\label{struct__control_data_a841eb51dde0376a7540a23e65933e822}
+
+
+Definition at line 120 of file gtk\+D\+S.\+c.
+
+
+
+Referenced by cb\+\_\+gssdp\+\_\+registry\+\_\+request\+\_\+handler(), main(), and ui\+\_\+update\+\_\+status\+\_\+bar().
+
+\hypertarget{struct__control_data_a4132cf34364874408e8b15be539e654d}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!g\+G\+S\+S\+D\+P\+Reg\+Source\+Id@{g\+G\+S\+S\+D\+P\+Reg\+Source\+Id}}
+\index{g\+G\+S\+S\+D\+P\+Reg\+Source\+Id@{g\+G\+S\+S\+D\+P\+Reg\+Source\+Id}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{g\+G\+S\+S\+D\+P\+Reg\+Source\+Id}]{\setlength{\rightskip}{0pt plus 5cm}guint \+\_\+control\+Data\+::g\+G\+S\+S\+D\+P\+Reg\+Source\+Id}\label{struct__control_data_a4132cf34364874408e8b15be539e654d}
+
+
+Definition at line 118 of file gtk\+D\+S.\+c.
+
+
+
+Referenced by main().
+
+\hypertarget{struct__control_data_a34b1729bc0b37c9dce0327ea4cd8a812}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!gl\+Registry@{gl\+Registry}}
+\index{gl\+Registry@{gl\+Registry}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{gl\+Registry}]{\setlength{\rightskip}{0pt plus 5cm}G\+List $\ast$ \+\_\+control\+Data\+::gl\+Registry}\label{struct__control_data_a34b1729bc0b37c9dce0327ea4cd8a812}
+
+
+Definition at line 101 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by cb\+\_\+gssdp\+\_\+resource\+\_\+available(), cb\+\_\+udp\+\_\+broadcast\+\_\+response\+\_\+handler(), cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler(), and main().
+
+\hypertarget{struct__control_data_ae797898f8e5ad5c3128da674f86520d1}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!g\+Msg\+Count@{g\+Msg\+Count}}
+\index{g\+Msg\+Count@{g\+Msg\+Count}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{g\+Msg\+Count}]{\setlength{\rightskip}{0pt plus 5cm}guint \+\_\+control\+Data\+::g\+Msg\+Count}\label{struct__control_data_ae797898f8e5ad5c3128da674f86520d1}
+
+
+Definition at line 119 of file gtk\+D\+S.\+c.
+
+
+
+Referenced by cb\+\_\+message\+\_\+request\+\_\+handler(), main(), and ui\+\_\+update\+\_\+status\+\_\+bar().
+
+\hypertarget{struct__control_data_a277ea878a8491fa38269b6c762a05389}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!g\+Msg\+Delay@{g\+Msg\+Delay}}
+\index{g\+Msg\+Delay@{g\+Msg\+Delay}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{g\+Msg\+Delay}]{\setlength{\rightskip}{0pt plus 5cm}guint \+\_\+control\+Data\+::g\+Msg\+Delay}\label{struct__control_data_a277ea878a8491fa38269b6c762a05389}
+
+
+Definition at line 106 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler(), main(), and udp\+\_\+initialize\+\_\+message\+\_\+send().
+
+\hypertarget{struct__control_data_a4be65550b087ca645572b8ebc726250d}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!g\+Msg\+Source\+Id@{g\+Msg\+Source\+Id}}
+\index{g\+Msg\+Source\+Id@{g\+Msg\+Source\+Id}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{g\+Msg\+Source\+Id}]{\setlength{\rightskip}{0pt plus 5cm}guint \+\_\+control\+Data\+::g\+Msg\+Source\+Id}\label{struct__control_data_a4be65550b087ca645572b8ebc726250d}
+
+
+Definition at line 114 of file gtk\+D\+S.\+c.
+
+
+
+Referenced by main().
+
+\hypertarget{struct__control_data_a04238362a20b6616913d869fc464e4b2}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!g\+Ready@{g\+Ready}}
+\index{g\+Ready@{g\+Ready}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{g\+Ready}]{\setlength{\rightskip}{0pt plus 5cm}gboolean \+\_\+control\+Data\+::g\+Ready}\label{struct__control_data_a04238362a20b6616913d869fc464e4b2}
+
+
+Definition at line 107 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler(), and main().
+
+\hypertarget{struct__control_data_a81bfc0d50c23ebe6708e065659d11eb8}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!g\+Reg\+Count@{g\+Reg\+Count}}
+\index{g\+Reg\+Count@{g\+Reg\+Count}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{g\+Reg\+Count}]{\setlength{\rightskip}{0pt plus 5cm}guint \+\_\+control\+Data\+::g\+Reg\+Count}\label{struct__control_data_a81bfc0d50c23ebe6708e065659d11eb8}
+
+
+Definition at line 104 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by cb\+\_\+registry\+\_\+request\+\_\+handler(), main(), and ui\+\_\+update\+\_\+status\+\_\+bar().
+
+\hypertarget{struct__control_data_ab4837eb7cc16bf85fe0bd839a428eaa5}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!g\+Registry\+Queries@{g\+Registry\+Queries}}
+\index{g\+Registry\+Queries@{g\+Registry\+Queries}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{g\+Registry\+Queries}]{\setlength{\rightskip}{0pt plus 5cm}guint \+\_\+control\+Data\+::g\+Registry\+Queries}\label{struct__control_data_ab4837eb7cc16bf85fe0bd839a428eaa5}
+
+
+Definition at line 103 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler(), and main().
+
+\hypertarget{struct__control_data_a96ccde7cdcba6f4f52f472f95ddaf782}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!g\+Reg\+Source\+Id@{g\+Reg\+Source\+Id}}
+\index{g\+Reg\+Source\+Id@{g\+Reg\+Source\+Id}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{g\+Reg\+Source\+Id}]{\setlength{\rightskip}{0pt plus 5cm}guint \+\_\+control\+Data\+::g\+Reg\+Source\+Id}\label{struct__control_data_a96ccde7cdcba6f4f52f472f95ddaf782}
+
+
+Definition at line 115 of file gtk\+D\+S.\+c.
+
+
+
+Referenced by main().
+
+\hypertarget{struct__control_data_a8a43853386551af4c746fd4b882eb2bf}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!gs\+Addr@{gs\+Addr}}
+\index{gs\+Addr@{gs\+Addr}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{gs\+Addr}]{\setlength{\rightskip}{0pt plus 5cm}G\+Socket\+Address $\ast$ \+\_\+control\+Data\+::gs\+Addr}\label{struct__control_data_a8a43853386551af4c746fd4b882eb2bf}
+
+
+Definition at line 99 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by main(), and udp\+\_\+initialize\+\_\+message\+\_\+send().
+
+\hypertarget{struct__control_data_a11c618822b208569a5d28206407326d5}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!gs\+D\+S\+Addr@{gs\+D\+S\+Addr}}
+\index{gs\+D\+S\+Addr@{gs\+D\+S\+Addr}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{gs\+D\+S\+Addr}]{\setlength{\rightskip}{0pt plus 5cm}G\+Socket\+Address $\ast$ \+\_\+control\+Data\+::gs\+D\+S\+Addr}\label{struct__control_data_a11c618822b208569a5d28206407326d5}
+
+
+Definition at line 98 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler(), cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler(), and main().
+
+\hypertarget{struct__control_data_aa53ce6d64a23cb93cc0c98e0835b6449}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!g\+Small@{g\+Small}}
+\index{g\+Small@{g\+Small}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{g\+Small}]{\setlength{\rightskip}{0pt plus 5cm}guint \+\_\+control\+Data\+::g\+Small}\label{struct__control_data_aa53ce6d64a23cb93cc0c98e0835b6449}
+
+
+Definition at line 124 of file gtk\+D\+S.\+c.
+
+
+
+Referenced by main(), ui\+\_\+page\+\_\+layout(), and ui\+\_\+update\+\_\+status\+\_\+bar().
+
+\hypertarget{struct__control_data_a49b267275036fc3ac9b7d9e53b0625e1}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!g\+Sock@{g\+Sock}}
+\index{g\+Sock@{g\+Sock}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{g\+Sock}]{\setlength{\rightskip}{0pt plus 5cm}G\+Socket $\ast$ \+\_\+control\+Data\+::g\+Sock}\label{struct__control_data_a49b267275036fc3ac9b7d9e53b0625e1}
+
+
+Definition at line 96 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler(), main(), and udp\+\_\+initialize\+\_\+message\+\_\+send().
+
+\hypertarget{struct__control_data_a719187f5c3c94da5aa08616db7820b98}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!g\+Source\+Id@{g\+Source\+Id}}
+\index{g\+Source\+Id@{g\+Source\+Id}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{g\+Source\+Id}]{\setlength{\rightskip}{0pt plus 5cm}guint \+\_\+control\+Data\+::g\+Source\+Id}\label{struct__control_data_a719187f5c3c94da5aa08616db7820b98}
+
+
+Definition at line 90 of file cmd\+D\+S.\+c.
+
+
+
+Referenced by main().
+
+\hypertarget{struct__control_data_a05dec2c5c598d299306a41430093b6de}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!gssdp\+\_\+rgroup\+\_\+client@{gssdp\+\_\+rgroup\+\_\+client}}
+\index{gssdp\+\_\+rgroup\+\_\+client@{gssdp\+\_\+rgroup\+\_\+client}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{gssdp\+\_\+rgroup\+\_\+client}]{\setlength{\rightskip}{0pt plus 5cm}G\+S\+S\+D\+P\+Client $\ast$ \+\_\+control\+Data\+::gssdp\+\_\+rgroup\+\_\+client}\label{struct__control_data_a05dec2c5c598d299306a41430093b6de}
+
+
+Definition at line 107 of file gssdp\+D\+C.\+c.
+
+
+
+Referenced by gssdp\+\_\+browse(), gssdp\+\_\+publish(), main(), and skn\+\_\+gssdp\+\_\+browse().
+
+\hypertarget{struct__control_data_aae36ce9466663c5765139bb92e9f8d49}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!g\+Status\+Context\+Id@{g\+Status\+Context\+Id}}
+\index{g\+Status\+Context\+Id@{g\+Status\+Context\+Id}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{g\+Status\+Context\+Id}]{\setlength{\rightskip}{0pt plus 5cm}gint \+\_\+control\+Data\+::g\+Status\+Context\+Id}\label{struct__control_data_aae36ce9466663c5765139bb92e9f8d49}
+
+
+Definition at line 122 of file gtk\+D\+S.\+c.
+
+
+
+Referenced by ui\+\_\+page\+\_\+layout(), and ui\+\_\+update\+\_\+status\+\_\+bar().
+
+\hypertarget{struct__control_data_a78b36762a9d85d027fc5e41576ade4f7}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!g\+U\+D\+P\+Port@{g\+U\+D\+P\+Port}}
+\index{g\+U\+D\+P\+Port@{g\+U\+D\+P\+Port}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{g\+U\+D\+P\+Port}]{\setlength{\rightskip}{0pt plus 5cm}guint \+\_\+control\+Data\+::g\+U\+D\+P\+Port}\label{struct__control_data_a78b36762a9d85d027fc5e41576ade4f7}
+
+
+Definition at line 102 of file cmd\+D\+S.\+c.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+broadcast\+\_\+response\+\_\+handler(), and main().
+
+\hypertarget{struct__control_data_ae1b70bafbd5eb568c6ca339664959216}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!loop@{loop}}
+\index{loop@{loop}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{loop}]{\setlength{\rightskip}{0pt plus 5cm}G\+Main\+Loop $\ast$ \+\_\+control\+Data\+::loop}\label{struct__control_data_ae1b70bafbd5eb568c6ca339664959216}
+
+
+Definition at line 91 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+broadcast\+\_\+response\+\_\+handler(), cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler(), cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler(), cb\+\_\+udp\+\_\+request\+\_\+handler(), and main().
+
+\hypertarget{struct__control_data_a772b5b4e4d92eee73100445963cbe682}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!one\+Shot@{one\+Shot}}
+\index{one\+Shot@{one\+Shot}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{one\+Shot}]{\setlength{\rightskip}{0pt plus 5cm}gboolean \+\_\+control\+Data\+::one\+Shot}\label{struct__control_data_a772b5b4e4d92eee73100445963cbe682}
+
+
+Definition at line 117 of file gssdp\+D\+C.\+c.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler(), and main().
+
+\hypertarget{struct__control_data_a93f6e099a56c0d476607b4bd5a9dfa58}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!pa\+B@{pa\+B}}
+\index{pa\+B@{pa\+B}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{pa\+B}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+I\+P\+Broadcast\+Array} \+\_\+control\+Data\+::pa\+B}\label{struct__control_data_a93f6e099a56c0d476607b4bd5a9dfa58}
+
+
+Definition at line 102 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by cb\+\_\+registry\+\_\+refresh(), cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler(), and main().
+
+\hypertarget{struct__control_data_aae1d10aba11260e77341d9f5fa6055e2}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!pch\+\_\+search@{pch\+\_\+search}}
+\index{pch\+\_\+search@{pch\+\_\+search}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{pch\+\_\+search}]{\setlength{\rightskip}{0pt plus 5cm}gchar $\ast$ \+\_\+control\+Data\+::pch\+\_\+search}\label{struct__control_data_aae1d10aba11260e77341d9f5fa6055e2}
+
+
+Definition at line 118 of file gssdp\+D\+C.\+c.
+
+
+
+Referenced by gssdp\+\_\+browse(), main(), and skn\+\_\+gssdp\+\_\+browse().
+
+\hypertarget{struct__control_data_a2197fd3d9315510193866dbedbd3cc8b}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!pch\+\_\+service\+\_\+name@{pch\+\_\+service\+\_\+name}}
+\index{pch\+\_\+service\+\_\+name@{pch\+\_\+service\+\_\+name}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{pch\+\_\+service\+\_\+name}]{\setlength{\rightskip}{0pt plus 5cm}gchar $\ast$ \+\_\+control\+Data\+::pch\+\_\+service\+\_\+name}\label{struct__control_data_a2197fd3d9315510193866dbedbd3cc8b}
+
+
+Definition at line 101 of file cmd\+D\+S.\+c.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+broadcast\+\_\+response\+\_\+handler(), and main().
+
+\hypertarget{struct__control_data_adb6c2830054c6309779d676082e94447}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!pg1\+Target@{pg1\+Target}}
+\index{pg1\+Target@{pg1\+Target}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{pg1\+Target}]{\setlength{\rightskip}{0pt plus 5cm}Gtk\+Widget$\ast$ \+\_\+control\+Data\+::pg1\+Target}\label{struct__control_data_adb6c2830054c6309779d676082e94447}
+
+
+Definition at line 135 of file gtk\+D\+S.\+c.
+
+
+
+Referenced by cb\+\_\+message\+\_\+request\+\_\+handler(), and ui\+\_\+page\+\_\+layout().
+
+\hypertarget{struct__control_data_a201f826ab99699df83a85c5e4572ffb2}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!pg2\+Target@{pg2\+Target}}
+\index{pg2\+Target@{pg2\+Target}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{pg2\+Target}]{\setlength{\rightskip}{0pt plus 5cm}Gtk\+Widget$\ast$ \+\_\+control\+Data\+::pg2\+Target}\label{struct__control_data_a201f826ab99699df83a85c5e4572ffb2}
+
+
+Definition at line 136 of file gtk\+D\+S.\+c.
+
+
+
+Referenced by cb\+\_\+registry\+\_\+request\+\_\+handler(), and ui\+\_\+page\+\_\+layout().
+
+\hypertarget{struct__control_data_a67d45a0e9ba1fcaabea3600dfee830b9}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!pg3\+Target@{pg3\+Target}}
+\index{pg3\+Target@{pg3\+Target}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{pg3\+Target}]{\setlength{\rightskip}{0pt plus 5cm}Gtk\+Widget$\ast$ \+\_\+control\+Data\+::pg3\+Target}\label{struct__control_data_a67d45a0e9ba1fcaabea3600dfee830b9}
+
+
+Definition at line 137 of file gtk\+D\+S.\+c.
+
+
+
+Referenced by cb\+\_\+gssdp\+\_\+registry\+\_\+request\+\_\+handler(), and ui\+\_\+page\+\_\+layout().
+
+\hypertarget{struct__control_data_ad4c1f099018b51b0faeae870d284819d}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!queue\+G\+S\+S\+D\+P\+Registry@{queue\+G\+S\+S\+D\+P\+Registry}}
+\index{queue\+G\+S\+S\+D\+P\+Registry@{queue\+G\+S\+S\+D\+P\+Registry}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{queue\+G\+S\+S\+D\+P\+Registry}]{\setlength{\rightskip}{0pt plus 5cm}G\+Async\+Queue$\ast$ \+\_\+control\+Data\+::queue\+G\+S\+S\+D\+P\+Registry}\label{struct__control_data_ad4c1f099018b51b0faeae870d284819d}
+
+
+Definition at line 133 of file gtk\+D\+S.\+c.
+
+
+
+Referenced by cb\+\_\+gssdp\+\_\+resource\+\_\+available(), cb\+\_\+gssdp\+\_\+resource\+\_\+unavailable(), and main().
+
+\hypertarget{struct__control_data_adc74ddf3f6a7535eee87d39ed80ee7dd}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!queue\+Message@{queue\+Message}}
+\index{queue\+Message@{queue\+Message}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{queue\+Message}]{\setlength{\rightskip}{0pt plus 5cm}G\+Async\+Queue$\ast$ \+\_\+control\+Data\+::queue\+Message}\label{struct__control_data_adc74ddf3f6a7535eee87d39ed80ee7dd}
+
+
+Definition at line 131 of file gtk\+D\+S.\+c.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler(), and main().
+
+\hypertarget{struct__control_data_a09b9467cd00be5a9ecac2386429ab65a}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!queue\+Registry@{queue\+Registry}}
+\index{queue\+Registry@{queue\+Registry}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{queue\+Registry}]{\setlength{\rightskip}{0pt plus 5cm}G\+Async\+Queue$\ast$ \+\_\+control\+Data\+::queue\+Registry}\label{struct__control_data_a09b9467cd00be5a9ecac2386429ab65a}
+
+
+Definition at line 132 of file gtk\+D\+S.\+c.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+broadcast\+\_\+response\+\_\+handler(), and main().
+
+\hypertarget{struct__control_data_afe33a7083e1ecc9ba50a69644ed4a753}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!resolver@{resolver}}
+\index{resolver@{resolver}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{resolver}]{\setlength{\rightskip}{0pt plus 5cm}G\+Resolver $\ast$ \+\_\+control\+Data\+::resolver}\label{struct__control_data_afe33a7083e1ecc9ba50a69644ed4a753}
+
+
+Definition at line 100 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+broadcast\+\_\+response\+\_\+handler(), cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler(), cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler(), cb\+\_\+udp\+\_\+request\+\_\+handler(), and main().
+
+\hypertarget{struct__control_data_a796910b4ad0830538301efd69811c2c6}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!resource\+\_\+browser@{resource\+\_\+browser}}
+\index{resource\+\_\+browser@{resource\+\_\+browser}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{resource\+\_\+browser}]{\setlength{\rightskip}{0pt plus 5cm}G\+S\+S\+D\+P\+Resource\+Browser $\ast$ \+\_\+control\+Data\+::resource\+\_\+browser}\label{struct__control_data_a796910b4ad0830538301efd69811c2c6}
+
+
+Definition at line 108 of file gssdp\+D\+C.\+c.
+
+
+
+Referenced by cb\+\_\+registry\+\_\+refresh(), cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler(), gssdp\+\_\+browse(), main(), and skn\+\_\+gssdp\+\_\+browse().
+
+\hypertarget{struct__control_data_ab8684a42dc1f2e00247d7278d47046b9}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!resource\+\_\+group@{resource\+\_\+group}}
+\index{resource\+\_\+group@{resource\+\_\+group}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{resource\+\_\+group}]{\setlength{\rightskip}{0pt plus 5cm}G\+S\+S\+D\+P\+Resource\+Group$\ast$ \+\_\+control\+Data\+::resource\+\_\+group}\label{struct__control_data_ab8684a42dc1f2e00247d7278d47046b9}
+
+
+Definition at line 127 of file gtk\+D\+S.\+c.
+
+
+
+Referenced by gssdp\+\_\+publish(), and main().
+
+\hypertarget{struct__control_data_a551d0ecd4ceb9fc4ce8eebe5a984dc4c}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!sig\+Hup@{sig\+Hup}}
+\index{sig\+Hup@{sig\+Hup}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{sig\+Hup}]{\setlength{\rightskip}{0pt plus 5cm}{\bf U\+Signal\+Data} \+\_\+control\+Data\+::sig\+Hup}\label{struct__control_data_a551d0ecd4ceb9fc4ce8eebe5a984dc4c}
+
+
+Definition at line 94 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by main().
+
+\hypertarget{struct__control_data_ae8ad5b5af46f4ab4bcd6ffb41e83385b}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!sig\+Int@{sig\+Int}}
+\index{sig\+Int@{sig\+Int}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{sig\+Int}]{\setlength{\rightskip}{0pt plus 5cm}{\bf U\+Signal\+Data} \+\_\+control\+Data\+::sig\+Int}\label{struct__control_data_ae8ad5b5af46f4ab4bcd6ffb41e83385b}
+
+
+Definition at line 93 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by main().
+
+\hypertarget{struct__control_data_af45dc1f0c4806eaac0a57da17db50fdb}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!sig\+Term@{sig\+Term}}
+\index{sig\+Term@{sig\+Term}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{sig\+Term}]{\setlength{\rightskip}{0pt plus 5cm}{\bf U\+Signal\+Data} \+\_\+control\+Data\+::sig\+Term}\label{struct__control_data_af45dc1f0c4806eaac0a57da17db50fdb}
+
+
+Definition at line 92 of file cmd\+D\+C.\+c.
+
+
+
+Referenced by main().
+
+\hypertarget{struct__control_data_a661ed960369e640e5f56da1abe7c2168}{}\index{\+\_\+control\+Data@{\+\_\+control\+Data}!status\+Bar@{status\+Bar}}
+\index{status\+Bar@{status\+Bar}!\+\_\+control\+Data@{\+\_\+control\+Data}}
+\subsubsection[{status\+Bar}]{\setlength{\rightskip}{0pt plus 5cm}Gtk\+Widget$\ast$ \+\_\+control\+Data\+::status\+Bar}\label{struct__control_data_a661ed960369e640e5f56da1abe7c2168}
+
+
+Definition at line 134 of file gtk\+D\+S.\+c.
+
+
+
+Referenced by ui\+\_\+page\+\_\+layout(), and ui\+\_\+update\+\_\+status\+\_\+bar().
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+cmd\+D\+C/\hyperlink{cmd_d_c_8c}{cmd\+D\+C.\+c}\item 
+cmd\+D\+S/\hyperlink{cmd_d_s_8c}{cmd\+D\+S.\+c}\item 
+gssdp\+D\+C/\hyperlink{gssdp_d_c_8c}{gssdp\+D\+C.\+c}\item 
+gtk\+D\+S/\hyperlink{gtk_d_s_8c}{gtk\+D\+S.\+c}\end{DoxyCompactItemize}

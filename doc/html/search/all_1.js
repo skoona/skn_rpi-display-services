@@ -1,6 +1,12 @@
 var searchData=
 [
+  ['a2d_5fbase',['A2D_BASE',['../a2d__display__client_8c.html#a156bd70d435f8481617cc0d840035e79',1,'a2d_display_client.c']]],
+  ['a2d_5fdisplay_5fclient_2ec',['a2d_display_client.c',['../a2d__display__client_8c.html',1,'']]],
+  ['a2d_5fpercision',['A2D_PERCISION',['../a2d__display__client_8c.html#a4b08c72616ef13b4a37b0fb43e01f764',1,'a2d_display_client.c']]],
+  ['a2d_5fphoto',['A2D_PHOTO',['../a2d__display__client_8c.html#acb5e01429d74da87520e69fe799c5539',1,'a2d_display_client.c']]],
+  ['a2d_5ftherm',['A2D_THERM',['../a2d__display__client_8c.html#adfc0e9974672ef9d4586914fff4d92cd',1,'a2d_display_client.c']]],
   ['active',['active',['../struct___d_i_s_p_l_a_y___l_i_n_e.html#acf235d7965b9d52439add787b8e3d316',1,'_DISPLAY_LINE']]],
+  ['adctoohms',['adcToOhms',['../a2d__display__client_8c.html#a935f6a4b5fc20d0727532f09a2ab7ed7',1,'a2d_display_client.c']]],
   ['af_5fbacklight',['af_backlight',['../struct___i_i_c_l_c_d.html#ad160086a31276fbaf849855519b9878e',1,'_IICLCD']]],
   ['af_5fbase',['af_base',['../struct___i_i_c_l_c_d.html#ae74954b1b96523d617a68e42c2663086',1,'_IICLCD']]],
   ['af_5fblue',['af_blue',['../struct___i_i_c_l_c_d.html#ad64bc4c5fc6a592f161e594f0b2433e1',1,'_IICLCD']]],
@@ -18,6 +24,6 @@ var searchData=
   ['af_5frs',['af_rs',['../struct___i_i_c_l_c_d.html#af738bf1e020daaa5476b917c375e807a',1,'_IICLCD']]],
   ['af_5frw',['af_rw',['../struct___i_i_c_l_c_d.html#ad0162f6a3e82c34192c0d901ef0ff6be',1,'_IICLCD']]],
   ['ary_5fmax_5fdm_5flines',['ARY_MAX_DM_LINES',['../skn__common__headers_8h.html#a199b80b777af46c9141191749f8f026d',1,'skn_common_headers.h']]],
-  ['ary_5fmax_5fintf',['ARY_MAX_INTF',['../skn__common__headers_8h.html#a00b19837422a3b13d82b9a525e92ef51',1,'skn_common_headers.h']]],
+  ['ary_5fmax_5fintf',['ARY_MAX_INTF',['../cmd_d_c_8c.html#a00b19837422a3b13d82b9a525e92ef51',1,'ARY_MAX_INTF():&#160;cmdDC.c'],['../cmd_d_s_8c.html#a00b19837422a3b13d82b9a525e92ef51',1,'ARY_MAX_INTF():&#160;cmdDS.c'],['../gssdp_d_c_8c.html#a00b19837422a3b13d82b9a525e92ef51',1,'ARY_MAX_INTF():&#160;gssdpDC.c'],['../gtk_d_s_8c.html#a00b19837422a3b13d82b9a525e92ef51',1,'ARY_MAX_INTF():&#160;gtkDS.c'],['../skn__common__headers_8h.html#a00b19837422a3b13d82b9a525e92ef51',1,'ARY_MAX_INTF():&#160;skn_common_headers.h']]],
   ['ary_5fmax_5fregistry',['ARY_MAX_REGISTRY',['../skn__common__headers_8h.html#a0fd9cbccad9dcf96309b33d29862c83b',1,'skn_common_headers.h']]]
 ];

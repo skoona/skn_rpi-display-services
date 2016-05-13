@@ -1,0 +1,1559 @@
+\hypertarget{gssdp_d_c_8c}{}\section{gssdp\+D\+C/gssdp\+D\+C.c File Reference}
+\label{gssdp_d_c_8c}\index{gssdp\+D\+C/gssdp\+D\+C.\+c@{gssdp\+D\+C/gssdp\+D\+C.\+c}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$glib.\+h$>$}\\*
+{\ttfamily \#include $<$gio/gio.\+h$>$}\\*
+{\ttfamily \#include $<$libgssdp/gssdp.\+h$>$}\\*
+{\ttfamily \#include $<$glib-\/unix.\+h$>$}\\*
+{\ttfamily \#include $<$gio/gnetworking.\+h$>$}\\*
+{\ttfamily \#include $<$ifaddrs.\+h$>$}\\*
+Include dependency graph for gssdp\+D\+C.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gssdp_d_c_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct__ip_broadcast_array}{\+\_\+ip\+Broadcast\+Array}
+\item 
+struct \hyperlink{struct__signal_data}{\+\_\+signal\+Data}
+\item 
+struct \hyperlink{struct__registry_data}{\+\_\+registry\+Data}
+\item 
+struct \hyperlink{struct__gssdp_registry_data}{\+\_\+gssdp\+Registry\+Data}
+\item 
+struct \hyperlink{struct__control_data}{\+\_\+control\+Data}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gssdp_d_c_8c_aa326a05d5e30f9e9a4bb0b4469d5d0c0}{P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N}~\char`\"{}0.\+9.\+0\char`\"{}
+\item 
+\#define \hyperlink{gssdp_d_c_8c_a1c0439e4355794c09b64274849eb0279}{P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+M\+E}~\char`\"{}gssdp\+D\+C\char`\"{}
+\item 
+\#define \hyperlink{gssdp_d_c_8c_a714627d9e7b71b55548e2ddda429d3fb}{P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N}~\char`\"{}Send Message to Raspberry Pi\textquotesingle{}s on the network.\char`\"{}
+\item 
+\#define \hyperlink{gssdp_d_c_8c_a8e8475ded7103e72515667b568ed64c7}{G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+N\+E}~0
+\item 
+\#define \hyperlink{gssdp_d_c_8c_adf765361163d05006ff697149bbaf2ee}{U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+R\+T}~48029
+\item 
+\#define \hyperlink{gssdp_d_c_8c_a76bd5a574aad0fa67de6c9804853f191}{U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+R\+T}~48028
+\item 
+\#define \hyperlink{gssdp_d_c_8c_af16df2ad6ba0bf1f5283361eb89a979d}{U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+R\+T}~48027
+\item 
+\#define \hyperlink{gssdp_d_c_8c_aeed5f98eabe9b11442a6fe0aad5b5be0}{U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+R\+T}~48026
+\item 
+\#define \hyperlink{gssdp_d_c_8c_ac10012e31213e44ecaf5d4c1dd3c8719}{M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+E\+S}~600000
+\item 
+\#define \hyperlink{gssdp_d_c_8c_ac66d92e429586a7c5d0424fe6ad105dd}{M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L}~10
+\item 
+\#define \hyperlink{gssdp_d_c_8c_ac08ad1b127f1c9743c5592ffb796423f}{S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+F\+F}~32
+\item 
+\#define \hyperlink{gssdp_d_c_8c_ac21e8a77d073e7a5383c92bb485992c8}{S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+F\+F}~64
+\item 
+\#define \hyperlink{gssdp_d_c_8c_a152ca8fa1a2eac39d1badafb6c6cef8c}{S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+F\+F}~256
+\item 
+\#define \hyperlink{gssdp_d_c_8c_ab5903aa853c3769389e570c8490feb1e}{S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+F\+F}~512
+\item 
+\#define \hyperlink{gssdp_d_c_8c_a3c73a8961a16a0dfbb87b5a7317bacd2}{S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+F\+F}~256
+\item 
+\#define \hyperlink{gssdp_d_c_8c_a3122b900b1a34ceff868e0d51217e357}{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+E\+L}~48
+\item 
+\#define \hyperlink{gssdp_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F}~256
+\item 
+\#define \hyperlink{gssdp_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F}~128
+\item 
+\#define \hyperlink{gssdp_d_c_8c_a77ca0b062f899750ee20c0170e5bedc4}{S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+F\+F}~512
+\item 
+\#define \hyperlink{gssdp_d_c_8c_a352051a682a5205841c1bda6e30bb30d}{S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+F\+F}~256
+\item 
+\#define \hyperlink{gssdp_d_c_8c_a8091fbaa709d661a678a82a62fab638b}{S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+R\+T}~0
+\item 
+\#define \hyperlink{gssdp_d_c_8c_a00b19837422a3b13d82b9a525e92ef51}{A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+T\+F}~8
+\item 
+\#define \hyperlink{gssdp_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R}~-\/1
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{struct__ip_broadcast_array}{\+\_\+ip\+Broadcast\+Array} \hyperlink{gssdp_d_c_8c_a83c26957f648dd04df183020ab03c60d}{I\+P\+Broadcast\+Array}
+\item 
+typedef struct \hyperlink{struct__ip_broadcast_array}{\+\_\+ip\+Broadcast\+Array} $\ast$ \hyperlink{gssdp_d_c_8c_a916d712cacebc2faeda930352280c361}{P\+I\+P\+Broadcast\+Array}
+\item 
+typedef struct \hyperlink{struct__signal_data}{\+\_\+signal\+Data} \hyperlink{gssdp_d_c_8c_a4d86cbb761613143e4ee60218efdfbaa}{U\+Signal\+Data}
+\item 
+typedef struct \hyperlink{struct__signal_data}{\+\_\+signal\+Data} $\ast$ \hyperlink{gssdp_d_c_8c_acdc6976ac4ccc0f13bc99bb5b9361a6e}{P\+U\+Signal\+Data}
+\item 
+typedef struct \hyperlink{struct__registry_data}{\+\_\+registry\+Data} \hyperlink{gssdp_d_c_8c_aac252e0f10021267858720b8e772c0fc}{Reg\+Data}
+\item 
+typedef struct \hyperlink{struct__registry_data}{\+\_\+registry\+Data} $\ast$ \hyperlink{gssdp_d_c_8c_a57f677cfc01b955d9d3783e5422f36a8}{P\+Reg\+Data}
+\item 
+typedef struct \hyperlink{struct__registry_data}{\+\_\+registry\+Data} $\ast$$\ast$ \hyperlink{gssdp_d_c_8c_a0b249e07431f112b20e1708c3162d8a0}{P\+P\+Reg\+Data}
+\item 
+typedef struct \hyperlink{struct__gssdp_registry_data}{\+\_\+gssdp\+Registry\+Data} \hyperlink{gssdp_d_c_8c_acddce7fba810d84c8acdef12e4041089}{G\+S\+S\+D\+P\+Reg\+Data}
+\item 
+typedef struct \hyperlink{struct__gssdp_registry_data}{\+\_\+gssdp\+Registry\+Data} $\ast$ \hyperlink{gssdp_d_c_8c_ae64bd753308eebf88672f281a509b668}{P\+G\+S\+S\+D\+P\+Reg\+Data}
+\item 
+typedef struct \hyperlink{struct__control_data}{\+\_\+control\+Data} \hyperlink{gssdp_d_c_8c_aad121cd36cd8851b2a3cd81fd0e41388}{Control\+Data}
+\item 
+typedef struct \hyperlink{struct__control_data}{\+\_\+control\+Data} $\ast$ \hyperlink{gssdp_d_c_8c_aa6bae802f1b23385cd660e89a1e4fc75}{P\+Control\+Data}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+gboolean \hyperlink{gssdp_d_c_8c_ad23c80e6ad30767eaf3b5aa482aaa92c}{skn\+\_\+gssdp\+\_\+browse} (\hyperlink{cmd_d_c_8c_aa6bae802f1b23385cd660e89a1e4fc75}{P\+Control\+Data} pctrl)
+\item 
+static void \hyperlink{gssdp_d_c_8c_a4411abcfc33e91d9cd018b10fba67897}{cb\+\_\+gssdp\+\_\+resource\+\_\+available} (G\+S\+S\+D\+P\+Resource\+Browser $\ast$resource\+\_\+browser, const char $\ast$usn, G\+List $\ast$locations, \hyperlink{cmd_d_c_8c_aa6bae802f1b23385cd660e89a1e4fc75}{P\+Control\+Data} pctrl)
+\item 
+gchar $\ast$ \hyperlink{gssdp_d_c_8c_a6ea2e6ee5c8f0d51a98539842634f217}{skn\+\_\+get\+\_\+timestamp} ()
+\item 
+gint \hyperlink{gssdp_d_c_8c_a89aa9faf97e2476a930be98a8d58c0fb}{udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name} (\hyperlink{gssdp_d_c_8c_ae64bd753308eebf88672f281a509b668}{P\+G\+S\+S\+D\+P\+Reg\+Data} pr, gchar $\ast$pch\+\_\+name)
+\item 
+gchar $\ast$ \hyperlink{gssdp_d_c_8c_a2dcc830aabe5f0cfffb3077fc0cba6a5}{skn\+\_\+gio\+\_\+condition\+\_\+to\+\_\+string} (G\+I\+O\+Condition condition)
+\item 
+gboolean \hyperlink{gssdp_d_c_8c_a793c6b3e5c7a5abc993d8cfbe963629d}{udp\+\_\+initialize\+\_\+message\+\_\+send} (\hyperlink{cmd_d_c_8c_aa6bae802f1b23385cd660e89a1e4fc75}{P\+Control\+Data} pctrl)
+\item 
+static gboolean \hyperlink{gssdp_d_c_8c_a76ad4de5945cff6e20dbeff46bda868b}{cb\+\_\+unix\+\_\+signal\+\_\+handler} (\hyperlink{cmd_d_c_8c_acdc6976ac4ccc0f13bc99bb5b9361a6e}{P\+U\+Signal\+Data} psig)
+\item 
+static gboolean \hyperlink{gssdp_d_c_8c_a00c5b52bdcb7caec07d08b05b8c1dced}{cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler} (\hyperlink{cmd_d_c_8c_aa6bae802f1b23385cd660e89a1e4fc75}{P\+Control\+Data} pctrl)
+\item 
+static gboolean \hyperlink{gssdp_d_c_8c_aa8a19e68e54683fa324bcee1ecfd3942}{cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler} (G\+Socket $\ast$g\+Sock, G\+I\+O\+Condition condition, \hyperlink{cmd_d_c_8c_aa6bae802f1b23385cd660e89a1e4fc75}{P\+Control\+Data} pctrl)
+\item 
+static gboolean \hyperlink{gssdp_d_c_8c_a160bb2056d3842ef84fd7211ed6ec385}{cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler} (\hyperlink{cmd_d_c_8c_aa6bae802f1b23385cd660e89a1e4fc75}{P\+Control\+Data} pctrl)
+\item 
+\hyperlink{cmd_d_c_8c_a916d712cacebc2faeda930352280c361}{P\+I\+P\+Broadcast\+Array} \hyperlink{gssdp_d_c_8c_a72be87baa67e532c78af054acf935d6c}{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address} (char $\ast$intf, char $\ast$ipv4)
+\item 
+gint \hyperlink{gssdp_d_c_8c_a0dfc1a6916909805dc7fd2d8c471e0e3}{skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array} (\hyperlink{cmd_d_c_8c_a916d712cacebc2faeda930352280c361}{P\+I\+P\+Broadcast\+Array} pa\+B)
+\item 
+gint \hyperlink{gssdp_d_c_8c_afc164e6efc7bdcdbacba97ba6f6c2a19}{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name} (char $\ast$pch\+Default\+Interface\+Name)
+\item 
+gchar $\ast$ \hyperlink{gssdp_d_c_8c_a5acaf42e0ff80bd0de38c490576e9f85}{skn\+\_\+strip} (gchar $\ast$alpha)
+\item 
+\hyperlink{cmd_d_c_8c_a916d712cacebc2faeda930352280c361}{P\+I\+P\+Broadcast\+Array} \hyperlink{gssdp_d_c_8c_a4f733621137368e762c5db74a3cec52b}{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address} (gchar $\ast$intf, gchar $\ast$ipv4)
+\item 
+int \hyperlink{gssdp_d_c_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{gssdp_d_c_8c_a00b19837422a3b13d82b9a525e92ef51}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+T\+F@{A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+T\+F}}
+\index{A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+T\+F@{A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+T\+F}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+T\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+T\+F~8}\label{gssdp_d_c_8c_a00b19837422a3b13d82b9a525e92ef51}
+
+
+Definition at line 63 of file gssdp\+D\+C.\+c.
+
+
+
+Referenced by skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array().
+
+\hypertarget{gssdp_d_c_8c_a8e8475ded7103e72515667b568ed64c7}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+N\+E@{G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+N\+E}}
+\index{G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+N\+E@{G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+N\+E}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+N\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+N\+E~0}\label{gssdp_d_c_8c_a8e8475ded7103e72515667b568ed64c7}
+
+
+Definition at line 39 of file gssdp\+D\+C.\+c.
+
+
+
+Referenced by main().
+
+\hypertarget{gssdp_d_c_8c_ac10012e31213e44ecaf5d4c1dd3c8719}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+E\+S@{M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+E\+S}}
+\index{M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+E\+S@{M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+E\+S}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+E\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+E\+S~600000}\label{gssdp_d_c_8c_ac10012e31213e44ecaf5d4c1dd3c8719}
+
+
+Definition at line 47 of file gssdp\+D\+C.\+c.
+
+\hypertarget{gssdp_d_c_8c_ac66d92e429586a7c5d0424fe6ad105dd}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L@{M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L}}
+\index{M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L@{M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L~10}\label{gssdp_d_c_8c_ac66d92e429586a7c5d0424fe6ad105dd}
+
+
+Definition at line 48 of file gssdp\+D\+C.\+c.
+
+
+
+Referenced by main().
+
+\hypertarget{gssdp_d_c_8c_a714627d9e7b71b55548e2ddda429d3fb}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N@{P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N}}
+\index{P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N@{P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N~\char`\"{}Send Message to Raspberry Pi\textquotesingle{}s on the network.\char`\"{}}\label{gssdp_d_c_8c_a714627d9e7b71b55548e2ddda429d3fb}
+
+
+Definition at line 25 of file gssdp\+D\+C.\+c.
+
+\hypertarget{gssdp_d_c_8c_a1c0439e4355794c09b64274849eb0279}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+M\+E@{P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+M\+E}}
+\index{P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+M\+E@{P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+M\+E}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+M\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+M\+E~\char`\"{}gssdp\+D\+C\char`\"{}}\label{gssdp_d_c_8c_a1c0439e4355794c09b64274849eb0279}
+
+
+Definition at line 22 of file gssdp\+D\+C.\+c.
+
+\hypertarget{gssdp_d_c_8c_aa326a05d5e30f9e9a4bb0b4469d5d0c0}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N@{P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N}}
+\index{P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N@{P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N~\char`\"{}0.\+9.\+0\char`\"{}}\label{gssdp_d_c_8c_aa326a05d5e30f9e9a4bb0b4469d5d0c0}
+\hyperlink{gssdp_d_c_8c}{gssdp\+D\+C.\+c} I\+O\+T/\+Raspberry\+Pi message display client gcc -\/v {\ttfamily pkg-\/config -\/-\/cflags -\/-\/libs glib-\/2.\+0 gio-\/2.\+0} -\/\+O3 -\/\+Wall -\/o gssdp\+D\+C \hyperlink{gssdp_d_c_8c}{gssdp\+D\+C.\+c}
+
+Program Flow\+:
+\begin{DoxyEnumerate}
+\item Initialize -\/$>$ parse\+\_\+options
+\item gssdp\+\_\+browser -\/$>$ loop -\/$>$
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item udp\+\_\+timeout -\/$>$ loop -\/$>$ find\+\_\+display\+\_\+service\+\_\+in\+\_\+registry -\/$>$ intialize\+\_\+message\+\_\+sender
+\item upd\+\_\+socket -\/$>$ loop -\/$>$ receive\+\_\+message -\/$>$ log\+\_\+to\+\_\+\+\_\+console
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item unix\+\_\+signal -\/$>$ loop -\/$>$ close\+\_\+loop
+\item Cleanup -\/$>$ exit 
+\end{DoxyEnumerate}
+
+Definition at line 19 of file gssdp\+D\+C.\+c.
+
+\hypertarget{gssdp_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R@{P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R}}
+\index{P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R@{P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R~-\/1}\label{gssdp_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}
+
+
+Definition at line 64 of file gssdp\+D\+C.\+c.
+
+
+
+Referenced by skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array(), and skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address().
+
+\hypertarget{gssdp_d_c_8c_a8091fbaa709d661a678a82a62fab638b}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+R\+T@{S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+R\+T}}
+\index{S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+R\+T@{S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+R\+T}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+R\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+R\+T~0}\label{gssdp_d_c_8c_a8091fbaa709d661a678a82a62fab638b}
+
+
+Definition at line 62 of file gssdp\+D\+C.\+c.
+
+
+
+Referenced by udp\+\_\+initialize\+\_\+message\+\_\+send().
+
+\hypertarget{gssdp_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F}}
+\index{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F~128}\label{gssdp_d_c_8c_a8d2978ad614b0de81c60483e706d9306}
+
+
+Definition at line 58 of file gssdp\+D\+C.\+c.
+
+
+
+Referenced by skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array(), and skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address().
+
+\hypertarget{gssdp_d_c_8c_a3122b900b1a34ceff868e0d51217e357}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+E\+L@{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+E\+L}}
+\index{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+E\+L@{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+E\+L}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+E\+L}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+E\+L~48}\label{gssdp_d_c_8c_a3122b900b1a34ceff868e0d51217e357}
+
+
+Definition at line 56 of file gssdp\+D\+C.\+c.
+
+\hypertarget{gssdp_d_c_8c_a352051a682a5205841c1bda6e30bb30d}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+F\+F}}
+\index{S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+F\+F}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+F\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+F\+F~256}\label{gssdp_d_c_8c_a352051a682a5205841c1bda6e30bb30d}
+
+
+Definition at line 60 of file gssdp\+D\+C.\+c.
+
+\hypertarget{gssdp_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F}}
+\index{S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F~256}\label{gssdp_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}
+
+
+Definition at line 57 of file gssdp\+D\+C.\+c.
+
+
+
+Referenced by skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name().
+
+\hypertarget{gssdp_d_c_8c_a77ca0b062f899750ee20c0170e5bedc4}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+F\+F}}
+\index{S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+F\+F}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+F\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+F\+F~512}\label{gssdp_d_c_8c_a77ca0b062f899750ee20c0170e5bedc4}
+
+
+Definition at line 59 of file gssdp\+D\+C.\+c.
+
+\hypertarget{gssdp_d_c_8c_ab5903aa853c3769389e570c8490feb1e}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+F\+F}}
+\index{S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+F\+F}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+F\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+F\+F~512}\label{gssdp_d_c_8c_ab5903aa853c3769389e570c8490feb1e}
+
+
+Definition at line 53 of file gssdp\+D\+C.\+c.
+
+\hypertarget{gssdp_d_c_8c_ac21e8a77d073e7a5383c92bb485992c8}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+F\+F}}
+\index{S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+F\+F}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+F\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+F\+F~64}\label{gssdp_d_c_8c_ac21e8a77d073e7a5383c92bb485992c8}
+
+
+Definition at line 51 of file gssdp\+D\+C.\+c.
+
+\hypertarget{gssdp_d_c_8c_a3c73a8961a16a0dfbb87b5a7317bacd2}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+F\+F}}
+\index{S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+F\+F}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+F\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+F\+F~256}\label{gssdp_d_c_8c_a3c73a8961a16a0dfbb87b5a7317bacd2}
+
+
+Definition at line 54 of file gssdp\+D\+C.\+c.
+
+\hypertarget{gssdp_d_c_8c_a152ca8fa1a2eac39d1badafb6c6cef8c}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+F\+F}}
+\index{S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+F\+F}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+F\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+F\+F~256}\label{gssdp_d_c_8c_a152ca8fa1a2eac39d1badafb6c6cef8c}
+
+
+Definition at line 52 of file gssdp\+D\+C.\+c.
+
+\hypertarget{gssdp_d_c_8c_ac08ad1b127f1c9743c5592ffb796423f}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+F\+F}}
+\index{S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+F\+F}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+F\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+F\+F~32}\label{gssdp_d_c_8c_ac08ad1b127f1c9743c5592ffb796423f}
+
+
+Definition at line 50 of file gssdp\+D\+C.\+c.
+
+\hypertarget{gssdp_d_c_8c_a76bd5a574aad0fa67de6c9804853f191}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+R\+T@{U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+R\+T}}
+\index{U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+R\+T@{U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+R\+T}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+R\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+R\+T~48028}\label{gssdp_d_c_8c_a76bd5a574aad0fa67de6c9804853f191}
+
+
+Definition at line 44 of file gssdp\+D\+C.\+c.
+
+\hypertarget{gssdp_d_c_8c_aeed5f98eabe9b11442a6fe0aad5b5be0}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+R\+T@{U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+R\+T}}
+\index{U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+R\+T@{U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+R\+T}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+R\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+R\+T~48026}\label{gssdp_d_c_8c_aeed5f98eabe9b11442a6fe0aad5b5be0}
+
+
+Definition at line 46 of file gssdp\+D\+C.\+c.
+
+\hypertarget{gssdp_d_c_8c_adf765361163d05006ff697149bbaf2ee}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+R\+T@{U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+R\+T}}
+\index{U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+R\+T@{U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+R\+T}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+R\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+R\+T~48029}\label{gssdp_d_c_8c_adf765361163d05006ff697149bbaf2ee}
+
+
+Definition at line 43 of file gssdp\+D\+C.\+c.
+
+\hypertarget{gssdp_d_c_8c_af16df2ad6ba0bf1f5283361eb89a979d}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+R\+T@{U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+R\+T}}
+\index{U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+R\+T@{U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+R\+T}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+R\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+R\+T~48027}\label{gssdp_d_c_8c_af16df2ad6ba0bf1f5283361eb89a979d}
+
+
+Definition at line 45 of file gssdp\+D\+C.\+c.
+
+
+
+\subsection{Typedef Documentation}
+\hypertarget{gssdp_d_c_8c_aad121cd36cd8851b2a3cd81fd0e41388}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!Control\+Data@{Control\+Data}}
+\index{Control\+Data@{Control\+Data}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{Control\+Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+control\+Data}  {\bf Control\+Data}}\label{gssdp_d_c_8c_aad121cd36cd8851b2a3cd81fd0e41388}
+\hypertarget{gssdp_d_c_8c_acddce7fba810d84c8acdef12e4041089}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!G\+S\+S\+D\+P\+Reg\+Data@{G\+S\+S\+D\+P\+Reg\+Data}}
+\index{G\+S\+S\+D\+P\+Reg\+Data@{G\+S\+S\+D\+P\+Reg\+Data}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{G\+S\+S\+D\+P\+Reg\+Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+gssdp\+Registry\+Data}  {\bf G\+S\+S\+D\+P\+Reg\+Data}}\label{gssdp_d_c_8c_acddce7fba810d84c8acdef12e4041089}
+\hypertarget{gssdp_d_c_8c_a83c26957f648dd04df183020ab03c60d}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!I\+P\+Broadcast\+Array@{I\+P\+Broadcast\+Array}}
+\index{I\+P\+Broadcast\+Array@{I\+P\+Broadcast\+Array}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{I\+P\+Broadcast\+Array}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+ip\+Broadcast\+Array}  {\bf I\+P\+Broadcast\+Array}}\label{gssdp_d_c_8c_a83c26957f648dd04df183020ab03c60d}
+\hypertarget{gssdp_d_c_8c_aa6bae802f1b23385cd660e89a1e4fc75}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+Control\+Data@{P\+Control\+Data}}
+\index{P\+Control\+Data@{P\+Control\+Data}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{P\+Control\+Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+control\+Data} $\ast$ {\bf P\+Control\+Data}}\label{gssdp_d_c_8c_aa6bae802f1b23385cd660e89a1e4fc75}
+\hypertarget{gssdp_d_c_8c_ae64bd753308eebf88672f281a509b668}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+G\+S\+S\+D\+P\+Reg\+Data@{P\+G\+S\+S\+D\+P\+Reg\+Data}}
+\index{P\+G\+S\+S\+D\+P\+Reg\+Data@{P\+G\+S\+S\+D\+P\+Reg\+Data}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{P\+G\+S\+S\+D\+P\+Reg\+Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+gssdp\+Registry\+Data} $\ast$ {\bf P\+G\+S\+S\+D\+P\+Reg\+Data}}\label{gssdp_d_c_8c_ae64bd753308eebf88672f281a509b668}
+\hypertarget{gssdp_d_c_8c_a916d712cacebc2faeda930352280c361}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+I\+P\+Broadcast\+Array@{P\+I\+P\+Broadcast\+Array}}
+\index{P\+I\+P\+Broadcast\+Array@{P\+I\+P\+Broadcast\+Array}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{P\+I\+P\+Broadcast\+Array}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+ip\+Broadcast\+Array} $\ast$ {\bf P\+I\+P\+Broadcast\+Array}}\label{gssdp_d_c_8c_a916d712cacebc2faeda930352280c361}
+\hypertarget{gssdp_d_c_8c_a0b249e07431f112b20e1708c3162d8a0}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+P\+Reg\+Data@{P\+P\+Reg\+Data}}
+\index{P\+P\+Reg\+Data@{P\+P\+Reg\+Data}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{P\+P\+Reg\+Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+registry\+Data} $\ast$$\ast$ {\bf P\+P\+Reg\+Data}}\label{gssdp_d_c_8c_a0b249e07431f112b20e1708c3162d8a0}
+\hypertarget{gssdp_d_c_8c_a57f677cfc01b955d9d3783e5422f36a8}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+Reg\+Data@{P\+Reg\+Data}}
+\index{P\+Reg\+Data@{P\+Reg\+Data}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{P\+Reg\+Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+registry\+Data} $\ast$ {\bf P\+Reg\+Data}}\label{gssdp_d_c_8c_a57f677cfc01b955d9d3783e5422f36a8}
+\hypertarget{gssdp_d_c_8c_acdc6976ac4ccc0f13bc99bb5b9361a6e}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+U\+Signal\+Data@{P\+U\+Signal\+Data}}
+\index{P\+U\+Signal\+Data@{P\+U\+Signal\+Data}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{P\+U\+Signal\+Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+signal\+Data} $\ast$ {\bf P\+U\+Signal\+Data}}\label{gssdp_d_c_8c_acdc6976ac4ccc0f13bc99bb5b9361a6e}
+\hypertarget{gssdp_d_c_8c_aac252e0f10021267858720b8e772c0fc}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!Reg\+Data@{Reg\+Data}}
+\index{Reg\+Data@{Reg\+Data}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{Reg\+Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+registry\+Data}  {\bf Reg\+Data}}\label{gssdp_d_c_8c_aac252e0f10021267858720b8e772c0fc}
+\hypertarget{gssdp_d_c_8c_a4d86cbb761613143e4ee60218efdfbaa}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!U\+Signal\+Data@{U\+Signal\+Data}}
+\index{U\+Signal\+Data@{U\+Signal\+Data}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{U\+Signal\+Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+signal\+Data}  {\bf U\+Signal\+Data}}\label{gssdp_d_c_8c_a4d86cbb761613143e4ee60218efdfbaa}
+
+
+\subsection{Function Documentation}
+\hypertarget{gssdp_d_c_8c_a4411abcfc33e91d9cd018b10fba67897}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!cb\+\_\+gssdp\+\_\+resource\+\_\+available@{cb\+\_\+gssdp\+\_\+resource\+\_\+available}}
+\index{cb\+\_\+gssdp\+\_\+resource\+\_\+available@{cb\+\_\+gssdp\+\_\+resource\+\_\+available}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{cb\+\_\+gssdp\+\_\+resource\+\_\+available(\+G\+S\+S\+D\+P\+Resource\+Browser $\ast$resource\+\_\+browser, const char $\ast$usn, G\+List $\ast$locations, P\+Control\+Data pctrl)}]{\setlength{\rightskip}{0pt plus 5cm}static void cb\+\_\+gssdp\+\_\+resource\+\_\+available (
+\begin{DoxyParamCaption}
+\item[{G\+S\+S\+D\+P\+Resource\+Browser $\ast$}]{resource\+\_\+browser, }
+\item[{const char $\ast$}]{usn, }
+\item[{G\+List $\ast$}]{locations, }
+\item[{{\bf P\+Control\+Data}}]{pctrl}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{gssdp_d_c_8c_a4411abcfc33e91d9cd018b10fba67897}
+
+
+Definition at line 529 of file gssdp\+D\+C.\+c.
+
+
+
+References \+\_\+gssdp\+Registry\+Data\+::ch\+\_\+location, \+\_\+gssdp\+Registry\+Data\+::ch\+\_\+status, \+\_\+gssdp\+Registry\+Data\+::ch\+\_\+timestamp, \+\_\+gssdp\+Registry\+Data\+::ch\+\_\+urn, \+\_\+control\+Data\+::gl\+Registry, and skn\+\_\+get\+\_\+timestamp().
+
+
+
+Referenced by skn\+\_\+gssdp\+\_\+browse().
+
+
+\begin{DoxyCode}
+529                                                                                                            
+                                  \{
+530     \hyperlink{struct__gssdp_registry_data}{PGSSDPRegData} msg = NULL;
+531     gchar *stamp = \hyperlink{gssdp_d_c_8c_a6ea2e6ee5c8f0d51a98539842634f217}{skn\_get\_timestamp}();
+532     gchar *converted = NULL;
+533 
+534     g\_warn\_if\_fail(NULL != pctrl);
+535 
+536     msg = g\_new0(\hyperlink{struct__gssdp_registry_data}{GSSDPRegData}, 1);
+537 
+538     g\_utf8\_strncpy(msg->\hyperlink{struct__gssdp_registry_data_a97c1fccf55465d4de2168be0d70e2707}{ch\_timestamp}, stamp, \textcolor{keyword}{sizeof}(msg->
+      \hyperlink{struct__gssdp_registry_data_a97c1fccf55465d4de2168be0d70e2707}{ch\_timestamp}));
+539     g\_free(stamp);
+540 
+541     \textcolor{comment}{/* Convert to UTF8 */}
+542     converted = g\_convert (usn, g\_utf8\_strlen(usn, -1), \textcolor{stringliteral}{"UTF-8"}, \textcolor{stringliteral}{"ISO-8859-1"}, NULL, NULL, NULL);
+543     \textcolor{keywordflow}{if} (NULL != converted) \{
+544         g\_utf8\_strncpy(msg->\hyperlink{struct__gssdp_registry_data_a57a14b78092cbef8cf6dfa56cffa03db}{ch\_urn}, converted, \textcolor{keyword}{sizeof}(msg->\hyperlink{struct__gssdp_registry_data_a57a14b78092cbef8cf6dfa56cffa03db}{ch\_urn}));
+545         g\_free(converted);
+546     \} \textcolor{keywordflow}{else} \{
+547         g\_utf8\_strncpy(msg->\hyperlink{struct__gssdp_registry_data_a57a14b78092cbef8cf6dfa56cffa03db}{ch\_urn}, usn, \textcolor{keyword}{sizeof}(msg->\hyperlink{struct__gssdp_registry_data_a57a14b78092cbef8cf6dfa56cffa03db}{ch\_urn}));
+548     \}
+549 
+550     converted = g\_convert (locations->data, g\_utf8\_strlen(locations->data, -1), \textcolor{stringliteral}{"UTF-8"}, \textcolor{stringliteral}{"ISO-8859-1"}, NULL
+      , NULL, NULL);
+551     \textcolor{keywordflow}{if} (NULL != converted) \{
+552         g\_utf8\_strncpy(msg->\hyperlink{struct__gssdp_registry_data_ac1ca256d22c387e9ef968fb8413d7796}{ch\_location}, converted, \textcolor{keyword}{sizeof}(msg->
+      \hyperlink{struct__gssdp_registry_data_ac1ca256d22c387e9ef968fb8413d7796}{ch\_location}));
+553         g\_free(converted);
+554     \} \textcolor{keywordflow}{else} \{
+555         g\_utf8\_strncpy(msg->\hyperlink{struct__gssdp_registry_data_ac1ca256d22c387e9ef968fb8413d7796}{ch\_location}, locations->data, \textcolor{keyword}{sizeof}(msg->
+      \hyperlink{struct__gssdp_registry_data_ac1ca256d22c387e9ef968fb8413d7796}{ch\_location}));
+556     \}
+557 
+558     g\_utf8\_strncpy(msg->\hyperlink{struct__gssdp_registry_data_a92d851353d8779ad1c5dd4e540a956e5}{ch\_status}, \textcolor{stringliteral}{"Available"}, \textcolor{keyword}{sizeof}(msg->\hyperlink{struct__gssdp_registry_data_a92d851353d8779ad1c5dd4e540a956e5}{ch\_status}));
+559 
+560     g\_print(\textcolor{stringliteral}{"[%s]GSSDP %s, %s, %s\(\backslash\)n"}, msg->\hyperlink{struct__gssdp_registry_data_a97c1fccf55465d4de2168be0d70e2707}{ch\_timestamp}, msg->\hyperlink{struct__gssdp_registry_data_a57a14b78092cbef8cf6dfa56cffa03db}{ch\_urn}, msg->
+      \hyperlink{struct__gssdp_registry_data_ac1ca256d22c387e9ef968fb8413d7796}{ch\_location}, msg->\hyperlink{struct__gssdp_registry_data_a92d851353d8779ad1c5dd4e540a956e5}{ch\_status});
+561 
+562     pctrl->\hyperlink{struct__control_data_a34b1729bc0b37c9dce0327ea4cd8a812}{glRegistry} = g\_list\_prepend(pctrl->\hyperlink{struct__control_data_a34b1729bc0b37c9dce0327ea4cd8a812}{glRegistry}, msg);
+563 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gssdp_d_c_8c_a4411abcfc33e91d9cd018b10fba67897_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gssdp_d_c_8c_a4411abcfc33e91d9cd018b10fba67897_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{gssdp_d_c_8c_a00c5b52bdcb7caec07d08b05b8c1dced}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler@{cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler}}
+\index{cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler@{cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler(\+P\+Control\+Data pctrl)}]{\setlength{\rightskip}{0pt plus 5cm}static gboolean cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+Control\+Data}}]{pctrl}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{gssdp_d_c_8c_a00c5b52bdcb7caec07d08b05b8c1dced}
+
+
+Definition at line 401 of file gssdp\+D\+C.\+c.
+
+
+
+References \+\_\+control\+Data\+::ch\+\_\+display\+\_\+service\+\_\+name, \+\_\+control\+Data\+::ch\+\_\+message, \+\_\+control\+Data\+::g\+Error\+Count, \+\_\+control\+Data\+::gs\+D\+S\+Addr, \+\_\+control\+Data\+::g\+Sock, and \+\_\+control\+Data\+::loop.
+
+
+
+Referenced by udp\+\_\+initialize\+\_\+message\+\_\+send().
+
+
+\begin{DoxyCode}
+401                                                                 \{
+402     GError *error = NULL;
+403 
+404     \textcolor{keywordflow}{if} ( NULL == pctrl) \{  \textcolor{comment}{/* SHUTDOWN THE MAIN LOOP */}
+405         g\_message(\textcolor{stringliteral}{"DisplayClient::cb\_udp\_comm\_request\_handler(error) Invalid Pointer"});
+406         \textcolor{keywordflow}{return} ( G\_SOURCE\_REMOVE );
+407     \}
+408 
+409     g\_socket\_send\_to (pctrl->\hyperlink{struct__control_data_a49b267275036fc3ac9b7d9e53b0625e1}{gSock}, pctrl->\hyperlink{struct__control_data_a11c618822b208569a5d28206407326d5}{gsDSAddr}, pctrl->
+      \hyperlink{struct__control_data_a16162d5fe851704d7ea50ff16525b94c}{ch\_message}, strlen(pctrl->\hyperlink{struct__control_data_a16162d5fe851704d7ea50ff16525b94c}{ch\_message}), NULL, &error);
+410     \textcolor{keywordflow}{if} (error != NULL) \{  \textcolor{comment}{// gss\_send = Number of bytes written (which may be less than size ), or -1 on
+       error}
+411         g\_error(\textcolor{stringliteral}{"g\_socket\_send\_to() => %s"}, error->message);
+412         g\_clear\_error(&error);
+413         pctrl->\hyperlink{struct__control_data_a0dcc9f369186f6cf7c99b2178be66e58}{gErrorCount} += 1;
+414         \textcolor{keywordflow}{if}(pctrl->\hyperlink{struct__control_data_a0dcc9f369186f6cf7c99b2178be66e58}{gErrorCount} > 10) \{
+415             g\_message(\textcolor{stringliteral}{"DisplayClient::cb\_udp\_comm\_request\_handler(error) Display Service @ %s, Not
+       Responding!"}, pctrl->\hyperlink{struct__control_data_a94aa04264eafaa65a7a869a540bbdf93}{ch\_display\_service\_name});
+416             g\_main\_loop\_quit(pctrl->\hyperlink{struct__control_data_ae1b70bafbd5eb568c6ca339664959216}{loop});
+417             \textcolor{keywordflow}{return} ( G\_SOURCE\_REMOVE );
+418         \} \textcolor{keywordflow}{else} \{
+419             \textcolor{keywordflow}{return} (G\_SOURCE\_CONTINUE);
+420         \}
+421     \}
+422 
+423     g\_print(\textcolor{stringliteral}{"%s\(\backslash\)n"}, pctrl->\hyperlink{struct__control_data_a16162d5fe851704d7ea50ff16525b94c}{ch\_message}); \textcolor{comment}{// Todo not needed}
+424 
+425     \textcolor{keywordflow}{return} (G\_SOURCE\_CONTINUE);
+426 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gssdp_d_c_8c_a00c5b52bdcb7caec07d08b05b8c1dced_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{gssdp_d_c_8c_aa8a19e68e54683fa324bcee1ecfd3942}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler@{cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler}}
+\index{cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler@{cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler(\+G\+Socket $\ast$g\+Sock, G\+I\+O\+Condition condition, P\+Control\+Data pctrl)}]{\setlength{\rightskip}{0pt plus 5cm}static gboolean cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler (
+\begin{DoxyParamCaption}
+\item[{G\+Socket $\ast$}]{g\+Sock, }
+\item[{G\+I\+O\+Condition}]{condition, }
+\item[{{\bf P\+Control\+Data}}]{pctrl}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{gssdp_d_c_8c_aa8a19e68e54683fa324bcee1ecfd3942}
+
+
+Definition at line 337 of file gssdp\+D\+C.\+c.
+
+
+
+References \+\_\+control\+Data\+::ch\+\_\+request, \+\_\+control\+Data\+::ch\+\_\+response, \+\_\+control\+Data\+::g\+Error\+Count, \+\_\+control\+Data\+::loop, \+\_\+control\+Data\+::one\+Shot, \+\_\+control\+Data\+::resolver, and skn\+\_\+get\+\_\+timestamp().
+
+
+
+Referenced by udp\+\_\+initialize\+\_\+message\+\_\+send().
+
+
+\begin{DoxyCode}
+337                                                                                                          \{
+338     GError *error = NULL;
+339     gssize gss\_receive = 0;
+340     gchar *stamp = \hyperlink{gssdp_d_c_8c_a6ea2e6ee5c8f0d51a98539842634f217}{skn\_get\_timestamp}();
+341     gchar * rmtHost = NULL;
+342     GSocketAddress *gsRmtAddr = NULL;
+343     GInetAddress *gsAddr = NULL;
+344     gchar *converted = NULL;
+345 
+346     \textcolor{keywordflow}{if} ( NULL == pctrl) \{  \textcolor{comment}{/* SHUTDOWN THE MAIN LOOP */}
+347         g\_message(\textcolor{stringliteral}{"DisplayClient::cb\_udp\_comm\_response\_handler(error) Invalid Pointer"});
+348         \textcolor{keywordflow}{return} ( G\_SOURCE\_REMOVE );
+349     \}
+350 
+351     gss\_receive = g\_socket\_receive\_from(gSock, &gsRmtAddr, pctrl->\hyperlink{struct__control_data_a948c37bbe26f5bdd4841b65384155edf}{ch\_request}, \textcolor{keyword}{sizeof}(pctrl->
+      \hyperlink{struct__control_data_a948c37bbe26f5bdd4841b65384155edf}{ch\_request}), NULL, &error);
+352     \textcolor{keywordflow}{if} (error != NULL) \{ \textcolor{comment}{// gss\_receive = Number of bytes read, or 0 if the connection was closed by the
+       peer, or -1 on error}
+353         g\_error(\textcolor{stringliteral}{"g\_socket\_receive() => %s"}, error->message);
+354         g\_clear\_error(&error);
+355     \}
+356     \textcolor{keywordflow}{if} (gss\_receive > 0 ) \{
+357         pctrl->\hyperlink{struct__control_data_a948c37bbe26f5bdd4841b65384155edf}{ch\_request}[gss\_receive] = 0;
+358         \textcolor{keywordflow}{if} (G\_IS\_INET\_SOCKET\_ADDRESS(gsRmtAddr) ) \{
+359             gsAddr = g\_inet\_socket\_address\_get\_address( G\_INET\_SOCKET\_ADDRESS(gsRmtAddr) );
+360             \textcolor{keywordflow}{if} ( G\_IS\_INET\_ADDRESS(gsAddr) ) \{
+361                 g\_object\_ref(gsAddr);
+362                 rmtHost = g\_resolver\_lookup\_by\_address (pctrl->\hyperlink{struct__control_data_afe33a7083e1ecc9ba50a69644ed4a753}{resolver}, gsAddr, NULL, NULL);
+363                 \textcolor{keywordflow}{if} (NULL == rmtHost) \{
+364                     rmtHost = g\_inet\_address\_to\_string ( gsAddr);
+365                 \}
+366             \}
+367         \}
+368 
+369         \textcolor{comment}{/*}
+370 \textcolor{comment}{         * Convert to UTF8 */}
+371         converted = g\_convert (pctrl->\hyperlink{struct__control_data_a948c37bbe26f5bdd4841b65384155edf}{ch\_request}, gss\_receive, \textcolor{stringliteral}{"UTF-8"}, \textcolor{stringliteral}{"ISO-8859-1"}, NULL, NULL,
+       NULL);
+372         \textcolor{keywordflow}{if} (NULL != converted) \{
+373             g\_utf8\_strncpy(pctrl->\hyperlink{struct__control_data_a948c37bbe26f5bdd4841b65384155edf}{ch\_request}, converted, \textcolor{keyword}{sizeof}(pctrl->
+      \hyperlink{struct__control_data_a948c37bbe26f5bdd4841b65384155edf}{ch\_request}));
+374             g\_free(converted);
+375         \}
+376 
+377         g\_snprintf(pctrl->\hyperlink{struct__control_data_a9423e8582b05e2dde58b7302bee5559b}{ch\_response}, \textcolor{keyword}{sizeof}(pctrl->\hyperlink{struct__control_data_a9423e8582b05e2dde58b7302bee5559b}{ch\_response}), \textcolor{stringliteral}{"[%s]RESPONSE
+       From=%s, Msg=%s"}, stamp, rmtHost, pctrl->\hyperlink{struct__control_data_a948c37bbe26f5bdd4841b65384155edf}{ch\_request});
+378         pctrl->\hyperlink{struct__control_data_a0dcc9f369186f6cf7c99b2178be66e58}{gErrorCount} = 0;  \textcolor{comment}{// reset send errors}
+379     \} \textcolor{keywordflow}{else} \{
+380         g\_snprintf(pctrl->\hyperlink{struct__control_data_a9423e8582b05e2dde58b7302bee5559b}{ch\_response}, \textcolor{keyword}{sizeof}(pctrl->\hyperlink{struct__control_data_a9423e8582b05e2dde58b7302bee5559b}{ch\_response}), \textcolor{stringliteral}{"%s"}, \textcolor{stringliteral}{"Error:
+       Input not Usable!"});
+381     \}
+382 
+383     g\_print(\textcolor{stringliteral}{"%s\(\backslash\)n"}, pctrl->\hyperlink{struct__control_data_a9423e8582b05e2dde58b7302bee5559b}{ch\_response});
+384     g\_free(stamp);
+385 
+386     \textcolor{keywordflow}{if} ( G\_IS\_INET\_ADDRESS(gsAddr) )
+387         g\_object\_unref(gsAddr);
+388 
+389     \textcolor{keywordflow}{if} ( G\_IS\_INET\_SOCKET\_ADDRESS(gsRmtAddr) )
+390         g\_object\_unref(gsRmtAddr);
+391 
+392     \textcolor{keywordflow}{if} (pctrl->\hyperlink{struct__control_data_a772b5b4e4d92eee73100445963cbe682}{oneShot}) \{
+393         g\_main\_loop\_quit(pctrl->\hyperlink{struct__control_data_ae1b70bafbd5eb568c6ca339664959216}{loop});
+394         \textcolor{keywordflow}{return} ( G\_SOURCE\_REMOVE );
+395     \} \textcolor{keywordflow}{else} \{
+396         \textcolor{keywordflow}{return} (G\_SOURCE\_CONTINUE);
+397     \}
+398 
+399 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=347pt]{gssdp_d_c_8c_aa8a19e68e54683fa324bcee1ecfd3942_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gssdp_d_c_8c_aa8a19e68e54683fa324bcee1ecfd3942_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{gssdp_d_c_8c_a160bb2056d3842ef84fd7211ed6ec385}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler@{cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler}}
+\index{cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler@{cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler(\+P\+Control\+Data pctrl)}]{\setlength{\rightskip}{0pt plus 5cm}static gboolean cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+Control\+Data}}]{pctrl}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{gssdp_d_c_8c_a160bb2056d3842ef84fd7211ed6ec385}
+
+
+Definition at line 473 of file gssdp\+D\+C.\+c.
+
+
+
+References \+\_\+control\+Data\+::ch\+\_\+display\+\_\+service\+\_\+name, \+\_\+registry\+Data\+::ch\+\_\+ip, \+\_\+gssdp\+Registry\+Data\+::ch\+\_\+location, \+\_\+registry\+Data\+::ch\+\_\+name, \+\_\+registry\+Data\+::ch\+\_\+port, \+\_\+gssdp\+Registry\+Data\+::ch\+\_\+urn, F\+A\+L\+S\+E, \+\_\+control\+Data\+::gl\+Registry, \+\_\+control\+Data\+::g\+Msg\+Delay, \+\_\+control\+Data\+::g\+Ready, \+\_\+control\+Data\+::g\+Registry\+Queries, \+\_\+control\+Data\+::gs\+D\+S\+Addr, \+\_\+control\+Data\+::resource\+\_\+browser, T\+R\+U\+E, udp\+\_\+initialize\+\_\+message\+\_\+send(), and udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name().
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+473                                                                    \{
+474     GList *registry = NULL;
+475     \hyperlink{struct__gssdp_registry_data}{PGSSDPRegData} preg = NULL;
+476     GInetAddress *anyAddr = NULL;
+477     gchar **parts = NULL;
+478     \hyperlink{struct__registry_data}{RegData} msg;
+479 
+480     g\_return\_val\_if\_fail((NULL != pctrl), G\_SOURCE\_REMOVE);
+481 
+482     \textcolor{comment}{/*}
+483 \textcolor{comment}{     * Find in Registry the selected service name */}
+484     \textcolor{keywordflow}{if} (g\_list\_length(pctrl->\hyperlink{struct__control_data_a34b1729bc0b37c9dce0327ea4cd8a812}{glRegistry}) < 1) \{
+485         pctrl->\hyperlink{struct__control_data_ab4837eb7cc16bf85fe0bd839a428eaa5}{gRegistryQueries}++;
+486 
+487         \textcolor{keywordflow}{if} ((pctrl->\hyperlink{struct__control_data_ab4837eb7cc16bf85fe0bd839a428eaa5}{gRegistryQueries} % 15) == 0) \{  \textcolor{comment}{// every 30 seconds redo query}
+488             g\_print(\textcolor{stringliteral}{"[GSSDP] Looking for [%s] in Rpi Registry every 30 seconds.  StandBy...\(\backslash\)n"}, pctrl->
+      \hyperlink{struct__control_data_a94aa04264eafaa65a7a869a540bbdf93}{ch\_display\_service\_name});
+489             gssdp\_resource\_browser\_set\_active(pctrl->\hyperlink{struct__control_data_a796910b4ad0830538301efd69811c2c6}{resource\_browser}, 
+      \hyperlink{skn__common__headers_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE});
+490         \}
+491 
+492         \textcolor{keywordflow}{return} (G\_SOURCE\_CONTINUE);
+493     \}
+494 
+495     \textcolor{keywordflow}{if} ( NULL == (registry = g\_list\_find\_custom (pctrl->\hyperlink{struct__control_data_a34b1729bc0b37c9dce0327ea4cd8a812}{glRegistry}, pctrl->
+      \hyperlink{struct__control_data_a94aa04264eafaa65a7a869a540bbdf93}{ch\_display\_service\_name}, (GCompareFunc)
+      \hyperlink{gssdp_d_c_8c_a89aa9faf97e2476a930be98a8d58c0fb}{udp\_registry\_find\_by\_name})) ) \{
+496         g\_list\_free\_full(pctrl->\hyperlink{struct__control_data_a34b1729bc0b37c9dce0327ea4cd8a812}{glRegistry}, (GDestroyNotify)g\_free);
+497         pctrl->\hyperlink{struct__control_data_a34b1729bc0b37c9dce0327ea4cd8a812}{glRegistry} = NULL;
+498         \textcolor{keywordflow}{return} (G\_SOURCE\_CONTINUE);
+499     \}
+500 
+501     preg = registry->data; \textcolor{comment}{// now extract ip and port}
+502     \textcolor{comment}{/* Display Service Address */}
+503 
+504     parts = g\_strsplit (preg->\hyperlink{struct__gssdp_registry_data_ac1ca256d22c387e9ef968fb8413d7796}{ch\_location}, \textcolor{stringliteral}{":"},-1);
+505     g\_utf8\_strncpy(msg.\hyperlink{struct__registry_data_a4764e2a72c3ba9177b6c4803cfa03f72}{ch\_name}, pctrl->\hyperlink{struct__control_data_a94aa04264eafaa65a7a869a540bbdf93}{ch\_display\_service\_name}, \textcolor{keyword}{sizeof}(msg.
+      \hyperlink{struct__registry_data_a4764e2a72c3ba9177b6c4803cfa03f72}{ch\_name}));
+506     g\_utf8\_strncpy(msg.\hyperlink{struct__registry_data_a814e064e77a6aac5866c88cb51acd971}{ch\_ip}, &parts[1][2], \textcolor{keyword}{sizeof}(msg.\hyperlink{struct__registry_data_a814e064e77a6aac5866c88cb51acd971}{ch\_ip}));
+507     g\_utf8\_strncpy(msg.\hyperlink{struct__registry_data_a74f03616af9ec9770266cb7988fe1a71}{ch\_port}, parts[2], \textcolor{keyword}{sizeof}(msg.\hyperlink{struct__registry_data_a74f03616af9ec9770266cb7988fe1a71}{ch\_port}));
+508     g\_strfreev(parts);
+509 
+510     anyAddr = g\_inet\_address\_new\_from\_string(msg.\hyperlink{struct__registry_data_a814e064e77a6aac5866c88cb51acd971}{ch\_ip}); \textcolor{comment}{// g\_object\_unref(dIP) when done}
+511     \textcolor{keywordflow}{if} (NULL == anyAddr) \{
+512         g\_error(\textcolor{stringliteral}{"g\_inet\_address\_new\_from\_string() Failed => %s, %s"}, preg->
+      \hyperlink{struct__gssdp_registry_data_ac1ca256d22c387e9ef968fb8413d7796}{ch\_location}, preg->\hyperlink{struct__gssdp_registry_data_ac1ca256d22c387e9ef968fb8413d7796}{ch\_location});  \textcolor{comment}{// "udp://%s:%d"}
+513         \textcolor{keywordflow}{return}(G\_SOURCE\_CONTINUE);
+514     \}
+515     pctrl->\hyperlink{struct__control_data_a11c618822b208569a5d28206407326d5}{gsDSAddr} = g\_inet\_socket\_address\_new(anyAddr,  g\_ascii\_strtoll(msg.
+      \hyperlink{struct__registry_data_a74f03616af9ec9770266cb7988fe1a71}{ch\_port}, NULL, 10));
+516         g\_object\_unref(anyAddr);
+517 
+518     pctrl->\hyperlink{struct__control_data_a04238362a20b6616913d869fc464e4b2}{gReady} = \hyperlink{gssdp_d_c_8c_a793c6b3e5c7a5abc993d8cfbe963629d}{udp\_initialize\_message\_send}(pctrl);
+519 
+520     \textcolor{keywordflow}{if} (pctrl->\hyperlink{struct__control_data_a04238362a20b6616913d869fc464e4b2}{gReady}) \{
+521         g\_print(\textcolor{stringliteral}{"[GSSDP] FOUND %s on %s, sending your message in %d seconds.\(\backslash\)n\(\backslash\)n"}, preg->
+      \hyperlink{struct__gssdp_registry_data_a57a14b78092cbef8cf6dfa56cffa03db}{ch\_urn}, preg->\hyperlink{struct__gssdp_registry_data_ac1ca256d22c387e9ef968fb8413d7796}{ch\_location}, pctrl->\hyperlink{struct__control_data_a277ea878a8491fa38269b6c762a05389}{gMsgDelay});
+522         gssdp\_resource\_browser\_set\_active(pctrl->\hyperlink{struct__control_data_a796910b4ad0830538301efd69811c2c6}{resource\_browser}, 
+      \hyperlink{skn__common__headers_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE});
+523         \textcolor{keywordflow}{return} (G\_SOURCE\_REMOVE);
+524     \} \textcolor{keywordflow}{else} \{
+525         \textcolor{keywordflow}{return} (G\_SOURCE\_CONTINUE);
+526     \}
+527 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gssdp_d_c_8c_a160bb2056d3842ef84fd7211ed6ec385_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=273pt]{gssdp_d_c_8c_a160bb2056d3842ef84fd7211ed6ec385_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{gssdp_d_c_8c_a76ad4de5945cff6e20dbeff46bda868b}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!cb\+\_\+unix\+\_\+signal\+\_\+handler@{cb\+\_\+unix\+\_\+signal\+\_\+handler}}
+\index{cb\+\_\+unix\+\_\+signal\+\_\+handler@{cb\+\_\+unix\+\_\+signal\+\_\+handler}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{cb\+\_\+unix\+\_\+signal\+\_\+handler(\+P\+U\+Signal\+Data psig)}]{\setlength{\rightskip}{0pt plus 5cm}static gboolean cb\+\_\+unix\+\_\+signal\+\_\+handler (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+U\+Signal\+Data}}]{psig}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{gssdp_d_c_8c_a76ad4de5945cff6e20dbeff46bda868b}
+
+
+Definition at line 586 of file gssdp\+D\+C.\+c.
+
+
+
+References \+\_\+signal\+Data\+::loop, and \+\_\+signal\+Data\+::signal\+Name.
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+586                                                           \{
+587     g\_message(\textcolor{stringliteral}{"DisplayClient::cb\_unix\_signal\_handler() %s Unix Signal Received => Shutdown Initiated!\(\backslash\)n"}, 
+      psig->\hyperlink{struct__signal_data_a6b2ce59a22a4ccc54e1d7a54e641d08f}{signalName});
+588     g\_main\_loop\_quit(psig->\hyperlink{struct__signal_data_ae85864980ae30c1878e7149c26442544}{loop});
+589     \textcolor{keywordflow}{return} ( G\_SOURCE\_REMOVE );
+590 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=275pt]{gssdp_d_c_8c_a76ad4de5945cff6e20dbeff46bda868b_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{gssdp_d_c_8c_a3c04138a5bfe5d72780bb7e82a18e627}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!main@{main}}
+\index{main@{main}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{main(int argc, char $\ast$$\ast$argv)}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}\label{gssdp_d_c_8c_a3c04138a5bfe5d72780bb7e82a18e627}
+
+
+Definition at line 592 of file gssdp\+D\+C.\+c.
+
+
+
+References cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler(), cb\+\_\+unix\+\_\+signal\+\_\+handler(), \+\_\+control\+Data\+::ch\+\_\+display\+\_\+service\+\_\+name, \+\_\+control\+Data\+::ch\+\_\+intf\+Name, \+\_\+control\+Data\+::ch\+\_\+message, \+\_\+control\+Data\+::ch\+\_\+this\+\_\+ip, F\+A\+L\+S\+E, G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+N\+E, \+\_\+control\+Data\+::g\+Comm\+Source, \+\_\+control\+Data\+::g\+Error\+Count, \+\_\+control\+Data\+::gl\+Registry, \+\_\+control\+Data\+::g\+Msg\+Delay, \+\_\+control\+Data\+::g\+Ready, \+\_\+control\+Data\+::g\+Reg\+Count, \+\_\+control\+Data\+::g\+Registry\+Queries, \+\_\+control\+Data\+::gs\+Addr, \+\_\+control\+Data\+::gs\+D\+S\+Addr, \+\_\+control\+Data\+::g\+Sock, \+\_\+control\+Data\+::gssdp\+\_\+rgroup\+\_\+client, \+\_\+signal\+Data\+::loop, \+\_\+control\+Data\+::loop, M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L, \+\_\+control\+Data\+::one\+Shot, \+\_\+control\+Data\+::pa\+B, \+\_\+control\+Data\+::pch\+\_\+search, \+\_\+control\+Data\+::resolver, \+\_\+control\+Data\+::resource\+\_\+browser, \+\_\+control\+Data\+::sig\+Hup, \+\_\+control\+Data\+::sig\+Int, \+\_\+signal\+Data\+::signal\+Name, \+\_\+control\+Data\+::sig\+Term, skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address(), skn\+\_\+gssdp\+\_\+browse(), and T\+R\+U\+E.
+
+
+\begin{DoxyCode}
+592                                 \{
+593 
+594     \hyperlink{struct__control_data}{ControlData} cData;
+595     GError *error = NULL;
+596     gchar * pch\_display\_service\_name = NULL;
+597     gchar * pch\_message = NULL;
+598 
+599     GOptionContext *gOptions = NULL;
+600     GOptionEntry pgmOptions[] = \{
+601        \{\textcolor{stringliteral}{"display\_service\_name"}, \textcolor{charliteral}{'a'}, \hyperlink{gssdp_d_c_8c_a8e8475ded7103e72515667b568ed64c7}{G\_OPTION\_FLAG\_NONE}, G\_OPTION\_ARG\_STRING, &
+      pch\_display\_service\_name, \textcolor{stringliteral}{"DisplayService Name"}, \textcolor{stringliteral}{"GtkDisplayService"}\},
+602        \{\textcolor{stringliteral}{"display\_message"}, \textcolor{charliteral}{'m'}, \hyperlink{gssdp_d_c_8c_a8e8475ded7103e72515667b568ed64c7}{G\_OPTION\_FLAG\_NONE}, G\_OPTION\_ARG\_STRING, &pch\_message, \textcolor{stringliteral}{"
+      Message to send to DisplayService"}, \textcolor{stringliteral}{"single-quoted-string"}\},
+603        \{\textcolor{stringliteral}{"message\_interval\_delay"}, \textcolor{charliteral}{'n'}, \hyperlink{gssdp_d_c_8c_a8e8475ded7103e72515667b568ed64c7}{G\_OPTION\_FLAG\_NONE}, G\_OPTION\_ARG\_INT, &cData.
+      \hyperlink{struct__control_data_a277ea878a8491fa38269b6c762a05389}{gMsgDelay}, \textcolor{stringliteral}{"Send one message every Interval."}, \textcolor{stringliteral}{"[1 to 300] seconds, default no-repeat"}\},
+604        \{\textcolor{stringliteral}{"search-key"}, \textcolor{charliteral}{'f'}, \hyperlink{gssdp_d_c_8c_a8e8475ded7103e72515667b568ed64c7}{G\_OPTION\_FLAG\_NONE}, G\_OPTION\_ARG\_STRING, &cData.
+      \hyperlink{struct__control_data_aae1d10aba11260e77341d9f5fa6055e2}{pch\_search}, \textcolor{stringliteral}{"GSSDP Search Key."}, \textcolor{stringliteral}{"[urn:rpilocator | ssdp:all]"}\},
+605        \{NULL\}
+606     \};
+607 
+608     cData.\hyperlink{struct__control_data_a277ea878a8491fa38269b6c762a05389}{gMsgDelay} = 0;
+609     cData.\hyperlink{struct__control_data_a0dcc9f369186f6cf7c99b2178be66e58}{gErrorCount} = 0;
+610     cData.\hyperlink{struct__control_data_a81bfc0d50c23ebe6708e065659d11eb8}{gRegCount} = 0;
+611     cData.\hyperlink{struct__control_data_ab4837eb7cc16bf85fe0bd839a428eaa5}{gRegistryQueries} = 0;
+612     cData.\hyperlink{struct__control_data_a04238362a20b6616913d869fc464e4b2}{gReady} = \hyperlink{skn__common__headers_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE};
+613     cData.\hyperlink{struct__control_data_a772b5b4e4d92eee73100445963cbe682}{oneShot} = \hyperlink{skn__common__headers_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE};
+614 
+615     cData.\hyperlink{struct__control_data_aae1d10aba11260e77341d9f5fa6055e2}{pch\_search} = NULL;
+616     cData.\hyperlink{struct__control_data_a34b1729bc0b37c9dce0327ea4cd8a812}{glRegistry} = NULL;
+617     cData.\hyperlink{struct__control_data_af45dc1f0c4806eaac0a57da17db50fdb}{sigTerm}.\hyperlink{struct__signal_data_a6b2ce59a22a4ccc54e1d7a54e641d08f}{signalName} = \textcolor{stringliteral}{"SIGTERM"};
+618     cData.\hyperlink{struct__control_data_ae8ad5b5af46f4ab4bcd6ffb41e83385b}{sigInt}.\hyperlink{struct__signal_data_a6b2ce59a22a4ccc54e1d7a54e641d08f}{signalName} = \textcolor{stringliteral}{"SIGINT"};
+619     cData.\hyperlink{struct__control_data_a551d0ecd4ceb9fc4ce8eebe5a984dc4c}{sigHup}.\hyperlink{struct__signal_data_a6b2ce59a22a4ccc54e1d7a54e641d08f}{signalName} = \textcolor{stringliteral}{"SIGHUP"};
+620     cData.\hyperlink{struct__control_data_a0dcc9f369186f6cf7c99b2178be66e58}{gErrorCount} = 0;
+621     cData.\hyperlink{struct__control_data_afe33a7083e1ecc9ba50a69644ed4a753}{resolver} = g\_resolver\_get\_default();
+622 
+623     gOptions = g\_option\_context\_new (\textcolor{stringliteral}{"UDP message display client for IOT."});
+624     g\_option\_context\_add\_main\_entries (gOptions, pgmOptions, NULL);
+625     g\_option\_context\_parse (gOptions, &argc, &argv, &error);
+626     \textcolor{keywordflow}{if} (error != NULL) \{
+627         g\_error(\textcolor{stringliteral}{"g\_option\_context\_parse() => %s"}, error->message);
+628         g\_clear\_error(&error);
+629         exit(EXIT\_FAILURE);
+630     \}
+631     g\_option\_context\_free(gOptions);
+632 
+633     \textcolor{keywordflow}{if} (NULL == pch\_message) \{
+634         g\_utf8\_strncpy(cData.\hyperlink{struct__control_data_a16162d5fe851704d7ea50ff16525b94c}{ch\_message}, \textcolor{stringliteral}{"GTK-+3.0 Rocks with GLIB-2.0 on any platform! (gssdpDC)
+      "}, \textcolor{keyword}{sizeof}(cData.\hyperlink{struct__control_data_a16162d5fe851704d7ea50ff16525b94c}{ch\_message}));
+635     \} \textcolor{keywordflow}{else} \{
+636         g\_utf8\_strncpy(cData.\hyperlink{struct__control_data_a16162d5fe851704d7ea50ff16525b94c}{ch\_message}, pch\_message, \textcolor{keyword}{sizeof}(cData.
+      \hyperlink{struct__control_data_a16162d5fe851704d7ea50ff16525b94c}{ch\_message}));
+637         g\_free(pch\_message);
+638     \}
+639     \textcolor{keywordflow}{if} (NULL == pch\_display\_service\_name) \{
+640         g\_utf8\_strncpy(cData.\hyperlink{struct__control_data_a94aa04264eafaa65a7a869a540bbdf93}{ch\_display\_service\_name}, \textcolor{stringliteral}{"GtkDisplayService"}, \textcolor{keyword}{sizeof}(
+      cData.\hyperlink{struct__control_data_a94aa04264eafaa65a7a869a540bbdf93}{ch\_display\_service\_name}));
+641     \} \textcolor{keywordflow}{else} \{
+642         g\_utf8\_strncpy(cData.\hyperlink{struct__control_data_a94aa04264eafaa65a7a869a540bbdf93}{ch\_display\_service\_name}, pch\_display\_service\_name, \textcolor{keyword}{
+      sizeof}(cData.\hyperlink{struct__control_data_a94aa04264eafaa65a7a869a540bbdf93}{ch\_display\_service\_name}));
+643         g\_free(pch\_display\_service\_name);
+644     \}
+645     \textcolor{keywordflow}{if} (0 == cData.\hyperlink{struct__control_data_a277ea878a8491fa38269b6c762a05389}{gMsgDelay}) \{
+646         cData.\hyperlink{struct__control_data_a277ea878a8491fa38269b6c762a05389}{gMsgDelay} = \hyperlink{gssdp_d_c_8c_ac66d92e429586a7c5d0424fe6ad105dd}{MSG\_DELAY\_INTERVAL};
+647         cData.\hyperlink{struct__control_data_a772b5b4e4d92eee73100445963cbe682}{oneShot} = \hyperlink{skn__common__headers_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE};   \textcolor{comment}{// if no delay is given, send message once and quit.}
+648     \}
+649     \textcolor{keywordflow}{if} (NULL == cData.\hyperlink{struct__control_data_aae1d10aba11260e77341d9f5fa6055e2}{pch\_search}) \{
+650         cData.\hyperlink{struct__control_data_aae1d10aba11260e77341d9f5fa6055e2}{pch\_search} = \textcolor{stringliteral}{"urn:rpilocator"};
+651     \}
+652 
+653 
+654     cData.\hyperlink{struct__control_data_a93f6e099a56c0d476607b4bd5a9dfa58}{paB} = NULL;
+655     cData.\hyperlink{struct__control_data_a93f6e099a56c0d476607b4bd5a9dfa58}{paB} = \hyperlink{gssdp_d_c_8c_a72be87baa67e532c78af054acf935d6c}{skn\_get\_default\_interface\_name\_and\_ipv4\_address}
+      ((\textcolor{keywordtype}{char} *)&cData.\hyperlink{struct__control_data_adac6cf5482e4bbabb442f8ab27e4bc62}{ch\_intfName}, (\textcolor{keywordtype}{char} *)&cData.\hyperlink{struct__control_data_ac48fc4263dd4a6bad484b93fbf1ffe1b}{ch\_this\_ip});
+656     \textcolor{keywordflow}{if} (NULL == cData.\hyperlink{struct__control_data_a93f6e099a56c0d476607b4bd5a9dfa58}{paB}) \{
+657         g\_error(\textcolor{stringliteral}{"skn\_skn\_get\_default\_interface\_name\_and\_ipv4\_address() => Unable to discover network
+       interface or non-available."});
+658         exit(EXIT\_FAILURE);
+659     \}
+660 
+661     cData.\hyperlink{struct__control_data_a551d0ecd4ceb9fc4ce8eebe5a984dc4c}{sigHup}.\hyperlink{struct__signal_data_ae85864980ae30c1878e7149c26442544}{loop} = cData.\hyperlink{struct__control_data_af45dc1f0c4806eaac0a57da17db50fdb}{sigTerm}.\hyperlink{struct__signal_data_ae85864980ae30c1878e7149c26442544}{loop} = cData.\hyperlink{struct__control_data_ae8ad5b5af46f4ab4bcd6ffb41e83385b}{sigInt}.
+      \hyperlink{struct__signal_data_ae85864980ae30c1878e7149c26442544}{loop} = cData.\hyperlink{struct__control_data_ae1b70bafbd5eb568c6ca339664959216}{loop} =  g\_main\_loop\_new(NULL, \hyperlink{skn__common__headers_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE});
+662 
+663     \textcolor{comment}{/*}
+664 \textcolor{comment}{     * Handle ctrl-break and kill signals cleanly */}
+665     g\_unix\_signal\_add (SIGINT, (GSourceFunc) \hyperlink{gssdp_d_c_8c_a76ad4de5945cff6e20dbeff46bda868b}{cb\_unix\_signal\_handler}, &cData.
+      \hyperlink{struct__control_data_ae8ad5b5af46f4ab4bcd6ffb41e83385b}{sigInt}); \textcolor{comment}{// SIGINT signal (Ctrl+C)}
+666     g\_unix\_signal\_add (SIGHUP, (GSourceFunc) \hyperlink{gssdp_d_c_8c_a76ad4de5945cff6e20dbeff46bda868b}{cb\_unix\_signal\_handler}, &cData.
+      \hyperlink{struct__control_data_a551d0ecd4ceb9fc4ce8eebe5a984dc4c}{sigHup});
+667     g\_unix\_signal\_add (SIGTERM,(GSourceFunc) \hyperlink{gssdp_d_c_8c_a76ad4de5945cff6e20dbeff46bda868b}{cb\_unix\_signal\_handler}, &cData.
+      \hyperlink{struct__control_data_af45dc1f0c4806eaac0a57da17db50fdb}{sigTerm});
+668 
+669     \textcolor{keywordflow}{if} ( \hyperlink{gssdp_d_c_8c_ad23c80e6ad30767eaf3b5aa482aaa92c}{skn\_gssdp\_browse}(&cData) ) \{
+670         \textcolor{comment}{/*}
+671 \textcolor{comment}{         * Setup 2secTimer to find display\_service before starting rest  */}
+672         g\_timeout\_add (2000, (GSourceFunc)\hyperlink{gssdp_d_c_8c_a160bb2056d3842ef84fd7211ed6ec385}{cb\_udp\_registry\_select\_handler}, &
+      cData);
+673 
+674         g\_print(\textcolor{stringliteral}{"[GSSDP] Looking for [%s] in Rpi Registry.  StandBy...\(\backslash\)n"}, cData.
+      \hyperlink{struct__control_data_a94aa04264eafaa65a7a869a540bbdf93}{ch\_display\_service\_name});
+675 
+676         g\_main\_loop\_run(cData.\hyperlink{struct__control_data_ae1b70bafbd5eb568c6ca339664959216}{loop});
+677 
+678         gssdp\_resource\_browser\_set\_active(cData.\hyperlink{struct__control_data_a796910b4ad0830538301efd69811c2c6}{resource\_browser}, 
+      \hyperlink{skn__common__headers_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE});
+679     \}
+680 
+681     g\_main\_loop\_unref(cData.\hyperlink{struct__control_data_ae1b70bafbd5eb568c6ca339664959216}{loop});
+682 
+683     \textcolor{keywordflow}{if} (cData.\hyperlink{struct__control_data_a04238362a20b6616913d869fc464e4b2}{gReady}) \{
+684         g\_source\_unref(cData.\hyperlink{struct__control_data_abfbd9e642ba240fa5985f63d60886de4}{gCommSource});
+685         g\_object\_unref(cData.\hyperlink{struct__control_data_a49b267275036fc3ac9b7d9e53b0625e1}{gSock});
+686         g\_object\_unref(cData.\hyperlink{struct__control_data_a11c618822b208569a5d28206407326d5}{gsDSAddr});
+687         g\_object\_unref(cData.\hyperlink{struct__control_data_a8a43853386551af4c746fd4b882eb2bf}{gsAddr});
+688     \}
+689     g\_object\_unref (cData.\hyperlink{struct__control_data_a796910b4ad0830538301efd69811c2c6}{resource\_browser});
+690     g\_object\_unref (cData.\hyperlink{struct__control_data_a05dec2c5c598d299306a41430093b6de}{gssdp\_rgroup\_client});
+691 
+692     g\_free(cData.\hyperlink{struct__control_data_a93f6e099a56c0d476607b4bd5a9dfa58}{paB});
+693     g\_list\_free\_full(cData.\hyperlink{struct__control_data_a34b1729bc0b37c9dce0327ea4cd8a812}{glRegistry}, (GDestroyNotify)g\_free);
+694 
+695     g\_message(\textcolor{stringliteral}{"gssdpDC: normal shutdown..."});
+696 
+697     exit(EXIT\_SUCCESS);
+698 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gssdp_d_c_8c_a3c04138a5bfe5d72780bb7e82a18e627_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{gssdp_d_c_8c_a0dfc1a6916909805dc7fd2d8c471e0e3}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array@{skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array}}
+\index{skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array@{skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array(\+P\+I\+P\+Broadcast\+Array pa\+B)}]{\setlength{\rightskip}{0pt plus 5cm}gint skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+I\+P\+Broadcast\+Array}}]{pa\+B}
+\end{DoxyParamCaption}
+)}\label{gssdp_d_c_8c_a0dfc1a6916909805dc7fd2d8c471e0e3}
+Collect I\+P and Broadcast Addresses for this machine
+
+
+\begin{DoxyItemize}
+\item Affects the P\+I\+P\+Broadcast\+Array
+\item Return -\/1 on error, or count of interfaces
+\item contains this ip\+Address in pa\+B-\/$>$ip\+Addr\+Str\mbox{[}pa\+B-\/$>$default\+Index\mbox{]} 
+\end{DoxyItemize}
+
+Definition at line 196 of file gssdp\+D\+C.\+c.
+
+
+
+References A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+T\+F, \+\_\+ip\+Broadcast\+Array\+::broad\+Addr\+Str, \+\_\+ip\+Broadcast\+Array\+::cb\+Name, \+\_\+ip\+Broadcast\+Array\+::ch\+Default\+Intf\+Name, \+\_\+ip\+Broadcast\+Array\+::count, \+\_\+ip\+Broadcast\+Array\+::default\+Index, \+\_\+ip\+Broadcast\+Array\+::if\+Name\+Str, \+\_\+ip\+Broadcast\+Array\+::ip\+Addr\+Str, \+\_\+ip\+Broadcast\+Array\+::mask\+Addr\+Str, P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R, skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name(), and S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F.
+
+
+
+Referenced by skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address().
+
+
+\begin{DoxyCode}
+196                                                        \{
+197     \textcolor{keyword}{struct }ifaddrs * ifap;
+198     \textcolor{keyword}{struct }ifaddrs * p;
+199     gint rc = 0;
+200 
+201     memset(paB, 0, \textcolor{keyword}{sizeof}(\hyperlink{struct__ip_broadcast_array}{IPBroadcastArray}));
+202     paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count} = 0;
+203     paB->\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex} = 0;
+204     strcpy(paB->\hyperlink{struct__ip_broadcast_array_a0f592bd31dcc3ce00a349f04ff6bd1ba}{cbName}, \textcolor{stringliteral}{"IPBroadcastArray"});
+205 
+206     rc = \hyperlink{gssdp_d_c_8c_afc164e6efc7bdcdbacba97ba6f6c2a19}{skn\_get\_default\_interface\_name}(paB->
+      \hyperlink{struct__ip_broadcast_array_a06dab8742df19b5aec8538842617778d}{chDefaultIntfName});
+207     \textcolor{keywordflow}{if} (rc == EXIT\_FAILURE) \{ \textcolor{comment}{// Alternate method for Mac: 'route -n -A inet'}
+208         g\_warning(\textcolor{stringliteral}{"[GSSDP] No Default Network Interfaces Found!."});
+209         paB->\hyperlink{struct__ip_broadcast_array_a06dab8742df19b5aec8538842617778d}{chDefaultIntfName}[0] = 0;
+210     \}
+211     rc = getifaddrs(&ifap);
+212     \textcolor{keywordflow}{if} (rc != 0) \{
+213         g\_warning(\textcolor{stringliteral}{"[GSSDP] No Network Interfaces Found at All ! %d:%d:%s"}, rc, errno, strerror(errno) );
+214         \textcolor{keywordflow}{return} (\hyperlink{gssdp_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{PLATFORM\_ERROR});
+215     \}
+216     p = ifap;
+217 
+218     \textcolor{keywordflow}{while} (p && (paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count} < \hyperlink{gssdp_d_c_8c_a00b19837422a3b13d82b9a525e92ef51}{ARY\_MAX\_INTF})) \{
+219         \textcolor{keywordflow}{if} (p->ifa\_addr != NULL && p->ifa\_addr->sa\_family == AF\_INET && ((p->ifa\_flags & IFF\_BROADCAST) > 0
+      )) \{
+220 
+221             inet\_ntop(p->ifa\_addr->sa\_family, &((\textcolor{keyword}{struct} sockaddr\_in *) p->ifa\_addr)->sin\_addr, paB->
+      \hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count}], (\hyperlink{gssdp_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF} - 1));
+222             inet\_ntop(p->ifa\_addr->sa\_family, &((\textcolor{keyword}{struct} sockaddr\_in *) p->ifa\_netmask)->sin\_addr, paB->
+      \hyperlink{struct__ip_broadcast_array_a9241c1fbfb22a3ecfe4777863a063eb3}{maskAddrStr}[paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count}], (\hyperlink{gssdp_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF} - 1));
+223             inet\_ntop(p->ifa\_addr->sa\_family, &((\textcolor{keyword}{struct} sockaddr\_in *) p->ifa\_broadaddr)->sin\_addr, paB->
+      \hyperlink{struct__ip_broadcast_array_af40943e174ba847fa0218cfa6051e277}{broadAddrStr}[paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count}], (\hyperlink{gssdp_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF} - 1));
+224 
+225             strncpy(paB->\hyperlink{struct__ip_broadcast_array_a193b90f271c061e8bf1593bab6a182c9}{ifNameStr}[paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count}], p->ifa\_name, (
+      \hyperlink{gssdp_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF} -1));
+226 
+227             \textcolor{comment}{/* Take match as the default */}
+228             \textcolor{keywordflow}{if} (strcmp(paB->\hyperlink{struct__ip_broadcast_array_a06dab8742df19b5aec8538842617778d}{chDefaultIntfName}, p->ifa\_name) == 0) \{
+229                 paB->\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex} = paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count};
+230             \}
+231 
+232             paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count}++;
+233         \}
+234         p = p->ifa\_next;
+235     \} \textcolor{comment}{// end while}
+236     freeifaddrs(ifap);
+237 
+238     \textcolor{keywordflow}{return} (paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count});
+239 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gssdp_d_c_8c_a0dfc1a6916909805dc7fd2d8c471e0e3_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gssdp_d_c_8c_a0dfc1a6916909805dc7fd2d8c471e0e3_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{gssdp_d_c_8c_afc164e6efc7bdcdbacba97ba6f6c2a19}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name@{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name}}
+\index{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name@{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name(char $\ast$pch\+Default\+Interface\+Name)}]{\setlength{\rightskip}{0pt plus 5cm}gint skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{pch\+Default\+Interface\+Name}
+\end{DoxyParamCaption}
+)}\label{gssdp_d_c_8c_afc164e6efc7bdcdbacba97ba6f6c2a19}
+Retrieves default internet interface name into param
+\begin{DoxyItemize}
+\item absolute best way to do this, but not supported on Darwin(i.\+e O\+S\+X) return E\+X\+I\+T\+\_\+\+S\+U\+C\+C\+E\+S\+S or E\+X\+I\+T\+\_\+\+F\+A\+I\+L\+U\+R\+E
+\end{DoxyItemize}
+
+\mbox{[}jscott O\+S\+X\mbox{]}\$ route -\/n get 0.\+0.\+0.\+0 route to\+: default destination\+: default mask\+: default gateway\+: 10.\+21.\+1.\+254 interface\+: en3 flags\+: $<$U\+P,G\+A\+T\+E\+W\+A\+Y,D\+O\+N\+E,S\+T\+A\+T\+I\+C,P\+R\+C\+L\+O\+N\+I\+N\+G$>$ recvpipe sendpipe ssthresh rtt,msec rttvar hopcount mtu expire 0 0 0 0 0 0 1500 0 
+
+Definition at line 257 of file gssdp\+D\+C.\+c.
+
+
+
+References skn\+\_\+strip(), and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F.
+
+
+
+Referenced by skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array().
+
+
+\begin{DoxyCode}
+257                                                                    \{
+258     FILE *f\_route;
+259     \textcolor{keywordtype}{char} line[\hyperlink{gssdp_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}], *dRoute = NULL, *iName = NULL;
+260 
+261     f\_route = fopen(\textcolor{stringliteral}{"/proc/net/route"}, \textcolor{stringliteral}{"r"});
+262     \textcolor{keywordflow}{if} (f\_route != NULL) \{
+263         \textcolor{keywordflow}{while} (fgets(line, \hyperlink{gssdp_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1, f\_route)) \{
+264             iName = strtok(line, \textcolor{stringliteral}{"\(\backslash\)t"});
+265             dRoute = strtok(NULL, \textcolor{stringliteral}{"\(\backslash\)t"});
+266 
+267             \textcolor{keywordflow}{if} (iName != NULL && dRoute != NULL) \{
+268                 \textcolor{keywordflow}{if} (strcmp(dRoute, \textcolor{stringliteral}{"00000000"}) == 0) \{
+269                     strncpy(pchDefaultInterfaceName, iName, (\hyperlink{gssdp_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1));
+270                     \textcolor{keywordflow}{break};
+271                 \}
+272             \}
+273         \}
+274         fclose(f\_route);
+275 
+276         \textcolor{keywordflow}{return} (EXIT\_SUCCESS);
+277     \}
+278    g\_print(\textcolor{stringliteral}{"[GSSDP] Opening ProcFs for RouteInfo Failed: %d:%s, Alternate method will be attempted.\(\backslash\)n"}, 
+      errno, strerror(errno));
+279 
+280     f\_route = popen(\textcolor{stringliteral}{"route -n get 0.0.0.0"}, \textcolor{stringliteral}{"r"}); \textcolor{comment}{// for linux 'route -n -A inet', with interface at
+       line\_word[7]}
+281     \textcolor{keywordflow}{if} (f\_route != NULL) \{
+282         \textcolor{keywordflow}{while} (fgets(line, \hyperlink{gssdp_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1, f\_route)) \{
+283             dRoute = strtok(line, \textcolor{stringliteral}{":"});
+284             iName = strtok(NULL, \textcolor{stringliteral}{"\(\backslash\)n"});
+285             \textcolor{keywordflow}{if} (strcmp(\hyperlink{gssdp_d_c_8c_a5acaf42e0ff80bd0de38c490576e9f85}{skn\_strip}(dRoute), \textcolor{stringliteral}{"interface"}) == 0) \{
+286                 strncpy(pchDefaultInterfaceName, \hyperlink{gssdp_d_c_8c_a5acaf42e0ff80bd0de38c490576e9f85}{skn\_strip}(iName), (
+      \hyperlink{gssdp_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1));
+287                 \textcolor{keywordflow}{break};
+288             \}
+289         \}
+290         fclose(f\_route);
+291 
+292         \textcolor{keywordflow}{return} (EXIT\_SUCCESS);
+293     \} \textcolor{keywordflow}{else} \{
+294         g\_warning(\textcolor{stringliteral}{"[GSSDP] Alternate method to get RouteInfo Failed: %d:%s"}, errno, strerror(errno));
+295         \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+296     \}
+297 
+298 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=333pt]{gssdp_d_c_8c_afc164e6efc7bdcdbacba97ba6f6c2a19_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gssdp_d_c_8c_afc164e6efc7bdcdbacba97ba6f6c2a19_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{gssdp_d_c_8c_a72be87baa67e532c78af054acf935d6c}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address@{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address}}
+\index{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address@{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address(char $\ast$intf, char $\ast$ipv4)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+I\+P\+Broadcast\+Array} skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{intf, }
+\item[{char $\ast$}]{ipv4}
+\end{DoxyParamCaption}
+)}\label{gssdp_d_c_8c_a72be87baa67e532c78af054acf935d6c}
+
+
+Referenced by main().
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=288pt]{gssdp_d_c_8c_a72be87baa67e532c78af054acf935d6c_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{gssdp_d_c_8c_a4f733621137368e762c5db74a3cec52b}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address@{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address}}
+\index{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address@{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address(gchar $\ast$intf, gchar $\ast$ipv4)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+I\+P\+Broadcast\+Array} skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address (
+\begin{DoxyParamCaption}
+\item[{gchar $\ast$}]{intf, }
+\item[{gchar $\ast$}]{ipv4}
+\end{DoxyParamCaption}
+)}\label{gssdp_d_c_8c_a4f733621137368e762c5db74a3cec52b}
+
+
+Definition at line 176 of file gssdp\+D\+C.\+c.
+
+
+
+References \+\_\+ip\+Broadcast\+Array\+::ch\+Default\+Intf\+Name, \+\_\+ip\+Broadcast\+Array\+::default\+Index, \+\_\+ip\+Broadcast\+Array\+::ip\+Addr\+Str, P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R, skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array(), and S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F.
+
+
+\begin{DoxyCode}
+176                                                                                               \{
+177     \hyperlink{struct__ip_broadcast_array}{PIPBroadcastArray} paB = g\_new0(\hyperlink{struct__ip_broadcast_array}{IPBroadcastArray}, 1);
+178 
+179     \textcolor{keywordflow}{if} (\hyperlink{gssdp_d_c_8c_a0dfc1a6916909805dc7fd2d8c471e0e3}{skn\_get\_broadcast\_ip\_array}(paB) != 
+      \hyperlink{gssdp_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{PLATFORM\_ERROR}) \{
+180         g\_utf8\_strncpy(intf, paB->\hyperlink{struct__ip_broadcast_array_a06dab8742df19b5aec8538842617778d}{chDefaultIntfName}, 
+      \hyperlink{gssdp_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF});
+181         g\_utf8\_strncpy(ipv4, paB->\hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[paB->\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex}], 
+      \hyperlink{gssdp_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF});
+182     \} \textcolor{keywordflow}{else} \{
+183         g\_warning(\textcolor{stringliteral}{"[GSSDP] InterfaceName and Address: unable to access information."});
+184         \textcolor{keywordflow}{return}(NULL);
+185     \}
+186     \textcolor{keywordflow}{return} (paB);
+187 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gssdp_d_c_8c_a4f733621137368e762c5db74a3cec52b_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{gssdp_d_c_8c_a6ea2e6ee5c8f0d51a98539842634f217}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!skn\+\_\+get\+\_\+timestamp@{skn\+\_\+get\+\_\+timestamp}}
+\index{skn\+\_\+get\+\_\+timestamp@{skn\+\_\+get\+\_\+timestamp}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{skn\+\_\+get\+\_\+timestamp()}]{\setlength{\rightskip}{0pt plus 5cm}gchar$\ast$ skn\+\_\+get\+\_\+timestamp (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{gssdp_d_c_8c_a6ea2e6ee5c8f0d51a98539842634f217}
+
+
+Definition at line 300 of file gssdp\+D\+C.\+c.
+
+
+
+Referenced by cb\+\_\+gssdp\+\_\+resource\+\_\+available(), and cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler().
+
+
+\begin{DoxyCode}
+300                             \{
+301     GDateTime   *stamp = g\_date\_time\_new\_now\_local();
+302     gchar *response = g\_date\_time\_format(stamp,\textcolor{stringliteral}{"%F.%T"});
+303 
+304     \textcolor{keywordflow}{return}(response);
+305 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gssdp_d_c_8c_a6ea2e6ee5c8f0d51a98539842634f217_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{gssdp_d_c_8c_a2dcc830aabe5f0cfffb3077fc0cba6a5}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!skn\+\_\+gio\+\_\+condition\+\_\+to\+\_\+string@{skn\+\_\+gio\+\_\+condition\+\_\+to\+\_\+string}}
+\index{skn\+\_\+gio\+\_\+condition\+\_\+to\+\_\+string@{skn\+\_\+gio\+\_\+condition\+\_\+to\+\_\+string}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{skn\+\_\+gio\+\_\+condition\+\_\+to\+\_\+string(\+G\+I\+O\+Condition condition)}]{\setlength{\rightskip}{0pt plus 5cm}gchar$\ast$ skn\+\_\+gio\+\_\+condition\+\_\+to\+\_\+string (
+\begin{DoxyParamCaption}
+\item[{G\+I\+O\+Condition}]{condition}
+\end{DoxyParamCaption}
+)}\label{gssdp_d_c_8c_a2dcc830aabe5f0cfffb3077fc0cba6a5}
+
+
+Definition at line 307 of file gssdp\+D\+C.\+c.
+
+
+\begin{DoxyCode}
+307                                                             \{
+308     gchar *value = NULL;
+309 
+310     \textcolor{keywordflow}{switch}(condition) \{
+311         \textcolor{keywordflow}{case} G\_IO\_IN:
+312             value = \textcolor{stringliteral}{"There is data to read."};
+313             \textcolor{keywordflow}{break};
+314         \textcolor{keywordflow}{case} G\_IO\_OUT:
+315             value = \textcolor{stringliteral}{"Data can be written (without blocking)."};
+316             \textcolor{keywordflow}{break};
+317         \textcolor{keywordflow}{case} G\_IO\_PRI:
+318             value = \textcolor{stringliteral}{"There is urgent data to read."};
+319             \textcolor{keywordflow}{break};
+320         \textcolor{keywordflow}{case} G\_IO\_ERR:
+321             value = \textcolor{stringliteral}{"Error condition."};
+322             \textcolor{keywordflow}{break};
+323         \textcolor{keywordflow}{case} G\_IO\_HUP:
+324             value = \textcolor{stringliteral}{"Hung up (the connection has been broken, usually for pipes and sockets)."};
+325             \textcolor{keywordflow}{break};
+326         \textcolor{keywordflow}{case} G\_IO\_NVAL:
+327             value = \textcolor{stringliteral}{"Invalid request. The file descriptor is not open."};
+328             \textcolor{keywordflow}{break};
+329         \textcolor{keywordflow}{default}:
+330             value = \textcolor{stringliteral}{"Unknown GIOCondition!"};
+331     \}
+332 
+333     \textcolor{keywordflow}{return} (value);
+334 \}
+\end{DoxyCode}
+\hypertarget{gssdp_d_c_8c_ad23c80e6ad30767eaf3b5aa482aaa92c}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!skn\+\_\+gssdp\+\_\+browse@{skn\+\_\+gssdp\+\_\+browse}}
+\index{skn\+\_\+gssdp\+\_\+browse@{skn\+\_\+gssdp\+\_\+browse}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{skn\+\_\+gssdp\+\_\+browse(\+P\+Control\+Data pctrl)}]{\setlength{\rightskip}{0pt plus 5cm}gboolean skn\+\_\+gssdp\+\_\+browse (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+Control\+Data}}]{pctrl}
+\end{DoxyParamCaption}
+)}\label{gssdp_d_c_8c_ad23c80e6ad30767eaf3b5aa482aaa92c}
+Setup a monitor for the registry page 
+
+Definition at line 568 of file gssdp\+D\+C.\+c.
+
+
+
+References cb\+\_\+gssdp\+\_\+resource\+\_\+available(), F\+A\+L\+S\+E, \+\_\+control\+Data\+::gssdp\+\_\+rgroup\+\_\+client, \+\_\+control\+Data\+::pch\+\_\+search, \+\_\+control\+Data\+::resource\+\_\+browser, and T\+R\+U\+E.
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+568                                               \{
+569     GError *error = NULL;
+570 
+571     pctrl->\hyperlink{struct__control_data_a05dec2c5c598d299306a41430093b6de}{gssdp\_rgroup\_client} = gssdp\_client\_new(NULL, NULL, &error);
+572     \textcolor{keywordflow}{if} (error) \{
+573             g\_printerr (\textcolor{stringliteral}{"Error creating the GSSDP gssdp\_client for resource\_browser: %s\(\backslash\)n"}, error->message)
+      ;
+574             g\_error\_free (error);
+575             \textcolor{keywordflow}{return}(\hyperlink{skn__common__headers_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE});
+576     \}
+577 
+578     pctrl->\hyperlink{struct__control_data_a796910b4ad0830538301efd69811c2c6}{resource\_browser} = gssdp\_resource\_browser\_new (pctrl->
+      \hyperlink{struct__control_data_a05dec2c5c598d299306a41430093b6de}{gssdp\_rgroup\_client}, pctrl->\hyperlink{struct__control_data_aae1d10aba11260e77341d9f5fa6055e2}{pch\_search}); \textcolor{comment}{// GSSDP\_ALL\_RESOURCES);}
+579     g\_signal\_connect (pctrl->\hyperlink{struct__control_data_a796910b4ad0830538301efd69811c2c6}{resource\_browser}, \textcolor{stringliteral}{"resource-available"}, G\_CALLBACK (
+      \hyperlink{gssdp_d_c_8c_a4411abcfc33e91d9cd018b10fba67897}{cb\_gssdp\_resource\_available}), pctrl);
+580 
+581     gssdp\_resource\_browser\_set\_active(pctrl->\hyperlink{struct__control_data_a796910b4ad0830538301efd69811c2c6}{resource\_browser}, 
+      \hyperlink{skn__common__headers_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE});
+582 
+583     \textcolor{keywordflow}{return} (\hyperlink{skn__common__headers_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE});
+584 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gssdp_d_c_8c_ad23c80e6ad30767eaf3b5aa482aaa92c_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=255pt]{gssdp_d_c_8c_ad23c80e6ad30767eaf3b5aa482aaa92c_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{gssdp_d_c_8c_a5acaf42e0ff80bd0de38c490576e9f85}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!skn\+\_\+strip@{skn\+\_\+strip}}
+\index{skn\+\_\+strip@{skn\+\_\+strip}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{skn\+\_\+strip(gchar $\ast$alpha)}]{\setlength{\rightskip}{0pt plus 5cm}gchar$\ast$ skn\+\_\+strip (
+\begin{DoxyParamCaption}
+\item[{gchar $\ast$}]{alpha}
+\end{DoxyParamCaption}
+)}\label{gssdp_d_c_8c_a5acaf42e0ff80bd0de38c490576e9f85}
+Remove Trailing and Leading Blanks
+\begin{DoxyItemize}
+\item caution\+: pointers from argv are readonly and segfault on \textquotesingle{}alpha\mbox{[}end\mbox{]} = 0\textquotesingle{} 
+\end{DoxyItemize}
+
+Definition at line 150 of file gssdp\+D\+C.\+c.
+
+
+
+Referenced by skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name().
+
+
+\begin{DoxyCode}
+150                                  \{
+151     \textcolor{keywordflow}{if} (alpha == NULL || strlen(alpha) < 1)
+152         \textcolor{keywordflow}{return}(alpha);
+153 
+154     \textcolor{keywordtype}{int} len = strlen(alpha);
+155     \textcolor{keywordtype}{int} end = len - 1;
+156     \textcolor{keywordtype}{int} start = 0;
+157 
+158     \textcolor{comment}{// use isgraph() or !isspace() vs isalnum() to allow ['|' ';' '%']}
+159     \textcolor{keywordflow}{while} ( !g\_unichar\_isgraph(alpha[end]) && end > 0 ) \{ \textcolor{comment}{// remove trailing non-alphanumeric chars}
+160         alpha[end--] = 0;
+161     \}
+162 
+163     len = strlen(alpha);
+164     \textcolor{keywordflow}{while} ( !g\_unichar\_isalnum(alpha[start]) && start < len ) \{ \textcolor{comment}{// find first non-alpha stricter}
+165         start++;
+166     \}
+167     \textcolor{keywordflow}{if} (start < len && start > 0) \{  \textcolor{comment}{// move in place}
+168         end = len - start;
+169         memmove(&alpha[0], &alpha[start], end);
+170         alpha[end] = 0;
+171     \}
+172 
+173     \textcolor{keywordflow}{return}(alpha);
+174 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gssdp_d_c_8c_a5acaf42e0ff80bd0de38c490576e9f85_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{gssdp_d_c_8c_a793c6b3e5c7a5abc993d8cfbe963629d}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!udp\+\_\+initialize\+\_\+message\+\_\+send@{udp\+\_\+initialize\+\_\+message\+\_\+send}}
+\index{udp\+\_\+initialize\+\_\+message\+\_\+send@{udp\+\_\+initialize\+\_\+message\+\_\+send}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{udp\+\_\+initialize\+\_\+message\+\_\+send(\+P\+Control\+Data pctrl)}]{\setlength{\rightskip}{0pt plus 5cm}gboolean udp\+\_\+initialize\+\_\+message\+\_\+send (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+Control\+Data}}]{pctrl}
+\end{DoxyParamCaption}
+)}\label{gssdp_d_c_8c_a793c6b3e5c7a5abc993d8cfbe963629d}
+
+
+Definition at line 428 of file gssdp\+D\+C.\+c.
+
+
+
+References cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler(), cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler(), F\+A\+L\+S\+E, \+\_\+control\+Data\+::g\+Comm\+Source, \+\_\+control\+Data\+::g\+Msg\+Delay, \+\_\+control\+Data\+::gs\+Addr, \+\_\+control\+Data\+::g\+Sock, S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+R\+T, and T\+R\+U\+E.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler().
+
+
+\begin{DoxyCode}
+428                                                          \{
+429     GError *error = NULL;
+430     GInetAddress *anyAddr = NULL;
+431 
+432     g\_return\_val\_if\_fail((NULL != pctrl), G\_SOURCE\_REMOVE);
+433 
+434     pctrl->\hyperlink{struct__control_data_a49b267275036fc3ac9b7d9e53b0625e1}{gSock} = g\_socket\_new(G\_SOCKET\_FAMILY\_IPV4, G\_SOCKET\_TYPE\_DATAGRAM, G\_SOCKET\_PROTOCOL\_UDP, &
+      error);
+435     \textcolor{keywordflow}{if} (error != NULL) \{
+436         g\_error(\textcolor{stringliteral}{"g\_socket\_new() => %s"}, error->message);
+437         g\_clear\_error(&error);
+438         \textcolor{keywordflow}{return}(\hyperlink{skn__common__headers_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE});
+439     \}
+440 
+441     anyAddr = g\_inet\_address\_new\_any(G\_SOCKET\_FAMILY\_IPV4);
+442     pctrl->\hyperlink{struct__control_data_a8a43853386551af4c746fd4b882eb2bf}{gsAddr} = g\_inet\_socket\_address\_new(anyAddr, \hyperlink{gssdp_d_c_8c_a8091fbaa709d661a678a82a62fab638b}{SKN\_UDP\_ANY\_PORT});
+443         g\_object\_unref(anyAddr);
+444 
+445     g\_socket\_bind(pctrl->\hyperlink{struct__control_data_a49b267275036fc3ac9b7d9e53b0625e1}{gSock}, pctrl->\hyperlink{struct__control_data_a8a43853386551af4c746fd4b882eb2bf}{gsAddr}, \hyperlink{skn__common__headers_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}, &error);
+446     \textcolor{keywordflow}{if} (error != NULL) \{
+447         g\_error(\textcolor{stringliteral}{"g\_socket\_bind() => %s"}, error->message);
+448         g\_clear\_error(&error);
+449         exit(\hyperlink{skn__common__headers_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE});
+450     \}
+451 
+452     pctrl->\hyperlink{struct__control_data_abfbd9e642ba240fa5985f63d60886de4}{gCommSource} = g\_socket\_create\_source (pctrl->\hyperlink{struct__control_data_a49b267275036fc3ac9b7d9e53b0625e1}{gSock}, G\_IO\_IN, NULL);
+453         g\_source\_set\_callback (pctrl->\hyperlink{struct__control_data_abfbd9e642ba240fa5985f63d60886de4}{gCommSource}, (GSourceFunc) 
+      \hyperlink{gssdp_d_c_8c_aa8a19e68e54683fa324bcee1ecfd3942}{cb\_udp\_comm\_response\_handler}, pctrl, NULL); \textcolor{comment}{// its really a GSocketSourceFunc}
+454         g\_source\_attach (pctrl->\hyperlink{struct__control_data_abfbd9e642ba240fa5985f63d60886de4}{gCommSource}, NULL);
+455 
+456     \textcolor{comment}{/*}
+457 \textcolor{comment}{     * Setup Timer to drive repeated Message to Display Service  */}
+458     g\_timeout\_add ((pctrl->\hyperlink{struct__control_data_a277ea878a8491fa38269b6c762a05389}{gMsgDelay} * 1000), (GSourceFunc)
+      \hyperlink{gssdp_d_c_8c_a00c5b52bdcb7caec07d08b05b8c1dced}{cb\_udp\_comm\_request\_handler}, pctrl);
+459 
+460 
+461     \textcolor{keywordflow}{return} (\hyperlink{skn__common__headers_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE});
+462 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gssdp_d_c_8c_a793c6b3e5c7a5abc993d8cfbe963629d_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gssdp_d_c_8c_a793c6b3e5c7a5abc993d8cfbe963629d_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{gssdp_d_c_8c_a89aa9faf97e2476a930be98a8d58c0fb}{}\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name@{udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name}}
+\index{udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name@{udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name(\+P\+G\+S\+S\+D\+P\+Reg\+Data pr, gchar $\ast$pch\+\_\+name)}]{\setlength{\rightskip}{0pt plus 5cm}gint udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+G\+S\+S\+D\+P\+Reg\+Data}}]{pr, }
+\item[{gchar $\ast$}]{pch\+\_\+name}
+\end{DoxyParamCaption}
+)}\label{gssdp_d_c_8c_a89aa9faf97e2476a930be98a8d58c0fb}
+
+
+Definition at line 465 of file gssdp\+D\+C.\+c.
+
+
+
+References \+\_\+gssdp\+Registry\+Data\+::ch\+\_\+urn.
+
+
+
+Referenced by cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler().
+
+
+\begin{DoxyCode}
+465                                                                   \{
+466     gint result = -1;
+467     \textcolor{keywordflow}{if} (NULL != g\_strrstr(pr->\hyperlink{struct__gssdp_registry_data_a57a14b78092cbef8cf6dfa56cffa03db}{ch\_urn}, pch\_name)) \{
+468         result = 0;
+469     \}
+470     \textcolor{keywordflow}{return}( result );
+471 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gssdp_d_c_8c_a89aa9faf97e2476a930be98a8d58c0fb_icgraph}
+\end{center}
+\end{figure}
+
+

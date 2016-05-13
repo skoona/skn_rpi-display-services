@@ -1,0 +1,321 @@
+\hypertarget{para__display__client_8c}{}\section{src/para\+\_\+display\+\_\+client.c File Reference}
+\label{para__display__client_8c}\index{src/para\+\_\+display\+\_\+client.\+c@{src/para\+\_\+display\+\_\+client.\+c}}
+{\ttfamily \#include \char`\"{}skn\+\_\+network\+\_\+helpers.\+h\char`\"{}}\\*
+Include dependency graph for para\+\_\+display\+\_\+client.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{para__display__client_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{para__display__client_8c_a66e27ff237580d0f8dc29f052d9b4aec}{k\+X\+A\+D\+C\+P\+A\+T\+H}~\char`\"{}/sys/bus/iio/devices/iio\+:device0/\char`\"{}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{para__display__client_8c_a4c2fc3b5855778dda51d1e09e20f23a2}{Get\+Constants} (int $\ast$n\+Offset, float $\ast$f\+Scale)
+\item 
+int \hyperlink{para__display__client_8c_a107d9d8f583bbd2c3a2e5a71b6643afa}{Get\+Temp} (double $\ast$f\+Temp, double $\ast$c\+Temp, int n\+Offset, float f\+Scale)
+\item 
+int \hyperlink{para__display__client_8c_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{para__display__client_8c_a66e27ff237580d0f8dc29f052d9b4aec}{}\index{para\+\_\+display\+\_\+client.\+c@{para\+\_\+display\+\_\+client.\+c}!k\+X\+A\+D\+C\+P\+A\+T\+H@{k\+X\+A\+D\+C\+P\+A\+T\+H}}
+\index{k\+X\+A\+D\+C\+P\+A\+T\+H@{k\+X\+A\+D\+C\+P\+A\+T\+H}!para\+\_\+display\+\_\+client.\+c@{para\+\_\+display\+\_\+client.\+c}}
+\subsubsection[{k\+X\+A\+D\+C\+P\+A\+T\+H}]{\setlength{\rightskip}{0pt plus 5cm}\#define k\+X\+A\+D\+C\+P\+A\+T\+H~\char`\"{}/sys/bus/iio/devices/iio\+:device0/\char`\"{}}\label{para__display__client_8c_a66e27ff237580d0f8dc29f052d9b4aec}
+\hyperlink{para__display__client_8c}{para\+\_\+display\+\_\+client.\+c}
+\begin{DoxyItemize}
+\item Parallella (Epiphany I\+I\+I) Display Temperature Client
+\end{DoxyItemize}
+
+cmdline\+: ./para\+\_\+display\+\_\+client -\/m \char`\"{}$<$request-\/message-\/string$>$\char`\"{} 
+
+Definition at line 10 of file para\+\_\+display\+\_\+client.\+c.
+
+
+
+Referenced by Get\+Constants(), and Get\+Temp().
+
+
+
+\subsection{Function Documentation}
+\hypertarget{para__display__client_8c_a4c2fc3b5855778dda51d1e09e20f23a2}{}\index{para\+\_\+display\+\_\+client.\+c@{para\+\_\+display\+\_\+client.\+c}!Get\+Constants@{Get\+Constants}}
+\index{Get\+Constants@{Get\+Constants}!para\+\_\+display\+\_\+client.\+c@{para\+\_\+display\+\_\+client.\+c}}
+\subsubsection[{Get\+Constants(int $\ast$n\+Offset, float $\ast$f\+Scale)}]{\setlength{\rightskip}{0pt plus 5cm}int Get\+Constants (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{n\+Offset, }
+\item[{float $\ast$}]{f\+Scale}
+\end{DoxyParamCaption}
+)}\label{para__display__client_8c_a4c2fc3b5855778dda51d1e09e20f23a2}
+
+
+Definition at line 13 of file para\+\_\+display\+\_\+client.\+c.
+
+
+
+References k\+X\+A\+D\+C\+P\+A\+T\+H, and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F.
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+13                                               \{
+14   \textcolor{keywordtype}{char}  strRead[\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}];
+15   FILE *sysfile;
+16 
+17   \textcolor{keywordflow}{if}((sysfile = fopen(\hyperlink{para__display__client_8c_a66e27ff237580d0f8dc29f052d9b4aec}{kXADCPATH} \textcolor{stringliteral}{"in\_temp0\_offset"}, \textcolor{stringliteral}{"ra"})) == NULL) \{
+18     fprintf(stderr, \textcolor{stringliteral}{"ERROR: Can't open offset device file\(\backslash\)n"});
+19     \textcolor{keywordflow}{return} 1;
+20   \}
+21   fgets(strRead, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}-1, sysfile);
+22   fclose(sysfile);
+23   *nOffset = atoi(strRead);
+24 
+25   \textcolor{keywordflow}{if}((sysfile = fopen(\hyperlink{para__display__client_8c_a66e27ff237580d0f8dc29f052d9b4aec}{kXADCPATH} \textcolor{stringliteral}{"in\_temp0\_scale"}, \textcolor{stringliteral}{"ra"})) == NULL) \{
+26     fprintf(stderr, \textcolor{stringliteral}{"ERROR: Can't open scale device file\(\backslash\)n"});
+27     \textcolor{keywordflow}{return} 2;
+28   \}
+29   fgets(strRead, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}-1, sysfile);
+30   fclose(sysfile);
+31   *fScale = atof(strRead);
+32 
+33   \textcolor{keywordflow}{return} 0;
+34 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=231pt]{para__display__client_8c_a4c2fc3b5855778dda51d1e09e20f23a2_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{para__display__client_8c_a107d9d8f583bbd2c3a2e5a71b6643afa}{}\index{para\+\_\+display\+\_\+client.\+c@{para\+\_\+display\+\_\+client.\+c}!Get\+Temp@{Get\+Temp}}
+\index{Get\+Temp@{Get\+Temp}!para\+\_\+display\+\_\+client.\+c@{para\+\_\+display\+\_\+client.\+c}}
+\subsubsection[{Get\+Temp(double $\ast$f\+Temp, double $\ast$c\+Temp, int n\+Offset, float f\+Scale)}]{\setlength{\rightskip}{0pt plus 5cm}int Get\+Temp (
+\begin{DoxyParamCaption}
+\item[{double $\ast$}]{f\+Temp, }
+\item[{double $\ast$}]{c\+Temp, }
+\item[{int}]{n\+Offset, }
+\item[{float}]{f\+Scale}
+\end{DoxyParamCaption}
+)}\label{para__display__client_8c_a107d9d8f583bbd2c3a2e5a71b6643afa}
+Zynq chips temperature 
+
+Definition at line 39 of file para\+\_\+display\+\_\+client.\+c.
+
+
+
+References k\+X\+A\+D\+C\+P\+A\+T\+H, and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F.
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+39                                                                      \{
+40   FILE *sysfile;
+41   \textcolor{keywordtype}{char}  strRead[\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}];
+42   \textcolor{keywordtype}{int}  nRaw;
+43 
+44   \textcolor{keywordflow}{if}(nOffset == 0 || fScale == 0.0)
+45     \textcolor{keywordflow}{return} 1;
+46 
+47   \textcolor{keywordflow}{if}((sysfile = fopen(\hyperlink{para__display__client_8c_a66e27ff237580d0f8dc29f052d9b4aec}{kXADCPATH} \textcolor{stringliteral}{"in\_temp0\_raw"}, \textcolor{stringliteral}{"ra"})) == NULL) \{
+48     \textcolor{keywordflow}{return} 2;
+49   \}
+50 
+51   fgets(strRead, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}-1, sysfile);
+52   fclose(sysfile);
+53   nRaw = atoi(strRead);
+54 
+55   *fTemp = (double ) (nRaw + nOffset) * fScale / 1000.0;
+56 
+57   *cTemp = (double ) (*fTemp - 32.0) * 5 / 9;
+58 
+59   \textcolor{keywordflow}{return} 0;
+60 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{para__display__client_8c_a107d9d8f583bbd2c3a2e5a71b6643afa_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{para__display__client_8c_a0ddf1224851353fc92bfbff6f499fa97}{}\index{para\+\_\+display\+\_\+client.\+c@{para\+\_\+display\+\_\+client.\+c}!main@{main}}
+\index{main@{main}!para\+\_\+display\+\_\+client.\+c@{para\+\_\+display\+\_\+client.\+c}}
+\subsubsection[{main(int argc, char $\ast$argv[])}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\label{para__display__client_8c_a0ddf1224851353fc92bfbff6f499fa97}
+
+
+Definition at line 63 of file para\+\_\+display\+\_\+client.\+c.
+
+
+
+References gd\+\_\+i\+\_\+socket, gd\+\_\+i\+\_\+update, gd\+\_\+pch\+\_\+message, gd\+\_\+pch\+\_\+service\+\_\+name, Get\+Constants(), Get\+Temp(), gi\+\_\+exit\+\_\+flag, \+\_\+service\+Entry\+::ip, \+\_\+service\+Entry\+::name, \+\_\+service\+Entry\+::port, \+\_\+service\+Request\+::request, S\+D\+\_\+\+D\+E\+B\+U\+G, S\+D\+\_\+\+E\+R\+R, S\+D\+\_\+\+N\+O\+T\+I\+C\+E, S\+D\+\_\+\+W\+A\+R\+N\+I\+N\+G, service\+\_\+registry\+\_\+destroy(), service\+\_\+registry\+\_\+entry\+\_\+count(), service\+\_\+registry\+\_\+find\+\_\+entry(), service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast(), signals\+\_\+cleanup(), signals\+\_\+init(), skn\+\_\+get\+\_\+number\+\_\+of\+\_\+cpu\+\_\+cores(), skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line(), skn\+\_\+program\+\_\+name\+\_\+and\+\_\+description\+\_\+set(), S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+R\+U\+N, skn\+\_\+service\+\_\+request\+\_\+create(), skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+broadcast\+\_\+socket(), skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+regular\+\_\+socket(), skn\+\_\+udp\+\_\+service\+\_\+request(), S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F, and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F.
+
+
+\begin{DoxyCode}
+64 \{
+65     \textcolor{keywordtype}{char} request[\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}];
+66     \textcolor{keywordtype}{char} registry[\hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF}];
+67     \hyperlink{struct__service_registry}{PServiceRegistry} psr = NULL;
+68     \hyperlink{struct__service_entry}{PRegistryEntry} pre = NULL;
+69     \hyperlink{struct__service_request}{PServiceRequest} pnsr = NULL;
+70     \textcolor{keywordtype}{int} vIndex = 0;
+71     \textcolor{keywordtype}{int}      nOffset = 0;
+72     \textcolor{keywordtype}{float}    fScale = 0.0;
+73 
+74     memset(registry, 0, \textcolor{keyword}{sizeof}(registry));
+75     memset(request, 0, \textcolor{keyword}{sizeof}(request));
+76     strncpy(registry, \textcolor{stringliteral}{"DisplayClient: Raspberry Pi where are you?"}, \textcolor{keyword}{sizeof}(registry) - 1);
+77 
+78     \hyperlink{skn__network__helpers_8c_ac2672efa5ece276743c6558dfe82d01a}{skn\_program\_name\_and\_description\_set}(
+79             \textcolor{stringliteral}{"para\_display\_client"},
+80             \textcolor{stringliteral}{"Send Epiphany III ( Zynq ) Temperature to Display Service."}
+81             );
+82 
+83     \textcolor{comment}{/* Parse any command line options,}
+84 \textcolor{comment}{     * like request string override */}
+85     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a665c441c1f789eb555b1c23ed43de890}{skn\_handle\_locator\_command\_line}(argc, argv) == EXIT\_FAILURE) \{
+86         exit(EXIT\_FAILURE);
+87     \}
+88     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a0bb2e7571c22c0455842aba8cf1d97dc}{gd\_pch\_message} != NULL) \{
+89             strncpy(request, \hyperlink{skn__network__helpers_8c_a0bb2e7571c22c0455842aba8cf1d97dc}{gd\_pch\_message}, \textcolor{keyword}{sizeof}(request));
+90         free(\hyperlink{skn__network__helpers_8c_a0bb2e7571c22c0455842aba8cf1d97dc}{gd\_pch\_message}); \textcolor{comment}{// from strdup()}
+91         \hyperlink{skn__network__helpers_8c_a0bb2e7571c22c0455842aba8cf1d97dc}{gd\_pch\_message} = request;
+92     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (argc == 2) \{
+93             strcpy(request, argv[1]);
+94     \}
+95 
+96     skn\_logger(\hyperlink{skn__common__headers_8h_a3ace3381f5b69f4a46fc35b70844a5dc}{SD\_DEBUG}, \textcolor{stringliteral}{"Request  Message [%s]"}, request);
+97     skn\_logger(\hyperlink{skn__common__headers_8h_a3ace3381f5b69f4a46fc35b70844a5dc}{SD\_DEBUG}, \textcolor{stringliteral}{"Registry Message [%s]"}, registry);
+98 
+99     \textcolor{comment}{// get some platform constants}
+100     \textcolor{keywordflow}{if}(\hyperlink{para__display__client_8c_a4c2fc3b5855778dda51d1e09e20f23a2}{GetConstants}(&nOffset, &fScale)) \{
+101         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"GetConstants() Failed! Shutting Down!"});
+102         exit(EXIT\_FAILURE);
+103     \}
+104 
+105     \textcolor{comment}{/* Initialize Signal handler */}
+106     \hyperlink{skn__network__helpers_8c_a6af44fa0e0746d3d2a804fea1e84dacd}{signals\_init}();
+107 
+108     \textcolor{comment}{/* Create local socket for sending requests */}
+109     \hyperlink{skn__network__helpers_8c_a62c4e1910a12d9a04a12768154853712}{gd\_i\_socket} = \hyperlink{skn__network__helpers_8c_a4f9f7e0f50cb3073d9c6e5a6a0d5240d}{skn\_udp\_host\_create\_broadcast\_socket}(0, 4.
+      0);
+110     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a62c4e1910a12d9a04a12768154853712}{gd\_i\_socket} == EXIT\_FAILURE) \{
+111         \hyperlink{skn__network__helpers_8c_ac256e2066453ab0ff82322aa24b161df}{signals\_cleanup}(\hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag});
+112         exit(EXIT\_FAILURE);     
+113     \}
+114 
+115     skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"Application Active..."});
+116 
+117     \textcolor{comment}{/* Get the ServiceRegistry from Provider}
+118 \textcolor{comment}{     * - could return null if error */}
+119     psr = \hyperlink{skn__network__helpers_8c_a8a291f1cb8d18e45a3e9b6bc9e3798a6}{service\_registry\_get\_via\_udp\_broadcast}(
+      \hyperlink{skn__network__helpers_8c_a62c4e1910a12d9a04a12768154853712}{gd\_i\_socket}, registry);
+120     \textcolor{keywordflow}{if} (psr != NULL && \hyperlink{skn__network__helpers_8c_a88465ff1322cb437fd3b7a1e036fd017}{service\_registry\_entry\_count}(psr) != 0) \{
+121         \textcolor{keywordtype}{char} *service\_name = \textcolor{stringliteral}{"lcd\_display\_service"};
+122 
+123         \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a2f908b49598a49ea624bfcc3e2175b7c}{gd\_pch\_service\_name} != NULL) \{
+124             service\_name = \hyperlink{skn__network__helpers_8c_a2f908b49598a49ea624bfcc3e2175b7c}{gd\_pch\_service\_name};
+125         \}
+126 
+127         \textcolor{comment}{/* find a single entry */}
+128         pre = \hyperlink{skn__network__helpers_8c_ab5ed70a05f4e20dac13298ae16530069}{service\_registry\_find\_entry}(psr, service\_name);
+129         \textcolor{keywordflow}{if} (pre != NULL) \{
+130             skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"\(\backslash\)nLCD DisplayService (%s) is located at IPv4: %s:%d\(\backslash\)n"}, pre->
+      \hyperlink{struct__service_entry_aa66dcf0806f67276d049ac75c6153768}{name}, pre->\hyperlink{struct__service_entry_a70b1db0895fbe31c07c8799cb57c678a}{ip}, pre->\hyperlink{struct__service_entry_ac8a3a40de5eee937afb42faea4d18bb2}{port});
+131         \}
+132 
+133         \textcolor{comment}{/*}
+134 \textcolor{comment}{         * Switch to non-broadcast type socket */}
+135         close(\hyperlink{skn__network__helpers_8c_a62c4e1910a12d9a04a12768154853712}{gd\_i\_socket}); \hyperlink{skn__network__helpers_8c_a62c4e1910a12d9a04a12768154853712}{gd\_i\_socket} = -1;
+136         \hyperlink{skn__network__helpers_8c_a62c4e1910a12d9a04a12768154853712}{gd\_i\_socket} = \hyperlink{skn__network__helpers_8c_a25427bc0b7f087d1135c92dd3704f210}{skn\_udp\_host\_create\_regular\_socket}(0, 8.
+      0);
+137         \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a62c4e1910a12d9a04a12768154853712}{gd\_i\_socket} == EXIT\_FAILURE) \{
+138             \textcolor{keywordflow}{if} (psr != NULL) \hyperlink{skn__network__helpers_8c_a819c12fc7c8ff576b1aaad69bc098840}{service\_registry\_destroy}(psr);
+139             \hyperlink{skn__network__helpers_8c_ac256e2066453ab0ff82322aa24b161df}{signals\_cleanup}(\hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag});
+140             exit(EXIT\_FAILURE);
+141         \}
+142     \}
+143 
+144     \textcolor{comment}{// we have the location}
+145     \textcolor{keywordflow}{if} (pre != NULL) \{
+146         \textcolor{keywordflow}{if} (request[0] == 0) \{
+147             snprintf(request, \textcolor{keyword}{sizeof}(request), \textcolor{stringliteral}{"%02ld Cores Available."},  
+      \hyperlink{skn__network__helpers_8c_a9b607e33be05bf0479127f233a58fab7}{skn\_get\_number\_of\_cpu\_cores}() );
+148         \}
+149         pnsr = \hyperlink{skn__network__helpers_8c_a922ccd04b4dc28211ff08c4c62462544}{skn\_service\_request\_create}(pre, 
+      \hyperlink{skn__network__helpers_8c_a62c4e1910a12d9a04a12768154853712}{gd\_i\_socket}, request);
+150     \}
+151     \textcolor{keywordflow}{if} (pnsr != NULL) \{
+152         \textcolor{keywordtype}{double} fTemp = 0.0;
+153         \textcolor{keywordtype}{double} cTemp = 0.0;
+154         \textcolor{keywordflow}{do} \{
+155             vIndex = \hyperlink{skn__network__helpers_8c_ad8304e97f9bccee1cd899a61b91ae677}{skn\_udp\_service\_request}(pnsr);
+156             \textcolor{keywordflow}{if} ((vIndex == EXIT\_FAILURE) && (\hyperlink{skn__network__helpers_8c_a49e7c0da0f26a1f505934e5610ead123}{gd\_i\_update} == 0)) \{ \textcolor{comment}{// ignore if non-stop is set}
+157                 \textcolor{keywordflow}{break};
+158             \}
+159             sleep(\hyperlink{skn__network__helpers_8c_a49e7c0da0f26a1f505934e5610ead123}{gd\_i\_update});
+160 
+161             \hyperlink{para__display__client_8c_a107d9d8f583bbd2c3a2e5a71b6643afa}{GetTemp}(&fTemp, &cTemp, nOffset, fScale);
+162             snprintf(pnsr->\hyperlink{struct__service_request_ad347b2a07388ec9d9d33756f1a1ef235}{request}, \textcolor{keyword}{sizeof}(pnsr->\hyperlink{struct__service_request_ad347b2a07388ec9d9d33756f1a1ef235}{request}) -1,  \textcolor{stringliteral}{"%.1f%cf %.1f%cc"}, fTemp, 223,
+       cTemp, 223);
+163 
+164 
+165         \} \textcolor{keywordflow}{while}(\hyperlink{skn__network__helpers_8c_a49e7c0da0f26a1f505934e5610ead123}{gd\_i\_update} != 0 && \hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag} == 
+      \hyperlink{skn__common__headers_8h_a3f5142b81a9ee977aedfd69a61281920}{SKN\_RUN\_MODE\_RUN});
+166         free(pnsr);  \textcolor{comment}{// Done}
+167 
+168     \} \textcolor{keywordflow}{else} \{
+169         skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"Unable to create Network Request."});
+170     \}
+171 
+172     \textcolor{comment}{/* Cleanup and shutdown}
+173 \textcolor{comment}{     * - if shutdown was caused by signal handler}
+174 \textcolor{comment}{     *   then a termination signal will be sent via signal()}
+175 \textcolor{comment}{     *   otherwise, a normal exit occurs}
+176 \textcolor{comment}{     */}
+177     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a62c4e1910a12d9a04a12768154853712}{gd\_i\_socket}) close(\hyperlink{skn__network__helpers_8c_a62c4e1910a12d9a04a12768154853712}{gd\_i\_socket});
+178     \textcolor{keywordflow}{if} (psr != NULL) \hyperlink{skn__network__helpers_8c_a819c12fc7c8ff576b1aaad69bc098840}{service\_registry\_destroy}(psr);
+179     \hyperlink{skn__network__helpers_8c_ac256e2066453ab0ff82322aa24b161df}{signals\_cleanup}(\hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag});
+180 
+181     exit(EXIT\_SUCCESS);
+182 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{para__display__client_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph}
+\end{center}
+\end{figure}
+
+

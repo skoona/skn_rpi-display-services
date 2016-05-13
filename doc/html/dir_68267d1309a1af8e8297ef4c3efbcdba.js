@@ -1,9 +1,10 @@
 var dir_68267d1309a1af8e8297ef4c3efbcdba =
 [
-    [ "._Makefile.am", "src_2_8___makefile_8am.html", null ],
+    [ "a2d_display_client.c", "a2d__display__client_8c.html", "a2d__display__client_8c" ],
     [ "lcd_display_client.c", "lcd__display__client_8c.html", "lcd__display__client_8c" ],
     [ "lcd_display_service.c", "lcd__display__service_8c.html", "lcd__display__service_8c" ],
     [ "Makefile.am", "src_2_makefile_8am.html", null ],
+    [ "para_display_client.c", "para__display__client_8c.html", "para__display__client_8c" ],
     [ "skn_common_headers.h", "skn__common__headers_8h.html", "skn__common__headers_8h" ],
     [ "skn_network_helpers.c", "skn__network__helpers_8c.html", "skn__network__helpers_8c" ],
     [ "skn_network_helpers.h", "skn__network__helpers_8h.html", "skn__network__helpers_8h" ],

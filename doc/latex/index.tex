@@ -1,0 +1,202 @@
+\paragraph*{05/12/2016 Added Gtk+-\/3.0 and G\+Lib2.\+0 Display Services.}
+
+\paragraph*{05/12/2016 Added G\+Lib and G\+S\+S\+D\+P command line clients.}
+
+
+
+Package includes two features. One designed to both locate your Pi and provide a list of known services. The other acts as a central L\+C\+D display service, allowing other network devices/nodes to send a one-\/liners to the service for display on its L\+C\+D.
+
+Each Raspberry Pi, Mac O\+S\+X, and Linux node in your network could execute {\itshape udp\+\_\+locator\+\_\+service} (Locator\+Service) as a backgound program using System\+D, a Launch\+D P\+List, or an init script of some sort. The Locator\+Service collects the address of the machine it running on and creates a entry in its Service\+Registry; which it sends to clients that requests it.
+
+This establishes the network of locators, for which a {\itshape udp\+\_\+locator\+\_\+client} can poll at any time to find your Pi.
+
+Likewise the {\itshape lcd\+\_\+display\+\_\+service} executes on nodes that also have an L\+C\+D Display of some sort; Serial/\+U\+S\+B, M\+C\+P23008, or P\+C\+F8574 based. It is the provider of the {\itshape shared L\+C\+D Display}, and the target of the {\itshape lcd\+\_\+display\+\_\+client} (Display\+Client). Display\+Clients query all Locator\+Services for their active Service\+Registry, and pickout the default {\itshape lcd\+\_\+display\+\_\+service} entry, or via command line option $\ast$--alt-\/service-\/name=my\+\_\+service\+\_\+name$\ast$.
+
+Once a Display\+Service is located, the Display\+Client sends a message to the Display\+Service to display; from the command line $\ast$-\/m$\ast$ option. Or if the Display\+Client has been started in $\ast$--non-\/stop=60$\ast$ mode, it will send random status messages automatically to the Display\+Service; in this case every 30 seconds.
+
+These apps were not intended to be final form applications. Instead they are well formed starters for your own projects.
+
+Enjoy!
+
+\subsection*{\#\# Executables }
+
+\begin{TabularC}{5}
+\hline
+\rowcolor{lightgray}{\bf Program}&{\bf Type}&{\bf Platform}&{\bf Port}&{\bf Description  }\\\cline{1-5}
+$\ast$gtk\+D\+S&Server&any&48028&Maintains a list of known network services accessible via U\+D\+P socket, and offers the G\+T\+K display service. \\\cline{1-5}
+$\ast$cmd\+D\+S&Server&any&48028&Maintains a list of known network services accessible via U\+D\+P socket, and offers the Cmd\+Line display service. \\\cline{1-5}
+udp\+\_\+locator\+\_\+service&Server&any&48028&Maintains a list of known network services accessible via U\+D\+P socket. \\\cline{1-5}
+udp\+\_\+locator\+\_\+client&Client&any&n/a&Collect services info from Service, which includes that service\textquotesingle{}s ip address. \\\cline{1-5}
+$\ast$cmd\+D\+C&Client&any&n/a&Sends text one-\/liner to any display service. \\\cline{1-5}
+lcd\+\_\+display\+\_\+service&Server&R\+Pi&48029&Accepts one-\/line messages over udp and display them on a L\+C\+D panel. \\\cline{1-5}
+lcd\+\_\+display\+\_\+client&Client&any&n/a&Sends one-\/liner composed of various Pi metrics; like cpus, temps, etc. \\\cline{1-5}
+para\+\_\+display\+\_\+client&Client&Parallella&n/a&Sends one-\/liner with Zynq chip\textquotesingle{}s temperature. \\\cline{1-5}
+a2d\+\_\+display\+\_\+client&Client&Rpi&n/a&Sends one-\/liner with measured temp and light sensor values from $\ast$\+A\+D/\+D\+A Shield Module For Raspberry Pi $\ast$ \\\cline{1-5}
+$\ast$gssdp\+D\+C&Client&any&n/a&Sends text one-\/liner to any display service, after locating it using G\+S\+S\+D\+P/\+G\+U\+P\+N\+P. \\\cline{1-5}
+\end{TabularC}
+
+
+\subsection*{\#\#\# Configuration Options }
+
+\paragraph*{Locator Service}
+
+
+
+\paragraph*{upd\+\_\+locator\+\_\+service --help}
+
+\begin{DoxyVerb}udp_locator_service -- Provides IPv4 Addres/Port Service info.
+          Skoona Development <skoona@gmail.com>
+Usage:
+  udp_locator_service [-v] [-s] [-m "<delimited-response-message-string>"] [-h|--help]
+  udp_locator_service 
+  udp_locator_service -s -a mcp_display_service
+  udp_locator_service -m 'name=mcp_locator_service, ip=10.100.1.19, port=48028|'
+
+Options:
+  -a, --alt-service-name=my_service_name
+                 *lcd_display_service* is default, use this to change name.
+  -s, --include-display-service  Includes DisplaySerivce in default Registry response.
+                *Presumes both are located on same machine; otherwise enter with '-m'*
+  -m, --message  ServiceRegistry<delimited-response-message-string> to send.
+  -v, --version  Version printout.
+  -h, --help     Show this help screen.
+
+  **ServiceRegistry Format:  _<delimited-response-message-string>_**
+    delimited-response-message-string : required order -> name,ip,port,line-delimiter...
+      format: "name=<service-name>,ip=<service-ipaddress>ddd.ddd.ddd.ddd,port=<service-portnumber>ddddd <line-delimiter>"
+        name=<service-name> text_string_with_no_spaces
+        ip=<service-ipaddress> ddd.ddd.ddd.ddd
+        port=<service-portnumber> ddddd
+      REQUIRED   <line-delimiter> is one of these '|', '%', ';'
+
+    **example: -m "name=lcd_display_service,ip=192.168.1.15,port=48028|"**
+    ** -m "name=rpi_locator_service, ip=10.100.1.19, port=48028|name=lcd_display_service, ip=10.100.1.19, port=48029|"**
+\end{DoxyVerb}
+
+
+\paragraph*{udp\+\_\+locator\+\_\+client --help}
+
+udp\+\_\+locator\+\_\+client -- Collect I\+Pv4 Address/\+Port Service info from all providers. Skoona Development \href{mailto:skoona@gmail.com}{\tt skoona@gmail.\+com} Usage\+: udp\+\_\+locator\+\_\+client \mbox{[}-\/v\mbox{]} \mbox{[}-\/m \textquotesingle{}any text msg\textquotesingle{}\mbox{]} \mbox{[}-\/u\mbox{]} \mbox{[}-\/a \textquotesingle{}my\+\_\+service\+\_\+name\textquotesingle{}\mbox{]} \mbox{[}-\/h$\vert$--help\mbox{]} udp\+\_\+locator\+\_\+client udp\+\_\+locator\+\_\+client -\/u -\/a \textquotesingle{}my\+\_\+service\+\_\+name\textquotesingle{}
+
+Options\+: -\/a, --alt-\/service-\/name=my\+\_\+service\+\_\+name {\itshape lcd\+\_\+display\+\_\+service} is default, use this to change name. -\/u, --unique-\/registry List {\itshape unique} entries from all responses. -\/m, --message Any text to send; \+\_\+\textquotesingle{}{\bfseries Q\+U\+I\+T!}\textquotesingle{} causes service to terminate.\+\_\+ \+\_\+\textquotesingle{}$\ast$$\ast$\+A\+D\+D $\ast$$\ast$$<$delimited-\/response-\/message-\/string$>$\textquotesingle{} -- add new registry entry into Service\+\_\+ -\/v, --version Version printout. -\/h, --help Show this help screen.
+
+\paragraph*{Display Service.}
+
+
+
+\begin{quote}
+{\bfseries Supports} on the \href{http://arduino-info.wikispaces.com/LCD-Blue-I2C}{\tt \textquotesingle{}Yw\+Robot Arduino $\ast$$\ast$\+L\+C\+M1602$\ast$$\ast$ I\+I\+C V1 L\+C\+D Backpack\textquotesingle{}}
+\begin{DoxyItemize}
+\item which uses the I2\+C controller {\itshape P\+C\+F8574}
+\item example\+: $\ast$$\ast$\+\_\+lcd\+\_\+display\+\_\+service -\/r4 -\/c20 -\/t pcf\+\_\+$\ast$$\ast$
+\item {\bfseries This is the default.} example\+: $\ast$$\ast$\+\_\+lcd\+\_\+display\+\_\+service\+\_\+$\ast$$\ast$ 
+\end{DoxyItemize}\end{quote}
+
+
+\begin{quote}
+{\bfseries Supports} \href{https://www.adafruit.com/products/292}{\tt \textquotesingle{}Adafruit $\ast$$\ast$\+I\+C2/\+S\+P\+I$\ast$$\ast$ L\+C\+D Backpack\textquotesingle{}}
+\begin{DoxyItemize}
+\item which is based on the I2\+C controller {\itshape M\+C\+P23008}
+\item example\+: $\ast$$\ast$\+\_\+lcd\+\_\+display\+\_\+service -\/r4 -\/c20 -\/t mcp\+\_\+$\ast$$\ast$ 
+\end{DoxyItemize}\end{quote}
+
+
+\begin{quote}
+{\bfseries Supports} \href{https://www.adafruit.com/products/1110}{\tt \textquotesingle{}Adafruit R\+G\+B Negative 16x2 L\+C\+D+\+Keypad Kit\textquotesingle{}}
+\begin{DoxyItemize}
+\item which is based on the I2\+C controller $\ast$ M\+C\+P23017$\ast$
+\item example\+: $\ast$$\ast$\+\_\+lcd\+\_\+display\+\_\+service -\/r2 -\/c16 -\/t mc7\+\_\+$\ast$$\ast$
+\item Untested\+: I don\textquotesingle{}t have one to test 
+\end{DoxyItemize}\end{quote}
+
+
+\begin{quote}
+{\bfseries Supports} for \href{https://www.adafruit.com/products/782}{\tt \textquotesingle{}Adafruit $\ast$$\ast$\+U\+S\+B/\+Serial$\ast$$\ast$ L\+C\+D Backpack\textquotesingle{}}
+\begin{DoxyItemize}
+\item which uses $\ast$/dev/tty\+A\+C\+M0$\ast$
+\item example\+: $\ast$$\ast$\+\_\+lcd\+\_\+display\+\_\+service -\/r2 -\/c16 -\/p /dev/tty\+A\+C\+M0 -\/t ser\+\_\+$\ast$$\ast$ 
+\end{DoxyItemize}\end{quote}
+
+
+\begin{quote}
+{\bfseries Supports} for \href{http://www.amazon.com/Shield-Module-For-Raspberry-Arduino/dp/B00WGW48A8}{\tt \textquotesingle{}A\+D / D\+A Shield Module For Raspberry Pi\textquotesingle{}}
+\begin{DoxyItemize}
+\item which is based on the I2\+C controller {\itshape P\+C\+F8591\+T} to access\+:
+\item -\/ on-\/board temperature sensor; {\itshape N\+T\+C, M\+F58103\+J3950, B value 3950\+K, 1 K ohm 5\% Cantherm}
+\item -\/ on-\/board light sensors; {\itshape G\+L5537-\/1 Cd\+S Photoresistor}
+\item example\+: $\ast$$\ast$\+\_\+a2d\+\_\+display\+\_\+client -\/i 73\+\_\+$\ast$$\ast$ 
+\end{DoxyItemize}\end{quote}
+
+
+\paragraph*{lcd\+\_\+display\+\_\+service --help}
+
+\begin{DoxyVerb}lcd_display_service -- LCD 4x20 Display Provider.
+          Skoona Development <skoona@gmail.com>
+Usage:
+  lcd_display_service [-v] [-m 'Welcome Message'] [-r 4|2] [-c 20|16] [-i 39|32] [-t pcf|mcp|ser|mc7] [-p string] [-h|--help]
+
+Options:
+  -r, --rows=dd  Number of rows in physical display.
+  -c, --cols=dd  Number of columns in physical display.
+  -p, --serial-port=string Serial port.       | ['/dev/ttyACM0']
+  -i, --i2c-address=ddd  I2C decimal address. | [0x27=39, 0x20=32]
+  -t, --i2c-chipset=ccc  I2C Chipset.         | [pcf|mcp|ser|mc7]
+  -m, --message  Welcome Message for line 1.
+  -v, --version  Version printout.
+  -h, --help     Show this help screen.
+\end{DoxyVerb}
+
+
+\paragraph*{\mbox{[}lcd$\vert$para$\vert$a2d\mbox{]}\+\_\+display\+\_\+client --help}
+
+\begin{DoxyVerb}lcd_display_client -- Send messages to display service.
+          Skoona Development <skoona@gmail.com>
+Usage:
+  lcd_display_client [-v] [-m 'text msg for display'] [-u] [-n] [-a 'my_service_name'] [-h|--help]
+  lcd_display_client -u -m 'Please show this on shared display.'
+  lcd_display_client -u -m 'Please show this on shared display.' -a 'ser_display_service'
+  lcd_display_client -u -n 60 -a 'ser_display_service'
+  lcd_display_client -u -n 60 -a 'mcp_display_service'
+  para_display_client -n 330
+  a2d_display_client -i 73 -n 330
+
+Options:
+  -a, --alt-service-name=my_service_name
+                          *lcd_display_service* is default, use this to change name.
+  -m, --message           Message to send to display, default: *$ uname -a output*
+      _'**QUIT!**' causes service to terminate._
+  -n, --non-stop=1|300    Continue to send updates every DD seconds until ctrl-break.
+  -u, --unique-registry   List unique entries from all responses.
+  -i, --i2c-address=ddd   I2C decimal address. | [0x49=73, 0x20=32]         
+  -v, --version           Version printout.
+  -h, --help              Show this help screen.
+\end{DoxyVerb}
+
+
+\subsection*{\#\# Build\+: Autotools project }
+
+Requires \href{https://projects.drogon.net/raspberry-pi/wiringpi/download-and-install/}{\tt Wiring\+Pi} and assume the Pi is using \href{https://www.raspberrypi.org/downloads/}{\tt Raspbian}. \begin{DoxyVerb}$ autoreconf -isfv            *Should not be required: use only if .configure produces errors*
+$ ./configure
+$ make
+$ sudo make install
+\end{DoxyVerb}
+
+
+{\itshape Only lcd\+\_\+display\+\_\+service requires {\bfseries Wiring\+Pi}}, builds automatically determine if wiring\+Pi is available and build what is available to build.
+
+\subsection*{\#\# Notes\+: }
+
+
+\begin{DoxyItemize}
+\item Wiring\+Pi is a required library for display\+\_\+service and some of the disply clients. If Wiring\+P\+I is not present, which is the case with O\+S\+X and most Linuxs, then the autoconf will build the udp\+\_\+locator\+\_\+service and a limited set of clients. When Wiring\+Pi is available all services and clients are built.
+\item Planning to write {\itshape systemd} unit scripts as part of package, add the following to rc.\+local for now.
+\begin{DoxyItemize}
+\item \textquotesingle{}/$<$path$>$/udp\+\_\+locator\+\_\+service $>$$>$ /tmp/udp\+\_\+locator\+\_\+service.log 2$>$\&1 \&\textquotesingle{}
+\end{DoxyItemize}
+\item S\+I\+N\+G\+L\+E Q\+U\+O\+T\+E\+S vs double quotes work a lot better for command line options.
+\end{DoxyItemize}
+
+\subsection*{\#\# Known Issues\+: }
+
+\begin{quote}
+08/08/2015 Found that concurrent I2\+C operations for L\+C\+D updates and reads from $\ast$/sys/class/thermal/thermal\+\_\+zone0/temp$\ast$ cause the {\itshape lcd\+\_\+display\+\_\+service} to lockup with a process state of {\itshape uninterruptible sleep}. This is caused by the R\+Pi\textquotesingle{}s internal firmware, with no immediate resolution. To work around this issue, I have removed calls to get\+Cpu\+Temp() from the lcd\+\_\+display\+\_\+service program.\end{quote}

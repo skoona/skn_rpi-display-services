@@ -4,7 +4,7 @@
 <plist version="1.0">
 <dict>
      <key>CFBundleName</key>
-     <string>RPi LCD DisplayService</string>
+     <string>RPi Locator and Display Services</string>
      <key>CFBundleIdentifier</key>
      <string>net.skoona.skn_rpi-locator-services</string>
      <key>CFBundleVersion</key>

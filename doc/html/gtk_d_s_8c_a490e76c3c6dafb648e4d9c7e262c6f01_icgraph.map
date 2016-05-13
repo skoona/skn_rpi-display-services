@@ -1,0 +1,6 @@
+<map id="ui_update_status_bar" name="ui_update_status_bar">
+<area shape="rect" id="node2" href="$gtk_d_s_8c.html#a59dc09019be8c82552e6caa6c8d4e31a" title="cb_gssdp_registry_request\l_handler" alt="" coords="203,5,384,44"/>
+<area shape="rect" id="node4" href="$gtk_d_s_8c.html#a4babcdeddd57af66ed787d2cb3096b58" title="cb_message_request\l_handler" alt="" coords="219,68,368,107"/>
+<area shape="rect" id="node5" href="$gtk_d_s_8c.html#a70e4973ceefb64ba6b06b026d5faa292" title="cb_registry_request\l_handler" alt="" coords="224,131,363,169"/>
+<area shape="rect" id="node3" href="$gtk_d_s_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="432,75,483,100"/>
+</map>

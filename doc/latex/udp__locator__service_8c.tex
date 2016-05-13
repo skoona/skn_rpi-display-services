@@ -1,0 +1,112 @@
+\hypertarget{udp__locator__service_8c}{}\section{src/udp\+\_\+locator\+\_\+service.c File Reference}
+\label{udp__locator__service_8c}\index{src/udp\+\_\+locator\+\_\+service.\+c@{src/udp\+\_\+locator\+\_\+service.\+c}}
+{\ttfamily \#include \char`\"{}skn\+\_\+network\+\_\+helpers.\+h\char`\"{}}\\*
+Include dependency graph for udp\+\_\+locator\+\_\+service.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{udp__locator__service_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{udp__locator__service_8c_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{udp__locator__service_8c_a0ddf1224851353fc92bfbff6f499fa97}{}\index{udp\+\_\+locator\+\_\+service.\+c@{udp\+\_\+locator\+\_\+service.\+c}!main@{main}}
+\index{main@{main}!udp\+\_\+locator\+\_\+service.\+c@{udp\+\_\+locator\+\_\+service.\+c}}
+\subsubsection[{main(int argc, char $\ast$argv[])}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\label{udp__locator__service_8c_a0ddf1224851353fc92bfbff6f499fa97}
+\hyperlink{udp__locator__service_8c}{udp\+\_\+locator\+\_\+service.\+c}
+\begin{DoxyItemize}
+\item Server
+\end{DoxyItemize}
+
+cmdline\+: ./udp\+\_\+locator\+\_\+service -\/m \char`\"{}$<$delimited-\/response-\/message-\/string$>$\char`\"{}
+
+delimited-\/response-\/message-\/string \+: required order -\/$>$ name,ip,port,line-\/delimiter... format\+: \char`\"{}name=$<$service-\/name$>$,ip=$<$service-\/ipaddress$>$ddd.\+ddd.\+ddd.\+ddd,port=$<$service-\/portnumber$>$ddddd $<$line-\/delimiter$>$\char`\"{} name=$<$service-\/name$>$ text\+\_\+string\+\_\+with\+\_\+no\+\_\+spaces ip=$<$service-\/ipaddress$>$ ddd.\+ddd.\+ddd.\+ddd port=$<$service-\/portnumber$>$ ddddd R\+E\+Q\+U\+I\+R\+E\+D $<$line-\/delimiter$>$ is one of these \textquotesingle{}$\vert$\textquotesingle{}, \textquotesingle{}\textquotesingle{}, \textquotesingle{};\textquotesingle{}
+
+example\+: -\/m \char`\"{}name=lcd\+\_\+display\+\_\+service,ip=192.\+168.\+1.\+15,port=48028$\vert$\char`\"{} udp\+\_\+locator\+\_\+service -\/m \char`\"{}mame=rpi\+\_\+locator\+\_\+service, ip=10.\+100.\+1.\+19, port=48028$\vert$name=lcd\+\_\+display\+\_\+service, pip=10.\+100.\+1.\+19, port=48029$\vert$name=rpi\+\_\+locator\+\_\+service, ip=10.\+100.\+1.\+19, port=48028$\vert$name=lcd\+\_\+display\+\_\+service, port=48029$\vert$\char`\"{} 
+
+Definition at line 20 of file udp\+\_\+locator\+\_\+service.\+c.
+
+
+
+References gd\+\_\+ch\+\_\+program\+\_\+name, gd\+\_\+i\+\_\+socket, gd\+\_\+pch\+\_\+effective\+\_\+userid, gd\+\_\+pch\+\_\+message, gi\+\_\+exit\+\_\+flag, P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N, S\+D\+\_\+\+E\+M\+E\+R\+G, S\+D\+\_\+\+N\+O\+T\+I\+C\+E, service\+\_\+registry\+\_\+entry\+\_\+response\+\_\+message\+\_\+log(), service\+\_\+registry\+\_\+provider(), service\+\_\+registry\+\_\+valiadate\+\_\+response\+\_\+format(), signals\+\_\+cleanup(), signals\+\_\+init(), S\+K\+N\+\_\+\+F\+I\+N\+D\+\_\+\+R\+P\+I\+\_\+\+P\+O\+R\+T, skn\+\_\+get\+\_\+userids(), skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line(), skn\+\_\+program\+\_\+name\+\_\+and\+\_\+description\+\_\+set(), skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+broadcast\+\_\+socket(), and S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+F\+F.
+
+
+\begin{DoxyCode}
+21 \{
+22     \textcolor{keywordtype}{int} exit\_code = EXIT\_SUCCESS;
+23     \textcolor{keywordtype}{char} response[\hyperlink{cmd_d_c_8c_a352051a682a5205841c1bda6e30bb30d}{SZ\_COMM\_BUFF}];
+24 
+25     memset(response, 0, \textcolor{keyword}{sizeof}(response));
+26 
+27     \hyperlink{skn__network__helpers_8c_ac2672efa5ece276743c6558dfe82d01a}{skn\_program\_name\_and\_description\_set}(
+28             \textcolor{stringliteral}{"udp\_locator\_service"},
+29             \textcolor{stringliteral}{"Provides IPv4 Address/Port Service info."}
+30             );
+31 
+32     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a665c441c1f789eb555b1c23ed43de890}{skn\_handle\_locator\_command\_line}(argc, argv) == EXIT\_FAILURE) \{
+33         exit(EXIT\_FAILURE);
+34     \}
+35     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a0bb2e7571c22c0455842aba8cf1d97dc}{gd\_pch\_message} != NULL) \{
+36         strncpy(response, \hyperlink{skn__network__helpers_8c_a0bb2e7571c22c0455842aba8cf1d97dc}{gd\_pch\_message}, \textcolor{keyword}{sizeof}(response));
+37         free(\hyperlink{skn__network__helpers_8c_a0bb2e7571c22c0455842aba8cf1d97dc}{gd\_pch\_message}); \textcolor{comment}{// from strdup()}
+38         \hyperlink{skn__network__helpers_8c_a0bb2e7571c22c0455842aba8cf1d97dc}{gd\_pch\_message} = response;
+39     \}
+40     \hyperlink{skn__network__helpers_8c_a63e61152e590620edc7757d782c60a79}{skn\_get\_userids}();
+41     skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"%s-%s is in startup mode as user(%s)"}, 
+      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, \hyperlink{cmd_d_c_8c_aa326a05d5e30f9e9a4bb0b4469d5d0c0}{PACKAGE\_VERSION}, 
+      \hyperlink{skn__network__helpers_8c_af2e3031da262a9990e0ef895e20cdd0e}{gd\_pch\_effective\_userid});
+42 
+43     \textcolor{keywordflow}{if} ((strlen(response) > 16) && (\hyperlink{skn__network__helpers_8c_a866cf7e5524cc49a76448c59395a622e}{service\_registry\_valiadate\_response\_format}
+      (response) == EXIT\_FAILURE)) \{
+44         skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"Message format is invalid! cannot proceed."});
+45         \hyperlink{skn__network__helpers_8c_ad0e63e9d3365fb8818a5ca21179abb3e}{service\_registry\_entry\_response\_message\_log}(response);
+46         exit(EXIT\_FAILURE);
+47     \}
+48 
+49     \textcolor{comment}{/* Initialize Signal handler */}
+50     \hyperlink{skn__network__helpers_8c_a6af44fa0e0746d3d2a804fea1e84dacd}{signals\_init}();
+51 
+52     \hyperlink{skn__network__helpers_8c_a62c4e1910a12d9a04a12768154853712}{gd\_i\_socket} = \hyperlink{skn__network__helpers_8c_a4f9f7e0f50cb3073d9c6e5a6a0d5240d}{skn\_udp\_host\_create\_broadcast\_socket}(
+      \hyperlink{skn__common__headers_8h_a811ab3c1ca8c51a13852fdbd51707202}{SKN\_FIND\_RPI\_PORT}, 20.0);
+53     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a62c4e1910a12d9a04a12768154853712}{gd\_i\_socket} == EXIT\_FAILURE) \{
+54         skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"Application Host Init Failed! ExitCode=%d"}, exit\_code);
+55         \hyperlink{skn__network__helpers_8c_ac256e2066453ab0ff82322aa24b161df}{signals\_cleanup}(\hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag});
+56         exit(EXIT\_FAILURE);     
+57     \}
+58 
+59     exit\_code = \hyperlink{skn__network__helpers_8c_ad148412119d5d8373da1a6859aafda41}{service\_registry\_provider}(\hyperlink{skn__network__helpers_8c_a62c4e1910a12d9a04a12768154853712}{gd\_i\_socket}, response);
+60         skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"Application ExitCode=%d"}, exit\_code);
+61     
+62     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a62c4e1910a12d9a04a12768154853712}{gd\_i\_socket}) close(\hyperlink{skn__network__helpers_8c_a62c4e1910a12d9a04a12768154853712}{gd\_i\_socket});
+63     \hyperlink{skn__network__helpers_8c_ac256e2066453ab0ff82322aa24b161df}{signals\_cleanup}(\hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag});
+64 
+65     skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"\(\backslash\)n============================\(\backslash\)nShutdown Complete\(\backslash\)n
+      ============================\(\backslash\)n"});
+66 
+67     exit(exit\_code);
+68 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{udp__locator__service_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph}
+\end{center}
+\end{figure}
+
+

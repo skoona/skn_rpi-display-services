@@ -25,7 +25,6 @@ var skn__rpi__helpers_8c =
     [ "skn_scroller_scroll_lines", "skn__rpi__helpers_8c.html#a4f78720f41ceb03e6b6111a358c7aea1", null ],
     [ "skn_scroller_wrap_blanks", "skn__rpi__helpers_8c.html#ae945b3a41d43db4d0c52f522d663d415", null ],
     [ "gd_i_cols", "skn__rpi__helpers_8c.html#ac934aabd8dd134e724c62e1264afa549", null ],
-    [ "gd_i_i2c_address", "skn__rpi__helpers_8c.html#a2c55396bf337471f9f99a939974fcdbe", null ],
     [ "gd_i_rows", "skn__rpi__helpers_8c.html#a3599398fb56285a3069b55791e6bb953", null ],
     [ "gd_pch_device_name", "skn__rpi__helpers_8c.html#a236d69bc821c60a396d02099e92d22bb", null ],
     [ "gd_pch_serial_port", "skn__rpi__helpers_8c.html#aa8460852bd6c3559cc5ad4bd58806ba2", null ],

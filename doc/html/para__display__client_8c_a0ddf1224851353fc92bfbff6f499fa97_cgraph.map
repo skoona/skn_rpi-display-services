@@ -1,0 +1,27 @@
+<map id="main" name="main">
+<area shape="rect" id="node2" href="$para__display__client_8c.html#a4c2fc3b5855778dda51d1e09e20f23a2" title="GetConstants" alt="" coords="139,5,242,31"/>
+<area shape="rect" id="node3" href="$para__display__client_8c.html#a107d9d8f583bbd2c3a2e5a71b6643afa" title="GetTemp" alt="" coords="152,55,228,80"/>
+<area shape="rect" id="node4" href="$skn__network__helpers_8c.html#a819c12fc7c8ff576b1aaad69bc098840" title="service_registry_destroy" alt="" coords="107,104,273,129"/>
+<area shape="rect" id="node5" href="$skn__network__helpers_8c.html#a88465ff1322cb437fd3b7a1e036fd017" title="service_registry_entry\l_count" alt="" coords="114,153,266,192"/>
+<area shape="rect" id="node6" href="$skn__network__helpers_8c.html#ab5ed70a05f4e20dac13298ae16530069" title="service_registry_find\l_entry" alt="" coords="803,240,947,279"/>
+<area shape="rect" id="node7" href="$skn__network__helpers_8c.html#a8a291f1cb8d18e45a3e9b6bc9e3798a6" title="service_registry_get\l_via_udp_broadcast" alt="" coords="119,268,261,307"/>
+<area shape="rect" id="node16" href="$skn__network__helpers_8c.html#ac256e2066453ab0ff82322aa24b161df" title="signals_cleanup" alt="" coords="132,331,249,356"/>
+<area shape="rect" id="node17" href="$skn__network__helpers_8c.html#a6af44fa0e0746d3d2a804fea1e84dacd" title="signals_init" alt="" coords="147,492,234,517"/>
+<area shape="rect" id="node19" href="$skn__network__helpers_8c.html#a9b607e33be05bf0479127f233a58fab7" title="skn_get_number_of_cpu\l_cores" alt="" coords="106,429,274,468"/>
+<area shape="rect" id="node20" href="$skn__network__helpers_8c.html#a665c441c1f789eb555b1c23ed43de890" title="skn_handle_locator\l_command_line" alt="" coords="122,792,259,831"/>
+<area shape="rect" id="node22" href="$skn__network__helpers_8c.html#ac2672efa5ece276743c6558dfe82d01a" title="skn_program_name_and\l_description_set" alt="" coords="105,541,275,580"/>
+<area shape="rect" id="node23" href="$skn__network__helpers_8c.html#a922ccd04b4dc28211ff08c4c62462544" title="skn_service_request\l_create" alt="" coords="118,604,262,643"/>
+<area shape="rect" id="node24" href="$skn__network__helpers_8c.html#a4f9f7e0f50cb3073d9c6e5a6a0d5240d" title="skn_udp_host_create\l_broadcast_socket" alt="" coords="116,667,265,705"/>
+<area shape="rect" id="node25" href="$skn__network__helpers_8c.html#a25427bc0b7f087d1135c92dd3704f210" title="skn_udp_host_create\l_regular_socket" alt="" coords="116,729,265,768"/>
+<area shape="rect" id="node26" href="$skn__network__helpers_8c.html#ad8304e97f9bccee1cd899a61b91ae677" title="skn_udp_service_request" alt="" coords="104,380,277,405"/>
+<area shape="rect" id="node8" href="$skn__network__helpers_8c.html#a0b4821586a5c3d59096cb20dc6b28b2a" title="get_broadcast_ip_array" alt="" coords="342,331,503,356"/>
+<area shape="rect" id="node11" href="$skn__network__helpers_8c.html#afb305f4b4db81aad61bd5e4e6ecaf6fd" title="service_registry_create" alt="" coords="343,380,502,405"/>
+<area shape="rect" id="node12" href="$skn__network__helpers_8c.html#ad7f2202ecfe8bb131545b23ea3c26e91" title="skn_duration_in_milliseconds" alt="" coords="325,429,520,455"/>
+<area shape="rect" id="node13" href="$skn__network__helpers_8c.html#a25149d495d462b7600eb6715da868200" title="service_registry_response\l_parse" alt="" coords="334,268,511,307"/>
+<area shape="rect" id="node9" href="$skn__network__helpers_8c.html#a6d284e9250411e031cfa4ecb19583696" title="get_default_interface_name" alt="" coords="568,445,755,471"/>
+<area shape="rect" id="node10" href="$skn__network__helpers_8c.html#a925d0a1de13d0d0178e52f0d6be4b97f" title="skn_strip" alt="" coords="837,395,912,420"/>
+<area shape="rect" id="node14" href="$skn__network__helpers_8c.html#ae671be512539874689abbab598f9f65a" title="service_registry_entry\l_create_helper" alt="" coords="586,331,738,369"/>
+<area shape="rect" id="node15" href="$skn__network__helpers_8c.html#a5e51f7d19b5d689be44036a57e056e7a" title="service_registry_entry\l_create" alt="" coords="586,268,738,307"/>
+<area shape="rect" id="node18" href="$skn__network__helpers_8c.html#a49f6d3bb9d22d5b9cf5c7eb6175318d1" title="exit_handler" alt="" coords="376,492,470,517"/>
+<area shape="rect" id="node21" href="$skn__network__helpers_8c.html#aabf69b42c470c2372e0854132e22cc70" title="skn_locator_print_usage" alt="" coords="339,799,506,824"/>
+</map>

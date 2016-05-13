@@ -1,0 +1,5 @@
+<map id="cb_udp_broadcast_response_handler" name="cb_udp_broadcast_response_handler">
+<area shape="rect" id="node2" href="$gtk_d_s_8c.html#a6ea2e6ee5c8f0d51a98539842634f217" title="skn_get_timestamp" alt="" coords="257,5,394,31"/>
+<area shape="rect" id="node3" href="$gtk_d_s_8c.html#a2dcc830aabe5f0cfffb3077fc0cba6a5" title="skn_gio_condition_to\l_string" alt="" coords="252,55,398,93"/>
+<area shape="rect" id="node4" href="$gtk_d_s_8c.html#a568a9919cfd345f6c1a41a2ec7c4b1ca" title="udp_registry_response\l_parser" alt="" coords="247,117,404,156"/>
+</map>

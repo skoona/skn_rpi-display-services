@@ -1,0 +1,1560 @@
+\hypertarget{skn__rpi__helpers_8h}{}\section{src/skn\+\_\+rpi\+\_\+helpers.h File Reference}
+\label{skn__rpi__helpers_8h}\index{src/skn\+\_\+rpi\+\_\+helpers.\+h@{src/skn\+\_\+rpi\+\_\+helpers.\+h}}
+{\ttfamily \#include \char`\"{}skn\+\_\+common\+\_\+headers.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$sys/utsname.\+h$>$}\\*
+{\ttfamily \#include $<$wiring\+Pi.\+h$>$}\\*
+{\ttfamily \#include $<$pcf8574.\+h$>$}\\*
+{\ttfamily \#include $<$mcp23008.\+h$>$}\\*
+{\ttfamily \#include $<$mcp23017.\+h$>$}\\*
+{\ttfamily \#include $<$wiring\+Serial.\+h$>$}\\*
+{\ttfamily \#include $<$lcd.\+h$>$}\\*
+Include dependency graph for skn\+\_\+rpi\+\_\+helpers.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__rpi__helpers_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{skn__rpi__helpers_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{skn__common__headers_8h_a3d00a0f207e96ee5369c709b45d6a2e6}{P\+L\+C\+D\+Device} \hyperlink{skn__rpi__helpers_8h_aa70aa8be6de3ef378d2d92839dae79c0}{skn\+\_\+device\+\_\+manager\+\_\+\+Serial\+Port} (\hyperlink{skn__common__headers_8h_a9e176eedaf378010a6a48e6a242fc6a0}{P\+Display\+Manager} pdm)
+\item 
+\hyperlink{skn__common__headers_8h_a3d00a0f207e96ee5369c709b45d6a2e6}{P\+L\+C\+D\+Device} \hyperlink{skn__rpi__helpers_8h_a343fa5773d09ffd114adc3425f3c6bde}{skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23008} (\hyperlink{skn__common__headers_8h_a9e176eedaf378010a6a48e6a242fc6a0}{P\+Display\+Manager} pdm)
+\item 
+\hyperlink{skn__common__headers_8h_a3d00a0f207e96ee5369c709b45d6a2e6}{P\+L\+C\+D\+Device} \hyperlink{skn__rpi__helpers_8h_aeeb817184dce0d96e05d4cdd6940db70}{skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23017} (\hyperlink{skn__common__headers_8h_a9e176eedaf378010a6a48e6a242fc6a0}{P\+Display\+Manager} pdm)
+\item 
+\hyperlink{skn__common__headers_8h_a3d00a0f207e96ee5369c709b45d6a2e6}{P\+L\+C\+D\+Device} \hyperlink{skn__rpi__helpers_8h_a9a6dccab4be976ca76eb960076dca0a0}{skn\+\_\+device\+\_\+manager\+\_\+\+P\+C\+F8574} (\hyperlink{skn__common__headers_8h_a9e176eedaf378010a6a48e6a242fc6a0}{P\+Display\+Manager} pdm)
+\item 
+\hyperlink{skn__common__headers_8h_a9e176eedaf378010a6a48e6a242fc6a0}{P\+Display\+Manager} \hyperlink{skn__rpi__helpers_8h_abc8758d786bdcff4bb0ec7ab05adfca1}{skn\+\_\+get\+\_\+display\+\_\+manager\+\_\+ref} ()
+\item 
+int \hyperlink{skn__rpi__helpers_8h_a0e93b40f29ab2df743c934be34500c15}{skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work} (char $\ast$client\+\_\+request\+\_\+message)
+\item 
+\hyperlink{skn__common__headers_8h_a754e9456a497a668b8d959ed2cbe9ec3}{P\+Display\+Line} \hyperlink{skn__rpi__helpers_8h_a73890d642bf9cbb1de78675d587d79a3}{skn\+\_\+display\+\_\+manager\+\_\+add\+\_\+line} (\hyperlink{skn__common__headers_8h_a9e176eedaf378010a6a48e6a242fc6a0}{P\+Display\+Manager} pdmx, char $\ast$client\+\_\+request\+\_\+message)
+\item 
+int \hyperlink{skn__rpi__helpers_8h_a4f78720f41ceb03e6b6111a358c7aea1}{skn\+\_\+scroller\+\_\+scroll\+\_\+lines} (\hyperlink{skn__common__headers_8h_a754e9456a497a668b8d959ed2cbe9ec3}{P\+Display\+Line} pdl, int lcd\+\_\+handle, int line)
+\item 
+char $\ast$ \hyperlink{skn__rpi__helpers_8h_af2cd8436ec8dca06473441659fb03f75}{skn\+\_\+scroller\+\_\+pad\+\_\+right} (char $\ast$buffer)
+\item 
+char $\ast$ \hyperlink{skn__rpi__helpers_8h_ae945b3a41d43db4d0c52f522d663d415}{skn\+\_\+scroller\+\_\+wrap\+\_\+blanks} (char $\ast$buffer)
+\item 
+int \hyperlink{skn__rpi__helpers_8h_a9de94515b5dc0bcdcb813f6b17a6956e}{skn\+\_\+signal\+\_\+manager\+\_\+startup} (pthread\+\_\+t $\ast$psig\+\_\+thread, sigset\+\_\+t $\ast$psignal\+\_\+set, long $\ast$l\+\_\+thread\+\_\+complete)
+\item 
+int \hyperlink{skn__rpi__helpers_8h_aa3e16c859e3977df7056461e57fdf683}{skn\+\_\+signal\+\_\+manager\+\_\+shutdown} (pthread\+\_\+t sig\+\_\+thread, sigset\+\_\+t $\ast$psignal\+\_\+set, long $\ast$l\+\_\+thread\+\_\+complete)
+\item 
+void \hyperlink{skn__rpi__helpers_8h_a18bf9699f8b6ad05aff925d9deb31be1}{skn\+\_\+device\+\_\+manager\+\_\+backlight} (int af\+\_\+backlight, int state)
+\item 
+int \hyperlink{skn__rpi__helpers_8h_a58c9a50b0307d45138f4a6f2e6ba7a76}{skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup} (\hyperlink{skn__common__headers_8h_a9e176eedaf378010a6a48e6a242fc6a0}{P\+Display\+Manager} pdm, char $\ast$device\+\_\+name)
+\item 
+int \hyperlink{skn__rpi__helpers_8h_aad63cb41e99a588cea9609a100cc9333}{skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+shutdown} (\hyperlink{skn__common__headers_8h_a9e176eedaf378010a6a48e6a242fc6a0}{P\+Display\+Manager} pdm)
+\item 
+int \hyperlink{skn__rpi__helpers_8h_aed93e422e5b2cd74ea04177db841fa37}{skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line} (int argc, char $\ast$$\ast$argv)
+\item 
+int \hyperlink{skn__rpi__helpers_8h_a0410c7c96c2188c945cea294ae074ff9}{generate\+\_\+rpi\+\_\+model\+\_\+info} (char $\ast$msg)
+\item 
+int \hyperlink{skn__rpi__helpers_8h_aec6fcc1d0ae2035966ea7b3f624050cd}{generate\+\_\+cpu\+\_\+temps\+\_\+info} (char $\ast$msg)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{skn__rpi__helpers_8h_a3599398fb56285a3069b55791e6bb953}{gd\+\_\+i\+\_\+rows}
+\item 
+int \hyperlink{skn__rpi__helpers_8h_ac934aabd8dd134e724c62e1264afa549}{gd\+\_\+i\+\_\+cols}
+\item 
+int \hyperlink{skn__rpi__helpers_8h_a2c55396bf337471f9f99a939974fcdbe}{gd\+\_\+i\+\_\+i2c\+\_\+address}
+\item 
+char $\ast$ \hyperlink{skn__rpi__helpers_8h_aa8460852bd6c3559cc5ad4bd58806ba2}{gd\+\_\+pch\+\_\+serial\+\_\+port}
+\item 
+char $\ast$ \hyperlink{skn__rpi__helpers_8h_a236d69bc821c60a396d02099e92d22bb}{gd\+\_\+pch\+\_\+device\+\_\+name}
+\item 
+\hyperlink{skn__common__headers_8h_a9e176eedaf378010a6a48e6a242fc6a0}{P\+Display\+Manager} \hyperlink{skn__rpi__helpers_8h_ab1d9c73f13a8c60f54b1df15a34a8e64}{gp\+\_\+structure\+\_\+pdm}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{skn__rpi__helpers_8h_aec6fcc1d0ae2035966ea7b3f624050cd}{}\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!generate\+\_\+cpu\+\_\+temps\+\_\+info@{generate\+\_\+cpu\+\_\+temps\+\_\+info}}
+\index{generate\+\_\+cpu\+\_\+temps\+\_\+info@{generate\+\_\+cpu\+\_\+temps\+\_\+info}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
+\subsubsection[{generate\+\_\+cpu\+\_\+temps\+\_\+info(char $\ast$msg)}]{\setlength{\rightskip}{0pt plus 5cm}int generate\+\_\+cpu\+\_\+temps\+\_\+info (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{msg}
+\end{DoxyParamCaption}
+)}\label{skn__rpi__helpers_8h_aec6fcc1d0ae2035966ea7b3f624050cd}
+D\+O N\+O\+T U\+S\+E T\+H\+I\+S I\+N M\+O\+D\+U\+L\+E\+S T\+H\+A\+T H\+A\+N\+D\+L\+E A I2\+C Based L\+C\+D R\+Pi cannot handle I2\+C and Get\+Cpu\+Temp() without locking the process in an uniterrupted sleep; forcing a power cycle. 
+
+Definition at line 49 of file lcd\+\_\+display\+\_\+client.\+c.
+
+
+
+References \+\_\+temps\+::c, \+\_\+temps\+::f, get\+Cpu\+Temps(), and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F.
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+49                                        \{
+50     \textcolor{keyword}{static} \hyperlink{struct__temps}{CpuTemps} cpuTemp;
+51     \textcolor{keywordtype}{int} mLen = 0;
+52 
+53     memset(&cpuTemp, 0, \textcolor{keyword}{sizeof}(\hyperlink{struct__temps}{CpuTemps}));
+54     \textcolor{keywordflow}{if} ( \hyperlink{lcd__display__client_8c_aac32062aeca841944e9d1016c8db5e6a}{getCpuTemps}(&cpuTemp) != -1 ) \{
+55         mLen = snprintf(msg, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}-1, \textcolor{stringliteral}{"%s %s"}, cpuTemp.\hyperlink{struct__temps_add683444c2985b00bd51bc69e9026a69}{c}, cpuTemp.
+      \hyperlink{struct__temps_a9de7d7f00c6df40b61735f25e3247b40}{f});
+56     \} \textcolor{keywordflow}{else} \{
+57         mLen = snprintf(msg, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}-1, \textcolor{stringliteral}{"Temp: N/A"});
+58     \}
+59 
+60     \textcolor{keywordflow}{return} mLen;
+61 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=325pt]{skn__rpi__helpers_8h_aec6fcc1d0ae2035966ea7b3f624050cd_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=285pt]{skn__rpi__helpers_8h_aec6fcc1d0ae2035966ea7b3f624050cd_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__rpi__helpers_8h_a0410c7c96c2188c945cea294ae074ff9}{}\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!generate\+\_\+rpi\+\_\+model\+\_\+info@{generate\+\_\+rpi\+\_\+model\+\_\+info}}
+\index{generate\+\_\+rpi\+\_\+model\+\_\+info@{generate\+\_\+rpi\+\_\+model\+\_\+info}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
+\subsubsection[{generate\+\_\+rpi\+\_\+model\+\_\+info(char $\ast$msg)}]{\setlength{\rightskip}{0pt plus 5cm}int generate\+\_\+rpi\+\_\+model\+\_\+info (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{msg}
+\end{DoxyParamCaption}
+)}\label{skn__rpi__helpers_8h_a0410c7c96c2188c945cea294ae074ff9}
+
+
+Definition at line 320 of file skn\+\_\+rpi\+\_\+helpers.\+c.
+
+
+
+References gd\+\_\+ch\+\_\+intf\+Name, gd\+\_\+ch\+\_\+ip\+Address, skn\+\_\+get\+\_\+number\+\_\+of\+\_\+cpu\+\_\+cores(), and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F.
+
+
+
+Referenced by skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work().
+
+
+\begin{DoxyCode}
+320                                        \{
+321     \textcolor{keywordtype}{int} model = 0, rev = 0, mem = 0, maker = 0, overVolted = 0, mLen = 0;
+322     \textcolor{keywordtype}{char} * message = \textcolor{stringliteral}{"Device has an unknown model type.\(\backslash\)n"};
+323 
+324     piBoardId(&model, &rev, &mem, &maker, &overVolted);
+325     \textcolor{keywordflow}{if} (model == PI\_MODEL\_UNKNOWN) \{
+326         mLen = snprintf(msg, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} -1, \textcolor{stringliteral}{"%s"}, message);
+327     \} \textcolor{keywordflow}{else} \{
+328         mLen = snprintf(msg, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} -1, \textcolor{stringliteral}{"Device: %s, Cpus: %ld, Rev: %s, Mem: %dMB,
+       Maker: %s %s, %s:%s"}, piModelNames[model],
+329                         \hyperlink{skn__network__helpers_8c_a9b607e33be05bf0479127f233a58fab7}{skn\_get\_number\_of\_cpu\_cores}(), piRevisionNames[rev], mem
+      , piMakerNames[maker], overVolted ? \textcolor{stringliteral}{"[OV]"} : \textcolor{stringliteral}{""}, \hyperlink{skn__network__helpers_8c_ac317f6dfab7bc91b9e2d717a7a1b8fcb}{gd\_ch\_intfName},
+330                         \hyperlink{skn__network__helpers_8c_aee48900a4a99c0480e3f1dfb6c4f38c7}{gd\_ch\_ipAddress});
+331     \}
+332     \textcolor{keywordflow}{return} mLen;
+333 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__rpi__helpers_8h_a0410c7c96c2188c945cea294ae074ff9_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__rpi__helpers_8h_a0410c7c96c2188c945cea294ae074ff9_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__rpi__helpers_8h_a18bf9699f8b6ad05aff925d9deb31be1}{}\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+device\+\_\+manager\+\_\+backlight@{skn\+\_\+device\+\_\+manager\+\_\+backlight}}
+\index{skn\+\_\+device\+\_\+manager\+\_\+backlight@{skn\+\_\+device\+\_\+manager\+\_\+backlight}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
+\subsubsection[{skn\+\_\+device\+\_\+manager\+\_\+backlight(int af\+\_\+backlight, int state)}]{\setlength{\rightskip}{0pt plus 5cm}void skn\+\_\+device\+\_\+manager\+\_\+backlight (
+\begin{DoxyParamCaption}
+\item[{int}]{af\+\_\+backlight, }
+\item[{int}]{state}
+\end{DoxyParamCaption}
+)}\label{skn__rpi__helpers_8h_a18bf9699f8b6ad05aff925d9deb31be1}
+
+
+Definition at line 184 of file skn\+\_\+rpi\+\_\+helpers.\+c.
+
+
+
+Referenced by skn\+\_\+device\+\_\+manager\+\_\+init\+\_\+i2c(), and skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+shutdown().
+
+
+\begin{DoxyCode}
+184                                                                \{
+185     digitalWrite(af\_backlight, state);
+186 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__rpi__helpers_8h_a18bf9699f8b6ad05aff925d9deb31be1_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__rpi__helpers_8h_a58c9a50b0307d45138f4a6f2e6ba7a76}{}\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup@{skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup}}
+\index{skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup@{skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
+\subsubsection[{skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup(\+P\+Display\+Manager pdm, char $\ast$device\+\_\+name)}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+Display\+Manager}}]{pdm, }
+\item[{char $\ast$}]{device\+\_\+name}
+\end{DoxyParamCaption}
+)}\label{skn__rpi__helpers_8h_a58c9a50b0307d45138f4a6f2e6ba7a76}
+
+
+Definition at line 234 of file skn\+\_\+rpi\+\_\+helpers.\+c.
+
+
+
+References \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::lcd\+\_\+handle, P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R, skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23008(), skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23017(), skn\+\_\+device\+\_\+manager\+\_\+\+P\+C\+F8574(), and skn\+\_\+device\+\_\+manager\+\_\+\+Serial\+Port().
+
+
+
+Referenced by skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work().
+
+
+\begin{DoxyCode}
+234                                                                          \{
+235     \hyperlink{struct___i_i_c_l_c_d}{PLCDDevice} rc = NULL;
+236 
+237     \textcolor{comment}{/*}
+238 \textcolor{comment}{     * Initial I2C Services */}
+239     wiringPiSetupSys();
+240 
+241     \textcolor{keywordflow}{if} (strcmp(device\_name, \textcolor{stringliteral}{"mcp"}) == 0) \{
+242         rc = \hyperlink{skn__rpi__helpers_8c_a343fa5773d09ffd114adc3425f3c6bde}{skn\_device\_manager\_MCP23008}(pdm);
+243     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(device\_name, \textcolor{stringliteral}{"mc7"}) == 0) \{
+244         rc = \hyperlink{skn__rpi__helpers_8c_aeeb817184dce0d96e05d4cdd6940db70}{skn\_device\_manager\_MCP23017}(pdm);
+245     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(device\_name, \textcolor{stringliteral}{"ser"}) == 0) \{
+246         rc = \hyperlink{skn__rpi__helpers_8c_aa70aa8be6de3ef378d2d92839dae79c0}{skn\_device\_manager\_SerialPort}(pdm);
+247     \} \textcolor{keywordflow}{else} \{ \textcolor{comment}{// PCF8574}
+248         rc = \hyperlink{skn__rpi__helpers_8c_a9a6dccab4be976ca76eb960076dca0a0}{skn\_device\_manager\_PCF8574}(pdm);
+249     \}
+250 
+251     \textcolor{keywordflow}{if} (rc == NULL) \{
+252         \textcolor{keywordflow}{return} \hyperlink{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{PLATFORM\_ERROR};
+253     \} \textcolor{keywordflow}{else} \{
+254         \textcolor{keywordflow}{return} pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_a6ebc44b98c1483295586660829eb5a43}{lcd\_handle};
+255     \}
+256 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__rpi__helpers_8h_a58c9a50b0307d45138f4a6f2e6ba7a76_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__rpi__helpers_8h_a58c9a50b0307d45138f4a6f2e6ba7a76_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__rpi__helpers_8h_aad63cb41e99a588cea9609a100cc9333}{}\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+shutdown@{skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+shutdown}}
+\index{skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+shutdown@{skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+shutdown}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
+\subsubsection[{skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+shutdown(\+P\+Display\+Manager pdm)}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+shutdown (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+Display\+Manager}}]{pdm}
+\end{DoxyParamCaption}
+)}\label{skn__rpi__helpers_8h_aad63cb41e99a588cea9609a100cc9333}
+
+
+Definition at line 257 of file skn\+\_\+rpi\+\_\+helpers.\+c.
+
+
+
+References \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+backlight, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+blue, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+green, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+red, gd\+\_\+pch\+\_\+device\+\_\+name, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::lcd, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::lcd\+\_\+handle, and skn\+\_\+device\+\_\+manager\+\_\+backlight().
+
+
+
+Referenced by skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work().
+
+
+\begin{DoxyCode}
+257                                                          \{
+258     \textcolor{keywordflow}{if} (strcmp(\textcolor{stringliteral}{"ser"}, \hyperlink{skn__rpi__helpers_8c_a236d69bc821c60a396d02099e92d22bb}{gd\_pch\_device\_name}) == 0) \{
+259         \textcolor{keywordtype}{char} display\_off[] = \{ 0xfe, 0x46 \};
+260         \textcolor{keywordtype}{char} cls[]   = \{ 0xfe, 0x58 \};
+261 
+262         write(pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_a6ebc44b98c1483295586660829eb5a43}{lcd\_handle}, display\_off, \textcolor{keyword}{sizeof}(display\_off));
+263             sleep(1);
+264         write(pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_a6ebc44b98c1483295586660829eb5a43}{lcd\_handle}, cls, \textcolor{keyword}{sizeof}(cls));
+265 
+266         serialClose(pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_a6ebc44b98c1483295586660829eb5a43}{lcd\_handle});
+267     \} \textcolor{keywordflow}{else} \{
+268         lcdClear(pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_a6ebc44b98c1483295586660829eb5a43}{lcd\_handle});
+269         \textcolor{keywordflow}{if} (strcmp(\hyperlink{skn__rpi__helpers_8c_a236d69bc821c60a396d02099e92d22bb}{gd\_pch\_device\_name}, \textcolor{stringliteral}{"mc7"}) == 0) \{
+270             \hyperlink{skn__rpi__helpers_8c_a18bf9699f8b6ad05aff925d9deb31be1}{skn\_device\_manager\_backlight}(pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_a182e9fb6ca9f11b3e0a35628123d46f5}{lcd}.
+      \hyperlink{struct___i_i_c_l_c_d_aca8ab39cfa9f683b2d03269886a0f633}{af\_red}, LOW);
+271             \hyperlink{skn__rpi__helpers_8c_a18bf9699f8b6ad05aff925d9deb31be1}{skn\_device\_manager\_backlight}(pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_a182e9fb6ca9f11b3e0a35628123d46f5}{lcd}.
+      \hyperlink{struct___i_i_c_l_c_d_a70176d63c9065d4186f55ae8328a82d3}{af\_green}, LOW);
+272             \hyperlink{skn__rpi__helpers_8c_a18bf9699f8b6ad05aff925d9deb31be1}{skn\_device\_manager\_backlight}(pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_a182e9fb6ca9f11b3e0a35628123d46f5}{lcd}.
+      \hyperlink{struct___i_i_c_l_c_d_ad64bc4c5fc6a592f161e594f0b2433e1}{af\_blue}, LOW);
+273         \} \textcolor{keywordflow}{else} \{
+274             \hyperlink{skn__rpi__helpers_8c_a18bf9699f8b6ad05aff925d9deb31be1}{skn\_device\_manager\_backlight}(pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_a182e9fb6ca9f11b3e0a35628123d46f5}{lcd}.
+      \hyperlink{struct___i_i_c_l_c_d_ad160086a31276fbaf849855519b9878e}{af\_backlight}, LOW);
+275         \}
+276     \}
+277     \textcolor{keywordflow}{return} EXIT\_SUCCESS;
+278 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=338pt]{skn__rpi__helpers_8h_aad63cb41e99a588cea9609a100cc9333_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__rpi__helpers_8h_aad63cb41e99a588cea9609a100cc9333_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__rpi__helpers_8h_a343fa5773d09ffd114adc3425f3c6bde}{}\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23008@{skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23008}}
+\index{skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23008@{skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23008}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
+\subsubsection[{skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23008(\+P\+Display\+Manager pdm)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+L\+C\+D\+Device} skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23008 (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+Display\+Manager}}]{pdm}
+\end{DoxyParamCaption}
+)}\label{skn__rpi__helpers_8h_a343fa5773d09ffd114adc3425f3c6bde}
+
+
+Definition at line 110 of file skn\+\_\+rpi\+\_\+helpers.\+c.
+
+
+
+References \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+backlight, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+base, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db4, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db5, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db6, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db7, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+e, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+rs, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+rw, \+\_\+\+I\+I\+C\+L\+C\+D\+::cb\+Name, gd\+\_\+i\+\_\+i2c\+\_\+address, \+\_\+\+I\+I\+C\+L\+C\+D\+::i2c\+\_\+address, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::lcd, S\+D\+\_\+\+E\+R\+R, S\+D\+\_\+\+N\+O\+T\+I\+C\+E, \+\_\+\+I\+I\+C\+L\+C\+D\+::setup, skn\+\_\+device\+\_\+manager\+\_\+init\+\_\+i2c(), and S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F.
+
+
+
+Referenced by skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup().
+
+
+\begin{DoxyCode}
+110                                                             \{
+111     \hyperlink{struct___i_i_c_l_c_d}{PLCDDevice} plcd =  NULL;
+112     \textcolor{keywordtype}{int} base = 0;
+113 
+114     \textcolor{keywordflow}{if} (pdm == NULL) \{
+115         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"DeviceManager failed to acquire needed resources. %d:%s"}, errno, strerror
+      (errno));
+116         \textcolor{keywordflow}{return} NULL;
+117     \}
+118 
+119     plcd = (\hyperlink{skn__common__headers_8h_a3d00a0f207e96ee5369c709b45d6a2e6}{PLCDDevice})&pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_a182e9fb6ca9f11b3e0a35628123d46f5}{lcd};
+120     strncpy(plcd->\hyperlink{struct___i_i_c_l_c_d_a3f9347595482a6da5cb5d536d937a554}{cbName}, \textcolor{stringliteral}{"LCDDevice#MCP23008"}, \hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF}-1);
+121     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a2c55396bf337471f9f99a939974fcdbe}{gd\_i\_i2c\_address} != 0) \{
+122         plcd->\hyperlink{struct___i_i_c_l_c_d_a3f3fe8757875939b987ac0c416081551}{i2c\_address} = \hyperlink{skn__network__helpers_8c_a2c55396bf337471f9f99a939974fcdbe}{gd\_i\_i2c\_address};
+123     \} \textcolor{keywordflow}{else} \{
+124         plcd->\hyperlink{struct___i_i_c_l_c_d_a3f3fe8757875939b987ac0c416081551}{i2c\_address} = 0x20;
+125     \}
+126 
+127     skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"DeviceManager using device [%s](0x%02x)"}, plcd->
+      \hyperlink{struct___i_i_c_l_c_d_a3f9347595482a6da5cb5d536d937a554}{cbName}, plcd->\hyperlink{struct___i_i_c_l_c_d_a3f3fe8757875939b987ac0c416081551}{i2c\_address});
+128 
+129     base = plcd->\hyperlink{struct___i_i_c_l_c_d_ae74954b1b96523d617a68e42c2663086}{af\_base} = 100;
+130     plcd->\hyperlink{struct___i_i_c_l_c_d_ad160086a31276fbaf849855519b9878e}{af\_backlight} = base + 7;
+131     plcd->\hyperlink{struct___i_i_c_l_c_d_a896f8305b5c0395ea7f9074904047b32}{af\_e} = base + 2;
+132     plcd->\hyperlink{struct___i_i_c_l_c_d_af738bf1e020daaa5476b917c375e807a}{af\_rs} = base + 1;
+133     plcd->\hyperlink{struct___i_i_c_l_c_d_ad0162f6a3e82c34192c0d901ef0ff6be}{af\_rw} = base + 0;
+134 
+135     plcd->\hyperlink{struct___i_i_c_l_c_d_adbfc88b661d5da527aad6f5bcd45a85c}{af\_db4} = base + 3;
+136     plcd->\hyperlink{struct___i_i_c_l_c_d_a41c4536106493476b52c9a9df9dd8599}{af\_db5} = base + 4;
+137     plcd->\hyperlink{struct___i_i_c_l_c_d_a0f3ebbe756ecf62494733287f64821f9}{af\_db6} = base + 5;
+138     plcd->\hyperlink{struct___i_i_c_l_c_d_ae55385ca612fd157fb85e7b3d5423ee4}{af\_db7} = base + 6;
+139 
+140     plcd->\hyperlink{struct___i_i_c_l_c_d_ab3052517b34cbf67239b91ccbd113c00}{setup} = &mcp23008Setup; \textcolor{comment}{//   mcp23008Setup(AF\_BASE, 0x20);}
+141 
+142     \textcolor{keywordflow}{return} \hyperlink{skn__rpi__helpers_8c_a6e967d6169dd92b30845335ab426c59b}{skn\_device\_manager\_init\_i2c}(pdm);
+143 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__rpi__helpers_8h_a343fa5773d09ffd114adc3425f3c6bde_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__rpi__helpers_8h_a343fa5773d09ffd114adc3425f3c6bde_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__rpi__helpers_8h_aeeb817184dce0d96e05d4cdd6940db70}{}\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23017@{skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23017}}
+\index{skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23017@{skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23017}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
+\subsubsection[{skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23017(\+P\+Display\+Manager pdm)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+L\+C\+D\+Device} skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23017 (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+Display\+Manager}}]{pdm}
+\end{DoxyParamCaption}
+)}\label{skn__rpi__helpers_8h_aeeb817184dce0d96e05d4cdd6940db70}
+
+
+Definition at line 72 of file skn\+\_\+rpi\+\_\+helpers.\+c.
+
+
+
+References \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+backlight, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+base, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+blue, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db4, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db5, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db6, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db7, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+e, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+green, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+red, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+rs, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+rw, \+\_\+\+I\+I\+C\+L\+C\+D\+::cb\+Name, gd\+\_\+i\+\_\+i2c\+\_\+address, \+\_\+\+I\+I\+C\+L\+C\+D\+::i2c\+\_\+address, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::lcd, S\+D\+\_\+\+E\+R\+R, S\+D\+\_\+\+N\+O\+T\+I\+C\+E, \+\_\+\+I\+I\+C\+L\+C\+D\+::setup, skn\+\_\+device\+\_\+manager\+\_\+init\+\_\+i2c(), and S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F.
+
+
+
+Referenced by skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup().
+
+
+\begin{DoxyCode}
+72                                                             \{
+73     \hyperlink{struct___i_i_c_l_c_d}{PLCDDevice} plcd =  NULL;
+74     \textcolor{keywordtype}{int} base = 0;
+75 
+76     \textcolor{keywordflow}{if} (pdm == NULL) \{
+77         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"DeviceManager failed to acquire needed resources. %d:%s"}, errno, strerror
+      (errno));
+78         \textcolor{keywordflow}{return} NULL;
+79     \}
+80 
+81     plcd = (\hyperlink{skn__common__headers_8h_a3d00a0f207e96ee5369c709b45d6a2e6}{PLCDDevice})&pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_a182e9fb6ca9f11b3e0a35628123d46f5}{lcd};
+82     strncpy(plcd->\hyperlink{struct___i_i_c_l_c_d_a3f9347595482a6da5cb5d536d937a554}{cbName}, \textcolor{stringliteral}{"LCDDevice#MCP23017"}, \hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF}-1);
+83     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a2c55396bf337471f9f99a939974fcdbe}{gd\_i\_i2c\_address} != 0) \{
+84         plcd->\hyperlink{struct___i_i_c_l_c_d_a3f3fe8757875939b987ac0c416081551}{i2c\_address} = \hyperlink{skn__network__helpers_8c_a2c55396bf337471f9f99a939974fcdbe}{gd\_i\_i2c\_address};
+85     \} \textcolor{keywordflow}{else} \{
+86         plcd->\hyperlink{struct___i_i_c_l_c_d_a3f3fe8757875939b987ac0c416081551}{i2c\_address} = 0x20;
+87     \}
+88 
+89     skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"DeviceManager using device [%s](0x%02x)"}, plcd->
+      \hyperlink{struct___i_i_c_l_c_d_a3f9347595482a6da5cb5d536d937a554}{cbName}, plcd->\hyperlink{struct___i_i_c_l_c_d_a3f3fe8757875939b987ac0c416081551}{i2c\_address});
+90 
+91     base = plcd->\hyperlink{struct___i_i_c_l_c_d_ae74954b1b96523d617a68e42c2663086}{af\_base} = 100;
+92     plcd->\hyperlink{struct___i_i_c_l_c_d_ad160086a31276fbaf849855519b9878e}{af\_backlight} = base + 8;
+93     plcd->\hyperlink{struct___i_i_c_l_c_d_aca8ab39cfa9f683b2d03269886a0f633}{af\_red} = base + 6;
+94     plcd->\hyperlink{struct___i_i_c_l_c_d_a70176d63c9065d4186f55ae8328a82d3}{af\_green} = base + 7;
+95     plcd->\hyperlink{struct___i_i_c_l_c_d_ad64bc4c5fc6a592f161e594f0b2433e1}{af\_blue} = base + 8;
+96 
+97     plcd->\hyperlink{struct___i_i_c_l_c_d_a896f8305b5c0395ea7f9074904047b32}{af\_e}  = base + 13;
+98     plcd->\hyperlink{struct___i_i_c_l_c_d_af738bf1e020daaa5476b917c375e807a}{af\_rs} = base + 15;
+99     plcd->\hyperlink{struct___i_i_c_l_c_d_ad0162f6a3e82c34192c0d901ef0ff6be}{af\_rw} = base + 14;
+100 
+101     plcd->\hyperlink{struct___i_i_c_l_c_d_adbfc88b661d5da527aad6f5bcd45a85c}{af\_db4} = base + 12;
+102     plcd->\hyperlink{struct___i_i_c_l_c_d_a41c4536106493476b52c9a9df9dd8599}{af\_db5} = base + 11;
+103     plcd->\hyperlink{struct___i_i_c_l_c_d_a0f3ebbe756ecf62494733287f64821f9}{af\_db6} = base + 10;
+104     plcd->\hyperlink{struct___i_i_c_l_c_d_ae55385ca612fd157fb85e7b3d5423ee4}{af\_db7} = base + 9;
+105 
+106     plcd->\hyperlink{struct___i_i_c_l_c_d_ab3052517b34cbf67239b91ccbd113c00}{setup} = &mcp23017Setup; \textcolor{comment}{//   mcp23017Setup(AF\_BASE, 0x20);}
+107 
+108     \textcolor{keywordflow}{return} \hyperlink{skn__rpi__helpers_8c_a6e967d6169dd92b30845335ab426c59b}{skn\_device\_manager\_init\_i2c}(pdm);
+109 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__rpi__helpers_8h_aeeb817184dce0d96e05d4cdd6940db70_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__rpi__helpers_8h_aeeb817184dce0d96e05d4cdd6940db70_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__rpi__helpers_8h_a9a6dccab4be976ca76eb960076dca0a0}{}\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+device\+\_\+manager\+\_\+\+P\+C\+F8574@{skn\+\_\+device\+\_\+manager\+\_\+\+P\+C\+F8574}}
+\index{skn\+\_\+device\+\_\+manager\+\_\+\+P\+C\+F8574@{skn\+\_\+device\+\_\+manager\+\_\+\+P\+C\+F8574}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
+\subsubsection[{skn\+\_\+device\+\_\+manager\+\_\+\+P\+C\+F8574(\+P\+Display\+Manager pdm)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+L\+C\+D\+Device} skn\+\_\+device\+\_\+manager\+\_\+\+P\+C\+F8574 (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+Display\+Manager}}]{pdm}
+\end{DoxyParamCaption}
+)}\label{skn__rpi__helpers_8h_a9a6dccab4be976ca76eb960076dca0a0}
+
+
+Definition at line 145 of file skn\+\_\+rpi\+\_\+helpers.\+c.
+
+
+
+References \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+backlight, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+base, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db4, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db5, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db6, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db7, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+e, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+rs, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+rw, \+\_\+\+I\+I\+C\+L\+C\+D\+::cb\+Name, gd\+\_\+i\+\_\+i2c\+\_\+address, \+\_\+\+I\+I\+C\+L\+C\+D\+::i2c\+\_\+address, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::lcd, S\+D\+\_\+\+E\+R\+R, S\+D\+\_\+\+N\+O\+T\+I\+C\+E, \+\_\+\+I\+I\+C\+L\+C\+D\+::setup, skn\+\_\+device\+\_\+manager\+\_\+init\+\_\+i2c(), and S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F.
+
+
+
+Referenced by skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup().
+
+
+\begin{DoxyCode}
+145                                                            \{
+146     \hyperlink{struct___i_i_c_l_c_d}{PLCDDevice} plcd =  NULL;
+147     \textcolor{keywordtype}{int} base = 0;
+148 
+149     \textcolor{keywordflow}{if} (pdm == NULL) \{
+150         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"DeviceManager failed to acquire needed resources. %d:%s"}, errno, strerror
+      (errno));
+151         \textcolor{keywordflow}{return} NULL;
+152     \}
+153 
+154     plcd = (\hyperlink{skn__common__headers_8h_a3d00a0f207e96ee5369c709b45d6a2e6}{PLCDDevice})&pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_a182e9fb6ca9f11b3e0a35628123d46f5}{lcd};
+155     memset(plcd, 0, \textcolor{keyword}{sizeof}(\hyperlink{struct___i_i_c_l_c_d}{LCDDevice}));
+156     strncpy(plcd->\hyperlink{struct___i_i_c_l_c_d_a3f9347595482a6da5cb5d536d937a554}{cbName}, \textcolor{stringliteral}{"LCDDevice#PCF8574"}, \hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF}-1);
+157     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a2c55396bf337471f9f99a939974fcdbe}{gd\_i\_i2c\_address} != 0) \{
+158         plcd->\hyperlink{struct___i_i_c_l_c_d_a3f3fe8757875939b987ac0c416081551}{i2c\_address} = \hyperlink{skn__network__helpers_8c_a2c55396bf337471f9f99a939974fcdbe}{gd\_i\_i2c\_address};
+159     \} \textcolor{keywordflow}{else} \{
+160         plcd->\hyperlink{struct___i_i_c_l_c_d_a3f3fe8757875939b987ac0c416081551}{i2c\_address} = 0x27;
+161     \}
+162 
+163     skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"DeviceManager using device [%s](0x%02x)"}, plcd->
+      \hyperlink{struct___i_i_c_l_c_d_a3f9347595482a6da5cb5d536d937a554}{cbName}, plcd->\hyperlink{struct___i_i_c_l_c_d_a3f3fe8757875939b987ac0c416081551}{i2c\_address});
+164 
+165     base = plcd->\hyperlink{struct___i_i_c_l_c_d_ae74954b1b96523d617a68e42c2663086}{af\_base} = 100;
+166     plcd->\hyperlink{struct___i_i_c_l_c_d_ad160086a31276fbaf849855519b9878e}{af\_backlight} = base + 3;
+167     plcd->\hyperlink{struct___i_i_c_l_c_d_a896f8305b5c0395ea7f9074904047b32}{af\_e} = base + 2;
+168     plcd->\hyperlink{struct___i_i_c_l_c_d_af738bf1e020daaa5476b917c375e807a}{af\_rs} = base + 0;
+169     plcd->\hyperlink{struct___i_i_c_l_c_d_ad0162f6a3e82c34192c0d901ef0ff6be}{af\_rw} = base + 1;
+170 
+171     plcd->\hyperlink{struct___i_i_c_l_c_d_adbfc88b661d5da527aad6f5bcd45a85c}{af\_db4} = base + 4;
+172     plcd->\hyperlink{struct___i_i_c_l_c_d_a41c4536106493476b52c9a9df9dd8599}{af\_db5} = base + 5;
+173     plcd->\hyperlink{struct___i_i_c_l_c_d_a0f3ebbe756ecf62494733287f64821f9}{af\_db6} = base + 6;
+174     plcd->\hyperlink{struct___i_i_c_l_c_d_ae55385ca612fd157fb85e7b3d5423ee4}{af\_db7} = base + 7;
+175 
+176 
+177     plcd->\hyperlink{struct___i_i_c_l_c_d_ab3052517b34cbf67239b91ccbd113c00}{setup} = &pcf8574Setup; \textcolor{comment}{// pcf8574Setup(AF\_BASE, 0x27);}
+178 
+179     \textcolor{keywordflow}{return} \hyperlink{skn__rpi__helpers_8c_a6e967d6169dd92b30845335ab426c59b}{skn\_device\_manager\_init\_i2c}(pdm);
+180 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__rpi__helpers_8h_a9a6dccab4be976ca76eb960076dca0a0_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__rpi__helpers_8h_a9a6dccab4be976ca76eb960076dca0a0_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__rpi__helpers_8h_aa70aa8be6de3ef378d2d92839dae79c0}{}\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+device\+\_\+manager\+\_\+\+Serial\+Port@{skn\+\_\+device\+\_\+manager\+\_\+\+Serial\+Port}}
+\index{skn\+\_\+device\+\_\+manager\+\_\+\+Serial\+Port@{skn\+\_\+device\+\_\+manager\+\_\+\+Serial\+Port}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
+\subsubsection[{skn\+\_\+device\+\_\+manager\+\_\+\+Serial\+Port(\+P\+Display\+Manager pdm)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+L\+C\+D\+Device} skn\+\_\+device\+\_\+manager\+\_\+\+Serial\+Port (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+Display\+Manager}}]{pdm}
+\end{DoxyParamCaption}
+)}\label{skn__rpi__helpers_8h_aa70aa8be6de3ef378d2d92839dae79c0}
+
+
+Definition at line 26 of file skn\+\_\+rpi\+\_\+helpers.\+c.
+
+
+
+References \+\_\+\+I\+I\+C\+L\+C\+D\+::cb\+Name, \+\_\+\+I\+I\+C\+L\+C\+D\+::ch\+\_\+serial\+\_\+port\+\_\+name, gd\+\_\+pch\+\_\+serial\+\_\+port, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::lcd, \+\_\+\+I\+I\+C\+L\+C\+D\+::lcd\+\_\+handle, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::lcd\+\_\+handle, P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R, S\+D\+\_\+\+E\+R\+R, S\+D\+\_\+\+N\+O\+T\+I\+C\+E, and S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F.
+
+
+
+Referenced by skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup().
+
+
+\begin{DoxyCode}
+26                                                               \{
+27     \hyperlink{struct___i_i_c_l_c_d}{PLCDDevice} plcd =  NULL;
+28 
+29     \textcolor{keywordflow}{if} (pdm == NULL) \{
+30         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"DeviceManager failed to acquire needed resources. %d:%s"}, errno, strerror
+      (errno));
+31         \textcolor{keywordflow}{return} NULL;
+32     \}
+33 
+34     plcd = (\hyperlink{skn__common__headers_8h_a3d00a0f207e96ee5369c709b45d6a2e6}{PLCDDevice})&pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_a182e9fb6ca9f11b3e0a35628123d46f5}{lcd};
+35     strncpy(plcd->\hyperlink{struct___i_i_c_l_c_d_a3f9347595482a6da5cb5d536d937a554}{cbName}, \textcolor{stringliteral}{"LCDDevice#SerialPort"}, \hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF}-1);
+36     \textcolor{keywordflow}{if} (\hyperlink{skn__rpi__helpers_8c_aa8460852bd6c3559cc5ad4bd58806ba2}{gd\_pch\_serial\_port} != NULL) \{
+37         strncpy(plcd->\hyperlink{struct___i_i_c_l_c_d_a2f193b0806fdbba1d644567835e2b2e8}{ch\_serial\_port\_name}, \hyperlink{skn__rpi__helpers_8c_aa8460852bd6c3559cc5ad4bd58806ba2}{gd\_pch\_serial\_port}, 
+      \hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF}-1);
+38     \} \textcolor{keywordflow}{else} \{
+39         strncpy(plcd->\hyperlink{struct___i_i_c_l_c_d_a2f193b0806fdbba1d644567835e2b2e8}{ch\_serial\_port\_name}, \textcolor{stringliteral}{"/dev/ttyACM0"}, 
+      \hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF}-1);
+40     \}
+41 
+42     skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"DeviceManager using  device [%s](%s)"}, plcd->
+      \hyperlink{struct___i_i_c_l_c_d_a3f9347595482a6da5cb5d536d937a554}{cbName}, \hyperlink{skn__rpi__helpers_8c_aa8460852bd6c3559cc5ad4bd58806ba2}{gd\_pch\_serial\_port});
+43 
+44     pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_a6ebc44b98c1483295586660829eb5a43}{lcd\_handle} = plcd->\hyperlink{struct___i_i_c_l_c_d_afc74b2d9120be4a8e69e48b220d6781c}{lcd\_handle} =  serialOpen (plcd->
+      \hyperlink{struct___i_i_c_l_c_d_a2f193b0806fdbba1d644567835e2b2e8}{ch\_serial\_port\_name}, 9600);
+45     \textcolor{keywordflow}{if} (plcd->\hyperlink{struct___i_i_c_l_c_d_afc74b2d9120be4a8e69e48b220d6781c}{lcd\_handle} == \hyperlink{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{PLATFORM\_ERROR}) \{
+46         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"DeviceManager failed to acquire needed resources: SerialPort=%s %d:%s"},
+47                    plcd->\hyperlink{struct___i_i_c_l_c_d_a2f193b0806fdbba1d644567835e2b2e8}{ch\_serial\_port\_name}, errno, strerror(errno));
+48         \textcolor{keywordflow}{return} NULL;
+49     \}
+50 
+51     \textcolor{comment}{// set backlight & clear screen}
+52     \textcolor{keywordtype}{char} display\_on[] = \{ 0xfe, 0x42 \};
+53     \textcolor{keywordtype}{char}  cls[]   = \{ 0xfe, 0x58 \};
+54     \textcolor{keywordtype}{char} home[]  = \{ 0xfe, 0x48 \};
+55 \textcolor{comment}{//    char set\_cols\_rows[] = \{0xfe, 0xd1, gd\_i\_cols, gd\_i\_rows \};}
+56     \textcolor{keywordtype}{char} set\_contrast[] = \{0xfe, 0x50, 0xdc\};
+57     \textcolor{keywordtype}{char} cursor\_off[] = \{0xfe, 0x4B \};
+58 
+59     write(pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_a6ebc44b98c1483295586660829eb5a43}{lcd\_handle}, set\_contrast, \textcolor{keyword}{sizeof}(set\_contrast));
+60         sleep(1);
+61     write(pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_a6ebc44b98c1483295586660829eb5a43}{lcd\_handle}, home, \textcolor{keyword}{sizeof}(home));
+62         sleep(1);
+63     write(pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_a6ebc44b98c1483295586660829eb5a43}{lcd\_handle}, cursor\_off, \textcolor{keyword}{sizeof}(cursor\_off));
+64         sleep(1);
+65     write(pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_a6ebc44b98c1483295586660829eb5a43}{lcd\_handle}, cls, \textcolor{keyword}{sizeof}(cls));
+66         sleep(1);
+67     write(pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_a6ebc44b98c1483295586660829eb5a43}{lcd\_handle}, display\_on, \textcolor{keyword}{sizeof}(display\_on));
+68         sleep(1);
+69 
+70     \textcolor{keywordflow}{return} plcd;
+71 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__rpi__helpers_8h_aa70aa8be6de3ef378d2d92839dae79c0_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__rpi__helpers_8h_a73890d642bf9cbb1de78675d587d79a3}{}\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+display\+\_\+manager\+\_\+add\+\_\+line@{skn\+\_\+display\+\_\+manager\+\_\+add\+\_\+line}}
+\index{skn\+\_\+display\+\_\+manager\+\_\+add\+\_\+line@{skn\+\_\+display\+\_\+manager\+\_\+add\+\_\+line}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
+\subsubsection[{skn\+\_\+display\+\_\+manager\+\_\+add\+\_\+line(\+P\+Display\+Manager pdmx, char $\ast$client\+\_\+request\+\_\+message)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+Display\+Line} skn\+\_\+display\+\_\+manager\+\_\+add\+\_\+line (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+Display\+Manager}}]{pdmx, }
+\item[{char $\ast$}]{client\+\_\+request\+\_\+message}
+\end{DoxyParamCaption}
+)}\label{skn__rpi__helpers_8h_a73890d642bf9cbb1de78675d587d79a3}
+
+
+Definition at line 475 of file skn\+\_\+rpi\+\_\+helpers.\+c.
+
+
+
+References \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::active, A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+D\+M\+\_\+\+L\+I\+N\+E\+S, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::ch\+\_\+display\+\_\+msg, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::current\+\_\+line, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::display\+\_\+pos, gd\+\_\+i\+\_\+cols, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::msg\+\_\+len, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::next\+\_\+line, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::pdsp\+\_\+collection, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::scroll\+\_\+enabled, S\+D\+\_\+\+D\+E\+B\+U\+G, skn\+\_\+get\+\_\+display\+\_\+manager\+\_\+ref(), skn\+\_\+scroller\+\_\+wrap\+\_\+blanks(), and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F.
+
+
+
+Referenced by skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work(), and skn\+\_\+display\+\_\+manager\+\_\+message\+\_\+consumer\+\_\+thread().
+
+
+\begin{DoxyCode}
+475                                                                                                \{
+476     \hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e}{PDisplayLine} pdl = NULL;
+477     \hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r}{PDisplayManager} pdm = NULL;
+478 
+479     pdm = ((pdmx == NULL) ? \hyperlink{skn__rpi__helpers_8c_abc8758d786bdcff4bb0ec7ab05adfca1}{skn\_get\_display\_manager\_ref}() : pdmx);
+480     \textcolor{keywordflow}{if} (pdm == NULL || client\_request\_message == NULL) \{
+481         \textcolor{keywordflow}{return} NULL;
+482     \}
+483 
+484     \textcolor{comment}{/*}
+485 \textcolor{comment}{     * manage next index */}
+486     pdl = pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_a3a5ccb906320bd6aecbf89cb6b0fc234}{pdsp\_collection}[pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_aed299ac3603bba3dfe3c09389122f8d8}{next\_line}++]; \textcolor{comment}{// manage next index}
+487     \textcolor{keywordflow}{if} (pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_aed299ac3603bba3dfe3c09389122f8d8}{next\_line} == \hyperlink{skn__common__headers_8h_a199b80b777af46c9141191749f8f026d}{ARY\_MAX\_DM\_LINES}) \{
+488         pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_aed299ac3603bba3dfe3c09389122f8d8}{next\_line} = 0; \textcolor{comment}{// roll it}
+489     \}
+490 
+491     \textcolor{comment}{/*}
+492 \textcolor{comment}{     * load new message */}
+493     strncpy(pdl->\hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_ae5fae9b599281d1d3f619b6e402e7c2c}{ch\_display\_msg}, client\_request\_message, (
+      \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}-1));
+494     pdl->\hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_ae5fae9b599281d1d3f619b6e402e7c2c}{ch\_display\_msg}[\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1] = 0;    \textcolor{comment}{// terminate string in case}
+495     pdl->\hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_aa9cfa1dd3e90386f675fef61e711342e}{msg\_len} = strlen(pdl->\hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_ae5fae9b599281d1d3f619b6e402e7c2c}{ch\_display\_msg});
+496     pdl->\hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_acf235d7965b9d52439add787b8e3d316}{active} = 1;
+497     pdl->\hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_af32b1aa2ce817c27695d7cd43db9364d}{display\_pos} = 0;
+498     \textcolor{keywordflow}{if} (pdl->\hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_aa9cfa1dd3e90386f675fef61e711342e}{msg\_len} > \hyperlink{skn__rpi__helpers_8c_ac934aabd8dd134e724c62e1264afa549}{gd\_i\_cols}) \{
+499         pdl->\hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_ad92346a9708f3f3ba0c45dfb891c18e3}{scroll\_enabled} = 1;
+500         \hyperlink{skn__rpi__helpers_8c_ae945b3a41d43db4d0c52f522d663d415}{skn\_scroller\_wrap\_blanks}(pdl->\hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_ae5fae9b599281d1d3f619b6e402e7c2c}{ch\_display\_msg});
+501         pdl->\hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_ae5fae9b599281d1d3f619b6e402e7c2c}{ch\_display\_msg}[(\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1)] = 0;    \textcolor{comment}{// terminate string in
+       case}
+502         pdl->\hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_aa9cfa1dd3e90386f675fef61e711342e}{msg\_len} = strlen(pdl->\hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_ae5fae9b599281d1d3f619b6e402e7c2c}{ch\_display\_msg});
+503     \} \textcolor{keywordflow}{else} \{
+504         pdl->\hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_ad92346a9708f3f3ba0c45dfb891c18e3}{scroll\_enabled} = 0;
+505     \}
+506 
+507     \textcolor{comment}{/*}
+508 \textcolor{comment}{     * manage current\_line */}
+509     pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_a3a5ccb906320bd6aecbf89cb6b0fc234}{pdsp\_collection}[pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_aae8a6a90422fd9f571dff5f455740aa4}{current\_line}]->\hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_acf235d7965b9d52439add787b8e3d316}{active} = 0;
+510     pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_a3a5ccb906320bd6aecbf89cb6b0fc234}{pdsp\_collection}[pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_aae8a6a90422fd9f571dff5f455740aa4}{current\_line}++]->
+      \hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_aa9cfa1dd3e90386f675fef61e711342e}{msg\_len} = 0;
+511     \textcolor{keywordflow}{if} (pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_aae8a6a90422fd9f571dff5f455740aa4}{current\_line} == \hyperlink{skn__common__headers_8h_a199b80b777af46c9141191749f8f026d}{ARY\_MAX\_DM\_LINES}) \{
+512         pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_aae8a6a90422fd9f571dff5f455740aa4}{current\_line} = 0;
+513     \}
+514 
+515     skn\_logger(\hyperlink{skn__common__headers_8h_a3ace3381f5b69f4a46fc35b70844a5dc}{SD\_DEBUG}, \textcolor{stringliteral}{"DM Added msg=%d:%d:[%s]"}, ((pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_aed299ac3603bba3dfe3c09389122f8d8}{next\_line} - 1) < 0 ? 0 : (pdm->
+      \hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_aed299ac3603bba3dfe3c09389122f8d8}{next\_line} - 1)), pdl->\hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_aa9cfa1dd3e90386f675fef61e711342e}{msg\_len}, pdl->\hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_ae5fae9b599281d1d3f619b6e402e7c2c}{ch\_display\_msg});
+516 
+517     \textcolor{comment}{/* return this line's pointer */}
+518     \textcolor{keywordflow}{return} pdl;
+519 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__rpi__helpers_8h_a73890d642bf9cbb1de78675d587d79a3_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__rpi__helpers_8h_a73890d642bf9cbb1de78675d587d79a3_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__rpi__helpers_8h_a0e93b40f29ab2df743c934be34500c15}{}\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work@{skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work}}
+\index{skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work@{skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
+\subsubsection[{skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work(char $\ast$client\+\_\+request\+\_\+message)}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{client\+\_\+request\+\_\+message}
+\end{DoxyParamCaption}
+)}\label{skn__rpi__helpers_8h_a0e93b40f29ab2df743c934be34500c15}
+
+
+Definition at line 523 of file skn\+\_\+rpi\+\_\+helpers.\+c.
+
+
+
+References \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::active, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::current\+\_\+line, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::dsp\+\_\+rows, gd\+\_\+pch\+\_\+device\+\_\+name, generate\+\_\+datetime\+\_\+info(), generate\+\_\+loadavg\+\_\+info(), generate\+\_\+rpi\+\_\+model\+\_\+info(), generate\+\_\+uname\+\_\+info(), gi\+\_\+exit\+\_\+flag, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::lcd\+\_\+handle, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::next, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::pdsp\+\_\+collection, P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R, S\+D\+\_\+\+E\+R\+R, S\+D\+\_\+\+N\+O\+T\+I\+C\+E, skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup(), skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+shutdown(), skn\+\_\+display\+\_\+manager\+\_\+add\+\_\+line(), skn\+\_\+display\+\_\+manager\+\_\+create(), skn\+\_\+display\+\_\+manager\+\_\+destroy(), skn\+\_\+display\+\_\+manager\+\_\+message\+\_\+consumer\+\_\+shutdown(), skn\+\_\+display\+\_\+manager\+\_\+message\+\_\+consumer\+\_\+startup(), S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+R\+U\+N, S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+S\+T\+O\+P, skn\+\_\+scroller\+\_\+scroll\+\_\+lines(), skn\+\_\+time\+\_\+delay(), and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F.
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+523                                                                \{
+524     \textcolor{keywordtype}{int} index = 0, dsp\_line\_number = 0;
+525     \hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r}{PDisplayManager} pdm = NULL;
+526     \hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e}{PDisplayLine} pdl = NULL;
+527     \textcolor{keywordtype}{char} ch\_lcd\_message[4][\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}];
+528     \textcolor{keywordtype}{long} host\_update\_cycle = 0;
+529 
+530     \hyperlink{skn__rpi__helpers_8c_ab1d9c73f13a8c60f54b1df15a34a8e64}{gp\_structure\_pdm} = pdm = \hyperlink{skn__rpi__helpers_8c_a3b806c833fce33e93ad36909a2561353}{skn\_display\_manager\_create}(
+      client\_request\_message);
+531     \textcolor{keywordflow}{if} (pdm == NULL) \{
+532         \hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag} = \hyperlink{skn__common__headers_8h_a6ea8f978e9fdfefe8437e3a7decbad7f}{SKN\_RUN\_MODE\_STOP};
+533         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"Display Manager cannot acquire needed resources. DMCreate()"});
+534         \textcolor{keywordflow}{return} \hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag};
+535     \}
+536     \hyperlink{skn__network__helpers_8c_a8aa6a7a3ba2390cf536e26c6cd2aa840}{generate\_datetime\_info} (ch\_lcd\_message[0]);
+537     \hyperlink{skn__rpi__helpers_8c_a0410c7c96c2188c945cea294ae074ff9}{generate\_rpi\_model\_info}(ch\_lcd\_message[1]);
+538 \textcolor{comment}{//    generate\_cpu\_temps\_info(ch\_lcd\_message[2]);}
+539     \hyperlink{skn__network__helpers_8c_aaf8b0dfb11a3800bb249c6cf90a2537a}{generate\_uname\_info}    (ch\_lcd\_message[2]);
+540     \hyperlink{skn__network__helpers_8c_af451ef71d607d9188e02af7079f14263}{generate\_loadavg\_info}  (ch\_lcd\_message[3]);
+541     \hyperlink{skn__rpi__helpers_8c_a73890d642bf9cbb1de78675d587d79a3}{skn\_display\_manager\_add\_line}(pdm, ch\_lcd\_message[0]);
+542     \hyperlink{skn__rpi__helpers_8c_a73890d642bf9cbb1de78675d587d79a3}{skn\_display\_manager\_add\_line}(pdm, ch\_lcd\_message[1]);
+543     \hyperlink{skn__rpi__helpers_8c_a73890d642bf9cbb1de78675d587d79a3}{skn\_display\_manager\_add\_line}(pdm, ch\_lcd\_message[2]);
+544     \hyperlink{skn__rpi__helpers_8c_a73890d642bf9cbb1de78675d587d79a3}{skn\_display\_manager\_add\_line}(pdm, ch\_lcd\_message[3]);
+545 
+546     \textcolor{keywordflow}{if} (\hyperlink{skn__rpi__helpers_8c_a58c9a50b0307d45138f4a6f2e6ba7a76}{skn\_device\_manager\_LCD\_setup}(pdm, 
+      \hyperlink{skn__rpi__helpers_8c_a236d69bc821c60a396d02099e92d22bb}{gd\_pch\_device\_name}) == \hyperlink{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{PLATFORM\_ERROR}) \{
+547         \hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag} = \hyperlink{skn__common__headers_8h_a6ea8f978e9fdfefe8437e3a7decbad7f}{SKN\_RUN\_MODE\_STOP};
+548         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"Display Manager cannot acquire needed resources: lcdSetup()."});
+549         \hyperlink{skn__rpi__helpers_8c_a7c4eede6a3dd9f0a33125bd573fd44eb}{skn\_display\_manager\_destroy}(pdm);
+550         \textcolor{keywordflow}{return} \hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag};
+551     \}
+552 
+553     \textcolor{keywordflow}{if} (\hyperlink{skn__rpi__helpers_8c_aee27f71a8f457def69c26d516ae821ab}{skn\_display\_manager\_message\_consumer\_startup}(pdm) == 
+      EXIT\_FAILURE) \{
+554         \hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag} = \hyperlink{skn__common__headers_8h_a6ea8f978e9fdfefe8437e3a7decbad7f}{SKN\_RUN\_MODE\_STOP};
+555         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"Display Manager cannot acquire needed resources: Consumer()."});
+556         \hyperlink{skn__rpi__helpers_8c_a7c4eede6a3dd9f0a33125bd573fd44eb}{skn\_display\_manager\_destroy}(pdm);
+557         \textcolor{keywordflow}{return} \hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag};
+558     \}
+559 
+560     skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"Application Active... "});
+561 
+562     \textcolor{comment}{/*}
+563 \textcolor{comment}{     *  Do the Work}
+564 \textcolor{comment}{     */}
+565     \textcolor{keywordflow}{while} (\hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag} == \hyperlink{skn__common__headers_8h_a3f5142b81a9ee977aedfd69a61281920}{SKN\_RUN\_MODE\_RUN}) \{
+566         dsp\_line\_number = 0;
+567         pdl = pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_a3a5ccb906320bd6aecbf89cb6b0fc234}{pdsp\_collection}[pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_aae8a6a90422fd9f571dff5f455740aa4}{current\_line}];
+568     
+569         \textcolor{keywordflow}{for} (index = 0; index < pdm->\hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_aeddcffcc90a611efde00a085352bc63b}{dsp\_rows}; index++) \{
+570             \textcolor{keywordflow}{if} (pdl->\hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_acf235d7965b9d52439add787b8e3d316}{active} == 1) \{
+571                 \hyperlink{skn__rpi__helpers_8c_a4f78720f41ceb03e6b6111a358c7aea1}{skn\_scroller\_scroll\_lines}(pdl, pdm->
+      \hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_a6ebc44b98c1483295586660829eb5a43}{lcd\_handle}, dsp\_line\_number++);
+572                 \hyperlink{skn__network__helpers_8c_a802d742c15476782fbbea1528f76dea5}{skn\_time\_delay}(0.18); \textcolor{comment}{// delay(180);}
+573             \}
+574             pdl = (\hyperlink{skn__common__headers_8h_a754e9456a497a668b8d959ed2cbe9ec3}{PDisplayLine}) pdl->\hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_a0668a4de4eb91d9bbd03cc52b00f4fd0}{next};
+575         \}
+576 
+577         \textcolor{keywordflow}{if} ((host\_update\_cycle++ % 900) == 0) \{  \textcolor{comment}{// roughly every fifteen minutes}
+578             \hyperlink{skn__network__helpers_8c_a8aa6a7a3ba2390cf536e26c6cd2aa840}{generate\_datetime\_info} (ch\_lcd\_message[0]);
+579 \textcolor{comment}{//            generate\_cpu\_temps\_info(ch\_lcd\_message[2]);}
+580             \hyperlink{skn__network__helpers_8c_af451ef71d607d9188e02af7079f14263}{generate\_loadavg\_info}  (ch\_lcd\_message[3]);
+581             \hyperlink{skn__rpi__helpers_8c_a73890d642bf9cbb1de78675d587d79a3}{skn\_display\_manager\_add\_line}(pdm, ch\_lcd\_message[0]);
+582             \hyperlink{skn__rpi__helpers_8c_a73890d642bf9cbb1de78675d587d79a3}{skn\_display\_manager\_add\_line}(pdm, ch\_lcd\_message[1]);
+583             \hyperlink{skn__rpi__helpers_8c_a73890d642bf9cbb1de78675d587d79a3}{skn\_display\_manager\_add\_line}(pdm, ch\_lcd\_message[2]);
+584             \hyperlink{skn__rpi__helpers_8c_a73890d642bf9cbb1de78675d587d79a3}{skn\_display\_manager\_add\_line}(pdm, ch\_lcd\_message[3]);
+585             host\_update\_cycle = 1;
+586         \}
+587     \}
+588 
+589     \hyperlink{skn__rpi__helpers_8c_aad63cb41e99a588cea9609a100cc9333}{skn\_device\_manager\_LCD\_shutdown}(pdm);
+590 
+591     skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"Application InActive..."});
+592 
+593     \textcolor{comment}{/*}
+594 \textcolor{comment}{     * Stop UDP Listener}
+595 \textcolor{comment}{     */}
+596     \hyperlink{skn__rpi__helpers_8c_a34ce4afdf4f5f20fc109e749fb87c573}{skn\_display\_manager\_message\_consumer\_shutdown}(pdm);
+597 
+598     \hyperlink{skn__rpi__helpers_8c_a7c4eede6a3dd9f0a33125bd573fd44eb}{skn\_display\_manager\_destroy}(pdm);
+599     \hyperlink{skn__rpi__helpers_8c_ab1d9c73f13a8c60f54b1df15a34a8e64}{gp\_structure\_pdm} = pdm = NULL;
+600 
+601     \textcolor{keywordflow}{return} \hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag};
+602 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__rpi__helpers_8h_a0e93b40f29ab2df743c934be34500c15_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=267pt]{skn__rpi__helpers_8h_a0e93b40f29ab2df743c934be34500c15_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__rpi__helpers_8h_abc8758d786bdcff4bb0ec7ab05adfca1}{}\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+get\+\_\+display\+\_\+manager\+\_\+ref@{skn\+\_\+get\+\_\+display\+\_\+manager\+\_\+ref}}
+\index{skn\+\_\+get\+\_\+display\+\_\+manager\+\_\+ref@{skn\+\_\+get\+\_\+display\+\_\+manager\+\_\+ref}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
+\subsubsection[{skn\+\_\+get\+\_\+display\+\_\+manager\+\_\+ref()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+Display\+Manager} skn\+\_\+get\+\_\+display\+\_\+manager\+\_\+ref (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{skn__rpi__helpers_8h_abc8758d786bdcff4bb0ec7ab05adfca1}
+
+
+Definition at line 520 of file skn\+\_\+rpi\+\_\+helpers.\+c.
+
+
+
+References gp\+\_\+structure\+\_\+pdm.
+
+
+
+Referenced by skn\+\_\+display\+\_\+manager\+\_\+add\+\_\+line().
+
+
+\begin{DoxyCode}
+520                                               \{
+521     \textcolor{keywordflow}{return} \hyperlink{skn__rpi__helpers_8c_ab1d9c73f13a8c60f54b1df15a34a8e64}{gp\_structure\_pdm};
+522 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__rpi__helpers_8h_abc8758d786bdcff4bb0ec7ab05adfca1_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__rpi__helpers_8h_aed93e422e5b2cd74ea04177db841fa37}{}\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line@{skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line}}
+\index{skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line@{skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
+\subsubsection[{skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line(int argc, char $\ast$$\ast$argv)}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}\label{skn__rpi__helpers_8h_aed93e422e5b2cd74ea04177db841fa37}
+
+
+Definition at line 777 of file skn\+\_\+rpi\+\_\+helpers.\+c.
+
+
+
+References gd\+\_\+ch\+\_\+program\+\_\+name, gd\+\_\+i\+\_\+cols, gd\+\_\+i\+\_\+debug, gd\+\_\+i\+\_\+i2c\+\_\+address, gd\+\_\+i\+\_\+rows, gd\+\_\+pch\+\_\+device\+\_\+name, gd\+\_\+pch\+\_\+message, gd\+\_\+pch\+\_\+serial\+\_\+port, P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N, S\+D\+\_\+\+E\+R\+R, S\+D\+\_\+\+W\+A\+R\+N\+I\+N\+G, and skn\+\_\+display\+\_\+print\+\_\+usage().
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+777                                                            \{
+778     \textcolor{keywordtype}{int} opt = 0;
+779     \textcolor{keywordtype}{int} longindex = 0;
+780     \textcolor{keyword}{struct }option longopts[] = \{
+781             \{ \textcolor{stringliteral}{"debug"}, 1, NULL, \textcolor{charliteral}{'d'} \}, \textcolor{comment}{/* required param if */}
+782             \{ \textcolor{stringliteral}{"rows"}, 1, NULL, \textcolor{charliteral}{'r'} \}, \textcolor{comment}{/* required param if */}
+783             \{ \textcolor{stringliteral}{"cols"}, 1, NULL, \textcolor{charliteral}{'c'} \}, \textcolor{comment}{/* required param if */}
+784             \{ \textcolor{stringliteral}{"message"}, 1, NULL, \textcolor{charliteral}{'m'} \}, \textcolor{comment}{/* required param if */}
+785             \{ \textcolor{stringliteral}{"i2c-address"}, 1, NULL, \textcolor{charliteral}{'i'} \}, \textcolor{comment}{/* required param if */}
+786             \{ \textcolor{stringliteral}{"12c-chipset"}, 1, NULL, \textcolor{charliteral}{'t'} \}, \textcolor{comment}{/* required param if */}
+787             \{ \textcolor{stringliteral}{"serial-port"}, 1, NULL, \textcolor{charliteral}{'p'} \}, \textcolor{comment}{/* required param if */}
+788             \{ \textcolor{stringliteral}{"version"}, 0, NULL, \textcolor{charliteral}{'v'} \}, \textcolor{comment}{/* set true if present */}
+789             \{ \textcolor{stringliteral}{"help"}, 0, NULL, \textcolor{charliteral}{'h'} \}, \textcolor{comment}{/* set true if present */}
+790             \{ 0, 0, 0, 0 \} \};
+791 
+792     \textcolor{comment}{/*}
+793 \textcolor{comment}{     * Get commandline options}
+794 \textcolor{comment}{     *  longindex is the current index into longopts}
+795 \textcolor{comment}{     *  optind is current/last index into argv}
+796 \textcolor{comment}{     *  optarg is value attached(-d88) or next element(-d 88) of argv}
+797 \textcolor{comment}{     *  opterr flags a scanning error}
+798 \textcolor{comment}{     */}
+799     \textcolor{keywordflow}{while} ((opt = getopt\_long(argc, argv, \textcolor{stringliteral}{"d:m:r:c:i:t:p:vh"}, longopts, &longindex)) != -1) \{
+800         \textcolor{keywordflow}{switch} (opt) \{
+801             \textcolor{keywordflow}{case} \textcolor{charliteral}{'d'}:
+802                 \textcolor{keywordflow}{if} (optarg) \{
+803                     \hyperlink{skn__network__helpers_8c_a923b2adbdc0dac852905dc95eaa73a37}{gd\_i\_debug} = atoi(optarg);
+804                 \} \textcolor{keywordflow}{else} \{
+805                     skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"%s: input param was invalid! %c[%d:%d:%d]\(\backslash\)n"}, 
+      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, (\textcolor{keywordtype}{char}) opt, longindex, optind,
+806                                     opterr);
+807                     \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+808                 \}
+809                 \textcolor{keywordflow}{break};
+810             \textcolor{keywordflow}{case} \textcolor{charliteral}{'r'}:
+811                 \textcolor{keywordflow}{if} (optarg) \{
+812                     \hyperlink{skn__rpi__helpers_8c_a3599398fb56285a3069b55791e6bb953}{gd\_i\_rows} = atoi(optarg);
+813                     \textcolor{keywordflow}{switch} (\hyperlink{skn__rpi__helpers_8c_a3599398fb56285a3069b55791e6bb953}{gd\_i\_rows}) \{
+814                         \textcolor{keywordflow}{case} 2:
+815                         \textcolor{keywordflow}{case} 4:
+816                             \textcolor{keywordflow}{break};
+817                         \textcolor{keywordflow}{default}:
+818                             \hyperlink{skn__rpi__helpers_8c_a3599398fb56285a3069b55791e6bb953}{gd\_i\_rows} = 4;
+819                             skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"%s: input param was invalid! (default of 4
+       used) %c[%d:%d:%d]\(\backslash\)n"}, \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name},
+820                                             (\textcolor{keywordtype}{char}) opt, longindex, optind, opterr);
+821 
+822                     \}
+823                 \} \textcolor{keywordflow}{else} \{
+824                     skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"%s: input param was invalid! %c[%d:%d:%d]\(\backslash\)n"}, 
+      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, (\textcolor{keywordtype}{char}) opt, longindex, optind,
+825                                     opterr);
+826                     \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+827                 \}
+828                 \textcolor{keywordflow}{break};
+829             \textcolor{keywordflow}{case} \textcolor{charliteral}{'c'}:
+830                 \textcolor{keywordflow}{if} (optarg) \{
+831                     \hyperlink{skn__rpi__helpers_8c_ac934aabd8dd134e724c62e1264afa549}{gd\_i\_cols} = atoi(optarg);
+832                     \textcolor{keywordflow}{switch} (\hyperlink{skn__rpi__helpers_8c_ac934aabd8dd134e724c62e1264afa549}{gd\_i\_cols}) \{
+833                         \textcolor{keywordflow}{case} 16:
+834                         \textcolor{keywordflow}{case} 20:
+835                             \textcolor{keywordflow}{break};
+836                         \textcolor{keywordflow}{default}:
+837                             \hyperlink{skn__rpi__helpers_8c_ac934aabd8dd134e724c62e1264afa549}{gd\_i\_cols} = 20;
+838                             skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"%s: input param was invalid! (default of 20
+       used) %c[%d:%d:%d]\(\backslash\)n"}, \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name},
+839                                             (\textcolor{keywordtype}{char}) opt, longindex, optind, opterr);
+840 
+841                     \}
+842                 \} \textcolor{keywordflow}{else} \{
+843                     skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"%s: input param was invalid! %c[%d:%d:%d]\(\backslash\)n"}, 
+      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, (\textcolor{keywordtype}{char}) opt, longindex, optind,
+844                                     opterr);
+845                     \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+846                 \}
+847                 \textcolor{keywordflow}{break};
+848             \textcolor{keywordflow}{case} \textcolor{charliteral}{'m'}:
+849                 \textcolor{keywordflow}{if} (optarg) \{
+850                     \hyperlink{skn__network__helpers_8c_a0bb2e7571c22c0455842aba8cf1d97dc}{gd\_pch\_message} = strdup(optarg);
+851                 \} \textcolor{keywordflow}{else} \{
+852                     skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"%s: input param was invalid! %c[%d:%d:%d]\(\backslash\)n"}, 
+      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, (\textcolor{keywordtype}{char}) opt, longindex, optind,
+853                                     opterr);
+854                     \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+855                 \}
+856                 \textcolor{keywordflow}{break};
+857             \textcolor{keywordflow}{case} \textcolor{charliteral}{'i'}:
+858                 \textcolor{keywordflow}{if} (optarg) \{
+859                     \hyperlink{skn__network__helpers_8c_a2c55396bf337471f9f99a939974fcdbe}{gd\_i\_i2c\_address} = atoi(optarg);
+860                 \} \textcolor{keywordflow}{else} \{
+861                     skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"%s: input param was invalid! %c[%d:%d:%d]\(\backslash\)n"}, 
+      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, (\textcolor{keywordtype}{char}) opt, longindex, optind,
+862                                     opterr);
+863                     \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+864                 \}
+865                 \textcolor{keywordflow}{break};
+866             \textcolor{keywordflow}{case} \textcolor{charliteral}{'t'}:
+867                 \textcolor{keywordflow}{if} (optarg) \{
+868                     \hyperlink{skn__rpi__helpers_8c_a236d69bc821c60a396d02099e92d22bb}{gd\_pch\_device\_name} = strdup(optarg);
+869                     \textcolor{keywordflow}{if} ( (strcmp(\hyperlink{skn__rpi__helpers_8c_a236d69bc821c60a396d02099e92d22bb}{gd\_pch\_device\_name}, \textcolor{stringliteral}{"mcp"}) != 0) &&
+870                          (strcmp(\hyperlink{skn__rpi__helpers_8c_a236d69bc821c60a396d02099e92d22bb}{gd\_pch\_device\_name}, \textcolor{stringliteral}{"mc7"}) != 0) &&
+871                          (strcmp(\hyperlink{skn__rpi__helpers_8c_a236d69bc821c60a396d02099e92d22bb}{gd\_pch\_device\_name}, \textcolor{stringliteral}{"pcf"}) != 0) &&
+872                          (strcmp(\hyperlink{skn__rpi__helpers_8c_a236d69bc821c60a396d02099e92d22bb}{gd\_pch\_device\_name}, \textcolor{stringliteral}{"ser"}) != 0)) \{
+873                         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"%s: unsupported option was invalid! %c[%d:%d:%d] %s\(\backslash\)n"}, 
+      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, (\textcolor{keywordtype}{char}) opt, longindex, optind, opterr, 
+      \hyperlink{skn__rpi__helpers_8c_a236d69bc821c60a396d02099e92d22bb}{gd\_pch\_device\_name});
+874                         \textcolor{keywordflow}{return} EXIT\_FAILURE;
+875                     \}
+876                 \} \textcolor{keywordflow}{else} \{
+877                     skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"%s: input param was invalid! %c[%d:%d:%d]\(\backslash\)n"}, 
+      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, (\textcolor{keywordtype}{char}) opt, longindex, optind,
+878                                     opterr);
+879                     \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+880                 \}
+881                 \textcolor{keywordflow}{break};
+882             \textcolor{keywordflow}{case} \textcolor{charliteral}{'p'}:
+883                 \textcolor{keywordflow}{if} (optarg) \{
+884                     \hyperlink{skn__rpi__helpers_8c_aa8460852bd6c3559cc5ad4bd58806ba2}{gd\_pch\_serial\_port} = strdup(optarg);
+885                     \textcolor{keywordflow}{if} (strlen(\hyperlink{skn__rpi__helpers_8c_aa8460852bd6c3559cc5ad4bd58806ba2}{gd\_pch\_serial\_port}) < 5) \{
+886                         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"%s: input param was invalid! %c[%d:%d:%d]\(\backslash\)n"}, 
+      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, (\textcolor{keywordtype}{char}) opt, longindex, optind, opterr);
+887                         \textcolor{keywordflow}{return} EXIT\_FAILURE;
+888                     \}
+889                 \} \textcolor{keywordflow}{else} \{
+890                     skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"%s: input param was invalid! %c[%d:%d:%d]\(\backslash\)n"}, 
+      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, (\textcolor{keywordtype}{char}) opt, longindex, optind, opterr);
+891                     \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+892                 \}
+893                 \textcolor{keywordflow}{break};
+894             \textcolor{keywordflow}{case} \textcolor{charliteral}{'v'}:
+895                 skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)tProgram => %s\(\backslash\)n\(\backslash\)tVersion => %s\(\backslash\)n\(\backslash\)tSkoona Development\(\backslash\)n\(\backslash\)t
+      <skoona@gmail.com>\(\backslash\)n"}, \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name},
+896                                 \hyperlink{cmd_d_c_8c_aa326a05d5e30f9e9a4bb0b4469d5d0c0}{PACKAGE\_VERSION});
+897                 \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+898                 \textcolor{keywordflow}{break};
+899             \textcolor{keywordflow}{case} \textcolor{charliteral}{'?'}:
+900                 skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"%s: unknown input param! %c[%d:%d:%d]\(\backslash\)n"}, 
+      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, (\textcolor{keywordtype}{char}) opt, longindex, optind, opterr);
+901                 \hyperlink{skn__rpi__helpers_8c_aca7dfbde9be606bb7d177fb686b103f9}{skn\_display\_print\_usage}();
+902                 \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+903                 \textcolor{keywordflow}{break};
+904             \textcolor{keywordflow}{default}: \textcolor{comment}{/* help and default */}
+905                 \hyperlink{skn__rpi__helpers_8c_aca7dfbde9be606bb7d177fb686b103f9}{skn\_display\_print\_usage}();
+906                 \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+907                 \textcolor{keywordflow}{break};
+908         \}
+909     \}
+910 
+911     \textcolor{keywordflow}{return} EXIT\_SUCCESS;
+912 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=346pt]{skn__rpi__helpers_8h_aed93e422e5b2cd74ea04177db841fa37_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=258pt]{skn__rpi__helpers_8h_aed93e422e5b2cd74ea04177db841fa37_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__rpi__helpers_8h_af2cd8436ec8dca06473441659fb03f75}{}\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+scroller\+\_\+pad\+\_\+right@{skn\+\_\+scroller\+\_\+pad\+\_\+right}}
+\index{skn\+\_\+scroller\+\_\+pad\+\_\+right@{skn\+\_\+scroller\+\_\+pad\+\_\+right}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
+\subsubsection[{skn\+\_\+scroller\+\_\+pad\+\_\+right(char $\ast$buffer)}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ skn\+\_\+scroller\+\_\+pad\+\_\+right (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{buffer}
+\end{DoxyParamCaption}
+)}\label{skn__rpi__helpers_8h_af2cd8436ec8dca06473441659fb03f75}
+skn\+\_\+scroller\+\_\+pad\+\_\+right
+\begin{DoxyItemize}
+\item fills remaining with spaces and 0 terminates
+\item buffer message to adjust 
+\end{DoxyItemize}
+
+Definition at line 359 of file skn\+\_\+rpi\+\_\+helpers.\+c.
+
+
+
+References gd\+\_\+i\+\_\+cols.
+
+
+
+Referenced by skn\+\_\+scroller\+\_\+scroll\+\_\+lines().
+
+
+\begin{DoxyCode}
+359                                             \{
+360     \textcolor{keywordtype}{int} hIndex = 0;
+361 
+362     \textcolor{keywordflow}{for} (hIndex = strlen(buffer); hIndex < \hyperlink{skn__rpi__helpers_8c_ac934aabd8dd134e724c62e1264afa549}{gd\_i\_cols}; hIndex++) \{
+363         buffer[hIndex] = \textcolor{charliteral}{' '};
+364     \}
+365     buffer[\hyperlink{skn__rpi__helpers_8c_ac934aabd8dd134e724c62e1264afa549}{gd\_i\_cols}] = 0;
+366 
+367     \textcolor{keywordflow}{return} buffer;
+368 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__rpi__helpers_8h_af2cd8436ec8dca06473441659fb03f75_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__rpi__helpers_8h_a4f78720f41ceb03e6b6111a358c7aea1}{}\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+scroller\+\_\+scroll\+\_\+lines@{skn\+\_\+scroller\+\_\+scroll\+\_\+lines}}
+\index{skn\+\_\+scroller\+\_\+scroll\+\_\+lines@{skn\+\_\+scroller\+\_\+scroll\+\_\+lines}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
+\subsubsection[{skn\+\_\+scroller\+\_\+scroll\+\_\+lines(\+P\+Display\+Line pdl, int lcd\+\_\+handle, int line)}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+scroller\+\_\+scroll\+\_\+lines (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+Display\+Line}}]{pdl, }
+\item[{int}]{lcd\+\_\+handle, }
+\item[{int}]{line}
+\end{DoxyParamCaption}
+)}\label{skn__rpi__helpers_8h_a4f78720f41ceb03e6b6111a358c7aea1}
+Scrolls a single line across the lcd display
+\begin{DoxyItemize}
+\item best when wrapped in column chars on each side 
+\end{DoxyItemize}
+
+Definition at line 394 of file skn\+\_\+rpi\+\_\+helpers.\+c.
+
+
+
+References \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::ch\+\_\+display\+\_\+msg, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::display\+\_\+pos, gd\+\_\+i\+\_\+cols, gd\+\_\+pch\+\_\+device\+\_\+name, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::msg\+\_\+len, skn\+\_\+scroller\+\_\+pad\+\_\+right(), and skn\+\_\+time\+\_\+delay().
+
+
+
+Referenced by skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work().
+
+
+\begin{DoxyCode}
+395 \{
+396     \textcolor{keywordtype}{char} buf[40];
+397     \textcolor{keywordtype}{signed} \textcolor{keywordtype}{int} hAdjust = 0, mLen = 0, mfLen = 0;
+398     \textcolor{keywordtype}{char} set\_col\_row\_position[] = \{0xfe, 0x47, 0x01, 0x01\};
+399 
+400     mLen = strlen(&(pdl->\hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_ae5fae9b599281d1d3f619b6e402e7c2c}{ch\_display\_msg}[pdl->\hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_af32b1aa2ce817c27695d7cd43db9364d}{display\_pos}]));
+401     \textcolor{keywordflow}{if} (\hyperlink{skn__rpi__helpers_8c_ac934aabd8dd134e724c62e1264afa549}{gd\_i\_cols} < mLen) \{
+402         mfLen = pdl->\hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_aa9cfa1dd3e90386f675fef61e711342e}{msg\_len};
+403         hAdjust = (mfLen - \hyperlink{skn__rpi__helpers_8c_ac934aabd8dd134e724c62e1264afa549}{gd\_i\_cols});
+404     \}
+405 
+406     snprintf(buf, \textcolor{keyword}{sizeof}(buf) - 1, \textcolor{stringliteral}{"%s"}, &(pdl->\hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_ae5fae9b599281d1d3f619b6e402e7c2c}{ch\_display\_msg}[pdl->
+      \hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_af32b1aa2ce817c27695d7cd43db9364d}{display\_pos}]));
+407     \hyperlink{skn__rpi__helpers_8c_af2cd8436ec8dca06473441659fb03f75}{skn\_scroller\_pad\_right}(buf);
+408 
+409     \textcolor{keywordflow}{if} (strcmp(\textcolor{stringliteral}{"ser"}, \hyperlink{skn__rpi__helpers_8c_a236d69bc821c60a396d02099e92d22bb}{gd\_pch\_device\_name}) == 0 ) \{
+410         set\_col\_row\_position[3] = (\textcolor{keywordtype}{unsigned} int)line + 1;
+411         write(lcd\_handle, set\_col\_row\_position, \textcolor{keyword}{sizeof}(set\_col\_row\_position));
+412         \hyperlink{skn__network__helpers_8c_a802d742c15476782fbbea1528f76dea5}{skn\_time\_delay}(0.2); \textcolor{comment}{// delay(200);}
+413         write(lcd\_handle, buf, \hyperlink{skn__rpi__helpers_8c_ac934aabd8dd134e724c62e1264afa549}{gd\_i\_cols} - 1);
+414     \} \textcolor{keywordflow}{else} \{
+415         lcdPosition(lcd\_handle, 0, line);
+416         lcdPuts(lcd\_handle, buf);
+417     \}
+418     \textcolor{keywordflow}{if} (++pdl->\hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_af32b1aa2ce817c27695d7cd43db9364d}{display\_pos} > hAdjust) \{
+419         pdl->\hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_af32b1aa2ce817c27695d7cd43db9364d}{display\_pos} = 0;
+420     \}
+421 
+422     \textcolor{keywordflow}{return} pdl->\hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_af32b1aa2ce817c27695d7cd43db9364d}{display\_pos};
+423 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=331pt]{skn__rpi__helpers_8h_a4f78720f41ceb03e6b6111a358c7aea1_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__rpi__helpers_8h_a4f78720f41ceb03e6b6111a358c7aea1_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__rpi__helpers_8h_ae945b3a41d43db4d0c52f522d663d415}{}\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+scroller\+\_\+wrap\+\_\+blanks@{skn\+\_\+scroller\+\_\+wrap\+\_\+blanks}}
+\index{skn\+\_\+scroller\+\_\+wrap\+\_\+blanks@{skn\+\_\+scroller\+\_\+wrap\+\_\+blanks}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
+\subsubsection[{skn\+\_\+scroller\+\_\+wrap\+\_\+blanks(char $\ast$buffer)}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ skn\+\_\+scroller\+\_\+wrap\+\_\+blanks (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{buffer}
+\end{DoxyParamCaption}
+)}\label{skn__rpi__helpers_8h_ae945b3a41d43db4d0c52f522d663d415}
+skn\+\_\+scroller\+\_\+wrap\+\_\+blanks
+\begin{DoxyItemize}
+\item builds str with 20 chars in front, and 20 at right end 
+\end{DoxyItemize}
+
+Definition at line 374 of file skn\+\_\+rpi\+\_\+helpers.\+c.
+
+
+
+References gd\+\_\+i\+\_\+cols, and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F.
+
+
+
+Referenced by skn\+\_\+display\+\_\+manager\+\_\+add\+\_\+line(), and skn\+\_\+display\+\_\+manager\+\_\+create().
+
+
+\begin{DoxyCode}
+374                                               \{
+375     \textcolor{keywordtype}{char} worker[\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}];
+376     \textcolor{keywordtype}{char} col\_width\_padding[16];
+377 
+378     \textcolor{keywordflow}{if} (buffer == NULL || strlen(buffer) > \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}) \{
+379         \textcolor{keywordflow}{return} NULL;
+380     \}
+381 
+382     snprintf(col\_width\_padding, 16, \textcolor{stringliteral}{"%%%ds%%s%%%ds"}, \hyperlink{skn__rpi__helpers_8c_ac934aabd8dd134e724c62e1264afa549}{gd\_i\_cols}, 
+      \hyperlink{skn__rpi__helpers_8c_ac934aabd8dd134e724c62e1264afa549}{gd\_i\_cols});
+383     snprintf(worker, (\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1), col\_width\_padding, \textcolor{stringliteral}{" "}, buffer, \textcolor{stringliteral}{" "});
+384     memmove(buffer, worker, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}-1);
+385     buffer[\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1] = 0;
+386 
+387     \textcolor{keywordflow}{return} buffer;
+388 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__rpi__helpers_8h_ae945b3a41d43db4d0c52f522d663d415_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__rpi__helpers_8h_aa3e16c859e3977df7056461e57fdf683}{}\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+signal\+\_\+manager\+\_\+shutdown@{skn\+\_\+signal\+\_\+manager\+\_\+shutdown}}
+\index{skn\+\_\+signal\+\_\+manager\+\_\+shutdown@{skn\+\_\+signal\+\_\+manager\+\_\+shutdown}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
+\subsubsection[{skn\+\_\+signal\+\_\+manager\+\_\+shutdown(pthread\+\_\+t sig\+\_\+thread, sigset\+\_\+t $\ast$psignal\+\_\+set, long $\ast$l\+\_\+thread\+\_\+complete)}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+signal\+\_\+manager\+\_\+shutdown (
+\begin{DoxyParamCaption}
+\item[{pthread\+\_\+t}]{sig\+\_\+thread, }
+\item[{sigset\+\_\+t $\ast$}]{psignal\+\_\+set, }
+\item[{long $\ast$}]{l\+\_\+thread\+\_\+complete}
+\end{DoxyParamCaption}
+)}\label{skn__rpi__helpers_8h_aa3e16c859e3977df7056461e57fdf683}
+Final step
+\begin{DoxyItemize}
+\item may send trapped signal to app, so requester knows it was honored 
+\end{DoxyItemize}
+
+Definition at line 209 of file skn\+\_\+signal\+\_\+manager.\+c.
+
+
+
+References gi\+\_\+exit\+\_\+flag, S\+D\+\_\+\+N\+O\+T\+I\+C\+E, S\+D\+\_\+\+W\+A\+R\+N\+I\+N\+G, and S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+S\+T\+O\+P.
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+209                                                                                                       \{
+210     \textcolor{keywordtype}{void} *trc = NULL;
+211     \textcolor{keywordtype}{int} rc = EXIT\_SUCCESS;
+212 
+213     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag} <= \hyperlink{skn__common__headers_8h_a6ea8f978e9fdfefe8437e3a7decbad7f}{SKN\_RUN\_MODE\_STOP}) \{
+214         \hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag} = \hyperlink{skn__common__headers_8h_a6ea8f978e9fdfefe8437e3a7decbad7f}{SKN\_RUN\_MODE\_STOP}; \textcolor{comment}{/* shut down the system -- work is
+       done */}
+215         \textcolor{comment}{// need to force theads down or interrupt them}
+216         skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"shutdown caused by application!"});
+217         sleep(1);
+218         \textcolor{keywordflow}{if} (*l\_thread\_complete != 0) \{
+219             pthread\_cancel(sig\_thread);
+220             sleep(1);
+221         \}
+222         skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"Collecting (cleanup) threads."});
+223         pthread\_join(sig\_thread, &trc);
+224     \} \textcolor{keywordflow}{else} \{
+225         rc = EXIT\_FAILURE;
+226         skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"Collecting signal thread's return code."});
+227         pthread\_join(sig\_thread, &trc);
+228         skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"Signal thread was ended by a %d:%s signal."}, 
+      \hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag}, strsignal((\textcolor{keywordtype}{int}) (\textcolor{keywordtype}{long} \textcolor{keywordtype}{int}) trc));
+229     \}
+230     pthread\_sigmask(SIG\_UNBLOCK, psignal\_set, NULL);
+231 
+232     \textcolor{keywordflow}{return} rc;
+233 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=262pt]{skn__rpi__helpers_8h_aa3e16c859e3977df7056461e57fdf683_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{skn__rpi__helpers_8h_a9de94515b5dc0bcdcb813f6b17a6956e}{}\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+signal\+\_\+manager\+\_\+startup@{skn\+\_\+signal\+\_\+manager\+\_\+startup}}
+\index{skn\+\_\+signal\+\_\+manager\+\_\+startup@{skn\+\_\+signal\+\_\+manager\+\_\+startup}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
+\subsubsection[{skn\+\_\+signal\+\_\+manager\+\_\+startup(pthread\+\_\+t $\ast$psig\+\_\+thread, sigset\+\_\+t $\ast$psignal\+\_\+set, long $\ast$l\+\_\+thread\+\_\+complete)}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+signal\+\_\+manager\+\_\+startup (
+\begin{DoxyParamCaption}
+\item[{pthread\+\_\+t $\ast$}]{psig\+\_\+thread, }
+\item[{sigset\+\_\+t $\ast$}]{psignal\+\_\+set, }
+\item[{long $\ast$}]{l\+\_\+thread\+\_\+complete}
+\end{DoxyParamCaption}
+)}\label{skn__rpi__helpers_8h_a9de94515b5dc0bcdcb813f6b17a6956e}
+Initialize signal manager 
+
+Definition at line 238 of file skn\+\_\+signal\+\_\+manager.\+c.
+
+
+
+References P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R, S\+D\+\_\+\+E\+R\+R, and skn\+\_\+signal\+\_\+manager\+\_\+handler\+\_\+thread().
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+238                                                                                                        \{
+239     \textcolor{keywordtype}{int} i\_thread\_rc = 0; \textcolor{comment}{// EXIT\_SUCCESS}
+240 
+241     sigfillset(psignal\_set);
+242     pthread\_sigmask(SIG\_BLOCK, psignal\_set, NULL);
+243 
+244     i\_thread\_rc = pthread\_create(psig\_thread, NULL, 
+      \hyperlink{skn__signal__manager_8c_a34a43eb05460c12308ab975a3add1e6d}{skn\_signal\_manager\_handler\_thread}, (\textcolor{keywordtype}{void}*) l\_thread\_complete);
+245     \textcolor{keywordflow}{if} (i\_thread\_rc == \hyperlink{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{PLATFORM\_ERROR}) \{
+246         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"Create signal thread failed: %d:%s"}, errno, strerror(errno));
+247         pthread\_sigmask(SIG\_UNBLOCK, psignal\_set, NULL);
+248         i\_thread\_rc = EXIT\_FAILURE;
+249     \}
+250     sleep(1); \textcolor{comment}{// give thread a chance to start}
+251 
+252     \textcolor{keywordflow}{return} i\_thread\_rc;
+253 \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{skn__rpi__helpers_8h_a9de94515b5dc0bcdcb813f6b17a6956e_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=262pt]{skn__rpi__helpers_8h_a9de94515b5dc0bcdcb813f6b17a6956e_icgraph}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{skn__rpi__helpers_8h_ac934aabd8dd134e724c62e1264afa549}{}\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!gd\+\_\+i\+\_\+cols@{gd\+\_\+i\+\_\+cols}}
+\index{gd\+\_\+i\+\_\+cols@{gd\+\_\+i\+\_\+cols}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
+\subsubsection[{gd\+\_\+i\+\_\+cols}]{\setlength{\rightskip}{0pt plus 5cm}int gd\+\_\+i\+\_\+cols}\label{skn__rpi__helpers_8h_ac934aabd8dd134e724c62e1264afa549}
+
+
+Definition at line 12 of file skn\+\_\+rpi\+\_\+helpers.\+c.
+
+
+
+Referenced by skn\+\_\+display\+\_\+manager\+\_\+add\+\_\+line(), skn\+\_\+display\+\_\+manager\+\_\+create(), skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line(), skn\+\_\+scroller\+\_\+pad\+\_\+right(), skn\+\_\+scroller\+\_\+scroll\+\_\+lines(), and skn\+\_\+scroller\+\_\+wrap\+\_\+blanks().
+
+\hypertarget{skn__rpi__helpers_8h_a2c55396bf337471f9f99a939974fcdbe}{}\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!gd\+\_\+i\+\_\+i2c\+\_\+address@{gd\+\_\+i\+\_\+i2c\+\_\+address}}
+\index{gd\+\_\+i\+\_\+i2c\+\_\+address@{gd\+\_\+i\+\_\+i2c\+\_\+address}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
+\subsubsection[{gd\+\_\+i\+\_\+i2c\+\_\+address}]{\setlength{\rightskip}{0pt plus 5cm}int gd\+\_\+i\+\_\+i2c\+\_\+address}\label{skn__rpi__helpers_8h_a2c55396bf337471f9f99a939974fcdbe}
+
+
+Definition at line 27 of file skn\+\_\+network\+\_\+helpers.\+c.
+
+
+
+Referenced by main(), skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23008(), skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23017(), skn\+\_\+device\+\_\+manager\+\_\+\+P\+C\+F8574(), skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line(), and skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line().
+
+\hypertarget{skn__rpi__helpers_8h_a3599398fb56285a3069b55791e6bb953}{}\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!gd\+\_\+i\+\_\+rows@{gd\+\_\+i\+\_\+rows}}
+\index{gd\+\_\+i\+\_\+rows@{gd\+\_\+i\+\_\+rows}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
+\subsubsection[{gd\+\_\+i\+\_\+rows}]{\setlength{\rightskip}{0pt plus 5cm}int gd\+\_\+i\+\_\+rows}\label{skn__rpi__helpers_8h_a3599398fb56285a3069b55791e6bb953}
+\hyperlink{skn__rpi__helpers_8c}{skn\+\_\+rpi\+\_\+helpers.\+c} 
+
+Definition at line 11 of file skn\+\_\+rpi\+\_\+helpers.\+c.
+
+
+
+Referenced by skn\+\_\+display\+\_\+manager\+\_\+create(), and skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line().
+
+\hypertarget{skn__rpi__helpers_8h_a236d69bc821c60a396d02099e92d22bb}{}\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!gd\+\_\+pch\+\_\+device\+\_\+name@{gd\+\_\+pch\+\_\+device\+\_\+name}}
+\index{gd\+\_\+pch\+\_\+device\+\_\+name@{gd\+\_\+pch\+\_\+device\+\_\+name}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
+\subsubsection[{gd\+\_\+pch\+\_\+device\+\_\+name}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ gd\+\_\+pch\+\_\+device\+\_\+name}\label{skn__rpi__helpers_8h_a236d69bc821c60a396d02099e92d22bb}
+
+
+Definition at line 14 of file skn\+\_\+rpi\+\_\+helpers.\+c.
+
+
+
+Referenced by skn\+\_\+device\+\_\+manager\+\_\+init\+\_\+i2c(), skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+shutdown(), skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work(), skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line(), and skn\+\_\+scroller\+\_\+scroll\+\_\+lines().
+
+\hypertarget{skn__rpi__helpers_8h_aa8460852bd6c3559cc5ad4bd58806ba2}{}\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!gd\+\_\+pch\+\_\+serial\+\_\+port@{gd\+\_\+pch\+\_\+serial\+\_\+port}}
+\index{gd\+\_\+pch\+\_\+serial\+\_\+port@{gd\+\_\+pch\+\_\+serial\+\_\+port}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
+\subsubsection[{gd\+\_\+pch\+\_\+serial\+\_\+port}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ gd\+\_\+pch\+\_\+serial\+\_\+port}\label{skn__rpi__helpers_8h_aa8460852bd6c3559cc5ad4bd58806ba2}
+
+
+Definition at line 13 of file skn\+\_\+rpi\+\_\+helpers.\+c.
+
+
+
+Referenced by skn\+\_\+device\+\_\+manager\+\_\+\+Serial\+Port(), and skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line().
+
+\hypertarget{skn__rpi__helpers_8h_ab1d9c73f13a8c60f54b1df15a34a8e64}{}\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!gp\+\_\+structure\+\_\+pdm@{gp\+\_\+structure\+\_\+pdm}}
+\index{gp\+\_\+structure\+\_\+pdm@{gp\+\_\+structure\+\_\+pdm}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
+\subsubsection[{gp\+\_\+structure\+\_\+pdm}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+Display\+Manager} gp\+\_\+structure\+\_\+pdm}\label{skn__rpi__helpers_8h_ab1d9c73f13a8c60f54b1df15a34a8e64}
+
+
+Definition at line 15 of file skn\+\_\+rpi\+\_\+helpers.\+c.
+
+
+
+Referenced by skn\+\_\+get\+\_\+display\+\_\+manager\+\_\+ref().
+

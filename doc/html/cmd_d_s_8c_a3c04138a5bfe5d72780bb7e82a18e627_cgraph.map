@@ -1,0 +1,10 @@
+<map id="main" name="main">
+<area shape="rect" id="node2" href="$cmd_d_s_8c.html#a385b710fd30ba190b3b96e814424ff80" title="cb_udp_broadcast_response\l_handler" alt="" coords="104,61,297,100"/>
+<area shape="rect" id="node6" href="$cmd_d_s_8c.html#a49f1fa41c6c2b72cbffa3e0399b12ea7" title="cb_udp_request_handler" alt="" coords="116,12,285,37"/>
+<area shape="rect" id="node7" href="$cmd_d_s_8c.html#a76ad4de5945cff6e20dbeff46bda868b" title="cb_unix_signal_handler" alt="" coords="120,124,281,149"/>
+<area shape="rect" id="node8" href="$cmd_d_s_8c.html#a72be87baa67e532c78af054acf935d6c" title="skn_get_default_interface\l_name_and_ipv4_address" alt="" coords="111,173,289,212"/>
+<area shape="rect" id="node9" href="$cmd_d_s_8c.html#af376243f65a3fd761050836d1293b0d9" title="skn_udp_network_broadcast\l_all_interfaces" alt="" coords="104,236,296,275"/>
+<area shape="rect" id="node3" href="$cmd_d_s_8c.html#a6ea2e6ee5c8f0d51a98539842634f217" title="skn_get_timestamp" alt="" coords="355,68,492,93"/>
+<area shape="rect" id="node4" href="$cmd_d_s_8c.html#a2dcc830aabe5f0cfffb3077fc0cba6a5" title="skn_gio_condition_to\l_string" alt="" coords="350,5,497,44"/>
+<area shape="rect" id="node5" href="$cmd_d_s_8c.html#a568a9919cfd345f6c1a41a2ec7c4b1ca" title="udp_registry_response\l_parser" alt="" coords="345,117,502,156"/>
+</map>

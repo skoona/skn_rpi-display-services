@@ -1,10 +1,10 @@
 <map id="service_registry_find_entry" name="service_registry_find_entry">
-<area shape="rect" id="node3" href="$lcd__display__client_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="916,6,966,34"/>
-<area shape="rect" id="node5" href="$skn__network__helpers_8c.html#a5e51f7d19b5d689be44036a57e056e7a" title="service_registry_entry\l_create" alt="" coords="197,70,349,114"/>
-<area shape="rect" id="node7" href="$skn__network__helpers_8c.html#a25149d495d462b7600eb6715da868200" title="service_registry_response\l_parse" alt="" coords="398,87,575,131"/>
-<area shape="rect" id="node9" href="$skn__network__helpers_8h.html#a866cf7e5524cc49a76448c59395a622e" title="service_registry_valiadate\l_response_format" alt="" coords="628,105,804,149"/>
-<area shape="rect" id="node16" href="$skn__network__helpers_8h.html#aae9b1fb439eead75521f80120886867e" title="service_registry_valiadated\l_registry" alt="" coords="625,173,807,217"/>
-<area shape="rect" id="node18" href="$skn__network__helpers_8h.html#a8a291f1cb8d18e45a3e9b6bc9e3798a6" title="service_registry_get\l_via_udp_broadcast" alt="" coords="645,37,787,81"/>
-<area shape="rect" id="node11" href="$skn__network__helpers_8h.html#ad148412119d5d8373da1a6859aafda41" title="service_registry_provider" alt="" coords="856,130,1026,158"/>
-<area shape="rect" id="node13" href="$udp__locator__service_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="1075,105,1125,133"/>
+<area shape="rect" id="node2" href="$a2d__display__client_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="913,5,963,31"/>
+<area shape="rect" id="node3" href="$skn__network__helpers_8c.html#a5e51f7d19b5d689be44036a57e056e7a" title="service_registry_entry\l_create" alt="" coords="197,68,349,107"/>
+<area shape="rect" id="node4" href="$skn__network__helpers_8c.html#a25149d495d462b7600eb6715da868200" title="service_registry_response\l_parse" alt="" coords="397,84,574,123"/>
+<area shape="rect" id="node5" href="$skn__network__helpers_8h.html#a866cf7e5524cc49a76448c59395a622e" title="service_registry_valiadate\l_response_format" alt="" coords="625,100,801,139"/>
+<area shape="rect" id="node8" href="$skn__network__helpers_8h.html#aae9b1fb439eead75521f80120886867e" title="service_registry_valiadated\l_registry" alt="" coords="622,163,805,201"/>
+<area shape="rect" id="node9" href="$skn__network__helpers_8h.html#a8a291f1cb8d18e45a3e9b6bc9e3798a6" title="service_registry_get\l_via_udp_broadcast" alt="" coords="642,37,784,76"/>
+<area shape="rect" id="node6" href="$skn__network__helpers_8h.html#ad148412119d5d8373da1a6859aafda41" title="service_registry_provider" alt="" coords="853,125,1023,151"/>
+<area shape="rect" id="node7" href="$udp__locator__service_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="1071,100,1121,125"/>
 </map>

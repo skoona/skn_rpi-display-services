@@ -1,0 +1,8 @@
+<map id="cb_udp_registry_select_handler" name="cb_udp_registry_select_handler">
+<area shape="rect" id="node2" href="$cmd_d_c_8c.html#af376243f65a3fd761050836d1293b0d9" title="skn_udp_network_broadcast\l_all_interfaces" alt="" coords="214,5,406,44"/>
+<area shape="rect" id="node3" href="$cmd_d_c_8c.html#a793c6b3e5c7a5abc993d8cfbe963629d" title="udp_initialize_message_send" alt="" coords="212,68,408,93"/>
+<area shape="rect" id="node7" href="$cmd_d_c_8c.html#ae59da66ef51690f71da087514886fd12" title="udp_registry_find_by_name" alt="" coords="217,117,403,143"/>
+<area shape="rect" id="node4" href="$cmd_d_c_8c.html#aa8a19e68e54683fa324bcee1ecfd3942" title="cb_udp_comm_response\l_handler" alt="" coords="456,31,627,69"/>
+<area shape="rect" id="node6" href="$cmd_d_c_8c.html#a00c5b52bdcb7caec07d08b05b8c1dced" title="cb_udp_comm_request\l_handler" alt="" coords="461,93,622,132"/>
+<area shape="rect" id="node5" href="$cmd_d_c_8c.html#a8288aea959581188e5bd29430935a6ed" title="skn_get_timestamp" alt="" coords="675,37,812,63"/>
+</map>

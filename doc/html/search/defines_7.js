@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['true',['TRUE',['../skn__common__headers_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d',1,'skn_common_headers.h']]],
-  ['tz_5fadjust',['TZ_ADJUST',['../skn__common__headers_8h.html#a43b19fdfa560dfa392d708c35bc58b37',1,'skn_common_headers.h']]]
+  ['kxadcpath',['kXADCPATH',['../para__display__client_8c.html#a66e27ff237580d0f8dc29f052d9b4aec',1,'para_display_client.c']]]
 ];

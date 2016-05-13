@@ -1,8 +1,8 @@
 var NAVTREE =
 [
-  [ "RPi LCD DisplayService", "index.html", [
-    [ "Data Structures", null, [
-      [ "Data Structures", "annotated.html", "annotated" ],
+  [ "RPi Locator and Display Services", "index.html", [
+    [ "Data Structures", "annotated.html", [
+      [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],
       [ "Data Fields", "functions.html", [
         [ "All", "functions.html", null ],
@@ -13,9 +13,11 @@ var NAVTREE =
       [ "File List", "files.html", "files" ],
       [ "Globals", "globals.html", [
         [ "All", "globals.html", "globals_dup" ],
-        [ "Functions", "globals_func.html", null ],
+        [ "Functions", "globals_func.html", "globals_func" ],
         [ "Variables", "globals_vars.html", null ],
         [ "Typedefs", "globals_type.html", null ],
+        [ "Enumerations", "globals_enum.html", null ],
+        [ "Enumerator", "globals_eval.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -24,8 +26,9 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_8___makefile_8am.html",
-"skn__rpi__helpers_8h.html#a0410c7c96c2188c945cea294ae074ff9"
+"_makefile_8am.html",
+"gssdp_d_c_8c.html#adf765361163d05006ff697149bbaf2ee",
+"skn__network__helpers_8h.html#a923b2adbdc0dac852905dc95eaa73a37"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
