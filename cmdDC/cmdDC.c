@@ -530,6 +530,15 @@ static gboolean cb_udp_comm_request_handler(PControlData pctrl) {
         g_message("DisplayClient::cb_udp_comm_request_handler(error) Invalid Pointer");
         return ( G_SOURCE_REMOVE );
     }
+	
+	/*
+	 * TODO
+	 * 
+	 * Add routine to change pctrl->ch_message to one of 
+	 * many different status messages.  The <project>/src directory
+	 * contains LibC routines for LoadAvg, CPU Util, Datetime, Cpu Temps, etc.
+	 *
+	 */
 
     g_socket_send_to (pctrl->gSock, pctrl->gsDSAddr, pctrl->ch_message, strlen(pctrl->ch_message), NULL, &error);
     if (error != NULL) {  // gss_send = Number of bytes written (which may be less than size ), or -1 on error
