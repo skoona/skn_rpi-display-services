@@ -30,3 +30,5 @@ para_display_client_LDADD = -L/usr/local/lib
 a2d_display_client_SOURCES=a2d_display_client.c skn_network_helpers.c skn_common_headers.h skn_network_helpers.h
 a2d_display_client_LDFLAGS = -lpthread -lm -lrt -lwiringPi
 a2d_display_client_LDADD = -L/usr/local/lib 
+
+-include $(top_srcdir)/git.mk
