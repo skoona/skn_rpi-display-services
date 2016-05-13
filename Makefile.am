@@ -1,5 +1,5 @@
 #
-ACLOCAL_AMFLAGS = -Im4 --install
+ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 SUBDIRS = src
 
 if DOGSSDP

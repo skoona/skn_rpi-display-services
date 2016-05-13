@@ -1,19 +1,1965 @@
-08/01/2015 Found DisplayService Failing after 24 hours
-  - Signal Thread was active
-  - DisplayManager thread was active and receiving message
-  - do_work() was not cycling; I suspect var host_update_cycle, to be the cause.
-  - Reset host_update_cycle to odd number  after each cycle.
+commit 0a4e78520fddae8ddaffb4d241f334e38c6955d9
+Author: skoona <skoona@gmail.com>
+Date:   Fri May 13 03:11:19 2016 +0000
 
-08/03/2015 Still Failing after X hours of operation
- - Originally thought it was caused by host_update_cycle int rolling over; not true
- - Considered the delay() sleep method might be failing; wrote my own using nanosleep()
- - Still Failed after updating sleep routines.  Must be Thread interactions...
+    Adding Gtk and GSSDP versions.
 
-08/04/2015 Tracking down the cause of main thread freeze.
-- sleep(0); suspected to be the cause of the 'uninterruptible sleep' state for main thread
-- no other cause I can think of, since tests show no threading conflicts by design and practice.
+ .gitignore          |   69 ++-
+ Makefile.am         |   32 +-
+ cmdDC/Makefile.am   |   10 +
+ cmdDC/cmdDC.c       |  871 ++++++++++++++++++++++++++++
+ cmdDS/Makefile.am   |   10 +
+ cmdDS/cmdDS.c       |  770 ++++++++++++++++++++++++
+ configure.ac        |   40 +-
+ git.mk              |  327 +++++++++++
+ gssdpDC/Makefile.am |   13 +
+ gssdpDC/gssdpDC     |  Bin 0 -> 28360 bytes
+ gssdpDC/gssdpDC.c   |  698 ++++++++++++++++++++++
+ gtkDS/Makefile.am   |   13 +
+ gtkDS/gtkDS.c       | 1611 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/Makefile.am     |    2 +
+ 14 files changed, 4433 insertions(+), 33 deletions(-)
 
-08/08/2015 Found source of 'uninterruptible sleep' to be conflict between I2C operations and 
-- GetCpuTemp() or reading '/sys/class/thermal/thermal_zone0/temp'.  Apparently, the RPi has
-- internal firmware issue with the concurency of these operation.  Remove getCpuTemp() from
-- use in the lcd_display_service.
+commit aeafbb839d62e107b0be8711ca3a6bb96a3e8d24
+Author: skoona <skoona@gmail.com>
+Date:   Sun May 8 22:49:19 2016 -0400
+
+    Updated Docs.
+
+ README.md | 26 ++------------------------
+ 1 file changed, 2 insertions(+), 24 deletions(-)
+
+commit b27c854f150b185b0e272fc79ad43dce163585f9
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Sun May 8 21:47:38 2016 -0400
+
+    Added a build message to configure.ac when wiringPi is found or not found.
+
+ configure.ac | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+commit ea0cbf4b21842bcd46b506ec89254fe3c3ada120
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Sun May 8 11:04:56 2016 -0400
+
+    Determined that the compile issue was not OSX but the presence of WiringPi.  Change cofigure.ac to adjust based on presence of WiringPi.
+
+ configure.ac    | 19 ++++++++-----------
+ src/Makefile.am |  8 ++++----
+ 2 files changed, 12 insertions(+), 15 deletions(-)
+
+commit 20ac6eb072d01501c258764a90b8e8f49d04dd32
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Sun May 8 01:48:21 2016 -0400
+
+    Removed non-utf8 degree char from cpu temp messages.
+
+ src/skn_rpi_helpers.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit a63fb9e32c3563ff056d8a741308666ae16c1d53
+Author: skoona <skoona@gmail.com>
+Date:   Sun May 8 04:42:01 2016 +0000
+
+    Release 0.5.2 -- with cleanup up autotools scripts capable of compiling on OSX or Linux.
+
+ configure.ac | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit d22cfcc26edf0c4c06fea1704aa0f8840b759b8b
+Author: skoona <skoona@gmail.com>
+Date:   Sun May 8 04:33:59 2016 +0000
+
+    Resolved WiringPi Library Sense failure.  WiringPiDev#lcdInit requires a list of libraries to resolve function, and automake does not use the other-libs params on AC_CHECK_LIBS as described.
+
+ configure.ac | 12 +++++++-----
+ 1 file changed, 7 insertions(+), 5 deletions(-)
+
+commit 7974af2b2d24e07598f26861c85e5588b0ba9d68
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Sat May 7 20:51:16 2016 -0400
+
+    Automated detection of Linux vs MacOS, MacOS cannot build WiringPi based services or clients.
+
+ INSTALL                   |    2 +-
+ Makefile.in               |  832 -------
+ autogen.sh                |   44 +
+ build-aux/compile         |    1 -
+ build-aux/config.guess    |    1 -
+ build-aux/config.sub      |    1 -
+ build-aux/depcomp         |    1 -
+ build-aux/install-sh      |    1 -
+ build-aux/missing         |    1 -
+ configure                 | 5804 ---------------------------------------------
+ configure.ac              |   19 +-
+ src/Makefile.am           |    7 +-
+ src/Makefile.in           |  563 -----
+ src/a2d_display_client.c  |    0
+ src/lcd_display_client.c  |    0
+ src/lcd_display_service.c |    0
+ src/para_display_client.c |    0
+ src/skn_network_helpers.c |    1 -
+ src/skn_network_helpers.h |    0
+ src/udp_locator_client.c  |    0
+ src/udp_locator_service.c |    0
+ 21 files changed, 65 insertions(+), 7213 deletions(-)
+
+commit 1fee2786786130982bb4e6fdb25546ee3542fb5f
+Author: skoona <skoona@gmail.com>
+Date:   Fri Mar 25 10:06:16 2016 -0400
+
+    Noticed a classic equal vs equal equal problem.
+
+ src/skn_rpi_helpers.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 925893900b6538cf56c7237766cb174fde9593ad
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Wed Aug 26 02:54:05 2015 +0000
+
+    Reverse the ADC Value for Photoresistor logic, and added unused alternate method to calc thermistor value.
+
+ src/a2d_display_client.c | 49 +++++++++++++++++++++++++++++++++++++++---------
+ 1 file changed, 40 insertions(+), 9 deletions(-)
+
+commit d579f721c93921c49dbd0fbf7e034b7e43c7ea7a
+Author: skoona <skoona@gmail.com>
+Date:   Mon Aug 24 00:22:41 2015 -0400
+
+    Updated A2D Client to use Steinhart Equation for Temp Calcs.
+
+ src/a2d_display_client.c  | 276 ++++++++++++++++++++++++++++++++++++++++++++++
+ src/lcd_display_service.c |   1 +
+ src/skn_network_helpers.c |  21 +++-
+ src/skn_network_helpers.h |   1 +
+ src/skn_rpi_helpers.c     |   1 -
+ src/udp_locator_service.c |   1 -
+ 6 files changed, 297 insertions(+), 4 deletions(-)
+
+commit 8f2cc3feab66b95fcf2aa120f7c1545dd0e0274c
+Author: skoona <skoona@gmail.com>
+Date:   Fri Aug 21 15:38:09 2015 -0400
+
+    Added a client to read sensors and message the display service.
+
+ README.md       | 23 ++++++++++++++++++-----
+ src/Makefile.am | 12 ++++++++----
+ src/Makefile.in | 31 +++++++++++++++++++++++--------
+ 3 files changed, 49 insertions(+), 17 deletions(-)
+
+commit 3a896655b2ca2cf92385cea614634c75fc6f10b5
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Sun Aug 16 03:55:38 2015 +0000
+
+    Update to newly add Parallella client.
+
+ src/Makefile.am           |   6 +-
+ src/Makefile.in           |  22 +++++-
+ src/lcd_display_client.c  |  65 +++++++++++++++--
+ src/lcd_display_service.c |   4 -
+ src/para_display_client.c | 182 ++++++++++++++++++++++++++++++++++++++++++++++
+ src/skn_common_headers.h  |   1 +
+ src/skn_network_helpers.c |   1 +
+ src/skn_rpi_helpers.c     |   8 +-
+ 8 files changed, 272 insertions(+), 17 deletions(-)
+
+commit 1befdd22231817982a8ce8a609c6a9f0d23f41d0
+Author: skoona <skoona@gmail.com>
+Date:   Mon Aug 10 04:58:48 2015 +0000
+
+    Adding Doxygen html docs, and minor update to rpi_helper.
+
+ Doxyfile                                           |    0
+ doc/html/Info.plist                                |   23 +
+ doc/html/Makefile                                  |   38 +
+ doc/html/Nodes.xml                                 | 2162 ++++++++++++++
+ doc/html/Tokens.xml                                | 3053 +++++++++++++++++++
+ doc/html/_8___makefile_8am.html                    |  123 +
+ doc/html/_8___makefile_8am_source.html             |  123 +
+ doc/html/_makefile_8am.html                        |  123 +
+ doc/html/_makefile_8am_source.html                 |  131 +
+ doc/html/_r_e_a_d_m_e_8md.html                     |  123 +
+ doc/html/_r_e_a_d_m_e_8md_source.html              |  326 +++
+ doc/html/annotated.html                            |  133 +
+ doc/html/annotated.js                              |   11 +
+ doc/html/arrowdown.png                             |  Bin 0 -> 246 bytes
+ doc/html/arrowright.png                            |  Bin 0 -> 229 bytes
+ doc/html/bc_s.png                                  |  Bin 0 -> 676 bytes
+ doc/html/bdwn.png                                  |  Bin 0 -> 147 bytes
+ doc/html/classes.html                              |  130 +
+ doc/html/closed.png                                |  Bin 0 -> 132 bytes
+ doc/html/config_8h.html                            |  516 ++++
+ doc/html/config_8h.js                              |   27 +
+ doc/html/config_8h_source.html                     |  215 ++
+ doc/html/configure_8ac.html                        |  123 +
+ doc/html/configure_8ac_source.html                 |  157 +
+ doc/html/dir_68267d1309a1af8e8297ef4c3efbcdba.html |  152 +
+ doc/html/dir_68267d1309a1af8e8297ef4c3efbcdba.js   |   15 +
+ .../dir_68267d1309a1af8e8297ef4c3efbcdba_dep.map   |    3 +
+ .../dir_68267d1309a1af8e8297ef4c3efbcdba_dep.md5   |    1 +
+ .../dir_68267d1309a1af8e8297ef4c3efbcdba_dep.png   |  Bin 0 -> 1005 bytes
+ doc/html/doc.png                                   |  Bin 0 -> 746 bytes
+ doc/html/doxygen.css                               | 1449 +++++++++
+ doc/html/doxygen.png                               |  Bin 0 -> 3779 bytes
+ doc/html/dynsections.js                            |  104 +
+ doc/html/files.html                                |  141 +
+ doc/html/files.js                                  |    8 +
+ doc/html/folderclosed.png                          |  Bin 0 -> 616 bytes
+ doc/html/folderopen.png                            |  Bin 0 -> 597 bytes
+ doc/html/functions.html                            |  379 +++
+ doc/html/functions_vars.html                       |  379 +++
+ doc/html/globals.html                              |  165 ++
+ doc/html/globals_a.html                            |  159 +
+ doc/html/globals_c.html                            |  153 +
+ doc/html/globals_d.html                            |  219 ++
+ doc/html/globals_defs.html                         |  335 +++
+ doc/html/globals_dup.js                            |   20 +
+ doc/html/globals_e.html                            |  153 +
+ doc/html/globals_f.html                            |  153 +
+ doc/html/globals_func.html                         |  423 +++
+ doc/html/globals_g.html                            |  281 ++
+ doc/html/globals_h.html                            |  188 ++
+ doc/html/globals_i.html                            |  153 +
+ doc/html/globals_l.html                            |  156 +
+ doc/html/globals_m.html                            |  159 +
+ doc/html/globals_p.html                            |  207 ++
+ doc/html/globals_r.html                            |  153 +
+ doc/html/globals_s.html                            |  313 ++
+ doc/html/globals_t.html                            |  160 +
+ doc/html/globals_type.html                         |  175 ++
+ doc/html/globals_u.html                            |  162 +
+ doc/html/globals_v.html                            |  153 +
+ doc/html/globals_vars.html                         |  218 ++
+ doc/html/graph_legend.html                         |  177 ++
+ doc/html/graph_legend.md5                          |    1 +
+ doc/html/graph_legend.png                          |  Bin 0 -> 25399 bytes
+ doc/html/index.html                                |  262 ++
+ doc/html/jquery.js                                 |   68 +
+ doc/html/lcd__display__client_8c.html              |  341 +++
+ doc/html/lcd__display__client_8c.js                |    4 +
+ doc/html/lcd__display__client_8c__incl.map         |    4 +
+ doc/html/lcd__display__client_8c__incl.md5         |    1 +
+ doc/html/lcd__display__client_8c__incl.png         |  Bin 0 -> 82965 bytes
+ ...8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph.map |   28 +
+ ...8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph.md5 |    1 +
+ ...8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph.png |  Bin 0 -> 151201 bytes
+ doc/html/lcd__display__client_8c_source.html       |  283 ++
+ doc/html/lcd__display__service_8c.html             |  272 ++
+ doc/html/lcd__display__service_8c.js               |    4 +
+ doc/html/lcd__display__service_8c__incl.map        |    5 +
+ doc/html/lcd__display__service_8c__incl.md5        |    1 +
+ doc/html/lcd__display__service_8c__incl.png        |  Bin 0 -> 103547 bytes
+ ...8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph.map |   40 +
+ ...8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph.md5 |    1 +
+ ...8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph.png |  Bin 0 -> 259779 bytes
+ doc/html/lcd__display__service_8c_source.html      |  226 ++
+ doc/html/nav_f.png                                 |  Bin 0 -> 153 bytes
+ doc/html/nav_g.png                                 |  Bin 0 -> 95 bytes
+ doc/html/nav_h.png                                 |  Bin 0 -> 98 bytes
+ doc/html/navtree.css                               |  143 +
+ doc/html/navtree.js                                |  523 ++++
+ doc/html/navtreedata.js                            |   32 +
+ doc/html/navtreeindex0.js                          |  253 ++
+ doc/html/navtreeindex1.js                          |  120 +
+ doc/html/open.png                                  |  Bin 0 -> 123 bytes
+ doc/html/resize.js                                 |   97 +
+ doc/html/search/all_0.html                         |   26 +
+ doc/html/search/all_0.js                           |   16 +
+ doc/html/search/all_1.html                         |   26 +
+ doc/html/search/all_1.js                           |   23 +
+ doc/html/search/all_10.html                        |   26 +
+ doc/html/search/all_10.js                          |    6 +
+ doc/html/search/all_11.html                        |   26 +
+ doc/html/search/all_11.js                          |    5 +
+ doc/html/search/all_12.html                        |   26 +
+ doc/html/search/all_12.js                          |    4 +
+ doc/html/search/all_2.html                         |   26 +
+ doc/html/search/all_2.js                           |    4 +
+ doc/html/search/all_3.html                         |   26 +
+ doc/html/search/all_3.js                           |   15 +
+ doc/html/search/all_4.html                         |   26 +
+ doc/html/search/all_4.js                           |   10 +
+ doc/html/search/all_5.html                         |   26 +
+ doc/html/search/all_5.js                           |    5 +
+ doc/html/search/all_6.html                         |   26 +
+ doc/html/search/all_6.js                           |    5 +
+ doc/html/search/all_7.html                         |   26 +
+ doc/html/search/all_7.js                           |   33 +
+ doc/html/search/all_8.html                         |   26 +
+ doc/html/search/all_8.js                           |   13 +
+ doc/html/search/all_9.html                         |   26 +
+ doc/html/search/all_9.js                           |    9 +
+ doc/html/search/all_a.html                         |   26 +
+ doc/html/search/all_a.js                           |    8 +
+ doc/html/search/all_b.html                         |   26 +
+ doc/html/search/all_b.js                           |    9 +
+ doc/html/search/all_c.html                         |   26 +
+ doc/html/search/all_c.js                           |    6 +
+ doc/html/search/all_d.html                         |   26 +
+ doc/html/search/all_d.js                           |   24 +
+ doc/html/search/all_e.html                         |   26 +
+ doc/html/search/all_e.js                           |    8 +
+ doc/html/search/all_f.html                         |   26 +
+ doc/html/search/all_f.js                           |   88 +
+ doc/html/search/classes_0.html                     |   26 +
+ doc/html/search/classes_0.js                       |   11 +
+ doc/html/search/close.png                          |  Bin 0 -> 273 bytes
+ doc/html/search/defines_0.html                     |   26 +
+ doc/html/search/defines_0.js                       |    8 +
+ doc/html/search/defines_1.html                     |   26 +
+ doc/html/search/defines_1.js                       |    6 +
+ doc/html/search/defines_2.html                     |   26 +
+ doc/html/search/defines_2.js                       |    4 +
+ doc/html/search/defines_3.html                     |   26 +
+ doc/html/search/defines_3.js                       |   13 +
+ doc/html/search/defines_4.html                     |   26 +
+ doc/html/search/defines_4.js                       |    4 +
+ doc/html/search/defines_5.html                     |   26 +
+ doc/html/search/defines_5.js                       |   12 +
+ doc/html/search/defines_6.html                     |   26 +
+ doc/html/search/defines_6.js                       |   24 +
+ doc/html/search/defines_7.html                     |   26 +
+ doc/html/search/defines_7.js                       |    5 +
+ doc/html/search/defines_8.html                     |   26 +
+ doc/html/search/defines_8.js                       |    4 +
+ doc/html/search/files_0.html                       |   26 +
+ doc/html/search/files_0.js                         |    5 +
+ doc/html/search/files_1.html                       |   26 +
+ doc/html/search/files_1.js                         |    5 +
+ doc/html/search/files_2.html                       |   26 +
+ doc/html/search/files_2.js                         |    5 +
+ doc/html/search/files_3.html                       |   26 +
+ doc/html/search/files_3.js                         |    4 +
+ doc/html/search/files_4.html                       |   26 +
+ doc/html/search/files_4.js                         |    9 +
+ doc/html/search/files_5.html                       |   26 +
+ doc/html/search/files_5.js                         |    5 +
+ doc/html/search/functions_0.html                   |   26 +
+ doc/html/search/functions_0.js                     |    4 +
+ doc/html/search/functions_1.html                   |   26 +
+ doc/html/search/functions_1.js                     |   12 +
+ doc/html/search/functions_2.html                   |   26 +
+ doc/html/search/functions_2.js                     |    4 +
+ doc/html/search/functions_3.html                   |   26 +
+ doc/html/search/functions_3.js                     |   56 +
+ doc/html/search/mag_sel.png                        |  Bin 0 -> 563 bytes
+ doc/html/search/nomatches.html                     |   12 +
+ doc/html/search/search.css                         |  271 ++
+ doc/html/search/search.js                          |  791 +++++
+ doc/html/search/search_l.png                       |  Bin 0 -> 604 bytes
+ doc/html/search/search_m.png                       |  Bin 0 -> 158 bytes
+ doc/html/search/search_r.png                       |  Bin 0 -> 612 bytes
+ doc/html/search/searchdata.js                      |   33 +
+ doc/html/search/typedefs_0.html                    |   26 +
+ doc/html/search/typedefs_0.js                      |    4 +
+ doc/html/search/typedefs_1.html                    |   26 +
+ doc/html/search/typedefs_1.js                      |    5 +
+ doc/html/search/typedefs_2.html                    |   26 +
+ doc/html/search/typedefs_2.js                      |    4 +
+ doc/html/search/typedefs_3.html                    |   26 +
+ doc/html/search/typedefs_3.js                      |    4 +
+ doc/html/search/typedefs_4.html                    |   26 +
+ doc/html/search/typedefs_4.js                      |   11 +
+ doc/html/search/typedefs_5.html                    |   26 +
+ doc/html/search/typedefs_5.js                      |    4 +
+ doc/html/search/typedefs_6.html                    |   26 +
+ doc/html/search/typedefs_6.js                      |    5 +
+ doc/html/search/variables_0.html                   |   26 +
+ doc/html/search/variables_0.js                     |   20 +
+ doc/html/search/variables_1.html                   |   26 +
+ doc/html/search/variables_1.js                     |    4 +
+ doc/html/search/variables_2.html                   |   26 +
+ doc/html/search/variables_2.js                     |   12 +
+ doc/html/search/variables_3.html                   |   26 +
+ doc/html/search/variables_3.js                     |    8 +
+ doc/html/search/variables_4.html                   |   26 +
+ doc/html/search/variables_4.js                     |    4 +
+ doc/html/search/variables_5.html                   |   26 +
+ doc/html/search/variables_5.js                     |    4 +
+ doc/html/search/variables_6.html                   |   26 +
+ doc/html/search/variables_6.js                     |   24 +
+ doc/html/search/variables_7.html                   |   26 +
+ doc/html/search/variables_7.js                     |    8 +
+ doc/html/search/variables_8.html                   |   26 +
+ doc/html/search/variables_8.js                     |    5 +
+ doc/html/search/variables_9.html                   |   26 +
+ doc/html/search/variables_9.js                     |    5 +
+ doc/html/search/variables_a.html                   |   26 +
+ doc/html/search/variables_a.js                     |    6 +
+ doc/html/search/variables_b.html                   |   26 +
+ doc/html/search/variables_b.js                     |    7 +
+ doc/html/search/variables_c.html                   |   26 +
+ doc/html/search/variables_c.js                     |    6 +
+ doc/html/search/variables_d.html                   |   26 +
+ doc/html/search/variables_d.js                     |    6 +
+ doc/html/search/variables_e.html                   |   26 +
+ doc/html/search/variables_e.js                     |    4 +
+ doc/html/skn__common__headers_8h.html              |  956 ++++++
+ doc/html/skn__common__headers_8h.js                |   58 +
+ doc/html/skn__common__headers_8h__dep__incl.map    |   11 +
+ doc/html/skn__common__headers_8h__dep__incl.md5    |    1 +
+ doc/html/skn__common__headers_8h__dep__incl.png    |  Bin 0 -> 37170 bytes
+ doc/html/skn__common__headers_8h__incl.map         |    2 +
+ doc/html/skn__common__headers_8h__incl.md5         |    1 +
+ doc/html/skn__common__headers_8h__incl.png         |  Bin 0 -> 70176 bytes
+ doc/html/skn__common__headers_8h_source.html       |  509 ++++
+ doc/html/skn__network__helpers_8c.html             | 3095 ++++++++++++++++++++
+ doc/html/skn__network__helpers_8c.js               |   53 +
+ doc/html/skn__network__helpers_8c__incl.map        |    4 +
+ doc/html/skn__network__helpers_8c__incl.md5        |    1 +
+ doc/html/skn__network__helpers_8c__incl.png        |  Bin 0 -> 83051 bytes
+ ...8c_a0b4821586a5c3d59096cb20dc6b28b2a_cgraph.map |    4 +
+ ...8c_a0b4821586a5c3d59096cb20dc6b28b2a_cgraph.md5 |    1 +
+ ...8c_a0b4821586a5c3d59096cb20dc6b28b2a_cgraph.png |  Bin 0 -> 6128 bytes
+ ...c_a0b4821586a5c3d59096cb20dc6b28b2a_icgraph.map |   11 +
+ ...c_a0b4821586a5c3d59096cb20dc6b28b2a_icgraph.md5 |    1 +
+ ...c_a0b4821586a5c3d59096cb20dc6b28b2a_icgraph.png |  Bin 0 -> 40822 bytes
+ ...c_a16d6920592f2a64c9cab22cb26ef28e1_icgraph.map |    3 +
+ ...c_a16d6920592f2a64c9cab22cb26ef28e1_icgraph.md5 |    1 +
+ ...c_a16d6920592f2a64c9cab22cb26ef28e1_icgraph.png |  Bin 0 -> 3790 bytes
+ ...8c_a25149d495d462b7600eb6715da868200_cgraph.map |    6 +
+ ...8c_a25149d495d462b7600eb6715da868200_cgraph.md5 |    1 +
+ ...8c_a25149d495d462b7600eb6715da868200_cgraph.png |  Bin 0 -> 17876 bytes
+ ...c_a25149d495d462b7600eb6715da868200_icgraph.map |    8 +
+ ...c_a25149d495d462b7600eb6715da868200_icgraph.md5 |    1 +
+ ...c_a25149d495d462b7600eb6715da868200_icgraph.png |  Bin 0 -> 24034 bytes
+ ...c_a25427bc0b7f087d1135c92dd3704f210_icgraph.map |    6 +
+ ...c_a25427bc0b7f087d1135c92dd3704f210_icgraph.md5 |    1 +
+ ...c_a25427bc0b7f087d1135c92dd3704f210_icgraph.png |  Bin 0 -> 16170 bytes
+ ...c_a49f6d3bb9d22d5b9cf5c7eb6175318d1_icgraph.map |    4 +
+ ...c_a49f6d3bb9d22d5b9cf5c7eb6175318d1_icgraph.md5 |    1 +
+ ...c_a49f6d3bb9d22d5b9cf5c7eb6175318d1_icgraph.png |  Bin 0 -> 3983 bytes
+ ...c_a4f9f7e0f50cb3073d9c6e5a6a0d5240d_icgraph.map |    3 +
+ ...c_a4f9f7e0f50cb3073d9c6e5a6a0d5240d_icgraph.md5 |    1 +
+ ...c_a4f9f7e0f50cb3073d9c6e5a6a0d5240d_icgraph.png |  Bin 0 -> 4672 bytes
+ ...8c_a5e51f7d19b5d689be44036a57e056e7a_cgraph.map |    3 +
+ ...8c_a5e51f7d19b5d689be44036a57e056e7a_cgraph.md5 |    1 +
+ ...8c_a5e51f7d19b5d689be44036a57e056e7a_cgraph.png |  Bin 0 -> 5299 bytes
+ ...c_a5e51f7d19b5d689be44036a57e056e7a_icgraph.map |    9 +
+ ...c_a5e51f7d19b5d689be44036a57e056e7a_icgraph.md5 |    1 +
+ ...c_a5e51f7d19b5d689be44036a57e056e7a_icgraph.png |  Bin 0 -> 28586 bytes
+ ...c_a63e61152e590620edc7757d782c60a79_icgraph.map |    3 +
+ ...c_a63e61152e590620edc7757d782c60a79_icgraph.md5 |    1 +
+ ...c_a63e61152e590620edc7757d782c60a79_icgraph.png |  Bin 0 -> 2872 bytes
+ ...8c_a665c441c1f789eb555b1c23ed43de890_cgraph.map |    3 +
+ ...8c_a665c441c1f789eb555b1c23ed43de890_cgraph.md5 |    1 +
+ ...8c_a665c441c1f789eb555b1c23ed43de890_cgraph.png |  Bin 0 -> 5627 bytes
+ ...c_a665c441c1f789eb555b1c23ed43de890_icgraph.map |    3 +
+ ...c_a665c441c1f789eb555b1c23ed43de890_icgraph.md5 |    1 +
+ ...c_a665c441c1f789eb555b1c23ed43de890_icgraph.png |  Bin 0 -> 4049 bytes
+ ...8c_a6af44fa0e0746d3d2a804fea1e84dacd_cgraph.map |    3 +
+ ...8c_a6af44fa0e0746d3d2a804fea1e84dacd_cgraph.md5 |    1 +
+ ...8c_a6af44fa0e0746d3d2a804fea1e84dacd_cgraph.png |  Bin 0 -> 3092 bytes
+ ...c_a6af44fa0e0746d3d2a804fea1e84dacd_icgraph.map |    3 +
+ ...c_a6af44fa0e0746d3d2a804fea1e84dacd_icgraph.md5 |    1 +
+ ...c_a6af44fa0e0746d3d2a804fea1e84dacd_icgraph.png |  Bin 0 -> 2460 bytes
+ ...8c_a6d284e9250411e031cfa4ecb19583696_cgraph.map |    3 +
+ ...8c_a6d284e9250411e031cfa4ecb19583696_cgraph.md5 |    1 +
+ ...8c_a6d284e9250411e031cfa4ecb19583696_cgraph.png |  Bin 0 -> 3910 bytes
+ ...c_a6d284e9250411e031cfa4ecb19583696_icgraph.map |   12 +
+ ...c_a6d284e9250411e031cfa4ecb19583696_icgraph.md5 |    1 +
+ ...c_a6d284e9250411e031cfa4ecb19583696_icgraph.png |  Bin 0 -> 45244 bytes
+ ...c_a802d742c15476782fbbea1528f76dea5_icgraph.map |    7 +
+ ...c_a802d742c15476782fbbea1528f76dea5_icgraph.md5 |    1 +
+ ...c_a802d742c15476782fbbea1528f76dea5_icgraph.png |  Bin 0 -> 24979 bytes
+ ...c_a819c12fc7c8ff576b1aaad69bc098840_icgraph.map |    6 +
+ ...c_a819c12fc7c8ff576b1aaad69bc098840_icgraph.md5 |    1 +
+ ...c_a819c12fc7c8ff576b1aaad69bc098840_icgraph.png |  Bin 0 -> 14587 bytes
+ ...8c_a866cf7e5524cc49a76448c59395a622e_cgraph.map |    9 +
+ ...8c_a866cf7e5524cc49a76448c59395a622e_cgraph.md5 |    1 +
+ ...8c_a866cf7e5524cc49a76448c59395a622e_cgraph.png |  Bin 0 -> 28338 bytes
+ ...c_a866cf7e5524cc49a76448c59395a622e_icgraph.map |    4 +
+ ...c_a866cf7e5524cc49a76448c59395a622e_icgraph.md5 |    1 +
+ ...c_a866cf7e5524cc49a76448c59395a622e_icgraph.png |  Bin 0 -> 8941 bytes
+ ...c_a88465ff1322cb437fd3b7a1e036fd017_icgraph.map |    3 +
+ ...c_a88465ff1322cb437fd3b7a1e036fd017_icgraph.md5 |    1 +
+ ...c_a88465ff1322cb437fd3b7a1e036fd017_icgraph.png |  Bin 0 -> 3754 bytes
+ ...8c_a8a291f1cb8d18e45a3e9b6bc9e3798a6_cgraph.map |   11 +
+ ...8c_a8a291f1cb8d18e45a3e9b6bc9e3798a6_cgraph.md5 |    1 +
+ ...8c_a8a291f1cb8d18e45a3e9b6bc9e3798a6_cgraph.png |  Bin 0 -> 38553 bytes
+ ...c_a8a291f1cb8d18e45a3e9b6bc9e3798a6_icgraph.map |    3 +
+ ...c_a8a291f1cb8d18e45a3e9b6bc9e3798a6_icgraph.md5 |    1 +
+ ...c_a8a291f1cb8d18e45a3e9b6bc9e3798a6_icgraph.png |  Bin 0 -> 4644 bytes
+ ...c_a8aa6a7a3ba2390cf536e26c6cd2aa840_icgraph.map |    5 +
+ ...c_a8aa6a7a3ba2390cf536e26c6cd2aa840_icgraph.md5 |    1 +
+ ...c_a8aa6a7a3ba2390cf536e26c6cd2aa840_icgraph.png |  Bin 0 -> 9807 bytes
+ ...c_a922ccd04b4dc28211ff08c4c62462544_icgraph.map |    3 +
+ ...c_a922ccd04b4dc28211ff08c4c62462544_icgraph.md5 |    1 +
+ ...c_a922ccd04b4dc28211ff08c4c62462544_icgraph.png |  Bin 0 -> 3857 bytes
+ ...c_a925d0a1de13d0d0178e52f0d6be4b97f_icgraph.map |   17 +
+ ...c_a925d0a1de13d0d0178e52f0d6be4b97f_icgraph.md5 |    1 +
+ ...c_a925d0a1de13d0d0178e52f0d6be4b97f_icgraph.png |  Bin 0 -> 75539 bytes
+ ...8c_a96bf395b914c5182e438800248d6e8f3_cgraph.map |    5 +
+ ...8c_a96bf395b914c5182e438800248d6e8f3_cgraph.md5 |    1 +
+ ...8c_a96bf395b914c5182e438800248d6e8f3_cgraph.png |  Bin 0 -> 10071 bytes
+ ...c_a96bf395b914c5182e438800248d6e8f3_icgraph.map |    3 +
+ ...c_a96bf395b914c5182e438800248d6e8f3_icgraph.md5 |    1 +
+ ...c_a96bf395b914c5182e438800248d6e8f3_icgraph.png |  Bin 0 -> 4910 bytes
+ ...c_a9b607e33be05bf0479127f233a58fab7_icgraph.map |    7 +
+ ...c_a9b607e33be05bf0479127f233a58fab7_icgraph.md5 |    1 +
+ ...c_a9b607e33be05bf0479127f233a58fab7_icgraph.png |  Bin 0 -> 18127 bytes
+ ...c_aabf69b42c470c2372e0854132e22cc70_icgraph.map |    4 +
+ ...c_aabf69b42c470c2372e0854132e22cc70_icgraph.md5 |    1 +
+ ...c_aabf69b42c470c2372e0854132e22cc70_icgraph.png |  Bin 0 -> 6605 bytes
+ ...8c_aae9b1fb439eead75521f80120886867e_cgraph.map |    8 +
+ ...8c_aae9b1fb439eead75521f80120886867e_cgraph.md5 |    1 +
+ ...8c_aae9b1fb439eead75521f80120886867e_cgraph.png |  Bin 0 -> 24993 bytes
+ ...8c_aaf8b0dfb11a3800bb249c6cf90a2537a_cgraph.map |    3 +
+ ...8c_aaf8b0dfb11a3800bb249c6cf90a2537a_cgraph.md5 |    1 +
+ ...8c_aaf8b0dfb11a3800bb249c6cf90a2537a_cgraph.png |  Bin 0 -> 5183 bytes
+ ...c_aaf8b0dfb11a3800bb249c6cf90a2537a_icgraph.map |    5 +
+ ...c_aaf8b0dfb11a3800bb249c6cf90a2537a_icgraph.md5 |    1 +
+ ...c_aaf8b0dfb11a3800bb249c6cf90a2537a_icgraph.png |  Bin 0 -> 9417 bytes
+ ...c_ab5ed70a05f4e20dac13298ae16530069_icgraph.map |   10 +
+ ...c_ab5ed70a05f4e20dac13298ae16530069_icgraph.md5 |    1 +
+ ...c_ab5ed70a05f4e20dac13298ae16530069_icgraph.png |  Bin 0 -> 39851 bytes
+ ...c_ac256e2066453ab0ff82322aa24b161df_icgraph.map |    3 +
+ ...c_ac256e2066453ab0ff82322aa24b161df_icgraph.md5 |    1 +
+ ...c_ac256e2066453ab0ff82322aa24b161df_icgraph.png |  Bin 0 -> 2885 bytes
+ ...c_ac2672efa5ece276743c6558dfe82d01a_icgraph.map |    3 +
+ ...c_ac2672efa5ece276743c6558dfe82d01a_icgraph.md5 |    1 +
+ ...c_ac2672efa5ece276743c6558dfe82d01a_icgraph.png |  Bin 0 -> 4666 bytes
+ ...c_ad0e63e9d3365fb8818a5ca21179abb3e_icgraph.map |    4 +
+ ...c_ad0e63e9d3365fb8818a5ca21179abb3e_icgraph.md5 |    1 +
+ ...c_ad0e63e9d3365fb8818a5ca21179abb3e_icgraph.png |  Bin 0 -> 9009 bytes
+ ...8c_ad148412119d5d8373da1a6859aafda41_cgraph.map |   13 +
+ ...8c_ad148412119d5d8373da1a6859aafda41_cgraph.md5 |    1 +
+ ...8c_ad148412119d5d8373da1a6859aafda41_cgraph.png |  Bin 0 -> 47410 bytes
+ ...c_ad148412119d5d8373da1a6859aafda41_icgraph.map |    3 +
+ ...c_ad148412119d5d8373da1a6859aafda41_icgraph.md5 |    1 +
+ ...c_ad148412119d5d8373da1a6859aafda41_icgraph.png |  Bin 0 -> 3484 bytes
+ ...c_ad7f2202ecfe8bb131545b23ea3c26e91_icgraph.map |    5 +
+ ...c_ad7f2202ecfe8bb131545b23ea3c26e91_icgraph.md5 |    1 +
+ ...c_ad7f2202ecfe8bb131545b23ea3c26e91_icgraph.png |  Bin 0 -> 13339 bytes
+ ...8c_ad8304e97f9bccee1cd899a61b91ae677_cgraph.map |    3 +
+ ...8c_ad8304e97f9bccee1cd899a61b91ae677_cgraph.md5 |    1 +
+ ...8c_ad8304e97f9bccee1cd899a61b91ae677_cgraph.png |  Bin 0 -> 5129 bytes
+ ...c_ad8304e97f9bccee1cd899a61b91ae677_icgraph.map |    3 +
+ ...c_ad8304e97f9bccee1cd899a61b91ae677_icgraph.md5 |    1 +
+ ...c_ad8304e97f9bccee1cd899a61b91ae677_icgraph.png |  Bin 0 -> 3657 bytes
+ ...8c_ae671be512539874689abbab598f9f65a_cgraph.map |    3 +
+ ...8c_ae671be512539874689abbab598f9f65a_cgraph.md5 |    1 +
+ ...8c_ae671be512539874689abbab598f9f65a_cgraph.png |  Bin 0 -> 4639 bytes
+ ...c_ae671be512539874689abbab598f9f65a_icgraph.map |    9 +
+ ...c_ae671be512539874689abbab598f9f65a_icgraph.md5 |    1 +
+ ...c_ae671be512539874689abbab598f9f65a_icgraph.png |  Bin 0 -> 29046 bytes
+ ...c_af451ef71d607d9188e02af7079f14263_icgraph.map |    5 +
+ ...c_af451ef71d607d9188e02af7079f14263_icgraph.md5 |    1 +
+ ...c_af451ef71d607d9188e02af7079f14263_icgraph.png |  Bin 0 -> 9646 bytes
+ ...c_afb305f4b4db81aad61bd5e4e6ecaf6fd_icgraph.map |    8 +
+ ...c_afb305f4b4db81aad61bd5e4e6ecaf6fd_icgraph.md5 |    1 +
+ ...c_afb305f4b4db81aad61bd5e4e6ecaf6fd_icgraph.png |  Bin 0 -> 24161 bytes
+ doc/html/skn__network__helpers_8c_source.html      | 1187 ++++++++
+ doc/html/skn__network__helpers_8h.html             | 2667 +++++++++++++++++
+ doc/html/skn__network__helpers_8h.js               |   49 +
+ doc/html/skn__network__helpers_8h__dep__incl.map   |    9 +
+ doc/html/skn__network__helpers_8h__dep__incl.md5   |    1 +
+ doc/html/skn__network__helpers_8h__dep__incl.png   |  Bin 0 -> 25340 bytes
+ doc/html/skn__network__helpers_8h__incl.map        |    3 +
+ doc/html/skn__network__helpers_8h__incl.md5        |    1 +
+ doc/html/skn__network__helpers_8h__incl.png        |  Bin 0 -> 76861 bytes
+ ...8h_a0b4821586a5c3d59096cb20dc6b28b2a_cgraph.map |    4 +
+ ...8h_a0b4821586a5c3d59096cb20dc6b28b2a_cgraph.md5 |    1 +
+ ...8h_a0b4821586a5c3d59096cb20dc6b28b2a_cgraph.png |  Bin 0 -> 6128 bytes
+ ...h_a0b4821586a5c3d59096cb20dc6b28b2a_icgraph.map |   11 +
+ ...h_a0b4821586a5c3d59096cb20dc6b28b2a_icgraph.md5 |    1 +
+ ...h_a0b4821586a5c3d59096cb20dc6b28b2a_icgraph.png |  Bin 0 -> 40822 bytes
+ ...h_a16d6920592f2a64c9cab22cb26ef28e1_icgraph.map |    3 +
+ ...h_a16d6920592f2a64c9cab22cb26ef28e1_icgraph.md5 |    1 +
+ ...h_a16d6920592f2a64c9cab22cb26ef28e1_icgraph.png |  Bin 0 -> 3790 bytes
+ ...h_a25427bc0b7f087d1135c92dd3704f210_icgraph.map |    6 +
+ ...h_a25427bc0b7f087d1135c92dd3704f210_icgraph.md5 |    1 +
+ ...h_a25427bc0b7f087d1135c92dd3704f210_icgraph.png |  Bin 0 -> 16170 bytes
+ ...h_a34ce4afdf4f5f20fc109e749fb87c573_icgraph.map |    4 +
+ ...h_a34ce4afdf4f5f20fc109e749fb87c573_icgraph.md5 |    1 +
+ ...h_a34ce4afdf4f5f20fc109e749fb87c573_icgraph.png |  Bin 0 -> 8504 bytes
+ ...h_a4f9f7e0f50cb3073d9c6e5a6a0d5240d_icgraph.map |    3 +
+ ...h_a4f9f7e0f50cb3073d9c6e5a6a0d5240d_icgraph.md5 |    1 +
+ ...h_a4f9f7e0f50cb3073d9c6e5a6a0d5240d_icgraph.png |  Bin 0 -> 4672 bytes
+ ...h_a63e61152e590620edc7757d782c60a79_icgraph.map |    3 +
+ ...h_a63e61152e590620edc7757d782c60a79_icgraph.md5 |    1 +
+ ...h_a63e61152e590620edc7757d782c60a79_icgraph.png |  Bin 0 -> 2872 bytes
+ ...8h_a665c441c1f789eb555b1c23ed43de890_cgraph.map |    3 +
+ ...8h_a665c441c1f789eb555b1c23ed43de890_cgraph.md5 |    1 +
+ ...8h_a665c441c1f789eb555b1c23ed43de890_cgraph.png |  Bin 0 -> 5627 bytes
+ ...h_a665c441c1f789eb555b1c23ed43de890_icgraph.map |    3 +
+ ...h_a665c441c1f789eb555b1c23ed43de890_icgraph.md5 |    1 +
+ ...h_a665c441c1f789eb555b1c23ed43de890_icgraph.png |  Bin 0 -> 4049 bytes
+ ...8h_a6af44fa0e0746d3d2a804fea1e84dacd_cgraph.map |    3 +
+ ...8h_a6af44fa0e0746d3d2a804fea1e84dacd_cgraph.md5 |    1 +
+ ...8h_a6af44fa0e0746d3d2a804fea1e84dacd_cgraph.png |  Bin 0 -> 3092 bytes
+ ...h_a6af44fa0e0746d3d2a804fea1e84dacd_icgraph.map |    3 +
+ ...h_a6af44fa0e0746d3d2a804fea1e84dacd_icgraph.md5 |    1 +
+ ...h_a6af44fa0e0746d3d2a804fea1e84dacd_icgraph.png |  Bin 0 -> 2460 bytes
+ ...8h_a6d284e9250411e031cfa4ecb19583696_cgraph.map |    3 +
+ ...8h_a6d284e9250411e031cfa4ecb19583696_cgraph.md5 |    1 +
+ ...8h_a6d284e9250411e031cfa4ecb19583696_cgraph.png |  Bin 0 -> 3910 bytes
+ ...h_a6d284e9250411e031cfa4ecb19583696_icgraph.map |   12 +
+ ...h_a6d284e9250411e031cfa4ecb19583696_icgraph.md5 |    1 +
+ ...h_a6d284e9250411e031cfa4ecb19583696_icgraph.png |  Bin 0 -> 44629 bytes
+ ...h_a802d742c15476782fbbea1528f76dea5_icgraph.map |    7 +
+ ...h_a802d742c15476782fbbea1528f76dea5_icgraph.md5 |    1 +
+ ...h_a802d742c15476782fbbea1528f76dea5_icgraph.png |  Bin 0 -> 24979 bytes
+ ...h_a819c12fc7c8ff576b1aaad69bc098840_icgraph.map |    6 +
+ ...h_a819c12fc7c8ff576b1aaad69bc098840_icgraph.md5 |    1 +
+ ...h_a819c12fc7c8ff576b1aaad69bc098840_icgraph.png |  Bin 0 -> 14587 bytes
+ ...8h_a866cf7e5524cc49a76448c59395a622e_cgraph.map |    9 +
+ ...8h_a866cf7e5524cc49a76448c59395a622e_cgraph.md5 |    1 +
+ ...8h_a866cf7e5524cc49a76448c59395a622e_cgraph.png |  Bin 0 -> 28338 bytes
+ ...h_a866cf7e5524cc49a76448c59395a622e_icgraph.map |    4 +
+ ...h_a866cf7e5524cc49a76448c59395a622e_icgraph.md5 |    1 +
+ ...h_a866cf7e5524cc49a76448c59395a622e_icgraph.png |  Bin 0 -> 8941 bytes
+ ...h_a88465ff1322cb437fd3b7a1e036fd017_icgraph.map |    3 +
+ ...h_a88465ff1322cb437fd3b7a1e036fd017_icgraph.md5 |    1 +
+ ...h_a88465ff1322cb437fd3b7a1e036fd017_icgraph.png |  Bin 0 -> 3754 bytes
+ ...8h_a8a291f1cb8d18e45a3e9b6bc9e3798a6_cgraph.map |   11 +
+ ...8h_a8a291f1cb8d18e45a3e9b6bc9e3798a6_cgraph.md5 |    1 +
+ ...8h_a8a291f1cb8d18e45a3e9b6bc9e3798a6_cgraph.png |  Bin 0 -> 38553 bytes
+ ...h_a8a291f1cb8d18e45a3e9b6bc9e3798a6_icgraph.map |    3 +
+ ...h_a8a291f1cb8d18e45a3e9b6bc9e3798a6_icgraph.md5 |    1 +
+ ...h_a8a291f1cb8d18e45a3e9b6bc9e3798a6_icgraph.png |  Bin 0 -> 4644 bytes
+ ...h_a8aa6a7a3ba2390cf536e26c6cd2aa840_icgraph.map |    5 +
+ ...h_a8aa6a7a3ba2390cf536e26c6cd2aa840_icgraph.md5 |    1 +
+ ...h_a8aa6a7a3ba2390cf536e26c6cd2aa840_icgraph.png |  Bin 0 -> 9807 bytes
+ ...h_a922ccd04b4dc28211ff08c4c62462544_icgraph.map |    3 +
+ ...h_a922ccd04b4dc28211ff08c4c62462544_icgraph.md5 |    1 +
+ ...h_a922ccd04b4dc28211ff08c4c62462544_icgraph.png |  Bin 0 -> 3857 bytes
+ ...h_a925d0a1de13d0d0178e52f0d6be4b97f_icgraph.map |   17 +
+ ...h_a925d0a1de13d0d0178e52f0d6be4b97f_icgraph.md5 |    1 +
+ ...h_a925d0a1de13d0d0178e52f0d6be4b97f_icgraph.png |  Bin 0 -> 75539 bytes
+ ...8h_a96bf395b914c5182e438800248d6e8f3_cgraph.map |    5 +
+ ...8h_a96bf395b914c5182e438800248d6e8f3_cgraph.md5 |    1 +
+ ...8h_a96bf395b914c5182e438800248d6e8f3_cgraph.png |  Bin 0 -> 10071 bytes
+ ...h_a96bf395b914c5182e438800248d6e8f3_icgraph.map |    3 +
+ ...h_a96bf395b914c5182e438800248d6e8f3_icgraph.md5 |    1 +
+ ...h_a96bf395b914c5182e438800248d6e8f3_icgraph.png |  Bin 0 -> 4910 bytes
+ ...h_a9b607e33be05bf0479127f233a58fab7_icgraph.map |    7 +
+ ...h_a9b607e33be05bf0479127f233a58fab7_icgraph.md5 |    1 +
+ ...h_a9b607e33be05bf0479127f233a58fab7_icgraph.png |  Bin 0 -> 18127 bytes
+ ...8h_aae9b1fb439eead75521f80120886867e_cgraph.map |    8 +
+ ...8h_aae9b1fb439eead75521f80120886867e_cgraph.md5 |    1 +
+ ...8h_aae9b1fb439eead75521f80120886867e_cgraph.png |  Bin 0 -> 24993 bytes
+ ...8h_aaf8b0dfb11a3800bb249c6cf90a2537a_cgraph.map |    3 +
+ ...8h_aaf8b0dfb11a3800bb249c6cf90a2537a_cgraph.md5 |    1 +
+ ...8h_aaf8b0dfb11a3800bb249c6cf90a2537a_cgraph.png |  Bin 0 -> 5183 bytes
+ ...h_aaf8b0dfb11a3800bb249c6cf90a2537a_icgraph.map |    5 +
+ ...h_aaf8b0dfb11a3800bb249c6cf90a2537a_icgraph.md5 |    1 +
+ ...h_aaf8b0dfb11a3800bb249c6cf90a2537a_icgraph.png |  Bin 0 -> 9417 bytes
+ ...h_ab5ed70a05f4e20dac13298ae16530069_icgraph.map |   10 +
+ ...h_ab5ed70a05f4e20dac13298ae16530069_icgraph.md5 |    1 +
+ ...h_ab5ed70a05f4e20dac13298ae16530069_icgraph.png |  Bin 0 -> 39570 bytes
+ ...h_ac256e2066453ab0ff82322aa24b161df_icgraph.map |    3 +
+ ...h_ac256e2066453ab0ff82322aa24b161df_icgraph.md5 |    1 +
+ ...h_ac256e2066453ab0ff82322aa24b161df_icgraph.png |  Bin 0 -> 2885 bytes
+ ...h_ac2672efa5ece276743c6558dfe82d01a_icgraph.map |    3 +
+ ...h_ac2672efa5ece276743c6558dfe82d01a_icgraph.md5 |    1 +
+ ...h_ac2672efa5ece276743c6558dfe82d01a_icgraph.png |  Bin 0 -> 4666 bytes
+ ...h_ad0e63e9d3365fb8818a5ca21179abb3e_icgraph.map |    4 +
+ ...h_ad0e63e9d3365fb8818a5ca21179abb3e_icgraph.md5 |    1 +
+ ...h_ad0e63e9d3365fb8818a5ca21179abb3e_icgraph.png |  Bin 0 -> 9009 bytes
+ ...8h_ad148412119d5d8373da1a6859aafda41_cgraph.map |   13 +
+ ...8h_ad148412119d5d8373da1a6859aafda41_cgraph.md5 |    1 +
+ ...8h_ad148412119d5d8373da1a6859aafda41_cgraph.png |  Bin 0 -> 48624 bytes
+ ...h_ad148412119d5d8373da1a6859aafda41_icgraph.map |    3 +
+ ...h_ad148412119d5d8373da1a6859aafda41_icgraph.md5 |    1 +
+ ...h_ad148412119d5d8373da1a6859aafda41_icgraph.png |  Bin 0 -> 3484 bytes
+ ...h_ad7f2202ecfe8bb131545b23ea3c26e91_icgraph.map |    5 +
+ ...h_ad7f2202ecfe8bb131545b23ea3c26e91_icgraph.md5 |    1 +
+ ...h_ad7f2202ecfe8bb131545b23ea3c26e91_icgraph.png |  Bin 0 -> 13339 bytes
+ ...8h_ad8304e97f9bccee1cd899a61b91ae677_cgraph.map |    3 +
+ ...8h_ad8304e97f9bccee1cd899a61b91ae677_cgraph.md5 |    1 +
+ ...8h_ad8304e97f9bccee1cd899a61b91ae677_cgraph.png |  Bin 0 -> 5129 bytes
+ ...h_ad8304e97f9bccee1cd899a61b91ae677_icgraph.map |    3 +
+ ...h_ad8304e97f9bccee1cd899a61b91ae677_icgraph.md5 |    1 +
+ ...h_ad8304e97f9bccee1cd899a61b91ae677_icgraph.png |  Bin 0 -> 3657 bytes
+ ...8h_aee27f71a8f457def69c26d516ae821ab_cgraph.map |   11 +
+ ...8h_aee27f71a8f457def69c26d516ae821ab_cgraph.md5 |    1 +
+ ...8h_aee27f71a8f457def69c26d516ae821ab_cgraph.png |  Bin 0 -> 35064 bytes
+ ...h_aee27f71a8f457def69c26d516ae821ab_icgraph.map |    4 +
+ ...h_aee27f71a8f457def69c26d516ae821ab_icgraph.md5 |    1 +
+ ...h_aee27f71a8f457def69c26d516ae821ab_icgraph.png |  Bin 0 -> 8419 bytes
+ ...h_af451ef71d607d9188e02af7079f14263_icgraph.map |    5 +
+ ...h_af451ef71d607d9188e02af7079f14263_icgraph.md5 |    1 +
+ ...h_af451ef71d607d9188e02af7079f14263_icgraph.png |  Bin 0 -> 9646 bytes
+ doc/html/skn__network__helpers_8h_source.html      |  251 ++
+ doc/html/skn__rpi__helpers_8c.html                 | 2422 +++++++++++++++
+ doc/html/skn__rpi__helpers_8c.js                   |   33 +
+ doc/html/skn__rpi__helpers_8c__incl.map            |    5 +
+ doc/html/skn__rpi__helpers_8c__incl.md5            |    1 +
+ doc/html/skn__rpi__helpers_8c__incl.png            |  Bin 0 -> 103043 bytes
+ ...8c_a0410c7c96c2188c945cea294ae074ff9_cgraph.map |    3 +
+ ...8c_a0410c7c96c2188c945cea294ae074ff9_cgraph.md5 |    1 +
+ ...8c_a0410c7c96c2188c945cea294ae074ff9_cgraph.png |  Bin 0 -> 5324 bytes
+ ...c_a0410c7c96c2188c945cea294ae074ff9_icgraph.map |    4 +
+ ...c_a0410c7c96c2188c945cea294ae074ff9_icgraph.md5 |    1 +
+ ...c_a0410c7c96c2188c945cea294ae074ff9_icgraph.png |  Bin 0 -> 6577 bytes
+ ...8c_a0e93b40f29ab2df743c934be34500c15_cgraph.map |   30 +
+ ...8c_a0e93b40f29ab2df743c934be34500c15_cgraph.md5 |    1 +
+ ...8c_a0e93b40f29ab2df743c934be34500c15_cgraph.png |  Bin 0 -> 180614 bytes
+ ...c_a0e93b40f29ab2df743c934be34500c15_icgraph.map |    3 +
+ ...c_a0e93b40f29ab2df743c934be34500c15_icgraph.md5 |    1 +
+ ...c_a0e93b40f29ab2df743c934be34500c15_icgraph.png |  Bin 0 -> 4341 bytes
+ ...c_a18bf9699f8b6ad05aff925d9deb31be1_icgraph.map |   10 +
+ ...c_a18bf9699f8b6ad05aff925d9deb31be1_icgraph.md5 |    1 +
+ ...c_a18bf9699f8b6ad05aff925d9deb31be1_icgraph.png |  Bin 0 -> 41920 bytes
+ ...8c_a343fa5773d09ffd114adc3425f3c6bde_cgraph.map |    4 +
+ ...8c_a343fa5773d09ffd114adc3425f3c6bde_cgraph.md5 |    1 +
+ ...8c_a343fa5773d09ffd114adc3425f3c6bde_cgraph.png |  Bin 0 -> 8819 bytes
+ ...c_a343fa5773d09ffd114adc3425f3c6bde_icgraph.map |    5 +
+ ...c_a343fa5773d09ffd114adc3425f3c6bde_icgraph.md5 |    1 +
+ ...c_a343fa5773d09ffd114adc3425f3c6bde_icgraph.png |  Bin 0 -> 9964 bytes
+ ...c_a34ce4afdf4f5f20fc109e749fb87c573_icgraph.map |    4 +
+ ...c_a34ce4afdf4f5f20fc109e749fb87c573_icgraph.md5 |    1 +
+ ...c_a34ce4afdf4f5f20fc109e749fb87c573_icgraph.png |  Bin 0 -> 8504 bytes
+ ...8c_a3b806c833fce33e93ad36909a2561353_cgraph.map |    3 +
+ ...8c_a3b806c833fce33e93ad36909a2561353_cgraph.md5 |    1 +
+ ...8c_a3b806c833fce33e93ad36909a2561353_cgraph.png |  Bin 0 -> 5832 bytes
+ ...c_a3b806c833fce33e93ad36909a2561353_icgraph.map |    4 +
+ ...c_a3b806c833fce33e93ad36909a2561353_icgraph.md5 |    1 +
+ ...c_a3b806c833fce33e93ad36909a2561353_icgraph.png |  Bin 0 -> 7129 bytes
+ ...8c_a4f78720f41ceb03e6b6111a358c7aea1_cgraph.map |    4 +
+ ...8c_a4f78720f41ceb03e6b6111a358c7aea1_cgraph.md5 |    1 +
+ ...8c_a4f78720f41ceb03e6b6111a358c7aea1_cgraph.png |  Bin 0 -> 8108 bytes
+ ...c_a4f78720f41ceb03e6b6111a358c7aea1_icgraph.map |    4 +
+ ...c_a4f78720f41ceb03e6b6111a358c7aea1_icgraph.md5 |    1 +
+ ...c_a4f78720f41ceb03e6b6111a358c7aea1_icgraph.png |  Bin 0 -> 6484 bytes
+ ...8c_a58c9a50b0307d45138f4a6f2e6ba7a76_cgraph.map |    8 +
+ ...8c_a58c9a50b0307d45138f4a6f2e6ba7a76_cgraph.md5 |    1 +
+ ...8c_a58c9a50b0307d45138f4a6f2e6ba7a76_cgraph.png |  Bin 0 -> 33803 bytes
+ ...c_a58c9a50b0307d45138f4a6f2e6ba7a76_icgraph.map |    4 +
+ ...c_a58c9a50b0307d45138f4a6f2e6ba7a76_icgraph.md5 |    1 +
+ ...c_a58c9a50b0307d45138f4a6f2e6ba7a76_icgraph.png |  Bin 0 -> 7152 bytes
+ ...8c_a6e967d6169dd92b30845335ab426c59b_cgraph.map |    3 +
+ ...8c_a6e967d6169dd92b30845335ab426c59b_cgraph.md5 |    1 +
+ ...8c_a6e967d6169dd92b30845335ab426c59b_cgraph.png |  Bin 0 -> 5756 bytes
+ ...c_a6e967d6169dd92b30845335ab426c59b_icgraph.map |    8 +
+ ...c_a6e967d6169dd92b30845335ab426c59b_icgraph.md5 |    1 +
+ ...c_a6e967d6169dd92b30845335ab426c59b_icgraph.png |  Bin 0 -> 26117 bytes
+ ...8c_a73890d642bf9cbb1de78675d587d79a3_cgraph.map |    4 +
+ ...8c_a73890d642bf9cbb1de78675d587d79a3_cgraph.md5 |    1 +
+ ...8c_a73890d642bf9cbb1de78675d587d79a3_cgraph.png |  Bin 0 -> 10002 bytes
+ ...c_a73890d642bf9cbb1de78675d587d79a3_icgraph.map |    6 +
+ ...c_a73890d642bf9cbb1de78675d587d79a3_icgraph.md5 |    1 +
+ ...c_a73890d642bf9cbb1de78675d587d79a3_icgraph.png |  Bin 0 -> 19225 bytes
+ ...c_a7c4eede6a3dd9f0a33125bd573fd44eb_icgraph.map |    4 +
+ ...c_a7c4eede6a3dd9f0a33125bd573fd44eb_icgraph.md5 |    1 +
+ ...c_a7c4eede6a3dd9f0a33125bd573fd44eb_icgraph.png |  Bin 0 -> 7256 bytes
+ ...8c_a9a6dccab4be976ca76eb960076dca0a0_cgraph.map |    4 +
+ ...8c_a9a6dccab4be976ca76eb960076dca0a0_cgraph.md5 |    1 +
+ ...8c_a9a6dccab4be976ca76eb960076dca0a0_cgraph.png |  Bin 0 -> 8510 bytes
+ ...c_a9a6dccab4be976ca76eb960076dca0a0_icgraph.map |    5 +
+ ...c_a9a6dccab4be976ca76eb960076dca0a0_icgraph.md5 |    1 +
+ ...c_a9a6dccab4be976ca76eb960076dca0a0_icgraph.png |  Bin 0 -> 9697 bytes
+ ...c_aa70aa8be6de3ef378d2d92839dae79c0_icgraph.map |    5 +
+ ...c_aa70aa8be6de3ef378d2d92839dae79c0_icgraph.md5 |    1 +
+ ...c_aa70aa8be6de3ef378d2d92839dae79c0_icgraph.png |  Bin 0 -> 9713 bytes
+ ...c_aac32062aeca841944e9d1016c8db5e6a_icgraph.map |    3 +
+ ...c_aac32062aeca841944e9d1016c8db5e6a_icgraph.md5 |    1 +
+ ...c_aac32062aeca841944e9d1016c8db5e6a_icgraph.png |  Bin 0 -> 4389 bytes
+ ...8c_aad63cb41e99a588cea9609a100cc9333_cgraph.map |    3 +
+ ...8c_aad63cb41e99a588cea9609a100cc9333_cgraph.md5 |    1 +
+ ...8c_aad63cb41e99a588cea9609a100cc9333_cgraph.png |  Bin 0 -> 6372 bytes
+ ...c_aad63cb41e99a588cea9609a100cc9333_icgraph.map |    4 +
+ ...c_aad63cb41e99a588cea9609a100cc9333_icgraph.md5 |    1 +
+ ...c_aad63cb41e99a588cea9609a100cc9333_icgraph.png |  Bin 0 -> 7425 bytes
+ ...c_abc8758d786bdcff4bb0ec7ab05adfca1_icgraph.map |    7 +
+ ...c_abc8758d786bdcff4bb0ec7ab05adfca1_icgraph.md5 |    1 +
+ ...c_abc8758d786bdcff4bb0ec7ab05adfca1_icgraph.png |  Bin 0 -> 21051 bytes
+ ...c_aca7dfbde9be606bb7d177fb686b103f9_icgraph.map |    4 +
+ ...c_aca7dfbde9be606bb7d177fb686b103f9_icgraph.md5 |    1 +
+ ...c_aca7dfbde9be606bb7d177fb686b103f9_icgraph.png |  Bin 0 -> 6644 bytes
+ ...8c_ad17a8b378ba944f87beef66dbf0f47b0_cgraph.map |    9 +
+ ...8c_ad17a8b378ba944f87beef66dbf0f47b0_cgraph.md5 |    1 +
+ ...8c_ad17a8b378ba944f87beef66dbf0f47b0_cgraph.png |  Bin 0 -> 24874 bytes
+ ...c_ad17a8b378ba944f87beef66dbf0f47b0_icgraph.map |    5 +
+ ...c_ad17a8b378ba944f87beef66dbf0f47b0_icgraph.md5 |    1 +
+ ...c_ad17a8b378ba944f87beef66dbf0f47b0_icgraph.png |  Bin 0 -> 12073 bytes
+ ...c_ae945b3a41d43db4d0c52f522d663d415_icgraph.map |    8 +
+ ...c_ae945b3a41d43db4d0c52f522d663d415_icgraph.md5 |    1 +
+ ...c_ae945b3a41d43db4d0c52f522d663d415_icgraph.png |  Bin 0 -> 30082 bytes
+ ...8c_aec6fcc1d0ae2035966ea7b3f624050cd_cgraph.map |    3 +
+ ...8c_aec6fcc1d0ae2035966ea7b3f624050cd_cgraph.md5 |    1 +
+ ...8c_aec6fcc1d0ae2035966ea7b3f624050cd_cgraph.png |  Bin 0 -> 4361 bytes
+ ...8c_aed93e422e5b2cd74ea04177db841fa37_cgraph.map |    3 +
+ ...8c_aed93e422e5b2cd74ea04177db841fa37_cgraph.md5 |    1 +
+ ...8c_aed93e422e5b2cd74ea04177db841fa37_cgraph.png |  Bin 0 -> 5719 bytes
+ ...c_aed93e422e5b2cd74ea04177db841fa37_icgraph.map |    3 +
+ ...c_aed93e422e5b2cd74ea04177db841fa37_icgraph.md5 |    1 +
+ ...c_aed93e422e5b2cd74ea04177db841fa37_icgraph.png |  Bin 0 -> 4200 bytes
+ ...8c_aee27f71a8f457def69c26d516ae821ab_cgraph.map |   11 +
+ ...8c_aee27f71a8f457def69c26d516ae821ab_cgraph.md5 |    1 +
+ ...8c_aee27f71a8f457def69c26d516ae821ab_cgraph.png |  Bin 0 -> 35064 bytes
+ ...c_aee27f71a8f457def69c26d516ae821ab_icgraph.map |    4 +
+ ...c_aee27f71a8f457def69c26d516ae821ab_icgraph.md5 |    1 +
+ ...c_aee27f71a8f457def69c26d516ae821ab_icgraph.png |  Bin 0 -> 8419 bytes
+ ...8c_aeeb817184dce0d96e05d4cdd6940db70_cgraph.map |    4 +
+ ...8c_aeeb817184dce0d96e05d4cdd6940db70_cgraph.md5 |    1 +
+ ...8c_aeeb817184dce0d96e05d4cdd6940db70_cgraph.png |  Bin 0 -> 8695 bytes
+ ...c_aeeb817184dce0d96e05d4cdd6940db70_icgraph.map |    5 +
+ ...c_aeeb817184dce0d96e05d4cdd6940db70_icgraph.md5 |    1 +
+ ...c_aeeb817184dce0d96e05d4cdd6940db70_icgraph.png |  Bin 0 -> 9841 bytes
+ ...c_af2cd8436ec8dca06473441659fb03f75_icgraph.map |    5 +
+ ...c_af2cd8436ec8dca06473441659fb03f75_icgraph.md5 |    1 +
+ ...c_af2cd8436ec8dca06473441659fb03f75_icgraph.png |  Bin 0 -> 8780 bytes
+ doc/html/skn__rpi__helpers_8c_source.html          | 1103 +++++++
+ doc/html/skn__rpi__helpers_8h.html                 | 1881 ++++++++++++
+ doc/html/skn__rpi__helpers_8h.js                   |   27 +
+ doc/html/skn__rpi__helpers_8h__dep__incl.map       |    4 +
+ doc/html/skn__rpi__helpers_8h__dep__incl.md5       |    1 +
+ doc/html/skn__rpi__helpers_8h__dep__incl.png       |  Bin 0 -> 9143 bytes
+ doc/html/skn__rpi__helpers_8h__incl.map            |    3 +
+ doc/html/skn__rpi__helpers_8h__incl.md5            |    1 +
+ doc/html/skn__rpi__helpers_8h__incl.png            |  Bin 0 -> 91147 bytes
+ ...8h_a0410c7c96c2188c945cea294ae074ff9_cgraph.map |    3 +
+ ...8h_a0410c7c96c2188c945cea294ae074ff9_cgraph.md5 |    1 +
+ ...8h_a0410c7c96c2188c945cea294ae074ff9_cgraph.png |  Bin 0 -> 5324 bytes
+ ...h_a0410c7c96c2188c945cea294ae074ff9_icgraph.map |    4 +
+ ...h_a0410c7c96c2188c945cea294ae074ff9_icgraph.md5 |    1 +
+ ...h_a0410c7c96c2188c945cea294ae074ff9_icgraph.png |  Bin 0 -> 6577 bytes
+ ...8h_a0e93b40f29ab2df743c934be34500c15_cgraph.map |   30 +
+ ...8h_a0e93b40f29ab2df743c934be34500c15_cgraph.md5 |    1 +
+ ...8h_a0e93b40f29ab2df743c934be34500c15_cgraph.png |  Bin 0 -> 178931 bytes
+ ...h_a0e93b40f29ab2df743c934be34500c15_icgraph.map |    3 +
+ ...h_a0e93b40f29ab2df743c934be34500c15_icgraph.md5 |    1 +
+ ...h_a0e93b40f29ab2df743c934be34500c15_icgraph.png |  Bin 0 -> 4341 bytes
+ ...h_a18bf9699f8b6ad05aff925d9deb31be1_icgraph.map |   10 +
+ ...h_a18bf9699f8b6ad05aff925d9deb31be1_icgraph.md5 |    1 +
+ ...h_a18bf9699f8b6ad05aff925d9deb31be1_icgraph.png |  Bin 0 -> 41954 bytes
+ ...8h_a343fa5773d09ffd114adc3425f3c6bde_cgraph.map |    4 +
+ ...8h_a343fa5773d09ffd114adc3425f3c6bde_cgraph.md5 |    1 +
+ ...8h_a343fa5773d09ffd114adc3425f3c6bde_cgraph.png |  Bin 0 -> 8819 bytes
+ ...h_a343fa5773d09ffd114adc3425f3c6bde_icgraph.map |    5 +
+ ...h_a343fa5773d09ffd114adc3425f3c6bde_icgraph.md5 |    1 +
+ ...h_a343fa5773d09ffd114adc3425f3c6bde_icgraph.png |  Bin 0 -> 9964 bytes
+ ...8h_a4f78720f41ceb03e6b6111a358c7aea1_cgraph.map |    4 +
+ ...8h_a4f78720f41ceb03e6b6111a358c7aea1_cgraph.md5 |    1 +
+ ...8h_a4f78720f41ceb03e6b6111a358c7aea1_cgraph.png |  Bin 0 -> 8108 bytes
+ ...h_a4f78720f41ceb03e6b6111a358c7aea1_icgraph.map |    4 +
+ ...h_a4f78720f41ceb03e6b6111a358c7aea1_icgraph.md5 |    1 +
+ ...h_a4f78720f41ceb03e6b6111a358c7aea1_icgraph.png |  Bin 0 -> 6484 bytes
+ ...8h_a58c9a50b0307d45138f4a6f2e6ba7a76_cgraph.map |    8 +
+ ...8h_a58c9a50b0307d45138f4a6f2e6ba7a76_cgraph.md5 |    1 +
+ ...8h_a58c9a50b0307d45138f4a6f2e6ba7a76_cgraph.png |  Bin 0 -> 33803 bytes
+ ...h_a58c9a50b0307d45138f4a6f2e6ba7a76_icgraph.map |    4 +
+ ...h_a58c9a50b0307d45138f4a6f2e6ba7a76_icgraph.md5 |    1 +
+ ...h_a58c9a50b0307d45138f4a6f2e6ba7a76_icgraph.png |  Bin 0 -> 7152 bytes
+ ...8h_a73890d642bf9cbb1de78675d587d79a3_cgraph.map |    4 +
+ ...8h_a73890d642bf9cbb1de78675d587d79a3_cgraph.md5 |    1 +
+ ...8h_a73890d642bf9cbb1de78675d587d79a3_cgraph.png |  Bin 0 -> 10002 bytes
+ ...h_a73890d642bf9cbb1de78675d587d79a3_icgraph.map |    6 +
+ ...h_a73890d642bf9cbb1de78675d587d79a3_icgraph.md5 |    1 +
+ ...h_a73890d642bf9cbb1de78675d587d79a3_icgraph.png |  Bin 0 -> 19225 bytes
+ ...8h_a9a6dccab4be976ca76eb960076dca0a0_cgraph.map |    4 +
+ ...8h_a9a6dccab4be976ca76eb960076dca0a0_cgraph.md5 |    1 +
+ ...8h_a9a6dccab4be976ca76eb960076dca0a0_cgraph.png |  Bin 0 -> 8510 bytes
+ ...h_a9a6dccab4be976ca76eb960076dca0a0_icgraph.map |    5 +
+ ...h_a9a6dccab4be976ca76eb960076dca0a0_icgraph.md5 |    1 +
+ ...h_a9a6dccab4be976ca76eb960076dca0a0_icgraph.png |  Bin 0 -> 9697 bytes
+ ...8h_a9de94515b5dc0bcdcb813f6b17a6956e_cgraph.map |    4 +
+ ...8h_a9de94515b5dc0bcdcb813f6b17a6956e_cgraph.md5 |    1 +
+ ...8h_a9de94515b5dc0bcdcb813f6b17a6956e_cgraph.png |  Bin 0 -> 7365 bytes
+ ...h_a9de94515b5dc0bcdcb813f6b17a6956e_icgraph.map |    3 +
+ ...h_a9de94515b5dc0bcdcb813f6b17a6956e_icgraph.md5 |    1 +
+ ...h_a9de94515b5dc0bcdcb813f6b17a6956e_icgraph.png |  Bin 0 -> 3771 bytes
+ ...h_aa3e16c859e3977df7056461e57fdf683_icgraph.map |    3 +
+ ...h_aa3e16c859e3977df7056461e57fdf683_icgraph.md5 |    1 +
+ ...h_aa3e16c859e3977df7056461e57fdf683_icgraph.png |  Bin 0 -> 3957 bytes
+ ...h_aa70aa8be6de3ef378d2d92839dae79c0_icgraph.map |    5 +
+ ...h_aa70aa8be6de3ef378d2d92839dae79c0_icgraph.md5 |    1 +
+ ...h_aa70aa8be6de3ef378d2d92839dae79c0_icgraph.png |  Bin 0 -> 9713 bytes
+ ...8h_aad63cb41e99a588cea9609a100cc9333_cgraph.map |    3 +
+ ...8h_aad63cb41e99a588cea9609a100cc9333_cgraph.md5 |    1 +
+ ...8h_aad63cb41e99a588cea9609a100cc9333_cgraph.png |  Bin 0 -> 6372 bytes
+ ...h_aad63cb41e99a588cea9609a100cc9333_icgraph.map |    4 +
+ ...h_aad63cb41e99a588cea9609a100cc9333_icgraph.md5 |    1 +
+ ...h_aad63cb41e99a588cea9609a100cc9333_icgraph.png |  Bin 0 -> 7425 bytes
+ ...h_abc8758d786bdcff4bb0ec7ab05adfca1_icgraph.map |    7 +
+ ...h_abc8758d786bdcff4bb0ec7ab05adfca1_icgraph.md5 |    1 +
+ ...h_abc8758d786bdcff4bb0ec7ab05adfca1_icgraph.png |  Bin 0 -> 21051 bytes
+ ...h_ae945b3a41d43db4d0c52f522d663d415_icgraph.map |    8 +
+ ...h_ae945b3a41d43db4d0c52f522d663d415_icgraph.md5 |    1 +
+ ...h_ae945b3a41d43db4d0c52f522d663d415_icgraph.png |  Bin 0 -> 30082 bytes
+ ...8h_aec6fcc1d0ae2035966ea7b3f624050cd_cgraph.map |    3 +
+ ...8h_aec6fcc1d0ae2035966ea7b3f624050cd_cgraph.md5 |    1 +
+ ...8h_aec6fcc1d0ae2035966ea7b3f624050cd_cgraph.png |  Bin 0 -> 4361 bytes
+ ...8h_aed93e422e5b2cd74ea04177db841fa37_cgraph.map |    3 +
+ ...8h_aed93e422e5b2cd74ea04177db841fa37_cgraph.md5 |    1 +
+ ...8h_aed93e422e5b2cd74ea04177db841fa37_cgraph.png |  Bin 0 -> 5719 bytes
+ ...h_aed93e422e5b2cd74ea04177db841fa37_icgraph.map |    3 +
+ ...h_aed93e422e5b2cd74ea04177db841fa37_icgraph.md5 |    1 +
+ ...h_aed93e422e5b2cd74ea04177db841fa37_icgraph.png |  Bin 0 -> 4200 bytes
+ ...8h_aeeb817184dce0d96e05d4cdd6940db70_cgraph.map |    4 +
+ ...8h_aeeb817184dce0d96e05d4cdd6940db70_cgraph.md5 |    1 +
+ ...8h_aeeb817184dce0d96e05d4cdd6940db70_cgraph.png |  Bin 0 -> 8695 bytes
+ ...h_aeeb817184dce0d96e05d4cdd6940db70_icgraph.map |    5 +
+ ...h_aeeb817184dce0d96e05d4cdd6940db70_icgraph.md5 |    1 +
+ ...h_aeeb817184dce0d96e05d4cdd6940db70_icgraph.png |  Bin 0 -> 9841 bytes
+ ...h_af2cd8436ec8dca06473441659fb03f75_icgraph.map |    5 +
+ ...h_af2cd8436ec8dca06473441659fb03f75_icgraph.md5 |    1 +
+ ...h_af2cd8436ec8dca06473441659fb03f75_icgraph.png |  Bin 0 -> 8780 bytes
+ doc/html/skn__rpi__helpers_8h_source.html          |  212 ++
+ doc/html/skn__signal__manager_8c.html              |  578 ++++
+ doc/html/skn__signal__manager_8c.js                |    7 +
+ doc/html/skn__signal__manager_8c__incl.map         |    4 +
+ doc/html/skn__signal__manager_8c__incl.md5         |    1 +
+ doc/html/skn__signal__manager_8c__incl.png         |  Bin 0 -> 83006 bytes
+ ...8c_a34a43eb05460c12308ab975a3add1e6d_cgraph.map |    3 +
+ ...8c_a34a43eb05460c12308ab975a3add1e6d_cgraph.md5 |    1 +
+ ...8c_a34a43eb05460c12308ab975a3add1e6d_cgraph.png |  Bin 0 -> 6186 bytes
+ ...c_a34a43eb05460c12308ab975a3add1e6d_icgraph.map |    4 +
+ ...c_a34a43eb05460c12308ab975a3add1e6d_icgraph.md5 |    1 +
+ ...c_a34a43eb05460c12308ab975a3add1e6d_icgraph.png |  Bin 0 -> 6404 bytes
+ ...c_a952fd087d64fc95b287a5b8e131434bd_icgraph.map |    5 +
+ ...c_a952fd087d64fc95b287a5b8e131434bd_icgraph.md5 |    1 +
+ ...c_a952fd087d64fc95b287a5b8e131434bd_icgraph.png |  Bin 0 -> 8381 bytes
+ ...8c_a9de94515b5dc0bcdcb813f6b17a6956e_cgraph.map |    4 +
+ ...8c_a9de94515b5dc0bcdcb813f6b17a6956e_cgraph.md5 |    1 +
+ ...8c_a9de94515b5dc0bcdcb813f6b17a6956e_cgraph.png |  Bin 0 -> 7365 bytes
+ ...c_a9de94515b5dc0bcdcb813f6b17a6956e_icgraph.map |    3 +
+ ...c_a9de94515b5dc0bcdcb813f6b17a6956e_icgraph.md5 |    1 +
+ ...c_a9de94515b5dc0bcdcb813f6b17a6956e_icgraph.png |  Bin 0 -> 3771 bytes
+ ...c_aa3e16c859e3977df7056461e57fdf683_icgraph.map |    3 +
+ ...c_aa3e16c859e3977df7056461e57fdf683_icgraph.md5 |    1 +
+ ...c_aa3e16c859e3977df7056461e57fdf683_icgraph.png |  Bin 0 -> 3957 bytes
+ doc/html/skn__signal__manager_8c_source.html       |  367 +++
+ doc/html/splitbar.png                              |  Bin 0 -> 314 bytes
+ doc/html/src_2_8___makefile_8am.html               |  123 +
+ doc/html/src_2_8___makefile_8am_source.html        |  123 +
+ doc/html/src_2_makefile_8am.html                   |  123 +
+ doc/html/src_2_makefile_8am_source.html            |  140 +
+ doc/html/struct___d_i_s_p_l_a_y___l_i_n_e.html     |  290 ++
+ doc/html/struct___d_i_s_p_l_a_y___l_i_n_e.js       |   11 +
+ ...ruct___d_i_s_p_l_a_y___l_i_n_e__coll__graph.map |    2 +
+ ...ruct___d_i_s_p_l_a_y___l_i_n_e__coll__graph.md5 |    1 +
+ ...ruct___d_i_s_p_l_a_y___l_i_n_e__coll__graph.png |  Bin 0 -> 14159 bytes
+ .../struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r.html    |  396 +++
+ doc/html/struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r.js |   17 +
+ ..._d_i_s_p_l_a_y___m_a_n_a_g_e_r__coll__graph.map |    4 +
+ ..._d_i_s_p_l_a_y___m_a_n_a_g_e_r__coll__graph.md5 |    1 +
+ ..._d_i_s_p_l_a_y___m_a_n_a_g_e_r__coll__graph.png |  Bin 0 -> 72399 bytes
+ doc/html/struct___i_i_c_l_c_d.html                 |  524 ++++
+ doc/html/struct___i_i_c_l_c_d.js                   |   24 +
+ doc/html/struct___i_i_c_l_c_d__coll__graph.map     |    2 +
+ doc/html/struct___i_i_c_l_c_d__coll__graph.md5     |    1 +
+ doc/html/struct___i_i_c_l_c_d__coll__graph.png     |  Bin 0 -> 16783 bytes
+ doc/html/struct__ip_broadcast_array.html           |  290 ++
+ doc/html/struct__ip_broadcast_array.js             |   11 +
+ .../struct__ip_broadcast_array__coll__graph.map    |    2 +
+ .../struct__ip_broadcast_array__coll__graph.md5    |    1 +
+ .../struct__ip_broadcast_array__coll__graph.png    |  Bin 0 -> 14723 bytes
+ doc/html/struct__service_entry.html                |  218 ++
+ doc/html/struct__service_entry.js                  |    7 +
+ doc/html/struct__service_entry__coll__graph.map    |    2 +
+ doc/html/struct__service_entry__coll__graph.md5    |    1 +
+ doc/html/struct__service_entry__coll__graph.png    |  Bin 0 -> 7070 bytes
+ doc/html/struct__service_registry.html             |  218 ++
+ doc/html/struct__service_registry.js               |    7 +
+ doc/html/struct__service_registry__coll__graph.map |    3 +
+ doc/html/struct__service_registry__coll__graph.md5 |    1 +
+ doc/html/struct__service_registry__coll__graph.png |  Bin 0 -> 18465 bytes
+ doc/html/struct__service_request.html              |  236 ++
+ doc/html/struct__service_request.js                |    8 +
+ doc/html/struct__service_request__coll__graph.map  |    3 +
+ doc/html/struct__service_request__coll__graph.md5  |    1 +
+ doc/html/struct__service_request__coll__graph.png  |  Bin 0 -> 18519 bytes
+ doc/html/struct__temps.html                        |  218 ++
+ doc/html/struct__temps.js                          |    7 +
+ doc/html/struct__temps__coll__graph.map            |    2 +
+ doc/html/struct__temps__coll__graph.md5            |    1 +
+ doc/html/struct__temps__coll__graph.png            |  Bin 0 -> 6595 bytes
+ doc/html/svgpan.js                                 |  319 ++
+ doc/html/sync_off.png                              |  Bin 0 -> 853 bytes
+ doc/html/sync_on.png                               |  Bin 0 -> 845 bytes
+ doc/html/tab_a.png                                 |  Bin 0 -> 142 bytes
+ doc/html/tab_b.png                                 |  Bin 0 -> 169 bytes
+ doc/html/tab_h.png                                 |  Bin 0 -> 177 bytes
+ doc/html/tab_s.png                                 |  Bin 0 -> 184 bytes
+ doc/html/tabs.css                                  |   60 +
+ doc/html/udp__locator__client_8c.html              |  273 ++
+ doc/html/udp__locator__client_8c.js                |    4 +
+ doc/html/udp__locator__client_8c__incl.map         |    4 +
+ doc/html/udp__locator__client_8c__incl.md5         |    1 +
+ doc/html/udp__locator__client_8c__incl.png         |  Bin 0 -> 82893 bytes
+ ...8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph.map |   22 +
+ ...8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph.md5 |    1 +
+ ...8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph.png |  Bin 0 -> 104567 bytes
+ doc/html/udp__locator__client_8c_source.html       |  214 ++
+ doc/html/udp__locator__service_8c.html             |  256 ++
+ doc/html/udp__locator__service_8c.js               |    4 +
+ doc/html/udp__locator__service_8c__incl.map        |    4 +
+ doc/html/udp__locator__service_8c__incl.md5        |    1 +
+ doc/html/udp__locator__service_8c__incl.png        |  Bin 0 -> 83258 bytes
+ ...8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph.map |   22 +
+ ...8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph.md5 |    1 +
+ ...8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph.png |  Bin 0 -> 98825 bytes
+ doc/html/udp__locator__service_8c_source.html      |  195 ++
+ src/skn_rpi_helpers.c                              |    2 +-
+ 825 files changed, 41607 insertions(+), 1 deletion(-)
+
+commit 52626d1ce7e345f674b7a71eeaf7f9a067d77e79
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Sun Aug 9 03:08:15 2015 +0000
+
+    Release 0.5.1 of Clients Only.
+
+ Doxyfile     | 2384 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ doc/.gitkeep |    1 +
+ 2 files changed, 2385 insertions(+)
+
+commit f162ba3eab5e9c6977cb8ae2b622e600704bc9c1
+Author: skoona <skoona@gmail.com>
+Date:   Sun Aug 9 02:17:44 2015 +0000
+
+    Release 0.5.1.  Expanded num of Registry Entries to 128
+
+ ChangeLog                                         |  4 ++++
+ README.md                                         | 10 +++++++---
+ configure                                         | 22 ++++++++++-----------
+ configure.ac                                      |  2 +-
+ iscripts/net.skoona.skn_rpi-display-client.plist  | 24 +++++++++++++++++++++++
+ iscripts/net.skoona.skn_rpi-locator-service.plist | 23 ++++++++++++++++++++++
+ src/skn_common_headers.h                          |  2 +-
+ 7 files changed, 71 insertions(+), 16 deletions(-)
+
+commit 4612b9209415e93ec4dbd3776c950bba34628f09
+Author: skoona <skoona@gmail.com>
+Date:   Sat Aug 8 05:26:54 2015 +0000
+
+    Release 0.5.0, expanded containers for Registry and additional display line capacity.
+
+ configure                 |  22 ++++----
+ src/skn_common_headers.h  |   8 +--
+ src/skn_network_helpers.c | 130 ++++++++++++++++++++++++++++++++++------------
+ src/skn_network_helpers.h |   4 +-
+ src/skn_rpi_helpers.c     |  97 ++++++++++++++++++----------------
+ src/udp_locator_service.c |   2 +-
+ 6 files changed, 168 insertions(+), 95 deletions(-)
+
+commit 250800696c82a4b2a26925e28582c11895d1461b
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Fri Aug 7 23:24:30 2015 +0000
+
+    Release 0.5.0  Resolved uninterruptible sleep caused by getCpuTemp().
+
+ configure.ac              |  2 +-
+ src/lcd_display_client.c  |  4 +--
+ src/lcd_display_service.c |  3 +-
+ src/skn_network_helpers.c | 12 ++++----
+ src/skn_network_helpers.h |  4 +--
+ src/skn_rpi_helpers.c     | 70 ++++++++++++++++++++++++-----------------------
+ src/skn_rpi_helpers.h     |  1 +
+ src/skn_signal_manager.c  |  2 +-
+ src/udp_locator_client.c  |  2 +-
+ src/udp_locator_service.c |  2 +-
+ 10 files changed, 52 insertions(+), 50 deletions(-)
+
+commit e34ef93a81690acf07b70704cc0068a068c64941
+Author: skoona <skoona@gmail.com>
+Date:   Wed Aug 5 00:21:08 2015 -0400
+
+    Updated internal timer.
+
+ src/skn_network_helpers.c | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
+
+commit 9aad3d0ed414b62f9709ef4b4a27da46945dcec6
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Wed Aug 5 01:42:09 2015 +0000
+
+    Release 0.4.4 - Resolving Main Thread Freeze issue, and updating AutoTools Docs.
+
+ ChangeLog                         |   8 +++
+ Makefile.am                       |  11 ++-
+ Makefile.in                       | 143 +++++++++++++++++++++++++++++++++-----
+ README.md                         |   8 +--
+ configure                         |  22 +++---
+ configure.ac                      |   2 +-
+ images/rpi_display.png            | Bin 0 -> 4763403 bytes
+ images/skn_rpi1.png               | Bin 0 -> 34278 bytes
+ images/skn_rpi2.png               | Bin 0 -> 41088 bytes
+ iscripts/lcddisplayclient.service |  15 ++++
+ iscripts/udplocator.service       |  15 ++++
+ lcddisplayclient.service          |  15 ----
+ rpi_display.png                   | Bin 4763403 -> 0 bytes
+ skn_rpi1.png                      | Bin 34278 -> 0 bytes
+ skn_rpi2.png                      | Bin 41088 -> 0 bytes
+ src/Makefile.am                   |   1 +
+ src/Makefile.in                   |   2 +
+ src/skn_rpi_helpers.c             |  38 +++++-----
+ src/skn_signal_manager.c          |   6 +-
+ udplocator.service                |  15 ----
+ 20 files changed, 215 insertions(+), 86 deletions(-)
+
+commit b50cd87a8de6fbd83ef7fb09f39b1ea3dd13fd93
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Mon Aug 3 05:11:32 2015 +0000
+
+    Release 0.4.2 of master branch
+
+ src/Makefile.am |  2 +-
+ src/Makefile.in | 23 +++++++++++++++++++----
+ 2 files changed, 20 insertions(+), 5 deletions(-)
+
+commit df731bfccfba85d393116c555049d12c7d55cbaa
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Mon Aug 3 00:42:28 2015 -0400
+
+    Release 0.4.2 for Clients_Only branch.
+
+ src/Makefile.am |  2 +-
+ src/Makefile.in | 23 ++++-------------------
+ 2 files changed, 5 insertions(+), 20 deletions(-)
+
+commit f18387b5e6f562553be24804524dfd816ecd3a20
+Author: skoona <skoona@gmail.com>
+Date:   Mon Aug 3 04:23:36 2015 +0000
+
+    Release 0.4.2; Better time managment for main display_service thread.
+
+ configure                 | 22 +++++++++++-----------
+ configure.ac              |  2 +-
+ src/skn_network_helpers.c | 15 +++++++++++++--
+ src/skn_network_helpers.h |  1 +
+ src/skn_rpi_helpers.c     |  4 ++--
+ 5 files changed, 28 insertions(+), 16 deletions(-)
+
+commit 23088d93ba3cf616cdfedf0c60dd185e313f9801
+Author: skoona <skoona@gmail.com>
+Date:   Sun Aug 2 05:46:30 2015 +0000
+
+    Housekeeping
+
+ ChangeLog | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+commit fdfa5214d7f434fd4fe99a7d815780054789899e
+Author: skoona <skoona@gmail.com>
+Date:   Sun Aug 2 05:30:41 2015 +0000
+
+    Housekeeping and adding systemd  scripts.
+
+ configure                | 22 +++++++++++-----------
+ lcddisplayclient.service | 15 +++++++++++++++
+ src/skn_rpi_helpers.c    | 13 +++++++------
+ udplocator.service       | 15 +++++++++++++++
+ 4 files changed, 48 insertions(+), 17 deletions(-)
+
+commit 377e0cae2c8b52e638c45578acc62b430f911072
+Author: James Scott Jr <jscott@brotherhoodmutual.com>
+Date:   Fri Jul 31 13:54:44 2015 -0400
+
+    Preparing Release 0.4.1
+
+ README.md                | 26 ++++++++++-------
+ configure.ac             |  2 +-
+ src/skn_common_headers.h | 27 ++++++++++++++++++
+ src/skn_rpi_helpers.c    | 74 ++++++++++++++++++++++++++++++++++++++++++------
+ src/skn_rpi_helpers.h    |  2 ++
+ 5 files changed, 111 insertions(+), 20 deletions(-)
+
+commit f770525ac754816fb8336210ac53c03782cf0981
+Author: skoona <skoona@gmail.com>
+Date:   Fri Jul 31 04:04:42 2015 +0000
+
+    Minor fix to display service.
+
+ src/Makefile.in       |  1 -
+ src/skn_rpi_helpers.c | 12 ++++++------
+ 2 files changed, 6 insertions(+), 7 deletions(-)
+
+commit f164bc52e3f02b39455257a0ea1430046709f65c
+Author: skoona <skoona@gmail.com>
+Date:   Fri Jul 31 02:55:08 2015 +0000
+
+    AutoTools Cleanup...
+
+ build-aux/.gitkeep | 0
+ build-aux/NOTES    | 0
+ dist/.gitkeep      | 0
+ dist/NOTES         | 0
+ m4/.gitkeep        | 0
+ m4/NOTES           | 0
+ 6 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 3687b2b28f5c056bd8432b0aa48eddef5044b17f
+Author: skoona <skoona@gmail.com>
+Date:   Fri Jul 31 02:53:49 2015 +0000
+
+    AutoTools Cleanup
+
+ src/Makefile.am | 2 --
+ 1 file changed, 2 deletions(-)
+
+commit eca96e9900c768be0dde33ed1b5c3471c4f18571
+Author: skoona <skoona@gmail.com>
+Date:   Fri Jul 31 02:42:19 2015 +0000
+
+    Cleanup of 0.4.0
+
+ configure | 22 +++++++++++-----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
+
+commit 49923a5742bed357e02de406ebfd4b712f47a565
+Author: skoona <skoona@gmail.com>
+Date:   Fri Jul 31 02:38:49 2015 +0000
+
+    Release 0.4.0 Package Complete.
+
+ configure.ac              |  2 +-
+ src/lcd_display_client.c  |  2 +-
+ src/lcd_display_service.c |  3 +--
+ src/skn_rpi_helpers.c     | 24 +++++++++++++-----------
+ src/udp_locator_client.c  |  2 +-
+ 5 files changed, 17 insertions(+), 16 deletions(-)
+
+commit 6f4f2c3c5126aa40e6517903e5c1c4bdead8bc34
+Author: skoona <skoona@gmail.com>
+Date:   Thu Jul 30 21:20:18 2015 +0000
+
+    Adjust Client Timeout upward.
+
+ src/lcd_display_client.c | 4 ++--
+ src/udp_locator_client.c | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 142063e433385c4937207b74e34304cad79d6fe0
+Author: skoona <skoona@gmail.com>
+Date:   Thu Jul 30 21:06:21 2015 +0000
+
+    Adjust PCF8574/MCP23008 Initialization sequence.
+
+ src/skn_rpi_helpers.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit 8eb5a3d2f6c9008a764e5f9458ff259d717cbef2
+Author: skoona <skoona@gmail.com>
+Date:   Thu Jul 30 04:03:11 2015 +0000
+
+    Release 0.3.1 Resolving AutoTools issues.
+
+ Makefile.in               |  2 +-
+ configure                 | 22 +++++++++++-----------
+ configure.ac              |  4 ++--
+ src/lcd_display_service.c |  2 +-
+ src/skn_network_helpers.c |  2 +-
+ src/skn_rpi_helpers.c     |  2 +-
+ src/udp_locator_service.c |  2 +-
+ 7 files changed, 18 insertions(+), 18 deletions(-)
+
+commit 84fa4570b705a8716de0bdfeaf68bdfbed214177
+Merge: fd27676 83b077c
+Author: skoona <skoona@gmail.com>
+Date:   Thu Jul 30 03:22:44 2015 +0000
+
+    Merge branch 'master' of github.com:skoona/skn_rpi-display-services
+
+commit fd27676837be53b3ca7af0b507f6ce050273ad84
+Author: skoona <skoona@gmail.com>
+Date:   Thu Jul 30 03:21:38 2015 +0000
+
+    Fine tuning serial service and signal manager.
+
+ src/skn_rpi_helpers.c    | 63 ++++++++++++++++++++++++------------------------
+ src/skn_signal_manager.c |  8 +++---
+ 2 files changed, 35 insertions(+), 36 deletions(-)
+
+commit 83b077cc19d7ae2270720612a2ff283ca73ded71
+Author: James Scott Jr <jscott@brotherhoodmutual.com>
+Date:   Wed Jul 29 16:45:52 2015 -0400
+
+    Update Documentation
+
+ README.md | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+commit 81347face8113b0c86644ae501d9f35f6fb716e1
+Author: James Scott Jr <jscott@brotherhoodmutual.com>
+Date:   Wed Jul 29 16:10:38 2015 -0400
+
+    Update License GPLv3
+
+ COPYING | 181 +++++++++++-----------------------------------------------------
+ 1 file changed, 29 insertions(+), 152 deletions(-)
+
+commit c56f1d46455072f16f62ca6a44e16d8724d950cc
+Author: James Scott Jr <jscott@brotherhoodmutual.com>
+Date:   Wed Jul 29 11:11:14 2015 -0400
+
+    AutoTools Work
+
+ Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit d5824fc125e1cf3f8eb4403efa8e1087d01a5c12
+Author: James Scott Jr <jscott@brotherhoodmutual.com>
+Date:   Wed Jul 29 10:08:04 2015 -0400
+
+    Documentaiton Update.
+
+ README.md | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+commit c0c2023e3ca657ebd25c126d9b811b239701e932
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Wed Jul 29 06:49:46 2015 +0000
+
+    Release 0.3.0 -- all advertised features and GPLV3 delivered.
+
+ COPYING               | 166 +++++++++++++++++++++++++++++++++++++++++++++++++-
+ README.md             |  17 ++++++
+ configure             |  22 +++----
+ configure.ac          |   2 +-
+ rpi_display.png       | Bin 4133662 -> 4763403 bytes
+ src/skn_rpi_helpers.c |   4 +-
+ 6 files changed, 196 insertions(+), 15 deletions(-)
+
+commit 58879b28a6727b22f0c251b2d82a6c31eab3a31b
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Wed Jul 29 05:33:27 2015 +0000
+
+    Fixed issues with Serial Client. Done.
+
+ README.md                 | 41 +++++++++++++++++++++++++--
+ src/skn_common_headers.h  |  2 +-
+ src/skn_network_helpers.c |  2 +-
+ src/skn_rpi_helpers.c     | 70 +++++++++++++++++++++++++++++++----------------
+ 4 files changed, 86 insertions(+), 29 deletions(-)
+
+commit 743b5fc656fab995e20dd7a9eb36a40b5f4df18b
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Tue Jul 28 22:38:46 2015 +0000
+
+    SerialSupport had minor bug; fixed compile issue.
+
+ src/skn_rpi_helpers.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+commit 8689b116250dd966605c9f2beb734e3368e05653
+Author: James Scott Jr <jscott@brotherhoodmutual.com>
+Date:   Tue Jul 28 17:40:33 2015 -0400
+
+    Fine tuned serial interface and its commands.
+
+ README.md                 | 11 +++++---
+ src/skn_common_headers.h  | 20 +++++++++++++-
+ src/skn_network_helpers.c | 70 +++++++++++++++++++++++++++++++----------------
+ src/skn_rpi_helpers.c     | 22 +++++++++------
+ 4 files changed, 87 insertions(+), 36 deletions(-)
+
+commit 40925d923e1ba2aeee506459715f2bdcf0ef2ba7
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Tue Jul 28 18:15:07 2015 +0000
+
+    Added Support for Serial lcd.
+
+ src/skn_rpi_helpers.c | 80 ++++++++++++++++++++++++++++++++-------------------
+ 1 file changed, 51 insertions(+), 29 deletions(-)
+
+commit 41a2ab361c19aa86cc10b2f81d62df85e8881f6f
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Tue Jul 28 08:34:05 2015 +0000
+
+    Adjust Hostname
+
+ src/skn_rpi_helpers.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 0fac3214d4274af93f4b9b9365d6fbefe1cad59a
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Tue Jul 28 08:13:35 2015 +0000
+
+    Implemented MCP23008, and structure for SerialPort.
+
+ src/skn_common_headers.h  |  50 ++++++++-
+ src/skn_network_helpers.c |   4 +-
+ src/skn_rpi_helpers.c     | 251 +++++++++++++++++++++++++++++++++++++---------
+ src/skn_rpi_helpers.h     |  29 ++----
+ 4 files changed, 265 insertions(+), 69 deletions(-)
+
+commit 5a161bfb80070821129582f9572e5cccc83ee689
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Tue Jul 28 03:27:14 2015 +0000
+
+    Fine tuning the Autotools setup: still not satisfied...
+
+ src/Makefile.am | 1 -
+ src/Makefile.in | 1 -
+ 2 files changed, 2 deletions(-)
+
+commit 4a7a0d0b6c8abcc518820458e68bfae4af3130b6
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Tue Jul 28 02:50:17 2015 +0000
+
+    Updated DisplayService by adding senders host shortname prefix, and using /proc/route if on Pi platform.
+
+ Makefile.in               |  4 ++--
+ configure                 | 27 ++++++++++++---------------
+ configure.ac              |  4 ++--
+ src/lcd_display_client.c  | 14 ++++++--------
+ src/lcd_display_service.c |  2 +-
+ src/skn_network_helpers.c | 23 +++++++++++++----------
+ src/skn_network_helpers.h |  2 +-
+ src/skn_rpi_helpers.c     | 15 ++++++++++-----
+ src/udp_locator_service.c |  5 ++---
+ 9 files changed, 49 insertions(+), 47 deletions(-)
+
+commit d2166437e2bd3e897d4276d8356717221a37b053
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Tue Jul 28 00:56:27 2015 +0000
+
+    Messaging Cleanup.
+
+ dist/NOTES | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit ed869003c72fb16c094fb33a5d95a2e33f24b962
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Tue Jul 28 00:55:55 2015 +0000
+
+    Messaging Cleanup.
+
+ Makefile.am               |  1 +
+ configure.ac              |  7 ++-----
+ depcomp                   |  1 -
+ src/lcd_display_client.c  | 18 ++++++++++++++++--
+ src/lcd_display_service.c |  2 ++
+ src/skn_network_helpers.c | 37 +++++++++++++++++++++++++++++++++++--
+ src/skn_network_helpers.h | 10 +++++++---
+ src/skn_rpi_helpers.c     | 16 ++++++++++++++--
+ src/udp_locator_service.c |  3 +++
+ 9 files changed, 80 insertions(+), 15 deletions(-)
+
+commit 7170403bc4e5e9a5765750e94862e5c870d93b83
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Mon Jul 27 05:31:27 2015 +0000
+
+    Documentation Cleanups.
+
+ src/lcd_display_client.c  | 2 +-
+ src/skn_network_helpers.c | 2 +-
+ src/udp_locator_client.c  | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+commit a301376a89a5c766225019434ffddc9394cdd072
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Mon Jul 27 05:23:12 2015 +0000
+
+    Resolved orderly shutdown of DisplayService.
+
+ src/lcd_display_client.c  |  4 ++--
+ src/skn_network_helpers.c |  5 +++--
+ src/skn_network_helpers.h |  2 +-
+ src/skn_rpi_helpers.c     |  5 ++---
+ src/skn_signal_manager.c  | 14 ++++++++++----
+ src/udp_locator_client.c  |  2 +-
+ 6 files changed, 19 insertions(+), 13 deletions(-)
+
+commit 643c195906eee91502e4c92fc4a907f949d68dff
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Mon Jul 27 04:18:57 2015 +0000
+
+    Resolved two issues.  1. 20th column was not printing; 2. DisplayService would not shutdown cleanly.
+
+ src/lcd_display_client.c  | 16 ++++++++++++----
+ src/lcd_display_service.c | 11 ++++-------
+ src/skn_common_headers.h  |  1 +
+ src/skn_network_helpers.c | 33 ++++++++++++++++-----------------
+ src/skn_network_helpers.h |  2 +-
+ src/skn_rpi_helpers.c     | 44 +++++++++++++++++++++++++++++++-------------
+ src/skn_rpi_helpers.h     |  4 ++--
+ src/skn_signal_manager.c  | 20 ++++++++++++++------
+ src/udp_locator_service.c |  2 ++
+ 9 files changed, 83 insertions(+), 50 deletions(-)
+
+commit 077f06c92e087b9d5f680162efb27bab540d3b3c
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Mon Jul 27 01:01:51 2015 +0000
+
+    Validated ADD and QUIT! commands, for DisplayService.
+
+ src/skn_rpi_helpers.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+commit 881a969a5cc2071624656f01a2e3d79448528a29
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Mon Jul 27 00:35:53 2015 +0000
+
+    Validated ADD and QUIT! commands.
+
+ src/skn_network_helpers.c | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
+
+commit 1cbb6edbc1918dd2f77915b9c76bcef0f8c54733
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Sun Jul 26 23:53:03 2015 +0000
+
+    Added QUIT and ADD Commands to services.
+
+ AUTHORS                   |  2 ++
+ README.md                 | 10 +++++++--
+ src/skn_common_headers.h  |  2 +-
+ src/skn_network_helpers.c | 53 +++++++++++++++++++++++++++++++++--------------
+ src/skn_network_helpers.h |  4 ++--
+ src/skn_rpi_helpers.c     | 24 ++++++---------------
+ 6 files changed, 57 insertions(+), 38 deletions(-)
+
+commit 1c2733ca963d30411f204e0dea7395d1ad8449e3
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Sun Jul 26 14:48:09 2015 +0000
+
+    Add alternate-service-name to locator-service.
+
+ src/skn_network_helpers.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 0577faaa90fbc657131793a6eb2619a8a4a1de55
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Sun Jul 26 14:46:06 2015 +0000
+
+    Add alternate-service-name to locator-service.
+
+ src/skn_common_headers.h  | 8 +++++++-
+ src/skn_network_helpers.c | 9 ++++++++-
+ 2 files changed, 15 insertions(+), 2 deletions(-)
+
+commit a86006d9eaf1a9253b8c69e3c28f8cc08d702862
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Sun Jul 26 06:39:43 2015 +0000
+
+    Added elapsed time to all data exchanges.
+
+ src/lcd_display_client.c  |  6 ++++--
+ src/skn_common_headers.h  |  1 +
+ src/skn_network_helpers.c | 40 ++++++++++++++++++++++++++++++++++++++--
+ src/skn_network_helpers.h |  1 +
+ 4 files changed, 44 insertions(+), 4 deletions(-)
+
+commit 0af28dbf1f2dace8f3541307d4ae6583db8e7ec8
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Sun Jul 26 05:41:30 2015 +0000
+
+    Changed default interface logic to allow compile on OSX.  Remove lcd_display_service from src/Makefile.am bin_PROGRAMS var, then make clean install.
+
+ Makefile.in               |  20 +-
+ README.md                 |   2 +-
+ build-aux/compile         |   2 +-
+ configure                 | 959 +++++++---------------------------------------
+ configure.ac              |   9 +-
+ src/Makefile.am           |  14 +-
+ src/Makefile.in           |  29 +-
+ src/skn_network_helpers.c |  18 +-
+ 8 files changed, 177 insertions(+), 876 deletions(-)
+
+commit 3e97b9fd7d9668d2a87ee1ab8b51140ffe35b559
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Sat Jul 25 13:31:23 2015 +0000
+
+    Restructure to allow clients only builds.
+
+ configure                 |  13 ++-
+ configure.ac              |   2 +-
+ src/Makefile.am           |   2 +-
+ src/Makefile.in           |   6 +-
+ src/skn_network_helpers.c | 227 -------------------------------------------
+ src/skn_signal_manager.c  | 239 ++++++++++++++++++++++++++++++++++++++++++++++
+ 6 files changed, 256 insertions(+), 233 deletions(-)
+
+commit 4abaac6fae9a5d8ad6efbfca5fcd999e78a517a5
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Sat Jul 25 04:22:07 2015 +0000
+
+    Updating Docs.
+
+ aclocal.m4 | 971 -------------------------------------------------------------
+ 1 file changed, 971 deletions(-)
+
+commit 006299f0b73322672b9059704c658278ac4f6f37
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Sat Jul 25 04:19:11 2015 +0000
+
+    Updating Docs.
+
+ README.md | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 4f7b96dc69638d0665b8074d12a913780013be85
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Sat Jul 25 04:18:21 2015 +0000
+
+    Updating Docs.
+
+ README.md | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 59622b70bd9c2932201df59dd48afb371074d144
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Sat Jul 25 04:17:26 2015 +0000
+
+    Updating Docs.
+
+ README.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 9ffc4e31a1e2a86db33e9329841124727e745cc2
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Sat Jul 25 04:16:31 2015 +0000
+
+    Updating Docs.
+
+ README.md | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit de3c1166b4265ecbca0af487c07ff6d6c0709819
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Sat Jul 25 04:14:54 2015 +0000
+
+    Updating Docs.
+
+ README.md | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit d769eddbecfb10183435bfb5a03148a421862f9a
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Sat Jul 25 04:13:53 2015 +0000
+
+    Updating Docs.
+
+ README.md | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+commit 8345d08a3827885ff2c56fed1b196581de705f5f
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Sat Jul 25 04:11:02 2015 +0000
+
+    Preparing to add more device support
+
+ src/skn_common_headers.h | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit d22fb8888677b5179b255029fefdfc8ddf12c070
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Sat Jul 25 03:53:19 2015 +0000
+
+    Added features to clients
+
+ Makefile.am               |   2 -
+ Makefile.in               |   4 +-
+ README.md                 |  83 ++++++++++++++++++++--------------
+ build-aux/compile         |   1 +
+ build-aux/config.guess    |   1 +
+ build-aux/config.sub      |   1 +
+ build-aux/depcomp         |   1 +
+ build-aux/install-sh      |   1 +
+ build-aux/missing         |   1 +
+ config.guess              |   1 -
+ config.sub                |   1 -
+ install-sh                |   1 -
+ missing                   |   1 -
+ src/Makefile.am           |   8 +++-
+ src/Makefile.in           |  12 +++--
+ src/lcd_display_client.c  |  34 +++++++++++---
+ src/skn_common_headers.h  |  31 +++++++++++++
+ src/skn_network_helpers.c | 111 ++++++++++++++++++++++++++++++++++++++++------
+ src/skn_network_helpers.h |   6 ++-
+ src/skn_rpi_helpers.c     |  24 ++++++----
+ src/skn_rpi_helpers.h     |  18 --------
+ src/udp_locator_client.c  |  11 +++--
+ src/udp_locator_service.c |   2 +-
+ 23 files changed, 256 insertions(+), 100 deletions(-)
+
+commit c0ea1aba3d6d06d584a8882d967135ab5b924342
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Fri Jul 24 21:19:03 2015 +0000
+
+    Stablize the display client
+
+ Makefile.am               |    3 +-
+ Makefile.in               |   66 +-
+ README.md                 |   31 +-
+ configure                 |  388 ++++++++++--
+ configure.ac              |   28 +-
+ src/Makefile.am           |    4 +-
+ src/Makefile.in           |   11 +-
+ src/lcd_display_client.c  |   27 +-
+ src/lcd_display_service.c |   11 +-
+ src/skn_common_headers.h  |   32 +-
+ src/skn_network_helpers.c | 1520 ++++++++++++++++++++++-----------------------
+ src/skn_network_helpers.h |    9 +-
+ src/skn_rpi_helpers.c     |  905 ++++++++++++---------------
+ src/skn_rpi_helpers.h     |   38 +-
+ src/udp_locator_client.c  |    2 +-
+ src/udp_locator_service.c |    2 +-
+ 16 files changed, 1649 insertions(+), 1428 deletions(-)
+
+commit a35e2a8f34e65b80f23ec889252cb1478332d86d
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Fri Jul 24 01:41:56 2015 +0000
+
+    Updating Autotools
+
+ .gitignore      |   12 +
+ INSTALL         |  371 +-----------
+ Makefile.in     |  329 +++++-----
+ aclocal.m4      |  697 ++++++++--------------
+ config.guess    | 1531 +----------------------------------------------
+ config.sub      | 1783 +------------------------------------------------------
+ configure       |  380 +++---------
+ depcomp         |  709 +---------------------
+ install-sh      |  528 +---------------
+ missing         |  332 +----------
+ src/Makefile.in |  236 +++-----
+ 11 files changed, 566 insertions(+), 6342 deletions(-)
+
+commit 1776df9ee3e5e7887e4fb8d52e60dfa2eeb64849
+Author: James Scott Jr <jscott@brotherhoodmutual.com>
+Date:   Thu Jul 23 16:38:33 2015 -0400
+
+    Updating Autotools.
+
+ Makefile.in     | 332 +++++++++++++++++++++----------------
+ build-aux/NOTES |   0
+ configure       | 503 ++++++--------------------------------------------------
+ configure.ac    |   8 +-
+ m4/NOTES        |   0
+ src/Makefile.in | 236 +++++++++++++++++---------
+ 6 files changed, 404 insertions(+), 675 deletions(-)
+
+commit 35ab74dde21ce388bfd5d27df45161e8aef6a864
+Author: James Scott Jr <jscott@brotherhoodmutual.com>
+Date:   Thu Jul 23 14:45:30 2015 -0400
+
+    Minor Tweaks
+
+ .gitignore | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+commit b3961f4bb51891514a00df2b45931e2139aa7d34
+Author: James Scott Jr <jscott@brotherhoodmutual.com>
+Date:   Thu Jul 23 14:42:22 2015 -0400
+
+    Working through code generation changes.
+
+ Makefile.am     |   2 +
+ aclocal.m4      | 697 +++++++++++++++++++++++++++----------------
+ build-aux/.keep |   0
+ configure       | 901 ++++++++++++++++++++++++++++++++++++++++++++++++--------
+ m4/.keep        |   0
+ src/Makefile.am |   2 +
+ 6 files changed, 1216 insertions(+), 386 deletions(-)
+
+commit 679f318779b84b64cb5ba9f58613b14061172e17
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Thu Jul 23 06:30:41 2015 +0000
+
+    Add LCD_Display_CLient.-- temp requires wiring pi
+
+ README.md                 | 14 +++++++--
+ configure.ac              |  2 +-
+ src/Makefile.am           |  6 +++-
+ src/Makefile.in           | 23 +++++++++++---
+ src/lcd_display_client.c  | 79 +++++++++++++++++++++++++++++++++++++++++++++++
+ src/skn_common_headers.h  |  8 +++++
+ src/skn_network_helpers.c | 43 ++++++++++++++++++++++++++
+ src/skn_network_helpers.h |  2 ++
+ src/skn_rpi_helpers.c     | 26 ++++++++++++----
+ 9 files changed, 189 insertions(+), 14 deletions(-)
+
+commit 439dffaaa6c5368ffede8fc5ddd24de6e345711f
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Thu Jul 23 05:07:03 2015 +0000
+
+    Updated graphic.
+
+ skn_rpi1.png | Bin 33346 -> 34278 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 0e9cf642a2cf61b5e8563fa2b0bbba7f2dce8fe5
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Thu Jul 23 04:48:47 2015 +0000
+
+    Updated Specs.
+
+ README.md       |   7 +++++++
+ rpi_display.png | Bin 7081122 -> 4133662 bytes
+ 2 files changed, 7 insertions(+)
+
+commit f19cc7e04c0f4a4fbed136ccfd802b639bdd9fa0
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Thu Jul 23 04:23:03 2015 +0000
+
+    Updating Documentaiton Images
+
+ skn_rpi1.png | Bin 78919 -> 33346 bytes
+ skn_rpi2.png | Bin 78919 -> 41088 bytes
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 5694d420d9264726cb8fbd93f4d0f8d1e6059865
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Thu Jul 23 04:14:29 2015 +0000
+
+    Updating Documentation.
+
+ README.md    |   6 ++++++
+ skn_rpi1.png | Bin 0 -> 78919 bytes
+ skn_rpi2.png | Bin 0 -> 78919 bytes
+ 3 files changed, 6 insertions(+)
+
+commit e9385c13ffd956e3ac0c9452873dc784c4068c7d
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Thu Jul 23 03:04:08 2015 +0000
+
+    Added DisplayManager and UDP Receiver.
+
+ src/Makefile.am           |   6 +-
+ src/Makefile.in           |   6 +-
+ src/lcd_display_service.c |  37 +----
+ src/skn_common_headers.h  | 150 +++++++++++++++++++++
+ src/skn_network_helpers.c |  19 ++-
+ src/skn_network_helpers.h | 100 +-------------
+ src/skn_rpi_helpers.c     | 335 ++++++++++++++++++++++++++++++++++++++++++----
+ src/skn_rpi_helpers.h     |  42 +++---
+ 8 files changed, 502 insertions(+), 193 deletions(-)
+
+commit 72c316acbfd7d45396847db90bcdec4b96a1f0a2
+Author: James Scott Jr <jscott@brotherhoodmutual.com>
+Date:   Wed Jul 22 16:29:26 2015 -0400
+
+    Updating Documentation
+
+ README.md       |   2 +-
+ rpi_display.png | Bin 7559919 -> 7081122 bytes
+ 2 files changed, 1 insertion(+), 1 deletion(-)
+
+commit 611a53c13230565ceced2926bff3221e59e03660
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Wed Jul 22 17:15:59 2015 +0000
+
+    Updating Docs
+
+ README.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 9e5ec211f139f81798d8459706d240011a045663
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Wed Jul 22 17:13:29 2015 +0000
+
+    Updating Docs
+
+ README.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit df499d7f4d8c93e4f0577619effe9fc8b29b31c2
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Wed Jul 22 17:08:11 2015 +0000
+
+    Updating Docs
+
+ README.md | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 0b5835f181444f16e8974f2b310823929c96ae0c
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Wed Jul 22 17:04:33 2015 +0000
+
+    Updating Docs
+
+ README.md       |   4 ++--
+ rpi_display.png | Bin 0 -> 7559919 bytes
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 8ed829fe7bd42e254a86df71419f5218fb88e30a
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Wed Jul 22 16:45:41 2015 +0000
+
+    Updating Docs
+
+ README.md | 54 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 54 insertions(+)
+
+commit 1cfb40ee8316cc0a42f3fd5d65848e07286d5215
+Author: James Scott Jr <jscott@brotherhoodmutual.com>
+Date:   Wed Jul 22 10:17:59 2015 -0400
+
+    Updating Documentation
+
+ README.md | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 0eb7cf1b783e58127aa91d7dbd427bf9a6640f1a
+Author: James Scott Jr <jscott@brotherhoodmutual.com>
+Date:   Wed Jul 22 10:12:37 2015 -0400
+
+    Updating Documentation
+
+ README.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit d01fd089c3ee076d989e194da33f883fc7a6f14a
+Author: James Scott Jr <jscott@brotherhoodmutual.com>
+Date:   Wed Jul 22 10:04:22 2015 -0400
+
+    Updating Documentation
+
+ README.md | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+commit fd9d8d80f17b82edb79d77dde0ae20eba34e65bc
+Author: James Scott Jr <jscott@brotherhoodmutual.com>
+Date:   Wed Jul 22 09:45:45 2015 -0400
+
+    Updating Documentation
+
+ README.md | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+commit 75cdaa936ce2537bb05fb6a2c0d2a9d90dbe294d
+Author: James Scott Jr <jscott@brotherhoodmutual.com>
+Date:   Wed Jul 22 09:44:27 2015 -0400
+
+    Updating Documentation
+
+ README.md | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit 12915436407b72388edcf1eda8ea8d9e853a9193
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Wed Jul 22 03:39:54 2015 +0000
+
+    Updated Documentation
+
+ README.md | 19 +++++++++++--------
+ 1 file changed, 11 insertions(+), 8 deletions(-)
+
+commit e5877cb562c714ac5a432f9baf86e5629cb32942
+Author: James Scott Jr <skoona@gmail.com>
+Date:   Wed Jul 22 03:18:13 2015 +0000
+
+    Initial Commit.
+
+ AUTHORS                   |    1 +
+ COPYING                   |    1 +
+ ChangeLog                 |    0
+ INSTALL                   |  370 +++
+ Makefile.am               |    1 +
+ Makefile.in               |  714 ++++++
+ NEWS                      |    1 +
+ README                    |    9 +
+ README.md                 |    9 +
+ aclocal.m4                |  971 +++++++
+ config.guess              | 1530 +++++++++++
+ config.sub                | 1782 +++++++++++++
+ configure                 | 6217 +++++++++++++++++++++++++++++++++++++++++++++
+ configure.ac              |   22 +
+ depcomp                   |  708 ++++++
+ install-sh                |  527 ++++
+ missing                   |  331 +++
+ src/Makefile.am           |   11 +
+ src/Makefile.in           |  527 ++++
+ src/lcd_display_service.c |  120 +
+ src/skn_network_helpers.c | 1029 ++++++++
+ src/skn_network_helpers.h |  153 ++
+ src/skn_rpi_helpers.c     |  393 +++
+ src/skn_rpi_helpers.h     |   81 +
+ src/udp_locator_client.c  |   71 +
+ src/udp_locator_service.c |   65 +
+ 26 files changed, 15644 insertions(+)

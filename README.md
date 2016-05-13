@@ -1,4 +1,8 @@
 # Raspberry Pi Display/Locator Service
+
+#### 05/12/2016 Added Gtk+-3.0 and GLib2.0 Display Services. 
+#### 05/12/2016 Added GLib and GSSDP command line clients. 
+
 ![Raspberry Pi Display/Locator Service](https://github.com/skoona/skn_rpi-display-services/raw/master/images/rpi_display.png) 
 
 Package includes two features. One designed to both locate your Pi and provide a list of known services.  The 
@@ -28,12 +32,16 @@ Enjoy!
 
 |Program|Type|Platform|Port|Description|
 |---|---|---|---|---|
+|*gtkDS|Server|any|48028|Maintains a list of known network services accessible via UDP socket, and offers the GTK display service.|
+|*cmdDS|Server|any|48028|Maintains a list of known network services accessible via UDP socket, and offers the CmdLine display service.|
 |udp_locator_service|Server|any|48028|Maintains a list of known network services accessible via UDP socket.|
 |udp_locator_client|Client|any|n/a|Collect services info from Service, which includes that service's ip address.|
+|*cmdDC|Client|any|n/a|Sends text one-liner to any display service.|
 |lcd_display_service|Server|RPi|48029|Accepts one-line messages over udp and display them on a LCD panel.|
 |lcd_display_client|Client|any|n/a|Sends one-liner composed of various Pi metrics; like cpus, temps, etc.|
 |para_display_client|Client|Parallella|n/a|Sends one-liner with Zynq chip's temperature.|
 |a2d_display_client|Client|Rpi|n/a|Sends one-liner with measured temp and light sensor values from *AD/DA Shield Module For Raspberry Pi *|
+|*gssdpDC|Client|any|n/a|Sends text one-liner to any display service, after locating it using GSSDP/GUPNP.|
 
 
 ### Configuration Options
