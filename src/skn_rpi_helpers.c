@@ -297,7 +297,7 @@ long getCpuTemps(PCpuTemps temps) {
     FILE *sysFs = fopen("/sys/class/thermal/thermal_zone0/temp", "r");
     if (sysFs == NULL) {
         skn_logger(SD_WARNING, "Warning: Failed to open Debian CPU temperature: %d:%s\n", errno, strerror(errno));
-        *sysFs = fopen("/sys/class/hwmon/hwmon0/device/temp1_input", "r");
+        sysFs = fopen("/sys/class/hwmon/hwmon0/device/temp1_input", "r");
         if (sysFs == NULL) {
             skn_logger(SD_WARNING, "Warning: Failed to open Centos CPU temperature: %d:%s\n", errno, strerror(errno));
             return -1;
