@@ -1,8 +1,7 @@
 \hypertarget{para__display__client_8c}{}\section{src/para\+\_\+display\+\_\+client.c File Reference}
 \label{para__display__client_8c}\index{src/para\+\_\+display\+\_\+client.\+c@{src/para\+\_\+display\+\_\+client.\+c}}
 {\ttfamily \#include \char`\"{}skn\+\_\+network\+\_\+helpers.\+h\char`\"{}}\\*
-Include dependency graph for para\+\_\+display\+\_\+client.\+c\+:
-\nopagebreak
+Include dependency graph for para\+\_\+display\+\_\+client.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,26 +11,26 @@ Include dependency graph for para\+\_\+display\+\_\+client.\+c\+:
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{para__display__client_8c_a66e27ff237580d0f8dc29f052d9b4aec}{k\+X\+A\+D\+C\+P\+A\+T\+H}~\char`\"{}/sys/bus/iio/devices/iio\+:device0/\char`\"{}
+\#define \hyperlink{para__display__client_8c_a66e27ff237580d0f8dc29f052d9b4aec}{k\+X\+A\+D\+C\+P\+A\+TH}~\char`\"{}/sys/bus/iio/devices/iio\+:device0/\char`\"{}
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \hyperlink{para__display__client_8c_a4c2fc3b5855778dda51d1e09e20f23a2}{Get\+Constants} (int $\ast$n\+Offset, float $\ast$f\+Scale)
+int \hyperlink{para__display__client_8c_a0bc4e3dc79150296e599217bdc50cb2b}{skn\+Get\+Constants} (int $\ast$n\+Offset, float $\ast$f\+Scale)
 \item 
-int \hyperlink{para__display__client_8c_a107d9d8f583bbd2c3a2e5a71b6643afa}{Get\+Temp} (double $\ast$f\+Temp, double $\ast$c\+Temp, int n\+Offset, float f\+Scale)
+int \hyperlink{para__display__client_8c_a27a64cd3f9478cd89d55bd4174f58dc2}{skn\+Get\+Temp} (double $\ast$f\+Temp, double $\ast$c\+Temp, int n\+Offset, float f\+Scale)
 \item 
 int \hyperlink{para__display__client_8c_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
 \end{DoxyCompactItemize}
 
 
 \subsection{Macro Definition Documentation}
-\hypertarget{para__display__client_8c_a66e27ff237580d0f8dc29f052d9b4aec}{}\index{para\+\_\+display\+\_\+client.\+c@{para\+\_\+display\+\_\+client.\+c}!k\+X\+A\+D\+C\+P\+A\+T\+H@{k\+X\+A\+D\+C\+P\+A\+T\+H}}
-\index{k\+X\+A\+D\+C\+P\+A\+T\+H@{k\+X\+A\+D\+C\+P\+A\+T\+H}!para\+\_\+display\+\_\+client.\+c@{para\+\_\+display\+\_\+client.\+c}}
-\subsubsection[{k\+X\+A\+D\+C\+P\+A\+T\+H}]{\setlength{\rightskip}{0pt plus 5cm}\#define k\+X\+A\+D\+C\+P\+A\+T\+H~\char`\"{}/sys/bus/iio/devices/iio\+:device0/\char`\"{}}\label{para__display__client_8c_a66e27ff237580d0f8dc29f052d9b4aec}
+\index{para\+\_\+display\+\_\+client.\+c@{para\+\_\+display\+\_\+client.\+c}!k\+X\+A\+D\+C\+P\+A\+TH@{k\+X\+A\+D\+C\+P\+A\+TH}}
+\index{k\+X\+A\+D\+C\+P\+A\+TH@{k\+X\+A\+D\+C\+P\+A\+TH}!para\+\_\+display\+\_\+client.\+c@{para\+\_\+display\+\_\+client.\+c}}
+\subsubsection[{\texorpdfstring{k\+X\+A\+D\+C\+P\+A\+TH}{kXADCPATH}}]{\setlength{\rightskip}{0pt plus 5cm}\#define k\+X\+A\+D\+C\+P\+A\+TH~\char`\"{}/sys/bus/iio/devices/iio\+:device0/\char`\"{}}\hypertarget{para__display__client_8c_a66e27ff237580d0f8dc29f052d9b4aec}{}\label{para__display__client_8c_a66e27ff237580d0f8dc29f052d9b4aec}
 \hyperlink{para__display__client_8c}{para\+\_\+display\+\_\+client.\+c}
 \begin{DoxyItemize}
-\item Parallella (Epiphany I\+I\+I) Display Temperature Client
+\item Parallella (Epiphany I\+II) Display Temperature Client
 \end{DoxyItemize}
 
 cmdline\+: ./para\+\_\+display\+\_\+client -\/m \char`\"{}$<$request-\/message-\/string$>$\char`\"{} 
@@ -40,142 +39,26 @@ Definition at line 10 of file para\+\_\+display\+\_\+client.\+c.
 
 
 
-Referenced by Get\+Constants(), and Get\+Temp().
+Referenced by skn\+Get\+Constants(), and skn\+Get\+Temp().
 
 
 
 \subsection{Function Documentation}
-\hypertarget{para__display__client_8c_a4c2fc3b5855778dda51d1e09e20f23a2}{}\index{para\+\_\+display\+\_\+client.\+c@{para\+\_\+display\+\_\+client.\+c}!Get\+Constants@{Get\+Constants}}
-\index{Get\+Constants@{Get\+Constants}!para\+\_\+display\+\_\+client.\+c@{para\+\_\+display\+\_\+client.\+c}}
-\subsubsection[{Get\+Constants(int $\ast$n\+Offset, float $\ast$f\+Scale)}]{\setlength{\rightskip}{0pt plus 5cm}int Get\+Constants (
-\begin{DoxyParamCaption}
-\item[{int $\ast$}]{n\+Offset, }
-\item[{float $\ast$}]{f\+Scale}
-\end{DoxyParamCaption}
-)}\label{para__display__client_8c_a4c2fc3b5855778dda51d1e09e20f23a2}
-
-
-Definition at line 13 of file para\+\_\+display\+\_\+client.\+c.
-
-
-
-References k\+X\+A\+D\+C\+P\+A\+T\+H, and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F.
-
-
-
-Referenced by main().
-
-
-\begin{DoxyCode}
-13                                               \{
-14   \textcolor{keywordtype}{char}  strRead[\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}];
-15   FILE *sysfile;
-16 
-17   \textcolor{keywordflow}{if}((sysfile = fopen(\hyperlink{para__display__client_8c_a66e27ff237580d0f8dc29f052d9b4aec}{kXADCPATH} \textcolor{stringliteral}{"in\_temp0\_offset"}, \textcolor{stringliteral}{"ra"})) == NULL) \{
-18     fprintf(stderr, \textcolor{stringliteral}{"ERROR: Can't open offset device file\(\backslash\)n"});
-19     \textcolor{keywordflow}{return} 1;
-20   \}
-21   fgets(strRead, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}-1, sysfile);
-22   fclose(sysfile);
-23   *nOffset = atoi(strRead);
-24 
-25   \textcolor{keywordflow}{if}((sysfile = fopen(\hyperlink{para__display__client_8c_a66e27ff237580d0f8dc29f052d9b4aec}{kXADCPATH} \textcolor{stringliteral}{"in\_temp0\_scale"}, \textcolor{stringliteral}{"ra"})) == NULL) \{
-26     fprintf(stderr, \textcolor{stringliteral}{"ERROR: Can't open scale device file\(\backslash\)n"});
-27     \textcolor{keywordflow}{return} 2;
-28   \}
-29   fgets(strRead, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}-1, sysfile);
-30   fclose(sysfile);
-31   *fScale = atof(strRead);
-32 
-33   \textcolor{keywordflow}{return} 0;
-34 \}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=231pt]{para__display__client_8c_a4c2fc3b5855778dda51d1e09e20f23a2_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{para__display__client_8c_a107d9d8f583bbd2c3a2e5a71b6643afa}{}\index{para\+\_\+display\+\_\+client.\+c@{para\+\_\+display\+\_\+client.\+c}!Get\+Temp@{Get\+Temp}}
-\index{Get\+Temp@{Get\+Temp}!para\+\_\+display\+\_\+client.\+c@{para\+\_\+display\+\_\+client.\+c}}
-\subsubsection[{Get\+Temp(double $\ast$f\+Temp, double $\ast$c\+Temp, int n\+Offset, float f\+Scale)}]{\setlength{\rightskip}{0pt plus 5cm}int Get\+Temp (
-\begin{DoxyParamCaption}
-\item[{double $\ast$}]{f\+Temp, }
-\item[{double $\ast$}]{c\+Temp, }
-\item[{int}]{n\+Offset, }
-\item[{float}]{f\+Scale}
-\end{DoxyParamCaption}
-)}\label{para__display__client_8c_a107d9d8f583bbd2c3a2e5a71b6643afa}
-Zynq chips temperature 
-
-Definition at line 39 of file para\+\_\+display\+\_\+client.\+c.
-
-
-
-References k\+X\+A\+D\+C\+P\+A\+T\+H, and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F.
-
-
-
-Referenced by main().
-
-
-\begin{DoxyCode}
-39                                                                      \{
-40   FILE *sysfile;
-41   \textcolor{keywordtype}{char}  strRead[\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}];
-42   \textcolor{keywordtype}{int}  nRaw;
-43 
-44   \textcolor{keywordflow}{if}(nOffset == 0 || fScale == 0.0)
-45     \textcolor{keywordflow}{return} 1;
-46 
-47   \textcolor{keywordflow}{if}((sysfile = fopen(\hyperlink{para__display__client_8c_a66e27ff237580d0f8dc29f052d9b4aec}{kXADCPATH} \textcolor{stringliteral}{"in\_temp0\_raw"}, \textcolor{stringliteral}{"ra"})) == NULL) \{
-48     \textcolor{keywordflow}{return} 2;
-49   \}
-50 
-51   fgets(strRead, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}-1, sysfile);
-52   fclose(sysfile);
-53   nRaw = atoi(strRead);
-54 
-55   *fTemp = (double ) (nRaw + nOffset) * fScale / 1000.0;
-56 
-57   *cTemp = (double ) (*fTemp - 32.0) * 5 / 9;
-58 
-59   \textcolor{keywordflow}{return} 0;
-60 \}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=210pt]{para__display__client_8c_a107d9d8f583bbd2c3a2e5a71b6643afa_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{para__display__client_8c_a0ddf1224851353fc92bfbff6f499fa97}{}\index{para\+\_\+display\+\_\+client.\+c@{para\+\_\+display\+\_\+client.\+c}!main@{main}}
+\index{para\+\_\+display\+\_\+client.\+c@{para\+\_\+display\+\_\+client.\+c}!main@{main}}
 \index{main@{main}!para\+\_\+display\+\_\+client.\+c@{para\+\_\+display\+\_\+client.\+c}}
-\subsubsection[{main(int argc, char $\ast$argv[])}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\subsubsection[{\texorpdfstring{main(int argc, char $\ast$argv[])}{main(int argc, char *argv[])}}]{\setlength{\rightskip}{0pt plus 5cm}int main (
 \begin{DoxyParamCaption}
 \item[{int}]{argc, }
 \item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
 \end{DoxyParamCaption}
-)}\label{para__display__client_8c_a0ddf1224851353fc92bfbff6f499fa97}
+)}\hypertarget{para__display__client_8c_a0ddf1224851353fc92bfbff6f499fa97}{}\label{para__display__client_8c_a0ddf1224851353fc92bfbff6f499fa97}
 
 
 Definition at line 63 of file para\+\_\+display\+\_\+client.\+c.
 
 
 
-References gd\+\_\+i\+\_\+socket, gd\+\_\+i\+\_\+update, gd\+\_\+pch\+\_\+message, gd\+\_\+pch\+\_\+service\+\_\+name, Get\+Constants(), Get\+Temp(), gi\+\_\+exit\+\_\+flag, \+\_\+service\+Entry\+::ip, \+\_\+service\+Entry\+::name, \+\_\+service\+Entry\+::port, \+\_\+service\+Request\+::request, S\+D\+\_\+\+D\+E\+B\+U\+G, S\+D\+\_\+\+E\+R\+R, S\+D\+\_\+\+N\+O\+T\+I\+C\+E, S\+D\+\_\+\+W\+A\+R\+N\+I\+N\+G, service\+\_\+registry\+\_\+destroy(), service\+\_\+registry\+\_\+entry\+\_\+count(), service\+\_\+registry\+\_\+find\+\_\+entry(), service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast(), signals\+\_\+cleanup(), signals\+\_\+init(), skn\+\_\+get\+\_\+number\+\_\+of\+\_\+cpu\+\_\+cores(), skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line(), skn\+\_\+program\+\_\+name\+\_\+and\+\_\+description\+\_\+set(), S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+R\+U\+N, skn\+\_\+service\+\_\+request\+\_\+create(), skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+broadcast\+\_\+socket(), skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+regular\+\_\+socket(), skn\+\_\+udp\+\_\+service\+\_\+request(), S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F, and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F.
+References gd\+\_\+i\+\_\+socket, gd\+\_\+i\+\_\+update, gd\+\_\+pch\+\_\+message, gd\+\_\+pch\+\_\+service\+\_\+name, gi\+\_\+exit\+\_\+flag, \+\_\+service\+Entry\+::ip, \+\_\+service\+Entry\+::name, \+\_\+service\+Entry\+::port, \+\_\+service\+Request\+::request, S\+D\+\_\+\+D\+E\+B\+UG, S\+D\+\_\+\+E\+RR, S\+D\+\_\+\+N\+O\+T\+I\+CE, S\+D\+\_\+\+W\+A\+R\+N\+I\+NG, service\+\_\+registry\+\_\+destroy(), service\+\_\+registry\+\_\+entry\+\_\+count(), service\+\_\+registry\+\_\+find\+\_\+entry(), service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast(), signals\+\_\+cleanup(), signals\+\_\+init(), skn\+\_\+get\+\_\+number\+\_\+of\+\_\+cpu\+\_\+cores(), skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line(), skn\+\_\+program\+\_\+name\+\_\+and\+\_\+description\+\_\+set(), S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+R\+UN, skn\+\_\+service\+\_\+request\+\_\+create(), skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+broadcast\+\_\+socket(), skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+regular\+\_\+socket(), skn\+\_\+udp\+\_\+service\+\_\+request(), skn\+Get\+Constants(), skn\+Get\+Temp(), S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+FF, and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+FF.
 
 
 \begin{DoxyCode}
@@ -215,7 +98,7 @@ References gd\+\_\+i\+\_\+socket, gd\+\_\+i\+\_\+update, gd\+\_\+pch\+\_\+messag
 97     skn\_logger(\hyperlink{skn__common__headers_8h_a3ace3381f5b69f4a46fc35b70844a5dc}{SD\_DEBUG}, \textcolor{stringliteral}{"Registry Message [%s]"}, registry);
 98 
 99     \textcolor{comment}{// get some platform constants}
-100     \textcolor{keywordflow}{if}(\hyperlink{para__display__client_8c_a4c2fc3b5855778dda51d1e09e20f23a2}{GetConstants}(&nOffset, &fScale)) \{
+100     \textcolor{keywordflow}{if}(\hyperlink{para__display__client_8c_a0bc4e3dc79150296e599217bdc50cb2b}{sknGetConstants}(&nOffset, &fScale)) \{
 101         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"GetConstants() Failed! Shutting Down!"});
 102         exit(EXIT\_FAILURE);
 103     \}
@@ -282,9 +165,8 @@ References gd\+\_\+i\+\_\+socket, gd\+\_\+i\+\_\+update, gd\+\_\+pch\+\_\+messag
 158             \}
 159             sleep(\hyperlink{skn__network__helpers_8c_a49e7c0da0f26a1f505934e5610ead123}{gd\_i\_update});
 160 
-161             \hyperlink{para__display__client_8c_a107d9d8f583bbd2c3a2e5a71b6643afa}{GetTemp}(&fTemp, &cTemp, nOffset, fScale);
-162             snprintf(pnsr->\hyperlink{struct__service_request_ad347b2a07388ec9d9d33756f1a1ef235}{request}, \textcolor{keyword}{sizeof}(pnsr->\hyperlink{struct__service_request_ad347b2a07388ec9d9d33756f1a1ef235}{request}) -1,  \textcolor{stringliteral}{"%.1f%cf %.1f%cc"}, fTemp, 223,
-       cTemp, 223);
+161             \hyperlink{para__display__client_8c_a27a64cd3f9478cd89d55bd4174f58dc2}{sknGetTemp}(&fTemp, &cTemp, nOffset, fScale);
+162             snprintf(pnsr->\hyperlink{struct__service_request_ad347b2a07388ec9d9d33756f1a1ef235}{request}, \textcolor{keyword}{sizeof}(pnsr->\hyperlink{struct__service_request_ad347b2a07388ec9d9d33756f1a1ef235}{request}) -1,  \textcolor{stringliteral}{"%.1fF %.1fC"}, fTemp, cTemp);
 163 
 164 
 165         \} \textcolor{keywordflow}{while}(\hyperlink{skn__network__helpers_8c_a49e7c0da0f26a1f505934e5610ead123}{gd\_i\_update} != 0 && \hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag} == 
@@ -309,12 +191,127 @@ References gd\+\_\+i\+\_\+socket, gd\+\_\+i\+\_\+update, gd\+\_\+pch\+\_\+messag
 \end{DoxyCode}
 
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{para__display__client_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph}
+\end{center}
+\end{figure}
+
+
+\index{para\+\_\+display\+\_\+client.\+c@{para\+\_\+display\+\_\+client.\+c}!skn\+Get\+Constants@{skn\+Get\+Constants}}
+\index{skn\+Get\+Constants@{skn\+Get\+Constants}!para\+\_\+display\+\_\+client.\+c@{para\+\_\+display\+\_\+client.\+c}}
+\subsubsection[{\texorpdfstring{skn\+Get\+Constants(int $\ast$n\+Offset, float $\ast$f\+Scale)}{sknGetConstants(int *nOffset, float *fScale)}}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+Get\+Constants (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{n\+Offset, }
+\item[{float $\ast$}]{f\+Scale}
+\end{DoxyParamCaption}
+)}\hypertarget{para__display__client_8c_a0bc4e3dc79150296e599217bdc50cb2b}{}\label{para__display__client_8c_a0bc4e3dc79150296e599217bdc50cb2b}
+
+
+Definition at line 13 of file para\+\_\+display\+\_\+client.\+c.
+
+
+
+References k\+X\+A\+D\+C\+P\+A\+TH, and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+FF.
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+13                                                  \{
+14   \textcolor{keywordtype}{char}  strRead[\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}];
+15   FILE *sysfile;
+16 
+17   \textcolor{keywordflow}{if}((sysfile = fopen(\hyperlink{para__display__client_8c_a66e27ff237580d0f8dc29f052d9b4aec}{kXADCPATH} \textcolor{stringliteral}{"in\_temp0\_offset"}, \textcolor{stringliteral}{"ra"})) == NULL) \{
+18     fprintf(stderr, \textcolor{stringliteral}{"ERROR: Can't open offset device file\(\backslash\)n"});
+19     \textcolor{keywordflow}{return} 1;
+20   \}
+21   fgets(strRead, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}-1, sysfile);
+22   fclose(sysfile);
+23   *nOffset = atoi(strRead);
+24 
+25   \textcolor{keywordflow}{if}((sysfile = fopen(\hyperlink{para__display__client_8c_a66e27ff237580d0f8dc29f052d9b4aec}{kXADCPATH} \textcolor{stringliteral}{"in\_temp0\_scale"}, \textcolor{stringliteral}{"ra"})) == NULL) \{
+26     fprintf(stderr, \textcolor{stringliteral}{"ERROR: Can't open scale device file\(\backslash\)n"});
+27     \textcolor{keywordflow}{return} 2;
+28   \}
+29   fgets(strRead, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}-1, sysfile);
+30   fclose(sysfile);
+31   *fScale = atof(strRead);
+32 
+33   \textcolor{keywordflow}{return} 0;
+34 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{para__display__client_8c_a0bc4e3dc79150296e599217bdc50cb2b_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{para\+\_\+display\+\_\+client.\+c@{para\+\_\+display\+\_\+client.\+c}!skn\+Get\+Temp@{skn\+Get\+Temp}}
+\index{skn\+Get\+Temp@{skn\+Get\+Temp}!para\+\_\+display\+\_\+client.\+c@{para\+\_\+display\+\_\+client.\+c}}
+\subsubsection[{\texorpdfstring{skn\+Get\+Temp(double $\ast$f\+Temp, double $\ast$c\+Temp, int n\+Offset, float f\+Scale)}{sknGetTemp(double *fTemp, double *cTemp, int nOffset, float fScale)}}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+Get\+Temp (
+\begin{DoxyParamCaption}
+\item[{double $\ast$}]{f\+Temp, }
+\item[{double $\ast$}]{c\+Temp, }
+\item[{int}]{n\+Offset, }
+\item[{float}]{f\+Scale}
+\end{DoxyParamCaption}
+)}\hypertarget{para__display__client_8c_a27a64cd3f9478cd89d55bd4174f58dc2}{}\label{para__display__client_8c_a27a64cd3f9478cd89d55bd4174f58dc2}
+Zynq chips temperature 
+
+Definition at line 39 of file para\+\_\+display\+\_\+client.\+c.
+
+
+
+References k\+X\+A\+D\+C\+P\+A\+TH, and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+FF.
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+39                                                                         \{
+40   FILE *sysfile;
+41   \textcolor{keywordtype}{char}  strRead[\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}];
+42   \textcolor{keywordtype}{int}  nRaw;
+43 
+44   \textcolor{keywordflow}{if}(nOffset == 0 || fScale == 0.0)
+45     \textcolor{keywordflow}{return} 1;
+46 
+47   \textcolor{keywordflow}{if}((sysfile = fopen(\hyperlink{para__display__client_8c_a66e27ff237580d0f8dc29f052d9b4aec}{kXADCPATH} \textcolor{stringliteral}{"in\_temp0\_raw"}, \textcolor{stringliteral}{"ra"})) == NULL) \{
+48     \textcolor{keywordflow}{return} 2;
+49   \}
+50 
+51   fgets(strRead, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}-1, sysfile);
+52   fclose(sysfile);
+53   nRaw = atoi(strRead);
+54 
+55   *fTemp = (double ) (nRaw + nOffset) * fScale / 1000.0;
+56 
+57   *cTemp = (double ) (*fTemp - 32.0) * 5 / 9;
+58 
+59   \textcolor{keywordflow}{return} 0;
+60 \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{para__display__client_8c_a27a64cd3f9478cd89d55bd4174f58dc2_icgraph}
 \end{center}
 \end{figure}
 

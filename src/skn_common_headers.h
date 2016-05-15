@@ -103,8 +103,8 @@
 #define SKN_RUN_MODE_STOP 1
 
 #ifndef	TRUE
-#  define	TRUE	(1==1)
-#  define	FALSE	(1==2)
+  #define	TRUE	  (1==1)
+  #define	FALSE (1==2)
 #endif
 
 #define SCROLL_WAIT    1

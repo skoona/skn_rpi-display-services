@@ -118,7 +118,7 @@ double readAverageSensorValue(int sensor) {
 /**
  * Free Air Temps
  */
-int GetModuleTemp(char *buffer) {
+int sknGetModuleTemp(char *buffer) {
     double fTemp = 0.0, cTemp = 0.0, value = 0.0;
 
     value = readAverageSensorValue(A2D_THERM);
@@ -138,7 +138,7 @@ int GetModuleTemp(char *buffer) {
 /**
  * Photo Resistor  Brightness Indicator
  */
-int GetModuleBright(char *buffer) {
+int sknGetModuleBright(char *buffer) {
     double value = 0.0;
     char *plights;
 
@@ -185,7 +185,7 @@ int main(int argc, char *argv[])
     skn_program_name_and_description_set(
     		"a2d_display_client",
 			"Send Measured Temperature and Light(lux) to Display Service."
-			);
+    );
 
 	/* Parse any command line options,
 	 * like request string override */
@@ -257,7 +257,7 @@ int main(int argc, char *argv[])
 	// we have the location
 	if (pre != NULL) {
 	    if (request[0] == 0) {
-	        GetModuleTemp(request);
+	        sknGetModuleTemp(request);
 	    }
 	    pnsr = skn_service_request_create(pre, gd_i_socket, request);
 	}
@@ -267,7 +267,7 @@ int main(int argc, char *argv[])
 
             /*
              * Do Work */
-            GetModuleTemp(pnsr->request);
+            sknGetModuleTemp(pnsr->request);
             vIndex = skn_udp_service_request(pnsr);
             if ((vIndex == EXIT_FAILURE) && (gd_i_update == 0)) { // ignore if non-stop is set
                 break;
@@ -277,7 +277,7 @@ int main(int argc, char *argv[])
 
             /*
              * Do Work */
-            GetModuleBright(pnsr->request);
+            sknGetModuleBright(pnsr->request);
             vIndex = skn_udp_service_request(pnsr);
             if ((vIndex == EXIT_FAILURE) && (gd_i_update == 0)) { // ignore if non-stop is set
                 break;

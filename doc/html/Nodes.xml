@@ -6,6 +6,10 @@
       <Path>index.html</Path>
       <Subnodes>
        <Node>
+        <Name>Raspberry Pi Display/Locator Service</Name>
+        <Path>index.html</Path>
+       </Node>
+       <Node>
         <Name>Data Structures</Name>
         <Path>annotated.html</Path>
         <Subnodes>
@@ -3711,16 +3715,6 @@
                 <Anchor>a14b82aad0ea6a4e3999d5e91f76d409d</Anchor>
                </Node>
                <Node>
-                <Name>GetModuleBright</Name>
-                <Path>a2d__display__client_8c.html</Path>
-                <Anchor>a4502f91e3eae5d2711786c6be8b0f76c</Anchor>
-               </Node>
-               <Node>
-                <Name>GetModuleTemp</Name>
-                <Path>a2d__display__client_8c.html</Path>
-                <Anchor>ad6bd912a7b382b644bea384e1db1a47b</Anchor>
-               </Node>
-               <Node>
                 <Name>main</Name>
                 <Path>a2d__display__client_8c.html</Path>
                 <Anchor>a0ddf1224851353fc92bfbff6f499fa97</Anchor>
@@ -3729,6 +3723,16 @@
                 <Name>readAverageSensorValue</Name>
                 <Path>a2d__display__client_8c.html</Path>
                 <Anchor>a0d9c1f78de300df3a47682ad0145c74c</Anchor>
+               </Node>
+               <Node>
+                <Name>sknGetModuleBright</Name>
+                <Path>a2d__display__client_8c.html</Path>
+                <Anchor>a11856a55dede9d8199ca0ad08d10d4b5</Anchor>
+               </Node>
+               <Node>
+                <Name>sknGetModuleTemp</Name>
+                <Path>a2d__display__client_8c.html</Path>
+                <Anchor>aa3e4c4ec57381e265a116d7a874e22c6</Anchor>
                </Node>
                <Node>
                 <Name>steinhartAdcToCelsius</Name>
@@ -3783,19 +3787,19 @@
                 <Anchor>a66e27ff237580d0f8dc29f052d9b4aec</Anchor>
                </Node>
                <Node>
-                <Name>GetConstants</Name>
-                <Path>para__display__client_8c.html</Path>
-                <Anchor>a4c2fc3b5855778dda51d1e09e20f23a2</Anchor>
-               </Node>
-               <Node>
-                <Name>GetTemp</Name>
-                <Path>para__display__client_8c.html</Path>
-                <Anchor>a107d9d8f583bbd2c3a2e5a71b6643afa</Anchor>
-               </Node>
-               <Node>
                 <Name>main</Name>
                 <Path>para__display__client_8c.html</Path>
                 <Anchor>a0ddf1224851353fc92bfbff6f499fa97</Anchor>
+               </Node>
+               <Node>
+                <Name>sknGetConstants</Name>
+                <Path>para__display__client_8c.html</Path>
+                <Anchor>a0bc4e3dc79150296e599217bdc50cb2b</Anchor>
+               </Node>
+               <Node>
+                <Name>sknGetTemp</Name>
+                <Path>para__display__client_8c.html</Path>
+                <Anchor>a27a64cd3f9478cd89d55bd4174f58dc2</Anchor>
                </Node>
               </Subnodes>
              </Node>

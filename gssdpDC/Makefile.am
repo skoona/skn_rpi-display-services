@@ -10,6 +10,4 @@ gssdpDC_SOURCES = gssdpDC.c
 gssdpDC_CPPFLAGS = @GTK_CFLAGS@ @GTKDS_CFLAGS@
 gssdpDC_LDADD = @GTK_LIBS@ @GTKDS_LIBS@
 
-CLEANFILES = *~ 
-
 -include $(top_srcdir)/git.mk

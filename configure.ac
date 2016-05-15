@@ -1,6 +1,6 @@
 dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.69])
-AC_INIT([skn_rpi-locator-service], [0.6.0], [James Scott Jr. <skoona@gmail.com>], 
+AC_INIT([skn_rpi-locator-service], [0.6.1], [James Scott Jr. <skoona@gmail.com>], 
         [skn_rpi-locator-service], [https://github.com/skoona/skn_rpi-display-services])
         
 # Put autotools auxiliary files in subdirectories to reduce clutter:
@@ -18,7 +18,7 @@ AC_PROG_INSTALL
 AC_PROG_MAKE_SET
 
 # stricter options -ansi -pedantic
-CFLAGS='-Wall -Wextra -g -O0 -I/usr/include -I/usr/local/include -Winline -pipe -DPACKAGE_NAME="\"AC_PACKAGE_NAME\"" -DPACKAGE_VERSION="\"AC_PACKAGE_VERSION\""'
+CFLAGS='-g -O2 -Wall -Wextra -Wno-missing-field-initializers -Wno-unused-parameter -Winline -pipe -I/usr/include -I/usr/local/include -DPACKAGE_NAME="\"AC_PACKAGE_NAME\"" -DPACKAGE_VERSION="\"AC_PACKAGE_VERSION\""'
 AC_SUBST(CFLAGS)
 
 AC_CHECK_LIB([pthread],[pthread_create],
@@ -27,9 +27,9 @@ AC_CHECK_LIB([pthread],[pthread_create],
 )
 
 AC_CHECK_LIB([wiringPi],[wiringPiSetup],
-       AC_MSG_RESULT([Building all services and clients.])
+       AC_MSG_RESULT([Building WIRINGPI based services and clients.])
        AM_CONDITIONAL([WIRINGPI], [test "xY" = "xY"]),
-       AC_MSG_RESULT([Building basic services and clients non-wiringPi.])
+       AC_MSG_RESULT([Building NON-WIRINGPI services and clients.])
        AM_CONDITIONAL([WIRINGPI], [test "xY" = "xX"]),
       [-lwiringPiDev -lrt -lm -lpthread]
 )
@@ -42,9 +42,9 @@ PKG_CHECK_MODULES([GTKDS], [gssdp-1.0 >= 0.12],
 )
 
 PKG_CHECK_MODULES([GTK], [gtk+-3.0 >= 3.10], 
-       AC_MSG_RESULT([Building GTK+ services and clients.])
+       AC_MSG_RESULT([Building GTK+-3.0 services and clients.])
        AM_CONDITIONAL([DOGTK], [$DOGSSDP]),
-       AC_MSG_RESULT([Skipping GTK+ services and clients GTK+ not found.])
+       AC_MSG_RESULT([Skipping GTK+-3.0 services and clients GTK+ not found.])
        AM_CONDITIONAL([DOGTK], [test "xY" = "xX"])
 )
 

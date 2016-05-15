@@ -10,7 +10,7 @@
 #define kXADCPATH  "/sys/bus/iio/devices/iio:device0/"
 
 
-int GetConstants(int *nOffset, float *fScale) {
+int sknGetConstants(int *nOffset, float *fScale) {
   char  strRead[SZ_INFO_BUFF];
   FILE *sysfile;
 
@@ -36,7 +36,7 @@ int GetConstants(int *nOffset, float *fScale) {
 /**
  * Zynq chips temperature
  */
-int GetTemp(double *fTemp, double *cTemp, int nOffset, float fScale) {
+int sknGetTemp(double *fTemp, double *cTemp, int nOffset, float fScale) {
   FILE *sysfile;
   char  strRead[SZ_INFO_BUFF];
   int  nRaw;
@@ -97,7 +97,7 @@ int main(int argc, char *argv[])
 	skn_logger(SD_DEBUG, "Registry Message [%s]", registry);
 
     // get some platform constants
-    if(GetConstants(&nOffset, &fScale)) {
+    if(sknGetConstants(&nOffset, &fScale)) {
         skn_logger(SD_ERR, "GetConstants() Failed! Shutting Down!");
         exit(EXIT_FAILURE);
     }
@@ -158,8 +158,8 @@ int main(int argc, char *argv[])
             }
             sleep(gd_i_update);
 
-            GetTemp(&fTemp, &cTemp, nOffset, fScale);
-            snprintf(pnsr->request, sizeof(pnsr->request) -1,  "%.1f%cf %.1f%cc", fTemp, 223, cTemp, 223);
+            sknGetTemp(&fTemp, &cTemp, nOffset, fScale);
+            snprintf(pnsr->request, sizeof(pnsr->request) -1,  "%.1fF %.1fC", fTemp, cTemp);
 
 
         } while(gd_i_update != 0 && gi_exit_flag == SKN_RUN_MODE_RUN);

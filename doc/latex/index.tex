@@ -1,18 +1,22 @@
 \paragraph*{05/12/2016 Added Gtk+-\/3.0 and G\+Lib2.\+0 Display Services.}
 
-\paragraph*{05/12/2016 Added G\+Lib and G\+S\+S\+D\+P command line clients.}
+  
+
+\paragraph*{05/12/2016 Added G\+Lib and G\+S\+S\+DP command line clients.}
 
 
 
-Package includes two features. One designed to both locate your Pi and provide a list of known services. The other acts as a central L\+C\+D display service, allowing other network devices/nodes to send a one-\/liners to the service for display on its L\+C\+D.
+Package includes two features. One designed to both locate your Pi and provide a list of known services. The other acts as a central L\+CD display service, allowing other network devices/nodes to send a one-\/liners to the service for display on its L\+CD.
 
-Each Raspberry Pi, Mac O\+S\+X, and Linux node in your network could execute {\itshape udp\+\_\+locator\+\_\+service} (Locator\+Service) as a backgound program using System\+D, a Launch\+D P\+List, or an init script of some sort. The Locator\+Service collects the address of the machine it running on and creates a entry in its Service\+Registry; which it sends to clients that requests it.
+Each Raspberry Pi, Mac O\+SX, and Linux node in your network could execute {\itshape udp\+\_\+locator\+\_\+service} (Locator\+Service) as a backgound program using SystemD, a LaunchD P\+List, or an init script of some sort. The Locator\+Service collects the address of the machine it running on and creates a entry in its Service\+Registry; which it sends to clients that requests it.
 
 This establishes the network of locators, for which a {\itshape udp\+\_\+locator\+\_\+client} can poll at any time to find your Pi.
 
-Likewise the {\itshape lcd\+\_\+display\+\_\+service} executes on nodes that also have an L\+C\+D Display of some sort; Serial/\+U\+S\+B, M\+C\+P23008, or P\+C\+F8574 based. It is the provider of the {\itshape shared L\+C\+D Display}, and the target of the {\itshape lcd\+\_\+display\+\_\+client} (Display\+Client). Display\+Clients query all Locator\+Services for their active Service\+Registry, and pickout the default {\itshape lcd\+\_\+display\+\_\+service} entry, or via command line option $\ast$--alt-\/service-\/name=my\+\_\+service\+\_\+name$\ast$.
+Likewise the {\itshape lcd\+\_\+display\+\_\+service} executes on nodes that also have an L\+CD Display of some sort; Serial/\+U\+SB, M\+C\+P23008, or P\+C\+F8574 based. It is the provider of the {\itshape shared L\+CD Display}, and the target of the {\itshape lcd\+\_\+display\+\_\+client} (Display\+Client). Display\+Clients query all Locator\+Services for their active Service\+Registry, and pickout the default {\itshape lcd\+\_\+display\+\_\+service} entry, or via command line option $\ast$--alt-\/service-\/name=my\+\_\+service\+\_\+name$\ast$.
 
 Once a Display\+Service is located, the Display\+Client sends a message to the Display\+Service to display; from the command line $\ast$-\/m$\ast$ option. Or if the Display\+Client has been started in $\ast$--non-\/stop=60$\ast$ mode, it will send random status messages automatically to the Display\+Service; in this case every 30 seconds.
+
+{\itshape Recent additions include a G\+T\+K+3 Display Service(gtk\+D\+S), a Plain Command Line Display Service(cmd\+D\+S), a G\+L\+I\+B-\/2.\+0 based Display Client(cmd\+D\+C), and a G\+S\+S\+DP based Display Client(gssdp\+D\+C).} Note\+: gtk\+DS and cmd\+DS program include the udp\+\_\+locator\+\_\+service internally.
 
 These apps were not intended to be final form applications. Instead they are well formed starters for your own projects.
 
@@ -20,20 +24,27 @@ Enjoy!
 
 \subsection*{\#\# Executables }
 
-\begin{TabularC}{5}
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*5{|X[-1]}|}
 \hline
-\rowcolor{lightgray}{\bf Program}&{\bf Type}&{\bf Platform}&{\bf Port}&{\bf Description  }\\\cline{1-5}
-$\ast$gtk\+D\+S&Server&any&48028&Maintains a list of known network services accessible via U\+D\+P socket, and offers the G\+T\+K display service. \\\cline{1-5}
-$\ast$cmd\+D\+S&Server&any&48028&Maintains a list of known network services accessible via U\+D\+P socket, and offers the Cmd\+Line display service. \\\cline{1-5}
-udp\+\_\+locator\+\_\+service&Server&any&48028&Maintains a list of known network services accessible via U\+D\+P socket. \\\cline{1-5}
+\rowcolor{\tableheadbgcolor}{\bf Program}&{\bf Type}&{\bf Platform}&{\bf Port}&{\bf Description  }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}{\bf Program}&{\bf Type}&{\bf Platform}&{\bf Port}&{\bf Description  }\\\cline{1-5}
+\endhead
+$\ast$gtk\+DS&Server&any&48028&Maintains a list of known network services accessible via U\+DP socket, and offers the G\+TK display service. \\\cline{1-5}
+$\ast$cmd\+DS&Server&any&48028&Maintains a list of known network services accessible via U\+DP socket, and offers the Cmd\+Line display service. \\\cline{1-5}
+udp\+\_\+locator\+\_\+service&Server&any&48028&Maintains a list of known network services accessible via U\+DP socket. \\\cline{1-5}
 udp\+\_\+locator\+\_\+client&Client&any&n/a&Collect services info from Service, which includes that service\textquotesingle{}s ip address. \\\cline{1-5}
-$\ast$cmd\+D\+C&Client&any&n/a&Sends text one-\/liner to any display service. \\\cline{1-5}
-lcd\+\_\+display\+\_\+service&Server&R\+Pi&48029&Accepts one-\/line messages over udp and display them on a L\+C\+D panel. \\\cline{1-5}
+$\ast$cmd\+DC&Client&any&n/a&Sends text one-\/liner to any display service. \\\cline{1-5}
+lcd\+\_\+display\+\_\+service&Server&R\+Pi&48029&Accepts one-\/line messages over udp and display them on a L\+CD panel. \\\cline{1-5}
 lcd\+\_\+display\+\_\+client&Client&any&n/a&Sends one-\/liner composed of various Pi metrics; like cpus, temps, etc. \\\cline{1-5}
 para\+\_\+display\+\_\+client&Client&Parallella&n/a&Sends one-\/liner with Zynq chip\textquotesingle{}s temperature. \\\cline{1-5}
-a2d\+\_\+display\+\_\+client&Client&Rpi&n/a&Sends one-\/liner with measured temp and light sensor values from $\ast$\+A\+D/\+D\+A Shield Module For Raspberry Pi $\ast$ \\\cline{1-5}
-$\ast$gssdp\+D\+C&Client&any&n/a&Sends text one-\/liner to any display service, after locating it using G\+S\+S\+D\+P/\+G\+U\+P\+N\+P. \\\cline{1-5}
-\end{TabularC}
+a2d\+\_\+display\+\_\+client&Client&Rpi&n/a&Sends one-\/liner with measured temp and light sensor values from $\ast$\+A\+D/\+DA Shield Module For Raspberry Pi $\ast$ \\\cline{1-5}
+$\ast$gssdp\+DC&Client&any&n/a&Sends text one-\/liner to any display service, after locating it using G\+S\+S\+D\+P/\+G\+U\+P\+NP. \\\cline{1-5}
+\end{longtabu}
 
 
 \subsection*{\#\#\# Configuration Options }
@@ -78,40 +89,40 @@ Options:
 
 udp\+\_\+locator\+\_\+client -- Collect I\+Pv4 Address/\+Port Service info from all providers. Skoona Development \href{mailto:skoona@gmail.com}{\tt skoona@gmail.\+com} Usage\+: udp\+\_\+locator\+\_\+client \mbox{[}-\/v\mbox{]} \mbox{[}-\/m \textquotesingle{}any text msg\textquotesingle{}\mbox{]} \mbox{[}-\/u\mbox{]} \mbox{[}-\/a \textquotesingle{}my\+\_\+service\+\_\+name\textquotesingle{}\mbox{]} \mbox{[}-\/h$\vert$--help\mbox{]} udp\+\_\+locator\+\_\+client udp\+\_\+locator\+\_\+client -\/u -\/a \textquotesingle{}my\+\_\+service\+\_\+name\textquotesingle{}
 
-Options\+: -\/a, --alt-\/service-\/name=my\+\_\+service\+\_\+name {\itshape lcd\+\_\+display\+\_\+service} is default, use this to change name. -\/u, --unique-\/registry List {\itshape unique} entries from all responses. -\/m, --message Any text to send; \+\_\+\textquotesingle{}{\bfseries Q\+U\+I\+T!}\textquotesingle{} causes service to terminate.\+\_\+ \+\_\+\textquotesingle{}$\ast$$\ast$\+A\+D\+D $\ast$$\ast$$<$delimited-\/response-\/message-\/string$>$\textquotesingle{} -- add new registry entry into Service\+\_\+ -\/v, --version Version printout. -\/h, --help Show this help screen.
+Options\+: -\/a, --alt-\/service-\/name=my\+\_\+service\+\_\+name {\itshape lcd\+\_\+display\+\_\+service} is default, use this to change name. -\/u, --unique-\/registry List {\itshape unique} entries from all responses. -\/m, --message Any text to send; \+\_\+\textquotesingle{}{\bfseries Q\+U\+I\+T!}\textquotesingle{} causes service to terminate.\+\_\+ \+\_\+\textquotesingle{}$\ast$$\ast$\+A\+DD $\ast$$\ast$$<$delimited-\/response-\/message-\/string$>$\textquotesingle{} -- add new registry entry into Service\+\_\+ -\/v, --version Version printout. -\/h, --help Show this help screen.
 
 \paragraph*{Display Service.}
 
 
 
 \begin{quote}
-{\bfseries Supports} on the \href{http://arduino-info.wikispaces.com/LCD-Blue-I2C}{\tt \textquotesingle{}Yw\+Robot Arduino $\ast$$\ast$\+L\+C\+M1602$\ast$$\ast$ I\+I\+C V1 L\+C\+D Backpack\textquotesingle{}}
+{\bfseries Supports} on the \href{http://arduino-info.wikispaces.com/LCD-Blue-I2C}{\tt \textquotesingle{}Yw\+Robot Arduino {\bfseries L\+C\+M1602} I\+IC V1 L\+CD Backpack\textquotesingle{}}
 \begin{DoxyItemize}
-\item which uses the I2\+C controller {\itshape P\+C\+F8574}
+\item which uses the I2C controller {\itshape P\+C\+F8574}
 \item example\+: $\ast$$\ast$\+\_\+lcd\+\_\+display\+\_\+service -\/r4 -\/c20 -\/t pcf\+\_\+$\ast$$\ast$
 \item {\bfseries This is the default.} example\+: $\ast$$\ast$\+\_\+lcd\+\_\+display\+\_\+service\+\_\+$\ast$$\ast$ 
 \end{DoxyItemize}\end{quote}
 
 
 \begin{quote}
-{\bfseries Supports} \href{https://www.adafruit.com/products/292}{\tt \textquotesingle{}Adafruit $\ast$$\ast$\+I\+C2/\+S\+P\+I$\ast$$\ast$ L\+C\+D Backpack\textquotesingle{}}
+{\bfseries Supports} \href{https://www.adafruit.com/products/292}{\tt \textquotesingle{}Adafruit {\bfseries I\+C2/\+S\+PI} L\+CD Backpack\textquotesingle{}}
 \begin{DoxyItemize}
-\item which is based on the I2\+C controller {\itshape M\+C\+P23008}
+\item which is based on the I2C controller {\itshape M\+C\+P23008}
 \item example\+: $\ast$$\ast$\+\_\+lcd\+\_\+display\+\_\+service -\/r4 -\/c20 -\/t mcp\+\_\+$\ast$$\ast$ 
 \end{DoxyItemize}\end{quote}
 
 
 \begin{quote}
-{\bfseries Supports} \href{https://www.adafruit.com/products/1110}{\tt \textquotesingle{}Adafruit R\+G\+B Negative 16x2 L\+C\+D+\+Keypad Kit\textquotesingle{}}
+{\bfseries Supports} \href{https://www.adafruit.com/products/1110}{\tt \textquotesingle{}Adafruit R\+GB Negative 16x2 L\+C\+D+\+Keypad Kit\textquotesingle{}}
 \begin{DoxyItemize}
-\item which is based on the I2\+C controller $\ast$ M\+C\+P23017$\ast$
+\item which is based on the I2C controller $\ast$ M\+C\+P23017$\ast$
 \item example\+: $\ast$$\ast$\+\_\+lcd\+\_\+display\+\_\+service -\/r2 -\/c16 -\/t mc7\+\_\+$\ast$$\ast$
 \item Untested\+: I don\textquotesingle{}t have one to test 
 \end{DoxyItemize}\end{quote}
 
 
 \begin{quote}
-{\bfseries Supports} for \href{https://www.adafruit.com/products/782}{\tt \textquotesingle{}Adafruit $\ast$$\ast$\+U\+S\+B/\+Serial$\ast$$\ast$ L\+C\+D Backpack\textquotesingle{}}
+{\bfseries Supports} for \href{https://www.adafruit.com/products/782}{\tt \textquotesingle{}Adafruit {\bfseries U\+S\+B/\+Serial} L\+CD Backpack\textquotesingle{}}
 \begin{DoxyItemize}
 \item which uses $\ast$/dev/tty\+A\+C\+M0$\ast$
 \item example\+: $\ast$$\ast$\+\_\+lcd\+\_\+display\+\_\+service -\/r2 -\/c16 -\/p /dev/tty\+A\+C\+M0 -\/t ser\+\_\+$\ast$$\ast$ 
@@ -119,11 +130,11 @@ Options\+: -\/a, --alt-\/service-\/name=my\+\_\+service\+\_\+name {\itshape lcd\
 
 
 \begin{quote}
-{\bfseries Supports} for \href{http://www.amazon.com/Shield-Module-For-Raspberry-Arduino/dp/B00WGW48A8}{\tt \textquotesingle{}A\+D / D\+A Shield Module For Raspberry Pi\textquotesingle{}}
+{\bfseries Supports} for \href{http://www.amazon.com/Shield-Module-For-Raspberry-Arduino/dp/B00WGW48A8}{\tt \textquotesingle{}AD / DA Shield Module For Raspberry Pi\textquotesingle{}}
 \begin{DoxyItemize}
-\item which is based on the I2\+C controller {\itshape P\+C\+F8591\+T} to access\+:
-\item -\/ on-\/board temperature sensor; {\itshape N\+T\+C, M\+F58103\+J3950, B value 3950\+K, 1 K ohm 5\% Cantherm}
-\item -\/ on-\/board light sensors; {\itshape G\+L5537-\/1 Cd\+S Photoresistor}
+\item which is based on the I2C controller {\itshape P\+C\+F8591T} to access\+:
+\item -\/ on-\/board temperature sensor; {\itshape N\+TC, M\+F58103\+J3950, B value 3950K, 1 K ohm 5\% Cantherm}
+\item -\/ on-\/board light sensors; {\itshape G\+L5537-\/1 CdS Photoresistor}
 \item example\+: $\ast$$\ast$\+\_\+a2d\+\_\+display\+\_\+client -\/i 73\+\_\+$\ast$$\ast$ 
 \end{DoxyItemize}\end{quote}
 
@@ -188,15 +199,15 @@ $ sudo make install
 
 
 \begin{DoxyItemize}
-\item Wiring\+Pi is a required library for display\+\_\+service and some of the disply clients. If Wiring\+P\+I is not present, which is the case with O\+S\+X and most Linuxs, then the autoconf will build the udp\+\_\+locator\+\_\+service and a limited set of clients. When Wiring\+Pi is available all services and clients are built.
+\item Wiring\+Pi is a required library for display\+\_\+service and some of the disply clients. If Wiring\+PI is not present, which is the case with O\+SX and most Linuxs, then the autoconf will build the udp\+\_\+locator\+\_\+service and a limited set of clients. When Wiring\+Pi is available all services and clients are built.
 \item Planning to write {\itshape systemd} unit scripts as part of package, add the following to rc.\+local for now.
 \begin{DoxyItemize}
 \item \textquotesingle{}/$<$path$>$/udp\+\_\+locator\+\_\+service $>$$>$ /tmp/udp\+\_\+locator\+\_\+service.log 2$>$\&1 \&\textquotesingle{}
 \end{DoxyItemize}
-\item S\+I\+N\+G\+L\+E Q\+U\+O\+T\+E\+S vs double quotes work a lot better for command line options.
+\item S\+I\+N\+G\+LE Q\+U\+O\+T\+ES vs double quotes work a lot better for command line options.
 \end{DoxyItemize}
 
 \subsection*{\#\# Known Issues\+: }
 
 \begin{quote}
-08/08/2015 Found that concurrent I2\+C operations for L\+C\+D updates and reads from $\ast$/sys/class/thermal/thermal\+\_\+zone0/temp$\ast$ cause the {\itshape lcd\+\_\+display\+\_\+service} to lockup with a process state of {\itshape uninterruptible sleep}. This is caused by the R\+Pi\textquotesingle{}s internal firmware, with no immediate resolution. To work around this issue, I have removed calls to get\+Cpu\+Temp() from the lcd\+\_\+display\+\_\+service program.\end{quote}
+08/08/2015 Found that concurrent I2C operations for L\+CD updates and reads from $\ast$/sys/class/thermal/thermal\+\_\+zone0/temp$\ast$ cause the {\itshape lcd\+\_\+display\+\_\+service} to lockup with a process state of {\itshape uninterruptible sleep}. This is caused by the R\+Pi\textquotesingle{}s internal firmware, with no immediate resolution. To work around this issue, I have removed calls to get\+Cpu\+Temp() from the lcd\+\_\+display\+\_\+service program.\end{quote}

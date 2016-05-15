@@ -1,8 +1,7 @@
 \hypertarget{lcd__display__client_8c}{}\section{src/lcd\+\_\+display\+\_\+client.c File Reference}
 \label{lcd__display__client_8c}\index{src/lcd\+\_\+display\+\_\+client.\+c@{src/lcd\+\_\+display\+\_\+client.\+c}}
 {\ttfamily \#include \char`\"{}skn\+\_\+network\+\_\+helpers.\+h\char`\"{}}\\*
-Include dependency graph for lcd\+\_\+display\+\_\+client.\+c\+:
-\nopagebreak
+Include dependency graph for lcd\+\_\+display\+\_\+client.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,14 +20,14 @@ int \hyperlink{lcd__display__client_8c_a0ddf1224851353fc92bfbff6f499fa97}{main} 
 
 
 \subsection{Function Documentation}
-\hypertarget{lcd__display__client_8c_aec6fcc1d0ae2035966ea7b3f624050cd}{}\index{lcd\+\_\+display\+\_\+client.\+c@{lcd\+\_\+display\+\_\+client.\+c}!generate\+\_\+cpu\+\_\+temps\+\_\+info@{generate\+\_\+cpu\+\_\+temps\+\_\+info}}
+\index{lcd\+\_\+display\+\_\+client.\+c@{lcd\+\_\+display\+\_\+client.\+c}!generate\+\_\+cpu\+\_\+temps\+\_\+info@{generate\+\_\+cpu\+\_\+temps\+\_\+info}}
 \index{generate\+\_\+cpu\+\_\+temps\+\_\+info@{generate\+\_\+cpu\+\_\+temps\+\_\+info}!lcd\+\_\+display\+\_\+client.\+c@{lcd\+\_\+display\+\_\+client.\+c}}
-\subsubsection[{generate\+\_\+cpu\+\_\+temps\+\_\+info(char $\ast$msg)}]{\setlength{\rightskip}{0pt plus 5cm}int generate\+\_\+cpu\+\_\+temps\+\_\+info (
+\subsubsection[{\texorpdfstring{generate\+\_\+cpu\+\_\+temps\+\_\+info(char $\ast$msg)}{generate_cpu_temps_info(char *msg)}}]{\setlength{\rightskip}{0pt plus 5cm}int generate\+\_\+cpu\+\_\+temps\+\_\+info (
 \begin{DoxyParamCaption}
 \item[{char $\ast$}]{msg}
 \end{DoxyParamCaption}
-)}\label{lcd__display__client_8c_aec6fcc1d0ae2035966ea7b3f624050cd}
-D\+O N\+O\+T U\+S\+E T\+H\+I\+S I\+N M\+O\+D\+U\+L\+E\+S T\+H\+A\+T H\+A\+N\+D\+L\+E A I2\+C Based L\+C\+D R\+Pi cannot handle I2\+C and Get\+Cpu\+Temp() without locking the process in an uniterrupted sleep; forcing a power cycle. 
+)}\hypertarget{lcd__display__client_8c_aec6fcc1d0ae2035966ea7b3f624050cd}{}\label{lcd__display__client_8c_aec6fcc1d0ae2035966ea7b3f624050cd}
+DO N\+OT U\+SE T\+H\+IS IN M\+O\+D\+U\+L\+ES T\+H\+AT H\+A\+N\+D\+LE A I2C Based L\+CD R\+Pi cannot handle I2C and Get\+Cpu\+Temp() without locking the process in an uniterrupted sleep; forcing a power cycle. 
 
 Definition at line 49 of file lcd\+\_\+display\+\_\+client.\+c.
 
@@ -55,8 +54,7 @@ Referenced by main().
 \end{DoxyCode}
 
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -65,25 +63,25 @@ Here is the caller graph for this function\+:
 \end{figure}
 
 
-\hypertarget{lcd__display__client_8c_aac32062aeca841944e9d1016c8db5e6a}{}\index{lcd\+\_\+display\+\_\+client.\+c@{lcd\+\_\+display\+\_\+client.\+c}!get\+Cpu\+Temps@{get\+Cpu\+Temps}}
+\index{lcd\+\_\+display\+\_\+client.\+c@{lcd\+\_\+display\+\_\+client.\+c}!get\+Cpu\+Temps@{get\+Cpu\+Temps}}
 \index{get\+Cpu\+Temps@{get\+Cpu\+Temps}!lcd\+\_\+display\+\_\+client.\+c@{lcd\+\_\+display\+\_\+client.\+c}}
-\subsubsection[{get\+Cpu\+Temps(\+P\+Cpu\+Temps temps)}]{\setlength{\rightskip}{0pt plus 5cm}long get\+Cpu\+Temps (
+\subsubsection[{\texorpdfstring{get\+Cpu\+Temps(\+P\+Cpu\+Temps temps)}{getCpuTemps(PCpuTemps temps)}}]{\setlength{\rightskip}{0pt plus 5cm}long get\+Cpu\+Temps (
 \begin{DoxyParamCaption}
 \item[{{\bf P\+Cpu\+Temps}}]{temps}
 \end{DoxyParamCaption}
-)}\label{lcd__display__client_8c_aac32062aeca841944e9d1016c8db5e6a}
+)}\hypertarget{lcd__display__client_8c_aac32062aeca841944e9d1016c8db5e6a}{}\label{lcd__display__client_8c_aac32062aeca841944e9d1016c8db5e6a}
 \hyperlink{udp__locator__client_8c}{udp\+\_\+locator\+\_\+client.\+c}
 \begin{DoxyItemize}
 \item Client
 \end{DoxyItemize}
 
-cmdline\+: ./udp\+\_\+locator\+\_\+client -\/m \char`\"{}$<$request-\/message-\/string$>$\char`\"{} D\+O N\+O\+T U\+S\+E T\+H\+I\+S I\+N M\+O\+D\+U\+L\+E\+S T\+H\+A\+T H\+A\+N\+D\+L\+E A I2\+C Based L\+C\+D R\+Pi cannot handle I2\+C and Get\+Cpu\+Temp() without locking the process in an uniterrupted sleep; forcing a power cycle. 
+cmdline\+: ./udp\+\_\+locator\+\_\+client -\/m \char`\"{}$<$request-\/message-\/string$>$\char`\"{} DO N\+OT U\+SE T\+H\+IS IN M\+O\+D\+U\+L\+ES T\+H\+AT H\+A\+N\+D\+LE A I2C Based L\+CD R\+Pi cannot handle I2C and Get\+Cpu\+Temp() without locking the process in an uniterrupted sleep; forcing a power cycle. 
 
 Definition at line 16 of file lcd\+\_\+display\+\_\+client.\+c.
 
 
 
-References \+\_\+temps\+::c, \+\_\+temps\+::cb\+Name, \+\_\+temps\+::f, \+\_\+temps\+::raw, and S\+D\+\_\+\+W\+A\+R\+N\+I\+N\+G.
+References \+\_\+temps\+::c, \+\_\+temps\+::cb\+Name, \+\_\+temps\+::f, \+\_\+temps\+::raw, and S\+D\+\_\+\+W\+A\+R\+N\+I\+NG.
 
 
 
@@ -123,8 +121,7 @@ Referenced by generate\+\_\+cpu\+\_\+temps\+\_\+info().
 \end{DoxyCode}
 
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -133,21 +130,21 @@ Here is the caller graph for this function\+:
 \end{figure}
 
 
-\hypertarget{lcd__display__client_8c_a0ddf1224851353fc92bfbff6f499fa97}{}\index{lcd\+\_\+display\+\_\+client.\+c@{lcd\+\_\+display\+\_\+client.\+c}!main@{main}}
+\index{lcd\+\_\+display\+\_\+client.\+c@{lcd\+\_\+display\+\_\+client.\+c}!main@{main}}
 \index{main@{main}!lcd\+\_\+display\+\_\+client.\+c@{lcd\+\_\+display\+\_\+client.\+c}}
-\subsubsection[{main(int argc, char $\ast$argv[])}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\subsubsection[{\texorpdfstring{main(int argc, char $\ast$argv[])}{main(int argc, char *argv[])}}]{\setlength{\rightskip}{0pt plus 5cm}int main (
 \begin{DoxyParamCaption}
 \item[{int}]{argc, }
 \item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
 \end{DoxyParamCaption}
-)}\label{lcd__display__client_8c_a0ddf1224851353fc92bfbff6f499fa97}
+)}\hypertarget{lcd__display__client_8c_a0ddf1224851353fc92bfbff6f499fa97}{}\label{lcd__display__client_8c_a0ddf1224851353fc92bfbff6f499fa97}
 
 
 Definition at line 64 of file lcd\+\_\+display\+\_\+client.\+c.
 
 
 
-References gd\+\_\+i\+\_\+socket, gd\+\_\+i\+\_\+update, gd\+\_\+pch\+\_\+message, gd\+\_\+pch\+\_\+service\+\_\+name, generate\+\_\+cpu\+\_\+temps\+\_\+info(), generate\+\_\+datetime\+\_\+info(), generate\+\_\+loadavg\+\_\+info(), generate\+\_\+uname\+\_\+info(), gi\+\_\+exit\+\_\+flag, \+\_\+service\+Entry\+::ip, \+\_\+service\+Entry\+::name, \+\_\+service\+Entry\+::port, \+\_\+service\+Request\+::request, S\+D\+\_\+\+D\+E\+B\+U\+G, S\+D\+\_\+\+N\+O\+T\+I\+C\+E, S\+D\+\_\+\+W\+A\+R\+N\+I\+N\+G, service\+\_\+registry\+\_\+destroy(), service\+\_\+registry\+\_\+entry\+\_\+count(), service\+\_\+registry\+\_\+find\+\_\+entry(), service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast(), signals\+\_\+cleanup(), signals\+\_\+init(), skn\+\_\+get\+\_\+number\+\_\+of\+\_\+cpu\+\_\+cores(), skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line(), skn\+\_\+program\+\_\+name\+\_\+and\+\_\+description\+\_\+set(), S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+R\+U\+N, skn\+\_\+service\+\_\+request\+\_\+create(), skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+broadcast\+\_\+socket(), skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+regular\+\_\+socket(), skn\+\_\+udp\+\_\+service\+\_\+request(), S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F, and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F.
+References gd\+\_\+i\+\_\+socket, gd\+\_\+i\+\_\+update, gd\+\_\+pch\+\_\+message, gd\+\_\+pch\+\_\+service\+\_\+name, generate\+\_\+cpu\+\_\+temps\+\_\+info(), generate\+\_\+datetime\+\_\+info(), generate\+\_\+loadavg\+\_\+info(), generate\+\_\+uname\+\_\+info(), gi\+\_\+exit\+\_\+flag, \+\_\+service\+Entry\+::ip, \+\_\+service\+Entry\+::name, \+\_\+service\+Entry\+::port, \+\_\+service\+Request\+::request, S\+D\+\_\+\+D\+E\+B\+UG, S\+D\+\_\+\+N\+O\+T\+I\+CE, S\+D\+\_\+\+W\+A\+R\+N\+I\+NG, service\+\_\+registry\+\_\+destroy(), service\+\_\+registry\+\_\+entry\+\_\+count(), service\+\_\+registry\+\_\+find\+\_\+entry(), service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast(), signals\+\_\+cleanup(), signals\+\_\+init(), skn\+\_\+get\+\_\+number\+\_\+of\+\_\+cpu\+\_\+cores(), skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line(), skn\+\_\+program\+\_\+name\+\_\+and\+\_\+description\+\_\+set(), S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+R\+UN, skn\+\_\+service\+\_\+request\+\_\+create(), skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+broadcast\+\_\+socket(), skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+regular\+\_\+socket(), skn\+\_\+udp\+\_\+service\+\_\+request(), S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+FF, and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+FF.
 
 
 \begin{DoxyCode}
@@ -284,8 +281,7 @@ References gd\+\_\+i\+\_\+socket, gd\+\_\+i\+\_\+update, gd\+\_\+pch\+\_\+messag
 \end{DoxyCode}
 
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

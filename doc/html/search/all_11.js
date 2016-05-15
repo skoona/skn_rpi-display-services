@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['raspberry_20pi_20display_2flocator_20service',['Raspberry Pi Display/Locator Service',['../index.html',1,'']]],
   ['raw',['raw',['../struct__temps.html#a62d3522782b91f7fbb444bceb91c1876',1,'_temps']]],
   ['readaveragesensorvalue',['readAverageSensorValue',['../a2d__display__client_8c.html#a0d9c1f78de300df3a47682ad0145c74c',1,'a2d_display_client.c']]],
   ['readme_2emd',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]],

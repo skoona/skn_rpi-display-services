@@ -1,6 +1,7 @@
 var NAVTREE =
 [
   [ "RPi Locator and Display Services", "index.html", [
+    [ "Raspberry Pi Display/Locator Service", "index.html", null ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],
@@ -28,7 +29,7 @@ var NAVTREEINDEX =
 [
 "_makefile_8am.html",
 "gssdp_d_c_8c.html#adf765361163d05006ff697149bbaf2ee",
-"skn__network__helpers_8h.html#a923b2adbdc0dac852905dc95eaa73a37"
+"skn__network__helpers_8h.html#a922ccd04b4dc28211ff08c4c62462544"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

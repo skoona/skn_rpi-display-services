@@ -1,8 +1,7 @@
 \hypertarget{udp__locator__service_8c}{}\section{src/udp\+\_\+locator\+\_\+service.c File Reference}
 \label{udp__locator__service_8c}\index{src/udp\+\_\+locator\+\_\+service.\+c@{src/udp\+\_\+locator\+\_\+service.\+c}}
 {\ttfamily \#include \char`\"{}skn\+\_\+network\+\_\+helpers.\+h\char`\"{}}\\*
-Include dependency graph for udp\+\_\+locator\+\_\+service.\+c\+:
-\nopagebreak
+Include dependency graph for udp\+\_\+locator\+\_\+service.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -17,14 +16,14 @@ int \hyperlink{udp__locator__service_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}
 
 
 \subsection{Function Documentation}
-\hypertarget{udp__locator__service_8c_a0ddf1224851353fc92bfbff6f499fa97}{}\index{udp\+\_\+locator\+\_\+service.\+c@{udp\+\_\+locator\+\_\+service.\+c}!main@{main}}
+\index{udp\+\_\+locator\+\_\+service.\+c@{udp\+\_\+locator\+\_\+service.\+c}!main@{main}}
 \index{main@{main}!udp\+\_\+locator\+\_\+service.\+c@{udp\+\_\+locator\+\_\+service.\+c}}
-\subsubsection[{main(int argc, char $\ast$argv[])}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\subsubsection[{\texorpdfstring{main(int argc, char $\ast$argv[])}{main(int argc, char *argv[])}}]{\setlength{\rightskip}{0pt plus 5cm}int main (
 \begin{DoxyParamCaption}
 \item[{int}]{argc, }
 \item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
 \end{DoxyParamCaption}
-)}\label{udp__locator__service_8c_a0ddf1224851353fc92bfbff6f499fa97}
+)}\hypertarget{udp__locator__service_8c_a0ddf1224851353fc92bfbff6f499fa97}{}\label{udp__locator__service_8c_a0ddf1224851353fc92bfbff6f499fa97}
 \hyperlink{udp__locator__service_8c}{udp\+\_\+locator\+\_\+service.\+c}
 \begin{DoxyItemize}
 \item Server
@@ -32,7 +31,7 @@ int \hyperlink{udp__locator__service_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}
 
 cmdline\+: ./udp\+\_\+locator\+\_\+service -\/m \char`\"{}$<$delimited-\/response-\/message-\/string$>$\char`\"{}
 
-delimited-\/response-\/message-\/string \+: required order -\/$>$ name,ip,port,line-\/delimiter... format\+: \char`\"{}name=$<$service-\/name$>$,ip=$<$service-\/ipaddress$>$ddd.\+ddd.\+ddd.\+ddd,port=$<$service-\/portnumber$>$ddddd $<$line-\/delimiter$>$\char`\"{} name=$<$service-\/name$>$ text\+\_\+string\+\_\+with\+\_\+no\+\_\+spaces ip=$<$service-\/ipaddress$>$ ddd.\+ddd.\+ddd.\+ddd port=$<$service-\/portnumber$>$ ddddd R\+E\+Q\+U\+I\+R\+E\+D $<$line-\/delimiter$>$ is one of these \textquotesingle{}$\vert$\textquotesingle{}, \textquotesingle{}\textquotesingle{}, \textquotesingle{};\textquotesingle{}
+delimited-\/response-\/message-\/string \+: required order -\/$>$ name,ip,port,line-\/delimiter... format\+: \char`\"{}name=$<$service-\/name$>$,ip=$<$service-\/ipaddress$>$ddd.\+ddd.\+ddd.\+ddd,port=$<$service-\/portnumber$>$ddddd $<$line-\/delimiter$>$\char`\"{} name=$<$service-\/name$>$ text\+\_\+string\+\_\+with\+\_\+no\+\_\+spaces ip=$<$service-\/ipaddress$>$ ddd.\+ddd.\+ddd.\+ddd port=$<$service-\/portnumber$>$ ddddd R\+E\+Q\+U\+I\+R\+ED $<$line-\/delimiter$>$ is one of these \textquotesingle{}$\vert$\textquotesingle{}, \textquotesingle{}\textquotesingle{}, \textquotesingle{};\textquotesingle{}
 
 example\+: -\/m \char`\"{}name=lcd\+\_\+display\+\_\+service,ip=192.\+168.\+1.\+15,port=48028$\vert$\char`\"{} udp\+\_\+locator\+\_\+service -\/m \char`\"{}mame=rpi\+\_\+locator\+\_\+service, ip=10.\+100.\+1.\+19, port=48028$\vert$name=lcd\+\_\+display\+\_\+service, pip=10.\+100.\+1.\+19, port=48029$\vert$name=rpi\+\_\+locator\+\_\+service, ip=10.\+100.\+1.\+19, port=48028$\vert$name=lcd\+\_\+display\+\_\+service, port=48029$\vert$\char`\"{} 
 
@@ -40,7 +39,7 @@ Definition at line 20 of file udp\+\_\+locator\+\_\+service.\+c.
 
 
 
-References gd\+\_\+ch\+\_\+program\+\_\+name, gd\+\_\+i\+\_\+socket, gd\+\_\+pch\+\_\+effective\+\_\+userid, gd\+\_\+pch\+\_\+message, gi\+\_\+exit\+\_\+flag, P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N, S\+D\+\_\+\+E\+M\+E\+R\+G, S\+D\+\_\+\+N\+O\+T\+I\+C\+E, service\+\_\+registry\+\_\+entry\+\_\+response\+\_\+message\+\_\+log(), service\+\_\+registry\+\_\+provider(), service\+\_\+registry\+\_\+valiadate\+\_\+response\+\_\+format(), signals\+\_\+cleanup(), signals\+\_\+init(), S\+K\+N\+\_\+\+F\+I\+N\+D\+\_\+\+R\+P\+I\+\_\+\+P\+O\+R\+T, skn\+\_\+get\+\_\+userids(), skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line(), skn\+\_\+program\+\_\+name\+\_\+and\+\_\+description\+\_\+set(), skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+broadcast\+\_\+socket(), and S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+F\+F.
+References gd\+\_\+ch\+\_\+program\+\_\+name, gd\+\_\+i\+\_\+socket, gd\+\_\+pch\+\_\+effective\+\_\+userid, gd\+\_\+pch\+\_\+message, gi\+\_\+exit\+\_\+flag, P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+ON, S\+D\+\_\+\+E\+M\+E\+RG, S\+D\+\_\+\+N\+O\+T\+I\+CE, service\+\_\+registry\+\_\+entry\+\_\+response\+\_\+message\+\_\+log(), service\+\_\+registry\+\_\+provider(), service\+\_\+registry\+\_\+valiadate\+\_\+response\+\_\+format(), signals\+\_\+cleanup(), signals\+\_\+init(), S\+K\+N\+\_\+\+F\+I\+N\+D\+\_\+\+R\+P\+I\+\_\+\+P\+O\+RT, skn\+\_\+get\+\_\+userids(), skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line(), skn\+\_\+program\+\_\+name\+\_\+and\+\_\+description\+\_\+set(), skn\+\_\+udp\+\_\+host\+\_\+create\+\_\+broadcast\+\_\+socket(), and S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+FF.
 
 
 \begin{DoxyCode}
@@ -100,8 +99,7 @@ References gd\+\_\+ch\+\_\+program\+\_\+name, gd\+\_\+i\+\_\+socket, gd\+\_\+pch
 \end{DoxyCode}
 
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

@@ -1,6 +1,10 @@
 # Raspberry Pi Display/Locator Service
 
-#### 05/12/2016 Added Gtk+-3.0 and GLib2.0 Display Services. 
+#### 05/12/2016 Added Gtk+-3.0 and GLib2.0 Display Services.
+![gtkDS Messages Tab](https://github.com/skoona/skn_rpi-display-services/raw/master/images/skn-gtkds-messages.png) 
+![gtkDS Registry Tab](https://github.com/skoona/skn_rpi-display-services/raw/master/images/skn-gtkds-registry.png) 
+![gtkDS GSSDP Tab](https://github.com/skoona/skn_rpi-display-services/raw/master/images/skn-gtkds-gssdp.png) 
+ 
 #### 05/12/2016 Added GLib and GSSDP command line clients. 
 
 ![Raspberry Pi Display/Locator Service](https://github.com/skoona/skn_rpi-display-services/raw/master/images/rpi_display.png) 
@@ -21,6 +25,8 @@ for their active ServiceRegistry, and pickout the default *lcd_display_service* 
 
 Once a DisplayService is located, the DisplayClient sends a message to the DisplayService to display; from the command line *-m* option.  Or if the
 DisplayClient has been started in *--non-stop=60* mode, it will send random status messages automatically to the DisplayService; in this case every 30 seconds.
+
+*Recent additions include a GTK+3 Display Service(gtkDS), a Plain Command Line Display Service(cmdDS), a GLIB-2.0 based Display Client(cmdDC), and a GSSDP based Display Client(gssdpDC).*  Note: gtkDS and cmdDS program include the udp_locator_service internally. 
 
 These apps were not intended to be final form applications.  Instead they are well formed starters for your own projects.
 

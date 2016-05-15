@@ -16,9 +16,9 @@ var a2d__display__client_8c =
     [ "THERMISTORNOMINAL", "a2d__display__client_8c.html#a38f2d877dee7ea0fbb35efd14ee2ca42", null ],
     [ "adcToOhms", "a2d__display__client_8c.html#a935f6a4b5fc20d0727532f09a2ab7ed7", null ],
     [ "betaAdcToCelsius", "a2d__display__client_8c.html#a14b82aad0ea6a4e3999d5e91f76d409d", null ],
-    [ "GetModuleBright", "a2d__display__client_8c.html#a4502f91e3eae5d2711786c6be8b0f76c", null ],
-    [ "GetModuleTemp", "a2d__display__client_8c.html#ad6bd912a7b382b644bea384e1db1a47b", null ],
     [ "main", "a2d__display__client_8c.html#a0ddf1224851353fc92bfbff6f499fa97", null ],
     [ "readAverageSensorValue", "a2d__display__client_8c.html#a0d9c1f78de300df3a47682ad0145c74c", null ],
+    [ "sknGetModuleBright", "a2d__display__client_8c.html#a11856a55dede9d8199ca0ad08d10d4b5", null ],
+    [ "sknGetModuleTemp", "a2d__display__client_8c.html#aa3e4c4ec57381e265a116d7a874e22c6", null ],
     [ "steinhartAdcToCelsius", "a2d__display__client_8c.html#a7103c23f637c6c8710a0766e61a8e436", null ]
 ];

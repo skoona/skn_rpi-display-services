@@ -2752,22 +2752,22 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>GetModuleTemp</Name>
+      <Name>sknGetModuleTemp</Name>
       <APILanguage>c</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>a2d__display__client_8c.html</Path>
-    <Anchor>ad6bd912a7b382b644bea384e1db1a47b</Anchor>
+    <Anchor>aa3e4c4ec57381e265a116d7a874e22c6</Anchor>
     <DeclaredIn>a2d_display_client.c</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>GetModuleBright</Name>
+      <Name>sknGetModuleBright</Name>
       <APILanguage>c</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>a2d__display__client_8c.html</Path>
-    <Anchor>a4502f91e3eae5d2711786c6be8b0f76c</Anchor>
+    <Anchor>a11856a55dede9d8199ca0ad08d10d4b5</Anchor>
     <DeclaredIn>a2d_display_client.c</DeclaredIn>
   </Token>
   <Token>
@@ -2832,22 +2832,22 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>GetConstants</Name>
+      <Name>sknGetConstants</Name>
       <APILanguage>c</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>para__display__client_8c.html</Path>
-    <Anchor>a4c2fc3b5855778dda51d1e09e20f23a2</Anchor>
+    <Anchor>a0bc4e3dc79150296e599217bdc50cb2b</Anchor>
     <DeclaredIn>para_display_client.c</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>GetTemp</Name>
+      <Name>sknGetTemp</Name>
       <APILanguage>c</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>para__display__client_8c.html</Path>
-    <Anchor>a107d9d8f583bbd2c3a2e5a71b6643afa</Anchor>
+    <Anchor>a27a64cd3f9478cd89d55bd4174f58dc2</Anchor>
     <DeclaredIn>para_display_client.c</DeclaredIn>
   </Token>
   <Token>

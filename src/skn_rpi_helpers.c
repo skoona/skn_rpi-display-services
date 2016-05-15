@@ -285,6 +285,10 @@ int skn_device_manager_LCD_shutdown(PDisplayManager pdm) {
  * DO NOT USE THIS IN MODULES THAT HANDLE A I2C Based LCD
  * RPi cannot handle I2C and GetCpuTemp() without locking the process
  * in an uniterrupted sleep; forcing a power cycle.
+ *
+ * Redhat/Centos: /sys/class/hwmon/hwmon0/device/temp1_input
+ * Ubuntu/Debian: /sys/class/thermal/thermal_zone0/temp
+ *
 */
 long getCpuTemps(PCpuTemps temps) {
     long lRaw = 0;
@@ -292,8 +296,12 @@ long getCpuTemps(PCpuTemps temps) {
 
     FILE *sysFs = fopen("/sys/class/thermal/thermal_zone0/temp", "r");
     if (sysFs == NULL) {
-        skn_logger(SD_WARNING, "Warning: Failed to OPEN CPU temperature: %d:%s\n", errno, strerror(errno));
-        return -1;
+        skn_logger(SD_WARNING, "Warning: Failed to open Debian CPU temperature: %d:%s\n", errno, strerror(errno));
+        *sysFs = fopen("/sys/class/hwmon/hwmon0/device/temp1_input", "r");
+        if (sysFs == NULL) {
+            skn_logger(SD_WARNING, "Warning: Failed to open Centos CPU temperature: %d:%s\n", errno, strerror(errno));
+            return -1;
+        }
     }
 
     rc = fscanf(sysFs, "%ld", &lRaw);

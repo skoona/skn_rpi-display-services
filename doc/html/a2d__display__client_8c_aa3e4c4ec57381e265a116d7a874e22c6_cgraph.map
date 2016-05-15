@@ -1,0 +1,5 @@
+<map id="sknGetModuleTemp" name="sknGetModuleTemp">
+<area shape="rect" id="node2" href="$a2d__display__client_8c.html#a0d9c1f78de300df3a47682ad0145c74c" title="readAverageSensorValue" alt="" coords="193,5,366,31"/>
+<area shape="rect" id="node3" href="$a2d__display__client_8c.html#a7103c23f637c6c8710a0766e61a8e436" title="steinhartAdcToCelsius" alt="" coords="203,55,356,80"/>
+<area shape="rect" id="node4" href="$a2d__display__client_8c.html#a935f6a4b5fc20d0727532f09a2ab7ed7" title="adcToOhms" alt="" coords="414,55,507,80"/>
+</map>
