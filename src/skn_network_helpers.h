@@ -46,7 +46,7 @@ extern void skn_program_name_and_description_set(const char *name, const char *d
 extern int skn_logger(const char *level, const char *format, ...);
 extern int skn_handle_locator_command_line(int argc, char **argv);
 extern int skn_time_delay(double delay_time);
-extern void skn_delay_microseconds (int delay_us);
+//extern void skn_delay_microseconds (int delay_us);
 extern char * skn_strip(char * alpha);
 extern uid_t skn_get_userids();
 

@@ -110,41 +110,42 @@ int skn_time_delay(double delay_time) {
  * scheduler know we are pausing and provides much faster operation if you are needing to use lots of delays.
  *
  * Fixup incase your building on for OSX, which does not implement clock_gettime()
-*/
-#ifdef __MACH__
-#include <sys/time.h>
-#define CLOCK_REALTIME 0
 
-/*
- * clock_gettime is not implemented on OSX */
-int clock_gettime(int clk_id, struct timespec* t) {
-    struct timeval now;
-    int rv = gettimeofday(&now, NULL);
-    if (rv) return rv;
-    t->tv_sec  = now.tv_sec;
-    t->tv_nsec = now.tv_usec * 1000;
-    return 0;
-}
-#endif
+    #ifdef __MACH__
+    #include <sys/time.h>
+    #define CLOCK_REALTIME 0
 
-void skn_delay_microseconds (int delay_us)
-{
-    long int start_time;
-    long int time_difference;
-    struct timespec gettime_now;
-
-    clock_gettime(CLOCK_REALTIME, &gettime_now);
-    start_time = gettime_now.tv_nsec;       //Get nS value
-    while (1)
-    {
-        clock_gettime(CLOCK_REALTIME, &gettime_now);
-        time_difference = gettime_now.tv_nsec - start_time;
-        if (time_difference < 0)
-            time_difference += 1000000000;              //(Rolls over every 1 second)
-        if (time_difference > (delay_us * 1000))        //Delay for # nS
-            break;
+    /*
+     * clock_gettime is not implemented on OSX *
+    int clock_gettime(int clk_id, struct timespec* t) {
+        struct timeval now;
+        int rv = gettimeofday(&now, NULL);
+        if (rv) return rv;
+        t->tv_sec  = now.tv_sec;
+        t->tv_nsec = now.tv_usec * 1000;
+        return 0;
     }
-}
+    #endif
+
+    void skn_delay_microseconds (int delay_us)
+    {
+        long int start_time;
+        long int time_difference;
+        struct timespec gettime_now;
+
+        clock_gettime(CLOCK_REALTIME, &gettime_now);
+        start_time = gettime_now.tv_nsec;       //Get nS value
+        while (1)
+        {
+            clock_gettime(CLOCK_REALTIME, &gettime_now);
+            time_difference = gettime_now.tv_nsec - start_time;
+            if (time_difference < 0)
+                time_difference += 1000000000;              //(Rolls over every 1 second)
+            if (time_difference > (delay_us * 1000))        //Delay for # nS
+                break;
+        }
+    }
+*/
 
 /**
  * Setup effective and real userid
