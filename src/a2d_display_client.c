@@ -130,7 +130,7 @@ int sknGetModuleTemp(char *buffer) {
 
     /*
      * Write to output buffer */
-    snprintf( buffer, (SZ_INFO_BUFF - 1),"[A] %.0f%cC %.0f%cF", cTemp , 223, fTemp, 223);
+    snprintf( buffer, (SZ_INFO_BUFF - 1),"[A] %.0fC %.0fF", cTemp, fTemp);
 
   return EXIT_SUCCESS;
 }
