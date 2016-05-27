@@ -32,8 +32,8 @@ long getCpuTemps(PCpuTemps temps) {
     }
 
     if (temps != NULL) { // populate struct
-        snprintf(temps->c, sizeof(temps->c), "%3.1f%cC", (double )(lRaw / 1000.0), 223);
-        snprintf(temps->f, sizeof(temps->f), "%3.1f%cF", (double )(lRaw / 1000.0 * 9 / 5 + 32), 223);
+        snprintf(temps->c, sizeof(temps->c), "%3.1fC", (double )(lRaw / 1000.0));
+        snprintf(temps->f, sizeof(temps->f), "%3.1fF", (double )(lRaw / 1000.0 * 9 / 5 + 32));
         temps->raw = lRaw;
         strncpy(temps->cbName, "CpuTemps", sizeof(temps->cbName) - 1);
     }
