@@ -49,7 +49,6 @@ var searchData=
   ['column_5fstatus',['COLUMN_STATUS',['../gtk_d_s_8c.html#af2a2cb1581c03fc99765ff83ada52d43ae3f18b00470e53eb07be9a296fa6bd01',1,'gtkDS.c']]],
   ['column_5furn',['COLUMN_URN',['../gtk_d_s_8c.html#af2a2cb1581c03fc99765ff83ada52d43a1cf8d35b93d5856241ea5e750ea233da',1,'gtkDS.c']]],
   ['computedmax',['computedMax',['../struct__service_registry.html#afc84b25f775a67d768cf4915db3c7115',1,'_serviceRegistry']]],
-  ['config_2eh',['config.h',['../config_8h.html',1,'']]],
   ['configure_2eac',['configure.ac',['../configure_8ac.html',1,'']]],
   ['controldata',['ControlData',['../cmd_d_c_8c.html#aad121cd36cd8851b2a3cd81fd0e41388',1,'ControlData():&#160;cmdDC.c'],['../cmd_d_s_8c.html#aad121cd36cd8851b2a3cd81fd0e41388',1,'ControlData():&#160;cmdDS.c'],['../gssdp_d_c_8c.html#aad121cd36cd8851b2a3cd81fd0e41388',1,'ControlData():&#160;gssdpDC.c'],['../gtk_d_s_8c.html#aad121cd36cd8851b2a3cd81fd0e41388',1,'ControlData():&#160;gtkDS.c']]],
   ['count',['count',['../struct__ip_broadcast_array.html#a971377a4c995292b8bd908f185cfc844',1,'_ipBroadcastArray::count()'],['../struct__service_registry.html#a68062b14c6c9cb411e3602be664425bc',1,'_serviceRegistry::count()']]],

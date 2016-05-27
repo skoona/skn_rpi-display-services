@@ -6,6 +6,5 @@ var files =
     [ "gtkDS", "dir_95dc765a15e376ef3edacafdaac49d3b.html", "dir_95dc765a15e376ef3edacafdaac49d3b" ],
     [ "src", "dir_68267d1309a1af8e8297ef4c3efbcdba.html", "dir_68267d1309a1af8e8297ef4c3efbcdba" ],
     [ "Makefile.am", "_makefile_8am.html", null ],
-    [ "config.h", "config_8h.html", "config_8h" ],
     [ "configure.ac", "configure_8ac.html", null ]
 ];

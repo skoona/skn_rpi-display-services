@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['calibrationoffset',['calibrationOffset',['../a2d__display__client_8c.html#af4fe1994dbd2d2dea75604050851378c',1,'a2d_display_client.c']]]
+  ['false',['FALSE',['../skn__common__headers_8h.html#aa93f0eb578d23995850d61f7d61c55c1',1,'skn_common_headers.h']]]
 ];

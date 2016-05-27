@@ -5266,127 +5266,6 @@
             <Path>_makefile_8am.html</Path>
            </Node>
            <Node>
-            <Name>config.h</Name>
-            <Path>config_8h.html</Path>
-            <Subnodes>
-             <Node>
-              <Name>__EXTENSIONS__</Name>
-              <Path>config_8h.html</Path>
-              <Anchor>ab27cf1abd092548f1c51632e6ae35a37</Anchor>
-             </Node>
-             <Node>
-              <Name>_ALL_SOURCE</Name>
-              <Path>config_8h.html</Path>
-              <Anchor>a6a4f67fdf3f14cde3b17d2465bf9ebb9</Anchor>
-             </Node>
-             <Node>
-              <Name>_GNU_SOURCE</Name>
-              <Path>config_8h.html</Path>
-              <Anchor>a369266c24eacffb87046522897a570d5</Anchor>
-             </Node>
-             <Node>
-              <Name>_POSIX_PTHREAD_SEMANTICS</Name>
-              <Path>config_8h.html</Path>
-              <Anchor>ad44924736167f82a10ae2891fc98a608</Anchor>
-             </Node>
-             <Node>
-              <Name>_TANDEM_SOURCE</Name>
-              <Path>config_8h.html</Path>
-              <Anchor>aca41d2cbf86c3393115fc92f87289dff</Anchor>
-             </Node>
-             <Node>
-              <Name>HAVE_INTTYPES_H</Name>
-              <Path>config_8h.html</Path>
-              <Anchor>ab90a030ff2790ebdc176660a6dd2a478</Anchor>
-             </Node>
-             <Node>
-              <Name>HAVE_MEMORY_H</Name>
-              <Path>config_8h.html</Path>
-              <Anchor>ae93a78f9d076138897af441c9f86f285</Anchor>
-             </Node>
-             <Node>
-              <Name>HAVE_STDINT_H</Name>
-              <Path>config_8h.html</Path>
-              <Anchor>ab6cd6d1c63c1e26ea2d4537b77148354</Anchor>
-             </Node>
-             <Node>
-              <Name>HAVE_STDLIB_H</Name>
-              <Path>config_8h.html</Path>
-              <Anchor>a9e0e434ec1a6ddbd97db12b5a32905e0</Anchor>
-             </Node>
-             <Node>
-              <Name>HAVE_STRING_H</Name>
-              <Path>config_8h.html</Path>
-              <Anchor>ad4c234dd1625255dc626a15886306e7d</Anchor>
-             </Node>
-             <Node>
-              <Name>HAVE_STRINGS_H</Name>
-              <Path>config_8h.html</Path>
-              <Anchor>a405d10d46190bcb0320524c54eafc850</Anchor>
-             </Node>
-             <Node>
-              <Name>HAVE_SYS_STAT_H</Name>
-              <Path>config_8h.html</Path>
-              <Anchor>ace156430ba007d19b4348a950d0c692b</Anchor>
-             </Node>
-             <Node>
-              <Name>HAVE_SYS_TYPES_H</Name>
-              <Path>config_8h.html</Path>
-              <Anchor>a69dc70bea5d1f8bd2be9740e974fa666</Anchor>
-             </Node>
-             <Node>
-              <Name>HAVE_UNISTD_H</Name>
-              <Path>config_8h.html</Path>
-              <Anchor>a219b06937831d0da94d801ab13987639</Anchor>
-             </Node>
-             <Node>
-              <Name>PACKAGE</Name>
-              <Path>config_8h.html</Path>
-              <Anchor>aca8570fb706c81df371b7f9bc454ae03</Anchor>
-             </Node>
-             <Node>
-              <Name>PACKAGE_BUGREPORT</Name>
-              <Path>config_8h.html</Path>
-              <Anchor>a1d1d2d7f8d2f95b376954d649ab03233</Anchor>
-             </Node>
-             <Node>
-              <Name>PACKAGE_NAME</Name>
-              <Path>config_8h.html</Path>
-              <Anchor>a1c0439e4355794c09b64274849eb0279</Anchor>
-             </Node>
-             <Node>
-              <Name>PACKAGE_STRING</Name>
-              <Path>config_8h.html</Path>
-              <Anchor>ac73e6f903c16eca7710f92e36e1c6fbf</Anchor>
-             </Node>
-             <Node>
-              <Name>PACKAGE_TARNAME</Name>
-              <Path>config_8h.html</Path>
-              <Anchor>af415af6bfede0e8d5453708afe68651c</Anchor>
-             </Node>
-             <Node>
-              <Name>PACKAGE_URL</Name>
-              <Path>config_8h.html</Path>
-              <Anchor>a5c93853116d5a50307b6744f147840aa</Anchor>
-             </Node>
-             <Node>
-              <Name>PACKAGE_VERSION</Name>
-              <Path>config_8h.html</Path>
-              <Anchor>aa326a05d5e30f9e9a4bb0b4469d5d0c0</Anchor>
-             </Node>
-             <Node>
-              <Name>STDC_HEADERS</Name>
-              <Path>config_8h.html</Path>
-              <Anchor>a550e5c272cc3cf3814651721167dcd23</Anchor>
-             </Node>
-             <Node>
-              <Name>VERSION</Name>
-              <Path>config_8h.html</Path>
-              <Anchor>a1c6d5de492ac61ad29aec7aa9a436bbf</Anchor>
-             </Node>
-            </Subnodes>
-           </Node>
-           <Node>
             <Name>configure.ac</Name>
             <Path>configure_8ac.html</Path>
            </Node>
@@ -5471,10 +5350,6 @@
              <Node>
               <Name>u</Name>
               <Path>globals_u.html</Path>
-             </Node>
-             <Node>
-              <Name>v</Name>
-              <Path>globals_v.html</Path>
              </Node>
             </Subnodes>
            </Node>
