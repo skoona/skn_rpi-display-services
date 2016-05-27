@@ -1,4 +1,5 @@
 # Makefile.am  Without WiringPi only the basic locator and limited clients can be built
+ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
 bin_PROGRAMS=udp_locator_service udp_locator_client lcd_display_client
 

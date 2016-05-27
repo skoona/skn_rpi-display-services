@@ -69,7 +69,6 @@ int generate_uname_info(char *msg) {
         mLen = snprintf(msg, SZ_INFO_BUFF -1, "%s", message);
     } else {
         mLen = snprintf(msg, SZ_INFO_BUFF -1, "%s %s, %s %s | Cores=%ld",
-//                        info.nodename,
                         info.sysname, info.release, info.version, info.machine,
                         skn_get_number_of_cpu_cores());
     }
@@ -115,8 +114,8 @@ int skn_time_delay(double delay_time) {
     #include <sys/time.h>
     #define CLOCK_REALTIME 0
 
-    /*
-     * clock_gettime is not implemented on OSX *
+    // *
+    // * clock_gettime is not implemented on OSX *
     int clock_gettime(int clk_id, struct timespec* t) {
         struct timeval now;
         int rv = gettimeofday(&now, NULL);

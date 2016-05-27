@@ -3617,7 +3617,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a0b4821586a5c3d59096cb20dc6b28b2a';
-        sec-mem-ref-line = '170';
+        sec-mem-ref-line = '214';
         sec-mem-ref-name = 'get_broadcast_ip_array';
     };
       sec-mem-referenceby = {
@@ -3645,22 +3645,22 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a0b4821586a5c3d59096cb20dc6b28b2a';
-        sec-mem-ref-line = '170';
+        sec-mem-ref-line = '214';
         sec-mem-ref-name = 'get_broadcast_ip_array';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a96bf395b914c5182e438800248d6e8f3';
-        sec-mem-ref-line = '152';
+        sec-mem-ref-line = '196';
         sec-mem-ref-name = 'get_default_interface_name_and_ipv4_address';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        sec-mem-ref-line = '1050';
+        sec-mem-ref-line = '1094';
         sec-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1ad148412119d5d8373da1a6859aafda41';
-        sec-mem-ref-line = '648';
+        sec-mem-ref-line = '692';
         sec-mem-ref-name = 'service_registry_provider';
     };
       sec-mem-referenceby = {
@@ -3693,12 +3693,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a0b4821586a5c3d59096cb20dc6b28b2a';
-        sec-mem-ref-line = '170';
+        sec-mem-ref-line = '214';
         sec-mem-ref-name = 'get_broadcast_ip_array';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        sec-mem-ref-line = '1050';
+        sec-mem-ref-line = '1094';
         sec-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
       sec-mem-referenceby = {
@@ -3731,22 +3731,22 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a0b4821586a5c3d59096cb20dc6b28b2a';
-        sec-mem-ref-line = '170';
+        sec-mem-ref-line = '214';
         sec-mem-ref-name = 'get_broadcast_ip_array';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a96bf395b914c5182e438800248d6e8f3';
-        sec-mem-ref-line = '152';
+        sec-mem-ref-line = '196';
         sec-mem-ref-name = 'get_default_interface_name_and_ipv4_address';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        sec-mem-ref-line = '1050';
+        sec-mem-ref-line = '1094';
         sec-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1ad148412119d5d8373da1a6859aafda41';
-        sec-mem-ref-line = '648';
+        sec-mem-ref-line = '692';
         sec-mem-ref-name = 'service_registry_provider';
     };
       sec-mem-referenceby = {
@@ -3784,7 +3784,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a0b4821586a5c3d59096cb20dc6b28b2a';
-        sec-mem-ref-line = '170';
+        sec-mem-ref-line = '214';
         sec-mem-ref-name = 'get_broadcast_ip_array';
     };
       sec-mem-referenceby = {
@@ -3812,12 +3812,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a0b4821586a5c3d59096cb20dc6b28b2a';
-        sec-mem-ref-line = '170';
+        sec-mem-ref-line = '214';
         sec-mem-ref-name = 'get_broadcast_ip_array';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        sec-mem-ref-line = '1050';
+        sec-mem-ref-line = '1094';
         sec-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
       sec-mem-referenceby = {
@@ -3850,22 +3850,22 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a0b4821586a5c3d59096cb20dc6b28b2a';
-        sec-mem-ref-line = '170';
+        sec-mem-ref-line = '214';
         sec-mem-ref-name = 'get_broadcast_ip_array';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a96bf395b914c5182e438800248d6e8f3';
-        sec-mem-ref-line = '152';
+        sec-mem-ref-line = '196';
         sec-mem-ref-name = 'get_default_interface_name_and_ipv4_address';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        sec-mem-ref-line = '1050';
+        sec-mem-ref-line = '1094';
         sec-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1ad148412119d5d8373da1a6859aafda41';
-        sec-mem-ref-line = '648';
+        sec-mem-ref-line = '692';
         sec-mem-ref-name = 'service_registry_provider';
     };
       sec-mem-referenceby = {
@@ -3903,12 +3903,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a0b4821586a5c3d59096cb20dc6b28b2a';
-        sec-mem-ref-line = '170';
+        sec-mem-ref-line = '214';
         sec-mem-ref-name = 'get_broadcast_ip_array';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        sec-mem-ref-line = '1050';
+        sec-mem-ref-line = '1094';
         sec-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
       sec-mem-referenceby = {
@@ -4379,7 +4379,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a5e51f7d19b5d689be44036a57e056e7a';
-        sec-mem-ref-line = '773';
+        sec-mem-ref-line = '817';
         sec-mem-ref-name = 'service_registry_entry_create';
     };
     }; /* sec-member */
@@ -4407,22 +4407,22 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a5e51f7d19b5d689be44036a57e056e7a';
-        sec-mem-ref-line = '773';
+        sec-mem-ref-line = '817';
         sec-mem-ref-name = 'service_registry_entry_create';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1ab5ed70a05f4e20dac13298ae16530069';
-        sec-mem-ref-line = '882';
+        sec-mem-ref-line = '926';
         sec-mem-ref-name = 'service_registry_find_entry';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a16d6920592f2a64c9cab22cb26ef28e1';
-        sec-mem-ref-line = '910';
+        sec-mem-ref-line = '954';
         sec-mem-ref-name = 'service_registry_list_entries';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1ad8304e97f9bccee1cd899a61b91ae677';
-        sec-mem-ref-line = '601';
+        sec-mem-ref-line = '645';
         sec-mem-ref-name = 'skn_udp_service_request';
     };
     }; /* sec-member */
@@ -4450,17 +4450,17 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a5e51f7d19b5d689be44036a57e056e7a';
-        sec-mem-ref-line = '773';
+        sec-mem-ref-line = '817';
         sec-mem-ref-name = 'service_registry_entry_create';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a16d6920592f2a64c9cab22cb26ef28e1';
-        sec-mem-ref-line = '910';
+        sec-mem-ref-line = '954';
         sec-mem-ref-name = 'service_registry_list_entries';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1ad8304e97f9bccee1cd899a61b91ae677';
-        sec-mem-ref-line = '601';
+        sec-mem-ref-line = '645';
         sec-mem-ref-name = 'skn_udp_service_request';
     };
     }; /* sec-member */
@@ -4488,17 +4488,17 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a5e51f7d19b5d689be44036a57e056e7a';
-        sec-mem-ref-line = '773';
+        sec-mem-ref-line = '817';
         sec-mem-ref-name = 'service_registry_entry_create';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a16d6920592f2a64c9cab22cb26ef28e1';
-        sec-mem-ref-line = '910';
+        sec-mem-ref-line = '954';
         sec-mem-ref-name = 'service_registry_list_entries';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1ad8304e97f9bccee1cd899a61b91ae677';
-        sec-mem-ref-line = '601';
+        sec-mem-ref-line = '645';
         sec-mem-ref-name = 'skn_udp_service_request';
     };
     }; /* sec-member */
@@ -4570,7 +4570,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1afb305f4b4db81aad61bd5e4e6ecaf6fd';
-        sec-mem-ref-line = '753';
+        sec-mem-ref-line = '797';
         sec-mem-ref-name = 'service_registry_create';
     };
     }; /* sec-member */
@@ -4593,32 +4593,32 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1afb305f4b4db81aad61bd5e4e6ecaf6fd';
-        sec-mem-ref-line = '753';
+        sec-mem-ref-line = '797';
         sec-mem-ref-name = 'service_registry_create';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a819c12fc7c8ff576b1aaad69bc098840';
-        sec-mem-ref-line = '1115';
+        sec-mem-ref-line = '1159';
         sec-mem-ref-name = 'service_registry_destroy';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a88465ff1322cb437fd3b7a1e036fd017';
-        sec-mem-ref-line = '903';
+        sec-mem-ref-line = '947';
         sec-mem-ref-name = 'service_registry_entry_count';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a5e51f7d19b5d689be44036a57e056e7a';
-        sec-mem-ref-line = '773';
+        sec-mem-ref-line = '817';
         sec-mem-ref-name = 'service_registry_entry_create';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a16d6920592f2a64c9cab22cb26ef28e1';
-        sec-mem-ref-line = '910';
+        sec-mem-ref-line = '954';
         sec-mem-ref-name = 'service_registry_list_entries';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a25149d495d462b7600eb6715da868200';
-        sec-mem-ref-line = '987';
+        sec-mem-ref-line = '1031';
         sec-mem-ref-name = 'service_registry_response_parse';
     };
     }; /* sec-member */
@@ -4641,12 +4641,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1afb305f4b4db81aad61bd5e4e6ecaf6fd';
-        sec-mem-ref-line = '753';
+        sec-mem-ref-line = '797';
         sec-mem-ref-name = 'service_registry_create';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a5e51f7d19b5d689be44036a57e056e7a';
-        sec-mem-ref-line = '773';
+        sec-mem-ref-line = '817';
         sec-mem-ref-name = 'service_registry_entry_create';
     };
     }; /* sec-member */
@@ -4669,27 +4669,27 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1afb305f4b4db81aad61bd5e4e6ecaf6fd';
-        sec-mem-ref-line = '753';
+        sec-mem-ref-line = '797';
         sec-mem-ref-name = 'service_registry_create';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a819c12fc7c8ff576b1aaad69bc098840';
-        sec-mem-ref-line = '1115';
+        sec-mem-ref-line = '1159';
         sec-mem-ref-name = 'service_registry_destroy';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a5e51f7d19b5d689be44036a57e056e7a';
-        sec-mem-ref-line = '773';
+        sec-mem-ref-line = '817';
         sec-mem-ref-name = 'service_registry_entry_create';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1ab5ed70a05f4e20dac13298ae16530069';
-        sec-mem-ref-line = '882';
+        sec-mem-ref-line = '926';
         sec-mem-ref-name = 'service_registry_find_entry';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a16d6920592f2a64c9cab22cb26ef28e1';
-        sec-mem-ref-line = '910';
+        sec-mem-ref-line = '954';
         sec-mem-ref-name = 'service_registry_list_entries';
     };
     }; /* sec-member */
@@ -4790,7 +4790,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a922ccd04b4dc28211ff08c4c62462544';
-        sec-mem-ref-line = '559';
+        sec-mem-ref-line = '603';
         sec-mem-ref-name = 'skn_service_request_create';
     };
     }; /* sec-member */
@@ -4813,12 +4813,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a922ccd04b4dc28211ff08c4c62462544';
-        sec-mem-ref-line = '559';
+        sec-mem-ref-line = '603';
         sec-mem-ref-name = 'skn_service_request_create';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1ad8304e97f9bccee1cd899a61b91ae677';
-        sec-mem-ref-line = '601';
+        sec-mem-ref-line = '645';
         sec-mem-ref-name = 'skn_udp_service_request';
     };
     }; /* sec-member */
@@ -4846,12 +4846,12 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a922ccd04b4dc28211ff08c4c62462544';
-        sec-mem-ref-line = '559';
+        sec-mem-ref-line = '603';
         sec-mem-ref-name = 'skn_service_request_create';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1ad8304e97f9bccee1cd899a61b91ae677';
-        sec-mem-ref-line = '601';
+        sec-mem-ref-line = '645';
         sec-mem-ref-name = 'skn_udp_service_request';
     };
     }; /* sec-member */
@@ -4874,7 +4874,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1ad8304e97f9bccee1cd899a61b91ae677';
-        sec-mem-ref-line = '601';
+        sec-mem-ref-line = '645';
         sec-mem-ref-name = 'skn_udp_service_request';
     };
     }; /* sec-member */
@@ -4897,12 +4897,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1a922ccd04b4dc28211ff08c4c62462544';
-        sec-mem-ref-line = '559';
+        sec-mem-ref-line = '603';
         sec-mem-ref-name = 'skn_service_request_create';
     };
       sec-mem-referenceby = {
         sec-mem-ref-id = 'skn__network__helpers_8c_1ad8304e97f9bccee1cd899a61b91ae677';
-        sec-mem-ref-line = '601';
+        sec-mem-ref-line = '645';
         sec-mem-ref-name = 'skn_udp_service_request';
     };
     }; /* sec-member */
@@ -5470,7 +5470,7 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a665c441c1f789eb555b1c23ed43de890';
-        define-mem-ref-line = '329';
+        define-mem-ref-line = '373';
         define-mem-ref-name = 'skn_handle_locator_command_line';
     };
     }; /* define-member */
@@ -5788,7 +5788,7 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a8aa6a7a3ba2390cf536e26c6cd2aa840';
-        define-mem-ref-line = '79';
+        define-mem-ref-line = '78';
         define-mem-ref-name = 'generate_datetime_info';
     };
       define-mem-referenceby = {
@@ -5808,7 +5808,7 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a6d284e9250411e031cfa4ecb19583696';
-        define-mem-ref-line = '231';
+        define-mem-ref-line = '275';
         define-mem-ref-name = 'get_default_interface_name';
     };
       define-mem-referenceby = {
@@ -5818,12 +5818,12 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        define-mem-ref-line = '1050';
+        define-mem-ref-line = '1094';
         define-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1ad148412119d5d8373da1a6859aafda41';
-        define-mem-ref-line = '648';
+        define-mem-ref-line = '692';
         define-mem-ref-name = 'service_registry_provider';
     };
       define-mem-referenceby = {
@@ -5858,12 +5858,12 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a922ccd04b4dc28211ff08c4c62462544';
-        define-mem-ref-line = '559';
+        define-mem-ref-line = '603';
         define-mem-ref-name = 'skn_service_request_create';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1ad8304e97f9bccee1cd899a61b91ae677';
-        define-mem-ref-line = '601';
+        define-mem-ref-line = '645';
         define-mem-ref-name = 'skn_udp_service_request';
     };
       define-mem-referenceby = {
@@ -5906,12 +5906,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a0b4821586a5c3d59096cb20dc6b28b2a';
-        define-mem-ref-line = '170';
+        define-mem-ref-line = '214';
         define-mem-ref-name = 'get_broadcast_ip_array';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a96bf395b914c5182e438800248d6e8f3';
-        define-mem-ref-line = '152';
+        define-mem-ref-line = '196';
         define-mem-ref-name = 'get_default_interface_name_and_ipv4_address';
     };
       define-mem-referenceby = {
@@ -5921,7 +5921,7 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        define-mem-ref-line = '1050';
+        define-mem-ref-line = '1094';
         define-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
       define-mem-referenceby = {
@@ -5956,7 +5956,7 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1ac2672efa5ece276743c6558dfe82d01a';
-        define-mem-ref-line = '418';
+        define-mem-ref-line = '462';
         define-mem-ref-name = 'skn_program_name_and_description_set';
     };
     }; /* define-member */
@@ -5979,7 +5979,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a925d0a1de13d0d0178e52f0d6be4b97f';
-        define-mem-ref-line = '436';
+        define-mem-ref-line = '480';
         define-mem-ref-name = 'skn_strip';
     };
     }; /* define-member */
@@ -6007,7 +6007,7 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1ad148412119d5d8373da1a6859aafda41';
-        define-mem-ref-line = '648';
+        define-mem-ref-line = '692';
         define-mem-ref-name = 'service_registry_provider';
     };
     }; /* define-member */
@@ -6058,7 +6058,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a0b4821586a5c3d59096cb20dc6b28b2a';
-        define-mem-ref-line = '170';
+        define-mem-ref-line = '214';
         define-mem-ref-name = 'get_broadcast_ip_array';
     };
       define-mem-referenceby = {
@@ -6091,22 +6091,22 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a0b4821586a5c3d59096cb20dc6b28b2a';
-        define-mem-ref-line = '170';
+        define-mem-ref-line = '214';
         define-mem-ref-name = 'get_broadcast_ip_array';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a96bf395b914c5182e438800248d6e8f3';
-        define-mem-ref-line = '152';
+        define-mem-ref-line = '196';
         define-mem-ref-name = 'get_default_interface_name_and_ipv4_address';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        define-mem-ref-line = '1050';
+        define-mem-ref-line = '1094';
         define-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1ad148412119d5d8373da1a6859aafda41';
-        define-mem-ref-line = '648';
+        define-mem-ref-line = '692';
         define-mem-ref-name = 'service_registry_provider';
     };
       define-mem-referenceby = {
@@ -6151,7 +6151,7 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1ad8304e97f9bccee1cd899a61b91ae677';
-        define-mem-ref-line = '601';
+        define-mem-ref-line = '645';
         define-mem-ref-name = 'skn_udp_service_request';
     };
     }; /* define-member */
@@ -15343,42 +15343,42 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a819c12fc7c8ff576b1aaad69bc098840';
-        func-mem-ref-line = '1115';
+        func-mem-ref-line = '1159';
         func-mem-ref-name = 'service_registry_destroy';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a88465ff1322cb437fd3b7a1e036fd017';
-        func-mem-ref-line = '903';
+        func-mem-ref-line = '947';
         func-mem-ref-name = 'service_registry_entry_count';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ab5ed70a05f4e20dac13298ae16530069';
-        func-mem-ref-line = '882';
+        func-mem-ref-line = '926';
         func-mem-ref-name = 'service_registry_find_entry';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        func-mem-ref-line = '1050';
+        func-mem-ref-line = '1094';
         func-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ac256e2066453ab0ff82322aa24b161df';
-        func-mem-ref-line = '141';
+        func-mem-ref-line = '185';
         func-mem-ref-name = 'signals_cleanup';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a6af44fa0e0746d3d2a804fea1e84dacd';
-        func-mem-ref-line = '135';
+        func-mem-ref-line = '179';
         func-mem-ref-name = 'signals_init';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a665c441c1f789eb555b1c23ed43de890';
-        func-mem-ref-line = '329';
+        func-mem-ref-line = '373';
         func-mem-ref-name = 'skn_handle_locator_command_line';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ac2672efa5ece276743c6558dfe82d01a';
-        func-mem-ref-line = '418';
+        func-mem-ref-line = '462';
         func-mem-ref-name = 'skn_program_name_and_description_set';
     };
       func-mem-referenceto = {
@@ -15388,22 +15388,22 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a922ccd04b4dc28211ff08c4c62462544';
-        func-mem-ref-line = '559';
+        func-mem-ref-line = '603';
         func-mem-ref-name = 'skn_service_request_create';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a4f9f7e0f50cb3073d9c6e5a6a0d5240d';
-        func-mem-ref-line = '524';
+        func-mem-ref-line = '568';
         func-mem-ref-name = 'skn_udp_host_create_broadcast_socket';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a25427bc0b7f087d1135c92dd3704f210';
-        func-mem-ref-line = '483';
+        func-mem-ref-line = '527';
         func-mem-ref-name = 'skn_udp_host_create_regular_socket';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ad8304e97f9bccee1cd899a61b91ae677';
-        func-mem-ref-line = '601';
+        func-mem-ref-line = '645';
         func-mem-ref-name = 'skn_udp_service_request';
     };
       func-mem-referenceto = {
@@ -15589,7 +15589,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a8aa6a7a3ba2390cf536e26c6cd2aa840';
-        func-mem-ref-line = '79';
+        func-mem-ref-line = '78';
         func-mem-ref-name = 'generate_datetime_info';
     };
       func-mem-referenceto = {
@@ -15644,32 +15644,32 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a819c12fc7c8ff576b1aaad69bc098840';
-        func-mem-ref-line = '1115';
+        func-mem-ref-line = '1159';
         func-mem-ref-name = 'service_registry_destroy';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a88465ff1322cb437fd3b7a1e036fd017';
-        func-mem-ref-line = '903';
+        func-mem-ref-line = '947';
         func-mem-ref-name = 'service_registry_entry_count';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ab5ed70a05f4e20dac13298ae16530069';
-        func-mem-ref-line = '882';
+        func-mem-ref-line = '926';
         func-mem-ref-name = 'service_registry_find_entry';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        func-mem-ref-line = '1050';
+        func-mem-ref-line = '1094';
         func-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ac256e2066453ab0ff82322aa24b161df';
-        func-mem-ref-line = '141';
+        func-mem-ref-line = '185';
         func-mem-ref-name = 'signals_cleanup';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a6af44fa0e0746d3d2a804fea1e84dacd';
-        func-mem-ref-line = '135';
+        func-mem-ref-line = '179';
         func-mem-ref-name = 'signals_init';
     };
       func-mem-referenceto = {
@@ -15679,12 +15679,12 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a665c441c1f789eb555b1c23ed43de890';
-        func-mem-ref-line = '329';
+        func-mem-ref-line = '373';
         func-mem-ref-name = 'skn_handle_locator_command_line';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ac2672efa5ece276743c6558dfe82d01a';
-        func-mem-ref-line = '418';
+        func-mem-ref-line = '462';
         func-mem-ref-name = 'skn_program_name_and_description_set';
     };
       func-mem-referenceto = {
@@ -15694,22 +15694,22 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a922ccd04b4dc28211ff08c4c62462544';
-        func-mem-ref-line = '559';
+        func-mem-ref-line = '603';
         func-mem-ref-name = 'skn_service_request_create';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a4f9f7e0f50cb3073d9c6e5a6a0d5240d';
-        func-mem-ref-line = '524';
+        func-mem-ref-line = '568';
         func-mem-ref-name = 'skn_udp_host_create_broadcast_socket';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a25427bc0b7f087d1135c92dd3704f210';
-        func-mem-ref-line = '483';
+        func-mem-ref-line = '527';
         func-mem-ref-name = 'skn_udp_host_create_regular_socket';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ad8304e97f9bccee1cd899a61b91ae677';
-        func-mem-ref-line = '601';
+        func-mem-ref-line = '645';
         func-mem-ref-name = 'skn_udp_service_request';
     };
       func-mem-referenceto = {
@@ -15794,7 +15794,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a96bf395b914c5182e438800248d6e8f3';
-        func-mem-ref-line = '152';
+        func-mem-ref-line = '196';
         func-mem-ref-name = 'get_default_interface_name_and_ipv4_address';
     };
       func-mem-referenceto = {
@@ -15824,7 +15824,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a63e61152e590620edc7757d782c60a79';
-        func-mem-ref-line = '108';
+        func-mem-ref-line = '152';
         func-mem-ref-name = 'skn_get_userids';
     };
       func-mem-referenceto = {
@@ -15834,7 +15834,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ac2672efa5ece276743c6558dfe82d01a';
-        func-mem-ref-line = '418';
+        func-mem-ref-line = '462';
         func-mem-ref-name = 'skn_program_name_and_description_set';
     };
       func-mem-referenceto = {
@@ -16099,32 +16099,32 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a819c12fc7c8ff576b1aaad69bc098840';
-        func-mem-ref-line = '1115';
+        func-mem-ref-line = '1159';
         func-mem-ref-name = 'service_registry_destroy';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a88465ff1322cb437fd3b7a1e036fd017';
-        func-mem-ref-line = '903';
+        func-mem-ref-line = '947';
         func-mem-ref-name = 'service_registry_entry_count';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ab5ed70a05f4e20dac13298ae16530069';
-        func-mem-ref-line = '882';
+        func-mem-ref-line = '926';
         func-mem-ref-name = 'service_registry_find_entry';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        func-mem-ref-line = '1050';
+        func-mem-ref-line = '1094';
         func-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ac256e2066453ab0ff82322aa24b161df';
-        func-mem-ref-line = '141';
+        func-mem-ref-line = '185';
         func-mem-ref-name = 'signals_cleanup';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a6af44fa0e0746d3d2a804fea1e84dacd';
-        func-mem-ref-line = '135';
+        func-mem-ref-line = '179';
         func-mem-ref-name = 'signals_init';
     };
       func-mem-referenceto = {
@@ -16134,12 +16134,12 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a665c441c1f789eb555b1c23ed43de890';
-        func-mem-ref-line = '329';
+        func-mem-ref-line = '373';
         func-mem-ref-name = 'skn_handle_locator_command_line';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ac2672efa5ece276743c6558dfe82d01a';
-        func-mem-ref-line = '418';
+        func-mem-ref-line = '462';
         func-mem-ref-name = 'skn_program_name_and_description_set';
     };
       func-mem-referenceto = {
@@ -16149,22 +16149,22 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a922ccd04b4dc28211ff08c4c62462544';
-        func-mem-ref-line = '559';
+        func-mem-ref-line = '603';
         func-mem-ref-name = 'skn_service_request_create';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a4f9f7e0f50cb3073d9c6e5a6a0d5240d';
-        func-mem-ref-line = '524';
+        func-mem-ref-line = '568';
         func-mem-ref-name = 'skn_udp_host_create_broadcast_socket';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a25427bc0b7f087d1135c92dd3704f210';
-        func-mem-ref-line = '483';
+        func-mem-ref-line = '527';
         func-mem-ref-name = 'skn_udp_host_create_regular_socket';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ad8304e97f9bccee1cd899a61b91ae677';
-        func-mem-ref-line = '601';
+        func-mem-ref-line = '645';
         func-mem-ref-name = 'skn_udp_service_request';
     };
       func-mem-referenceto = {
@@ -16226,12 +16226,12 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        define-mem-ref-line = '1050';
+        define-mem-ref-line = '1094';
         define-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1ad148412119d5d8373da1a6859aafda41';
-        define-mem-ref-line = '648';
+        define-mem-ref-line = '692';
         define-mem-ref-name = 'service_registry_provider';
     };
       define-mem-referenceby = {
@@ -16241,12 +16241,12 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a4f9f7e0f50cb3073d9c6e5a6a0d5240d';
-        define-mem-ref-line = '524';
+        define-mem-ref-line = '568';
         define-mem-ref-name = 'skn_udp_host_create_broadcast_socket';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a25427bc0b7f087d1135c92dd3704f210';
-        define-mem-ref-line = '483';
+        define-mem-ref-line = '527';
         define-mem-ref-name = 'skn_udp_host_create_regular_socket';
     };
     }; /* define-member */
@@ -16305,17 +16305,17 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a0b4821586a5c3d59096cb20dc6b28b2a';
-        define-mem-ref-line = '170';
+        define-mem-ref-line = '214';
         define-mem-ref-name = 'get_broadcast_ip_array';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a6d284e9250411e031cfa4ecb19583696';
-        define-mem-ref-line = '231';
+        define-mem-ref-line = '275';
         define-mem-ref-name = 'get_default_interface_name';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a96bf395b914c5182e438800248d6e8f3';
-        define-mem-ref-line = '152';
+        define-mem-ref-line = '196';
         define-mem-ref-name = 'get_default_interface_name_and_ipv4_address';
     };
       define-mem-referenceby = {
@@ -16325,7 +16325,7 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1ad148412119d5d8373da1a6859aafda41';
-        define-mem-ref-line = '648';
+        define-mem-ref-line = '692';
         define-mem-ref-name = 'service_registry_provider';
     };
       define-mem-referenceby = {
@@ -16375,7 +16375,7 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a665c441c1f789eb555b1c23ed43de890';
-        define-mem-ref-line = '329';
+        define-mem-ref-line = '373';
         define-mem-ref-name = 'skn_handle_locator_command_line';
     };
       define-mem-referenceby = {
@@ -16413,17 +16413,17 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a5e51f7d19b5d689be44036a57e056e7a';
-        define-mem-ref-line = '773';
+        define-mem-ref-line = '817';
         define-mem-ref-name = 'service_registry_entry_create';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        define-mem-ref-line = '1050';
+        define-mem-ref-line = '1094';
         define-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a25149d495d462b7600eb6715da868200';
-        define-mem-ref-line = '987';
+        define-mem-ref-line = '1031';
         define-mem-ref-name = 'service_registry_response_parse';
     };
       define-mem-referenceby = {
@@ -16443,7 +16443,7 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a665c441c1f789eb555b1c23ed43de890';
-        define-mem-ref-line = '329';
+        define-mem-ref-line = '373';
         define-mem-ref-name = 'skn_handle_locator_command_line';
     };
       define-mem-referenceby = {
@@ -16458,7 +16458,7 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1ad8304e97f9bccee1cd899a61b91ae677';
-        define-mem-ref-line = '601';
+        define-mem-ref-line = '645';
         define-mem-ref-name = 'skn_udp_service_request';
     };
     }; /* define-member */
@@ -16481,7 +16481,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a49f6d3bb9d22d5b9cf5c7eb6175318d1';
-        define-mem-ref-line = '130';
+        define-mem-ref-line = '174';
         define-mem-ref-name = 'exit_handler';
     };
       define-mem-referenceby = {
@@ -16491,17 +16491,17 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1ad0e63e9d3365fb8818a5ca21179abb3e';
-        define-mem-ref-line = '863';
+        define-mem-ref-line = '907';
         define-mem-ref-name = 'service_registry_entry_response_message_log';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        define-mem-ref-line = '1050';
+        define-mem-ref-line = '1094';
         define-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1ad148412119d5d8373da1a6859aafda41';
-        define-mem-ref-line = '648';
+        define-mem-ref-line = '692';
         define-mem-ref-name = 'service_registry_provider';
     };
       define-mem-referenceby = {
@@ -16561,12 +16561,12 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a925d0a1de13d0d0178e52f0d6be4b97f';
-        define-mem-ref-line = '436';
+        define-mem-ref-line = '480';
         define-mem-ref-name = 'skn_strip';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1ad8304e97f9bccee1cd899a61b91ae677';
-        define-mem-ref-line = '601';
+        define-mem-ref-line = '645';
         define-mem-ref-name = 'skn_udp_service_request';
     };
     }; /* define-member */
@@ -16589,17 +16589,17 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a16d6920592f2a64c9cab22cb26ef28e1';
-        define-mem-ref-line = '910';
+        define-mem-ref-line = '954';
         define-mem-ref-name = 'service_registry_list_entries';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a4f9f7e0f50cb3073d9c6e5a6a0d5240d';
-        define-mem-ref-line = '524';
+        define-mem-ref-line = '568';
         define-mem-ref-name = 'skn_udp_host_create_broadcast_socket';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1ad8304e97f9bccee1cd899a61b91ae677';
-        define-mem-ref-line = '601';
+        define-mem-ref-line = '645';
         define-mem-ref-name = 'skn_udp_service_request';
     };
     }; /* define-member */
@@ -16627,17 +16627,17 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a5e51f7d19b5d689be44036a57e056e7a';
-        define-mem-ref-line = '773';
+        define-mem-ref-line = '817';
         define-mem-ref-name = 'service_registry_entry_create';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        define-mem-ref-line = '1050';
+        define-mem-ref-line = '1094';
         define-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1ad148412119d5d8373da1a6859aafda41';
-        define-mem-ref-line = '648';
+        define-mem-ref-line = '692';
         define-mem-ref-name = 'service_registry_provider';
     };
       define-mem-referenceby = {
@@ -16744,12 +16744,12 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        define-mem-ref-line = '1050';
+        define-mem-ref-line = '1094';
         define-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1ad148412119d5d8373da1a6859aafda41';
-        define-mem-ref-line = '648';
+        define-mem-ref-line = '692';
         define-mem-ref-name = 'service_registry_provider';
     };
     }; /* define-member */
@@ -16772,7 +16772,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1ad148412119d5d8373da1a6859aafda41';
-        define-mem-ref-line = '648';
+        define-mem-ref-line = '692';
         define-mem-ref-name = 'service_registry_provider';
     };
       define-mem-referenceby = {
@@ -16987,17 +16987,17 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        define-mem-ref-line = '1050';
+        define-mem-ref-line = '1094';
         define-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1ad148412119d5d8373da1a6859aafda41';
-        define-mem-ref-line = '648';
+        define-mem-ref-line = '692';
         define-mem-ref-name = 'service_registry_provider';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1ac256e2066453ab0ff82322aa24b161df';
-        define-mem-ref-line = '141';
+        define-mem-ref-line = '185';
         define-mem-ref-name = 'signals_cleanup';
     };
       define-mem-referenceby = {
@@ -17311,7 +17311,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'skn__network__helpers_8c_1a8aa6a7a3ba2390cf536e26c6cd2aa840';
-        define-mem-ref-line = '79';
+        define-mem-ref-line = '78';
         define-mem-ref-name = 'generate_datetime_info';
     };
     }; /* define-member */
@@ -17648,7 +17648,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a665c441c1f789eb555b1c23ed43de890';
-        func-mem-ref-line = '329';
+        func-mem-ref-line = '373';
         func-mem-ref-name = 'skn_handle_locator_command_line';
     };
     }; /* func-member */
@@ -17689,7 +17689,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a6af44fa0e0746d3d2a804fea1e84dacd';
-        func-mem-ref-line = '135';
+        func-mem-ref-line = '179';
         func-mem-ref-name = 'signals_init';
     };
     }; /* func-member */
@@ -17739,12 +17739,12 @@ service_registry_entry_create_helper()
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a925d0a1de13d0d0178e52f0d6be4b97f';
-        func-mem-ref-line = '436';
+        func-mem-ref-line = '480';
         func-mem-ref-name = 'skn_strip';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a25149d495d462b7600eb6715da868200';
-        func-mem-ref-line = '987';
+        func-mem-ref-line = '1031';
         func-mem-ref-name = 'service_registry_response_parse';
     };
     }; /* func-member */
@@ -17790,17 +17790,17 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        func-mem-ref-line = '1050';
+        func-mem-ref-line = '1094';
         func-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a866cf7e5524cc49a76448c59395a622e';
-        func-mem-ref-line = '825';
+        func-mem-ref-line = '869';
         func-mem-ref-name = 'service_registry_valiadate_response_format';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1aae9b1fb439eead75521f80120886867e';
-        func-mem-ref-line = '845';
+        func-mem-ref-line = '889';
         func-mem-ref-name = 'service_registry_valiadated_registry';
     };
     }; /* func-member */
@@ -17906,12 +17906,12 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ab5ed70a05f4e20dac13298ae16530069';
-        func-mem-ref-line = '882';
+        func-mem-ref-line = '926';
         func-mem-ref-name = 'service_registry_find_entry';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a25149d495d462b7600eb6715da868200';
-        func-mem-ref-line = '987';
+        func-mem-ref-line = '1031';
         func-mem-ref-name = 'service_registry_response_parse';
     };
     }; /* func-member */
@@ -17969,32 +17969,32 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a5e51f7d19b5d689be44036a57e056e7a';
-        func-mem-ref-line = '773';
+        func-mem-ref-line = '817';
         func-mem-ref-name = 'service_registry_entry_create';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ae671be512539874689abbab598f9f65a';
-        func-mem-ref-line = '949';
+        func-mem-ref-line = '993';
         func-mem-ref-name = 'service_registry_entry_create_helper';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a925d0a1de13d0d0178e52f0d6be4b97f';
-        func-mem-ref-line = '436';
+        func-mem-ref-line = '480';
         func-mem-ref-name = 'skn_strip';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        func-mem-ref-line = '1050';
+        func-mem-ref-line = '1094';
         func-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a866cf7e5524cc49a76448c59395a622e';
-        func-mem-ref-line = '825';
+        func-mem-ref-line = '869';
         func-mem-ref-name = 'service_registry_valiadate_response_format';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1aae9b1fb439eead75521f80120886867e';
-        func-mem-ref-line = '845';
+        func-mem-ref-line = '889';
         func-mem-ref-name = 'service_registry_valiadated_registry';
     };
     }; /* func-member */
@@ -18135,7 +18135,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'msg';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.c';
-      func-mem-desc-line = '79';
+      func-mem-desc-line = '78';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -18179,7 +18179,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'delay_time';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.c';
-      func-mem-desc-line = '97';
+      func-mem-desc-line = '96';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -18212,11 +18212,54 @@ uid_t
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'skn_get_userids';
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.c';
-      func-mem-desc-line = '108';
+      func-mem-desc-line = '152';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
+DELAY FOR # uS WITHOUT SLEEPING
+Ref: http://www.raspberry-projects.com/pi/programming-in-c/timing/clock_gettime-for-acurate-timing
+
+Using delayMicroseconds lets the linux scheduler decide to jump to another process.  Using this function avoids letting the
+scheduler know we are pausing and provides much faster operation if you are needing to use lots of delays.
+
+Fixup incase your building on for OSX, which does not implement clock_gettime()
+
+ #ifdef <strong>MACH</strong>
+ #include <sys/time.h>
+ #define CLOCK_REALTIME 0
+
+@verbatim
+  clock_gettime is not implemented on OSX *
+@endverbatim
+ int clock_gettime(int clk_id, struct timespec* t) {
+     struct timeval now;
+     int rv = gettimeofday(&now, NULL);
+     if (rv) return rv;
+     t->tv_sec  = now.tv_sec;
+     t->tv_nsec = now.tv_usec * 1000;
+     return 0;
+ }
+ #endif
+
+ void skn_delay_microseconds (int delay_us)
+ {
+     long int start_time;
+     long int time_difference;
+     struct timespec gettime_now;
+
+     clock_gettime(CLOCK_REALTIME, &gettime_now);
+     start_time = gettime_now.tv_nsec;       //Get nS value
+     while (1)
+     {
+         clock_gettime(CLOCK_REALTIME, &gettime_now);
+         time_difference = gettime_now.tv_nsec - start_time;
+         if (time_difference < 0)
+             time_difference += 1000000000;              //(Rolls over every 1 second)
+         if (time_difference > (delay_us * 1000))        //Delay for # nS
+             break;
+     }
+ }
 Setup effective and real userid
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
@@ -18240,7 +18283,7 @@ void
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'signals_init';
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.c';
-      func-mem-desc-line = '135';
+      func-mem-desc-line = '179';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -18249,7 +18292,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a49f6d3bb9d22d5b9cf5c7eb6175318d1';
-        func-mem-ref-line = '130';
+        func-mem-ref-line = '174';
         func-mem-ref-name = 'exit_handler';
     };
       func-mem-referenceby = {
@@ -18274,7 +18317,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'sig';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.c';
-      func-mem-desc-line = '141';
+      func-mem-desc-line = '185';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -18319,7 +18362,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'ipv4';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.c';
-      func-mem-desc-line = '152';
+      func-mem-desc-line = '196';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -18338,7 +18381,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a0b4821586a5c3d59096cb20dc6b28b2a';
-        func-mem-ref-line = '170';
+        func-mem-ref-line = '214';
         func-mem-ref-name = 'get_broadcast_ip_array';
     };
       func-mem-referenceto = {
@@ -18383,7 +18426,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'paB';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.c';
-      func-mem-desc-line = '170';
+      func-mem-desc-line = '214';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -18426,7 +18469,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a6d284e9250411e031cfa4ecb19583696';
-        func-mem-ref-line = '231';
+        func-mem-ref-line = '275';
         func-mem-ref-name = 'get_default_interface_name';
     };
       func-mem-referenceto = {
@@ -18461,17 +18504,17 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a96bf395b914c5182e438800248d6e8f3';
-        func-mem-ref-line = '152';
+        func-mem-ref-line = '196';
         func-mem-ref-name = 'get_default_interface_name_and_ipv4_address';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        func-mem-ref-line = '1050';
+        func-mem-ref-line = '1094';
         func-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ad148412119d5d8373da1a6859aafda41';
-        func-mem-ref-line = '648';
+        func-mem-ref-line = '692';
         func-mem-ref-name = 'service_registry_provider';
     };
       func-mem-referenceby = {
@@ -18496,7 +18539,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'pchDefaultInterfaceName';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.c';
-      func-mem-desc-line = '231';
+      func-mem-desc-line = '275';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -18522,7 +18565,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a925d0a1de13d0d0178e52f0d6be4b97f';
-        func-mem-ref-line = '436';
+        func-mem-ref-line = '480';
         func-mem-ref-name = 'skn_strip';
     };
       func-mem-referenceto = {
@@ -18532,7 +18575,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a0b4821586a5c3d59096cb20dc6b28b2a';
-        func-mem-ref-line = '170';
+        func-mem-ref-line = '214';
         func-mem-ref-name = 'get_broadcast_ip_array';
     };
     }; /* func-member */
@@ -18558,7 +18601,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'argv';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.c';
-      func-mem-desc-line = '329';
+      func-mem-desc-line = '373';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -18622,7 +18665,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1aabf69b42c470c2372e0854132e22cc70';
-        func-mem-ref-line = '287';
+        func-mem-ref-line = '331';
         func-mem-ref-name = 'skn_locator_print_usage';
     };
       func-mem-referenceby = {
@@ -18653,7 +18696,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'desc';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.c';
-      func-mem-desc-line = '418';
+      func-mem-desc-line = '462';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -18707,7 +18750,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'alpha';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.c';
-      func-mem-desc-line = '436';
+      func-mem-desc-line = '480';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -18727,17 +18770,17 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a6d284e9250411e031cfa4ecb19583696';
-        func-mem-ref-line = '231';
+        func-mem-ref-line = '275';
         func-mem-ref-name = 'get_default_interface_name';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ae671be512539874689abbab598f9f65a';
-        func-mem-ref-line = '949';
+        func-mem-ref-line = '993';
         func-mem-ref-name = 'service_registry_entry_create_helper';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a25149d495d462b7600eb6715da868200';
-        func-mem-ref-line = '987';
+        func-mem-ref-line = '1031';
         func-mem-ref-name = 'service_registry_response_parse';
     };
     }; /* func-member */
@@ -18763,7 +18806,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'rcvTimeout';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.c';
-      func-mem-desc-line = '483';
+      func-mem-desc-line = '527';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -18811,7 +18854,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'rcvTimeout';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.c';
-      func-mem-desc-line = '524';
+      func-mem-desc-line = '568';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -18865,7 +18908,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'request';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.c';
-      func-mem-desc-line = '559';
+      func-mem-desc-line = '603';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -18925,7 +18968,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'pend';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.c';
-      func-mem-desc-line = '578';
+      func-mem-desc-line = '622';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -18935,12 +18978,12 @@ skn_duration_in_microseconds()
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        func-mem-ref-line = '1050';
+        func-mem-ref-line = '1094';
         func-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ad8304e97f9bccee1cd899a61b91ae677';
-        func-mem-ref-line = '601';
+        func-mem-ref-line = '645';
         func-mem-ref-name = 'skn_udp_service_request';
     };
     }; /* func-member */
@@ -18960,7 +19003,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'psr';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.c';
-      func-mem-desc-line = '601';
+      func-mem-desc-line = '645';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -19022,7 +19065,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ad7f2202ecfe8bb131545b23ea3c26e91';
-        func-mem-ref-line = '578';
+        func-mem-ref-line = '622';
         func-mem-ref-name = 'skn_duration_in_milliseconds';
     };
       func-mem-referenceto = {
@@ -19063,7 +19106,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'response';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.c';
-      func-mem-desc-line = '648';
+      func-mem-desc-line = '692';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -19092,7 +19135,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a0b4821586a5c3d59096cb20dc6b28b2a';
-        func-mem-ref-line = '170';
+        func-mem-ref-line = '214';
         func-mem-ref-name = 'get_broadcast_ip_array';
     };
       func-mem-referenceto = {
@@ -19132,12 +19175,12 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ad0e63e9d3365fb8818a5ca21179abb3e';
-        func-mem-ref-line = '863';
+        func-mem-ref-line = '907';
         func-mem-ref-name = 'service_registry_entry_response_message_log';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a866cf7e5524cc49a76448c59395a622e';
-        func-mem-ref-line = '825';
+        func-mem-ref-line = '869';
         func-mem-ref-name = 'service_registry_valiadate_response_format';
     };
       func-mem-referenceto = {
@@ -19187,7 +19230,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'response';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.c';
-      func-mem-desc-line = '825';
+      func-mem-desc-line = '869';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -19199,17 +19242,17 @@ service_registry_valiadate_response_format()
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1afb305f4b4db81aad61bd5e4e6ecaf6fd';
-        func-mem-ref-line = '753';
+        func-mem-ref-line = '797';
         func-mem-ref-name = 'service_registry_create';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a819c12fc7c8ff576b1aaad69bc098840';
-        func-mem-ref-line = '1115';
+        func-mem-ref-line = '1159';
         func-mem-ref-name = 'service_registry_destroy';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a25149d495d462b7600eb6715da868200';
-        func-mem-ref-line = '987';
+        func-mem-ref-line = '1031';
         func-mem-ref-name = 'service_registry_response_parse';
     };
       func-mem-referenceby = {
@@ -19219,7 +19262,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ad148412119d5d8373da1a6859aafda41';
-        func-mem-ref-line = '648';
+        func-mem-ref-line = '692';
         func-mem-ref-name = 'service_registry_provider';
     };
     }; /* func-member */
@@ -19239,7 +19282,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'response';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.c';
-      func-mem-desc-line = '845';
+      func-mem-desc-line = '889';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -19251,12 +19294,12 @@ service_registry_valiadated_registry()
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1afb305f4b4db81aad61bd5e4e6ecaf6fd';
-        func-mem-ref-line = '753';
+        func-mem-ref-line = '797';
         func-mem-ref-name = 'service_registry_create';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a25149d495d462b7600eb6715da868200';
-        func-mem-ref-line = '987';
+        func-mem-ref-line = '1031';
         func-mem-ref-name = 'service_registry_response_parse';
     };
     }; /* func-member */
@@ -19276,7 +19319,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'response';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.c';
-      func-mem-desc-line = '863';
+      func-mem-desc-line = '907';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -19297,7 +19340,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ad148412119d5d8373da1a6859aafda41';
-        func-mem-ref-line = '648';
+        func-mem-ref-line = '692';
         func-mem-ref-name = 'service_registry_provider';
     };
     }; /* func-member */
@@ -19323,7 +19366,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'serviceName';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.c';
-      func-mem-desc-line = '882';
+      func-mem-desc-line = '926';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -19350,7 +19393,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a5e51f7d19b5d689be44036a57e056e7a';
-        func-mem-ref-line = '773';
+        func-mem-ref-line = '817';
         func-mem-ref-name = 'service_registry_entry_create';
     };
     }; /* func-member */
@@ -19370,7 +19413,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'psr';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.c';
-      func-mem-desc-line = '903';
+      func-mem-desc-line = '947';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -19404,7 +19447,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'psr';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.c';
-      func-mem-desc-line = '910';
+      func-mem-desc-line = '954';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -19469,7 +19512,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'field';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.c';
-      func-mem-desc-line = '925';
+      func-mem-desc-line = '969';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -19501,7 +19544,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'request';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.c';
-      func-mem-desc-line = '1050';
+      func-mem-desc-line = '1094';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -19545,7 +19588,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a0b4821586a5c3d59096cb20dc6b28b2a';
-        func-mem-ref-line = '170';
+        func-mem-ref-line = '214';
         func-mem-ref-name = 'get_broadcast_ip_array';
     };
       func-mem-referenceto = {
@@ -19590,17 +19633,17 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1afb305f4b4db81aad61bd5e4e6ecaf6fd';
-        func-mem-ref-line = '753';
+        func-mem-ref-line = '797';
         func-mem-ref-name = 'service_registry_create';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a25149d495d462b7600eb6715da868200';
-        func-mem-ref-line = '987';
+        func-mem-ref-line = '1031';
         func-mem-ref-name = 'service_registry_response_parse';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ad7f2202ecfe8bb131545b23ea3c26e91';
-        func-mem-ref-line = '578';
+        func-mem-ref-line = '622';
         func-mem-ref-name = 'skn_duration_in_milliseconds';
     };
       func-mem-referenceto = {
@@ -19645,7 +19688,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'psreg';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.c';
-      func-mem-desc-line = '1115';
+      func-mem-desc-line = '1159';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -19670,7 +19713,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a866cf7e5524cc49a76448c59395a622e';
-        func-mem-ref-line = '825';
+        func-mem-ref-line = '869';
         func-mem-ref-name = 'service_registry_valiadate_response_format';
     };
     }; /* func-member */
@@ -19698,7 +19741,7 @@ sknNetworkHelpers.c
 _EnD_oF_dEf_TeXt_;
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a49f6d3bb9d22d5b9cf5c7eb6175318d1';
-        var-mem-ref-line = '130';
+        var-mem-ref-line = '174';
         var-mem-ref-name = 'exit_handler';
     };
       var-mem-referenceby = {
@@ -19708,17 +19751,17 @@ _EnD_oF_dEf_TeXt_;
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        var-mem-ref-line = '1050';
+        var-mem-ref-line = '1094';
         var-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1ad148412119d5d8373da1a6859aafda41';
-        var-mem-ref-line = '648';
+        var-mem-ref-line = '692';
         var-mem-ref-name = 'service_registry_provider';
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1ac256e2066453ab0ff82322aa24b161df';
-        var-mem-ref-line = '141';
+        var-mem-ref-line = '185';
         var-mem-ref-name = 'signals_cleanup';
     };
       var-mem-referenceby = {
@@ -19779,7 +19822,7 @@ _EnD_oF_dEf_TeXt_;
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a665c441c1f789eb555b1c23ed43de890';
-        var-mem-ref-line = '329';
+        var-mem-ref-line = '373';
         var-mem-ref-name = 'skn_handle_locator_command_line';
     };
     }; /* var-member */
@@ -19810,7 +19853,7 @@ _EnD_oF_dEf_TeXt_;
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a665c441c1f789eb555b1c23ed43de890';
-        var-mem-ref-line = '329';
+        var-mem-ref-line = '373';
         var-mem-ref-name = 'skn_handle_locator_command_line';
     };
     }; /* var-member */
@@ -19848,17 +19891,17 @@ _EnD_oF_dEf_TeXt_;
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a665c441c1f789eb555b1c23ed43de890';
-        var-mem-ref-line = '329';
+        var-mem-ref-line = '373';
         var-mem-ref-name = 'skn_handle_locator_command_line';
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1aabf69b42c470c2372e0854132e22cc70';
-        var-mem-ref-line = '287';
+        var-mem-ref-line = '331';
         var-mem-ref-name = 'skn_locator_print_usage';
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1ac2672efa5ece276743c6558dfe82d01a';
-        var-mem-ref-line = '418';
+        var-mem-ref-line = '462';
         var-mem-ref-name = 'skn_program_name_and_description_set';
     };
     }; /* var-member */
@@ -19886,12 +19929,12 @@ _EnD_oF_dEf_TeXt_;
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1aabf69b42c470c2372e0854132e22cc70';
-        var-mem-ref-line = '287';
+        var-mem-ref-line = '331';
         var-mem-ref-name = 'skn_locator_print_usage';
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1ac2672efa5ece276743c6558dfe82d01a';
-        var-mem-ref-line = '418';
+        var-mem-ref-line = '462';
         var-mem-ref-name = 'skn_program_name_and_description_set';
     };
     }; /* var-member */
@@ -19922,7 +19965,7 @@ _EnD_oF_dEf_TeXt_;
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a63e61152e590620edc7757d782c60a79';
-        var-mem-ref-line = '108';
+        var-mem-ref-line = '152';
         var-mem-ref-name = 'skn_get_userids';
     };
     }; /* var-member */
@@ -19974,12 +20017,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1ad148412119d5d8373da1a6859aafda41';
-        var-mem-ref-line = '648';
+        var-mem-ref-line = '692';
         var-mem-ref-name = 'service_registry_provider';
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a665c441c1f789eb555b1c23ed43de890';
-        var-mem-ref-line = '329';
+        var-mem-ref-line = '373';
         var-mem-ref-name = 'skn_handle_locator_command_line';
     };
     }; /* var-member */
@@ -20010,7 +20053,7 @@ _EnD_oF_dEf_TeXt_;
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a665c441c1f789eb555b1c23ed43de890';
-        var-mem-ref-line = '329';
+        var-mem-ref-line = '373';
         var-mem-ref-name = 'skn_handle_locator_command_line';
     };
     }; /* var-member */
@@ -20036,12 +20079,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a5e51f7d19b5d689be44036a57e056e7a';
-        var-mem-ref-line = '773';
+        var-mem-ref-line = '817';
         var-mem-ref-name = 'service_registry_entry_create';
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a665c441c1f789eb555b1c23ed43de890';
-        var-mem-ref-line = '329';
+        var-mem-ref-line = '373';
         var-mem-ref-name = 'skn_handle_locator_command_line';
     };
     }; /* var-member */
@@ -20074,7 +20117,7 @@ _EnD_oF_dEf_TeXt_;
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        var-mem-ref-line = '1050';
+        var-mem-ref-line = '1094';
         var-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
     }; /* var-member */
@@ -20107,7 +20150,7 @@ _EnD_oF_dEf_TeXt_;
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        var-mem-ref-line = '1050';
+        var-mem-ref-line = '1094';
         var-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
     }; /* var-member */
@@ -20130,7 +20173,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1ac2672efa5ece276743c6558dfe82d01a';
-        var-mem-ref-line = '418';
+        var-mem-ref-line = '462';
         var-mem-ref-name = 'skn_program_name_and_description_set';
     };
     }; /* var-member */
@@ -20153,7 +20196,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1ac2672efa5ece276743c6558dfe82d01a';
-        var-mem-ref-line = '418';
+        var-mem-ref-line = '462';
         var-mem-ref-name = 'skn_program_name_and_description_set';
     };
     }; /* var-member */
@@ -20181,12 +20224,12 @@ _EnD_oF_dEf_TeXt_;
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1ad148412119d5d8373da1a6859aafda41';
-        var-mem-ref-line = '648';
+        var-mem-ref-line = '692';
         var-mem-ref-name = 'service_registry_provider';
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a665c441c1f789eb555b1c23ed43de890';
-        var-mem-ref-line = '329';
+        var-mem-ref-line = '373';
         var-mem-ref-name = 'skn_handle_locator_command_line';
     };
     }; /* var-member */
@@ -20237,7 +20280,7 @@ _EnD_oF_dEf_TeXt_;
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a665c441c1f789eb555b1c23ed43de890';
-        var-mem-ref-line = '329';
+        var-mem-ref-line = '373';
         var-mem-ref-name = 'skn_handle_locator_command_line';
     };
     }; /* var-member */
@@ -20452,12 +20495,12 @@ skn_duration_in_microseconds()
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        func-mem-ref-line = '1050';
+        func-mem-ref-line = '1094';
         func-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ad8304e97f9bccee1cd899a61b91ae677';
-        func-mem-ref-line = '601';
+        func-mem-ref-line = '645';
         func-mem-ref-name = 'skn_udp_service_request';
     };
     }; /* func-member */
@@ -20607,7 +20650,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1aabf69b42c470c2372e0854132e22cc70';
-        func-mem-ref-line = '287';
+        func-mem-ref-line = '331';
         func-mem-ref-name = 'skn_locator_print_usage';
     };
       func-mem-referenceby = {
@@ -20671,7 +20714,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'alpha';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.h';
-      func-mem-desc-line = '49';
+      func-mem-desc-line = '50';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -20691,17 +20734,17 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a6d284e9250411e031cfa4ecb19583696';
-        func-mem-ref-line = '231';
+        func-mem-ref-line = '275';
         func-mem-ref-name = 'get_default_interface_name';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ae671be512539874689abbab598f9f65a';
-        func-mem-ref-line = '949';
+        func-mem-ref-line = '993';
         func-mem-ref-name = 'service_registry_entry_create_helper';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a25149d495d462b7600eb6715da868200';
-        func-mem-ref-line = '987';
+        func-mem-ref-line = '1031';
         func-mem-ref-name = 'service_registry_response_parse';
     };
     }; /* func-member */
@@ -20715,11 +20758,54 @@ uid_t
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'skn_get_userids';
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.h';
-      func-mem-desc-line = '50';
+      func-mem-desc-line = '51';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
+DELAY FOR # uS WITHOUT SLEEPING
+Ref: http://www.raspberry-projects.com/pi/programming-in-c/timing/clock_gettime-for-acurate-timing
+
+Using delayMicroseconds lets the linux scheduler decide to jump to another process.  Using this function avoids letting the
+scheduler know we are pausing and provides much faster operation if you are needing to use lots of delays.
+
+Fixup incase your building on for OSX, which does not implement clock_gettime()
+
+ #ifdef <strong>MACH</strong>
+ #include <sys/time.h>
+ #define CLOCK_REALTIME 0
+
+@verbatim
+  clock_gettime is not implemented on OSX *
+@endverbatim
+ int clock_gettime(int clk_id, struct timespec* t) {
+     struct timeval now;
+     int rv = gettimeofday(&now, NULL);
+     if (rv) return rv;
+     t->tv_sec  = now.tv_sec;
+     t->tv_nsec = now.tv_usec * 1000;
+     return 0;
+ }
+ #endif
+
+ void skn_delay_microseconds (int delay_us)
+ {
+     long int start_time;
+     long int time_difference;
+     struct timespec gettime_now;
+
+     clock_gettime(CLOCK_REALTIME, &gettime_now);
+     start_time = gettime_now.tv_nsec;       //Get nS value
+     while (1)
+     {
+         clock_gettime(CLOCK_REALTIME, &gettime_now);
+         time_difference = gettime_now.tv_nsec - start_time;
+         if (time_difference < 0)
+             time_difference += 1000000000;              //(Rolls over every 1 second)
+         if (time_difference > (delay_us * 1000))        //Delay for # nS
+             break;
+     }
+ }
 Setup effective and real userid
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
@@ -20743,7 +20829,7 @@ void
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'signals_init';
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.h';
-      func-mem-desc-line = '52';
+      func-mem-desc-line = '53';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -20752,7 +20838,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a49f6d3bb9d22d5b9cf5c7eb6175318d1';
-        func-mem-ref-line = '130';
+        func-mem-ref-line = '174';
         func-mem-ref-name = 'exit_handler';
     };
       func-mem-referenceby = {
@@ -20777,7 +20863,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'sig';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.h';
-      func-mem-desc-line = '53';
+      func-mem-desc-line = '54';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -20822,7 +20908,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'rcvTimeout';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.h';
-      func-mem-desc-line = '58';
+      func-mem-desc-line = '59';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -20870,7 +20956,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'rcvTimeout';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.h';
-      func-mem-desc-line = '59';
+      func-mem-desc-line = '60';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -20924,7 +21010,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'request';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.h';
-      func-mem-desc-line = '60';
+      func-mem-desc-line = '61';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -20978,7 +21064,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'psr';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.h';
-      func-mem-desc-line = '61';
+      func-mem-desc-line = '62';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -21040,7 +21126,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ad7f2202ecfe8bb131545b23ea3c26e91';
-        func-mem-ref-line = '578';
+        func-mem-ref-line = '622';
         func-mem-ref-name = 'skn_duration_in_milliseconds';
     };
       func-mem-referenceto = {
@@ -21075,7 +21161,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'pdm';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.h';
-      func-mem-desc-line = '62';
+      func-mem-desc-line = '63';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -21120,7 +21206,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a25427bc0b7f087d1135c92dd3704f210';
-        func-mem-ref-line = '483';
+        func-mem-ref-line = '527';
         func-mem-ref-name = 'skn_udp_host_create_regular_socket';
     };
       func-mem-referenceby = {
@@ -21145,7 +21231,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'pdm';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.h';
-      func-mem-desc-line = '63';
+      func-mem-desc-line = '64';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -21199,7 +21285,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'pchDefaultInterfaceName';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.h';
-      func-mem-desc-line = '65';
+      func-mem-desc-line = '66';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -21225,7 +21311,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a925d0a1de13d0d0178e52f0d6be4b97f';
-        func-mem-ref-line = '436';
+        func-mem-ref-line = '480';
         func-mem-ref-name = 'skn_strip';
     };
       func-mem-referenceto = {
@@ -21235,7 +21321,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a0b4821586a5c3d59096cb20dc6b28b2a';
-        func-mem-ref-line = '170';
+        func-mem-ref-line = '214';
         func-mem-ref-name = 'get_broadcast_ip_array';
     };
     }; /* func-member */
@@ -21255,7 +21341,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'paB';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.h';
-      func-mem-desc-line = '66';
+      func-mem-desc-line = '67';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -21298,7 +21384,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a6d284e9250411e031cfa4ecb19583696';
-        func-mem-ref-line = '231';
+        func-mem-ref-line = '275';
         func-mem-ref-name = 'get_default_interface_name';
     };
       func-mem-referenceto = {
@@ -21333,17 +21419,17 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a96bf395b914c5182e438800248d6e8f3';
-        func-mem-ref-line = '152';
+        func-mem-ref-line = '196';
         func-mem-ref-name = 'get_default_interface_name_and_ipv4_address';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        func-mem-ref-line = '1050';
+        func-mem-ref-line = '1094';
         func-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ad148412119d5d8373da1a6859aafda41';
-        func-mem-ref-line = '648';
+        func-mem-ref-line = '692';
         func-mem-ref-name = 'service_registry_provider';
     };
       func-mem-referenceby = {
@@ -21368,7 +21454,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'response';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.h';
-      func-mem-desc-line = '67';
+      func-mem-desc-line = '68';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -21389,7 +21475,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ad148412119d5d8373da1a6859aafda41';
-        func-mem-ref-line = '648';
+        func-mem-ref-line = '692';
         func-mem-ref-name = 'service_registry_provider';
     };
     }; /* func-member */
@@ -21415,7 +21501,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'ipv4';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.h';
-      func-mem-desc-line = '68';
+      func-mem-desc-line = '69';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -21434,7 +21520,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a0b4821586a5c3d59096cb20dc6b28b2a';
-        func-mem-ref-line = '170';
+        func-mem-ref-line = '214';
         func-mem-ref-name = 'get_broadcast_ip_array';
     };
       func-mem-referenceto = {
@@ -21479,7 +21565,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'response';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.h';
-      func-mem-desc-line = '73';
+      func-mem-desc-line = '74';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -21491,12 +21577,12 @@ service_registry_valiadated_registry()
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1afb305f4b4db81aad61bd5e4e6ecaf6fd';
-        func-mem-ref-line = '753';
+        func-mem-ref-line = '797';
         func-mem-ref-name = 'service_registry_create';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a25149d495d462b7600eb6715da868200';
-        func-mem-ref-line = '987';
+        func-mem-ref-line = '1031';
         func-mem-ref-name = 'service_registry_response_parse';
     };
     }; /* func-member */
@@ -21516,7 +21602,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'response';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.h';
-      func-mem-desc-line = '74';
+      func-mem-desc-line = '75';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -21528,17 +21614,17 @@ service_registry_valiadate_response_format()
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1afb305f4b4db81aad61bd5e4e6ecaf6fd';
-        func-mem-ref-line = '753';
+        func-mem-ref-line = '797';
         func-mem-ref-name = 'service_registry_create';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a819c12fc7c8ff576b1aaad69bc098840';
-        func-mem-ref-line = '1115';
+        func-mem-ref-line = '1159';
         func-mem-ref-name = 'service_registry_destroy';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a25149d495d462b7600eb6715da868200';
-        func-mem-ref-line = '987';
+        func-mem-ref-line = '1031';
         func-mem-ref-name = 'service_registry_response_parse';
     };
       func-mem-referenceby = {
@@ -21548,7 +21634,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ad148412119d5d8373da1a6859aafda41';
-        func-mem-ref-line = '648';
+        func-mem-ref-line = '692';
         func-mem-ref-name = 'service_registry_provider';
     };
     }; /* func-member */
@@ -21574,7 +21660,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'response';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.h';
-      func-mem-desc-line = '75';
+      func-mem-desc-line = '76';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -21603,7 +21689,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a0b4821586a5c3d59096cb20dc6b28b2a';
-        func-mem-ref-line = '170';
+        func-mem-ref-line = '214';
         func-mem-ref-name = 'get_broadcast_ip_array';
     };
       func-mem-referenceto = {
@@ -21643,12 +21729,12 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ad0e63e9d3365fb8818a5ca21179abb3e';
-        func-mem-ref-line = '863';
+        func-mem-ref-line = '907';
         func-mem-ref-name = 'service_registry_entry_response_message_log';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a866cf7e5524cc49a76448c59395a622e';
-        func-mem-ref-line = '825';
+        func-mem-ref-line = '869';
         func-mem-ref-name = 'service_registry_valiadate_response_format';
     };
       func-mem-referenceto = {
@@ -21704,7 +21790,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'request';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.h';
-      func-mem-desc-line = '76';
+      func-mem-desc-line = '77';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -21748,7 +21834,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a0b4821586a5c3d59096cb20dc6b28b2a';
-        func-mem-ref-line = '170';
+        func-mem-ref-line = '214';
         func-mem-ref-name = 'get_broadcast_ip_array';
     };
       func-mem-referenceto = {
@@ -21793,17 +21879,17 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1afb305f4b4db81aad61bd5e4e6ecaf6fd';
-        func-mem-ref-line = '753';
+        func-mem-ref-line = '797';
         func-mem-ref-name = 'service_registry_create';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a25149d495d462b7600eb6715da868200';
-        func-mem-ref-line = '987';
+        func-mem-ref-line = '1031';
         func-mem-ref-name = 'service_registry_response_parse';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ad7f2202ecfe8bb131545b23ea3c26e91';
-        func-mem-ref-line = '578';
+        func-mem-ref-line = '622';
         func-mem-ref-name = 'skn_duration_in_milliseconds';
     };
       func-mem-referenceto = {
@@ -21848,7 +21934,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'psr';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.h';
-      func-mem-desc-line = '77';
+      func-mem-desc-line = '78';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -21882,7 +21968,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'psr';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.h';
-      func-mem-desc-line = '78';
+      func-mem-desc-line = '79';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -21947,7 +22033,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'serviceName';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.h';
-      func-mem-desc-line = '79';
+      func-mem-desc-line = '80';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -21974,7 +22060,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a5e51f7d19b5d689be44036a57e056e7a';
-        func-mem-ref-line = '773';
+        func-mem-ref-line = '817';
         func-mem-ref-name = 'service_registry_entry_create';
     };
     }; /* func-member */
@@ -22000,7 +22086,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'field';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.h';
-      func-mem-desc-line = '80';
+      func-mem-desc-line = '81';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -22026,7 +22112,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'psreg';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/Users/jscott/masterWork/skn_rpi-display-services/src/skn_network_helpers.h';
-      func-mem-desc-line = '81';
+      func-mem-desc-line = '82';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -22051,7 +22137,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a866cf7e5524cc49a76448c59395a622e';
-        func-mem-ref-line = '825';
+        func-mem-ref-line = '869';
         func-mem-ref-name = 'service_registry_valiadate_response_format';
     };
     }; /* func-member */
@@ -22078,7 +22164,7 @@ sknNetworkHelpers.c
 _EnD_oF_dEf_TeXt_;
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a49f6d3bb9d22d5b9cf5c7eb6175318d1';
-        var-mem-ref-line = '130';
+        var-mem-ref-line = '174';
         var-mem-ref-name = 'exit_handler';
     };
       var-mem-referenceby = {
@@ -22088,17 +22174,17 @@ _EnD_oF_dEf_TeXt_;
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        var-mem-ref-line = '1050';
+        var-mem-ref-line = '1094';
         var-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1ad148412119d5d8373da1a6859aafda41';
-        var-mem-ref-line = '648';
+        var-mem-ref-line = '692';
         var-mem-ref-name = 'service_registry_provider';
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1ac256e2066453ab0ff82322aa24b161df';
-        var-mem-ref-line = '141';
+        var-mem-ref-line = '185';
         var-mem-ref-name = 'signals_cleanup';
     };
       var-mem-referenceby = {
@@ -22156,7 +22242,7 @@ _EnD_oF_dEf_TeXt_;
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a665c441c1f789eb555b1c23ed43de890';
-        var-mem-ref-line = '329';
+        var-mem-ref-line = '373';
         var-mem-ref-name = 'skn_handle_locator_command_line';
     };
     }; /* var-member */
@@ -22184,7 +22270,7 @@ _EnD_oF_dEf_TeXt_;
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a665c441c1f789eb555b1c23ed43de890';
-        var-mem-ref-line = '329';
+        var-mem-ref-line = '373';
         var-mem-ref-name = 'skn_handle_locator_command_line';
     };
     }; /* var-member */
@@ -22245,17 +22331,17 @@ _EnD_oF_dEf_TeXt_;
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a665c441c1f789eb555b1c23ed43de890';
-        var-mem-ref-line = '329';
+        var-mem-ref-line = '373';
         var-mem-ref-name = 'skn_handle_locator_command_line';
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1aabf69b42c470c2372e0854132e22cc70';
-        var-mem-ref-line = '287';
+        var-mem-ref-line = '331';
         var-mem-ref-name = 'skn_locator_print_usage';
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1ac2672efa5ece276743c6558dfe82d01a';
-        var-mem-ref-line = '418';
+        var-mem-ref-line = '462';
         var-mem-ref-name = 'skn_program_name_and_description_set';
     };
     }; /* var-member */
@@ -22283,12 +22369,12 @@ _EnD_oF_dEf_TeXt_;
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1aabf69b42c470c2372e0854132e22cc70';
-        var-mem-ref-line = '287';
+        var-mem-ref-line = '331';
         var-mem-ref-name = 'skn_locator_print_usage';
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1ac2672efa5ece276743c6558dfe82d01a';
-        var-mem-ref-line = '418';
+        var-mem-ref-line = '462';
         var-mem-ref-name = 'skn_program_name_and_description_set';
     };
     }; /* var-member */
@@ -22316,7 +22402,7 @@ _EnD_oF_dEf_TeXt_;
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a63e61152e590620edc7757d782c60a79';
-        var-mem-ref-line = '108';
+        var-mem-ref-line = '152';
         var-mem-ref-name = 'skn_get_userids';
     };
     }; /* var-member */
@@ -22349,7 +22435,7 @@ _EnD_oF_dEf_TeXt_;
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        var-mem-ref-line = '1050';
+        var-mem-ref-line = '1094';
         var-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
     }; /* var-member */
@@ -22382,7 +22468,7 @@ _EnD_oF_dEf_TeXt_;
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        var-mem-ref-line = '1050';
+        var-mem-ref-line = '1094';
         var-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
     }; /* var-member */
@@ -22405,7 +22491,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1ac2672efa5ece276743c6558dfe82d01a';
-        var-mem-ref-line = '418';
+        var-mem-ref-line = '462';
         var-mem-ref-name = 'skn_program_name_and_description_set';
     };
     }; /* var-member */
@@ -22428,7 +22514,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1ac2672efa5ece276743c6558dfe82d01a';
-        var-mem-ref-line = '418';
+        var-mem-ref-line = '462';
         var-mem-ref-name = 'skn_program_name_and_description_set';
     };
     }; /* var-member */
@@ -22451,12 +22537,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1ad148412119d5d8373da1a6859aafda41';
-        var-mem-ref-line = '648';
+        var-mem-ref-line = '692';
         var-mem-ref-name = 'service_registry_provider';
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a665c441c1f789eb555b1c23ed43de890';
-        var-mem-ref-line = '329';
+        var-mem-ref-line = '373';
         var-mem-ref-name = 'skn_handle_locator_command_line';
     };
     }; /* var-member */
@@ -22479,12 +22565,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a5e51f7d19b5d689be44036a57e056e7a';
-        var-mem-ref-line = '773';
+        var-mem-ref-line = '817';
         var-mem-ref-name = 'service_registry_entry_create';
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a665c441c1f789eb555b1c23ed43de890';
-        var-mem-ref-line = '329';
+        var-mem-ref-line = '373';
         var-mem-ref-name = 'skn_handle_locator_command_line';
     };
     }; /* var-member */
@@ -22512,7 +22598,7 @@ _EnD_oF_dEf_TeXt_;
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a665c441c1f789eb555b1c23ed43de890';
-        var-mem-ref-line = '329';
+        var-mem-ref-line = '373';
         var-mem-ref-name = 'skn_handle_locator_command_line';
     };
     }; /* var-member */
@@ -22540,12 +22626,12 @@ _EnD_oF_dEf_TeXt_;
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1ad148412119d5d8373da1a6859aafda41';
-        var-mem-ref-line = '648';
+        var-mem-ref-line = '692';
         var-mem-ref-name = 'service_registry_provider';
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a665c441c1f789eb555b1c23ed43de890';
-        var-mem-ref-line = '329';
+        var-mem-ref-line = '373';
         var-mem-ref-name = 'skn_handle_locator_command_line';
     };
     }; /* var-member */
@@ -22815,7 +22901,7 @@ skn_display_manager_message_consumer_thread(PDisplayManager pdm)
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a0b4821586a5c3d59096cb20dc6b28b2a';
-        func-mem-ref-line = '170';
+        func-mem-ref-line = '214';
         func-mem-ref-name = 'get_broadcast_ip_array';
     };
       func-mem-referenceto = {
@@ -22860,7 +22946,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a802d742c15476782fbbea1528f76dea5';
-        func-mem-ref-line = '97';
+        func-mem-ref-line = '96';
         func-mem-ref-name = 'skn_time_delay';
     };
       func-mem-referenceto = {
@@ -23981,7 +24067,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a802d742c15476782fbbea1528f76dea5';
-        func-mem-ref-line = '97';
+        func-mem-ref-line = '96';
         func-mem-ref-name = 'skn_time_delay';
     };
       func-mem-referenceby = {
@@ -24173,7 +24259,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a8aa6a7a3ba2390cf536e26c6cd2aa840';
-        func-mem-ref-line = '79';
+        func-mem-ref-line = '78';
         func-mem-ref-name = 'generate_datetime_info';
     };
       func-mem-referenceto = {
@@ -24278,7 +24364,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a802d742c15476782fbbea1528f76dea5';
-        func-mem-ref-line = '97';
+        func-mem-ref-line = '96';
         func-mem-ref-name = 'skn_time_delay';
     };
       func-mem-referenceto = {
@@ -24353,7 +24439,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a25427bc0b7f087d1135c92dd3704f210';
-        func-mem-ref-line = '483';
+        func-mem-ref-line = '527';
         func-mem-ref-name = 'skn_udp_host_create_regular_socket';
     };
       func-mem-referenceby = {
@@ -25233,7 +25319,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a8aa6a7a3ba2390cf536e26c6cd2aa840';
-        func-mem-ref-line = '79';
+        func-mem-ref-line = '78';
         func-mem-ref-name = 'generate_datetime_info';
     };
       func-mem-referenceto = {
@@ -25338,7 +25424,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a802d742c15476782fbbea1528f76dea5';
-        func-mem-ref-line = '97';
+        func-mem-ref-line = '96';
         func-mem-ref-name = 'skn_time_delay';
     };
       func-mem-referenceto = {
@@ -25530,7 +25616,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a802d742c15476782fbbea1528f76dea5';
-        func-mem-ref-line = '97';
+        func-mem-ref-line = '96';
         func-mem-ref-name = 'skn_time_delay';
     };
       func-mem-referenceby = {
@@ -26229,7 +26315,7 @@ _EnD_oF_dEf_TeXt_;
     };
       var-mem-referenceby = {
         var-mem-ref-id = 'skn__network__helpers_8c_1a665c441c1f789eb555b1c23ed43de890';
-        var-mem-ref-line = '329';
+        var-mem-ref-line = '373';
         var-mem-ref-name = 'skn_handle_locator_command_line';
     };
     }; /* var-member */
@@ -26660,52 +26746,52 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a819c12fc7c8ff576b1aaad69bc098840';
-        func-mem-ref-line = '1115';
+        func-mem-ref-line = '1159';
         func-mem-ref-name = 'service_registry_destroy';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a88465ff1322cb437fd3b7a1e036fd017';
-        func-mem-ref-line = '903';
+        func-mem-ref-line = '947';
         func-mem-ref-name = 'service_registry_entry_count';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ab5ed70a05f4e20dac13298ae16530069';
-        func-mem-ref-line = '882';
+        func-mem-ref-line = '926';
         func-mem-ref-name = 'service_registry_find_entry';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a8a291f1cb8d18e45a3e9b6bc9e3798a6';
-        func-mem-ref-line = '1050';
+        func-mem-ref-line = '1094';
         func-mem-ref-name = 'service_registry_get_via_udp_broadcast';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a16d6920592f2a64c9cab22cb26ef28e1';
-        func-mem-ref-line = '910';
+        func-mem-ref-line = '954';
         func-mem-ref-name = 'service_registry_list_entries';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ac256e2066453ab0ff82322aa24b161df';
-        func-mem-ref-line = '141';
+        func-mem-ref-line = '185';
         func-mem-ref-name = 'signals_cleanup';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a6af44fa0e0746d3d2a804fea1e84dacd';
-        func-mem-ref-line = '135';
+        func-mem-ref-line = '179';
         func-mem-ref-name = 'signals_init';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a665c441c1f789eb555b1c23ed43de890';
-        func-mem-ref-line = '329';
+        func-mem-ref-line = '373';
         func-mem-ref-name = 'skn_handle_locator_command_line';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ac2672efa5ece276743c6558dfe82d01a';
-        func-mem-ref-line = '418';
+        func-mem-ref-line = '462';
         func-mem-ref-name = 'skn_program_name_and_description_set';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a4f9f7e0f50cb3073d9c6e5a6a0d5240d';
-        func-mem-ref-line = '524';
+        func-mem-ref-line = '568';
         func-mem-ref-name = 'skn_udp_host_create_broadcast_socket';
     };
       func-mem-referenceto = {
@@ -26813,27 +26899,27 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ad0e63e9d3365fb8818a5ca21179abb3e';
-        func-mem-ref-line = '863';
+        func-mem-ref-line = '907';
         func-mem-ref-name = 'service_registry_entry_response_message_log';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ad148412119d5d8373da1a6859aafda41';
-        func-mem-ref-line = '648';
+        func-mem-ref-line = '692';
         func-mem-ref-name = 'service_registry_provider';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a866cf7e5524cc49a76448c59395a622e';
-        func-mem-ref-line = '825';
+        func-mem-ref-line = '869';
         func-mem-ref-name = 'service_registry_valiadate_response_format';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ac256e2066453ab0ff82322aa24b161df';
-        func-mem-ref-line = '141';
+        func-mem-ref-line = '185';
         func-mem-ref-name = 'signals_cleanup';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a6af44fa0e0746d3d2a804fea1e84dacd';
-        func-mem-ref-line = '135';
+        func-mem-ref-line = '179';
         func-mem-ref-name = 'signals_init';
     };
       func-mem-referenceto = {
@@ -26843,22 +26929,22 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a63e61152e590620edc7757d782c60a79';
-        func-mem-ref-line = '108';
+        func-mem-ref-line = '152';
         func-mem-ref-name = 'skn_get_userids';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a665c441c1f789eb555b1c23ed43de890';
-        func-mem-ref-line = '329';
+        func-mem-ref-line = '373';
         func-mem-ref-name = 'skn_handle_locator_command_line';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1ac2672efa5ece276743c6558dfe82d01a';
-        func-mem-ref-line = '418';
+        func-mem-ref-line = '462';
         func-mem-ref-name = 'skn_program_name_and_description_set';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'skn__network__helpers_8c_1a4f9f7e0f50cb3073d9c6e5a6a0d5240d';
-        func-mem-ref-line = '524';
+        func-mem-ref-line = '568';
         func-mem-ref-name = 'skn_udp_host_create_broadcast_socket';
     };
       func-mem-referenceto = {

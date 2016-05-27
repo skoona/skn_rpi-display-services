@@ -1,3 +1,364 @@
+commit bac58444c57ec3bd2c66efb4e9e450b9c87b94a5
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Sun May 15 22:06:58 2016 -0400
+
+    Removed all references to clock_gettime() and it doesnt seem to be present in Raspbian either.
+
+ src/skn_network_helpers.c | 59 ++++++++++++++++++++++++-----------------------
+ src/skn_network_helpers.h |  2 +-
+ 2 files changed, 31 insertions(+), 30 deletions(-)
+
+commit 939e995a15a7e53664a80595e5296abdf6e73aab
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Sun May 15 21:42:31 2016 -0400
+
+    Removed Degree Char until I can find the UTF8 value for same.
+
+ src/a2d_display_client.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit c8036ff07d4d2b076aa05e620a0feb440f78f755
+Merge: 9f87220 10aa624
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Sun May 15 21:21:52 2016 -0400
+
+    Merge branch 'master' of github.com:skoona/skn_rpi-display-services
+    
+    * 'master' of github.com:skoona/skn_rpi-display-services:
+      Minor Fix for alternate CPU temps.
+
+commit 9f87220e768c5259541624727ca1a0513661a461
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Sun May 15 21:21:33 2016 -0400
+
+    Added Advanced RaspberryPi Timer which uses clock_gettime() that OSX does not support.
+
+ src/skn_network_helpers.c | 44 ++++++++++++++++++++++++++++++++++++++++++++
+ src/skn_network_helpers.h |  1 +
+ 2 files changed, 45 insertions(+)
+
+commit 10aa6244566c81cea82a034b38174c137798dee9
+Author: skoona <skoona@gmail.com>
+Date:   Sat May 14 22:24:39 2016 -0400
+
+    Minor Fix for alternate CPU temps.
+
+ src/skn_rpi_helpers.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 6d4ebe37c02de081f44cff8e4c915bbddae14dc0
+Author: James Scott Jr <jscott@skoona.net>
+Date:   Sat May 14 21:29:35 2016 -0400
+
+    Release 0.6.1 with Updated Documentation.
+
+ ChangeLog                                          | 1635 ++++++++++++++++
+ README.md                                          |    8 +-
+ cmdDC/Makefile.am                                  |    3 +-
+ cmdDS/Makefile.am                                  |    3 +-
+ configure.ac                                       |   12 +-
+ doc/def/doxygen.def                                | 2035 ++++++++++----------
+ doc/html/Nodes.xml                                 |   32 +-
+ doc/html/Tokens.xml                                |   16 +-
+ doc/html/_makefile_8am.html                        |    8 +-
+ doc/html/_makefile_8am_source.html                 |   50 +-
+ doc/html/_r_e_a_d_m_e_8md.html                     |    8 +-
+ doc/html/_r_e_a_d_m_e_8md_source.html              |  214 +-
+ doc/html/a2d__display__client_8c.html              |  485 ++---
+ doc/html/a2d__display__client_8c.js                |    4 +-
+ ...c_a0d9c1f78de300df3a47682ad0145c74c_icgraph.md5 |    2 +-
+ ...8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph.md5 |    2 +-
+ ...8c_a11856a55dede9d8199ca0ad08d10d4b5_cgraph.map |    3 +
+ ...8c_a11856a55dede9d8199ca0ad08d10d4b5_cgraph.md5 |    1 +
+ ...8c_a11856a55dede9d8199ca0ad08d10d4b5_cgraph.png |  Bin 0 -> 4986 bytes
+ ...c_a11856a55dede9d8199ca0ad08d10d4b5_icgraph.map |    3 +
+ ...c_a11856a55dede9d8199ca0ad08d10d4b5_icgraph.md5 |    1 +
+ ...c_a11856a55dede9d8199ca0ad08d10d4b5_icgraph.png |  Bin 0 -> 3437 bytes
+ ...c_a7103c23f637c6c8710a0766e61a8e436_icgraph.md5 |    2 +-
+ ...c_a935f6a4b5fc20d0727532f09a2ab7ed7_icgraph.md5 |    2 +-
+ ...8c_aa3e4c4ec57381e265a116d7a874e22c6_cgraph.map |    5 +
+ ...8c_aa3e4c4ec57381e265a116d7a874e22c6_cgraph.md5 |    1 +
+ ...8c_aa3e4c4ec57381e265a116d7a874e22c6_cgraph.png |  Bin 0 -> 10819 bytes
+ ...c_aa3e4c4ec57381e265a116d7a874e22c6_icgraph.map |    3 +
+ ...c_aa3e4c4ec57381e265a116d7a874e22c6_icgraph.md5 |    1 +
+ ...c_aa3e4c4ec57381e265a116d7a874e22c6_icgraph.png |  Bin 0 -> 3251 bytes
+ doc/html/a2d__display__client_8c_source.html       |  280 +--
+ doc/html/annotated.html                            |    8 +-
+ doc/html/classes.html                              |   10 +-
+ doc/html/cmd_d_c_2_makefile_8am.html               |    8 +-
+ doc/html/cmd_d_c_2_makefile_8am_source.html        |   20 +-
+ doc/html/cmd_d_c_8c.html                           |  789 +-------
+ doc/html/cmd_d_c_8c_source.html                    |  835 +-------
+ doc/html/cmd_d_s_2_makefile_8am.html               |    8 +-
+ doc/html/cmd_d_s_2_makefile_8am_source.html        |   20 +-
+ doc/html/cmd_d_s_8c.html                           |  629 +-----
+ doc/html/cmd_d_s_8c_source.html                    |  721 +------
+ doc/html/config_8h.html                            |   20 +-
+ doc/html/config_8h_source.html                     |   98 +-
+ doc/html/configure_8ac.html                        |    8 +-
+ doc/html/configure_8ac_source.html                 |   66 +-
+ doc/html/dir_238f17aba4495d06f44d9fa7cd128e79.html |   26 +-
+ doc/html/dir_47377a7aed5276d41d061215c6ecfa45.html |   26 +-
+ doc/html/dir_68267d1309a1af8e8297ef4c3efbcdba.html |   26 +-
+ doc/html/dir_89c1825cb92980f8614b572164118b7b.html |   26 +-
+ doc/html/dir_95dc765a15e376ef3edacafdaac49d3b.html |   26 +-
+ doc/html/doxygen.css                               |   27 +-
+ doc/html/files.html                                |    8 +-
+ doc/html/functions.html                            |    8 +-
+ doc/html/functions_vars.html                       |    8 +-
+ doc/html/globals.html                              |    8 +-
+ doc/html/globals_a.html                            |    8 +-
+ doc/html/globals_b.html                            |    8 +-
+ doc/html/globals_c.html                            |    8 +-
+ doc/html/globals_d.html                            |    8 +-
+ doc/html/globals_defs.html                         |    8 +-
+ doc/html/globals_e.html                            |    8 +-
+ doc/html/globals_enum.html                         |    8 +-
+ doc/html/globals_eval.html                         |    8 +-
+ doc/html/globals_f.html                            |    8 +-
+ doc/html/globals_func.html                         |    8 +-
+ doc/html/globals_func_b.html                       |    8 +-
+ doc/html/globals_func_c.html                       |    8 +-
+ doc/html/globals_func_d.html                       |    8 +-
+ doc/html/globals_func_e.html                       |    8 +-
+ doc/html/globals_func_g.html                       |   50 +-
+ doc/html/globals_func_h.html                       |    8 +-
+ doc/html/globals_func_l.html                       |    8 +-
+ doc/html/globals_func_m.html                       |    8 +-
+ doc/html/globals_func_p.html                       |    8 +-
+ doc/html/globals_func_r.html                       |    8 +-
+ doc/html/globals_func_s.html                       |   34 +-
+ doc/html/globals_func_t.html                       |    8 +-
+ doc/html/globals_func_u.html                       |    8 +-
+ doc/html/globals_g.html                            |   57 +-
+ doc/html/globals_h.html                            |    8 +-
+ doc/html/globals_i.html                            |    8 +-
+ doc/html/globals_k.html                            |    8 +-
+ doc/html/globals_l.html                            |    8 +-
+ doc/html/globals_m.html                            |    8 +-
+ doc/html/globals_p.html                            |    8 +-
+ doc/html/globals_r.html                            |    8 +-
+ doc/html/globals_s.html                            |   64 +-
+ doc/html/globals_t.html                            |    8 +-
+ doc/html/globals_type.html                         |    8 +-
+ doc/html/globals_u.html                            |    8 +-
+ doc/html/globals_v.html                            |    8 +-
+ doc/html/globals_vars.html                         |    8 +-
+ doc/html/graph_legend.html                         |   44 +-
+ doc/html/gssdp_d_c_2_makefile_8am.html             |    8 +-
+ doc/html/gssdp_d_c_2_makefile_8am_source.html      |   25 +-
+ doc/html/gssdp_d_c_8c.html                         |  547 +-----
+ doc/html/gssdp_d_c_8c_source.html                  |  668 +------
+ doc/html/gtk_d_s_2_makefile_8am.html               |    8 +-
+ doc/html/gtk_d_s_2_makefile_8am_source.html        |   23 +-
+ doc/html/gtk_d_s_8c.html                           | 1390 +------------
+ doc/html/gtk_d_s_8c_source.html                    | 1514 +--------------
+ doc/html/index.html                                |   28 +-
+ doc/html/lcd__display__client_8c.html              |  177 +-
+ doc/html/lcd__display__client_8c_source.html       |  181 +-
+ doc/html/lcd__display__service_8c.html             |   87 +-
+ doc/html/lcd__display__service_8c_source.html      |   96 +-
+ doc/html/navtreedata.js                            |    3 +-
+ doc/html/navtreeindex0.js                          |  500 ++---
+ doc/html/navtreeindex1.js                          |  496 ++---
+ doc/html/navtreeindex2.js                          |  491 ++---
+ doc/html/para__display__client_8c.html             |  391 ++--
+ doc/html/para__display__client_8c.js               |    6 +-
+ ...c_a0bc4e3dc79150296e599217bdc50cb2b_icgraph.map |    3 +
+ ...c_a0bc4e3dc79150296e599217bdc50cb2b_icgraph.md5 |    1 +
+ ...c_a0bc4e3dc79150296e599217bdc50cb2b_icgraph.png |  Bin 0 -> 3138 bytes
+ ...8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph.md5 |    2 +-
+ ...c_a27a64cd3f9478cd89d55bd4174f58dc2_icgraph.map |    3 +
+ ...c_a27a64cd3f9478cd89d55bd4174f58dc2_icgraph.md5 |    1 +
+ ...c_a27a64cd3f9478cd89d55bd4174f58dc2_icgraph.png |  Bin 0 -> 2693 bytes
+ doc/html/para__display__client_8c_source.html      |  187 +-
+ doc/html/resize.js                                 |    2 +-
+ doc/html/search/all_0.html                         |    2 +-
+ doc/html/search/all_1.html                         |    2 +-
+ doc/html/search/all_10.html                        |    2 +-
+ doc/html/search/all_11.html                        |    2 +-
+ doc/html/search/all_11.js                          |    1 +
+ doc/html/search/all_12.html                        |    2 +-
+ doc/html/search/all_12.js                          |    4 +
+ doc/html/search/all_13.html                        |    2 +-
+ doc/html/search/all_14.html                        |    2 +-
+ doc/html/search/all_15.html                        |    2 +-
+ doc/html/search/all_2.html                         |    2 +-
+ doc/html/search/all_3.html                         |    2 +-
+ doc/html/search/all_4.html                         |    2 +-
+ doc/html/search/all_5.html                         |    2 +-
+ doc/html/search/all_6.html                         |    2 +-
+ doc/html/search/all_7.html                         |    2 +-
+ doc/html/search/all_7.js                           |    4 -
+ doc/html/search/all_8.html                         |    2 +-
+ doc/html/search/all_9.html                         |    2 +-
+ doc/html/search/all_a.html                         |    2 +-
+ doc/html/search/all_b.html                         |    2 +-
+ doc/html/search/all_c.html                         |    2 +-
+ doc/html/search/all_d.html                         |    2 +-
+ doc/html/search/all_e.html                         |    2 +-
+ doc/html/search/all_f.html                         |    2 +-
+ doc/html/search/classes_0.html                     |    2 +-
+ doc/html/search/classes_1.html                     |    2 +-
+ doc/html/search/defines_0.html                     |    2 +-
+ doc/html/search/defines_1.html                     |    2 +-
+ doc/html/search/defines_2.html                     |    2 +-
+ doc/html/search/defines_3.html                     |    2 +-
+ doc/html/search/defines_4.html                     |    2 +-
+ doc/html/search/defines_5.html                     |    2 +-
+ doc/html/search/defines_6.html                     |    2 +-
+ doc/html/search/defines_7.html                     |    2 +-
+ doc/html/search/defines_8.html                     |    2 +-
+ doc/html/search/defines_9.html                     |    2 +-
+ doc/html/search/defines_a.html                     |    2 +-
+ doc/html/search/defines_b.html                     |    2 +-
+ doc/html/search/defines_c.html                     |    2 +-
+ doc/html/search/defines_d.html                     |    2 +-
+ doc/html/search/defines_e.html                     |    2 +-
+ doc/html/search/enums_0.html                       |    2 +-
+ doc/html/search/enumvalues_0.html                  |    2 +-
+ doc/html/search/enumvalues_1.html                  |    2 +-
+ doc/html/search/enumvalues_2.html                  |    2 +-
+ doc/html/search/enumvalues_3.html                  |    2 +-
+ doc/html/search/enumvalues_4.html                  |    2 +-
+ doc/html/search/files_0.html                       |    2 +-
+ doc/html/search/files_1.html                       |    2 +-
+ doc/html/search/files_2.html                       |    2 +-
+ doc/html/search/files_3.html                       |    2 +-
+ doc/html/search/files_4.html                       |    2 +-
+ doc/html/search/files_5.html                       |    2 +-
+ doc/html/search/files_6.html                       |    2 +-
+ doc/html/search/files_7.html                       |    2 +-
+ doc/html/search/files_8.html                       |    2 +-
+ doc/html/search/functions_0.html                   |    2 +-
+ doc/html/search/functions_1.html                   |    2 +-
+ doc/html/search/functions_2.html                   |    2 +-
+ doc/html/search/functions_3.html                   |    2 +-
+ doc/html/search/functions_4.html                   |    2 +-
+ doc/html/search/functions_4.js                     |    4 -
+ doc/html/search/functions_5.html                   |    2 +-
+ doc/html/search/functions_6.html                   |    2 +-
+ doc/html/search/functions_7.html                   |    2 +-
+ doc/html/search/functions_7.js                     |    4 +
+ doc/html/search/functions_8.html                   |    2 +-
+ doc/html/search/pages_0.html                       |   26 +
+ doc/html/search/pages_0.js                         |    4 +
+ doc/html/search/searchdata.js                      |    9 +-
+ doc/html/search/typedefs_0.html                    |    2 +-
+ doc/html/search/typedefs_1.html                    |    2 +-
+ doc/html/search/typedefs_2.html                    |    2 +-
+ doc/html/search/typedefs_3.html                    |    2 +-
+ doc/html/search/typedefs_4.html                    |    2 +-
+ doc/html/search/typedefs_5.html                    |    2 +-
+ doc/html/search/typedefs_6.html                    |    2 +-
+ doc/html/search/typedefs_7.html                    |    2 +-
+ doc/html/search/typedefs_8.html                    |    2 +-
+ doc/html/search/typedefs_9.html                    |    2 +-
+ doc/html/search/variables_0.html                   |    2 +-
+ doc/html/search/variables_1.html                   |    2 +-
+ doc/html/search/variables_10.html                  |    2 +-
+ doc/html/search/variables_2.html                   |    2 +-
+ doc/html/search/variables_3.html                   |    2 +-
+ doc/html/search/variables_4.html                   |    2 +-
+ doc/html/search/variables_5.html                   |    2 +-
+ doc/html/search/variables_6.html                   |    2 +-
+ doc/html/search/variables_7.html                   |    2 +-
+ doc/html/search/variables_8.html                   |    2 +-
+ doc/html/search/variables_9.html                   |    2 +-
+ doc/html/search/variables_a.html                   |    2 +-
+ doc/html/search/variables_b.html                   |    2 +-
+ doc/html/search/variables_c.html                   |    2 +-
+ doc/html/search/variables_d.html                   |    2 +-
+ doc/html/search/variables_e.html                   |    2 +-
+ doc/html/search/variables_f.html                   |    2 +-
+ doc/html/skn__common__headers_8h.html              |   32 +-
+ doc/html/skn__common__headers_8h_source.html       |  325 +---
+ doc/html/skn__network__helpers_8c.html             |  989 +---------
+ doc/html/skn__network__helpers_8c_source.html      |  997 +---------
+ doc/html/skn__network__helpers_8h.html             |  855 +-------
+ doc/html/skn__network__helpers_8h_source.html      |   91 +-
+ doc/html/skn__rpi__helpers_8c.html                 |  996 +---------
+ doc/html/skn__rpi__helpers_8c_source.html          |  912 +--------
+ doc/html/skn__rpi__helpers_8h.html                 |  712 +------
+ doc/html/skn__rpi__helpers_8h_source.html          |   89 +-
+ doc/html/skn__signal__manager_8c.html              |  220 +--
+ doc/html/skn__signal__manager_8c_source.html       |  244 +--
+ doc/html/src_2_makefile_8am.html                   |    8 +-
+ doc/html/src_2_makefile_8am_source.html            |   44 +-
+ doc/html/struct___d_i_s_p_l_a_y___l_i_n_e.html     |   24 +-
+ .../struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r.html    |   32 +-
+ doc/html/struct___i_i_c_l_c_d.html                 |    8 +-
+ doc/html/struct__control_data.html                 |   50 +-
+ doc/html/struct__gssdp_registry_data.html          |   10 +-
+ doc/html/struct__ip_broadcast_array.html           |    8 +-
+ doc/html/struct__message_data.html                 |   10 +-
+ doc/html/struct__registry_data.html                |   22 +-
+ doc/html/struct__service_entry.html                |    8 +-
+ doc/html/struct__service_registry.html             |    8 +-
+ doc/html/struct__service_request.html              |    8 +-
+ doc/html/struct__signal_data.html                  |   14 +-
+ doc/html/struct__temps.html                        |    8 +-
+ doc/html/struct_message_queue_source.html          |   10 +-
+ doc/html/udp__locator__client_8c.html              |   75 +-
+ doc/html/udp__locator__client_8c_source.html       |   80 +-
+ doc/html/udp__locator__service_8c.html             |   58 +-
+ doc/html/udp__locator__service_8c_source.html      |   62 +-
+ doc/latex/a2d__display__client_8c.tex              |  489 +++--
+ ...c_a0d9c1f78de300df3a47682ad0145c74c_icgraph.md5 |    2 +-
+ ...8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph.md5 |    2 +-
+ ...c_a7103c23f637c6c8710a0766e61a8e436_icgraph.md5 |    2 +-
+ ...c_a935f6a4b5fc20d0727532f09a2ab7ed7_icgraph.md5 |    2 +-
+ doc/latex/annotated.tex                            |    6 +-
+ doc/latex/cmd_d_c_8c.tex                           | 1119 ++++++-----
+ doc/latex/cmd_d_s_8c.tex                           |  374 ++--
+ doc/latex/config_8h.tex                            |  180 +-
+ doc/latex/dir_238f17aba4495d06f44d9fa7cd128e79.tex |   10 +-
+ doc/latex/dir_47377a7aed5276d41d061215c6ecfa45.tex |   10 +-
+ doc/latex/dir_68267d1309a1af8e8297ef4c3efbcdba.tex |    8 -
+ doc/latex/dir_89c1825cb92980f8614b572164118b7b.tex |   10 +-
+ doc/latex/dir_95dc765a15e376ef3edacafdaac49d3b.tex |   10 +-
+ doc/latex/doxygen.sty                              |  147 +-
+ doc/latex/gssdp_d_c_8c.tex                         |  421 ++--
+ doc/latex/gtk_d_s_8c.tex                           |  780 ++++----
+ doc/latex/index.tex                                |   69 +-
+ doc/latex/lcd__display__client_8c.tex              |   38 +-
+ doc/latex/lcd__display__service_8c.tex             |   14 +-
+ doc/latex/para__display__client_8c.tex             |  269 ++-
+ ...8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph.md5 |    2 +-
+ doc/latex/refman.tex                               |   15 +-
+ doc/latex/skn__common__headers_8h.tex              |  342 ++--
+ doc/latex/skn__network__helpers_8c.tex             |  504 +++--
+ doc/latex/skn__network__helpers_8h.tex             |  533 +++--
+ doc/latex/skn__rpi__helpers_8c.tex                 | 1474 +++++++-------
+ doc/latex/skn__rpi__helpers_8h.tex                 |  932 +++++----
+ doc/latex/skn__signal__manager_8c.tex              |   53 +-
+ doc/latex/struct___d_i_s_p_l_a_y___l_i_n_e.tex     |   59 +-
+ .../struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r.tex     |   97 +-
+ doc/latex/struct___i_i_c_l_c_d.tex                 |  137 +-
+ doc/latex/struct__control_data.tex                 |  223 ++-
+ doc/latex/struct__gssdp_registry_data.tex          |   27 +-
+ doc/latex/struct__ip_broadcast_array.tex           |   47 +-
+ doc/latex/struct__message_data.tex                 |   21 +-
+ doc/latex/struct__registry_data.tex                |   45 +-
+ doc/latex/struct__service_entry.tex                |   25 +-
+ doc/latex/struct__service_registry.tex             |   23 +-
+ doc/latex/struct__service_request.tex              |   29 +-
+ doc/latex/struct__signal_data.tex                  |   15 +-
+ doc/latex/struct__temps.tex                        |   25 +-
+ doc/latex/struct_message_queue_source.tex          |   15 +-
+ doc/latex/udp__locator__client_8c.tex              |   14 +-
+ doc/latex/udp__locator__service_8c.tex             |   16 +-
+ gssdpDC/Makefile.am                                |    2 -
+ gtkDS/Makefile.am                                  |    2 -
+ images/skn-gtkds-gssdp.png                         |  Bin 0 -> 46849 bytes
+ images/skn-gtkds-messages.png                      |  Bin 0 -> 118195 bytes
+ images/skn-gtkds-registry.png                      |  Bin 0 -> 136504 bytes
+ src/a2d_display_client.c                           |   12 +-
+ src/para_display_client.c                          |   10 +-
+ src/skn_common_headers.h                           |    4 +-
+ src/skn_rpi_helpers.c                              |   12 +-
+ 305 files changed, 9188 insertions(+), 22333 deletions(-)
+
 commit 158cc2cc29530114626cab314d60d02e87600e34
 Author: James Scott <JScott@brotherhoodmutual.com>
 Date:   Fri May 13 10:27:41 2016 -0400

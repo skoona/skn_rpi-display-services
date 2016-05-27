@@ -210,7 +210,7 @@ Referenced by generate\+\_\+cpu\+\_\+temps\+\_\+info().
 298     \textcolor{keywordflow}{if} (sysFs == NULL) \{
 299         skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"Warning: Failed to open Debian CPU temperature: %d:%s\(\backslash\)n"}, errno, 
       strerror(errno));
-300         *sysFs = fopen(\textcolor{stringliteral}{"/sys/class/hwmon/hwmon0/device/temp1\_input"}, \textcolor{stringliteral}{"r"});
+300         sysFs = fopen(\textcolor{stringliteral}{"/sys/class/hwmon/hwmon0/device/temp1\_input"}, \textcolor{stringliteral}{"r"});
 301         \textcolor{keywordflow}{if} (sysFs == NULL) \{
 302             skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"Warning: Failed to open Centos CPU temperature: %d:%s\(\backslash\)n"}, 
       errno, strerror(errno));

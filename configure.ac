@@ -9,6 +9,7 @@ AC_CONFIG_MACRO_DIR([m4])
 
 AM_INIT_AUTOMAKE([foreign])
 AM_SILENT_RULES([yes])
+AM_MAINTAINER_MODE([enable])
 
 dnl Standard C constructs
 AC_GNU_SOURCE
@@ -18,7 +19,7 @@ AC_PROG_INSTALL
 AC_PROG_MAKE_SET
 
 # stricter options -ansi -pedantic
-CFLAGS='-g -O2 -Wall -Wextra -Wno-missing-field-initializers -Wno-unused-parameter -Winline -pipe -I/usr/include -I/usr/local/include -DPACKAGE_NAME="\"AC_PACKAGE_NAME\"" -DPACKAGE_VERSION="\"AC_PACKAGE_VERSION\""'
+CFLAGS='-g -O2 -Wall -Wextra -Wno-missing-field-initializers -Wno-unused-parameter -Winline -pipe -I/usr/include -I/usr/local/include '
 AC_SUBST(CFLAGS)
 
 AC_CHECK_LIB([pthread],[pthread_create],
@@ -48,7 +49,7 @@ PKG_CHECK_MODULES([GTK], [gtk+-3.0 >= 3.10],
        AM_CONDITIONAL([DOGTK], [test "xY" = "xX"])
 )
 
-AC_CONFIG_HEADERS([config.h])
+# AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_SRCDIR([src/skn_rpi_helpers.c])
 AC_CONFIG_FILES([Makefile src/Makefile gtkDS/Makefile cmdDS/Makefile cmdDC/Makefile gssdpDC/Makefile])
 

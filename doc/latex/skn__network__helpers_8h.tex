@@ -128,7 +128,7 @@ int \hyperlink{skn__network__helpers_8h_a2c55396bf337471f9f99a939974fcdbe}{gd\+\
 )}\hypertarget{skn__network__helpers_8h_a8aa6a7a3ba2390cf536e26c6cd2aa840}{}\label{skn__network__helpers_8h_a8aa6a7a3ba2390cf536e26c6cd2aa840}
 
 
-Definition at line 79 of file skn\+\_\+network\+\_\+helpers.\+c.
+Definition at line 78 of file skn\+\_\+network\+\_\+helpers.\+c.
 
 
 
@@ -140,21 +140,21 @@ Referenced by main(), and skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work().
 
 
 \begin{DoxyCode}
-79                                       \{
-80     \textcolor{keywordtype}{int} mLen = 0;
-81     \textcolor{keyword}{struct }tm *t;
-82     time\_t tim;
-83 
-84     tim = time(NULL);
-85     t = localtime(&tim);
-86 
-87     mLen = snprintf(msg, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} -1, \textcolor{stringliteral}{"%02d:%02d:%04d %02d:%02d:%02d"},
-88                     t->tm\_mon + 1, t->tm\_mday, t->tm\_year + 1900,
-89                     ((t->tm\_hour - \hyperlink{skn__common__headers_8h_a43b19fdfa560dfa392d708c35bc58b37}{TZ\_ADJUST}) < 0 ? (t->tm\_hour - 
+78                                       \{
+79     \textcolor{keywordtype}{int} mLen = 0;
+80     \textcolor{keyword}{struct }tm *t;
+81     time\_t tim;
+82 
+83     tim = time(NULL);
+84     t = localtime(&tim);
+85 
+86     mLen = snprintf(msg, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} -1, \textcolor{stringliteral}{"%02d:%02d:%04d %02d:%02d:%02d"},
+87                     t->tm\_mon + 1, t->tm\_mday, t->tm\_year + 1900,
+88                     ((t->tm\_hour - \hyperlink{skn__common__headers_8h_a43b19fdfa560dfa392d708c35bc58b37}{TZ\_ADJUST}) < 0 ? (t->tm\_hour - 
       \hyperlink{skn__common__headers_8h_a43b19fdfa560dfa392d708c35bc58b37}{TZ\_ADJUST} + 12) : (t->tm\_hour - \hyperlink{skn__common__headers_8h_a43b19fdfa560dfa392d708c35bc58b37}{TZ\_ADJUST})), t->tm\_min, t->tm\_sec);
-90 
-91     \textcolor{keywordflow}{return} mLen;
-92 \}
+89 
+90     \textcolor{keywordflow}{return} mLen;
+91 \}
 \end{DoxyCode}
 
 
@@ -247,12 +247,11 @@ Referenced by main(), and skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work().
 69         mLen = snprintf(msg, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} -1, \textcolor{stringliteral}{"%s"}, message);
 70     \} \textcolor{keywordflow}{else} \{
 71         mLen = snprintf(msg, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} -1, \textcolor{stringliteral}{"%s %s, %s %s | Cores=%ld"},
-72 \textcolor{comment}{//                        info.nodename,}
-73                         info.sysname, info.release, info.version, info.machine,
-74                         \hyperlink{skn__network__helpers_8c_a9b607e33be05bf0479127f233a58fab7}{skn\_get\_number\_of\_cpu\_cores}());
-75     \}
-76     \textcolor{keywordflow}{return} mLen;
-77 \}
+72                         info.sysname, info.release, info.version, info.machine,
+73                         \hyperlink{skn__network__helpers_8c_a9b607e33be05bf0479127f233a58fab7}{skn\_get\_number\_of\_cpu\_cores}());
+74     \}
+75     \textcolor{keywordflow}{return} mLen;
+76 \}
 \end{DoxyCode}
 
 
@@ -292,7 +291,7 @@ Collect IP and Broadcast Addresses for this machine
 \item contains this ip\+Address in pa\+B-\/$>$ip\+Addr\+Str\mbox{[}pa\+B-\/$>$default\+Index\mbox{]} 
 \end{DoxyItemize}
 
-Definition at line 170 of file skn\+\_\+network\+\_\+helpers.\+c.
+Definition at line 214 of file skn\+\_\+network\+\_\+helpers.\+c.
 
 
 
@@ -304,57 +303,57 @@ Referenced by get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+
 
 
 \begin{DoxyCode}
-170                                                   \{
-171     \textcolor{keyword}{struct }ifaddrs * ifap;
-172     \textcolor{keyword}{struct }ifaddrs * p;
-173     \textcolor{keywordtype}{int} rc = 0;
-174 
-175     memset(paB, 0, \textcolor{keyword}{sizeof}(\hyperlink{struct__ip_broadcast_array}{IPBroadcastArray}));
-176     paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count} = 0;
-177     paB->\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex} = 0;
-178     strcpy(paB->\hyperlink{struct__ip_broadcast_array_a0f592bd31dcc3ce00a349f04ff6bd1ba}{cbName}, \textcolor{stringliteral}{"IPBroadcastArray"});
-179 
-180     rc = \hyperlink{skn__network__helpers_8c_a6d284e9250411e031cfa4ecb19583696}{get\_default\_interface\_name}(paB->
+214                                                   \{
+215     \textcolor{keyword}{struct }ifaddrs * ifap;
+216     \textcolor{keyword}{struct }ifaddrs * p;
+217     \textcolor{keywordtype}{int} rc = 0;
+218 
+219     memset(paB, 0, \textcolor{keyword}{sizeof}(\hyperlink{struct__ip_broadcast_array}{IPBroadcastArray}));
+220     paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count} = 0;
+221     paB->\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex} = 0;
+222     strcpy(paB->\hyperlink{struct__ip_broadcast_array_a0f592bd31dcc3ce00a349f04ff6bd1ba}{cbName}, \textcolor{stringliteral}{"IPBroadcastArray"});
+223 
+224     rc = \hyperlink{skn__network__helpers_8c_a6d284e9250411e031cfa4ecb19583696}{get\_default\_interface\_name}(paB->
       \hyperlink{struct__ip_broadcast_array_a06dab8742df19b5aec8538842617778d}{chDefaultIntfName});
-181     \textcolor{keywordflow}{if} (rc == EXIT\_FAILURE) \{ \textcolor{comment}{// Alternate method for Mac: 'route -n -A inet'}
-182         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"No Default Network Interfaces Found!."});
-183         paB->\hyperlink{struct__ip_broadcast_array_a06dab8742df19b5aec8538842617778d}{chDefaultIntfName}[0] = 0;
-184     \}
-185     rc = getifaddrs(&ifap);
-186     \textcolor{keywordflow}{if} (rc != 0) \{
-187         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"No Network Interfaces Found at All ! %d:%d:%s"}, rc, errno, strerror(errno
+225     \textcolor{keywordflow}{if} (rc == EXIT\_FAILURE) \{ \textcolor{comment}{// Alternate method for Mac: 'route -n -A inet'}
+226         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"No Default Network Interfaces Found!."});
+227         paB->\hyperlink{struct__ip_broadcast_array_a06dab8742df19b5aec8538842617778d}{chDefaultIntfName}[0] = 0;
+228     \}
+229     rc = getifaddrs(&ifap);
+230     \textcolor{keywordflow}{if} (rc != 0) \{
+231         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"No Network Interfaces Found at All ! %d:%d:%s"}, rc, errno, strerror(errno
       ) );
-188         \textcolor{keywordflow}{return} (\hyperlink{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{PLATFORM\_ERROR});
-189     \}
-190     p = ifap;
-191 
-192     \textcolor{keywordflow}{while} (p && paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count} < \hyperlink{cmd_d_c_8c_a00b19837422a3b13d82b9a525e92ef51}{ARY\_MAX\_INTF}) \{
-193         \textcolor{keywordflow}{if} (p->ifa\_addr != NULL && p->ifa\_addr->sa\_family == AF\_INET && ((p->ifa\_flags & IFF\_BROADCAST) > 0
+232         \textcolor{keywordflow}{return} (\hyperlink{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{PLATFORM\_ERROR});
+233     \}
+234     p = ifap;
+235 
+236     \textcolor{keywordflow}{while} (p && paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count} < \hyperlink{cmd_d_c_8c_a00b19837422a3b13d82b9a525e92ef51}{ARY\_MAX\_INTF}) \{
+237         \textcolor{keywordflow}{if} (p->ifa\_addr != NULL && p->ifa\_addr->sa\_family == AF\_INET && ((p->ifa\_flags & IFF\_BROADCAST) > 0
       )) \{
-194 
-195             inet\_ntop(p->ifa\_addr->sa\_family, &((\textcolor{keyword}{struct} sockaddr\_in *) p->ifa\_addr)->sin\_addr, paB->
+238 
+239             inet\_ntop(p->ifa\_addr->sa\_family, &((\textcolor{keyword}{struct} sockaddr\_in *) p->ifa\_addr)->sin\_addr, paB->
       \hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count}], (\hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF} - 1));
-196             inet\_ntop(p->ifa\_addr->sa\_family, &((\textcolor{keyword}{struct} sockaddr\_in *) p->ifa\_netmask)->sin\_addr, paB->
+240             inet\_ntop(p->ifa\_addr->sa\_family, &((\textcolor{keyword}{struct} sockaddr\_in *) p->ifa\_netmask)->sin\_addr, paB->
       \hyperlink{struct__ip_broadcast_array_a9241c1fbfb22a3ecfe4777863a063eb3}{maskAddrStr}[paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count}], (\hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF} - 1));
-197             inet\_ntop(p->ifa\_addr->sa\_family, &((\textcolor{keyword}{struct} sockaddr\_in *) p->ifa\_broadaddr)->sin\_addr, paB->
+241             inet\_ntop(p->ifa\_addr->sa\_family, &((\textcolor{keyword}{struct} sockaddr\_in *) p->ifa\_broadaddr)->sin\_addr, paB->
       \hyperlink{struct__ip_broadcast_array_af40943e174ba847fa0218cfa6051e277}{broadAddrStr}[paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count}], (\hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF} - 1));
-198 
-199             strncpy(paB->\hyperlink{struct__ip_broadcast_array_a193b90f271c061e8bf1593bab6a182c9}{ifNameStr}[paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count}], p->ifa\_name, (
+242 
+243             strncpy(paB->\hyperlink{struct__ip_broadcast_array_a193b90f271c061e8bf1593bab6a182c9}{ifNameStr}[paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count}], p->ifa\_name, (
       \hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF} -1));
-200 
-201             \textcolor{comment}{/* Take match as the default */}
-202             \textcolor{keywordflow}{if} (strcmp(paB->\hyperlink{struct__ip_broadcast_array_a06dab8742df19b5aec8538842617778d}{chDefaultIntfName}, p->ifa\_name) == 0) \{
-203                 paB->\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex} = paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count};
-204             \}
-205 
-206             paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count}++;
-207         \}
-208         p = p->ifa\_next;
-209     \} \textcolor{comment}{// end while}
-210     freeifaddrs(ifap);
-211 
-212     \textcolor{keywordflow}{return} paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count};
-213 \}
+244 
+245             \textcolor{comment}{/* Take match as the default */}
+246             \textcolor{keywordflow}{if} (strcmp(paB->\hyperlink{struct__ip_broadcast_array_a06dab8742df19b5aec8538842617778d}{chDefaultIntfName}, p->ifa\_name) == 0) \{
+247                 paB->\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex} = paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count};
+248             \}
+249 
+250             paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count}++;
+251         \}
+252         p = p->ifa\_next;
+253     \} \textcolor{comment}{// end while}
+254     freeifaddrs(ifap);
+255 
+256     \textcolor{keywordflow}{return} paB->\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count};
+257 \}
 \end{DoxyCode}
 
 
@@ -392,7 +391,7 @@ Retrieves default internet interface name into param
 
 \mbox{[}jscott O\+SX\mbox{]}\$ route -\/n get 0.\+0.\+0.\+0 route to\+: default destination\+: default mask\+: default gateway\+: 10.\+21.\+1.\+254 interface\+: en3 flags\+: $<$UP,G\+A\+T\+E\+W\+AY,D\+O\+NE,S\+T\+A\+T\+IC,P\+R\+C\+L\+O\+N\+I\+NG$>$ recvpipe sendpipe ssthresh rtt,msec rttvar hopcount mtu expire 0 0 0 0 0 0 1500 0 
 
-Definition at line 231 of file skn\+\_\+network\+\_\+helpers.\+c.
+Definition at line 275 of file skn\+\_\+network\+\_\+helpers.\+c.
 
 
 
@@ -404,52 +403,52 @@ Referenced by get\+\_\+broadcast\+\_\+ip\+\_\+array().
 
 
 \begin{DoxyCode}
-231                                                               \{
-232     FILE *f\_route;
-233     \textcolor{keywordtype}{char} line[\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}], *dRoute = NULL, *iName = NULL;
-234 
-235     f\_route = fopen(\textcolor{stringliteral}{"/proc/net/route"}, \textcolor{stringliteral}{"r"});
-236     \textcolor{keywordflow}{if} (f\_route != NULL) \{
-237         \textcolor{keywordflow}{while} (fgets(line, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1, f\_route)) \{
-238             iName = strtok(line, \textcolor{stringliteral}{"\(\backslash\)t"});
-239             dRoute = strtok(NULL, \textcolor{stringliteral}{"\(\backslash\)t"});
-240 
-241             \textcolor{keywordflow}{if} (iName != NULL && dRoute != NULL) \{
-242                 \textcolor{keywordflow}{if} (strcmp(dRoute, \textcolor{stringliteral}{"00000000"}) == 0) \{
-243                     strncpy(pchDefaultInterfaceName, iName, (\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1));
-244                     \textcolor{keywordflow}{break};
-245                 \}
-246             \}
-247         \}
-248         fclose(f\_route);
-249 
-250         \textcolor{keywordflow}{return} EXIT\_SUCCESS;
-251     \}
-252     skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"Opening ProcFs for RouteInfo Failed: %d:%s, Alternate method will be
+275                                                               \{
+276     FILE *f\_route;
+277     \textcolor{keywordtype}{char} line[\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}], *dRoute = NULL, *iName = NULL;
+278 
+279     f\_route = fopen(\textcolor{stringliteral}{"/proc/net/route"}, \textcolor{stringliteral}{"r"});
+280     \textcolor{keywordflow}{if} (f\_route != NULL) \{
+281         \textcolor{keywordflow}{while} (fgets(line, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1, f\_route)) \{
+282             iName = strtok(line, \textcolor{stringliteral}{"\(\backslash\)t"});
+283             dRoute = strtok(NULL, \textcolor{stringliteral}{"\(\backslash\)t"});
+284 
+285             \textcolor{keywordflow}{if} (iName != NULL && dRoute != NULL) \{
+286                 \textcolor{keywordflow}{if} (strcmp(dRoute, \textcolor{stringliteral}{"00000000"}) == 0) \{
+287                     strncpy(pchDefaultInterfaceName, iName, (\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1));
+288                     \textcolor{keywordflow}{break};
+289                 \}
+290             \}
+291         \}
+292         fclose(f\_route);
+293 
+294         \textcolor{keywordflow}{return} EXIT\_SUCCESS;
+295     \}
+296     skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"Opening ProcFs for RouteInfo Failed: %d:%s, Alternate method will be
        attempted."}, errno, strerror(errno));
-253 
-254     f\_route = popen(\textcolor{stringliteral}{"route -n get 0.0.0.0"}, \textcolor{stringliteral}{"r"}); \textcolor{comment}{// for linux 'route -n -A inet', with interface at
+297 
+298     f\_route = popen(\textcolor{stringliteral}{"route -n get 0.0.0.0"}, \textcolor{stringliteral}{"r"}); \textcolor{comment}{// for linux 'route -n -A inet', with interface at
        line\_word[7]}
-255     \textcolor{keywordflow}{if} (f\_route != NULL) \{
-256         \textcolor{keywordflow}{while} (fgets(line, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1, f\_route)) \{
-257             dRoute = strtok(line, \textcolor{stringliteral}{":"});
-258             iName = strtok(NULL, \textcolor{stringliteral}{"\(\backslash\)n"});
-259             \textcolor{keywordflow}{if} (strcmp(\hyperlink{skn__network__helpers_8c_a925d0a1de13d0d0178e52f0d6be4b97f}{skn\_strip}(dRoute), \textcolor{stringliteral}{"interface"}) == 0) \{
-260                 strncpy(pchDefaultInterfaceName, \hyperlink{skn__network__helpers_8c_a925d0a1de13d0d0178e52f0d6be4b97f}{skn\_strip}(iName), (
+299     \textcolor{keywordflow}{if} (f\_route != NULL) \{
+300         \textcolor{keywordflow}{while} (fgets(line, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1, f\_route)) \{
+301             dRoute = strtok(line, \textcolor{stringliteral}{":"});
+302             iName = strtok(NULL, \textcolor{stringliteral}{"\(\backslash\)n"});
+303             \textcolor{keywordflow}{if} (strcmp(\hyperlink{skn__network__helpers_8c_a925d0a1de13d0d0178e52f0d6be4b97f}{skn\_strip}(dRoute), \textcolor{stringliteral}{"interface"}) == 0) \{
+304                 strncpy(pchDefaultInterfaceName, \hyperlink{skn__network__helpers_8c_a925d0a1de13d0d0178e52f0d6be4b97f}{skn\_strip}(iName), (
       \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1));
-261                 \textcolor{keywordflow}{break};
-262             \}
-263         \}
-264         fclose(f\_route);
-265 
-266         \textcolor{keywordflow}{return} EXIT\_SUCCESS;
-267     \} \textcolor{keywordflow}{else} \{
-268         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"Alternate method to get RouteInfo Failed: %d:%s"}, errno, strerror(errno))
+305                 \textcolor{keywordflow}{break};
+306             \}
+307         \}
+308         fclose(f\_route);
+309 
+310         \textcolor{keywordflow}{return} EXIT\_SUCCESS;
+311     \} \textcolor{keywordflow}{else} \{
+312         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"Alternate method to get RouteInfo Failed: %d:%s"}, errno, strerror(errno))
       ;
-269         \textcolor{keywordflow}{return} EXIT\_FAILURE;
-270     \}
-271 
-272 \}
+313         \textcolor{keywordflow}{return} EXIT\_FAILURE;
+314     \}
+315 
+316 \}
 \end{DoxyCode}
 
 
@@ -483,7 +482,7 @@ Here is the caller graph for this function\+:\nopagebreak
 )}\hypertarget{skn__network__helpers_8h_a96bf395b914c5182e438800248d6e8f3}{}\label{skn__network__helpers_8h_a96bf395b914c5182e438800248d6e8f3}
 
 
-Definition at line 152 of file skn\+\_\+network\+\_\+helpers.\+c.
+Definition at line 196 of file skn\+\_\+network\+\_\+helpers.\+c.
 
 
 
@@ -495,17 +494,17 @@ Referenced by main().
 
 
 \begin{DoxyCode}
-152                                                                            \{
-153     \hyperlink{struct__ip_broadcast_array}{IPBroadcastArray} aB;
-154 
-155     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a0b4821586a5c3d59096cb20dc6b28b2a}{get\_broadcast\_ip\_array}(&aB) != \hyperlink{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{PLATFORM\_ERROR}) \{
-156         memcpy(intf, aB.\hyperlink{struct__ip_broadcast_array_a06dab8742df19b5aec8538842617778d}{chDefaultIntfName}, \hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF});
-157         memcpy(ipv4, aB.\hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[aB.\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex}], 
+196                                                                            \{
+197     \hyperlink{struct__ip_broadcast_array}{IPBroadcastArray} aB;
+198 
+199     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a0b4821586a5c3d59096cb20dc6b28b2a}{get\_broadcast\_ip\_array}(&aB) != \hyperlink{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{PLATFORM\_ERROR}) \{
+200         memcpy(intf, aB.\hyperlink{struct__ip_broadcast_array_a06dab8742df19b5aec8538842617778d}{chDefaultIntfName}, \hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF});
+201         memcpy(ipv4, aB.\hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[aB.\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex}], 
       \hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF});
-158     \} \textcolor{keywordflow}{else} \{
-159         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"InterfaceName and Address: unable to access information."});
-160     \}
-161 \}
+202     \} \textcolor{keywordflow}{else} \{
+203         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"InterfaceName and Address: unable to access information."});
+204     \}
+205 \}
 \end{DoxyCode}
 
 
@@ -541,7 +540,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \item Free each entry, then the Registry itself. 
 \end{DoxyItemize}
 
-Definition at line 1115 of file skn\+\_\+network\+\_\+helpers.\+c.
+Definition at line 1159 of file skn\+\_\+network\+\_\+helpers.\+c.
 
 
 
@@ -553,17 +552,17 @@ Referenced by main(), and service\+\_\+registry\+\_\+valiadate\+\_\+response\+\_
 
 
 \begin{DoxyCode}
-1115                                                       \{
-1116     \textcolor{keywordtype}{int} index = 0;
-1117 
-1118     \textcolor{keywordflow}{if} (psreg == NULL)
-1119         \textcolor{keywordflow}{return};
-1120 
-1121     \textcolor{keywordflow}{for} (index = 0; index < psreg->\hyperlink{struct__service_registry_a68062b14c6c9cb411e3602be664425bc}{count}; index++) \{
-1122         free(psreg->\hyperlink{struct__service_registry_ad35429e298009925477ba528ea500fe8}{entry}[index]);
-1123     \}
-1124     free(psreg);
-1125 \}
+1159                                                       \{
+1160     \textcolor{keywordtype}{int} index = 0;
+1161 
+1162     \textcolor{keywordflow}{if} (psreg == NULL)
+1163         \textcolor{keywordflow}{return};
+1164 
+1165     \textcolor{keywordflow}{for} (index = 0; index < psreg->\hyperlink{struct__service_registry_a68062b14c6c9cb411e3602be664425bc}{count}; index++) \{
+1166         free(psreg->\hyperlink{struct__service_registry_ad35429e298009925477ba528ea500fe8}{entry}[index]);
+1167     \}
+1168     free(psreg);
+1169 \}
 \end{DoxyCode}
 
 
@@ -585,7 +584,7 @@ Here is the caller graph for this function\+:\nopagebreak
 )}\hypertarget{skn__network__helpers_8h_a88465ff1322cb437fd3b7a1e036fd017}{}\label{skn__network__helpers_8h_a88465ff1322cb437fd3b7a1e036fd017}
 Returns the number of services in registry 
 
-Definition at line 903 of file skn\+\_\+network\+\_\+helpers.\+c.
+Definition at line 947 of file skn\+\_\+network\+\_\+helpers.\+c.
 
 
 
@@ -597,9 +596,9 @@ Referenced by main().
 
 
 \begin{DoxyCode}
-903                                                        \{
-904     \textcolor{keywordflow}{return} psr->\hyperlink{struct__service_registry_a68062b14c6c9cb411e3602be664425bc}{count};
-905 \}
+947                                                        \{
+948     \textcolor{keywordflow}{return} psr->\hyperlink{struct__service_registry_a68062b14c6c9cb411e3602be664425bc}{count};
+949 \}
 \end{DoxyCode}
 
 
@@ -626,7 +625,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \item Prints each pair of values from a text registry entry 
 \end{DoxyItemize}
 
-Definition at line 863 of file skn\+\_\+network\+\_\+helpers.\+c.
+Definition at line 907 of file skn\+\_\+network\+\_\+helpers.\+c.
 
 
 
@@ -638,18 +637,18 @@ Referenced by main(), and service\+\_\+registry\+\_\+provider().
 
 
 \begin{DoxyCode}
-863                                                                         \{
-864     \textcolor{keywordtype}{char} * worker = NULL, *parser = NULL, *base = strdup(response);
-865     parser = base;
-866     skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"Response Message:"});
-867     \textcolor{keywordflow}{while} (( ((worker = strsep(&parser, \textcolor{stringliteral}{"|"})) != NULL) ||
-868           ((worker = strsep(&parser, \textcolor{stringliteral}{"%"})) != NULL) ||
-869           ((worker = strsep(&parser, \textcolor{stringliteral}{";"})) != NULL)) &&
-870           (strlen(worker) > 8)) \{
-871         skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"[%s]"}, worker);
-872     \}
-873     free(base);
-874 \}
+907                                                                         \{
+908     \textcolor{keywordtype}{char} * worker = NULL, *parser = NULL, *base = strdup(response);
+909     parser = base;
+910     skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"Response Message:"});
+911     \textcolor{keywordflow}{while} (( ((worker = strsep(&parser, \textcolor{stringliteral}{"|"})) != NULL) ||
+912           ((worker = strsep(&parser, \textcolor{stringliteral}{"%"})) != NULL) ||
+913           ((worker = strsep(&parser, \textcolor{stringliteral}{";"})) != NULL)) &&
+914           (strlen(worker) > 8)) \{
+915         skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"[%s]"}, worker);
+916     \}
+917     free(base);
+918 \}
 \end{DoxyCode}
 
 
@@ -678,7 +677,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \item Returns E\+X\+I\+T\+\_\+\+F\+A\+I\+L\+U\+R\+E/\+S\+U\+C\+C\+E\+SS 
 \end{DoxyItemize}
 
-Definition at line 882 of file skn\+\_\+network\+\_\+helpers.\+c.
+Definition at line 926 of file skn\+\_\+network\+\_\+helpers.\+c.
 
 
 
@@ -690,23 +689,23 @@ Referenced by main(), and service\+\_\+registry\+\_\+entry\+\_\+create().
 
 
 \begin{DoxyCode}
-882                                                                                       \{
-883     \hyperlink{struct__service_entry}{PRegistryEntry} prent = NULL;
-884     \textcolor{keywordtype}{int} index = 0;
-885 
-886     \textcolor{keywordflow}{if} (psreg == NULL)
-887         \textcolor{keywordflow}{return} NULL;
-888 
-889     \textcolor{keywordflow}{while} (index < psreg->count) \{
-890         \textcolor{keywordflow}{if} (strcmp(serviceName, psreg->\hyperlink{struct__service_registry_ad35429e298009925477ba528ea500fe8}{entry}[index]->\hyperlink{struct__service_entry_aa66dcf0806f67276d049ac75c6153768}{name}) == 0) \{
-891             prent = psreg->\hyperlink{struct__service_registry_ad35429e298009925477ba528ea500fe8}{entry}[index];
-892             \textcolor{keywordflow}{break};
-893         \}
-894         index++;
-895     \}
-896 
-897     \textcolor{keywordflow}{return} prent;
-898 \}
+926                                                                                       \{
+927     \hyperlink{struct__service_entry}{PRegistryEntry} prent = NULL;
+928     \textcolor{keywordtype}{int} index = 0;
+929 
+930     \textcolor{keywordflow}{if} (psreg == NULL)
+931         \textcolor{keywordflow}{return} NULL;
+932 
+933     \textcolor{keywordflow}{while} (index < psreg->count) \{
+934         \textcolor{keywordflow}{if} (strcmp(serviceName, psreg->\hyperlink{struct__service_registry_ad35429e298009925477ba528ea500fe8}{entry}[index]->\hyperlink{struct__service_entry_aa66dcf0806f67276d049ac75c6153768}{name}) == 0) \{
+935             prent = psreg->\hyperlink{struct__service_registry_ad35429e298009925477ba528ea500fe8}{entry}[index];
+936             \textcolor{keywordflow}{break};
+937         \}
+938         index++;
+939     \}
+940 
+941     \textcolor{keywordflow}{return} prent;
+942 \}
 \end{DoxyCode}
 
 
@@ -733,27 +732,27 @@ Here is the caller graph for this function\+:\nopagebreak
 \item Returns the address offset of the registry field requested 
 \end{DoxyItemize}
 
-Definition at line 925 of file skn\+\_\+network\+\_\+helpers.\+c.
+Definition at line 969 of file skn\+\_\+network\+\_\+helpers.\+c.
 
 
 \begin{DoxyCode}
-925                                                                                \{
-926     \textcolor{keywordtype}{int} index = 0;
-927     \textcolor{keywordtype}{void} * result = NULL;
-928     \textcolor{keywordtype}{char} * names[4] = \{ \textcolor{stringliteral}{"name"}, \textcolor{stringliteral}{"ip"}, \textcolor{stringliteral}{"port"}, NULL \};
-929     \textcolor{keywordtype}{int} offsets[4] = \{ offsetof(\hyperlink{struct__service_entry}{RegistryEntry}, name),
-930                        offsetof(\hyperlink{struct__service_entry}{RegistryEntry}, ip),
-931                        offsetof(\hyperlink{struct__service_entry}{RegistryEntry}, port),
-932                        0
-933                      \};
-934     \textcolor{keywordflow}{for} (index = 0; names[index] != NULL; index++) \{
-935         \textcolor{keywordflow}{if} (strcmp(names[index], field) == 0) \{
-936             result = (\textcolor{keywordtype}{void} *) prent + offsets[index];
-937             \textcolor{keywordflow}{break};
-938         \}
-939     \}
-940     \textcolor{keywordflow}{return} result;
-941 \}
+969                                                                                \{
+970     \textcolor{keywordtype}{int} index = 0;
+971     \textcolor{keywordtype}{void} * result = NULL;
+972     \textcolor{keywordtype}{char} * names[4] = \{ \textcolor{stringliteral}{"name"}, \textcolor{stringliteral}{"ip"}, \textcolor{stringliteral}{"port"}, NULL \};
+973     \textcolor{keywordtype}{int} offsets[4] = \{ offsetof(\hyperlink{struct__service_entry}{RegistryEntry}, name),
+974                        offsetof(\hyperlink{struct__service_entry}{RegistryEntry}, ip),
+975                        offsetof(\hyperlink{struct__service_entry}{RegistryEntry}, port),
+976                        0
+977                      \};
+978     \textcolor{keywordflow}{for} (index = 0; names[index] != NULL; index++) \{
+979         \textcolor{keywordflow}{if} (strcmp(names[index], field) == 0) \{
+980             result = (\textcolor{keywordtype}{void} *) prent + offsets[index];
+981             \textcolor{keywordflow}{break};
+982         \}
+983     \}
+984     \textcolor{keywordflow}{return} result;
+985 \}
 \end{DoxyCode}
 \index{skn\+\_\+network\+\_\+helpers.\+h@{skn\+\_\+network\+\_\+helpers.\+h}!service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast@{service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast}}
 \index{service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast@{service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast}!skn\+\_\+network\+\_\+helpers.\+h@{skn\+\_\+network\+\_\+helpers.\+h}}
@@ -771,7 +770,7 @@ Definition at line 925 of file skn\+\_\+network\+\_\+helpers.\+c.
 \item Returns Populated Registry 
 \end{DoxyItemize}
 
-Definition at line 1050 of file skn\+\_\+network\+\_\+helpers.\+c.
+Definition at line 1094 of file skn\+\_\+network\+\_\+helpers.\+c.
 
 
 
@@ -783,75 +782,75 @@ Referenced by main().
 
 
 \begin{DoxyCode}
-1050                                                                                      \{
-1051     \textcolor{keyword}{struct }sockaddr\_in remaddr; \textcolor{comment}{/* remote address */}
-1052     socklen\_t addrlen = \textcolor{keyword}{sizeof}(remaddr); \textcolor{comment}{/* length of addresses */}
-1053     \hyperlink{struct__ip_broadcast_array}{IPBroadcastArray} aB;
-1054     \textcolor{keywordtype}{int} vIndex = 0;
-1055     \textcolor{keywordtype}{char} response[\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}];
-1056     \textcolor{keywordtype}{char} recvHostName[\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}];
-1057     \textcolor{keywordtype}{signed} \textcolor{keywordtype}{int} rLen = 0;
-1058     \textcolor{keyword}{struct }timeval start;
-1059 
-1060     memset(response, 0, \textcolor{keyword}{sizeof}(response));
-1061     memset(recvHostName, 0, \textcolor{keyword}{sizeof}(recvHostName));
-1062 
-1063     \hyperlink{skn__network__helpers_8c_a0b4821586a5c3d59096cb20dc6b28b2a}{get\_broadcast\_ip\_array}(&aB);
-1064     strncpy(\hyperlink{skn__network__helpers_8c_ac317f6dfab7bc91b9e2d717a7a1b8fcb}{gd\_ch\_intfName}, aB.\hyperlink{struct__ip_broadcast_array_a06dab8742df19b5aec8538842617778d}{chDefaultIntfName}, 
+1094                                                                                      \{
+1095     \textcolor{keyword}{struct }sockaddr\_in remaddr; \textcolor{comment}{/* remote address */}
+1096     socklen\_t addrlen = \textcolor{keyword}{sizeof}(remaddr); \textcolor{comment}{/* length of addresses */}
+1097     \hyperlink{struct__ip_broadcast_array}{IPBroadcastArray} aB;
+1098     \textcolor{keywordtype}{int} vIndex = 0;
+1099     \textcolor{keywordtype}{char} response[\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}];
+1100     \textcolor{keywordtype}{char} recvHostName[\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}];
+1101     \textcolor{keywordtype}{signed} \textcolor{keywordtype}{int} rLen = 0;
+1102     \textcolor{keyword}{struct }timeval start;
+1103 
+1104     memset(response, 0, \textcolor{keyword}{sizeof}(response));
+1105     memset(recvHostName, 0, \textcolor{keyword}{sizeof}(recvHostName));
+1106 
+1107     \hyperlink{skn__network__helpers_8c_a0b4821586a5c3d59096cb20dc6b28b2a}{get\_broadcast\_ip\_array}(&aB);
+1108     strncpy(\hyperlink{skn__network__helpers_8c_ac317f6dfab7bc91b9e2d717a7a1b8fcb}{gd\_ch\_intfName}, aB.\hyperlink{struct__ip_broadcast_array_a06dab8742df19b5aec8538842617778d}{chDefaultIntfName}, 
       \hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF});
-1065     strncpy(\hyperlink{skn__network__helpers_8c_aee48900a4a99c0480e3f1dfb6c4f38c7}{gd\_ch\_ipAddress}, aB.\hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[aB.
+1109     strncpy(\hyperlink{skn__network__helpers_8c_aee48900a4a99c0480e3f1dfb6c4f38c7}{gd\_ch\_ipAddress}, aB.\hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[aB.
       \hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex}], \hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF});
-1066 
-1067     skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"Socket Bound to %s"}, aB.\hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[aB.
+1110 
+1111     skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"Socket Bound to %s"}, aB.\hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[aB.
       \hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex}]);
-1068 
-1069     gettimeofday(&start, NULL);
-1070     \textcolor{keywordflow}{for} (vIndex = 0; vIndex < aB.\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count}; vIndex++) \{
-1071         memset(&remaddr, 0, \textcolor{keyword}{sizeof}(remaddr));
-1072         remaddr.sin\_family = AF\_INET;
-1073         remaddr.sin\_addr.s\_addr = inet\_addr(aB.\hyperlink{struct__ip_broadcast_array_af40943e174ba847fa0218cfa6051e277}{broadAddrStr}[vIndex]);
-1074         remaddr.sin\_port = htons(\hyperlink{skn__common__headers_8h_a811ab3c1ca8c51a13852fdbd51707202}{SKN\_FIND\_RPI\_PORT});
-1075 
-1076         \textcolor{keywordflow}{if} (sendto(i\_socket, request, strlen(request), 0, (\textcolor{keyword}{struct} sockaddr *) &remaddr, addrlen) < 0) \{
-1077             skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"SendTo() Timed out; Failure code=%d, etext=%s"}, errno, 
+1112 
+1113     gettimeofday(&start, NULL);
+1114     \textcolor{keywordflow}{for} (vIndex = 0; vIndex < aB.\hyperlink{struct__ip_broadcast_array_a971377a4c995292b8bd908f185cfc844}{count}; vIndex++) \{
+1115         memset(&remaddr, 0, \textcolor{keyword}{sizeof}(remaddr));
+1116         remaddr.sin\_family = AF\_INET;
+1117         remaddr.sin\_addr.s\_addr = inet\_addr(aB.\hyperlink{struct__ip_broadcast_array_af40943e174ba847fa0218cfa6051e277}{broadAddrStr}[vIndex]);
+1118         remaddr.sin\_port = htons(\hyperlink{skn__common__headers_8h_a811ab3c1ca8c51a13852fdbd51707202}{SKN\_FIND\_RPI\_PORT});
+1119 
+1120         \textcolor{keywordflow}{if} (sendto(i\_socket, request, strlen(request), 0, (\textcolor{keyword}{struct} sockaddr *) &remaddr, addrlen) < 0) \{
+1121             skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"SendTo() Timed out; Failure code=%d, etext=%s"}, errno, 
       strerror(errno));
-1078             \textcolor{keywordflow}{break};
-1079         \}
-1080         skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"Message Broadcasted on %s:%s:%d"}, aB.
+1122             \textcolor{keywordflow}{break};
+1123         \}
+1124         skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"Message Broadcasted on %s:%s:%d"}, aB.
       \hyperlink{struct__ip_broadcast_array_a193b90f271c061e8bf1593bab6a182c9}{ifNameStr}[vIndex], aB.\hyperlink{struct__ip_broadcast_array_af40943e174ba847fa0218cfa6051e277}{broadAddrStr}[vIndex], 
       \hyperlink{skn__common__headers_8h_a811ab3c1ca8c51a13852fdbd51707202}{SKN\_FIND\_RPI\_PORT});
-1081     \}
-1082 
-1083     \hyperlink{struct__service_registry}{PServiceRegistry} psr = \hyperlink{skn__network__helpers_8c_afb305f4b4db81aad61bd5e4e6ecaf6fd}{service\_registry\_create}();
-1084     skn\_logger(\hyperlink{skn__common__headers_8h_a3ace3381f5b69f4a46fc35b70844a5dc}{SD\_DEBUG}, \textcolor{stringliteral}{"Waiting for all responses\(\backslash\)n"});
-1085     \textcolor{keywordflow}{while} (\hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag} == \hyperlink{skn__common__headers_8h_a3f5142b81a9ee977aedfd69a61281920}{SKN\_RUN\_MODE\_RUN}) \{ \textcolor{comment}{// depends on a socket timeout
+1125     \}
+1126 
+1127     \hyperlink{struct__service_registry}{PServiceRegistry} psr = \hyperlink{skn__network__helpers_8c_afb305f4b4db81aad61bd5e4e6ecaf6fd}{service\_registry\_create}();
+1128     skn\_logger(\hyperlink{skn__common__headers_8h_a3ace3381f5b69f4a46fc35b70844a5dc}{SD\_DEBUG}, \textcolor{stringliteral}{"Waiting for all responses\(\backslash\)n"});
+1129     \textcolor{keywordflow}{while} (\hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag} == \hyperlink{skn__common__headers_8h_a3f5142b81a9ee977aedfd69a61281920}{SKN\_RUN\_MODE\_RUN}) \{ \textcolor{comment}{// depends on a socket timeout
        of 5 seconds}
-1086 
-1087         rLen = recvfrom(i\_socket, response, (\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1), 0, (\textcolor{keyword}{struct} sockaddr *) &remaddr
+1130 
+1131         rLen = recvfrom(i\_socket, response, (\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1), 0, (\textcolor{keyword}{struct} sockaddr *) &remaddr
       , &addrlen);
-1088         \textcolor{keywordflow}{if} (rLen == \hyperlink{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{PLATFORM\_ERROR}) \{  \textcolor{comment}{// EAGAIN}
-1089             \textcolor{keywordflow}{break};
-1090         \}
-1091         response[rLen] = 0;
-1092 
-1093         rLen = getnameinfo(((\textcolor{keyword}{struct} sockaddr *) &remaddr), \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} sockaddr\_in), recvHostName, (
+1132         \textcolor{keywordflow}{if} (rLen == \hyperlink{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{PLATFORM\_ERROR}) \{  \textcolor{comment}{// EAGAIN}
+1133             \textcolor{keywordflow}{break};
+1134         \}
+1135         response[rLen] = 0;
+1136 
+1137         rLen = getnameinfo(((\textcolor{keyword}{struct} sockaddr *) &remaddr), \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} sockaddr\_in), recvHostName, (
       \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} -1), NULL, 0, NI\_DGRAM);
-1094         \textcolor{keywordflow}{if} (rLen != 0) \{
-1095             skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"getnameinfo() failed: %s\(\backslash\)n"}, gai\_strerror(rLen));
-1096             \textcolor{keywordflow}{break};
-1097         \}
-1098 
-1099         skn\_logger(\hyperlink{skn__common__headers_8h_a3ace3381f5b69f4a46fc35b70844a5dc}{SD\_DEBUG}, \textcolor{stringliteral}{"Response(%1.3fs) received from %s @ %s:%d"},
-1100                         \hyperlink{skn__network__helpers_8c_ad7f2202ecfe8bb131545b23ea3c26e91}{skn\_duration\_in\_milliseconds}(&start, NULL),
-1101                         recvHostName,
-1102                         inet\_ntoa(remaddr.sin\_addr),
-1103                         ntohs(remaddr.sin\_port)
-1104                   );
-1105         \hyperlink{skn__network__helpers_8c_a25149d495d462b7600eb6715da868200}{service\_registry\_response\_parse}(psr, response, NULL);
-1106     \}
-1107 
-1108     \textcolor{keywordflow}{return} (psr);
-1109 \}
+1138         \textcolor{keywordflow}{if} (rLen != 0) \{
+1139             skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"getnameinfo() failed: %s\(\backslash\)n"}, gai\_strerror(rLen));
+1140             \textcolor{keywordflow}{break};
+1141         \}
+1142 
+1143         skn\_logger(\hyperlink{skn__common__headers_8h_a3ace3381f5b69f4a46fc35b70844a5dc}{SD\_DEBUG}, \textcolor{stringliteral}{"Response(%1.3fs) received from %s @ %s:%d"},
+1144                         \hyperlink{skn__network__helpers_8c_ad7f2202ecfe8bb131545b23ea3c26e91}{skn\_duration\_in\_milliseconds}(&start, NULL),
+1145                         recvHostName,
+1146                         inet\_ntoa(remaddr.sin\_addr),
+1147                         ntohs(remaddr.sin\_port)
+1148                   );
+1149         \hyperlink{skn__network__helpers_8c_a25149d495d462b7600eb6715da868200}{service\_registry\_response\_parse}(psr, response, NULL);
+1150     \}
+1151 
+1152     \textcolor{keywordflow}{return} (psr);
+1153 \}
 \end{DoxyCode}
 
 
@@ -884,7 +883,7 @@ Here is the caller graph for this function\+:\nopagebreak
 )}\hypertarget{skn__network__helpers_8h_a16d6920592f2a64c9cab22cb26ef28e1}{}\label{skn__network__helpers_8h_a16d6920592f2a64c9cab22cb26ef28e1}
 Logs each entry in service registry 
 
-Definition at line 910 of file skn\+\_\+network\+\_\+helpers.\+c.
+Definition at line 954 of file skn\+\_\+network\+\_\+helpers.\+c.
 
 
 
@@ -896,17 +895,17 @@ Referenced by main().
 
 
 \begin{DoxyCode}
-910                                                         \{
-911     \textcolor{keywordtype}{int} index = 0;
-912 
-913     skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"\(\backslash\)nServiceRegistry:"});
-914     \textcolor{keywordflow}{for} (index = 0; index < psr->\hyperlink{struct__service_registry_a68062b14c6c9cb411e3602be664425bc}{count}; index++) \{
-915         skn\_logger(\hyperlink{skn__common__headers_8h_a1bcf100bcdd91eacaf0b05d83c88aedf}{SD\_INFO}, \textcolor{stringliteral}{"RegistryEntry(%02d) name=%s, ip=%s, port=%d"}, index, psr->
+954                                                         \{
+955     \textcolor{keywordtype}{int} index = 0;
+956 
+957     skn\_logger(\textcolor{stringliteral}{" "}, \textcolor{stringliteral}{"\(\backslash\)nServiceRegistry:"});
+958     \textcolor{keywordflow}{for} (index = 0; index < psr->\hyperlink{struct__service_registry_a68062b14c6c9cb411e3602be664425bc}{count}; index++) \{
+959         skn\_logger(\hyperlink{skn__common__headers_8h_a1bcf100bcdd91eacaf0b05d83c88aedf}{SD\_INFO}, \textcolor{stringliteral}{"RegistryEntry(%02d) name=%s, ip=%s, port=%d"}, index, psr->
       \hyperlink{struct__service_registry_ad35429e298009925477ba528ea500fe8}{entry}[index]->\hyperlink{struct__service_entry_aa66dcf0806f67276d049ac75c6153768}{name}, psr->\hyperlink{struct__service_registry_ad35429e298009925477ba528ea500fe8}{entry}[index]->\hyperlink{struct__service_entry_a70b1db0895fbe31c07c8799cb57c678a}{ip}, psr->\hyperlink{struct__service_registry_ad35429e298009925477ba528ea500fe8}{entry}[index]->
       \hyperlink{struct__service_entry_ac8a3a40de5eee937afb42faea4d18bb2}{port});
-916     \}
-917     \textcolor{keywordflow}{return} index;
-918 \}
+960     \}
+961     \textcolor{keywordflow}{return} index;
+962 \}
 \end{DoxyCode}
 
 
@@ -929,7 +928,7 @@ Here is the caller graph for this function\+:\nopagebreak
 )}\hypertarget{skn__network__helpers_8h_ad148412119d5d8373da1a6859aafda41}{}\label{skn__network__helpers_8h_ad148412119d5d8373da1a6859aafda41}
 
 
-Definition at line 648 of file skn\+\_\+network\+\_\+helpers.\+c.
+Definition at line 692 of file skn\+\_\+network\+\_\+helpers.\+c.
 
 
 
@@ -941,111 +940,111 @@ Referenced by main().
 
 
 \begin{DoxyCode}
-648                                                             \{
-649     \textcolor{keyword}{struct }sockaddr\_in remaddr; \textcolor{comment}{/* remote address */}
-650     socklen\_t addrlen = \textcolor{keyword}{sizeof}(remaddr); \textcolor{comment}{/* length of addresses */}
-651     \hyperlink{struct__ip_broadcast_array}{IPBroadcastArray} aB;
-652     \textcolor{keywordtype}{char} request[\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}];
-653     \textcolor{keywordtype}{char} recvHostName[\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}];
-654     \textcolor{keywordtype}{signed} \textcolor{keywordtype}{int} rLen = 0, rc = 0;
-655     \textcolor{keywordtype}{int} exit\_code = EXIT\_SUCCESS, i\_response\_len = 0;
-656 
-657 
-658     memset(request, 0, \textcolor{keyword}{sizeof}(request));
-659     memset(recvHostName, 0, \textcolor{keyword}{sizeof}(recvHostName));
-660 
-661     rc = \hyperlink{skn__network__helpers_8c_a0b4821586a5c3d59096cb20dc6b28b2a}{get\_broadcast\_ip\_array}(&aB);
-662     \textcolor{keywordflow}{if} (rc == \hyperlink{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{PLATFORM\_ERROR}) \{
-663         \textcolor{keywordflow}{return} EXIT\_FAILURE;
-664     \}
-665 
-666     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a2f908b49598a49ea624bfcc3e2175b7c}{gd\_pch\_service\_name} == NULL) \{
-667         \hyperlink{skn__network__helpers_8c_a2f908b49598a49ea624bfcc3e2175b7c}{gd\_pch\_service\_name} = \textcolor{stringliteral}{"lcd\_display\_service"};
-668     \}
-669 
-670     \textcolor{keywordflow}{if} (strlen(response) < 16) \{
-671         \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_ad3af8f8dd9f2ca01a415370a99bc465e}{gd\_i\_display}) \{
-672             i\_response\_len = snprintf(response, (\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1),
-673                      \textcolor{stringliteral}{"name=rpi\_locator\_service,ip=%s,port=%d|"}
-674                      \textcolor{stringliteral}{"name=%s,ip=%s,port=%d|"},
-675                      aB.\hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[aB.\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex}], 
-      \hyperlink{skn__common__headers_8h_a811ab3c1ca8c51a13852fdbd51707202}{SKN\_FIND\_RPI\_PORT},
-676                      \hyperlink{skn__network__helpers_8c_a2f908b49598a49ea624bfcc3e2175b7c}{gd\_pch\_service\_name},
-677                      aB.\hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[aB.\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex}], 
-      \hyperlink{skn__common__headers_8h_a438e6442bfb3d18e1846357cf7379216}{SKN\_RPI\_DISPLAY\_SERVICE\_PORT});
-678         \} \textcolor{keywordflow}{else} \{
-679             i\_response\_len = snprintf(response, (\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1),
-680                             \textcolor{stringliteral}{"name=rpi\_locator\_service,ip=%s,port=%d|"},
-681                             aB.\hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[aB.\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex}], 
-      \hyperlink{skn__common__headers_8h_a811ab3c1ca8c51a13852fdbd51707202}{SKN\_FIND\_RPI\_PORT});
-682         \}
-683     \}
-684     \hyperlink{skn__network__helpers_8c_ad0e63e9d3365fb8818a5ca21179abb3e}{service\_registry\_entry\_response\_message\_log}(response);
-685 
-686     skn\_logger(\hyperlink{skn__common__headers_8h_a3ace3381f5b69f4a46fc35b70844a5dc}{SD\_DEBUG}, \textcolor{stringliteral}{"Socket Bound to %s:%s"}, aB.\hyperlink{struct__ip_broadcast_array_a06dab8742df19b5aec8538842617778d}{chDefaultIntfName}, aB.
-      \hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[aB.\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex}]);
-687 
-688     \textcolor{keywordflow}{while} (\hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag} == \hyperlink{skn__common__headers_8h_a3f5142b81a9ee977aedfd69a61281920}{SKN\_RUN\_MODE\_RUN}) \{
-689         memset(&remaddr, 0, \textcolor{keyword}{sizeof}(remaddr));
-690         remaddr.sin\_family = AF\_INET;
-691         remaddr.sin\_port = htons(\hyperlink{skn__common__headers_8h_a811ab3c1ca8c51a13852fdbd51707202}{SKN\_FIND\_RPI\_PORT});
-692         remaddr.sin\_addr.s\_addr = htonl(INADDR\_ANY);
-693         addrlen = \textcolor{keyword}{sizeof}(remaddr);
-694 
-695         \textcolor{keywordflow}{if} ((rLen = recvfrom(i\_socket, request, (\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1), 0, (\textcolor{keyword}{struct} sockaddr *) &
-      remaddr, &addrlen)) < 0) \{
-696             \textcolor{keywordflow}{if} (errno == EAGAIN) \{
-697                 \textcolor{keywordflow}{continue};
-698             \}
-699             skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"RcvFrom() Failure code=%d, etext=%s"}, errno, strerror(errno));
-700             exit\_code = EXIT\_FAILURE;
-701             \textcolor{keywordflow}{break};
-702         \}
-703         request[rLen] = 0;
+692                                                             \{
+693     \textcolor{keyword}{struct }sockaddr\_in remaddr; \textcolor{comment}{/* remote address */}
+694     socklen\_t addrlen = \textcolor{keyword}{sizeof}(remaddr); \textcolor{comment}{/* length of addresses */}
+695     \hyperlink{struct__ip_broadcast_array}{IPBroadcastArray} aB;
+696     \textcolor{keywordtype}{char} request[\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}];
+697     \textcolor{keywordtype}{char} recvHostName[\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}];
+698     \textcolor{keywordtype}{signed} \textcolor{keywordtype}{int} rLen = 0, rc = 0;
+699     \textcolor{keywordtype}{int} exit\_code = EXIT\_SUCCESS, i\_response\_len = 0;
+700 
+701 
+702     memset(request, 0, \textcolor{keyword}{sizeof}(request));
+703     memset(recvHostName, 0, \textcolor{keyword}{sizeof}(recvHostName));
 704 
-705         rc = getnameinfo(((\textcolor{keyword}{struct} sockaddr *) &remaddr), \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} sockaddr\_in), recvHostName, (
-      \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}-1), NULL, 0, NI\_DGRAM);
-706         \textcolor{keywordflow}{if} (rc != 0) \{
-707             skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"GetNameInfo() Failure code=%d, etext=%s"}, errno, strerror(errno));
-708             exit\_code = EXIT\_FAILURE;
-709             \textcolor{keywordflow}{break};
-710         \}
-711         skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"Received request from %s @ %s:%d"}, recvHostName, inet\_ntoa(remaddr.
-      sin\_addr), ntohs(remaddr.sin\_port));
-712         skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"Request data: [%s]\(\backslash\)n"}, request);
+705     rc = \hyperlink{skn__network__helpers_8c_a0b4821586a5c3d59096cb20dc6b28b2a}{get\_broadcast\_ip\_array}(&aB);
+706     \textcolor{keywordflow}{if} (rc == \hyperlink{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{PLATFORM\_ERROR}) \{
+707         \textcolor{keywordflow}{return} EXIT\_FAILURE;
+708     \}
+709 
+710     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a2f908b49598a49ea624bfcc3e2175b7c}{gd\_pch\_service\_name} == NULL) \{
+711         \hyperlink{skn__network__helpers_8c_a2f908b49598a49ea624bfcc3e2175b7c}{gd\_pch\_service\_name} = \textcolor{stringliteral}{"lcd\_display\_service"};
+712     \}
 713 
-714         \textcolor{comment}{/*}
-715 \textcolor{comment}{         * Add new registry entry by command */}
-716         \textcolor{keywordflow}{if} ((strncmp(\textcolor{stringliteral}{"ADD "}, request, \textcolor{keyword}{sizeof}(\textcolor{stringliteral}{"ADD"})) == 0) &&
-717             (\hyperlink{skn__network__helpers_8c_a866cf7e5524cc49a76448c59395a622e}{service\_registry\_valiadate\_response\_format}(&request[
+714     \textcolor{keywordflow}{if} (strlen(response) < 16) \{
+715         \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_ad3af8f8dd9f2ca01a415370a99bc465e}{gd\_i\_display}) \{
+716             i\_response\_len = snprintf(response, (\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1),
+717                      \textcolor{stringliteral}{"name=rpi\_locator\_service,ip=%s,port=%d|"}
+718                      \textcolor{stringliteral}{"name=%s,ip=%s,port=%d|"},
+719                      aB.\hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[aB.\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex}], 
+      \hyperlink{skn__common__headers_8h_a811ab3c1ca8c51a13852fdbd51707202}{SKN\_FIND\_RPI\_PORT},
+720                      \hyperlink{skn__network__helpers_8c_a2f908b49598a49ea624bfcc3e2175b7c}{gd\_pch\_service\_name},
+721                      aB.\hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[aB.\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex}], 
+      \hyperlink{skn__common__headers_8h_a438e6442bfb3d18e1846357cf7379216}{SKN\_RPI\_DISPLAY\_SERVICE\_PORT});
+722         \} \textcolor{keywordflow}{else} \{
+723             i\_response\_len = snprintf(response, (\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1),
+724                             \textcolor{stringliteral}{"name=rpi\_locator\_service,ip=%s,port=%d|"},
+725                             aB.\hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[aB.\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex}], 
+      \hyperlink{skn__common__headers_8h_a811ab3c1ca8c51a13852fdbd51707202}{SKN\_FIND\_RPI\_PORT});
+726         \}
+727     \}
+728     \hyperlink{skn__network__helpers_8c_ad0e63e9d3365fb8818a5ca21179abb3e}{service\_registry\_entry\_response\_message\_log}(response);
+729 
+730     skn\_logger(\hyperlink{skn__common__headers_8h_a3ace3381f5b69f4a46fc35b70844a5dc}{SD\_DEBUG}, \textcolor{stringliteral}{"Socket Bound to %s:%s"}, aB.\hyperlink{struct__ip_broadcast_array_a06dab8742df19b5aec8538842617778d}{chDefaultIntfName}, aB.
+      \hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[aB.\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex}]);
+731 
+732     \textcolor{keywordflow}{while} (\hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag} == \hyperlink{skn__common__headers_8h_a3f5142b81a9ee977aedfd69a61281920}{SKN\_RUN\_MODE\_RUN}) \{
+733         memset(&remaddr, 0, \textcolor{keyword}{sizeof}(remaddr));
+734         remaddr.sin\_family = AF\_INET;
+735         remaddr.sin\_port = htons(\hyperlink{skn__common__headers_8h_a811ab3c1ca8c51a13852fdbd51707202}{SKN\_FIND\_RPI\_PORT});
+736         remaddr.sin\_addr.s\_addr = htonl(INADDR\_ANY);
+737         addrlen = \textcolor{keyword}{sizeof}(remaddr);
+738 
+739         \textcolor{keywordflow}{if} ((rLen = recvfrom(i\_socket, request, (\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1), 0, (\textcolor{keyword}{struct} sockaddr *) &
+      remaddr, &addrlen)) < 0) \{
+740             \textcolor{keywordflow}{if} (errno == EAGAIN) \{
+741                 \textcolor{keywordflow}{continue};
+742             \}
+743             skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"RcvFrom() Failure code=%d, etext=%s"}, errno, strerror(errno));
+744             exit\_code = EXIT\_FAILURE;
+745             \textcolor{keywordflow}{break};
+746         \}
+747         request[rLen] = 0;
+748 
+749         rc = getnameinfo(((\textcolor{keyword}{struct} sockaddr *) &remaddr), \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} sockaddr\_in), recvHostName, (
+      \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}-1), NULL, 0, NI\_DGRAM);
+750         \textcolor{keywordflow}{if} (rc != 0) \{
+751             skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"GetNameInfo() Failure code=%d, etext=%s"}, errno, strerror(errno));
+752             exit\_code = EXIT\_FAILURE;
+753             \textcolor{keywordflow}{break};
+754         \}
+755         skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"Received request from %s @ %s:%d"}, recvHostName, inet\_ntoa(remaddr.
+      sin\_addr), ntohs(remaddr.sin\_port));
+756         skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"Request data: [%s]\(\backslash\)n"}, request);
+757 
+758         \textcolor{comment}{/*}
+759 \textcolor{comment}{         * Add new registry entry by command */}
+760         \textcolor{keywordflow}{if} ((strncmp(\textcolor{stringliteral}{"ADD "}, request, \textcolor{keyword}{sizeof}(\textcolor{stringliteral}{"ADD"})) == 0) &&
+761             (\hyperlink{skn__network__helpers_8c_a866cf7e5524cc49a76448c59395a622e}{service\_registry\_valiadate\_response\_format}(&request[
       4]) == EXIT\_SUCCESS)) \{
-718             \textcolor{keywordflow}{if} ((response[i\_response\_len-1] == \textcolor{charliteral}{'|'}) ||
-719                 (response[i\_response\_len-1] == \textcolor{charliteral}{'%'}) ||
-720                 (response[i\_response\_len-1] == \textcolor{charliteral}{';'})) \{
-721                 strncpy(&response[i\_response\_len], &request[4], ((\hyperlink{cmd_d_c_8c_a352051a682a5205841c1bda6e30bb30d}{SZ\_COMM\_BUFF} - 1) - (strlen(
+762             \textcolor{keywordflow}{if} ((response[i\_response\_len-1] == \textcolor{charliteral}{'|'}) ||
+763                 (response[i\_response\_len-1] == \textcolor{charliteral}{'%'}) ||
+764                 (response[i\_response\_len-1] == \textcolor{charliteral}{';'})) \{
+765                 strncpy(&response[i\_response\_len], &request[4], ((\hyperlink{cmd_d_c_8c_a352051a682a5205841c1bda6e30bb30d}{SZ\_COMM\_BUFF} - 1) - (strlen(
       response) + strlen(&request[4]))) );
-722                 i\_response\_len += (rLen - 4);
-723                 skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"COMMAND: Add New RegistryEntry Request Accepted!"});
-724             \}
-725         \}
-726 
-727         \textcolor{keywordflow}{if} (sendto(i\_socket, response, strlen(response), 0, (\textcolor{keyword}{struct} sockaddr *) &remaddr, addrlen) < 0) \{
-728             skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"SendTo() Failure code=%d, etext=%s"}, errno, strerror(errno));
-729             exit\_code = EXIT\_FAILURE;
-730             \textcolor{keywordflow}{break};
-731         \}
-732 
-733         \textcolor{comment}{/*}
-734 \textcolor{comment}{         * Shutdown by command */}
-735         \textcolor{keywordflow}{if} (strcmp(\textcolor{stringliteral}{"QUIT!"}, request) == 0) \{
-736             skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"COMMAND: Shutdown Requested! exit code=%d"}, 
+766                 i\_response\_len += (rLen - 4);
+767                 skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"COMMAND: Add New RegistryEntry Request Accepted!"});
+768             \}
+769         \}
+770 
+771         \textcolor{keywordflow}{if} (sendto(i\_socket, response, strlen(response), 0, (\textcolor{keyword}{struct} sockaddr *) &remaddr, addrlen) < 0) \{
+772             skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"SendTo() Failure code=%d, etext=%s"}, errno, strerror(errno));
+773             exit\_code = EXIT\_FAILURE;
+774             \textcolor{keywordflow}{break};
+775         \}
+776 
+777         \textcolor{comment}{/*}
+778 \textcolor{comment}{         * Shutdown by command */}
+779         \textcolor{keywordflow}{if} (strcmp(\textcolor{stringliteral}{"QUIT!"}, request) == 0) \{
+780             skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"COMMAND: Shutdown Requested! exit code=%d"}, 
       \hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag});
-737             \textcolor{keywordflow}{break};
-738         \}
-739     \}
-740 
-741     \textcolor{keywordflow}{return} exit\_code;
-742 \}
+781             \textcolor{keywordflow}{break};
+782         \}
+783     \}
+784 
+785     \textcolor{keywordflow}{return} exit\_code;
+786 \}
 \end{DoxyCode}
 
 
@@ -1084,7 +1083,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \item Returns E\+X\+I\+T\+\_\+\+F\+A\+I\+L\+U\+R\+E/\+S\+U\+C\+C\+E\+SS 
 \end{DoxyItemize}
 
-Definition at line 825 of file skn\+\_\+network\+\_\+helpers.\+c.
+Definition at line 869 of file skn\+\_\+network\+\_\+helpers.\+c.
 
 
 
@@ -1096,19 +1095,19 @@ Referenced by main(), and service\+\_\+registry\+\_\+provider().
 
 
 \begin{DoxyCode}
-825                                                                      \{
-826     \textcolor{keywordtype}{int} errors = 0; \textcolor{comment}{// false}
-827 
-828     \hyperlink{struct__service_registry}{PServiceRegistry} psr = \hyperlink{skn__network__helpers_8c_afb305f4b4db81aad61bd5e4e6ecaf6fd}{service\_registry\_create}();
-829     \hyperlink{skn__network__helpers_8c_a25149d495d462b7600eb6715da868200}{service\_registry\_response\_parse}(psr, response, &errors);
-830     \hyperlink{skn__network__helpers_8c_a819c12fc7c8ff576b1aaad69bc098840}{service\_registry\_destroy}(psr);
-831 
-832     \textcolor{keywordflow}{if} (errors > 0) \{
-833         \textcolor{keywordflow}{return} EXIT\_FAILURE; \textcolor{comment}{// false}
-834     \} \textcolor{keywordflow}{else} \{
-835         \textcolor{keywordflow}{return} EXIT\_SUCCESS; \textcolor{comment}{// true}
-836     \}
-837 \}
+869                                                                      \{
+870     \textcolor{keywordtype}{int} errors = 0; \textcolor{comment}{// false}
+871 
+872     \hyperlink{struct__service_registry}{PServiceRegistry} psr = \hyperlink{skn__network__helpers_8c_afb305f4b4db81aad61bd5e4e6ecaf6fd}{service\_registry\_create}();
+873     \hyperlink{skn__network__helpers_8c_a25149d495d462b7600eb6715da868200}{service\_registry\_response\_parse}(psr, response, &errors);
+874     \hyperlink{skn__network__helpers_8c_a819c12fc7c8ff576b1aaad69bc098840}{service\_registry\_destroy}(psr);
+875 
+876     \textcolor{keywordflow}{if} (errors > 0) \{
+877         \textcolor{keywordflow}{return} EXIT\_FAILURE; \textcolor{comment}{// false}
+878     \} \textcolor{keywordflow}{else} \{
+879         \textcolor{keywordflow}{return} EXIT\_SUCCESS; \textcolor{comment}{// true}
+880     \}
+881 \}
 \end{DoxyCode}
 
 
@@ -1147,7 +1146,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \item Returns a Registry with one entry 
 \end{DoxyItemize}
 
-Definition at line 845 of file skn\+\_\+network\+\_\+helpers.\+c.
+Definition at line 889 of file skn\+\_\+network\+\_\+helpers.\+c.
 
 
 
@@ -1155,18 +1154,18 @@ References service\+\_\+registry\+\_\+create(), and service\+\_\+registry\+\_\+r
 
 
 \begin{DoxyCode}
-845                                                                             \{
-846     \textcolor{keywordtype}{int} errors = 0;
-847 
-848     \hyperlink{struct__service_registry}{PServiceRegistry} psr = \hyperlink{skn__network__helpers_8c_afb305f4b4db81aad61bd5e4e6ecaf6fd}{service\_registry\_create}();
-849     \hyperlink{skn__network__helpers_8c_a25149d495d462b7600eb6715da868200}{service\_registry\_response\_parse}(psr, response, &errors);
-850     \textcolor{keywordflow}{if} (errors > 0) \{
-851         free(psr);
-852         \textcolor{keywordflow}{return} NULL; \textcolor{comment}{// false}
-853     \}
-854 
-855     \textcolor{keywordflow}{return} psr;
-856 \}
+889                                                                             \{
+890     \textcolor{keywordtype}{int} errors = 0;
+891 
+892     \hyperlink{struct__service_registry}{PServiceRegistry} psr = \hyperlink{skn__network__helpers_8c_afb305f4b4db81aad61bd5e4e6ecaf6fd}{service\_registry\_create}();
+893     \hyperlink{skn__network__helpers_8c_a25149d495d462b7600eb6715da868200}{service\_registry\_response\_parse}(psr, response, &errors);
+894     \textcolor{keywordflow}{if} (errors > 0) \{
+895         free(psr);
+896         \textcolor{keywordflow}{return} NULL; \textcolor{comment}{// false}
+897     \}
+898 
+899     \textcolor{keywordflow}{return} psr;
+900 \}
 \end{DoxyCode}
 
 
@@ -1188,7 +1187,7 @@ Here is the call graph for this function\+:\nopagebreak
 )}\hypertarget{skn__network__helpers_8h_ac256e2066453ab0ff82322aa24b161df}{}\label{skn__network__helpers_8h_ac256e2066453ab0ff82322aa24b161df}
 
 
-Definition at line 141 of file skn\+\_\+network\+\_\+helpers.\+c.
+Definition at line 185 of file skn\+\_\+network\+\_\+helpers.\+c.
 
 
 
@@ -1200,16 +1199,16 @@ Referenced by main().
 
 
 \begin{DoxyCode}
-141                               \{
-142     signal(SIGINT, SIG\_DFL);
-143     signal(SIGQUIT, SIG\_DFL);
-144     signal(SIGTERM, SIG\_DFL);
-145 
-146     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag} > \hyperlink{skn__common__headers_8h_a3f5142b81a9ee977aedfd69a61281920}{SKN\_RUN\_MODE\_RUN}) \{ \textcolor{comment}{// exit caused by some interrupt --
+185                               \{
+186     signal(SIGINT, SIG\_DFL);
+187     signal(SIGQUIT, SIG\_DFL);
+188     signal(SIGTERM, SIG\_DFL);
+189 
+190     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag} > \hyperlink{skn__common__headers_8h_a3f5142b81a9ee977aedfd69a61281920}{SKN\_RUN\_MODE\_RUN}) \{ \textcolor{comment}{// exit caused by some interrupt --
        otherwise it would be exactly 0}
-147         kill(getpid(), sig);
-148     \}
-149 \}
+191         kill(getpid(), sig);
+192     \}
+193 \}
 \end{DoxyCode}
 
 
@@ -1231,7 +1230,7 @@ Here is the caller graph for this function\+:\nopagebreak
 )}\hypertarget{skn__network__helpers_8h_a6af44fa0e0746d3d2a804fea1e84dacd}{}\label{skn__network__helpers_8h_a6af44fa0e0746d3d2a804fea1e84dacd}
 
 
-Definition at line 135 of file skn\+\_\+network\+\_\+helpers.\+c.
+Definition at line 179 of file skn\+\_\+network\+\_\+helpers.\+c.
 
 
 
@@ -1243,11 +1242,11 @@ Referenced by main().
 
 
 \begin{DoxyCode}
-135                     \{
-136     signal(SIGINT, \hyperlink{skn__network__helpers_8c_a49f6d3bb9d22d5b9cf5c7eb6175318d1}{exit\_handler});  \textcolor{comment}{// Ctrl-C}
-137     signal(SIGQUIT, \hyperlink{skn__network__helpers_8c_a49f6d3bb9d22d5b9cf5c7eb6175318d1}{exit\_handler});  \textcolor{comment}{// Quit}
-138     signal(SIGTERM, \hyperlink{skn__network__helpers_8c_a49f6d3bb9d22d5b9cf5c7eb6175318d1}{exit\_handler});  \textcolor{comment}{// Normal kill command}
-139 \}
+179                     \{
+180     signal(SIGINT, \hyperlink{skn__network__helpers_8c_a49f6d3bb9d22d5b9cf5c7eb6175318d1}{exit\_handler});  \textcolor{comment}{// Ctrl-C}
+181     signal(SIGQUIT, \hyperlink{skn__network__helpers_8c_a49f6d3bb9d22d5b9cf5c7eb6175318d1}{exit\_handler});  \textcolor{comment}{// Quit}
+182     signal(SIGTERM, \hyperlink{skn__network__helpers_8c_a49f6d3bb9d22d5b9cf5c7eb6175318d1}{exit\_handler});  \textcolor{comment}{// Normal kill command}
+183 \}
 \end{DoxyCode}
 
 
@@ -1403,7 +1402,7 @@ skn\+\_\+duration\+\_\+in\+\_\+microseconds()
 \item expressed in \%1.\+6us seconds.\+miroseconds 
 \end{DoxyItemize}
 
-Definition at line 578 of file skn\+\_\+network\+\_\+helpers.\+c.
+Definition at line 622 of file skn\+\_\+network\+\_\+helpers.\+c.
 
 
 
@@ -1411,22 +1410,22 @@ Referenced by service\+\_\+registry\+\_\+get\+\_\+via\+\_\+udp\+\_\+broadcast(),
 
 
 \begin{DoxyCode}
-578                                                                                   \{
-579     \textcolor{keywordtype}{long} secs\_used = 0;
-580     \textcolor{keywordtype}{double} total\_micros\_used = 0.0;
-581     \textcolor{keyword}{struct }timeval end;
-582 
-583     \textcolor{keywordflow}{if} (pend == NULL) \{   \textcolor{comment}{// calc running duration}
-584         pend = &end;
-585         gettimeofday(pend, NULL);
-586     \}
-587 
-588     secs\_used=(pend->tv\_sec - pstart->tv\_sec); \textcolor{comment}{//avoid overflow by subtracting first}
-589     total\_micros\_used = secs\_used * 1000.0; \textcolor{comment}{// sec to ms}
-590     total\_micros\_used += (pend->tv\_usec - pstart->tv\_usec) / 1000.0; \textcolor{comment}{// us to ms}
-591 
-592     \textcolor{keywordflow}{return} total\_micros\_used / 1000.0; \textcolor{comment}{// express in seconds.milliseconds}
-593 \}
+622                                                                                   \{
+623     \textcolor{keywordtype}{long} secs\_used = 0;
+624     \textcolor{keywordtype}{double} total\_micros\_used = 0.0;
+625     \textcolor{keyword}{struct }timeval end;
+626 
+627     \textcolor{keywordflow}{if} (pend == NULL) \{   \textcolor{comment}{// calc running duration}
+628         pend = &end;
+629         gettimeofday(pend, NULL);
+630     \}
+631 
+632     secs\_used=(pend->tv\_sec - pstart->tv\_sec); \textcolor{comment}{//avoid overflow by subtracting first}
+633     total\_micros\_used = secs\_used * 1000.0; \textcolor{comment}{// sec to ms}
+634     total\_micros\_used += (pend->tv\_usec - pstart->tv\_usec) / 1000.0; \textcolor{comment}{// us to ms}
+635 
+636     \textcolor{keywordflow}{return} total\_micros\_used / 1000.0; \textcolor{comment}{// express in seconds.milliseconds}
+637 \}
 \end{DoxyCode}
 
 
@@ -1478,9 +1477,23 @@ Here is the caller graph for this function\+:\nopagebreak
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{skn__network__helpers_8h_a63e61152e590620edc7757d782c60a79}{}\label{skn__network__helpers_8h_a63e61152e590620edc7757d782c60a79}
-Setup effective and real userid 
+D\+E\+L\+AY F\+OR \# uS W\+I\+T\+H\+O\+UT S\+L\+E\+E\+P\+I\+NG Ref\+: \href{http://www.raspberry-projects.com/pi/programming-in-c/timing/clock_gettime-for-acurate-timing}{\tt http\+://www.\+raspberry-\/projects.\+com/pi/programming-\/in-\/c/timing/clock\+\_\+gettime-\/for-\/acurate-\/timing}
 
-Definition at line 108 of file skn\+\_\+network\+\_\+helpers.\+c.
+Using delay\+Microseconds lets the linux scheduler decide to jump to another process. Using this function avoids letting the scheduler know we are pausing and provides much faster operation if you are needing to use lots of delays.
+
+Fixup incase your building on for O\+SX, which does not implement clock\+\_\+gettime()
+
+\#ifdef {\bfseries M\+A\+CH} \#include $<$sys/time.\+h$>$ \#define C\+L\+O\+C\+K\+\_\+\+R\+E\+A\+L\+T\+I\+ME 0
+
+\begin{DoxyVerb}  clock_gettime is not implemented on OSX *
+\end{DoxyVerb}
+ int clock\+\_\+gettime(int clk\+\_\+id, struct timespec$\ast$ t) \{ struct timeval now; int rv = gettimeofday(\&now, N\+U\+L\+L); if (rv) return rv; t-\/$>$tv\+\_\+sec = now.\+tv\+\_\+sec; t-\/$>$tv\+\_\+nsec = now.\+tv\+\_\+usec $\ast$ 1000; return 0; \} \#endif
+
+void skn\+\_\+delay\+\_\+microseconds (int delay\+\_\+us) \{ long int start\+\_\+time; long int time\+\_\+difference; struct timespec gettime\+\_\+now;
+
+clock\+\_\+gettime(\+C\+L\+O\+C\+K\+\_\+\+R\+E\+A\+L\+T\+I\+M\+E, \&gettime\+\_\+now); start\+\_\+time = gettime\+\_\+now.\+tv\+\_\+nsec; //\+Get nS value while (1) \{ clock\+\_\+gettime(\+C\+L\+O\+C\+K\+\_\+\+R\+E\+A\+L\+T\+I\+M\+E, \&gettime\+\_\+now); time\+\_\+difference = gettime\+\_\+now.\+tv\+\_\+nsec -\/ start\+\_\+time; if (time\+\_\+difference $<$ 0) time\+\_\+difference += 1000000000; //(Rolls over every 1 second) if (time\+\_\+difference $>$ (delay\+\_\+us $\ast$ 1000)) //\+Delay for \# nS break; \} \} Setup effective and real userid 
+
+Definition at line 152 of file skn\+\_\+network\+\_\+helpers.\+c.
 
 
 
@@ -1492,23 +1505,23 @@ Referenced by main().
 
 
 \begin{DoxyCode}
-108                         \{
-109     uid\_t real\_user\_id = 0;
-110     uid\_t effective\_user\_id = 0;
-111     \textcolor{keyword}{struct }passwd *userinfo = NULL;
-112 
-113     real\_user\_id = getuid();
-114     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_af2e3031da262a9990e0ef895e20cdd0e}{gd\_pch\_effective\_userid} != NULL) \{
-115         userinfo = getpwnam(\hyperlink{skn__network__helpers_8c_af2e3031da262a9990e0ef895e20cdd0e}{gd\_pch\_effective\_userid});
-116         effective\_user\_id = userinfo->pw\_uid;
-117     \} \textcolor{keywordflow}{else} \{
-118         effective\_user\_id = geteuid();
-119         userinfo = getpwuid(effective\_user\_id);
-120         \hyperlink{skn__network__helpers_8c_af2e3031da262a9990e0ef895e20cdd0e}{gd\_pch\_effective\_userid} = userinfo->pw\_name;
-121     \}
-122 
-123     \textcolor{keywordflow}{return} real\_user\_id;
-124 \}
+152                         \{
+153     uid\_t real\_user\_id = 0;
+154     uid\_t effective\_user\_id = 0;
+155     \textcolor{keyword}{struct }passwd *userinfo = NULL;
+156 
+157     real\_user\_id = getuid();
+158     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_af2e3031da262a9990e0ef895e20cdd0e}{gd\_pch\_effective\_userid} != NULL) \{
+159         userinfo = getpwnam(\hyperlink{skn__network__helpers_8c_af2e3031da262a9990e0ef895e20cdd0e}{gd\_pch\_effective\_userid});
+160         effective\_user\_id = userinfo->pw\_uid;
+161     \} \textcolor{keywordflow}{else} \{
+162         effective\_user\_id = geteuid();
+163         userinfo = getpwuid(effective\_user\_id);
+164         \hyperlink{skn__network__helpers_8c_af2e3031da262a9990e0ef895e20cdd0e}{gd\_pch\_effective\_userid} = userinfo->pw\_name;
+165     \}
+166 
+167     \textcolor{keywordflow}{return} real\_user\_id;
+168 \}
 \end{DoxyCode}
 
 
@@ -1531,7 +1544,7 @@ Here is the caller graph for this function\+:\nopagebreak
 )}\hypertarget{skn__network__helpers_8h_a665c441c1f789eb555b1c23ed43de890}{}\label{skn__network__helpers_8h_a665c441c1f789eb555b1c23ed43de890}
 
 
-Definition at line 329 of file skn\+\_\+network\+\_\+helpers.\+c.
+Definition at line 373 of file skn\+\_\+network\+\_\+helpers.\+c.
 
 
 
@@ -1543,101 +1556,101 @@ Referenced by main().
 
 
 \begin{DoxyCode}
-329                                                            \{
-330     \textcolor{keywordtype}{int} opt = 0;
-331     \textcolor{keywordtype}{int} longindex = 0;
-332     \textcolor{keyword}{struct }option longopts[] = \{ \{ \textcolor{stringliteral}{"include-display-service"}, 0, NULL, \textcolor{charliteral}{'s'} \}, \textcolor{comment}{/* set true if present */}
-333                                  \{ \textcolor{stringliteral}{"alt-service-name"}, 1, NULL, \textcolor{charliteral}{'a'} \}, \textcolor{comment}{/* set true if present */}
-334                                  \{ \textcolor{stringliteral}{"unique-registry"}, 0, NULL, \textcolor{charliteral}{'u'} \}, \textcolor{comment}{/* set true if present */}
-335                                  \{ \textcolor{stringliteral}{"non-stop"}, 1, NULL, \textcolor{charliteral}{'n'} \}, \textcolor{comment}{/* required param if */}
-336                                  \{ \textcolor{stringliteral}{"debug"}, 1, NULL, \textcolor{charliteral}{'d'} \}, \textcolor{comment}{/* required param if */}
-337                                  \{ \textcolor{stringliteral}{"message"}, 1, NULL, \textcolor{charliteral}{'m'} \}, \textcolor{comment}{/* required param if */}
-338                                  \{ \textcolor{stringliteral}{"i2c-address"}, 1, NULL, \textcolor{charliteral}{'i'} \}, \textcolor{comment}{/* required param if */}
-339                                  \{ \textcolor{stringliteral}{"version"}, 0, NULL, \textcolor{charliteral}{'v'} \}, \textcolor{comment}{/* set true if present */}
-340                                  \{ \textcolor{stringliteral}{"help"}, 0, NULL, \textcolor{charliteral}{'h'} \}, \textcolor{comment}{/* set true if present */}
-341                                  \{ 0, 0, 0, 0 \} \};
-342 
-343     \textcolor{comment}{/*}
-344 \textcolor{comment}{     * Get commandline options}
-345 \textcolor{comment}{     *  longindex is the current index into longopts}
-346 \textcolor{comment}{     *  optind is current/last index into argv}
-347 \textcolor{comment}{     *  optarg is value attached(-d88) or next element(-d 88) of argv}
-348 \textcolor{comment}{     *  opterr flags a scanning error}
-349 \textcolor{comment}{     */}
-350     \textcolor{keywordflow}{while} ((opt = getopt\_long(argc, argv, \textcolor{stringliteral}{"d:m:n:i:a:usvh"}, longopts, &longindex)) != -1) \{
-351         \textcolor{keywordflow}{switch} (opt) \{
-352             \textcolor{keywordflow}{case} \textcolor{charliteral}{'u'}:
-353                 \hyperlink{skn__network__helpers_8c_ae64a8fff2241990ec523dafe18f7864c}{gd\_i\_unique\_registry} = 1;
-354                 \textcolor{keywordflow}{break};
-355             \textcolor{keywordflow}{case} \textcolor{charliteral}{'s'}:
-356                 \hyperlink{skn__network__helpers_8c_ad3af8f8dd9f2ca01a415370a99bc465e}{gd\_i\_display} = 1;
-357                 \textcolor{keywordflow}{break};
-358             \textcolor{keywordflow}{case} \textcolor{charliteral}{'d'}:
-359                 \textcolor{keywordflow}{if} (optarg) \{
-360                     \hyperlink{skn__network__helpers_8c_a923b2adbdc0dac852905dc95eaa73a37}{gd\_i\_debug} = atoi(optarg);
-361                 \} \textcolor{keywordflow}{else} \{
-362                     skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"%s: input param was invalid! %c[%d:%d:%d]\(\backslash\)n"}, 
-      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, (\textcolor{keywordtype}{char}) opt, longindex, optind, opterr);
-363                     \textcolor{keywordflow}{return} (EXIT\_FAILURE);
-364                 \}
-365                 \textcolor{keywordflow}{break};
-366             \textcolor{keywordflow}{case} \textcolor{charliteral}{'m'}:
-367                 \textcolor{keywordflow}{if} (optarg) \{
-368                     \hyperlink{skn__network__helpers_8c_a0bb2e7571c22c0455842aba8cf1d97dc}{gd\_pch\_message} = strdup(optarg);
-369                 \} \textcolor{keywordflow}{else} \{
-370                     skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"%s: input param was invalid! %c[%d:%d:%d]\(\backslash\)n"}, 
-      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, (\textcolor{keywordtype}{char}) opt, longindex, optind, opterr);
-371                     \textcolor{keywordflow}{return} (EXIT\_FAILURE);
-372                 \}
-373                 \textcolor{keywordflow}{break};
-374             \textcolor{keywordflow}{case} \textcolor{charliteral}{'n'}:
-375                 \textcolor{keywordflow}{if} (optarg) \{
-376                     \hyperlink{skn__network__helpers_8c_a49e7c0da0f26a1f505934e5610ead123}{gd\_i\_update} = atoi(optarg);
-377                 \} \textcolor{keywordflow}{else} \{
-378                     skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"%s: input param was invalid! %c[%d:%d:%d]\(\backslash\)n"}, 
-      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, (\textcolor{keywordtype}{char}) opt, longindex, optind, opterr);
-379                     \textcolor{keywordflow}{return} (EXIT\_FAILURE);
-380                 \}
-381                 \textcolor{keywordflow}{break};
-382             \textcolor{keywordflow}{case} \textcolor{charliteral}{'a'}:
-383                 \textcolor{keywordflow}{if} (optarg) \{
-384                     \hyperlink{skn__network__helpers_8c_a2f908b49598a49ea624bfcc3e2175b7c}{gd\_pch\_service\_name} = strdup(optarg);
-385                 \} \textcolor{keywordflow}{else} \{
-386                     skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"%s: input param was invalid! %c[%d:%d:%d]\(\backslash\)n"}, 
-      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, (\textcolor{keywordtype}{char}) opt, longindex, optind, opterr);
-387                     \textcolor{keywordflow}{return} (EXIT\_FAILURE);
-388                 \}
-389                 \textcolor{keywordflow}{break};
-390             \textcolor{keywordflow}{case} \textcolor{charliteral}{'i'}:
-391                 \textcolor{keywordflow}{if} (optarg) \{
-392                     \hyperlink{skn__network__helpers_8c_a2c55396bf337471f9f99a939974fcdbe}{gd\_i\_i2c\_address} = atoi(optarg);
-393                 \} \textcolor{keywordflow}{else} \{
-394                     skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"%s: input param was invalid! %c[%d:%d:%d]\(\backslash\)n"}, 
-      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, (\textcolor{keywordtype}{char}) opt, longindex, optind,
-395                                     opterr);
-396                     \textcolor{keywordflow}{return} (EXIT\_FAILURE);
-397                 \}
+373                                                            \{
+374     \textcolor{keywordtype}{int} opt = 0;
+375     \textcolor{keywordtype}{int} longindex = 0;
+376     \textcolor{keyword}{struct }option longopts[] = \{ \{ \textcolor{stringliteral}{"include-display-service"}, 0, NULL, \textcolor{charliteral}{'s'} \}, \textcolor{comment}{/* set true if present */}
+377                                  \{ \textcolor{stringliteral}{"alt-service-name"}, 1, NULL, \textcolor{charliteral}{'a'} \}, \textcolor{comment}{/* set true if present */}
+378                                  \{ \textcolor{stringliteral}{"unique-registry"}, 0, NULL, \textcolor{charliteral}{'u'} \}, \textcolor{comment}{/* set true if present */}
+379                                  \{ \textcolor{stringliteral}{"non-stop"}, 1, NULL, \textcolor{charliteral}{'n'} \}, \textcolor{comment}{/* required param if */}
+380                                  \{ \textcolor{stringliteral}{"debug"}, 1, NULL, \textcolor{charliteral}{'d'} \}, \textcolor{comment}{/* required param if */}
+381                                  \{ \textcolor{stringliteral}{"message"}, 1, NULL, \textcolor{charliteral}{'m'} \}, \textcolor{comment}{/* required param if */}
+382                                  \{ \textcolor{stringliteral}{"i2c-address"}, 1, NULL, \textcolor{charliteral}{'i'} \}, \textcolor{comment}{/* required param if */}
+383                                  \{ \textcolor{stringliteral}{"version"}, 0, NULL, \textcolor{charliteral}{'v'} \}, \textcolor{comment}{/* set true if present */}
+384                                  \{ \textcolor{stringliteral}{"help"}, 0, NULL, \textcolor{charliteral}{'h'} \}, \textcolor{comment}{/* set true if present */}
+385                                  \{ 0, 0, 0, 0 \} \};
+386 
+387     \textcolor{comment}{/*}
+388 \textcolor{comment}{     * Get commandline options}
+389 \textcolor{comment}{     *  longindex is the current index into longopts}
+390 \textcolor{comment}{     *  optind is current/last index into argv}
+391 \textcolor{comment}{     *  optarg is value attached(-d88) or next element(-d 88) of argv}
+392 \textcolor{comment}{     *  opterr flags a scanning error}
+393 \textcolor{comment}{     */}
+394     \textcolor{keywordflow}{while} ((opt = getopt\_long(argc, argv, \textcolor{stringliteral}{"d:m:n:i:a:usvh"}, longopts, &longindex)) != -1) \{
+395         \textcolor{keywordflow}{switch} (opt) \{
+396             \textcolor{keywordflow}{case} \textcolor{charliteral}{'u'}:
+397                 \hyperlink{skn__network__helpers_8c_ae64a8fff2241990ec523dafe18f7864c}{gd\_i\_unique\_registry} = 1;
 398                 \textcolor{keywordflow}{break};
-399             \textcolor{keywordflow}{case} \textcolor{charliteral}{'v'}:
-400                 skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)tProgram => %s\(\backslash\)n\(\backslash\)tVersion => %s\(\backslash\)n\(\backslash\)tSkoona Development
-      \(\backslash\)n\(\backslash\)t<skoona@gmail.com>\(\backslash\)n"}, \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, \hyperlink{cmd_d_c_8c_aa326a05d5e30f9e9a4bb0b4469d5d0c0}{PACKAGE\_VERSION});
-401                 \textcolor{keywordflow}{return} (EXIT\_FAILURE);
-402                 \textcolor{keywordflow}{break};
-403             \textcolor{keywordflow}{case} \textcolor{charliteral}{'?'}:
-404                 skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"%s: unknown input param! %c[%d:%d:%d]\(\backslash\)n"}, 
+399             \textcolor{keywordflow}{case} \textcolor{charliteral}{'s'}:
+400                 \hyperlink{skn__network__helpers_8c_ad3af8f8dd9f2ca01a415370a99bc465e}{gd\_i\_display} = 1;
+401                 \textcolor{keywordflow}{break};
+402             \textcolor{keywordflow}{case} \textcolor{charliteral}{'d'}:
+403                 \textcolor{keywordflow}{if} (optarg) \{
+404                     \hyperlink{skn__network__helpers_8c_a923b2adbdc0dac852905dc95eaa73a37}{gd\_i\_debug} = atoi(optarg);
+405                 \} \textcolor{keywordflow}{else} \{
+406                     skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"%s: input param was invalid! %c[%d:%d:%d]\(\backslash\)n"}, 
       \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, (\textcolor{keywordtype}{char}) opt, longindex, optind, opterr);
-405                 \hyperlink{skn__network__helpers_8c_aabf69b42c470c2372e0854132e22cc70}{skn\_locator\_print\_usage}();
-406                 \textcolor{keywordflow}{return} (EXIT\_FAILURE);
-407                 \textcolor{keywordflow}{break};
-408             \textcolor{keywordflow}{default}: \textcolor{comment}{/* help and default */}
-409                 \hyperlink{skn__network__helpers_8c_aabf69b42c470c2372e0854132e22cc70}{skn\_locator\_print\_usage}();
-410                 \textcolor{keywordflow}{return} (EXIT\_FAILURE);
-411                 \textcolor{keywordflow}{break};
-412         \}
-413     \}
-414 
-415     \textcolor{keywordflow}{return} EXIT\_SUCCESS;
-416 \}
+407                     \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+408                 \}
+409                 \textcolor{keywordflow}{break};
+410             \textcolor{keywordflow}{case} \textcolor{charliteral}{'m'}:
+411                 \textcolor{keywordflow}{if} (optarg) \{
+412                     \hyperlink{skn__network__helpers_8c_a0bb2e7571c22c0455842aba8cf1d97dc}{gd\_pch\_message} = strdup(optarg);
+413                 \} \textcolor{keywordflow}{else} \{
+414                     skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"%s: input param was invalid! %c[%d:%d:%d]\(\backslash\)n"}, 
+      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, (\textcolor{keywordtype}{char}) opt, longindex, optind, opterr);
+415                     \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+416                 \}
+417                 \textcolor{keywordflow}{break};
+418             \textcolor{keywordflow}{case} \textcolor{charliteral}{'n'}:
+419                 \textcolor{keywordflow}{if} (optarg) \{
+420                     \hyperlink{skn__network__helpers_8c_a49e7c0da0f26a1f505934e5610ead123}{gd\_i\_update} = atoi(optarg);
+421                 \} \textcolor{keywordflow}{else} \{
+422                     skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"%s: input param was invalid! %c[%d:%d:%d]\(\backslash\)n"}, 
+      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, (\textcolor{keywordtype}{char}) opt, longindex, optind, opterr);
+423                     \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+424                 \}
+425                 \textcolor{keywordflow}{break};
+426             \textcolor{keywordflow}{case} \textcolor{charliteral}{'a'}:
+427                 \textcolor{keywordflow}{if} (optarg) \{
+428                     \hyperlink{skn__network__helpers_8c_a2f908b49598a49ea624bfcc3e2175b7c}{gd\_pch\_service\_name} = strdup(optarg);
+429                 \} \textcolor{keywordflow}{else} \{
+430                     skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"%s: input param was invalid! %c[%d:%d:%d]\(\backslash\)n"}, 
+      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, (\textcolor{keywordtype}{char}) opt, longindex, optind, opterr);
+431                     \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+432                 \}
+433                 \textcolor{keywordflow}{break};
+434             \textcolor{keywordflow}{case} \textcolor{charliteral}{'i'}:
+435                 \textcolor{keywordflow}{if} (optarg) \{
+436                     \hyperlink{skn__network__helpers_8c_a2c55396bf337471f9f99a939974fcdbe}{gd\_i\_i2c\_address} = atoi(optarg);
+437                 \} \textcolor{keywordflow}{else} \{
+438                     skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"%s: input param was invalid! %c[%d:%d:%d]\(\backslash\)n"}, 
+      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, (\textcolor{keywordtype}{char}) opt, longindex, optind,
+439                                     opterr);
+440                     \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+441                 \}
+442                 \textcolor{keywordflow}{break};
+443             \textcolor{keywordflow}{case} \textcolor{charliteral}{'v'}:
+444                 skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)tProgram => %s\(\backslash\)n\(\backslash\)tVersion => %s\(\backslash\)n\(\backslash\)tSkoona Development
+      \(\backslash\)n\(\backslash\)t<skoona@gmail.com>\(\backslash\)n"}, \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, \hyperlink{cmd_d_c_8c_aa326a05d5e30f9e9a4bb0b4469d5d0c0}{PACKAGE\_VERSION});
+445                 \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+446                 \textcolor{keywordflow}{break};
+447             \textcolor{keywordflow}{case} \textcolor{charliteral}{'?'}:
+448                 skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"%s: unknown input param! %c[%d:%d:%d]\(\backslash\)n"}, 
+      \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, (\textcolor{keywordtype}{char}) opt, longindex, optind, opterr);
+449                 \hyperlink{skn__network__helpers_8c_aabf69b42c470c2372e0854132e22cc70}{skn\_locator\_print\_usage}();
+450                 \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+451                 \textcolor{keywordflow}{break};
+452             \textcolor{keywordflow}{default}: \textcolor{comment}{/* help and default */}
+453                 \hyperlink{skn__network__helpers_8c_aabf69b42c470c2372e0854132e22cc70}{skn\_locator\_print\_usage}();
+454                 \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+455                 \textcolor{keywordflow}{break};
+456         \}
+457     \}
+458 
+459     \textcolor{keywordflow}{return} EXIT\_SUCCESS;
+460 \}
 \end{DoxyCode}
 
 
@@ -1671,7 +1684,7 @@ Here is the caller graph for this function\+:\nopagebreak
 )}\hypertarget{skn__network__helpers_8h_ac2672efa5ece276743c6558dfe82d01a}{}\label{skn__network__helpers_8h_ac2672efa5ece276743c6558dfe82d01a}
 
 
-Definition at line 418 of file skn\+\_\+network\+\_\+helpers.\+c.
+Definition at line 462 of file skn\+\_\+network\+\_\+helpers.\+c.
 
 
 
@@ -1683,22 +1696,22 @@ Referenced by main().
 
 
 \begin{DoxyCode}
-418                                                                               \{
-419     \textcolor{keywordtype}{char} hostName[\hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF}];
-420     \textcolor{keywordtype}{char} * phostName = hostName;
-421 
-422     strncpy(\hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, name, \textcolor{keyword}{sizeof}(
+462                                                                               \{
+463     \textcolor{keywordtype}{char} hostName[\hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF}];
+464     \textcolor{keywordtype}{char} * phostName = hostName;
+465 
+466     strncpy(\hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}, name, \textcolor{keyword}{sizeof}(
       \hyperlink{skn__network__helpers_8c_a1849cb923d68be6854cc346022fc79d7}{gd\_ch\_program\_name}) - 1);
-423     strncpy(\hyperlink{skn__network__helpers_8c_a7dfc34fe01828952972b6ae778b4f022}{gd\_ch\_program\_desc}, desc, \textcolor{keyword}{sizeof}(
+467     strncpy(\hyperlink{skn__network__helpers_8c_a7dfc34fe01828952972b6ae778b4f022}{gd\_ch\_program\_desc}, desc, \textcolor{keyword}{sizeof}(
       \hyperlink{skn__network__helpers_8c_a7dfc34fe01828952972b6ae778b4f022}{gd\_ch\_program\_desc}) - 1);
-424 
-425     gethostname(hostName, \textcolor{keyword}{sizeof}(hostName) - 1);
-426         strncpy(\hyperlink{skn__network__helpers_8c_af45afdaf27876f134e053f2c7744efe9}{gd\_ch\_hostName}, hostName, \textcolor{keyword}{sizeof}(\hyperlink{skn__network__helpers_8c_af45afdaf27876f134e053f2c7744efe9}{gd\_ch\_hostName}) - 1);
-427         strsep(&phostName, \textcolor{stringliteral}{"."});
-428         strncpy(\hyperlink{skn__network__helpers_8c_a7e072c565373b2bcba1b27b8f0528c1c}{gd\_ch\_hostShortName}, hostName, \textcolor{keyword}{sizeof}(
+468 
+469     gethostname(hostName, \textcolor{keyword}{sizeof}(hostName) - 1);
+470         strncpy(\hyperlink{skn__network__helpers_8c_af45afdaf27876f134e053f2c7744efe9}{gd\_ch\_hostName}, hostName, \textcolor{keyword}{sizeof}(\hyperlink{skn__network__helpers_8c_af45afdaf27876f134e053f2c7744efe9}{gd\_ch\_hostName}) - 1);
+471         strsep(&phostName, \textcolor{stringliteral}{"."});
+472         strncpy(\hyperlink{skn__network__helpers_8c_a7e072c565373b2bcba1b27b8f0528c1c}{gd\_ch\_hostShortName}, hostName, \textcolor{keyword}{sizeof}(
       \hyperlink{skn__network__helpers_8c_a7e072c565373b2bcba1b27b8f0528c1c}{gd\_ch\_hostShortName}) - 1);
-429 
-430 \}
+473 
+474 \}
 \end{DoxyCode}
 
 
@@ -1722,7 +1735,7 @@ Here is the caller graph for this function\+:\nopagebreak
 )}\hypertarget{skn__network__helpers_8h_a922ccd04b4dc28211ff08c4c62462544}{}\label{skn__network__helpers_8h_a922ccd04b4dc28211ff08c4c62462544}
 
 
-Definition at line 559 of file skn\+\_\+network\+\_\+helpers.\+c.
+Definition at line 603 of file skn\+\_\+network\+\_\+helpers.\+c.
 
 
 
@@ -1734,20 +1747,20 @@ Referenced by main().
 
 
 \begin{DoxyCode}
-559                                                                                                \{
-560     \hyperlink{struct__service_request}{PServiceRequest} psr = NULL;
-561 
-562     \textcolor{keywordflow}{if} (pre == NULL) \{
-563         \textcolor{keywordflow}{return} NULL;
-564     \}
-565     psr = (\hyperlink{skn__common__headers_8h_a09c39b109fec01639de4bcbf7c481f18}{PServiceRequest}) malloc(\textcolor{keyword}{sizeof}(\hyperlink{struct__service_request}{ServiceRequest}));
-566     memset(psr, 0, \textcolor{keyword}{sizeof}(\hyperlink{struct__service_request}{ServiceRequest}));
-567     strcpy(psr->\hyperlink{struct__service_request_aab7831722782ba05f0c94087598a941e}{cbName}, \textcolor{stringliteral}{"PServiceRequest"});
-568     psr->\hyperlink{struct__service_request_aa867fef3928c7511f50a494662311d13}{socket} = host\_socket;
-569     psr->\hyperlink{struct__service_request_acf8d45e7f9cb65b555217aae74cd72c5}{pre} = pre;
-570     strncpy(psr->\hyperlink{struct__service_request_ad347b2a07388ec9d9d33756f1a1ef235}{request}, request, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}-1);
-571     \textcolor{keywordflow}{return} psr;
-572 \}
+603                                                                                                \{
+604     \hyperlink{struct__service_request}{PServiceRequest} psr = NULL;
+605 
+606     \textcolor{keywordflow}{if} (pre == NULL) \{
+607         \textcolor{keywordflow}{return} NULL;
+608     \}
+609     psr = (\hyperlink{skn__common__headers_8h_a09c39b109fec01639de4bcbf7c481f18}{PServiceRequest}) malloc(\textcolor{keyword}{sizeof}(\hyperlink{struct__service_request}{ServiceRequest}));
+610     memset(psr, 0, \textcolor{keyword}{sizeof}(\hyperlink{struct__service_request}{ServiceRequest}));
+611     strcpy(psr->\hyperlink{struct__service_request_aab7831722782ba05f0c94087598a941e}{cbName}, \textcolor{stringliteral}{"PServiceRequest"});
+612     psr->\hyperlink{struct__service_request_aa867fef3928c7511f50a494662311d13}{socket} = host\_socket;
+613     psr->\hyperlink{struct__service_request_acf8d45e7f9cb65b555217aae74cd72c5}{pre} = pre;
+614     strncpy(psr->\hyperlink{struct__service_request_ad347b2a07388ec9d9d33756f1a1ef235}{request}, request, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}-1);
+615     \textcolor{keywordflow}{return} psr;
+616 \}
 \end{DoxyCode}
 
 
@@ -1772,7 +1785,7 @@ Remove Trailing and Leading Blanks
 \item caution\+: pointers from argv are readonly and segfault on \textquotesingle{}alpha\mbox{[}end\mbox{]} = 0\textquotesingle{} 
 \end{DoxyItemize}
 
-Definition at line 436 of file skn\+\_\+network\+\_\+helpers.\+c.
+Definition at line 480 of file skn\+\_\+network\+\_\+helpers.\+c.
 
 
 
@@ -1784,31 +1797,31 @@ Referenced by get\+\_\+default\+\_\+interface\+\_\+name(), service\+\_\+registry
 
 
 \begin{DoxyCode}
-436                                \{
-437     \textcolor{keywordflow}{if} (alpha == NULL || strlen(alpha) < 1)
-438         \textcolor{keywordflow}{return} alpha;
-439 
-440     \textcolor{keywordtype}{int} len = strlen(alpha);
-441     \textcolor{keywordtype}{int} end = len - 1;
-442     \textcolor{keywordtype}{int} start = 0;
-443 
-444     \textcolor{comment}{// use isgraph() or !isspace() vs isalnum() to allow ['|' ';' '%']}
-445     \textcolor{keywordflow}{while} (isgraph(alpha[end]) == 0 && end > 0) \{ \textcolor{comment}{// remove trailing non-alphanumeric chars}
-446         alpha[end--] = 0;
-447     \}
-448 
-449     len = strlen(alpha);
-450     \textcolor{keywordflow}{while} ((isalnum(alpha[start]) == 0) && start < len) \{ \textcolor{comment}{// find first non-alpha stricter}
-451         start++;
-452     \}
-453     \textcolor{keywordflow}{if} (start < len && start > 0) \{  \textcolor{comment}{// move in place}
-454         end = len - start;
-455         memmove(&alpha[0], &alpha[start], end);
-456         alpha[end] = 0;
-457     \}
-458 
-459     \textcolor{keywordflow}{return} alpha;
-460 \}
+480                                \{
+481     \textcolor{keywordflow}{if} (alpha == NULL || strlen(alpha) < 1)
+482         \textcolor{keywordflow}{return} alpha;
+483 
+484     \textcolor{keywordtype}{int} len = strlen(alpha);
+485     \textcolor{keywordtype}{int} end = len - 1;
+486     \textcolor{keywordtype}{int} start = 0;
+487 
+488     \textcolor{comment}{// use isgraph() or !isspace() vs isalnum() to allow ['|' ';' '%']}
+489     \textcolor{keywordflow}{while} (isgraph(alpha[end]) == 0 && end > 0) \{ \textcolor{comment}{// remove trailing non-alphanumeric chars}
+490         alpha[end--] = 0;
+491     \}
+492 
+493     len = strlen(alpha);
+494     \textcolor{keywordflow}{while} ((isalnum(alpha[start]) == 0) && start < len) \{ \textcolor{comment}{// find first non-alpha stricter}
+495         start++;
+496     \}
+497     \textcolor{keywordflow}{if} (start < len && start > 0) \{  \textcolor{comment}{// move in place}
+498         end = len - start;
+499         memmove(&alpha[0], &alpha[start], end);
+500         alpha[end] = 0;
+501     \}
+502 
+503     \textcolor{keywordflow}{return} alpha;
+504 \}
 \end{DoxyCode}
 
 
@@ -1830,7 +1843,7 @@ Here is the caller graph for this function\+:\nopagebreak
 )}\hypertarget{skn__network__helpers_8h_a802d742c15476782fbbea1528f76dea5}{}\label{skn__network__helpers_8h_a802d742c15476782fbbea1528f76dea5}
 Traditional Millisecond delay. 
 
-Definition at line 97 of file skn\+\_\+network\+\_\+helpers.\+c.
+Definition at line 96 of file skn\+\_\+network\+\_\+helpers.\+c.
 
 
 
@@ -1838,13 +1851,13 @@ Referenced by skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work(), skn\+\_\+displa
 
 
 \begin{DoxyCode}
-97                                       \{
-98     \textcolor{keyword}{struct }timespec timeout;
-99     \textcolor{keywordflow}{if} (delay\_time == 0.0 || delay\_time == 0) delay\_time = 0.001;
-100     timeout.tv\_sec = (time\_t) delay\_time;  \textcolor{comment}{// extract integer only}
-101     timeout.tv\_nsec = (long) ((delay\_time - timeout.tv\_sec) * 1000000000L); \textcolor{comment}{// 1e+9}
-102     \textcolor{keywordflow}{return} nanosleep(&timeout, NULL);
-103 \}
+96                                       \{
+97     \textcolor{keyword}{struct }timespec timeout;
+98     \textcolor{keywordflow}{if} (delay\_time == 0.0 || delay\_time == 0) delay\_time = 0.001;
+99     timeout.tv\_sec = (time\_t) delay\_time;  \textcolor{comment}{// extract integer only}
+100     timeout.tv\_nsec = (long) ((delay\_time - timeout.tv\_sec) * 1000000000L); \textcolor{comment}{// 1e+9}
+101     \textcolor{keywordflow}{return} nanosleep(&timeout, NULL);
+102 \}
 \end{DoxyCode}
 
 
@@ -1871,7 +1884,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \item returns i\+\_\+socket $\vert$ E\+X\+I\+T\+\_\+\+F\+A\+I\+L\+U\+RE 
 \end{DoxyItemize}
 
-Definition at line 524 of file skn\+\_\+network\+\_\+helpers.\+c.
+Definition at line 568 of file skn\+\_\+network\+\_\+helpers.\+c.
 
 
 
@@ -1883,43 +1896,43 @@ Referenced by main().
 
 
 \begin{DoxyCode}
-524                                                                       \{
-525     \textcolor{keyword}{struct }sockaddr\_in addr;
-526     \textcolor{keywordtype}{int} i\_socket, broadcastEnable = 1;
-527 
-528     \textcolor{keywordflow}{if} ((i\_socket = socket(AF\_INET, SOCK\_DGRAM, IPPROTO\_UDP)) < 0) \{
-529         skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"Create Socket error=%d, etext=%s"}, errno, strerror(errno));
-530         \textcolor{keywordflow}{return} (EXIT\_FAILURE);
-531     \}
-532     \textcolor{keywordflow}{if} ((setsockopt(i\_socket, SOL\_SOCKET, SO\_BROADCAST, &broadcastEnable, \textcolor{keyword}{sizeof}(broadcastEnable))) < 0) \{
-533         skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"Set Socket Broadcast Option error=%d, etext=%s"}, errno, strerror(
+568                                                                       \{
+569     \textcolor{keyword}{struct }sockaddr\_in addr;
+570     \textcolor{keywordtype}{int} i\_socket, broadcastEnable = 1;
+571 
+572     \textcolor{keywordflow}{if} ((i\_socket = socket(AF\_INET, SOCK\_DGRAM, IPPROTO\_UDP)) < 0) \{
+573         skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"Create Socket error=%d, etext=%s"}, errno, strerror(errno));
+574         \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+575     \}
+576     \textcolor{keywordflow}{if} ((setsockopt(i\_socket, SOL\_SOCKET, SO\_BROADCAST, &broadcastEnable, \textcolor{keyword}{sizeof}(broadcastEnable))) < 0) \{
+577         skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"Set Socket Broadcast Option error=%d, etext=%s"}, errno, strerror(
       errno));
-534         \textcolor{keywordflow}{return} (EXIT\_FAILURE);
-535     \}
-536 
-537     \textcolor{keyword}{struct }timeval tv;
-538     tv.tv\_sec = rcvTimeout;
-539     tv.tv\_usec = (long)(rcvTimeout - tv.tv\_sec) * 1000000L;
-540     skn\_logger(\hyperlink{skn__common__headers_8h_a1bcf100bcdd91eacaf0b05d83c88aedf}{SD\_INFO}, \textcolor{stringliteral}{"Set Socket RcvTimeout Option set to: tv\_sec=%ld, tv\_usec=%ld"}, tv.tv\_sec, 
+578         \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+579     \}
+580 
+581     \textcolor{keyword}{struct }timeval tv;
+582     tv.tv\_sec = rcvTimeout;
+583     tv.tv\_usec = (long)(rcvTimeout - tv.tv\_sec) * 1000000L;
+584     skn\_logger(\hyperlink{skn__common__headers_8h_a1bcf100bcdd91eacaf0b05d83c88aedf}{SD\_INFO}, \textcolor{stringliteral}{"Set Socket RcvTimeout Option set to: tv\_sec=%ld, tv\_usec=%ld"}, tv.tv\_sec, 
       tv.tv\_usec);
-541     \textcolor{keywordflow}{if} ((setsockopt(i\_socket, SOL\_SOCKET, SO\_RCVTIMEO, &tv, \textcolor{keyword}{sizeof}(tv))) < 0) \{
-542         skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"Set Socket RcvTimeout Option error=%d, etext=%s"}, errno, strerror(
+585     \textcolor{keywordflow}{if} ((setsockopt(i\_socket, SOL\_SOCKET, SO\_RCVTIMEO, &tv, \textcolor{keyword}{sizeof}(tv))) < 0) \{
+586         skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"Set Socket RcvTimeout Option error=%d, etext=%s"}, errno, strerror(
       errno));
-543         \textcolor{keywordflow}{return} (EXIT\_FAILURE);
-544     \}
-545 
-546     \textcolor{comment}{/* set up local address */}
-547     memset(&addr, 0, \textcolor{keyword}{sizeof}(addr));
-548     addr.sin\_family = AF\_INET;
-549     addr.sin\_addr.s\_addr = htonl(INADDR\_ANY);
-550     addr.sin\_port = htons(port);
-551     \textcolor{keywordflow}{if} (bind(i\_socket, (\textcolor{keyword}{struct} sockaddr *) &addr, \textcolor{keyword}{sizeof}(addr)) < 0) \{
-552         skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"Bind to local Socket error=%d, etext=%s"}, errno, strerror(errno));
-553         \textcolor{keywordflow}{return} (EXIT\_FAILURE);
-554     \}
-555 
-556     \textcolor{keywordflow}{return} i\_socket;
-557 \}
+587         \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+588     \}
+589 
+590     \textcolor{comment}{/* set up local address */}
+591     memset(&addr, 0, \textcolor{keyword}{sizeof}(addr));
+592     addr.sin\_family = AF\_INET;
+593     addr.sin\_addr.s\_addr = htonl(INADDR\_ANY);
+594     addr.sin\_port = htons(port);
+595     \textcolor{keywordflow}{if} (bind(i\_socket, (\textcolor{keyword}{struct} sockaddr *) &addr, \textcolor{keyword}{sizeof}(addr)) < 0) \{
+596         skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"Bind to local Socket error=%d, etext=%s"}, errno, strerror(errno));
+597         \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+598     \}
+599 
+600     \textcolor{keywordflow}{return} i\_socket;
+601 \}
 \end{DoxyCode}
 
 
@@ -1946,7 +1959,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \item returns i\+\_\+socket $\vert$ E\+X\+I\+T\+\_\+\+F\+A\+I\+L\+U\+RE 
 \end{DoxyItemize}
 
-Definition at line 483 of file skn\+\_\+network\+\_\+helpers.\+c.
+Definition at line 527 of file skn\+\_\+network\+\_\+helpers.\+c.
 
 
 
@@ -1958,41 +1971,41 @@ Referenced by main(), and skn\+\_\+display\+\_\+manager\+\_\+message\+\_\+consum
 
 
 \begin{DoxyCode}
-483                                                                     \{
-484     \textcolor{keyword}{struct }sockaddr\_in addr;
-485     \textcolor{keywordtype}{int} i\_socket, reuseEnable = 1;
-486 
-487     \textcolor{keywordflow}{if} ((i\_socket = socket(AF\_INET, SOCK\_DGRAM, IPPROTO\_UDP)) < 0) \{
-488         skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"Create Socket error=%d, etext=%s"}, errno, strerror(errno));
-489         \textcolor{keywordflow}{return} (EXIT\_FAILURE);
-490     \}
-491 
-492     \textcolor{keywordflow}{if} ((setsockopt(i\_socket, SOL\_SOCKET, SO\_REUSEADDR, &reuseEnable, \textcolor{keyword}{sizeof}(reuseEnable))) < 0) \{
-493         skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"Set Socket Reuse Option error=%d, etext=%s"}, errno, strerror(errno));
-494         \textcolor{keywordflow}{return} (EXIT\_FAILURE);
-495     \}
-496 
-497     \textcolor{keyword}{struct }timeval tv;
-498     tv.tv\_sec = rcvTimeout;
-499     tv.tv\_usec = (long)(rcvTimeout - tv.tv\_sec) * 1000000L;
-500     \textcolor{keywordflow}{if} ((setsockopt(i\_socket, SOL\_SOCKET, SO\_RCVTIMEO, &tv, \textcolor{keyword}{sizeof}(tv))) < 0) \{
-501         skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"Set Socket RcvTimeout Option error=%d, etext=%s"}, errno, strerror(
+527                                                                     \{
+528     \textcolor{keyword}{struct }sockaddr\_in addr;
+529     \textcolor{keywordtype}{int} i\_socket, reuseEnable = 1;
+530 
+531     \textcolor{keywordflow}{if} ((i\_socket = socket(AF\_INET, SOCK\_DGRAM, IPPROTO\_UDP)) < 0) \{
+532         skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"Create Socket error=%d, etext=%s"}, errno, strerror(errno));
+533         \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+534     \}
+535 
+536     \textcolor{keywordflow}{if} ((setsockopt(i\_socket, SOL\_SOCKET, SO\_REUSEADDR, &reuseEnable, \textcolor{keyword}{sizeof}(reuseEnable))) < 0) \{
+537         skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"Set Socket Reuse Option error=%d, etext=%s"}, errno, strerror(errno));
+538         \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+539     \}
+540 
+541     \textcolor{keyword}{struct }timeval tv;
+542     tv.tv\_sec = rcvTimeout;
+543     tv.tv\_usec = (long)(rcvTimeout - tv.tv\_sec) * 1000000L;
+544     \textcolor{keywordflow}{if} ((setsockopt(i\_socket, SOL\_SOCKET, SO\_RCVTIMEO, &tv, \textcolor{keyword}{sizeof}(tv))) < 0) \{
+545         skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"Set Socket RcvTimeout Option error=%d, etext=%s"}, errno, strerror(
       errno));
-502         \textcolor{keywordflow}{return} (EXIT\_FAILURE);
-503     \}
-504 
-505     \textcolor{comment}{/* set up local address */}
-506     memset(&addr, 0, \textcolor{keyword}{sizeof}(addr));
-507     addr.sin\_family = AF\_INET;
-508     addr.sin\_addr.s\_addr = htonl(INADDR\_ANY);
-509     addr.sin\_port = htons(port);
-510     \textcolor{keywordflow}{if} (bind(i\_socket, (\textcolor{keyword}{struct} sockaddr *) &addr, \textcolor{keyword}{sizeof}(addr)) < 0) \{
-511         skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"Bind to local Socket error=%d, etext=%s"}, errno, strerror(errno));
-512         \textcolor{keywordflow}{return} (EXIT\_FAILURE);
-513     \}
-514 
-515     \textcolor{keywordflow}{return} i\_socket;
-516 \}
+546         \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+547     \}
+548 
+549     \textcolor{comment}{/* set up local address */}
+550     memset(&addr, 0, \textcolor{keyword}{sizeof}(addr));
+551     addr.sin\_family = AF\_INET;
+552     addr.sin\_addr.s\_addr = htonl(INADDR\_ANY);
+553     addr.sin\_port = htons(port);
+554     \textcolor{keywordflow}{if} (bind(i\_socket, (\textcolor{keyword}{struct} sockaddr *) &addr, \textcolor{keyword}{sizeof}(addr)) < 0) \{
+555         skn\_logger(\hyperlink{skn__common__headers_8h_a6fdb1bbdf5f13035e439b096691534f2}{SD\_EMERG}, \textcolor{stringliteral}{"Bind to local Socket error=%d, etext=%s"}, errno, strerror(errno));
+556         \textcolor{keywordflow}{return} (EXIT\_FAILURE);
+557     \}
+558 
+559     \textcolor{keywordflow}{return} i\_socket;
+560 \}
 \end{DoxyCode}
 
 
@@ -2018,7 +2031,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \item returns E\+X\+I\+T\+\_\+\+S\+U\+C\+C\+E\+SS $\vert$ E\+X\+I\+T\+\_\+\+F\+A\+I\+L\+U\+RE 
 \end{DoxyItemize}
 
-Definition at line 601 of file skn\+\_\+network\+\_\+helpers.\+c.
+Definition at line 645 of file skn\+\_\+network\+\_\+helpers.\+c.
 
 
 
@@ -2030,57 +2043,57 @@ Referenced by main().
 
 
 \begin{DoxyCode}
-601                                                  \{
-602     \textcolor{keyword}{struct }sockaddr\_in remaddr; \textcolor{comment}{/* remote address */}
-603     socklen\_t addrlen = \textcolor{keyword}{sizeof}(remaddr); \textcolor{comment}{/* length of addresses */}
-604     \textcolor{keywordtype}{signed} \textcolor{keywordtype}{int} vIndex = 0;
-605     \textcolor{keyword}{struct }timeval start, end;
-606 
-607     memset(&remaddr, 0, \textcolor{keyword}{sizeof}(remaddr));
-608     remaddr.sin\_family = AF\_INET;
-609     remaddr.sin\_addr.s\_addr = inet\_addr(psr->\hyperlink{struct__service_request_acf8d45e7f9cb65b555217aae74cd72c5}{pre}->\hyperlink{struct__service_entry_a70b1db0895fbe31c07c8799cb57c678a}{ip});
-610     remaddr.sin\_port = htons(psr->\hyperlink{struct__service_request_acf8d45e7f9cb65b555217aae74cd72c5}{pre}->\hyperlink{struct__service_entry_ac8a3a40de5eee937afb42faea4d18bb2}{port});
-611 
-612     \textcolor{comment}{/*}
-613 \textcolor{comment}{     * SEND */}
-614     gettimeofday(&start, NULL);
-615     \textcolor{keywordflow}{if} (sendto(psr->\hyperlink{struct__service_request_aa867fef3928c7511f50a494662311d13}{socket}, psr->\hyperlink{struct__service_request_ad347b2a07388ec9d9d33756f1a1ef235}{request}, strlen(psr->\hyperlink{struct__service_request_ad347b2a07388ec9d9d33756f1a1ef235}{request}), 0, (\textcolor{keyword}{struct} sockaddr *) 
+645                                                  \{
+646     \textcolor{keyword}{struct }sockaddr\_in remaddr; \textcolor{comment}{/* remote address */}
+647     socklen\_t addrlen = \textcolor{keyword}{sizeof}(remaddr); \textcolor{comment}{/* length of addresses */}
+648     \textcolor{keywordtype}{signed} \textcolor{keywordtype}{int} vIndex = 0;
+649     \textcolor{keyword}{struct }timeval start, end;
+650 
+651     memset(&remaddr, 0, \textcolor{keyword}{sizeof}(remaddr));
+652     remaddr.sin\_family = AF\_INET;
+653     remaddr.sin\_addr.s\_addr = inet\_addr(psr->\hyperlink{struct__service_request_acf8d45e7f9cb65b555217aae74cd72c5}{pre}->\hyperlink{struct__service_entry_a70b1db0895fbe31c07c8799cb57c678a}{ip});
+654     remaddr.sin\_port = htons(psr->\hyperlink{struct__service_request_acf8d45e7f9cb65b555217aae74cd72c5}{pre}->\hyperlink{struct__service_entry_ac8a3a40de5eee937afb42faea4d18bb2}{port});
+655 
+656     \textcolor{comment}{/*}
+657 \textcolor{comment}{     * SEND */}
+658     gettimeofday(&start, NULL);
+659     \textcolor{keywordflow}{if} (sendto(psr->\hyperlink{struct__service_request_aa867fef3928c7511f50a494662311d13}{socket}, psr->\hyperlink{struct__service_request_ad347b2a07388ec9d9d33756f1a1ef235}{request}, strlen(psr->\hyperlink{struct__service_request_ad347b2a07388ec9d9d33756f1a1ef235}{request}), 0, (\textcolor{keyword}{struct} sockaddr *) 
       &remaddr, addrlen) < 0) \{
-616         gettimeofday(&end, NULL);
-617         skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"ServiceRequest: SendTo(%1.6f) Timed out; Failure code=%d,
+660         gettimeofday(&end, NULL);
+661         skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"ServiceRequest: SendTo(%1.6f) Timed out; Failure code=%d,
        etext=%s"}, \hyperlink{skn__network__helpers_8c_ad7f2202ecfe8bb131545b23ea3c26e91}{skn\_duration\_in\_milliseconds}(&start,&end), errno, strerror(errno));
-618         \textcolor{keywordflow}{return} EXIT\_FAILURE;
-619     \}
-620     skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"ServiceRequest sent to %s:%s:%d"}, psr->\hyperlink{struct__service_request_acf8d45e7f9cb65b555217aae74cd72c5}{pre}->
+662         \textcolor{keywordflow}{return} EXIT\_FAILURE;
+663     \}
+664     skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"ServiceRequest sent to %s:%s:%d"}, psr->\hyperlink{struct__service_request_acf8d45e7f9cb65b555217aae74cd72c5}{pre}->
       \hyperlink{struct__service_entry_aa66dcf0806f67276d049ac75c6153768}{name}, psr->\hyperlink{struct__service_request_acf8d45e7f9cb65b555217aae74cd72c5}{pre}->\hyperlink{struct__service_entry_a70b1db0895fbe31c07c8799cb57c678a}{ip}, psr->\hyperlink{struct__service_request_acf8d45e7f9cb65b555217aae74cd72c5}{pre}->\hyperlink{struct__service_entry_ac8a3a40de5eee937afb42faea4d18bb2}{port});
-621 
-622     \textcolor{comment}{/*}
-623 \textcolor{comment}{     * RECEIVE */}
-624     vIndex = recvfrom(psr->\hyperlink{struct__service_request_aa867fef3928c7511f50a494662311d13}{socket}, psr->\hyperlink{struct__service_request_ad4e98b9d21fad17ba82dba6a9b5f6562}{response}, (\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1), 0, (\textcolor{keyword}{struct} 
+665 
+666     \textcolor{comment}{/*}
+667 \textcolor{comment}{     * RECEIVE */}
+668     vIndex = recvfrom(psr->\hyperlink{struct__service_request_aa867fef3928c7511f50a494662311d13}{socket}, psr->\hyperlink{struct__service_request_ad4e98b9d21fad17ba82dba6a9b5f6562}{response}, (\hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF} - 1), 0, (\textcolor{keyword}{struct} 
       sockaddr *) &remaddr, &addrlen);
-625     \textcolor{keywordflow}{if} (vIndex == \hyperlink{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{PLATFORM\_ERROR}) \{
-626         gettimeofday(&end, NULL);
-627         skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"ServiceRequest: recvfrom(%1.6f) Failure code=%d, etext=%s"}, 
+669     \textcolor{keywordflow}{if} (vIndex == \hyperlink{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{PLATFORM\_ERROR}) \{
+670         gettimeofday(&end, NULL);
+671         skn\_logger(\hyperlink{skn__common__headers_8h_a1b84e50e89a48558f56175017017c375}{SD\_WARNING}, \textcolor{stringliteral}{"ServiceRequest: recvfrom(%1.6f) Failure code=%d, etext=%s"}, 
       \hyperlink{skn__network__helpers_8c_ad7f2202ecfe8bb131545b23ea3c26e91}{skn\_duration\_in\_milliseconds}(&start,&end), errno, strerror(errno));
-628         \textcolor{keywordflow}{return} EXIT\_FAILURE;
-629     \}
-630     psr->\hyperlink{struct__service_request_ad4e98b9d21fad17ba82dba6a9b5f6562}{response}[vIndex] = 0;
-631     gettimeofday(&end, NULL);
-632 
-633     skn\_logger(\hyperlink{skn__common__headers_8h_a1bcf100bcdd91eacaf0b05d83c88aedf}{SD\_INFO}, \textcolor{stringliteral}{"Response(%1.3fs) received from [%s] %s:%d"},
-634                     \hyperlink{skn__network__helpers_8c_ad7f2202ecfe8bb131545b23ea3c26e91}{skn\_duration\_in\_milliseconds}(&start,&end),
-635                     psr->\hyperlink{struct__service_request_ad4e98b9d21fad17ba82dba6a9b5f6562}{response},
-636                     inet\_ntoa(remaddr.sin\_addr),
-637                     ntohs(remaddr.sin\_port)
-638               );
-639 
-640     \textcolor{keywordflow}{if} (strcmp(psr->\hyperlink{struct__service_request_ad4e98b9d21fad17ba82dba6a9b5f6562}{response}, \textcolor{stringliteral}{"QUIT!"}) == 0) \{
-641         skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"Shutdown Requested!"});
-642         \textcolor{keywordflow}{return} EXIT\_FAILURE;
-643     \}
-644 
-645     \textcolor{keywordflow}{return} (EXIT\_SUCCESS);
-646 \}
+672         \textcolor{keywordflow}{return} EXIT\_FAILURE;
+673     \}
+674     psr->\hyperlink{struct__service_request_ad4e98b9d21fad17ba82dba6a9b5f6562}{response}[vIndex] = 0;
+675     gettimeofday(&end, NULL);
+676 
+677     skn\_logger(\hyperlink{skn__common__headers_8h_a1bcf100bcdd91eacaf0b05d83c88aedf}{SD\_INFO}, \textcolor{stringliteral}{"Response(%1.3fs) received from [%s] %s:%d"},
+678                     \hyperlink{skn__network__helpers_8c_ad7f2202ecfe8bb131545b23ea3c26e91}{skn\_duration\_in\_milliseconds}(&start,&end),
+679                     psr->\hyperlink{struct__service_request_ad4e98b9d21fad17ba82dba6a9b5f6562}{response},
+680                     inet\_ntoa(remaddr.sin\_addr),
+681                     ntohs(remaddr.sin\_port)
+682               );
+683 
+684     \textcolor{keywordflow}{if} (strcmp(psr->\hyperlink{struct__service_request_ad4e98b9d21fad17ba82dba6a9b5f6562}{response}, \textcolor{stringliteral}{"QUIT!"}) == 0) \{
+685         skn\_logger(\hyperlink{skn__common__headers_8h_a4e0c16529642a911483bd7eaabefca4c}{SD\_NOTICE}, \textcolor{stringliteral}{"Shutdown Requested!"});
+686         \textcolor{keywordflow}{return} EXIT\_FAILURE;
+687     \}
+688 
+689     \textcolor{keywordflow}{return} (EXIT\_SUCCESS);
+690 \}
 \end{DoxyCode}
 
 

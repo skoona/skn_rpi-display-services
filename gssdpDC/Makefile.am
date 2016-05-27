@@ -1,4 +1,5 @@
 ## Process this file with automake to generate a Makefile.in
+ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
 bin_PROGRAMS =
 
