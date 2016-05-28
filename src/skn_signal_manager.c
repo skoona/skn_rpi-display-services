@@ -9,11 +9,9 @@
 
 
 int skn_signal_manager_startup(PSknSignalManager pssm);
-int skn_signal_manager_startup(PSknSignalManager pssm);
-void *skn_signal_manager_handler_thread(PSknSignalManager pssm);
 int skn_signal_manager_process_signals(siginfo_t *signal_info, int exit_flag_value);
 static void *skn_signal_manager_handler_thread(PSknSignalManager pssm);
-
+static void skn_signals_exit_handler(int sig);
 
 /**
  * Control-C Program exit
@@ -25,13 +23,13 @@ static void skn_signals_exit_handler(int sig) {
     skn_logger(SD_NOTICE, "Program Exiting, from signal=%d:%s\n", sig, strsignal(sig));
 }
 
-void skn_signals_init() {
+static void skn_signals_init() {
     signal(SIGINT, skn_signals_exit_handler);  // Ctrl-C
     signal(SIGQUIT, skn_signals_exit_handler);  // Quit
     signal(SIGTERM, skn_signals_exit_handler);  // Normal kill command
 }
 
-void skn_signals_cleanup(int sig) {
+static void skn_signals_cleanup(int sig) {
     signal(SIGINT, SIG_DFL);
     signal(SIGQUIT, SIG_DFL);
     signal(SIGTERM, SIG_DFL);
@@ -113,9 +111,17 @@ static int skn_signal_manager_process_signals(siginfo_t *signal_info, int exit_f
                 case SI_USER:
                     pch = "kill(2) or raise(3)";
                     break;
+#ifndef __MACH__
                 case SI_KERNEL:
                     pch = "Sent by the kernel.";
                     break;
+                case SI_SIGIO:
+                    pch = "queued SIGIO";
+                    break;
+                case SI_TKILL:
+                    pch = "tkill(2) or tgkill(2)";
+                    break;
+#endif
                 case SI_QUEUE:
                     pch = "sigqueue(2)";
                     break;
@@ -127,12 +133,6 @@ static int skn_signal_manager_process_signals(siginfo_t *signal_info, int exit_f
                     break;
                 case SI_ASYNCIO:
                     pch = "AIO completed";
-                    break;
-                case SI_SIGIO:
-                    pch = "queued SIGIO";
-                    break;
-                case SI_TKILL:
-                    pch = "tkill(2) or tgkill(2)";
                     break;
                 default:
                     pch = "<unknown>";
