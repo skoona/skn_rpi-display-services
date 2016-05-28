@@ -1,5 +1,6 @@
-\hypertarget{skn__signal__manager_8c}{}\section{src/skn\+\_\+signal\+\_\+manager.c File Reference}
+\hypertarget{skn__signal__manager_8c}{\section{src/skn\+\_\+signal\+\_\+manager.c File Reference}
 \label{skn__signal__manager_8c}\index{src/skn\+\_\+signal\+\_\+manager.\+c@{src/skn\+\_\+signal\+\_\+manager.\+c}}
+}
 {\ttfamily \#include \char`\"{}skn\+\_\+network\+\_\+helpers.\+h\char`\"{}}\\*
 Include dependency graph for skn\+\_\+signal\+\_\+manager.\+c\+:\nopagebreak
 \begin{figure}[H]
@@ -22,13 +23,13 @@ int \hyperlink{skn__signal__manager_8c_a9de94515b5dc0bcdcb813f6b17a6956e}{skn\+\
 
 
 \subsection{Function Documentation}
-\index{skn\+\_\+signal\+\_\+manager.\+c@{skn\+\_\+signal\+\_\+manager.\+c}!skn\+\_\+signal\+\_\+manager\+\_\+handler\+\_\+thread@{skn\+\_\+signal\+\_\+manager\+\_\+handler\+\_\+thread}}
+\hypertarget{skn__signal__manager_8c_a34a43eb05460c12308ab975a3add1e6d}{\index{skn\+\_\+signal\+\_\+manager.\+c@{skn\+\_\+signal\+\_\+manager.\+c}!skn\+\_\+signal\+\_\+manager\+\_\+handler\+\_\+thread@{skn\+\_\+signal\+\_\+manager\+\_\+handler\+\_\+thread}}
 \index{skn\+\_\+signal\+\_\+manager\+\_\+handler\+\_\+thread@{skn\+\_\+signal\+\_\+manager\+\_\+handler\+\_\+thread}!skn\+\_\+signal\+\_\+manager.\+c@{skn\+\_\+signal\+\_\+manager.\+c}}
-\subsubsection[{\texorpdfstring{skn\+\_\+signal\+\_\+manager\+\_\+handler\+\_\+thread(void $\ast$l\+\_\+thread\+\_\+complete)}{skn_signal_manager_handler_thread(void *l_thread_complete)}}]{\setlength{\rightskip}{0pt plus 5cm}static void $\ast$ skn\+\_\+signal\+\_\+manager\+\_\+handler\+\_\+thread (
+\subsubsection[{skn\+\_\+signal\+\_\+manager\+\_\+handler\+\_\+thread}]{\setlength{\rightskip}{0pt plus 5cm}static void $\ast$ skn\+\_\+signal\+\_\+manager\+\_\+handler\+\_\+thread (
 \begin{DoxyParamCaption}
 \item[{void $\ast$}]{l\+\_\+thread\+\_\+complete}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{skn__signal__manager_8c_a34a43eb05460c12308ab975a3add1e6d}{}\label{skn__signal__manager_8c_a34a43eb05460c12308ab975a3add1e6d}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{skn__signal__manager_8c_a34a43eb05460c12308ab975a3add1e6d}
 handler\+\_\+thread()
 
 Trap linux signals for the whole multi-\/threaded application.
@@ -41,7 +42,7 @@ Definition at line 161 of file skn\+\_\+signal\+\_\+manager.\+c.
 
 
 
-References gi\+\_\+exit\+\_\+flag, P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+OR, S\+D\+\_\+\+N\+O\+T\+I\+CE, S\+D\+\_\+\+W\+A\+R\+N\+I\+NG, S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+R\+UN, S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+S\+T\+OP, and skn\+\_\+signal\+\_\+manager\+\_\+process\+\_\+signals().
+References gi\+\_\+exit\+\_\+flag, P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R, S\+D\+\_\+\+N\+O\+T\+I\+C\+E, S\+D\+\_\+\+W\+A\+R\+N\+I\+N\+G, S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+R\+U\+N, S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+S\+T\+O\+P, and skn\+\_\+signal\+\_\+manager\+\_\+process\+\_\+signals().
 
 
 
@@ -116,20 +117,20 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{skn\+\_\+signal\+\_\+manager.\+c@{skn\+\_\+signal\+\_\+manager.\+c}!skn\+\_\+signal\+\_\+manager\+\_\+process\+\_\+signals@{skn\+\_\+signal\+\_\+manager\+\_\+process\+\_\+signals}}
+\hypertarget{skn__signal__manager_8c_a952fd087d64fc95b287a5b8e131434bd}{\index{skn\+\_\+signal\+\_\+manager.\+c@{skn\+\_\+signal\+\_\+manager.\+c}!skn\+\_\+signal\+\_\+manager\+\_\+process\+\_\+signals@{skn\+\_\+signal\+\_\+manager\+\_\+process\+\_\+signals}}
 \index{skn\+\_\+signal\+\_\+manager\+\_\+process\+\_\+signals@{skn\+\_\+signal\+\_\+manager\+\_\+process\+\_\+signals}!skn\+\_\+signal\+\_\+manager.\+c@{skn\+\_\+signal\+\_\+manager.\+c}}
-\subsubsection[{\texorpdfstring{skn\+\_\+signal\+\_\+manager\+\_\+process\+\_\+signals(siginfo\+\_\+t $\ast$signal\+\_\+info)}{skn_signal_manager_process_signals(siginfo_t *signal_info)}}]{\setlength{\rightskip}{0pt plus 5cm}static int skn\+\_\+signal\+\_\+manager\+\_\+process\+\_\+signals (
+\subsubsection[{skn\+\_\+signal\+\_\+manager\+\_\+process\+\_\+signals}]{\setlength{\rightskip}{0pt plus 5cm}static int skn\+\_\+signal\+\_\+manager\+\_\+process\+\_\+signals (
 \begin{DoxyParamCaption}
 \item[{siginfo\+\_\+t $\ast$}]{signal\+\_\+info}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{skn__signal__manager_8c_a952fd087d64fc95b287a5b8e131434bd}{}\label{skn__signal__manager_8c_a952fd087d64fc95b287a5b8e131434bd}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{skn__signal__manager_8c_a952fd087d64fc95b287a5b8e131434bd}
 
 
 Definition at line 28 of file skn\+\_\+signal\+\_\+manager.\+c.
 
 
 
-References gi\+\_\+exit\+\_\+flag, and S\+D\+\_\+\+N\+O\+T\+I\+CE.
+References gi\+\_\+exit\+\_\+flag, and S\+D\+\_\+\+N\+O\+T\+I\+C\+E.
 
 
 
@@ -273,15 +274,15 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{skn\+\_\+signal\+\_\+manager.\+c@{skn\+\_\+signal\+\_\+manager.\+c}!skn\+\_\+signal\+\_\+manager\+\_\+shutdown@{skn\+\_\+signal\+\_\+manager\+\_\+shutdown}}
+\hypertarget{skn__signal__manager_8c_aa3e16c859e3977df7056461e57fdf683}{\index{skn\+\_\+signal\+\_\+manager.\+c@{skn\+\_\+signal\+\_\+manager.\+c}!skn\+\_\+signal\+\_\+manager\+\_\+shutdown@{skn\+\_\+signal\+\_\+manager\+\_\+shutdown}}
 \index{skn\+\_\+signal\+\_\+manager\+\_\+shutdown@{skn\+\_\+signal\+\_\+manager\+\_\+shutdown}!skn\+\_\+signal\+\_\+manager.\+c@{skn\+\_\+signal\+\_\+manager.\+c}}
-\subsubsection[{\texorpdfstring{skn\+\_\+signal\+\_\+manager\+\_\+shutdown(pthread\+\_\+t sig\+\_\+thread, sigset\+\_\+t $\ast$psignal\+\_\+set, long $\ast$l\+\_\+thread\+\_\+complete)}{skn_signal_manager_shutdown(pthread_t sig_thread, sigset_t *psignal_set, long *l_thread_complete)}}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+signal\+\_\+manager\+\_\+shutdown (
+\subsubsection[{skn\+\_\+signal\+\_\+manager\+\_\+shutdown}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+signal\+\_\+manager\+\_\+shutdown (
 \begin{DoxyParamCaption}
 \item[{pthread\+\_\+t}]{sig\+\_\+thread, }
 \item[{sigset\+\_\+t $\ast$}]{psignal\+\_\+set, }
 \item[{long $\ast$}]{l\+\_\+thread\+\_\+complete}
 \end{DoxyParamCaption}
-)}\hypertarget{skn__signal__manager_8c_aa3e16c859e3977df7056461e57fdf683}{}\label{skn__signal__manager_8c_aa3e16c859e3977df7056461e57fdf683}
+)}}\label{skn__signal__manager_8c_aa3e16c859e3977df7056461e57fdf683}
 Final step
 \begin{DoxyItemize}
 \item may send trapped signal to app, so requester knows it was honored 
@@ -291,7 +292,7 @@ Definition at line 209 of file skn\+\_\+signal\+\_\+manager.\+c.
 
 
 
-References gi\+\_\+exit\+\_\+flag, S\+D\+\_\+\+N\+O\+T\+I\+CE, S\+D\+\_\+\+W\+A\+R\+N\+I\+NG, and S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+S\+T\+OP.
+References gi\+\_\+exit\+\_\+flag, S\+D\+\_\+\+N\+O\+T\+I\+C\+E, S\+D\+\_\+\+W\+A\+R\+N\+I\+N\+G, and S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+S\+T\+O\+P.
 
 
 
@@ -338,22 +339,22 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{skn\+\_\+signal\+\_\+manager.\+c@{skn\+\_\+signal\+\_\+manager.\+c}!skn\+\_\+signal\+\_\+manager\+\_\+startup@{skn\+\_\+signal\+\_\+manager\+\_\+startup}}
+\hypertarget{skn__signal__manager_8c_a9de94515b5dc0bcdcb813f6b17a6956e}{\index{skn\+\_\+signal\+\_\+manager.\+c@{skn\+\_\+signal\+\_\+manager.\+c}!skn\+\_\+signal\+\_\+manager\+\_\+startup@{skn\+\_\+signal\+\_\+manager\+\_\+startup}}
 \index{skn\+\_\+signal\+\_\+manager\+\_\+startup@{skn\+\_\+signal\+\_\+manager\+\_\+startup}!skn\+\_\+signal\+\_\+manager.\+c@{skn\+\_\+signal\+\_\+manager.\+c}}
-\subsubsection[{\texorpdfstring{skn\+\_\+signal\+\_\+manager\+\_\+startup(pthread\+\_\+t $\ast$psig\+\_\+thread, sigset\+\_\+t $\ast$psignal\+\_\+set, long $\ast$l\+\_\+thread\+\_\+complete)}{skn_signal_manager_startup(pthread_t *psig_thread, sigset_t *psignal_set, long *l_thread_complete)}}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+signal\+\_\+manager\+\_\+startup (
+\subsubsection[{skn\+\_\+signal\+\_\+manager\+\_\+startup}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+signal\+\_\+manager\+\_\+startup (
 \begin{DoxyParamCaption}
 \item[{pthread\+\_\+t $\ast$}]{psig\+\_\+thread, }
 \item[{sigset\+\_\+t $\ast$}]{psignal\+\_\+set, }
 \item[{long $\ast$}]{l\+\_\+thread\+\_\+complete}
 \end{DoxyParamCaption}
-)}\hypertarget{skn__signal__manager_8c_a9de94515b5dc0bcdcb813f6b17a6956e}{}\label{skn__signal__manager_8c_a9de94515b5dc0bcdcb813f6b17a6956e}
+)}}\label{skn__signal__manager_8c_a9de94515b5dc0bcdcb813f6b17a6956e}
 Initialize signal manager 
 
 Definition at line 238 of file skn\+\_\+signal\+\_\+manager.\+c.
 
 
 
-References P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+OR, S\+D\+\_\+\+E\+RR, and skn\+\_\+signal\+\_\+manager\+\_\+handler\+\_\+thread().
+References P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R, S\+D\+\_\+\+E\+R\+R, and skn\+\_\+signal\+\_\+manager\+\_\+handler\+\_\+thread().
 
 
 

@@ -1,5 +1,6 @@
-\hypertarget{skn__rpi__helpers_8h}{}\section{src/skn\+\_\+rpi\+\_\+helpers.h File Reference}
+\hypertarget{skn__rpi__helpers_8h}{\section{src/skn\+\_\+rpi\+\_\+helpers.h File Reference}
 \label{skn__rpi__helpers_8h}\index{src/skn\+\_\+rpi\+\_\+helpers.\+h@{src/skn\+\_\+rpi\+\_\+helpers.\+h}}
+}
 {\ttfamily \#include \char`\"{}skn\+\_\+common\+\_\+headers.\+h\char`\"{}}\\*
 {\ttfamily \#include $<$sys/utsname.\+h$>$}\\*
 {\ttfamily \#include $<$wiring\+Pi.\+h$>$}\\*
@@ -79,20 +80,20 @@ char $\ast$ \hyperlink{skn__rpi__helpers_8h_a236d69bc821c60a396d02099e92d22bb}{g
 
 
 \subsection{Function Documentation}
-\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!generate\+\_\+cpu\+\_\+temps\+\_\+info@{generate\+\_\+cpu\+\_\+temps\+\_\+info}}
+\hypertarget{skn__rpi__helpers_8h_aec6fcc1d0ae2035966ea7b3f624050cd}{\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!generate\+\_\+cpu\+\_\+temps\+\_\+info@{generate\+\_\+cpu\+\_\+temps\+\_\+info}}
 \index{generate\+\_\+cpu\+\_\+temps\+\_\+info@{generate\+\_\+cpu\+\_\+temps\+\_\+info}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
-\subsubsection[{\texorpdfstring{generate\+\_\+cpu\+\_\+temps\+\_\+info(char $\ast$msg)}{generate_cpu_temps_info(char *msg)}}]{\setlength{\rightskip}{0pt plus 5cm}int generate\+\_\+cpu\+\_\+temps\+\_\+info (
+\subsubsection[{generate\+\_\+cpu\+\_\+temps\+\_\+info}]{\setlength{\rightskip}{0pt plus 5cm}int generate\+\_\+cpu\+\_\+temps\+\_\+info (
 \begin{DoxyParamCaption}
 \item[{char $\ast$}]{msg}
 \end{DoxyParamCaption}
-)}\hypertarget{skn__rpi__helpers_8h_aec6fcc1d0ae2035966ea7b3f624050cd}{}\label{skn__rpi__helpers_8h_aec6fcc1d0ae2035966ea7b3f624050cd}
-DO N\+OT U\+SE T\+H\+IS IN M\+O\+D\+U\+L\+ES T\+H\+AT H\+A\+N\+D\+LE A I2C Based L\+CD R\+Pi cannot handle I2C and Get\+Cpu\+Temp() without locking the process in an uniterrupted sleep; forcing a power cycle. 
+)}}\label{skn__rpi__helpers_8h_aec6fcc1d0ae2035966ea7b3f624050cd}
+D\+O N\+O\+T U\+S\+E T\+H\+I\+S I\+N M\+O\+D\+U\+L\+E\+S T\+H\+A\+T H\+A\+N\+D\+L\+E A I2\+C Based L\+C\+D R\+Pi cannot handle I2\+C and Get\+Cpu\+Temp() without locking the process in an uniterrupted sleep; forcing a power cycle. 
 
-Definition at line 49 of file lcd\+\_\+display\+\_\+client.\+c.
+Definition at line 58 of file lcd\+\_\+display\+\_\+client.\+c.
 
 
 
-References \+\_\+temps\+::c, \+\_\+temps\+::f, get\+Cpu\+Temps(), and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+FF.
+References \+\_\+temps\+::c, \+\_\+temps\+::f, get\+Cpu\+Temps(), and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F.
 
 
 
@@ -100,20 +101,20 @@ Referenced by main().
 
 
 \begin{DoxyCode}
-49                                        \{
-50     \textcolor{keyword}{static} \hyperlink{struct__temps}{CpuTemps} cpuTemp;
-51     \textcolor{keywordtype}{int} mLen = 0;
-52 
-53     memset(&cpuTemp, 0, \textcolor{keyword}{sizeof}(\hyperlink{struct__temps}{CpuTemps}));
-54     \textcolor{keywordflow}{if} ( \hyperlink{lcd__display__client_8c_aac32062aeca841944e9d1016c8db5e6a}{getCpuTemps}(&cpuTemp) != -1 ) \{
-55         mLen = snprintf(msg, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}-1, \textcolor{stringliteral}{"%s %s"}, cpuTemp.\hyperlink{struct__temps_add683444c2985b00bd51bc69e9026a69}{c}, cpuTemp.
+58                                        \{
+59     \textcolor{keyword}{static} \hyperlink{struct__temps}{CpuTemps} cpuTemp;
+60     \textcolor{keywordtype}{int} mLen = 0;
+61 
+62     memset(&cpuTemp, 0, \textcolor{keyword}{sizeof}(\hyperlink{struct__temps}{CpuTemps}));
+63     \textcolor{keywordflow}{if} ( \hyperlink{lcd__display__client_8c_aac32062aeca841944e9d1016c8db5e6a}{getCpuTemps}(&cpuTemp) != -1 ) \{
+64         mLen = snprintf(msg, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}-1, \textcolor{stringliteral}{"CPU: %s %s"}, cpuTemp.\hyperlink{struct__temps_add683444c2985b00bd51bc69e9026a69}{c}, cpuTemp.
       \hyperlink{struct__temps_a9de7d7f00c6df40b61735f25e3247b40}{f});
-56     \} \textcolor{keywordflow}{else} \{
-57         mLen = snprintf(msg, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}-1, \textcolor{stringliteral}{"Temp: N/A"});
-58     \}
-59 
-60     \textcolor{keywordflow}{return} mLen;
-61 \}
+65     \} \textcolor{keywordflow}{else} \{
+66         mLen = snprintf(msg, \hyperlink{cmd_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{SZ\_INFO\_BUFF}-1, \textcolor{stringliteral}{"Temp: N/A"});
+67     \}
+68 
+69     \textcolor{keywordflow}{return} mLen;
+70 \}
 \end{DoxyCode}
 
 
@@ -137,20 +138,20 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!generate\+\_\+rpi\+\_\+model\+\_\+info@{generate\+\_\+rpi\+\_\+model\+\_\+info}}
+\hypertarget{skn__rpi__helpers_8h_a0410c7c96c2188c945cea294ae074ff9}{\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!generate\+\_\+rpi\+\_\+model\+\_\+info@{generate\+\_\+rpi\+\_\+model\+\_\+info}}
 \index{generate\+\_\+rpi\+\_\+model\+\_\+info@{generate\+\_\+rpi\+\_\+model\+\_\+info}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
-\subsubsection[{\texorpdfstring{generate\+\_\+rpi\+\_\+model\+\_\+info(char $\ast$msg)}{generate_rpi_model_info(char *msg)}}]{\setlength{\rightskip}{0pt plus 5cm}int generate\+\_\+rpi\+\_\+model\+\_\+info (
+\subsubsection[{generate\+\_\+rpi\+\_\+model\+\_\+info}]{\setlength{\rightskip}{0pt plus 5cm}int generate\+\_\+rpi\+\_\+model\+\_\+info (
 \begin{DoxyParamCaption}
 \item[{char $\ast$}]{msg}
 \end{DoxyParamCaption}
-)}\hypertarget{skn__rpi__helpers_8h_a0410c7c96c2188c945cea294ae074ff9}{}\label{skn__rpi__helpers_8h_a0410c7c96c2188c945cea294ae074ff9}
+)}}\label{skn__rpi__helpers_8h_a0410c7c96c2188c945cea294ae074ff9}
 
 
 Definition at line 328 of file skn\+\_\+rpi\+\_\+helpers.\+c.
 
 
 
-References gd\+\_\+ch\+\_\+intf\+Name, gd\+\_\+ch\+\_\+ip\+Address, skn\+\_\+get\+\_\+number\+\_\+of\+\_\+cpu\+\_\+cores(), and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+FF.
+References gd\+\_\+ch\+\_\+intf\+Name, gd\+\_\+ch\+\_\+ip\+Address, skn\+\_\+get\+\_\+number\+\_\+of\+\_\+cpu\+\_\+cores(), and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F.
 
 
 
@@ -197,14 +198,14 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+device\+\_\+manager\+\_\+backlight@{skn\+\_\+device\+\_\+manager\+\_\+backlight}}
+\hypertarget{skn__rpi__helpers_8h_a18bf9699f8b6ad05aff925d9deb31be1}{\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+device\+\_\+manager\+\_\+backlight@{skn\+\_\+device\+\_\+manager\+\_\+backlight}}
 \index{skn\+\_\+device\+\_\+manager\+\_\+backlight@{skn\+\_\+device\+\_\+manager\+\_\+backlight}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
-\subsubsection[{\texorpdfstring{skn\+\_\+device\+\_\+manager\+\_\+backlight(int af\+\_\+backlight, int state)}{skn_device_manager_backlight(int af_backlight, int state)}}]{\setlength{\rightskip}{0pt plus 5cm}void skn\+\_\+device\+\_\+manager\+\_\+backlight (
+\subsubsection[{skn\+\_\+device\+\_\+manager\+\_\+backlight}]{\setlength{\rightskip}{0pt plus 5cm}void skn\+\_\+device\+\_\+manager\+\_\+backlight (
 \begin{DoxyParamCaption}
 \item[{int}]{af\+\_\+backlight, }
 \item[{int}]{state}
 \end{DoxyParamCaption}
-)}\hypertarget{skn__rpi__helpers_8h_a18bf9699f8b6ad05aff925d9deb31be1}{}\label{skn__rpi__helpers_8h_a18bf9699f8b6ad05aff925d9deb31be1}
+)}}\label{skn__rpi__helpers_8h_a18bf9699f8b6ad05aff925d9deb31be1}
 
 
 Definition at line 184 of file skn\+\_\+rpi\+\_\+helpers.\+c.
@@ -230,21 +231,21 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup@{skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup}}
+\hypertarget{skn__rpi__helpers_8h_a58c9a50b0307d45138f4a6f2e6ba7a76}{\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup@{skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup}}
 \index{skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup@{skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
-\subsubsection[{\texorpdfstring{skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup(\+P\+Display\+Manager pdm, char $\ast$device\+\_\+name)}{skn_device_manager_LCD_setup(PDisplayManager pdm, char *device_name)}}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup (
+\subsubsection[{skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup (
 \begin{DoxyParamCaption}
 \item[{{\bf P\+Display\+Manager}}]{pdm, }
 \item[{char $\ast$}]{device\+\_\+name}
 \end{DoxyParamCaption}
-)}\hypertarget{skn__rpi__helpers_8h_a58c9a50b0307d45138f4a6f2e6ba7a76}{}\label{skn__rpi__helpers_8h_a58c9a50b0307d45138f4a6f2e6ba7a76}
+)}}\label{skn__rpi__helpers_8h_a58c9a50b0307d45138f4a6f2e6ba7a76}
 
 
 Definition at line 234 of file skn\+\_\+rpi\+\_\+helpers.\+c.
 
 
 
-References \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::lcd\+\_\+handle, P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+OR, skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23008(), skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23017(), skn\+\_\+device\+\_\+manager\+\_\+\+P\+C\+F8574(), and skn\+\_\+device\+\_\+manager\+\_\+\+Serial\+Port().
+References \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::lcd\+\_\+handle, P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R, skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23008(), skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23017(), skn\+\_\+device\+\_\+manager\+\_\+\+P\+C\+F8574(), and skn\+\_\+device\+\_\+manager\+\_\+\+Serial\+Port().
 
 
 
@@ -298,13 +299,13 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+shutdown@{skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+shutdown}}
+\hypertarget{skn__rpi__helpers_8h_aad63cb41e99a588cea9609a100cc9333}{\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+shutdown@{skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+shutdown}}
 \index{skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+shutdown@{skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+shutdown}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
-\subsubsection[{\texorpdfstring{skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+shutdown(\+P\+Display\+Manager pdm)}{skn_device_manager_LCD_shutdown(PDisplayManager pdm)}}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+shutdown (
+\subsubsection[{skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+shutdown}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+shutdown (
 \begin{DoxyParamCaption}
 \item[{{\bf P\+Display\+Manager}}]{pdm}
 \end{DoxyParamCaption}
-)}\hypertarget{skn__rpi__helpers_8h_aad63cb41e99a588cea9609a100cc9333}{}\label{skn__rpi__helpers_8h_aad63cb41e99a588cea9609a100cc9333}
+)}}\label{skn__rpi__helpers_8h_aad63cb41e99a588cea9609a100cc9333}
 
 
 Definition at line 257 of file skn\+\_\+rpi\+\_\+helpers.\+c.
@@ -368,20 +369,20 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23008@{skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23008}}
+\hypertarget{skn__rpi__helpers_8h_a343fa5773d09ffd114adc3425f3c6bde}{\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23008@{skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23008}}
 \index{skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23008@{skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23008}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
-\subsubsection[{\texorpdfstring{skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23008(\+P\+Display\+Manager pdm)}{skn_device_manager_MCP23008(PDisplayManager pdm)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+L\+C\+D\+Device} skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23008 (
+\subsubsection[{skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23008}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+L\+C\+D\+Device} skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23008 (
 \begin{DoxyParamCaption}
 \item[{{\bf P\+Display\+Manager}}]{pdm}
 \end{DoxyParamCaption}
-)}\hypertarget{skn__rpi__helpers_8h_a343fa5773d09ffd114adc3425f3c6bde}{}\label{skn__rpi__helpers_8h_a343fa5773d09ffd114adc3425f3c6bde}
+)}}\label{skn__rpi__helpers_8h_a343fa5773d09ffd114adc3425f3c6bde}
 
 
 Definition at line 110 of file skn\+\_\+rpi\+\_\+helpers.\+c.
 
 
 
-References \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+backlight, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+base, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db4, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db5, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db6, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db7, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+e, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+rs, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+rw, \+\_\+\+I\+I\+C\+L\+C\+D\+::cb\+Name, gd\+\_\+i\+\_\+i2c\+\_\+address, \+\_\+\+I\+I\+C\+L\+C\+D\+::i2c\+\_\+address, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::lcd, S\+D\+\_\+\+E\+RR, S\+D\+\_\+\+N\+O\+T\+I\+CE, \+\_\+\+I\+I\+C\+L\+C\+D\+::setup, skn\+\_\+device\+\_\+manager\+\_\+init\+\_\+i2c(), and S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+FF.
+References \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+backlight, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+base, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db4, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db5, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db6, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db7, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+e, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+rs, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+rw, \+\_\+\+I\+I\+C\+L\+C\+D\+::cb\+Name, gd\+\_\+i\+\_\+i2c\+\_\+address, \+\_\+\+I\+I\+C\+L\+C\+D\+::i2c\+\_\+address, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::lcd, S\+D\+\_\+\+E\+R\+R, S\+D\+\_\+\+N\+O\+T\+I\+C\+E, \+\_\+\+I\+I\+C\+L\+C\+D\+::setup, skn\+\_\+device\+\_\+manager\+\_\+init\+\_\+i2c(), and S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F.
 
 
 
@@ -421,7 +422,7 @@ Referenced by skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup().
 137     plcd->\hyperlink{struct___i_i_c_l_c_d_a0f3ebbe756ecf62494733287f64821f9}{af\_db6} = base + 5;
 138     plcd->\hyperlink{struct___i_i_c_l_c_d_ae55385ca612fd157fb85e7b3d5423ee4}{af\_db7} = base + 6;
 139 
-140     plcd->\hyperlink{struct___i_i_c_l_c_d_ab3052517b34cbf67239b91ccbd113c00}{setup} = &mcp23008Setup; \textcolor{comment}{//   mcp23008Setup(AF\_BASE, 0x20);}
+140     plcd->\hyperlink{struct___i_i_c_l_c_d_a6bc8b9b3e5e69bfa25fdcd6b3c27628e}{setup} = &mcp23008Setup; \textcolor{comment}{//   mcp23008Setup(AF\_BASE, 0x20);}
 141 
 142     \textcolor{keywordflow}{return} \hyperlink{skn__rpi__helpers_8c_a6e967d6169dd92b30845335ab426c59b}{skn\_device\_manager\_init\_i2c}(pdm);
 143 \}
@@ -448,20 +449,20 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23017@{skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23017}}
+\hypertarget{skn__rpi__helpers_8h_aeeb817184dce0d96e05d4cdd6940db70}{\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23017@{skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23017}}
 \index{skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23017@{skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23017}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
-\subsubsection[{\texorpdfstring{skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23017(\+P\+Display\+Manager pdm)}{skn_device_manager_MCP23017(PDisplayManager pdm)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+L\+C\+D\+Device} skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23017 (
+\subsubsection[{skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23017}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+L\+C\+D\+Device} skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23017 (
 \begin{DoxyParamCaption}
 \item[{{\bf P\+Display\+Manager}}]{pdm}
 \end{DoxyParamCaption}
-)}\hypertarget{skn__rpi__helpers_8h_aeeb817184dce0d96e05d4cdd6940db70}{}\label{skn__rpi__helpers_8h_aeeb817184dce0d96e05d4cdd6940db70}
+)}}\label{skn__rpi__helpers_8h_aeeb817184dce0d96e05d4cdd6940db70}
 
 
 Definition at line 72 of file skn\+\_\+rpi\+\_\+helpers.\+c.
 
 
 
-References \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+backlight, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+base, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+blue, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db4, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db5, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db6, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db7, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+e, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+green, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+red, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+rs, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+rw, \+\_\+\+I\+I\+C\+L\+C\+D\+::cb\+Name, gd\+\_\+i\+\_\+i2c\+\_\+address, \+\_\+\+I\+I\+C\+L\+C\+D\+::i2c\+\_\+address, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::lcd, S\+D\+\_\+\+E\+RR, S\+D\+\_\+\+N\+O\+T\+I\+CE, \+\_\+\+I\+I\+C\+L\+C\+D\+::setup, skn\+\_\+device\+\_\+manager\+\_\+init\+\_\+i2c(), and S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+FF.
+References \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+backlight, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+base, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+blue, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db4, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db5, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db6, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db7, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+e, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+green, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+red, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+rs, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+rw, \+\_\+\+I\+I\+C\+L\+C\+D\+::cb\+Name, gd\+\_\+i\+\_\+i2c\+\_\+address, \+\_\+\+I\+I\+C\+L\+C\+D\+::i2c\+\_\+address, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::lcd, S\+D\+\_\+\+E\+R\+R, S\+D\+\_\+\+N\+O\+T\+I\+C\+E, \+\_\+\+I\+I\+C\+L\+C\+D\+::setup, skn\+\_\+device\+\_\+manager\+\_\+init\+\_\+i2c(), and S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F.
 
 
 
@@ -505,7 +506,7 @@ Referenced by skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup().
 103     plcd->\hyperlink{struct___i_i_c_l_c_d_a0f3ebbe756ecf62494733287f64821f9}{af\_db6} = base + 10;
 104     plcd->\hyperlink{struct___i_i_c_l_c_d_ae55385ca612fd157fb85e7b3d5423ee4}{af\_db7} = base + 9;
 105 
-106     plcd->\hyperlink{struct___i_i_c_l_c_d_ab3052517b34cbf67239b91ccbd113c00}{setup} = &mcp23017Setup; \textcolor{comment}{//   mcp23017Setup(AF\_BASE, 0x20);}
+106     plcd->\hyperlink{struct___i_i_c_l_c_d_a6bc8b9b3e5e69bfa25fdcd6b3c27628e}{setup} = &mcp23017Setup; \textcolor{comment}{//   mcp23017Setup(AF\_BASE, 0x20);}
 107 
 108     \textcolor{keywordflow}{return} \hyperlink{skn__rpi__helpers_8c_a6e967d6169dd92b30845335ab426c59b}{skn\_device\_manager\_init\_i2c}(pdm);
 109 \}
@@ -532,20 +533,20 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+device\+\_\+manager\+\_\+\+P\+C\+F8574@{skn\+\_\+device\+\_\+manager\+\_\+\+P\+C\+F8574}}
+\hypertarget{skn__rpi__helpers_8h_a9a6dccab4be976ca76eb960076dca0a0}{\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+device\+\_\+manager\+\_\+\+P\+C\+F8574@{skn\+\_\+device\+\_\+manager\+\_\+\+P\+C\+F8574}}
 \index{skn\+\_\+device\+\_\+manager\+\_\+\+P\+C\+F8574@{skn\+\_\+device\+\_\+manager\+\_\+\+P\+C\+F8574}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
-\subsubsection[{\texorpdfstring{skn\+\_\+device\+\_\+manager\+\_\+\+P\+C\+F8574(\+P\+Display\+Manager pdm)}{skn_device_manager_PCF8574(PDisplayManager pdm)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+L\+C\+D\+Device} skn\+\_\+device\+\_\+manager\+\_\+\+P\+C\+F8574 (
+\subsubsection[{skn\+\_\+device\+\_\+manager\+\_\+\+P\+C\+F8574}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+L\+C\+D\+Device} skn\+\_\+device\+\_\+manager\+\_\+\+P\+C\+F8574 (
 \begin{DoxyParamCaption}
 \item[{{\bf P\+Display\+Manager}}]{pdm}
 \end{DoxyParamCaption}
-)}\hypertarget{skn__rpi__helpers_8h_a9a6dccab4be976ca76eb960076dca0a0}{}\label{skn__rpi__helpers_8h_a9a6dccab4be976ca76eb960076dca0a0}
+)}}\label{skn__rpi__helpers_8h_a9a6dccab4be976ca76eb960076dca0a0}
 
 
 Definition at line 145 of file skn\+\_\+rpi\+\_\+helpers.\+c.
 
 
 
-References \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+backlight, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+base, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db4, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db5, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db6, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db7, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+e, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+rs, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+rw, \+\_\+\+I\+I\+C\+L\+C\+D\+::cb\+Name, gd\+\_\+i\+\_\+i2c\+\_\+address, \+\_\+\+I\+I\+C\+L\+C\+D\+::i2c\+\_\+address, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::lcd, S\+D\+\_\+\+E\+RR, S\+D\+\_\+\+N\+O\+T\+I\+CE, \+\_\+\+I\+I\+C\+L\+C\+D\+::setup, skn\+\_\+device\+\_\+manager\+\_\+init\+\_\+i2c(), and S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+FF.
+References \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+backlight, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+base, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db4, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db5, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db6, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+db7, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+e, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+rs, \+\_\+\+I\+I\+C\+L\+C\+D\+::af\+\_\+rw, \+\_\+\+I\+I\+C\+L\+C\+D\+::cb\+Name, gd\+\_\+i\+\_\+i2c\+\_\+address, \+\_\+\+I\+I\+C\+L\+C\+D\+::i2c\+\_\+address, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::lcd, S\+D\+\_\+\+E\+R\+R, S\+D\+\_\+\+N\+O\+T\+I\+C\+E, \+\_\+\+I\+I\+C\+L\+C\+D\+::setup, skn\+\_\+device\+\_\+manager\+\_\+init\+\_\+i2c(), and S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F.
 
 
 
@@ -587,7 +588,7 @@ Referenced by skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup().
 174     plcd->\hyperlink{struct___i_i_c_l_c_d_ae55385ca612fd157fb85e7b3d5423ee4}{af\_db7} = base + 7;
 175 
 176 
-177     plcd->\hyperlink{struct___i_i_c_l_c_d_ab3052517b34cbf67239b91ccbd113c00}{setup} = &pcf8574Setup; \textcolor{comment}{// pcf8574Setup(AF\_BASE, 0x27);}
+177     plcd->\hyperlink{struct___i_i_c_l_c_d_a6bc8b9b3e5e69bfa25fdcd6b3c27628e}{setup} = &pcf8574Setup; \textcolor{comment}{// pcf8574Setup(AF\_BASE, 0x27);}
 178 
 179     \textcolor{keywordflow}{return} \hyperlink{skn__rpi__helpers_8c_a6e967d6169dd92b30845335ab426c59b}{skn\_device\_manager\_init\_i2c}(pdm);
 180 \}
@@ -614,20 +615,20 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+device\+\_\+manager\+\_\+\+Serial\+Port@{skn\+\_\+device\+\_\+manager\+\_\+\+Serial\+Port}}
+\hypertarget{skn__rpi__helpers_8h_aa70aa8be6de3ef378d2d92839dae79c0}{\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+device\+\_\+manager\+\_\+\+Serial\+Port@{skn\+\_\+device\+\_\+manager\+\_\+\+Serial\+Port}}
 \index{skn\+\_\+device\+\_\+manager\+\_\+\+Serial\+Port@{skn\+\_\+device\+\_\+manager\+\_\+\+Serial\+Port}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
-\subsubsection[{\texorpdfstring{skn\+\_\+device\+\_\+manager\+\_\+\+Serial\+Port(\+P\+Display\+Manager pdm)}{skn_device_manager_SerialPort(PDisplayManager pdm)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+L\+C\+D\+Device} skn\+\_\+device\+\_\+manager\+\_\+\+Serial\+Port (
+\subsubsection[{skn\+\_\+device\+\_\+manager\+\_\+\+Serial\+Port}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+L\+C\+D\+Device} skn\+\_\+device\+\_\+manager\+\_\+\+Serial\+Port (
 \begin{DoxyParamCaption}
 \item[{{\bf P\+Display\+Manager}}]{pdm}
 \end{DoxyParamCaption}
-)}\hypertarget{skn__rpi__helpers_8h_aa70aa8be6de3ef378d2d92839dae79c0}{}\label{skn__rpi__helpers_8h_aa70aa8be6de3ef378d2d92839dae79c0}
+)}}\label{skn__rpi__helpers_8h_aa70aa8be6de3ef378d2d92839dae79c0}
 
 
 Definition at line 26 of file skn\+\_\+rpi\+\_\+helpers.\+c.
 
 
 
-References \+\_\+\+I\+I\+C\+L\+C\+D\+::cb\+Name, \+\_\+\+I\+I\+C\+L\+C\+D\+::ch\+\_\+serial\+\_\+port\+\_\+name, gd\+\_\+pch\+\_\+serial\+\_\+port, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::lcd, \+\_\+\+I\+I\+C\+L\+C\+D\+::lcd\+\_\+handle, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::lcd\+\_\+handle, P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+OR, S\+D\+\_\+\+E\+RR, S\+D\+\_\+\+N\+O\+T\+I\+CE, and S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+FF.
+References \+\_\+\+I\+I\+C\+L\+C\+D\+::cb\+Name, \+\_\+\+I\+I\+C\+L\+C\+D\+::ch\+\_\+serial\+\_\+port\+\_\+name, gd\+\_\+pch\+\_\+serial\+\_\+port, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::lcd, \+\_\+\+I\+I\+C\+L\+C\+D\+::lcd\+\_\+handle, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::lcd\+\_\+handle, P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R, S\+D\+\_\+\+E\+R\+R, S\+D\+\_\+\+N\+O\+T\+I\+C\+E, and S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F.
 
 
 
@@ -698,21 +699,21 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+display\+\_\+manager\+\_\+add\+\_\+line@{skn\+\_\+display\+\_\+manager\+\_\+add\+\_\+line}}
+\hypertarget{skn__rpi__helpers_8h_a73890d642bf9cbb1de78675d587d79a3}{\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+display\+\_\+manager\+\_\+add\+\_\+line@{skn\+\_\+display\+\_\+manager\+\_\+add\+\_\+line}}
 \index{skn\+\_\+display\+\_\+manager\+\_\+add\+\_\+line@{skn\+\_\+display\+\_\+manager\+\_\+add\+\_\+line}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
-\subsubsection[{\texorpdfstring{skn\+\_\+display\+\_\+manager\+\_\+add\+\_\+line(\+P\+Display\+Manager pdmx, char $\ast$client\+\_\+request\+\_\+message)}{skn_display_manager_add_line(PDisplayManager pdmx, char *client_request_message)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+Display\+Line} skn\+\_\+display\+\_\+manager\+\_\+add\+\_\+line (
+\subsubsection[{skn\+\_\+display\+\_\+manager\+\_\+add\+\_\+line}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+Display\+Line} skn\+\_\+display\+\_\+manager\+\_\+add\+\_\+line (
 \begin{DoxyParamCaption}
 \item[{{\bf P\+Display\+Manager}}]{pdmx, }
 \item[{char $\ast$}]{client\+\_\+request\+\_\+message}
 \end{DoxyParamCaption}
-)}\hypertarget{skn__rpi__helpers_8h_a73890d642bf9cbb1de78675d587d79a3}{}\label{skn__rpi__helpers_8h_a73890d642bf9cbb1de78675d587d79a3}
+)}}\label{skn__rpi__helpers_8h_a73890d642bf9cbb1de78675d587d79a3}
 
 
 Definition at line 483 of file skn\+\_\+rpi\+\_\+helpers.\+c.
 
 
 
-References \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::active, A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+D\+M\+\_\+\+L\+I\+N\+ES, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::ch\+\_\+display\+\_\+msg, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::current\+\_\+line, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::display\+\_\+pos, gd\+\_\+i\+\_\+cols, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::msg\+\_\+len, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::next\+\_\+line, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::pdsp\+\_\+collection, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::scroll\+\_\+enabled, S\+D\+\_\+\+D\+E\+B\+UG, skn\+\_\+get\+\_\+display\+\_\+manager\+\_\+ref(), skn\+\_\+scroller\+\_\+wrap\+\_\+blanks(), and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+FF.
+References \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::active, A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+D\+M\+\_\+\+L\+I\+N\+E\+S, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::ch\+\_\+display\+\_\+msg, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::current\+\_\+line, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::display\+\_\+pos, gd\+\_\+i\+\_\+cols, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::msg\+\_\+len, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::next\+\_\+line, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::pdsp\+\_\+collection, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::scroll\+\_\+enabled, S\+D\+\_\+\+D\+E\+B\+U\+G, skn\+\_\+get\+\_\+display\+\_\+manager\+\_\+ref(), skn\+\_\+scroller\+\_\+wrap\+\_\+blanks(), and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F.
 
 
 
@@ -792,20 +793,20 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work@{skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work}}
+\hypertarget{skn__rpi__helpers_8h_a0e93b40f29ab2df743c934be34500c15}{\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work@{skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work}}
 \index{skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work@{skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
-\subsubsection[{\texorpdfstring{skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work(char $\ast$client\+\_\+request\+\_\+message)}{skn_display_manager_do_work(char *client_request_message)}}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work (
+\subsubsection[{skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work (
 \begin{DoxyParamCaption}
 \item[{char $\ast$}]{client\+\_\+request\+\_\+message}
 \end{DoxyParamCaption}
-)}\hypertarget{skn__rpi__helpers_8h_a0e93b40f29ab2df743c934be34500c15}{}\label{skn__rpi__helpers_8h_a0e93b40f29ab2df743c934be34500c15}
+)}}\label{skn__rpi__helpers_8h_a0e93b40f29ab2df743c934be34500c15}
 
 
 Definition at line 531 of file skn\+\_\+rpi\+\_\+helpers.\+c.
 
 
 
-References \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::active, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::current\+\_\+line, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::dsp\+\_\+rows, gd\+\_\+pch\+\_\+device\+\_\+name, generate\+\_\+datetime\+\_\+info(), generate\+\_\+loadavg\+\_\+info(), generate\+\_\+rpi\+\_\+model\+\_\+info(), generate\+\_\+uname\+\_\+info(), gi\+\_\+exit\+\_\+flag, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::lcd\+\_\+handle, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::next, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::pdsp\+\_\+collection, P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+OR, S\+D\+\_\+\+E\+RR, S\+D\+\_\+\+N\+O\+T\+I\+CE, skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup(), skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+shutdown(), skn\+\_\+display\+\_\+manager\+\_\+add\+\_\+line(), skn\+\_\+display\+\_\+manager\+\_\+create(), skn\+\_\+display\+\_\+manager\+\_\+destroy(), skn\+\_\+display\+\_\+manager\+\_\+message\+\_\+consumer\+\_\+shutdown(), skn\+\_\+display\+\_\+manager\+\_\+message\+\_\+consumer\+\_\+startup(), S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+R\+UN, S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+S\+T\+OP, skn\+\_\+scroller\+\_\+scroll\+\_\+lines(), skn\+\_\+time\+\_\+delay(), and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+FF.
+References \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::active, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::current\+\_\+line, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::dsp\+\_\+rows, gd\+\_\+pch\+\_\+device\+\_\+name, generate\+\_\+rpi\+\_\+model\+\_\+info(), gi\+\_\+exit\+\_\+flag, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::lcd\+\_\+handle, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::next, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+A\+N\+A\+G\+E\+R\+::pdsp\+\_\+collection, P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R, S\+D\+\_\+\+E\+R\+R, S\+D\+\_\+\+N\+O\+T\+I\+C\+E, skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+setup(), skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+shutdown(), skn\+\_\+display\+\_\+manager\+\_\+add\+\_\+line(), skn\+\_\+display\+\_\+manager\+\_\+create(), skn\+\_\+display\+\_\+manager\+\_\+destroy(), skn\+\_\+display\+\_\+manager\+\_\+message\+\_\+consumer\+\_\+shutdown(), skn\+\_\+display\+\_\+manager\+\_\+message\+\_\+consumer\+\_\+startup(), skn\+\_\+generate\+\_\+datetime\+\_\+info(), skn\+\_\+generate\+\_\+loadavg\+\_\+info(), skn\+\_\+generate\+\_\+uname\+\_\+info(), S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+R\+U\+N, S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+S\+T\+O\+P, skn\+\_\+scroller\+\_\+scroll\+\_\+lines(), skn\+\_\+time\+\_\+delay\+\_\+ms(), and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F.
 
 
 
@@ -827,11 +828,11 @@ Referenced by main().
 541         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"Display Manager cannot acquire needed resources. DMCreate()"});
 542         \textcolor{keywordflow}{return} \hyperlink{skn__network__helpers_8c_a7b63b016033aaa3ad752bdbd887d10c0}{gi\_exit\_flag};
 543     \}
-544     \hyperlink{skn__network__helpers_8c_a8aa6a7a3ba2390cf536e26c6cd2aa840}{generate\_datetime\_info} (ch\_lcd\_message[0]);
+544     \hyperlink{skn__network__helpers_8c_adc9d01795423b927160fa32e842015ea}{skn\_generate\_datetime\_info} (ch\_lcd\_message[0]);
 545     \hyperlink{skn__rpi__helpers_8c_a0410c7c96c2188c945cea294ae074ff9}{generate\_rpi\_model\_info}(ch\_lcd\_message[1]);
 546 \textcolor{comment}{//    generate\_cpu\_temps\_info(ch\_lcd\_message[2]);}
-547     \hyperlink{skn__network__helpers_8c_aaf8b0dfb11a3800bb249c6cf90a2537a}{generate\_uname\_info}    (ch\_lcd\_message[2]);
-548     \hyperlink{skn__network__helpers_8c_af451ef71d607d9188e02af7079f14263}{generate\_loadavg\_info}  (ch\_lcd\_message[3]);
+547     \hyperlink{skn__network__helpers_8c_a7da6dc73acd9390e469a4f2a1bd5e162}{skn\_generate\_uname\_info}    (ch\_lcd\_message[2]);
+548     \hyperlink{skn__network__helpers_8c_abbacbfd3718ca9b0f29e08e36e15c1d2}{skn\_generate\_loadavg\_info}  (ch\_lcd\_message[3]);
 549     \hyperlink{skn__rpi__helpers_8c_a73890d642bf9cbb1de78675d587d79a3}{skn\_display\_manager\_add\_line}(pdm, ch\_lcd\_message[0]);
 550     \hyperlink{skn__rpi__helpers_8c_a73890d642bf9cbb1de78675d587d79a3}{skn\_display\_manager\_add\_line}(pdm, ch\_lcd\_message[1]);
 551     \hyperlink{skn__rpi__helpers_8c_a73890d642bf9cbb1de78675d587d79a3}{skn\_display\_manager\_add\_line}(pdm, ch\_lcd\_message[2]);
@@ -866,15 +867,15 @@ Referenced by main().
 578             \textcolor{keywordflow}{if} (pdl->\hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_acf235d7965b9d52439add787b8e3d316}{active} == 1) \{
 579                 \hyperlink{skn__rpi__helpers_8c_a4f78720f41ceb03e6b6111a358c7aea1}{skn\_scroller\_scroll\_lines}(pdl, pdm->
       \hyperlink{struct___d_i_s_p_l_a_y___m_a_n_a_g_e_r_a6ebc44b98c1483295586660829eb5a43}{lcd\_handle}, dsp\_line\_number++);
-580                 \hyperlink{skn__network__helpers_8c_a802d742c15476782fbbea1528f76dea5}{skn\_time\_delay}(0.18); \textcolor{comment}{// delay(180);}
+580                 \hyperlink{skn__network__helpers_8c_a11a06f22b7bdbf78e38d9a6f4d71fe8e}{skn\_time\_delay\_ms}(0.18); \textcolor{comment}{// delay(180);}
 581             \}
 582             pdl = (\hyperlink{skn__common__headers_8h_a754e9456a497a668b8d959ed2cbe9ec3}{PDisplayLine}) pdl->\hyperlink{struct___d_i_s_p_l_a_y___l_i_n_e_a0668a4de4eb91d9bbd03cc52b00f4fd0}{next};
 583         \}
 584 
 585         \textcolor{keywordflow}{if} ((host\_update\_cycle++ % 900) == 0) \{  \textcolor{comment}{// roughly every fifteen minutes}
-586             \hyperlink{skn__network__helpers_8c_a8aa6a7a3ba2390cf536e26c6cd2aa840}{generate\_datetime\_info} (ch\_lcd\_message[0]);
+586             \hyperlink{skn__network__helpers_8c_adc9d01795423b927160fa32e842015ea}{skn\_generate\_datetime\_info} (ch\_lcd\_message[0]);
 587 \textcolor{comment}{//            generate\_cpu\_temps\_info(ch\_lcd\_message[2]);}
-588             \hyperlink{skn__network__helpers_8c_af451ef71d607d9188e02af7079f14263}{generate\_loadavg\_info}  (ch\_lcd\_message[3]);
+588             \hyperlink{skn__network__helpers_8c_abbacbfd3718ca9b0f29e08e36e15c1d2}{skn\_generate\_loadavg\_info}  (ch\_lcd\_message[3]);
 589             \hyperlink{skn__rpi__helpers_8c_a73890d642bf9cbb1de78675d587d79a3}{skn\_display\_manager\_add\_line}(pdm, ch\_lcd\_message[0]);
 590             \hyperlink{skn__rpi__helpers_8c_a73890d642bf9cbb1de78675d587d79a3}{skn\_display\_manager\_add\_line}(pdm, ch\_lcd\_message[1]);
 591             \hyperlink{skn__rpi__helpers_8c_a73890d642bf9cbb1de78675d587d79a3}{skn\_display\_manager\_add\_line}(pdm, ch\_lcd\_message[2]);
@@ -900,7 +901,8 @@ Referenced by main().
 \end{DoxyCode}
 
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -920,13 +922,13 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+get\+\_\+display\+\_\+manager\+\_\+ref@{skn\+\_\+get\+\_\+display\+\_\+manager\+\_\+ref}}
+\hypertarget{skn__rpi__helpers_8h_abc8758d786bdcff4bb0ec7ab05adfca1}{\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+get\+\_\+display\+\_\+manager\+\_\+ref@{skn\+\_\+get\+\_\+display\+\_\+manager\+\_\+ref}}
 \index{skn\+\_\+get\+\_\+display\+\_\+manager\+\_\+ref@{skn\+\_\+get\+\_\+display\+\_\+manager\+\_\+ref}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
-\subsubsection[{\texorpdfstring{skn\+\_\+get\+\_\+display\+\_\+manager\+\_\+ref()}{skn_get_display_manager_ref()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+Display\+Manager} skn\+\_\+get\+\_\+display\+\_\+manager\+\_\+ref (
+\subsubsection[{skn\+\_\+get\+\_\+display\+\_\+manager\+\_\+ref}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+Display\+Manager} skn\+\_\+get\+\_\+display\+\_\+manager\+\_\+ref (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\hypertarget{skn__rpi__helpers_8h_abc8758d786bdcff4bb0ec7ab05adfca1}{}\label{skn__rpi__helpers_8h_abc8758d786bdcff4bb0ec7ab05adfca1}
+)}}\label{skn__rpi__helpers_8h_abc8758d786bdcff4bb0ec7ab05adfca1}
 
 
 Definition at line 528 of file skn\+\_\+rpi\+\_\+helpers.\+c.
@@ -956,21 +958,21 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line@{skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line}}
+\hypertarget{skn__rpi__helpers_8h_aed93e422e5b2cd74ea04177db841fa37}{\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line@{skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line}}
 \index{skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line@{skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
-\subsubsection[{\texorpdfstring{skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line(int argc, char $\ast$$\ast$argv)}{skn_handle_display_command_line(int argc, char **argv)}}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line (
+\subsubsection[{skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line (
 \begin{DoxyParamCaption}
 \item[{int}]{argc, }
 \item[{char $\ast$$\ast$}]{argv}
 \end{DoxyParamCaption}
-)}\hypertarget{skn__rpi__helpers_8h_aed93e422e5b2cd74ea04177db841fa37}{}\label{skn__rpi__helpers_8h_aed93e422e5b2cd74ea04177db841fa37}
+)}}\label{skn__rpi__helpers_8h_aed93e422e5b2cd74ea04177db841fa37}
 
 
 Definition at line 785 of file skn\+\_\+rpi\+\_\+helpers.\+c.
 
 
 
-References gd\+\_\+ch\+\_\+program\+\_\+name, gd\+\_\+i\+\_\+cols, gd\+\_\+i\+\_\+debug, gd\+\_\+i\+\_\+i2c\+\_\+address, gd\+\_\+i\+\_\+rows, gd\+\_\+pch\+\_\+device\+\_\+name, gd\+\_\+pch\+\_\+message, gd\+\_\+pch\+\_\+serial\+\_\+port, P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+ON, S\+D\+\_\+\+E\+RR, S\+D\+\_\+\+W\+A\+R\+N\+I\+NG, and skn\+\_\+display\+\_\+print\+\_\+usage().
+References gd\+\_\+ch\+\_\+program\+\_\+name, gd\+\_\+i\+\_\+cols, gd\+\_\+i\+\_\+debug, gd\+\_\+i\+\_\+i2c\+\_\+address, gd\+\_\+i\+\_\+rows, gd\+\_\+pch\+\_\+device\+\_\+name, gd\+\_\+pch\+\_\+message, gd\+\_\+pch\+\_\+serial\+\_\+port, P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N, S\+D\+\_\+\+E\+R\+R, S\+D\+\_\+\+W\+A\+R\+N\+I\+N\+G, and skn\+\_\+display\+\_\+print\+\_\+usage().
 
 
 
@@ -1151,13 +1153,13 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+scroller\+\_\+pad\+\_\+right@{skn\+\_\+scroller\+\_\+pad\+\_\+right}}
+\hypertarget{skn__rpi__helpers_8h_af2cd8436ec8dca06473441659fb03f75}{\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+scroller\+\_\+pad\+\_\+right@{skn\+\_\+scroller\+\_\+pad\+\_\+right}}
 \index{skn\+\_\+scroller\+\_\+pad\+\_\+right@{skn\+\_\+scroller\+\_\+pad\+\_\+right}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
-\subsubsection[{\texorpdfstring{skn\+\_\+scroller\+\_\+pad\+\_\+right(char $\ast$buffer)}{skn_scroller_pad_right(char *buffer)}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ skn\+\_\+scroller\+\_\+pad\+\_\+right (
+\subsubsection[{skn\+\_\+scroller\+\_\+pad\+\_\+right}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ skn\+\_\+scroller\+\_\+pad\+\_\+right (
 \begin{DoxyParamCaption}
 \item[{char $\ast$}]{buffer}
 \end{DoxyParamCaption}
-)}\hypertarget{skn__rpi__helpers_8h_af2cd8436ec8dca06473441659fb03f75}{}\label{skn__rpi__helpers_8h_af2cd8436ec8dca06473441659fb03f75}
+)}}\label{skn__rpi__helpers_8h_af2cd8436ec8dca06473441659fb03f75}
 skn\+\_\+scroller\+\_\+pad\+\_\+right
 \begin{DoxyItemize}
 \item fills remaining with spaces and 0 terminates
@@ -1198,15 +1200,15 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+scroller\+\_\+scroll\+\_\+lines@{skn\+\_\+scroller\+\_\+scroll\+\_\+lines}}
+\hypertarget{skn__rpi__helpers_8h_a4f78720f41ceb03e6b6111a358c7aea1}{\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+scroller\+\_\+scroll\+\_\+lines@{skn\+\_\+scroller\+\_\+scroll\+\_\+lines}}
 \index{skn\+\_\+scroller\+\_\+scroll\+\_\+lines@{skn\+\_\+scroller\+\_\+scroll\+\_\+lines}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
-\subsubsection[{\texorpdfstring{skn\+\_\+scroller\+\_\+scroll\+\_\+lines(\+P\+Display\+Line pdl, int lcd\+\_\+handle, int line)}{skn_scroller_scroll_lines(PDisplayLine pdl, int lcd_handle, int line)}}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+scroller\+\_\+scroll\+\_\+lines (
+\subsubsection[{skn\+\_\+scroller\+\_\+scroll\+\_\+lines}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+scroller\+\_\+scroll\+\_\+lines (
 \begin{DoxyParamCaption}
 \item[{{\bf P\+Display\+Line}}]{pdl, }
 \item[{int}]{lcd\+\_\+handle, }
 \item[{int}]{line}
 \end{DoxyParamCaption}
-)}\hypertarget{skn__rpi__helpers_8h_a4f78720f41ceb03e6b6111a358c7aea1}{}\label{skn__rpi__helpers_8h_a4f78720f41ceb03e6b6111a358c7aea1}
+)}}\label{skn__rpi__helpers_8h_a4f78720f41ceb03e6b6111a358c7aea1}
 Scrolls a single line across the lcd display
 \begin{DoxyItemize}
 \item best when wrapped in column chars on each side 
@@ -1216,7 +1218,7 @@ Definition at line 402 of file skn\+\_\+rpi\+\_\+helpers.\+c.
 
 
 
-References \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::ch\+\_\+display\+\_\+msg, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::display\+\_\+pos, gd\+\_\+i\+\_\+cols, gd\+\_\+pch\+\_\+device\+\_\+name, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::msg\+\_\+len, skn\+\_\+scroller\+\_\+pad\+\_\+right(), and skn\+\_\+time\+\_\+delay().
+References \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::ch\+\_\+display\+\_\+msg, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::display\+\_\+pos, gd\+\_\+i\+\_\+cols, gd\+\_\+pch\+\_\+device\+\_\+name, \+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+L\+I\+N\+E\+::msg\+\_\+len, skn\+\_\+scroller\+\_\+pad\+\_\+right(), and skn\+\_\+time\+\_\+delay\+\_\+ms().
 
 
 
@@ -1242,7 +1244,7 @@ Referenced by skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work().
 417     \textcolor{keywordflow}{if} (strcmp(\textcolor{stringliteral}{"ser"}, \hyperlink{skn__rpi__helpers_8c_a236d69bc821c60a396d02099e92d22bb}{gd\_pch\_device\_name}) == 0 ) \{
 418         set\_col\_row\_position[3] = (\textcolor{keywordtype}{unsigned} int)line + 1;
 419         write(lcd\_handle, set\_col\_row\_position, \textcolor{keyword}{sizeof}(set\_col\_row\_position));
-420         \hyperlink{skn__network__helpers_8c_a802d742c15476782fbbea1528f76dea5}{skn\_time\_delay}(0.2); \textcolor{comment}{// delay(200);}
+420         \hyperlink{skn__network__helpers_8c_a11a06f22b7bdbf78e38d9a6f4d71fe8e}{skn\_time\_delay\_ms}(0.2); \textcolor{comment}{// delay(200);}
 421         write(lcd\_handle, buf, \hyperlink{skn__rpi__helpers_8c_ac934aabd8dd134e724c62e1264afa549}{gd\_i\_cols} - 1);
 422     \} \textcolor{keywordflow}{else} \{
 423         lcdPosition(lcd\_handle, 0, line);
@@ -1257,11 +1259,12 @@ Referenced by skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work().
 \end{DoxyCode}
 
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=331pt]{skn__rpi__helpers_8h_a4f78720f41ceb03e6b6111a358c7aea1_cgraph}
+\includegraphics[width=328pt]{skn__rpi__helpers_8h_a4f78720f41ceb03e6b6111a358c7aea1_cgraph}
 \end{center}
 \end{figure}
 
@@ -1277,13 +1280,13 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+scroller\+\_\+wrap\+\_\+blanks@{skn\+\_\+scroller\+\_\+wrap\+\_\+blanks}}
+\hypertarget{skn__rpi__helpers_8h_ae945b3a41d43db4d0c52f522d663d415}{\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+scroller\+\_\+wrap\+\_\+blanks@{skn\+\_\+scroller\+\_\+wrap\+\_\+blanks}}
 \index{skn\+\_\+scroller\+\_\+wrap\+\_\+blanks@{skn\+\_\+scroller\+\_\+wrap\+\_\+blanks}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
-\subsubsection[{\texorpdfstring{skn\+\_\+scroller\+\_\+wrap\+\_\+blanks(char $\ast$buffer)}{skn_scroller_wrap_blanks(char *buffer)}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ skn\+\_\+scroller\+\_\+wrap\+\_\+blanks (
+\subsubsection[{skn\+\_\+scroller\+\_\+wrap\+\_\+blanks}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ skn\+\_\+scroller\+\_\+wrap\+\_\+blanks (
 \begin{DoxyParamCaption}
 \item[{char $\ast$}]{buffer}
 \end{DoxyParamCaption}
-)}\hypertarget{skn__rpi__helpers_8h_ae945b3a41d43db4d0c52f522d663d415}{}\label{skn__rpi__helpers_8h_ae945b3a41d43db4d0c52f522d663d415}
+)}}\label{skn__rpi__helpers_8h_ae945b3a41d43db4d0c52f522d663d415}
 skn\+\_\+scroller\+\_\+wrap\+\_\+blanks
 \begin{DoxyItemize}
 \item builds str with 20 chars in front, and 20 at right end 
@@ -1293,7 +1296,7 @@ Definition at line 382 of file skn\+\_\+rpi\+\_\+helpers.\+c.
 
 
 
-References gd\+\_\+i\+\_\+cols, and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+FF.
+References gd\+\_\+i\+\_\+cols, and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F.
 
 
 
@@ -1329,15 +1332,15 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+signal\+\_\+manager\+\_\+shutdown@{skn\+\_\+signal\+\_\+manager\+\_\+shutdown}}
+\hypertarget{skn__rpi__helpers_8h_aa3e16c859e3977df7056461e57fdf683}{\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+signal\+\_\+manager\+\_\+shutdown@{skn\+\_\+signal\+\_\+manager\+\_\+shutdown}}
 \index{skn\+\_\+signal\+\_\+manager\+\_\+shutdown@{skn\+\_\+signal\+\_\+manager\+\_\+shutdown}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
-\subsubsection[{\texorpdfstring{skn\+\_\+signal\+\_\+manager\+\_\+shutdown(pthread\+\_\+t sig\+\_\+thread, sigset\+\_\+t $\ast$psignal\+\_\+set, long $\ast$l\+\_\+thread\+\_\+complete)}{skn_signal_manager_shutdown(pthread_t sig_thread, sigset_t *psignal_set, long *l_thread_complete)}}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+signal\+\_\+manager\+\_\+shutdown (
+\subsubsection[{skn\+\_\+signal\+\_\+manager\+\_\+shutdown}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+signal\+\_\+manager\+\_\+shutdown (
 \begin{DoxyParamCaption}
 \item[{pthread\+\_\+t}]{sig\+\_\+thread, }
 \item[{sigset\+\_\+t $\ast$}]{psignal\+\_\+set, }
 \item[{long $\ast$}]{l\+\_\+thread\+\_\+complete}
 \end{DoxyParamCaption}
-)}\hypertarget{skn__rpi__helpers_8h_aa3e16c859e3977df7056461e57fdf683}{}\label{skn__rpi__helpers_8h_aa3e16c859e3977df7056461e57fdf683}
+)}}\label{skn__rpi__helpers_8h_aa3e16c859e3977df7056461e57fdf683}
 Final step
 \begin{DoxyItemize}
 \item may send trapped signal to app, so requester knows it was honored 
@@ -1347,7 +1350,7 @@ Definition at line 209 of file skn\+\_\+signal\+\_\+manager.\+c.
 
 
 
-References gi\+\_\+exit\+\_\+flag, S\+D\+\_\+\+N\+O\+T\+I\+CE, S\+D\+\_\+\+W\+A\+R\+N\+I\+NG, and S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+S\+T\+OP.
+References gi\+\_\+exit\+\_\+flag, S\+D\+\_\+\+N\+O\+T\+I\+C\+E, S\+D\+\_\+\+W\+A\+R\+N\+I\+N\+G, and S\+K\+N\+\_\+\+R\+U\+N\+\_\+\+M\+O\+D\+E\+\_\+\+S\+T\+O\+P.
 
 
 
@@ -1394,22 +1397,22 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+signal\+\_\+manager\+\_\+startup@{skn\+\_\+signal\+\_\+manager\+\_\+startup}}
+\hypertarget{skn__rpi__helpers_8h_a9de94515b5dc0bcdcb813f6b17a6956e}{\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!skn\+\_\+signal\+\_\+manager\+\_\+startup@{skn\+\_\+signal\+\_\+manager\+\_\+startup}}
 \index{skn\+\_\+signal\+\_\+manager\+\_\+startup@{skn\+\_\+signal\+\_\+manager\+\_\+startup}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
-\subsubsection[{\texorpdfstring{skn\+\_\+signal\+\_\+manager\+\_\+startup(pthread\+\_\+t $\ast$psig\+\_\+thread, sigset\+\_\+t $\ast$psignal\+\_\+set, long $\ast$l\+\_\+thread\+\_\+complete)}{skn_signal_manager_startup(pthread_t *psig_thread, sigset_t *psignal_set, long *l_thread_complete)}}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+signal\+\_\+manager\+\_\+startup (
+\subsubsection[{skn\+\_\+signal\+\_\+manager\+\_\+startup}]{\setlength{\rightskip}{0pt plus 5cm}int skn\+\_\+signal\+\_\+manager\+\_\+startup (
 \begin{DoxyParamCaption}
 \item[{pthread\+\_\+t $\ast$}]{psig\+\_\+thread, }
 \item[{sigset\+\_\+t $\ast$}]{psignal\+\_\+set, }
 \item[{long $\ast$}]{l\+\_\+thread\+\_\+complete}
 \end{DoxyParamCaption}
-)}\hypertarget{skn__rpi__helpers_8h_a9de94515b5dc0bcdcb813f6b17a6956e}{}\label{skn__rpi__helpers_8h_a9de94515b5dc0bcdcb813f6b17a6956e}
+)}}\label{skn__rpi__helpers_8h_a9de94515b5dc0bcdcb813f6b17a6956e}
 Initialize signal manager 
 
 Definition at line 238 of file skn\+\_\+signal\+\_\+manager.\+c.
 
 
 
-References P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+OR, S\+D\+\_\+\+E\+RR, and skn\+\_\+signal\+\_\+manager\+\_\+handler\+\_\+thread().
+References P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R, S\+D\+\_\+\+E\+R\+R, and skn\+\_\+signal\+\_\+manager\+\_\+handler\+\_\+thread().
 
 
 
@@ -1460,9 +1463,9 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 \subsection{Variable Documentation}
-\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!gd\+\_\+i\+\_\+cols@{gd\+\_\+i\+\_\+cols}}
+\hypertarget{skn__rpi__helpers_8h_ac934aabd8dd134e724c62e1264afa549}{\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!gd\+\_\+i\+\_\+cols@{gd\+\_\+i\+\_\+cols}}
 \index{gd\+\_\+i\+\_\+cols@{gd\+\_\+i\+\_\+cols}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
-\subsubsection[{\texorpdfstring{gd\+\_\+i\+\_\+cols}{gd_i_cols}}]{\setlength{\rightskip}{0pt plus 5cm}int gd\+\_\+i\+\_\+cols}\hypertarget{skn__rpi__helpers_8h_ac934aabd8dd134e724c62e1264afa549}{}\label{skn__rpi__helpers_8h_ac934aabd8dd134e724c62e1264afa549}
+\subsubsection[{gd\+\_\+i\+\_\+cols}]{\setlength{\rightskip}{0pt plus 5cm}int gd\+\_\+i\+\_\+cols}}\label{skn__rpi__helpers_8h_ac934aabd8dd134e724c62e1264afa549}
 
 
 Definition at line 12 of file skn\+\_\+rpi\+\_\+helpers.\+c.
@@ -1471,9 +1474,9 @@ Definition at line 12 of file skn\+\_\+rpi\+\_\+helpers.\+c.
 
 Referenced by skn\+\_\+display\+\_\+manager\+\_\+add\+\_\+line(), skn\+\_\+display\+\_\+manager\+\_\+create(), skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line(), skn\+\_\+scroller\+\_\+pad\+\_\+right(), skn\+\_\+scroller\+\_\+scroll\+\_\+lines(), and skn\+\_\+scroller\+\_\+wrap\+\_\+blanks().
 
-\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!gd\+\_\+i\+\_\+i2c\+\_\+address@{gd\+\_\+i\+\_\+i2c\+\_\+address}}
+\hypertarget{skn__rpi__helpers_8h_a2c55396bf337471f9f99a939974fcdbe}{\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!gd\+\_\+i\+\_\+i2c\+\_\+address@{gd\+\_\+i\+\_\+i2c\+\_\+address}}
 \index{gd\+\_\+i\+\_\+i2c\+\_\+address@{gd\+\_\+i\+\_\+i2c\+\_\+address}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
-\subsubsection[{\texorpdfstring{gd\+\_\+i\+\_\+i2c\+\_\+address}{gd_i_i2c_address}}]{\setlength{\rightskip}{0pt plus 5cm}int gd\+\_\+i\+\_\+i2c\+\_\+address}\hypertarget{skn__rpi__helpers_8h_a2c55396bf337471f9f99a939974fcdbe}{}\label{skn__rpi__helpers_8h_a2c55396bf337471f9f99a939974fcdbe}
+\subsubsection[{gd\+\_\+i\+\_\+i2c\+\_\+address}]{\setlength{\rightskip}{0pt plus 5cm}int gd\+\_\+i\+\_\+i2c\+\_\+address}}\label{skn__rpi__helpers_8h_a2c55396bf337471f9f99a939974fcdbe}
 
 
 Definition at line 27 of file skn\+\_\+network\+\_\+helpers.\+c.
@@ -1482,9 +1485,9 @@ Definition at line 27 of file skn\+\_\+network\+\_\+helpers.\+c.
 
 Referenced by main(), skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23008(), skn\+\_\+device\+\_\+manager\+\_\+\+M\+C\+P23017(), skn\+\_\+device\+\_\+manager\+\_\+\+P\+C\+F8574(), skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line(), and skn\+\_\+handle\+\_\+locator\+\_\+command\+\_\+line().
 
-\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!gd\+\_\+i\+\_\+rows@{gd\+\_\+i\+\_\+rows}}
+\hypertarget{skn__rpi__helpers_8h_a3599398fb56285a3069b55791e6bb953}{\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!gd\+\_\+i\+\_\+rows@{gd\+\_\+i\+\_\+rows}}
 \index{gd\+\_\+i\+\_\+rows@{gd\+\_\+i\+\_\+rows}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
-\subsubsection[{\texorpdfstring{gd\+\_\+i\+\_\+rows}{gd_i_rows}}]{\setlength{\rightskip}{0pt plus 5cm}int gd\+\_\+i\+\_\+rows}\hypertarget{skn__rpi__helpers_8h_a3599398fb56285a3069b55791e6bb953}{}\label{skn__rpi__helpers_8h_a3599398fb56285a3069b55791e6bb953}
+\subsubsection[{gd\+\_\+i\+\_\+rows}]{\setlength{\rightskip}{0pt plus 5cm}int gd\+\_\+i\+\_\+rows}}\label{skn__rpi__helpers_8h_a3599398fb56285a3069b55791e6bb953}
 \hyperlink{skn__rpi__helpers_8c}{skn\+\_\+rpi\+\_\+helpers.\+c} 
 
 Definition at line 11 of file skn\+\_\+rpi\+\_\+helpers.\+c.
@@ -1493,9 +1496,9 @@ Definition at line 11 of file skn\+\_\+rpi\+\_\+helpers.\+c.
 
 Referenced by skn\+\_\+display\+\_\+manager\+\_\+create(), and skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line().
 
-\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!gd\+\_\+pch\+\_\+device\+\_\+name@{gd\+\_\+pch\+\_\+device\+\_\+name}}
+\hypertarget{skn__rpi__helpers_8h_a236d69bc821c60a396d02099e92d22bb}{\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!gd\+\_\+pch\+\_\+device\+\_\+name@{gd\+\_\+pch\+\_\+device\+\_\+name}}
 \index{gd\+\_\+pch\+\_\+device\+\_\+name@{gd\+\_\+pch\+\_\+device\+\_\+name}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
-\subsubsection[{\texorpdfstring{gd\+\_\+pch\+\_\+device\+\_\+name}{gd_pch_device_name}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ gd\+\_\+pch\+\_\+device\+\_\+name}\hypertarget{skn__rpi__helpers_8h_a236d69bc821c60a396d02099e92d22bb}{}\label{skn__rpi__helpers_8h_a236d69bc821c60a396d02099e92d22bb}
+\subsubsection[{gd\+\_\+pch\+\_\+device\+\_\+name}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ gd\+\_\+pch\+\_\+device\+\_\+name}}\label{skn__rpi__helpers_8h_a236d69bc821c60a396d02099e92d22bb}
 
 
 Definition at line 14 of file skn\+\_\+rpi\+\_\+helpers.\+c.
@@ -1504,9 +1507,9 @@ Definition at line 14 of file skn\+\_\+rpi\+\_\+helpers.\+c.
 
 Referenced by skn\+\_\+device\+\_\+manager\+\_\+init\+\_\+i2c(), skn\+\_\+device\+\_\+manager\+\_\+\+L\+C\+D\+\_\+shutdown(), skn\+\_\+display\+\_\+manager\+\_\+do\+\_\+work(), skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line(), and skn\+\_\+scroller\+\_\+scroll\+\_\+lines().
 
-\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!gd\+\_\+pch\+\_\+serial\+\_\+port@{gd\+\_\+pch\+\_\+serial\+\_\+port}}
+\hypertarget{skn__rpi__helpers_8h_aa8460852bd6c3559cc5ad4bd58806ba2}{\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!gd\+\_\+pch\+\_\+serial\+\_\+port@{gd\+\_\+pch\+\_\+serial\+\_\+port}}
 \index{gd\+\_\+pch\+\_\+serial\+\_\+port@{gd\+\_\+pch\+\_\+serial\+\_\+port}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
-\subsubsection[{\texorpdfstring{gd\+\_\+pch\+\_\+serial\+\_\+port}{gd_pch_serial_port}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ gd\+\_\+pch\+\_\+serial\+\_\+port}\hypertarget{skn__rpi__helpers_8h_aa8460852bd6c3559cc5ad4bd58806ba2}{}\label{skn__rpi__helpers_8h_aa8460852bd6c3559cc5ad4bd58806ba2}
+\subsubsection[{gd\+\_\+pch\+\_\+serial\+\_\+port}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ gd\+\_\+pch\+\_\+serial\+\_\+port}}\label{skn__rpi__helpers_8h_aa8460852bd6c3559cc5ad4bd58806ba2}
 
 
 Definition at line 13 of file skn\+\_\+rpi\+\_\+helpers.\+c.
@@ -1515,9 +1518,9 @@ Definition at line 13 of file skn\+\_\+rpi\+\_\+helpers.\+c.
 
 Referenced by skn\+\_\+device\+\_\+manager\+\_\+\+Serial\+Port(), and skn\+\_\+handle\+\_\+display\+\_\+command\+\_\+line().
 
-\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!gp\+\_\+structure\+\_\+pdm@{gp\+\_\+structure\+\_\+pdm}}
+\hypertarget{skn__rpi__helpers_8h_ab1d9c73f13a8c60f54b1df15a34a8e64}{\index{skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}!gp\+\_\+structure\+\_\+pdm@{gp\+\_\+structure\+\_\+pdm}}
 \index{gp\+\_\+structure\+\_\+pdm@{gp\+\_\+structure\+\_\+pdm}!skn\+\_\+rpi\+\_\+helpers.\+h@{skn\+\_\+rpi\+\_\+helpers.\+h}}
-\subsubsection[{\texorpdfstring{gp\+\_\+structure\+\_\+pdm}{gp_structure_pdm}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+Display\+Manager} gp\+\_\+structure\+\_\+pdm}\hypertarget{skn__rpi__helpers_8h_ab1d9c73f13a8c60f54b1df15a34a8e64}{}\label{skn__rpi__helpers_8h_ab1d9c73f13a8c60f54b1df15a34a8e64}
+\subsubsection[{gp\+\_\+structure\+\_\+pdm}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+Display\+Manager} gp\+\_\+structure\+\_\+pdm}}\label{skn__rpi__helpers_8h_ab1d9c73f13a8c60f54b1df15a34a8e64}
 
 
 Definition at line 15 of file skn\+\_\+rpi\+\_\+helpers.\+c.

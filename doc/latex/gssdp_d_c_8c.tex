@@ -1,5 +1,6 @@
-\hypertarget{gssdp_d_c_8c}{}\section{gssdp\+D\+C/gssdp\+DC.c File Reference}
+\hypertarget{gssdp_d_c_8c}{\section{gssdp\+D\+C/gssdp\+D\+C.c File Reference}
 \label{gssdp_d_c_8c}\index{gssdp\+D\+C/gssdp\+D\+C.\+c@{gssdp\+D\+C/gssdp\+D\+C.\+c}}
+}
 {\ttfamily \#include $<$stdlib.\+h$>$}\\*
 {\ttfamily \#include $<$stdio.\+h$>$}\\*
 {\ttfamily \#include $<$string.\+h$>$}\\*
@@ -32,51 +33,51 @@ struct \hyperlink{struct__control_data}{\+\_\+control\+Data}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{gssdp_d_c_8c_aa326a05d5e30f9e9a4bb0b4469d5d0c0}{P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+ON}~\char`\"{}0.\+9.\+0\char`\"{}
+\#define \hyperlink{gssdp_d_c_8c_aa326a05d5e30f9e9a4bb0b4469d5d0c0}{P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N}~\char`\"{}0.\+9.\+0\char`\"{}
 \item 
-\#define \hyperlink{gssdp_d_c_8c_a1c0439e4355794c09b64274849eb0279}{P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+ME}~\char`\"{}gssdp\+DC\char`\"{}
+\#define \hyperlink{gssdp_d_c_8c_a1c0439e4355794c09b64274849eb0279}{P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+M\+E}~\char`\"{}gssdp\+D\+C\char`\"{}
 \item 
-\#define \hyperlink{gssdp_d_c_8c_a714627d9e7b71b55548e2ddda429d3fb}{P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+ON}~\char`\"{}Send Message to Raspberry Pi\textquotesingle{}s on the network.\char`\"{}
+\#define \hyperlink{gssdp_d_c_8c_a714627d9e7b71b55548e2ddda429d3fb}{P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N}~\char`\"{}Send Message to Raspberry Pi's on the network.\char`\"{}
 \item 
-\#define \hyperlink{gssdp_d_c_8c_a8e8475ded7103e72515667b568ed64c7}{G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+NE}~0
+\#define \hyperlink{gssdp_d_c_8c_a8e8475ded7103e72515667b568ed64c7}{G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+N\+E}~0
 \item 
-\#define \hyperlink{gssdp_d_c_8c_adf765361163d05006ff697149bbaf2ee}{U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+RT}~48029
+\#define \hyperlink{gssdp_d_c_8c_adf765361163d05006ff697149bbaf2ee}{U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+R\+T}~48029
 \item 
-\#define \hyperlink{gssdp_d_c_8c_a76bd5a574aad0fa67de6c9804853f191}{U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+RT}~48028
+\#define \hyperlink{gssdp_d_c_8c_a76bd5a574aad0fa67de6c9804853f191}{U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+R\+T}~48028
 \item 
-\#define \hyperlink{gssdp_d_c_8c_af16df2ad6ba0bf1f5283361eb89a979d}{U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+RT}~48027
+\#define \hyperlink{gssdp_d_c_8c_af16df2ad6ba0bf1f5283361eb89a979d}{U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+R\+T}~48027
 \item 
-\#define \hyperlink{gssdp_d_c_8c_aeed5f98eabe9b11442a6fe0aad5b5be0}{U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+RT}~48026
+\#define \hyperlink{gssdp_d_c_8c_aeed5f98eabe9b11442a6fe0aad5b5be0}{U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+R\+T}~48026
 \item 
-\#define \hyperlink{gssdp_d_c_8c_ac10012e31213e44ecaf5d4c1dd3c8719}{M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+ES}~600000
+\#define \hyperlink{gssdp_d_c_8c_ac10012e31213e44ecaf5d4c1dd3c8719}{M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+E\+S}~600000
 \item 
-\#define \hyperlink{gssdp_d_c_8c_ac66d92e429586a7c5d0424fe6ad105dd}{M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+AL}~10
+\#define \hyperlink{gssdp_d_c_8c_ac66d92e429586a7c5d0424fe6ad105dd}{M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L}~10
 \item 
-\#define \hyperlink{gssdp_d_c_8c_ac08ad1b127f1c9743c5592ffb796423f}{S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+FF}~32
+\#define \hyperlink{gssdp_d_c_8c_ac08ad1b127f1c9743c5592ffb796423f}{S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+F\+F}~32
 \item 
-\#define \hyperlink{gssdp_d_c_8c_ac21e8a77d073e7a5383c92bb485992c8}{S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+FF}~64
+\#define \hyperlink{gssdp_d_c_8c_ac21e8a77d073e7a5383c92bb485992c8}{S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+F\+F}~64
 \item 
-\#define \hyperlink{gssdp_d_c_8c_a152ca8fa1a2eac39d1badafb6c6cef8c}{S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+FF}~256
+\#define \hyperlink{gssdp_d_c_8c_a152ca8fa1a2eac39d1badafb6c6cef8c}{S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+F\+F}~256
 \item 
-\#define \hyperlink{gssdp_d_c_8c_ab5903aa853c3769389e570c8490feb1e}{S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+FF}~512
+\#define \hyperlink{gssdp_d_c_8c_ab5903aa853c3769389e570c8490feb1e}{S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+F\+F}~512
 \item 
-\#define \hyperlink{gssdp_d_c_8c_a3c73a8961a16a0dfbb87b5a7317bacd2}{S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+FF}~256
+\#define \hyperlink{gssdp_d_c_8c_a3c73a8961a16a0dfbb87b5a7317bacd2}{S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+F\+F}~256
 \item 
-\#define \hyperlink{gssdp_d_c_8c_a3122b900b1a34ceff868e0d51217e357}{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+EL}~48
+\#define \hyperlink{gssdp_d_c_8c_a3122b900b1a34ceff868e0d51217e357}{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+E\+L}~48
 \item 
-\#define \hyperlink{gssdp_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+FF}~256
+\#define \hyperlink{gssdp_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F}~256
 \item 
-\#define \hyperlink{gssdp_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+FF}~128
+\#define \hyperlink{gssdp_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F}~128
 \item 
-\#define \hyperlink{gssdp_d_c_8c_a77ca0b062f899750ee20c0170e5bedc4}{S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+FF}~512
+\#define \hyperlink{gssdp_d_c_8c_a77ca0b062f899750ee20c0170e5bedc4}{S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+F\+F}~512
 \item 
-\#define \hyperlink{gssdp_d_c_8c_a352051a682a5205841c1bda6e30bb30d}{S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+FF}~256
+\#define \hyperlink{gssdp_d_c_8c_a352051a682a5205841c1bda6e30bb30d}{S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+F\+F}~256
 \item 
-\#define \hyperlink{gssdp_d_c_8c_a8091fbaa709d661a678a82a62fab638b}{S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+RT}~0
+\#define \hyperlink{gssdp_d_c_8c_a8091fbaa709d661a678a82a62fab638b}{S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+R\+T}~0
 \item 
-\#define \hyperlink{gssdp_d_c_8c_a00b19837422a3b13d82b9a525e92ef51}{A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+TF}~8
+\#define \hyperlink{gssdp_d_c_8c_a00b19837422a3b13d82b9a525e92ef51}{A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+T\+F}~8
 \item 
-\#define \hyperlink{gssdp_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+OR}~-\/1
+\#define \hyperlink{gssdp_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R}~-\/1
 \end{DoxyCompactItemize}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
@@ -128,7 +129,7 @@ static gboolean \hyperlink{gssdp_d_c_8c_a160bb2056d3842ef84fd7211ed6ec385}{cb\+\
 \item 
 \hyperlink{cmd_d_c_8c_a916d712cacebc2faeda930352280c361}{P\+I\+P\+Broadcast\+Array} \hyperlink{gssdp_d_c_8c_a72be87baa67e532c78af054acf935d6c}{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address} (char $\ast$intf, char $\ast$ipv4)
 \item 
-gint \hyperlink{gssdp_d_c_8c_a0dfc1a6916909805dc7fd2d8c471e0e3}{skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array} (\hyperlink{cmd_d_c_8c_a916d712cacebc2faeda930352280c361}{P\+I\+P\+Broadcast\+Array} paB)
+gint \hyperlink{gssdp_d_c_8c_a0dfc1a6916909805dc7fd2d8c471e0e3}{skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array} (\hyperlink{cmd_d_c_8c_a916d712cacebc2faeda930352280c361}{P\+I\+P\+Broadcast\+Array} pa\+B)
 \item 
 gint \hyperlink{gssdp_d_c_8c_afc164e6efc7bdcdbacba97ba6f6c2a19}{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name} (char $\ast$pch\+Default\+Interface\+Name)
 \item 
@@ -141,9 +142,9 @@ int \hyperlink{gssdp_d_c_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, 
 
 
 \subsection{Macro Definition Documentation}
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+TF@{A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+TF}}
-\index{A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+TF@{A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+TF}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+TF}{ARY_MAX_INTF}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+TF~8}\hypertarget{gssdp_d_c_8c_a00b19837422a3b13d82b9a525e92ef51}{}\label{gssdp_d_c_8c_a00b19837422a3b13d82b9a525e92ef51}
+\hypertarget{gssdp_d_c_8c_a00b19837422a3b13d82b9a525e92ef51}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+T\+F@{A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+T\+F}}
+\index{A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+T\+F@{A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+T\+F}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+T\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+T\+F~8}}\label{gssdp_d_c_8c_a00b19837422a3b13d82b9a525e92ef51}
 
 
 Definition at line 63 of file gssdp\+D\+C.\+c.
@@ -152,9 +153,9 @@ Definition at line 63 of file gssdp\+D\+C.\+c.
 
 Referenced by skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array().
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+NE@{G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+NE}}
-\index{G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+NE@{G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+NE}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+NE}{G_OPTION_FLAG_NONE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+NE~0}\hypertarget{gssdp_d_c_8c_a8e8475ded7103e72515667b568ed64c7}{}\label{gssdp_d_c_8c_a8e8475ded7103e72515667b568ed64c7}
+\hypertarget{gssdp_d_c_8c_a8e8475ded7103e72515667b568ed64c7}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+N\+E@{G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+N\+E}}
+\index{G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+N\+E@{G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+N\+E}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+N\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+N\+E~0}}\label{gssdp_d_c_8c_a8e8475ded7103e72515667b568ed64c7}
 
 
 Definition at line 39 of file gssdp\+D\+C.\+c.
@@ -163,16 +164,16 @@ Definition at line 39 of file gssdp\+D\+C.\+c.
 
 Referenced by main().
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+ES@{M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+ES}}
-\index{M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+ES@{M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+ES}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+ES}{MS_TEN_MINUTES}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+ES~600000}\hypertarget{gssdp_d_c_8c_ac10012e31213e44ecaf5d4c1dd3c8719}{}\label{gssdp_d_c_8c_ac10012e31213e44ecaf5d4c1dd3c8719}
+\hypertarget{gssdp_d_c_8c_ac10012e31213e44ecaf5d4c1dd3c8719}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+E\+S@{M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+E\+S}}
+\index{M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+E\+S@{M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+E\+S}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+E\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+S\+\_\+\+T\+E\+N\+\_\+\+M\+I\+N\+U\+T\+E\+S~600000}}\label{gssdp_d_c_8c_ac10012e31213e44ecaf5d4c1dd3c8719}
 
 
 Definition at line 47 of file gssdp\+D\+C.\+c.
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+AL@{M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+AL}}
-\index{M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+AL@{M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+AL}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+AL}{MSG_DELAY_INTERVAL}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+AL~10}\hypertarget{gssdp_d_c_8c_ac66d92e429586a7c5d0424fe6ad105dd}{}\label{gssdp_d_c_8c_ac66d92e429586a7c5d0424fe6ad105dd}
+\hypertarget{gssdp_d_c_8c_ac66d92e429586a7c5d0424fe6ad105dd}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L@{M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L}}
+\index{M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L@{M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L~10}}\label{gssdp_d_c_8c_ac66d92e429586a7c5d0424fe6ad105dd}
 
 
 Definition at line 48 of file gssdp\+D\+C.\+c.
@@ -181,24 +182,24 @@ Definition at line 48 of file gssdp\+D\+C.\+c.
 
 Referenced by main().
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+ON@{P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+ON}}
-\index{P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+ON@{P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+ON}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+ON}{PACKAGE_DESCRIPTION}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+ON~\char`\"{}Send Message to Raspberry Pi\textquotesingle{}s on the network.\char`\"{}}\hypertarget{gssdp_d_c_8c_a714627d9e7b71b55548e2ddda429d3fb}{}\label{gssdp_d_c_8c_a714627d9e7b71b55548e2ddda429d3fb}
+\hypertarget{gssdp_d_c_8c_a714627d9e7b71b55548e2ddda429d3fb}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N@{P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N}}
+\index{P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N@{P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+A\+C\+K\+A\+G\+E\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+I\+O\+N~\char`\"{}Send Message to Raspberry Pi's on the network.\char`\"{}}}\label{gssdp_d_c_8c_a714627d9e7b71b55548e2ddda429d3fb}
 
 
 Definition at line 25 of file gssdp\+D\+C.\+c.
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+ME@{P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+ME}}
-\index{P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+ME@{P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+ME}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+ME}{PACKAGE_NAME}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+ME~\char`\"{}gssdp\+DC\char`\"{}}\hypertarget{gssdp_d_c_8c_a1c0439e4355794c09b64274849eb0279}{}\label{gssdp_d_c_8c_a1c0439e4355794c09b64274849eb0279}
+\hypertarget{gssdp_d_c_8c_a1c0439e4355794c09b64274849eb0279}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+M\+E@{P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+M\+E}}
+\index{P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+M\+E@{P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+M\+E}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+M\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+A\+C\+K\+A\+G\+E\+\_\+\+N\+A\+M\+E~\char`\"{}gssdp\+D\+C\char`\"{}}}\label{gssdp_d_c_8c_a1c0439e4355794c09b64274849eb0279}
 
 
 Definition at line 22 of file gssdp\+D\+C.\+c.
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+ON@{P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+ON}}
-\index{P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+ON@{P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+ON}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+ON}{PACKAGE_VERSION}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+ON~\char`\"{}0.\+9.\+0\char`\"{}}\hypertarget{gssdp_d_c_8c_aa326a05d5e30f9e9a4bb0b4469d5d0c0}{}\label{gssdp_d_c_8c_aa326a05d5e30f9e9a4bb0b4469d5d0c0}
-\hyperlink{gssdp_d_c_8c}{gssdp\+D\+C.\+c} I\+O\+T/\+Raspberry\+Pi message display client gcc -\/v {\ttfamily pkg-\/config -\/-\/cflags -\/-\/libs glib-\/2.\+0 gio-\/2.\+0} -\/\+O3 -\/\+Wall -\/o gssdp\+DC \hyperlink{gssdp_d_c_8c}{gssdp\+D\+C.\+c}
+\hypertarget{gssdp_d_c_8c_aa326a05d5e30f9e9a4bb0b4469d5d0c0}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N@{P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N}}
+\index{P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N@{P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+A\+C\+K\+A\+G\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N~\char`\"{}0.\+9.\+0\char`\"{}}}\label{gssdp_d_c_8c_aa326a05d5e30f9e9a4bb0b4469d5d0c0}
+\hyperlink{gssdp_d_c_8c}{gssdp\+D\+C.\+c} I\+O\+T/\+Raspberry\+Pi message display client gcc -\/v {\ttfamily pkg-\/config -\/-\/cflags -\/-\/libs glib-\/2.\+0 gio-\/2.\+0} -\/\+O3 -\/\+Wall -\/o gssdp\+D\+C \hyperlink{gssdp_d_c_8c}{gssdp\+D\+C.\+c}
 
 Program Flow\+:
 \begin{DoxyEnumerate}
@@ -216,9 +217,9 @@ Program Flow\+:
 
 Definition at line 19 of file gssdp\+D\+C.\+c.
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+OR@{P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+OR}}
-\index{P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+OR@{P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+OR}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+OR}{PLATFORM_ERROR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+OR~-\/1}\hypertarget{gssdp_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{}\label{gssdp_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}
+\hypertarget{gssdp_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R@{P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R}}
+\index{P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R@{P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R~-\/1}}\label{gssdp_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}
 
 
 Definition at line 64 of file gssdp\+D\+C.\+c.
@@ -227,9 +228,9 @@ Definition at line 64 of file gssdp\+D\+C.\+c.
 
 Referenced by skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array(), and skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address().
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+RT@{S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+RT}}
-\index{S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+RT@{S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+RT}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+RT}{SKN_UDP_ANY_PORT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+RT~0}\hypertarget{gssdp_d_c_8c_a8091fbaa709d661a678a82a62fab638b}{}\label{gssdp_d_c_8c_a8091fbaa709d661a678a82a62fab638b}
+\hypertarget{gssdp_d_c_8c_a8091fbaa709d661a678a82a62fab638b}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+R\+T@{S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+R\+T}}
+\index{S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+R\+T@{S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+R\+T}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+R\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+R\+T~0}}\label{gssdp_d_c_8c_a8091fbaa709d661a678a82a62fab638b}
 
 
 Definition at line 62 of file gssdp\+D\+C.\+c.
@@ -238,9 +239,9 @@ Definition at line 62 of file gssdp\+D\+C.\+c.
 
 Referenced by udp\+\_\+initialize\+\_\+message\+\_\+send().
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+FF@{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+FF}}
-\index{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+FF@{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+FF}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+FF}{SZ_CHAR_BUFF}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+FF~128}\hypertarget{gssdp_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{}\label{gssdp_d_c_8c_a8d2978ad614b0de81c60483e706d9306}
+\hypertarget{gssdp_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F}}
+\index{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F~128}}\label{gssdp_d_c_8c_a8d2978ad614b0de81c60483e706d9306}
 
 
 Definition at line 58 of file gssdp\+D\+C.\+c.
@@ -249,23 +250,23 @@ Definition at line 58 of file gssdp\+D\+C.\+c.
 
 Referenced by skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array(), and skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address().
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+EL@{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+EL}}
-\index{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+EL@{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+EL}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+EL}{SZ_CHAR_LABEL}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+EL~48}\hypertarget{gssdp_d_c_8c_a3122b900b1a34ceff868e0d51217e357}{}\label{gssdp_d_c_8c_a3122b900b1a34ceff868e0d51217e357}
+\hypertarget{gssdp_d_c_8c_a3122b900b1a34ceff868e0d51217e357}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+E\+L@{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+E\+L}}
+\index{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+E\+L@{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+E\+L}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+E\+L}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+L\+A\+B\+E\+L~48}}\label{gssdp_d_c_8c_a3122b900b1a34ceff868e0d51217e357}
 
 
 Definition at line 56 of file gssdp\+D\+C.\+c.
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+FF@{S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+FF}}
-\index{S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+FF@{S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+FF}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+FF}{SZ_COMM_BUFF}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+FF~256}\hypertarget{gssdp_d_c_8c_a352051a682a5205841c1bda6e30bb30d}{}\label{gssdp_d_c_8c_a352051a682a5205841c1bda6e30bb30d}
+\hypertarget{gssdp_d_c_8c_a352051a682a5205841c1bda6e30bb30d}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+F\+F}}
+\index{S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+F\+F}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+F\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+C\+O\+M\+M\+\_\+\+B\+U\+F\+F~256}}\label{gssdp_d_c_8c_a352051a682a5205841c1bda6e30bb30d}
 
 
 Definition at line 60 of file gssdp\+D\+C.\+c.
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+FF@{S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+FF}}
-\index{S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+FF@{S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+FF}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+FF}{SZ_INFO_BUFF}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+FF~256}\hypertarget{gssdp_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{}\label{gssdp_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}
+\hypertarget{gssdp_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F}}
+\index{S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F~256}}\label{gssdp_d_c_8c_a442d5e93bd9c9d8eb4532aba62b5f86c}
 
 
 Definition at line 57 of file gssdp\+D\+C.\+c.
@@ -274,72 +275,72 @@ Definition at line 57 of file gssdp\+D\+C.\+c.
 
 Referenced by skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name().
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+FF@{S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+FF}}
-\index{S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+FF@{S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+FF}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+FF}{SZ_LINE_BUFF}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+FF~512}\hypertarget{gssdp_d_c_8c_a77ca0b062f899750ee20c0170e5bedc4}{}\label{gssdp_d_c_8c_a77ca0b062f899750ee20c0170e5bedc4}
+\hypertarget{gssdp_d_c_8c_a77ca0b062f899750ee20c0170e5bedc4}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+F\+F}}
+\index{S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+F\+F}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+F\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+L\+I\+N\+E\+\_\+\+B\+U\+F\+F~512}}\label{gssdp_d_c_8c_a77ca0b062f899750ee20c0170e5bedc4}
 
 
 Definition at line 59 of file gssdp\+D\+C.\+c.
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+FF@{S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+FF}}
-\index{S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+FF@{S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+FF}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+FF}{SZ_MESSAGE_BUFF}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+FF~512}\hypertarget{gssdp_d_c_8c_ab5903aa853c3769389e570c8490feb1e}{}\label{gssdp_d_c_8c_ab5903aa853c3769389e570c8490feb1e}
+\hypertarget{gssdp_d_c_8c_ab5903aa853c3769389e570c8490feb1e}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+F\+F}}
+\index{S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+F\+F}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+F\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+B\+U\+F\+F~512}}\label{gssdp_d_c_8c_ab5903aa853c3769389e570c8490feb1e}
 
 
 Definition at line 53 of file gssdp\+D\+C.\+c.
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+FF@{S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+FF}}
-\index{S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+FF@{S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+FF}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+FF}{SZ_PARAMS_BUFF}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+FF~64}\hypertarget{gssdp_d_c_8c_ac21e8a77d073e7a5383c92bb485992c8}{}\label{gssdp_d_c_8c_ac21e8a77d073e7a5383c92bb485992c8}
+\hypertarget{gssdp_d_c_8c_ac21e8a77d073e7a5383c92bb485992c8}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+F\+F}}
+\index{S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+F\+F}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+F\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+P\+A\+R\+A\+M\+S\+\_\+\+B\+U\+F\+F~64}}\label{gssdp_d_c_8c_ac21e8a77d073e7a5383c92bb485992c8}
 
 
 Definition at line 51 of file gssdp\+D\+C.\+c.
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+FF@{S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+FF}}
-\index{S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+FF@{S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+FF}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+FF}{SZ_RESPONSE_BUFF}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+FF~256}\hypertarget{gssdp_d_c_8c_a3c73a8961a16a0dfbb87b5a7317bacd2}{}\label{gssdp_d_c_8c_a3c73a8961a16a0dfbb87b5a7317bacd2}
+\hypertarget{gssdp_d_c_8c_a3c73a8961a16a0dfbb87b5a7317bacd2}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+F\+F}}
+\index{S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+F\+F}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+F\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+B\+U\+F\+F~256}}\label{gssdp_d_c_8c_a3c73a8961a16a0dfbb87b5a7317bacd2}
 
 
 Definition at line 54 of file gssdp\+D\+C.\+c.
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+FF@{S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+FF}}
-\index{S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+FF@{S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+FF}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+FF}{SZ_RMTADDR_BUFF}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+FF~256}\hypertarget{gssdp_d_c_8c_a152ca8fa1a2eac39d1badafb6c6cef8c}{}\label{gssdp_d_c_8c_a152ca8fa1a2eac39d1badafb6c6cef8c}
+\hypertarget{gssdp_d_c_8c_a152ca8fa1a2eac39d1badafb6c6cef8c}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+F\+F}}
+\index{S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+F\+F}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+F\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+R\+M\+T\+A\+D\+D\+R\+\_\+\+B\+U\+F\+F~256}}\label{gssdp_d_c_8c_a152ca8fa1a2eac39d1badafb6c6cef8c}
 
 
 Definition at line 52 of file gssdp\+D\+C.\+c.
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+FF@{S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+FF}}
-\index{S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+FF@{S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+FF}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+FF}{SZ_TIMESTAMP_BUFF}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+FF~32}\hypertarget{gssdp_d_c_8c_ac08ad1b127f1c9743c5592ffb796423f}{}\label{gssdp_d_c_8c_ac08ad1b127f1c9743c5592ffb796423f}
+\hypertarget{gssdp_d_c_8c_ac08ad1b127f1c9743c5592ffb796423f}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+F\+F}}
+\index{S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+F\+F@{S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+F\+F}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+F\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+T\+I\+M\+E\+S\+T\+A\+M\+P\+\_\+\+B\+U\+F\+F~32}}\label{gssdp_d_c_8c_ac08ad1b127f1c9743c5592ffb796423f}
 
 
 Definition at line 50 of file gssdp\+D\+C.\+c.
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+RT@{U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+RT}}
-\index{U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+RT@{U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+RT}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+RT}{UDP_BROADCAST_PORT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+RT~48028}\hypertarget{gssdp_d_c_8c_a76bd5a574aad0fa67de6c9804853f191}{}\label{gssdp_d_c_8c_a76bd5a574aad0fa67de6c9804853f191}
+\hypertarget{gssdp_d_c_8c_a76bd5a574aad0fa67de6c9804853f191}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+R\+T@{U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+R\+T}}
+\index{U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+R\+T@{U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+R\+T}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+R\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\+D\+P\+\_\+\+B\+R\+O\+A\+D\+C\+A\+S\+T\+\_\+\+P\+O\+R\+T~48028}}\label{gssdp_d_c_8c_a76bd5a574aad0fa67de6c9804853f191}
 
 
 Definition at line 44 of file gssdp\+D\+C.\+c.
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+RT@{U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+RT}}
-\index{U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+RT@{U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+RT}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+RT}{UDP_CLIENTS_PORT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+RT~48026}\hypertarget{gssdp_d_c_8c_aeed5f98eabe9b11442a6fe0aad5b5be0}{}\label{gssdp_d_c_8c_aeed5f98eabe9b11442a6fe0aad5b5be0}
+\hypertarget{gssdp_d_c_8c_aeed5f98eabe9b11442a6fe0aad5b5be0}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+R\+T@{U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+R\+T}}
+\index{U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+R\+T@{U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+R\+T}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+R\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\+D\+P\+\_\+\+C\+L\+I\+E\+N\+T\+S\+\_\+\+P\+O\+R\+T~48026}}\label{gssdp_d_c_8c_aeed5f98eabe9b11442a6fe0aad5b5be0}
 
 
 Definition at line 46 of file gssdp\+D\+C.\+c.
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+RT@{U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+RT}}
-\index{U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+RT@{U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+RT}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+RT}{UDP_DISPLAY_COMM_PORT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+RT~48029}\hypertarget{gssdp_d_c_8c_adf765361163d05006ff697149bbaf2ee}{}\label{gssdp_d_c_8c_adf765361163d05006ff697149bbaf2ee}
+\hypertarget{gssdp_d_c_8c_adf765361163d05006ff697149bbaf2ee}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+R\+T@{U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+R\+T}}
+\index{U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+R\+T@{U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+R\+T}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+R\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\+D\+P\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+C\+O\+M\+M\+\_\+\+P\+O\+R\+T~48029}}\label{gssdp_d_c_8c_adf765361163d05006ff697149bbaf2ee}
 
 
 Definition at line 43 of file gssdp\+D\+C.\+c.
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+RT@{U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+RT}}
-\index{U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+RT@{U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+RT}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+RT}{UDP_REGULAR_PORT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+RT~48027}\hypertarget{gssdp_d_c_8c_af16df2ad6ba0bf1f5283361eb89a979d}{}\label{gssdp_d_c_8c_af16df2ad6ba0bf1f5283361eb89a979d}
+\hypertarget{gssdp_d_c_8c_af16df2ad6ba0bf1f5283361eb89a979d}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+R\+T@{U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+R\+T}}
+\index{U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+R\+T@{U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+R\+T}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
+\subsubsection[{U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+R\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\+D\+P\+\_\+\+R\+E\+G\+U\+L\+A\+R\+\_\+\+P\+O\+R\+T~48027}}\label{gssdp_d_c_8c_af16df2ad6ba0bf1f5283361eb89a979d}
 
 
 Definition at line 45 of file gssdp\+D\+C.\+c.
@@ -347,52 +348,52 @@ Definition at line 45 of file gssdp\+D\+C.\+c.
 
 
 \subsection{Typedef Documentation}
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!Control\+Data@{Control\+Data}}
+\hypertarget{gssdp_d_c_8c_aad121cd36cd8851b2a3cd81fd0e41388}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!Control\+Data@{Control\+Data}}
 \index{Control\+Data@{Control\+Data}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{Control\+Data}{ControlData}}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+control\+Data}  {\bf Control\+Data}}\hypertarget{gssdp_d_c_8c_aad121cd36cd8851b2a3cd81fd0e41388}{}\label{gssdp_d_c_8c_aad121cd36cd8851b2a3cd81fd0e41388}
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!G\+S\+S\+D\+P\+Reg\+Data@{G\+S\+S\+D\+P\+Reg\+Data}}
+\subsubsection[{Control\+Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+control\+Data}  {\bf Control\+Data}}}\label{gssdp_d_c_8c_aad121cd36cd8851b2a3cd81fd0e41388}
+\hypertarget{gssdp_d_c_8c_acddce7fba810d84c8acdef12e4041089}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!G\+S\+S\+D\+P\+Reg\+Data@{G\+S\+S\+D\+P\+Reg\+Data}}
 \index{G\+S\+S\+D\+P\+Reg\+Data@{G\+S\+S\+D\+P\+Reg\+Data}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{G\+S\+S\+D\+P\+Reg\+Data}{GSSDPRegData}}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+gssdp\+Registry\+Data}  {\bf G\+S\+S\+D\+P\+Reg\+Data}}\hypertarget{gssdp_d_c_8c_acddce7fba810d84c8acdef12e4041089}{}\label{gssdp_d_c_8c_acddce7fba810d84c8acdef12e4041089}
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!I\+P\+Broadcast\+Array@{I\+P\+Broadcast\+Array}}
+\subsubsection[{G\+S\+S\+D\+P\+Reg\+Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+gssdp\+Registry\+Data}  {\bf G\+S\+S\+D\+P\+Reg\+Data}}}\label{gssdp_d_c_8c_acddce7fba810d84c8acdef12e4041089}
+\hypertarget{gssdp_d_c_8c_a83c26957f648dd04df183020ab03c60d}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!I\+P\+Broadcast\+Array@{I\+P\+Broadcast\+Array}}
 \index{I\+P\+Broadcast\+Array@{I\+P\+Broadcast\+Array}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{I\+P\+Broadcast\+Array}{IPBroadcastArray}}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+ip\+Broadcast\+Array}  {\bf I\+P\+Broadcast\+Array}}\hypertarget{gssdp_d_c_8c_a83c26957f648dd04df183020ab03c60d}{}\label{gssdp_d_c_8c_a83c26957f648dd04df183020ab03c60d}
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+Control\+Data@{P\+Control\+Data}}
+\subsubsection[{I\+P\+Broadcast\+Array}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+ip\+Broadcast\+Array}  {\bf I\+P\+Broadcast\+Array}}}\label{gssdp_d_c_8c_a83c26957f648dd04df183020ab03c60d}
+\hypertarget{gssdp_d_c_8c_aa6bae802f1b23385cd660e89a1e4fc75}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+Control\+Data@{P\+Control\+Data}}
 \index{P\+Control\+Data@{P\+Control\+Data}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{P\+Control\+Data}{PControlData}}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+control\+Data} $\ast$ {\bf P\+Control\+Data}}\hypertarget{gssdp_d_c_8c_aa6bae802f1b23385cd660e89a1e4fc75}{}\label{gssdp_d_c_8c_aa6bae802f1b23385cd660e89a1e4fc75}
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+G\+S\+S\+D\+P\+Reg\+Data@{P\+G\+S\+S\+D\+P\+Reg\+Data}}
+\subsubsection[{P\+Control\+Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+control\+Data} $\ast$ {\bf P\+Control\+Data}}}\label{gssdp_d_c_8c_aa6bae802f1b23385cd660e89a1e4fc75}
+\hypertarget{gssdp_d_c_8c_ae64bd753308eebf88672f281a509b668}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+G\+S\+S\+D\+P\+Reg\+Data@{P\+G\+S\+S\+D\+P\+Reg\+Data}}
 \index{P\+G\+S\+S\+D\+P\+Reg\+Data@{P\+G\+S\+S\+D\+P\+Reg\+Data}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{P\+G\+S\+S\+D\+P\+Reg\+Data}{PGSSDPRegData}}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+gssdp\+Registry\+Data} $\ast$ {\bf P\+G\+S\+S\+D\+P\+Reg\+Data}}\hypertarget{gssdp_d_c_8c_ae64bd753308eebf88672f281a509b668}{}\label{gssdp_d_c_8c_ae64bd753308eebf88672f281a509b668}
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+I\+P\+Broadcast\+Array@{P\+I\+P\+Broadcast\+Array}}
+\subsubsection[{P\+G\+S\+S\+D\+P\+Reg\+Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+gssdp\+Registry\+Data} $\ast$ {\bf P\+G\+S\+S\+D\+P\+Reg\+Data}}}\label{gssdp_d_c_8c_ae64bd753308eebf88672f281a509b668}
+\hypertarget{gssdp_d_c_8c_a916d712cacebc2faeda930352280c361}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+I\+P\+Broadcast\+Array@{P\+I\+P\+Broadcast\+Array}}
 \index{P\+I\+P\+Broadcast\+Array@{P\+I\+P\+Broadcast\+Array}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{P\+I\+P\+Broadcast\+Array}{PIPBroadcastArray}}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+ip\+Broadcast\+Array} $\ast$ {\bf P\+I\+P\+Broadcast\+Array}}\hypertarget{gssdp_d_c_8c_a916d712cacebc2faeda930352280c361}{}\label{gssdp_d_c_8c_a916d712cacebc2faeda930352280c361}
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+P\+Reg\+Data@{P\+P\+Reg\+Data}}
+\subsubsection[{P\+I\+P\+Broadcast\+Array}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+ip\+Broadcast\+Array} $\ast$ {\bf P\+I\+P\+Broadcast\+Array}}}\label{gssdp_d_c_8c_a916d712cacebc2faeda930352280c361}
+\hypertarget{gssdp_d_c_8c_a0b249e07431f112b20e1708c3162d8a0}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+P\+Reg\+Data@{P\+P\+Reg\+Data}}
 \index{P\+P\+Reg\+Data@{P\+P\+Reg\+Data}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{P\+P\+Reg\+Data}{PPRegData}}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+registry\+Data} $\ast$$\ast$ {\bf P\+P\+Reg\+Data}}\hypertarget{gssdp_d_c_8c_a0b249e07431f112b20e1708c3162d8a0}{}\label{gssdp_d_c_8c_a0b249e07431f112b20e1708c3162d8a0}
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+Reg\+Data@{P\+Reg\+Data}}
+\subsubsection[{P\+P\+Reg\+Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+registry\+Data} $\ast$$\ast$ {\bf P\+P\+Reg\+Data}}}\label{gssdp_d_c_8c_a0b249e07431f112b20e1708c3162d8a0}
+\hypertarget{gssdp_d_c_8c_a57f677cfc01b955d9d3783e5422f36a8}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+Reg\+Data@{P\+Reg\+Data}}
 \index{P\+Reg\+Data@{P\+Reg\+Data}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{P\+Reg\+Data}{PRegData}}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+registry\+Data} $\ast$ {\bf P\+Reg\+Data}}\hypertarget{gssdp_d_c_8c_a57f677cfc01b955d9d3783e5422f36a8}{}\label{gssdp_d_c_8c_a57f677cfc01b955d9d3783e5422f36a8}
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+U\+Signal\+Data@{P\+U\+Signal\+Data}}
+\subsubsection[{P\+Reg\+Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+registry\+Data} $\ast$ {\bf P\+Reg\+Data}}}\label{gssdp_d_c_8c_a57f677cfc01b955d9d3783e5422f36a8}
+\hypertarget{gssdp_d_c_8c_acdc6976ac4ccc0f13bc99bb5b9361a6e}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!P\+U\+Signal\+Data@{P\+U\+Signal\+Data}}
 \index{P\+U\+Signal\+Data@{P\+U\+Signal\+Data}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{P\+U\+Signal\+Data}{PUSignalData}}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+signal\+Data} $\ast$ {\bf P\+U\+Signal\+Data}}\hypertarget{gssdp_d_c_8c_acdc6976ac4ccc0f13bc99bb5b9361a6e}{}\label{gssdp_d_c_8c_acdc6976ac4ccc0f13bc99bb5b9361a6e}
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!Reg\+Data@{Reg\+Data}}
+\subsubsection[{P\+U\+Signal\+Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+signal\+Data} $\ast$ {\bf P\+U\+Signal\+Data}}}\label{gssdp_d_c_8c_acdc6976ac4ccc0f13bc99bb5b9361a6e}
+\hypertarget{gssdp_d_c_8c_aac252e0f10021267858720b8e772c0fc}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!Reg\+Data@{Reg\+Data}}
 \index{Reg\+Data@{Reg\+Data}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{Reg\+Data}{RegData}}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+registry\+Data}  {\bf Reg\+Data}}\hypertarget{gssdp_d_c_8c_aac252e0f10021267858720b8e772c0fc}{}\label{gssdp_d_c_8c_aac252e0f10021267858720b8e772c0fc}
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!U\+Signal\+Data@{U\+Signal\+Data}}
+\subsubsection[{Reg\+Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+registry\+Data}  {\bf Reg\+Data}}}\label{gssdp_d_c_8c_aac252e0f10021267858720b8e772c0fc}
+\hypertarget{gssdp_d_c_8c_a4d86cbb761613143e4ee60218efdfbaa}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!U\+Signal\+Data@{U\+Signal\+Data}}
 \index{U\+Signal\+Data@{U\+Signal\+Data}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{U\+Signal\+Data}{USignalData}}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+signal\+Data}  {\bf U\+Signal\+Data}}\hypertarget{gssdp_d_c_8c_a4d86cbb761613143e4ee60218efdfbaa}{}\label{gssdp_d_c_8c_a4d86cbb761613143e4ee60218efdfbaa}
+\subsubsection[{U\+Signal\+Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+signal\+Data}  {\bf U\+Signal\+Data}}}\label{gssdp_d_c_8c_a4d86cbb761613143e4ee60218efdfbaa}
 
 
 \subsection{Function Documentation}
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!cb\+\_\+gssdp\+\_\+resource\+\_\+available@{cb\+\_\+gssdp\+\_\+resource\+\_\+available}}
+\hypertarget{gssdp_d_c_8c_a4411abcfc33e91d9cd018b10fba67897}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!cb\+\_\+gssdp\+\_\+resource\+\_\+available@{cb\+\_\+gssdp\+\_\+resource\+\_\+available}}
 \index{cb\+\_\+gssdp\+\_\+resource\+\_\+available@{cb\+\_\+gssdp\+\_\+resource\+\_\+available}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{cb\+\_\+gssdp\+\_\+resource\+\_\+available(\+G\+S\+S\+D\+P\+Resource\+Browser $\ast$resource\+\_\+browser, const char $\ast$usn, G\+List $\ast$locations, P\+Control\+Data pctrl)}{cb_gssdp_resource_available(GSSDPResourceBrowser *resource_browser, const char *usn, GList *locations, PControlData pctrl)}}]{\setlength{\rightskip}{0pt plus 5cm}static void cb\+\_\+gssdp\+\_\+resource\+\_\+available (
+\subsubsection[{cb\+\_\+gssdp\+\_\+resource\+\_\+available}]{\setlength{\rightskip}{0pt plus 5cm}static void cb\+\_\+gssdp\+\_\+resource\+\_\+available (
 \begin{DoxyParamCaption}
 \item[{G\+S\+S\+D\+P\+Resource\+Browser $\ast$}]{resource\+\_\+browser, }
 \item[{const char $\ast$}]{usn, }
 \item[{G\+List $\ast$}]{locations, }
 \item[{{\bf P\+Control\+Data}}]{pctrl}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{gssdp_d_c_8c_a4411abcfc33e91d9cd018b10fba67897}{}\label{gssdp_d_c_8c_a4411abcfc33e91d9cd018b10fba67897}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{gssdp_d_c_8c_a4411abcfc33e91d9cd018b10fba67897}
 
 
 Definition at line 529 of file gssdp\+D\+C.\+c.
@@ -471,13 +472,13 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler@{cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler}}
+\hypertarget{gssdp_d_c_8c_a00c5b52bdcb7caec07d08b05b8c1dced}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler@{cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler}}
 \index{cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler@{cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler(\+P\+Control\+Data pctrl)}{cb_udp_comm_request_handler(PControlData pctrl)}}]{\setlength{\rightskip}{0pt plus 5cm}static gboolean cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler (
+\subsubsection[{cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler}]{\setlength{\rightskip}{0pt plus 5cm}static gboolean cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler (
 \begin{DoxyParamCaption}
 \item[{{\bf P\+Control\+Data}}]{pctrl}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{gssdp_d_c_8c_a00c5b52bdcb7caec07d08b05b8c1dced}{}\label{gssdp_d_c_8c_a00c5b52bdcb7caec07d08b05b8c1dced}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{gssdp_d_c_8c_a00c5b52bdcb7caec07d08b05b8c1dced}
 
 
 Definition at line 401 of file gssdp\+D\+C.\+c.
@@ -533,15 +534,15 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler@{cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler}}
+\hypertarget{gssdp_d_c_8c_aa8a19e68e54683fa324bcee1ecfd3942}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler@{cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler}}
 \index{cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler@{cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler(\+G\+Socket $\ast$g\+Sock, G\+I\+O\+Condition condition, P\+Control\+Data pctrl)}{cb_udp_comm_response_handler(GSocket *gSock, GIOCondition condition, PControlData pctrl)}}]{\setlength{\rightskip}{0pt plus 5cm}static gboolean cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler (
+\subsubsection[{cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler}]{\setlength{\rightskip}{0pt plus 5cm}static gboolean cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler (
 \begin{DoxyParamCaption}
 \item[{G\+Socket $\ast$}]{g\+Sock, }
 \item[{G\+I\+O\+Condition}]{condition, }
 \item[{{\bf P\+Control\+Data}}]{pctrl}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{gssdp_d_c_8c_aa8a19e68e54683fa324bcee1ecfd3942}{}\label{gssdp_d_c_8c_aa8a19e68e54683fa324bcee1ecfd3942}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{gssdp_d_c_8c_aa8a19e68e54683fa324bcee1ecfd3942}
 
 
 Definition at line 337 of file gssdp\+D\+C.\+c.
@@ -648,20 +649,20 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler@{cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler}}
+\hypertarget{gssdp_d_c_8c_a160bb2056d3842ef84fd7211ed6ec385}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler@{cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler}}
 \index{cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler@{cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler(\+P\+Control\+Data pctrl)}{cb_udp_registry_select_handler(PControlData pctrl)}}]{\setlength{\rightskip}{0pt plus 5cm}static gboolean cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler (
+\subsubsection[{cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler}]{\setlength{\rightskip}{0pt plus 5cm}static gboolean cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler (
 \begin{DoxyParamCaption}
 \item[{{\bf P\+Control\+Data}}]{pctrl}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{gssdp_d_c_8c_a160bb2056d3842ef84fd7211ed6ec385}{}\label{gssdp_d_c_8c_a160bb2056d3842ef84fd7211ed6ec385}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{gssdp_d_c_8c_a160bb2056d3842ef84fd7211ed6ec385}
 
 
 Definition at line 473 of file gssdp\+D\+C.\+c.
 
 
 
-References \+\_\+control\+Data\+::ch\+\_\+display\+\_\+service\+\_\+name, \+\_\+registry\+Data\+::ch\+\_\+ip, \+\_\+gssdp\+Registry\+Data\+::ch\+\_\+location, \+\_\+registry\+Data\+::ch\+\_\+name, \+\_\+registry\+Data\+::ch\+\_\+port, \+\_\+gssdp\+Registry\+Data\+::ch\+\_\+urn, F\+A\+L\+SE, \+\_\+control\+Data\+::gl\+Registry, \+\_\+control\+Data\+::g\+Msg\+Delay, \+\_\+control\+Data\+::g\+Ready, \+\_\+control\+Data\+::g\+Registry\+Queries, \+\_\+control\+Data\+::gs\+D\+S\+Addr, \+\_\+control\+Data\+::resource\+\_\+browser, T\+R\+UE, udp\+\_\+initialize\+\_\+message\+\_\+send(), and udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name().
+References \+\_\+control\+Data\+::ch\+\_\+display\+\_\+service\+\_\+name, \+\_\+registry\+Data\+::ch\+\_\+ip, \+\_\+gssdp\+Registry\+Data\+::ch\+\_\+location, \+\_\+registry\+Data\+::ch\+\_\+name, \+\_\+registry\+Data\+::ch\+\_\+port, \+\_\+gssdp\+Registry\+Data\+::ch\+\_\+urn, F\+A\+L\+S\+E, \+\_\+control\+Data\+::gl\+Registry, \+\_\+control\+Data\+::g\+Msg\+Delay, \+\_\+control\+Data\+::g\+Ready, \+\_\+control\+Data\+::g\+Registry\+Queries, \+\_\+control\+Data\+::gs\+D\+S\+Addr, \+\_\+control\+Data\+::resource\+\_\+browser, T\+R\+U\+E, udp\+\_\+initialize\+\_\+message\+\_\+send(), and udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name().
 
 
 
@@ -756,13 +757,13 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!cb\+\_\+unix\+\_\+signal\+\_\+handler@{cb\+\_\+unix\+\_\+signal\+\_\+handler}}
+\hypertarget{gssdp_d_c_8c_a76ad4de5945cff6e20dbeff46bda868b}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!cb\+\_\+unix\+\_\+signal\+\_\+handler@{cb\+\_\+unix\+\_\+signal\+\_\+handler}}
 \index{cb\+\_\+unix\+\_\+signal\+\_\+handler@{cb\+\_\+unix\+\_\+signal\+\_\+handler}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{cb\+\_\+unix\+\_\+signal\+\_\+handler(\+P\+U\+Signal\+Data psig)}{cb_unix_signal_handler(PUSignalData psig)}}]{\setlength{\rightskip}{0pt plus 5cm}static gboolean cb\+\_\+unix\+\_\+signal\+\_\+handler (
+\subsubsection[{cb\+\_\+unix\+\_\+signal\+\_\+handler}]{\setlength{\rightskip}{0pt plus 5cm}static gboolean cb\+\_\+unix\+\_\+signal\+\_\+handler (
 \begin{DoxyParamCaption}
 \item[{{\bf P\+U\+Signal\+Data}}]{psig}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{gssdp_d_c_8c_a76ad4de5945cff6e20dbeff46bda868b}{}\label{gssdp_d_c_8c_a76ad4de5945cff6e20dbeff46bda868b}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{gssdp_d_c_8c_a76ad4de5945cff6e20dbeff46bda868b}
 
 
 Definition at line 586 of file gssdp\+D\+C.\+c.
@@ -795,21 +796,21 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!main@{main}}
+\hypertarget{gssdp_d_c_8c_a3c04138a5bfe5d72780bb7e82a18e627}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!main@{main}}
 \index{main@{main}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{main(int argc, char $\ast$$\ast$argv)}{main(int argc, char **argv)}}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
 \begin{DoxyParamCaption}
 \item[{int}]{argc, }
 \item[{char $\ast$$\ast$}]{argv}
 \end{DoxyParamCaption}
-)}\hypertarget{gssdp_d_c_8c_a3c04138a5bfe5d72780bb7e82a18e627}{}\label{gssdp_d_c_8c_a3c04138a5bfe5d72780bb7e82a18e627}
+)}}\label{gssdp_d_c_8c_a3c04138a5bfe5d72780bb7e82a18e627}
 
 
 Definition at line 592 of file gssdp\+D\+C.\+c.
 
 
 
-References cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler(), cb\+\_\+unix\+\_\+signal\+\_\+handler(), \+\_\+control\+Data\+::ch\+\_\+display\+\_\+service\+\_\+name, \+\_\+control\+Data\+::ch\+\_\+intf\+Name, \+\_\+control\+Data\+::ch\+\_\+message, \+\_\+control\+Data\+::ch\+\_\+this\+\_\+ip, F\+A\+L\+SE, G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+NE, \+\_\+control\+Data\+::g\+Comm\+Source, \+\_\+control\+Data\+::g\+Error\+Count, \+\_\+control\+Data\+::gl\+Registry, \+\_\+control\+Data\+::g\+Msg\+Delay, \+\_\+control\+Data\+::g\+Ready, \+\_\+control\+Data\+::g\+Reg\+Count, \+\_\+control\+Data\+::g\+Registry\+Queries, \+\_\+control\+Data\+::gs\+Addr, \+\_\+control\+Data\+::gs\+D\+S\+Addr, \+\_\+control\+Data\+::g\+Sock, \+\_\+control\+Data\+::gssdp\+\_\+rgroup\+\_\+client, \+\_\+signal\+Data\+::loop, \+\_\+control\+Data\+::loop, M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+AL, \+\_\+control\+Data\+::one\+Shot, \+\_\+control\+Data\+::paB, \+\_\+control\+Data\+::pch\+\_\+search, \+\_\+control\+Data\+::resolver, \+\_\+control\+Data\+::resource\+\_\+browser, \+\_\+control\+Data\+::sig\+Hup, \+\_\+control\+Data\+::sig\+Int, \+\_\+signal\+Data\+::signal\+Name, \+\_\+control\+Data\+::sig\+Term, skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address(), skn\+\_\+gssdp\+\_\+browse(), and T\+R\+UE.
+References cb\+\_\+udp\+\_\+registry\+\_\+select\+\_\+handler(), cb\+\_\+unix\+\_\+signal\+\_\+handler(), \+\_\+control\+Data\+::ch\+\_\+display\+\_\+service\+\_\+name, \+\_\+control\+Data\+::ch\+\_\+intf\+Name, \+\_\+control\+Data\+::ch\+\_\+message, \+\_\+control\+Data\+::ch\+\_\+this\+\_\+ip, F\+A\+L\+S\+E, G\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+F\+L\+A\+G\+\_\+\+N\+O\+N\+E, \+\_\+control\+Data\+::g\+Comm\+Source, \+\_\+control\+Data\+::g\+Error\+Count, \+\_\+control\+Data\+::gl\+Registry, \+\_\+control\+Data\+::g\+Msg\+Delay, \+\_\+control\+Data\+::g\+Ready, \+\_\+control\+Data\+::g\+Reg\+Count, \+\_\+control\+Data\+::g\+Registry\+Queries, \+\_\+control\+Data\+::gs\+Addr, \+\_\+control\+Data\+::gs\+D\+S\+Addr, \+\_\+control\+Data\+::g\+Sock, \+\_\+control\+Data\+::gssdp\+\_\+rgroup\+\_\+client, \+\_\+signal\+Data\+::loop, \+\_\+control\+Data\+::loop, M\+S\+G\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L, \+\_\+control\+Data\+::one\+Shot, \+\_\+control\+Data\+::pa\+B, \+\_\+control\+Data\+::pch\+\_\+search, \+\_\+control\+Data\+::resolver, \+\_\+control\+Data\+::resource\+\_\+browser, \+\_\+control\+Data\+::sig\+Hup, \+\_\+control\+Data\+::sig\+Int, \+\_\+signal\+Data\+::signal\+Name, \+\_\+control\+Data\+::sig\+Term, skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address(), skn\+\_\+gssdp\+\_\+browse(), and T\+R\+U\+E.
 
 
 \begin{DoxyCode}
@@ -949,14 +950,14 @@ Here is the call graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array@{skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array}}
+\hypertarget{gssdp_d_c_8c_a0dfc1a6916909805dc7fd2d8c471e0e3}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array@{skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array}}
 \index{skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array@{skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array(\+P\+I\+P\+Broadcast\+Array pa\+B)}{skn_get_broadcast_ip_array(PIPBroadcastArray paB)}}]{\setlength{\rightskip}{0pt plus 5cm}gint skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array (
+\subsubsection[{skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array}]{\setlength{\rightskip}{0pt plus 5cm}gint skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array (
 \begin{DoxyParamCaption}
-\item[{{\bf P\+I\+P\+Broadcast\+Array}}]{paB}
+\item[{{\bf P\+I\+P\+Broadcast\+Array}}]{pa\+B}
 \end{DoxyParamCaption}
-)}\hypertarget{gssdp_d_c_8c_a0dfc1a6916909805dc7fd2d8c471e0e3}{}\label{gssdp_d_c_8c_a0dfc1a6916909805dc7fd2d8c471e0e3}
-Collect IP and Broadcast Addresses for this machine
+)}}\label{gssdp_d_c_8c_a0dfc1a6916909805dc7fd2d8c471e0e3}
+Collect I\+P and Broadcast Addresses for this machine
 
 
 \begin{DoxyItemize}
@@ -969,7 +970,7 @@ Definition at line 196 of file gssdp\+D\+C.\+c.
 
 
 
-References A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+TF, \+\_\+ip\+Broadcast\+Array\+::broad\+Addr\+Str, \+\_\+ip\+Broadcast\+Array\+::cb\+Name, \+\_\+ip\+Broadcast\+Array\+::ch\+Default\+Intf\+Name, \+\_\+ip\+Broadcast\+Array\+::count, \+\_\+ip\+Broadcast\+Array\+::default\+Index, \+\_\+ip\+Broadcast\+Array\+::if\+Name\+Str, \+\_\+ip\+Broadcast\+Array\+::ip\+Addr\+Str, \+\_\+ip\+Broadcast\+Array\+::mask\+Addr\+Str, P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+OR, skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name(), and S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+FF.
+References A\+R\+Y\+\_\+\+M\+A\+X\+\_\+\+I\+N\+T\+F, \+\_\+ip\+Broadcast\+Array\+::broad\+Addr\+Str, \+\_\+ip\+Broadcast\+Array\+::cb\+Name, \+\_\+ip\+Broadcast\+Array\+::ch\+Default\+Intf\+Name, \+\_\+ip\+Broadcast\+Array\+::count, \+\_\+ip\+Broadcast\+Array\+::default\+Index, \+\_\+ip\+Broadcast\+Array\+::if\+Name\+Str, \+\_\+ip\+Broadcast\+Array\+::ip\+Addr\+Str, \+\_\+ip\+Broadcast\+Array\+::mask\+Addr\+Str, P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R, skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name(), and S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F.
 
 
 
@@ -1050,25 +1051,25 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name@{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name}}
+\hypertarget{gssdp_d_c_8c_afc164e6efc7bdcdbacba97ba6f6c2a19}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name@{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name}}
 \index{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name@{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name(char $\ast$pch\+Default\+Interface\+Name)}{skn_get_default_interface_name(char *pchDefaultInterfaceName)}}]{\setlength{\rightskip}{0pt plus 5cm}gint skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name (
+\subsubsection[{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name}]{\setlength{\rightskip}{0pt plus 5cm}gint skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name (
 \begin{DoxyParamCaption}
 \item[{char $\ast$}]{pch\+Default\+Interface\+Name}
 \end{DoxyParamCaption}
-)}\hypertarget{gssdp_d_c_8c_afc164e6efc7bdcdbacba97ba6f6c2a19}{}\label{gssdp_d_c_8c_afc164e6efc7bdcdbacba97ba6f6c2a19}
+)}}\label{gssdp_d_c_8c_afc164e6efc7bdcdbacba97ba6f6c2a19}
 Retrieves default internet interface name into param
 \begin{DoxyItemize}
-\item absolute best way to do this, but not supported on Darwin(i.\+e O\+SX) return E\+X\+I\+T\+\_\+\+S\+U\+C\+C\+E\+SS or E\+X\+I\+T\+\_\+\+F\+A\+I\+L\+U\+RE
+\item absolute best way to do this, but not supported on Darwin(i.\+e O\+S\+X) return E\+X\+I\+T\+\_\+\+S\+U\+C\+C\+E\+S\+S or E\+X\+I\+T\+\_\+\+F\+A\+I\+L\+U\+R\+E
 \end{DoxyItemize}
 
-\mbox{[}jscott O\+SX\mbox{]}\$ route -\/n get 0.\+0.\+0.\+0 route to\+: default destination\+: default mask\+: default gateway\+: 10.\+21.\+1.\+254 interface\+: en3 flags\+: $<$UP,G\+A\+T\+E\+W\+AY,D\+O\+NE,S\+T\+A\+T\+IC,P\+R\+C\+L\+O\+N\+I\+NG$>$ recvpipe sendpipe ssthresh rtt,msec rttvar hopcount mtu expire 0 0 0 0 0 0 1500 0 
+\mbox{[}jscott O\+S\+X\mbox{]}\$ route -\/n get 0.\+0.\+0.\+0 route to\+: default destination\+: default mask\+: default gateway\+: 10.\+21.\+1.\+254 interface\+: en3 flags\+: $<$U\+P,G\+A\+T\+E\+W\+A\+Y,D\+O\+N\+E,S\+T\+A\+T\+I\+C,P\+R\+C\+L\+O\+N\+I\+N\+G$>$ recvpipe sendpipe ssthresh rtt,msec rttvar hopcount mtu expire 0 0 0 0 0 0 1500 0 
 
 Definition at line 257 of file gssdp\+D\+C.\+c.
 
 
 
-References skn\+\_\+strip(), and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+FF.
+References skn\+\_\+strip(), and S\+Z\+\_\+\+I\+N\+F\+O\+\_\+\+B\+U\+F\+F.
 
 
 
@@ -1144,18 +1145,37 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address@{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address}}
+\hypertarget{gssdp_d_c_8c_a72be87baa67e532c78af054acf935d6c}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address@{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address}}
 \index{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address@{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address(char $\ast$intf, char $\ast$ipv4)}{skn_get_default_interface_name_and_ipv4_address(char *intf, char *ipv4)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+I\+P\+Broadcast\+Array} skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address (
+\subsubsection[{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+I\+P\+Broadcast\+Array} skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address (
 \begin{DoxyParamCaption}
 \item[{char $\ast$}]{intf, }
 \item[{char $\ast$}]{ipv4}
 \end{DoxyParamCaption}
-)}\hypertarget{gssdp_d_c_8c_a72be87baa67e532c78af054acf935d6c}{}\label{gssdp_d_c_8c_a72be87baa67e532c78af054acf935d6c}
+)}}\label{gssdp_d_c_8c_a72be87baa67e532c78af054acf935d6c}
+
+
+Definition at line 195 of file skn\+\_\+network\+\_\+helpers.\+c.
+
 
 
 Referenced by main().
 
+
+\begin{DoxyCode}
+195                                                                                \{
+196     \hyperlink{struct__ip_broadcast_array}{IPBroadcastArray} aB;
+197 
+198     \textcolor{keywordflow}{if} (\hyperlink{skn__network__helpers_8c_a7915d40f313cdc93ad243bf53b1937d4}{skn\_get\_broadcast\_ip\_array}(&aB) != 
+      \hyperlink{cmd_d_c_8c_a12efd06fda89d6826f820e75148d8fd7}{PLATFORM\_ERROR}) \{
+199         memcpy(intf, aB.\hyperlink{struct__ip_broadcast_array_a06dab8742df19b5aec8538842617778d}{chDefaultIntfName}, \hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF});
+200         memcpy(ipv4, aB.\hyperlink{struct__ip_broadcast_array_a96891ccc707337890b2a166e3ef3a8e1}{ipAddrStr}[aB.\hyperlink{struct__ip_broadcast_array_a5822ff77ae9f31bd3b4298d463c02f1f}{defaultIndex}], 
+      \hyperlink{cmd_d_c_8c_a8d2978ad614b0de81c60483e706d9306}{SZ\_CHAR\_BUFF});
+201     \} \textcolor{keywordflow}{else} \{
+202         skn\_logger(\hyperlink{skn__common__headers_8h_a29cd8395c2db41768436986ab7a666b3}{SD\_ERR}, \textcolor{stringliteral}{"InterfaceName and Address: unable to access information."});
+203     \}
+204 \}
+\end{DoxyCode}
 
 
 Here is the caller graph for this function\+:\nopagebreak
@@ -1167,21 +1187,21 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address@{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address}}
+\hypertarget{gssdp_d_c_8c_a4f733621137368e762c5db74a3cec52b}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address@{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address}}
 \index{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address@{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address(gchar $\ast$intf, gchar $\ast$ipv4)}{skn_get_default_interface_name_and_ipv4_address(gchar *intf, gchar *ipv4)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+I\+P\+Broadcast\+Array} skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address (
+\subsubsection[{skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+I\+P\+Broadcast\+Array} skn\+\_\+get\+\_\+default\+\_\+interface\+\_\+name\+\_\+and\+\_\+ipv4\+\_\+address (
 \begin{DoxyParamCaption}
 \item[{gchar $\ast$}]{intf, }
 \item[{gchar $\ast$}]{ipv4}
 \end{DoxyParamCaption}
-)}\hypertarget{gssdp_d_c_8c_a4f733621137368e762c5db74a3cec52b}{}\label{gssdp_d_c_8c_a4f733621137368e762c5db74a3cec52b}
+)}}\label{gssdp_d_c_8c_a4f733621137368e762c5db74a3cec52b}
 
 
 Definition at line 176 of file gssdp\+D\+C.\+c.
 
 
 
-References \+\_\+ip\+Broadcast\+Array\+::ch\+Default\+Intf\+Name, \+\_\+ip\+Broadcast\+Array\+::default\+Index, \+\_\+ip\+Broadcast\+Array\+::ip\+Addr\+Str, P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+OR, skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array(), and S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+FF.
+References \+\_\+ip\+Broadcast\+Array\+::ch\+Default\+Intf\+Name, \+\_\+ip\+Broadcast\+Array\+::default\+Index, \+\_\+ip\+Broadcast\+Array\+::ip\+Addr\+Str, P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+E\+R\+R\+O\+R, skn\+\_\+get\+\_\+broadcast\+\_\+ip\+\_\+array(), and S\+Z\+\_\+\+C\+H\+A\+R\+\_\+\+B\+U\+F\+F.
 
 
 \begin{DoxyCode}
@@ -1212,13 +1232,13 @@ Here is the call graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!skn\+\_\+get\+\_\+timestamp@{skn\+\_\+get\+\_\+timestamp}}
+\hypertarget{gssdp_d_c_8c_a6ea2e6ee5c8f0d51a98539842634f217}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!skn\+\_\+get\+\_\+timestamp@{skn\+\_\+get\+\_\+timestamp}}
 \index{skn\+\_\+get\+\_\+timestamp@{skn\+\_\+get\+\_\+timestamp}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{skn\+\_\+get\+\_\+timestamp()}{skn_get_timestamp()}}]{\setlength{\rightskip}{0pt plus 5cm}gchar$\ast$ skn\+\_\+get\+\_\+timestamp (
+\subsubsection[{skn\+\_\+get\+\_\+timestamp}]{\setlength{\rightskip}{0pt plus 5cm}gchar$\ast$ skn\+\_\+get\+\_\+timestamp (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\hypertarget{gssdp_d_c_8c_a6ea2e6ee5c8f0d51a98539842634f217}{}\label{gssdp_d_c_8c_a6ea2e6ee5c8f0d51a98539842634f217}
+)}}\label{gssdp_d_c_8c_a6ea2e6ee5c8f0d51a98539842634f217}
 
 
 Definition at line 300 of file gssdp\+D\+C.\+c.
@@ -1247,13 +1267,13 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!skn\+\_\+gio\+\_\+condition\+\_\+to\+\_\+string@{skn\+\_\+gio\+\_\+condition\+\_\+to\+\_\+string}}
+\hypertarget{gssdp_d_c_8c_a2dcc830aabe5f0cfffb3077fc0cba6a5}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!skn\+\_\+gio\+\_\+condition\+\_\+to\+\_\+string@{skn\+\_\+gio\+\_\+condition\+\_\+to\+\_\+string}}
 \index{skn\+\_\+gio\+\_\+condition\+\_\+to\+\_\+string@{skn\+\_\+gio\+\_\+condition\+\_\+to\+\_\+string}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{skn\+\_\+gio\+\_\+condition\+\_\+to\+\_\+string(\+G\+I\+O\+Condition condition)}{skn_gio_condition_to_string(GIOCondition condition)}}]{\setlength{\rightskip}{0pt plus 5cm}gchar$\ast$ skn\+\_\+gio\+\_\+condition\+\_\+to\+\_\+string (
+\subsubsection[{skn\+\_\+gio\+\_\+condition\+\_\+to\+\_\+string}]{\setlength{\rightskip}{0pt plus 5cm}gchar$\ast$ skn\+\_\+gio\+\_\+condition\+\_\+to\+\_\+string (
 \begin{DoxyParamCaption}
 \item[{G\+I\+O\+Condition}]{condition}
 \end{DoxyParamCaption}
-)}\hypertarget{gssdp_d_c_8c_a2dcc830aabe5f0cfffb3077fc0cba6a5}{}\label{gssdp_d_c_8c_a2dcc830aabe5f0cfffb3077fc0cba6a5}
+)}}\label{gssdp_d_c_8c_a2dcc830aabe5f0cfffb3077fc0cba6a5}
 
 
 Definition at line 307 of file gssdp\+D\+C.\+c.
@@ -1289,20 +1309,20 @@ Definition at line 307 of file gssdp\+D\+C.\+c.
 333     \textcolor{keywordflow}{return} (value);
 334 \}
 \end{DoxyCode}
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!skn\+\_\+gssdp\+\_\+browse@{skn\+\_\+gssdp\+\_\+browse}}
+\hypertarget{gssdp_d_c_8c_ad23c80e6ad30767eaf3b5aa482aaa92c}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!skn\+\_\+gssdp\+\_\+browse@{skn\+\_\+gssdp\+\_\+browse}}
 \index{skn\+\_\+gssdp\+\_\+browse@{skn\+\_\+gssdp\+\_\+browse}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{skn\+\_\+gssdp\+\_\+browse(\+P\+Control\+Data pctrl)}{skn_gssdp_browse(PControlData pctrl)}}]{\setlength{\rightskip}{0pt plus 5cm}gboolean skn\+\_\+gssdp\+\_\+browse (
+\subsubsection[{skn\+\_\+gssdp\+\_\+browse}]{\setlength{\rightskip}{0pt plus 5cm}gboolean skn\+\_\+gssdp\+\_\+browse (
 \begin{DoxyParamCaption}
 \item[{{\bf P\+Control\+Data}}]{pctrl}
 \end{DoxyParamCaption}
-)}\hypertarget{gssdp_d_c_8c_ad23c80e6ad30767eaf3b5aa482aaa92c}{}\label{gssdp_d_c_8c_ad23c80e6ad30767eaf3b5aa482aaa92c}
+)}}\label{gssdp_d_c_8c_ad23c80e6ad30767eaf3b5aa482aaa92c}
 Setup a monitor for the registry page 
 
 Definition at line 568 of file gssdp\+D\+C.\+c.
 
 
 
-References cb\+\_\+gssdp\+\_\+resource\+\_\+available(), F\+A\+L\+SE, \+\_\+control\+Data\+::gssdp\+\_\+rgroup\+\_\+client, \+\_\+control\+Data\+::pch\+\_\+search, \+\_\+control\+Data\+::resource\+\_\+browser, and T\+R\+UE.
+References cb\+\_\+gssdp\+\_\+resource\+\_\+available(), F\+A\+L\+S\+E, \+\_\+control\+Data\+::gssdp\+\_\+rgroup\+\_\+client, \+\_\+control\+Data\+::pch\+\_\+search, \+\_\+control\+Data\+::resource\+\_\+browser, and T\+R\+U\+E.
 
 
 
@@ -1354,16 +1374,16 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!skn\+\_\+strip@{skn\+\_\+strip}}
+\hypertarget{gssdp_d_c_8c_a5acaf42e0ff80bd0de38c490576e9f85}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!skn\+\_\+strip@{skn\+\_\+strip}}
 \index{skn\+\_\+strip@{skn\+\_\+strip}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{skn\+\_\+strip(gchar $\ast$alpha)}{skn_strip(gchar *alpha)}}]{\setlength{\rightskip}{0pt plus 5cm}gchar$\ast$ skn\+\_\+strip (
+\subsubsection[{skn\+\_\+strip}]{\setlength{\rightskip}{0pt plus 5cm}gchar$\ast$ skn\+\_\+strip (
 \begin{DoxyParamCaption}
 \item[{gchar $\ast$}]{alpha}
 \end{DoxyParamCaption}
-)}\hypertarget{gssdp_d_c_8c_a5acaf42e0ff80bd0de38c490576e9f85}{}\label{gssdp_d_c_8c_a5acaf42e0ff80bd0de38c490576e9f85}
+)}}\label{gssdp_d_c_8c_a5acaf42e0ff80bd0de38c490576e9f85}
 Remove Trailing and Leading Blanks
 \begin{DoxyItemize}
-\item caution\+: pointers from argv are readonly and segfault on \textquotesingle{}alpha\mbox{[}end\mbox{]} = 0\textquotesingle{} 
+\item caution\+: pointers from argv are readonly and segfault on 'alpha\mbox{[}end\mbox{]} = 0' 
 \end{DoxyItemize}
 
 Definition at line 150 of file gssdp\+D\+C.\+c.
@@ -1411,20 +1431,20 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!udp\+\_\+initialize\+\_\+message\+\_\+send@{udp\+\_\+initialize\+\_\+message\+\_\+send}}
+\hypertarget{gssdp_d_c_8c_a793c6b3e5c7a5abc993d8cfbe963629d}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!udp\+\_\+initialize\+\_\+message\+\_\+send@{udp\+\_\+initialize\+\_\+message\+\_\+send}}
 \index{udp\+\_\+initialize\+\_\+message\+\_\+send@{udp\+\_\+initialize\+\_\+message\+\_\+send}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{udp\+\_\+initialize\+\_\+message\+\_\+send(\+P\+Control\+Data pctrl)}{udp_initialize_message_send(PControlData pctrl)}}]{\setlength{\rightskip}{0pt plus 5cm}gboolean udp\+\_\+initialize\+\_\+message\+\_\+send (
+\subsubsection[{udp\+\_\+initialize\+\_\+message\+\_\+send}]{\setlength{\rightskip}{0pt plus 5cm}gboolean udp\+\_\+initialize\+\_\+message\+\_\+send (
 \begin{DoxyParamCaption}
 \item[{{\bf P\+Control\+Data}}]{pctrl}
 \end{DoxyParamCaption}
-)}\hypertarget{gssdp_d_c_8c_a793c6b3e5c7a5abc993d8cfbe963629d}{}\label{gssdp_d_c_8c_a793c6b3e5c7a5abc993d8cfbe963629d}
+)}}\label{gssdp_d_c_8c_a793c6b3e5c7a5abc993d8cfbe963629d}
 
 
 Definition at line 428 of file gssdp\+D\+C.\+c.
 
 
 
-References cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler(), cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler(), F\+A\+L\+SE, \+\_\+control\+Data\+::g\+Comm\+Source, \+\_\+control\+Data\+::g\+Msg\+Delay, \+\_\+control\+Data\+::gs\+Addr, \+\_\+control\+Data\+::g\+Sock, S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+RT, and T\+R\+UE.
+References cb\+\_\+udp\+\_\+comm\+\_\+request\+\_\+handler(), cb\+\_\+udp\+\_\+comm\+\_\+response\+\_\+handler(), F\+A\+L\+S\+E, \+\_\+control\+Data\+::g\+Comm\+Source, \+\_\+control\+Data\+::g\+Msg\+Delay, \+\_\+control\+Data\+::gs\+Addr, \+\_\+control\+Data\+::g\+Sock, S\+K\+N\+\_\+\+U\+D\+P\+\_\+\+A\+N\+Y\+\_\+\+P\+O\+R\+T, and T\+R\+U\+E.
 
 
 
@@ -1493,14 +1513,14 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name@{udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name}}
+\hypertarget{gssdp_d_c_8c_a89aa9faf97e2476a930be98a8d58c0fb}{\index{gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}!udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name@{udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name}}
 \index{udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name@{udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name}!gssdp\+D\+C.\+c@{gssdp\+D\+C.\+c}}
-\subsubsection[{\texorpdfstring{udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name(\+P\+G\+S\+S\+D\+P\+Reg\+Data pr, gchar $\ast$pch\+\_\+name)}{udp_registry_find_by_name(PGSSDPRegData pr, gchar *pch_name)}}]{\setlength{\rightskip}{0pt plus 5cm}gint udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name (
+\subsubsection[{udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name}]{\setlength{\rightskip}{0pt plus 5cm}gint udp\+\_\+registry\+\_\+find\+\_\+by\+\_\+name (
 \begin{DoxyParamCaption}
 \item[{{\bf P\+G\+S\+S\+D\+P\+Reg\+Data}}]{pr, }
 \item[{gchar $\ast$}]{pch\+\_\+name}
 \end{DoxyParamCaption}
-)}\hypertarget{gssdp_d_c_8c_a89aa9faf97e2476a930be98a8d58c0fb}{}\label{gssdp_d_c_8c_a89aa9faf97e2476a930be98a8d58c0fb}
+)}}\label{gssdp_d_c_8c_a89aa9faf97e2476a930be98a8d58c0fb}
 
 
 Definition at line 465 of file gssdp\+D\+C.\+c.

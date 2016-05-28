@@ -20,5 +20,5 @@ var struct___i_i_c_l_c_d =
     [ "ch_serial_port_name", "struct___i_i_c_l_c_d.html#a2f193b0806fdbba1d644567835e2b2e8", null ],
     [ "i2c_address", "struct___i_i_c_l_c_d.html#a3f3fe8757875939b987ac0c416081551", null ],
     [ "lcd_handle", "struct___i_i_c_l_c_d.html#afc74b2d9120be4a8e69e48b220d6781c", null ],
-    [ "setup", "struct___i_i_c_l_c_d.html#ab3052517b34cbf67239b91ccbd113c00", null ]
+    [ "setup", "struct___i_i_c_l_c_d.html#a6bc8b9b3e5e69bfa25fdcd6b3c27628e", null ]
 ];

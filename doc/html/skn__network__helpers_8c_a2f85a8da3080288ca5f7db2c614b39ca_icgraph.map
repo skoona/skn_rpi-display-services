@@ -1,0 +1,8 @@
+<map id="skn_get_default_interface_name" name="skn_get_default_interface_name">
+<area shape="rect" id="node2" href="$skn__network__helpers_8c.html#a7915d40f313cdc93ad243bf53b1937d4" title="skn_get_broadcast_ip\l_array" alt="" coords="264,71,413,112"/>
+<area shape="rect" id="node3" href="$skn__network__helpers_8h.html#a9b0fbabba52596494d479468bf0124cb" title="skn_get_default_interface\l_name_and_ipv4_address" alt="" coords="461,5,635,47"/>
+<area shape="rect" id="node4" href="$skn__network__helpers_8h.html#ac5eaa92d1366ef646641f8ae3b11ed69" title="skn_service_registry\l_get_via_udp_broadcast" alt="" coords="467,71,629,112"/>
+<area shape="rect" id="node6" href="$skn__network__helpers_8h.html#ab14673e76d0b2debcb653965d642d16c" title="skn_service_registry\l_provider" alt="" coords="477,136,619,177"/>
+<area shape="rect" id="node5" href="$a2d__display__client_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="683,78,733,105"/>
+<area shape="rect" id="node7" href="$udp__locator__service_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="683,143,733,170"/>
+</map>

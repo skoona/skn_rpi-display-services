@@ -1,0 +1,11 @@
+<map id="skn_service_registry_get_via_udp_broadcast" name="skn_service_registry_get_via_udp_broadcast">
+<area shape="rect" id="node2" href="$skn__network__helpers_8c.html#ad7f2202ecfe8bb131545b23ea3c26e91" title="skn_duration_in_milliseconds" alt="" coords="216,5,408,32"/>
+<area shape="rect" id="node3" href="$skn__network__helpers_8c.html#a7915d40f313cdc93ad243bf53b1937d4" title="skn_get_broadcast_ip\l_array" alt="" coords="237,57,387,98"/>
+<area shape="rect" id="node5" href="$skn__network__helpers_8c.html#afd5d5caebfd289afebe7b4ab07dfa356" title="skn_service_registry\l_create" alt="" coords="241,122,383,163"/>
+<area shape="rect" id="node6" href="$skn__network__helpers_8c.html#aabf99475217fa4608704ab3443757c5b" title="skn_service_registry\l_response_parse" alt="" coords="241,187,383,229"/>
+<area shape="rect" id="node4" href="$cmd_d_c_8c.html#afc164e6efc7bdcdbacba97ba6f6c2a19" title="skn_get_default_interface_name" alt="" coords="456,64,667,91"/>
+<area shape="rect" id="node7" href="$skn__network__helpers_8c.html#ac3a88d752add9ae0a2ca65029797bcdc" title="skn_service_registry\l_entry_create" alt="" coords="490,122,633,163"/>
+<area shape="rect" id="node9" href="$skn__network__helpers_8c.html#a7cf958dc1f99b31736ce1ca0091f503c" title="skn_service_registry\l_entry_create_helper" alt="" coords="490,187,633,229"/>
+<area shape="rect" id="node10" href="$skn__network__helpers_8c.html#a925d0a1de13d0d0178e52f0d6be4b97f" title="skn_strip" alt="" coords="749,224,823,251"/>
+<area shape="rect" id="node8" href="$skn__network__helpers_8c.html#add839b84b8249372e523219f7036b77d" title="skn_service_registry\l_find_entry" alt="" coords="715,122,857,163"/>
+</map>

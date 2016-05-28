@@ -1,7 +1,7 @@
 <map id="skn_get_number_of_cpu_cores" name="skn_get_number_of_cpu_cores">
-<area shape="rect" id="node3" href="$skn__rpi__helpers_8h.html#a0410c7c96c2188c945cea294ae074ff9" title="generate_rpi_model_info" alt="" coords="222,5,391,33"/>
-<area shape="rect" id="node9" href="$skn__network__helpers_8h.html#aaf8b0dfb11a3800bb249c6cf90a2537a" title="generate_uname_info" alt="" coords="231,57,382,85"/>
-<area shape="rect" id="node11" href="$lcd__display__client_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="491,87,541,115"/>
-<area shape="rect" id="node5" href="$skn__rpi__helpers_8h.html#a0e93b40f29ab2df743c934be34500c15" title="skn_display_manager\l_do_work" alt="" coords="440,9,592,53"/>
-<area shape="rect" id="node7" href="$lcd__display__service_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="640,17,690,45"/>
+<area shape="rect" id="node2" href="$skn__rpi__helpers_8h.html#a0410c7c96c2188c945cea294ae074ff9" title="generate_rpi_model_info" alt="" coords="223,5,386,32"/>
+<area shape="rect" id="node5" href="$lcd__display__client_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="489,85,539,112"/>
+<area shape="rect" id="node6" href="$skn__network__helpers_8h.html#a7da6dc73acd9390e469a4f2a1bd5e162" title="skn_generate_uname_info" alt="" coords="217,56,392,83"/>
+<area shape="rect" id="node3" href="$skn__rpi__helpers_8h.html#a0e93b40f29ab2df743c934be34500c15" title="skn_display_manager\l_do_work" alt="" coords="440,9,588,50"/>
+<area shape="rect" id="node4" href="$lcd__display__service_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="636,16,687,43"/>
 </map>
