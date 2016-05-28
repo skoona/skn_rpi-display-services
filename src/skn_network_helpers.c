@@ -166,31 +166,6 @@ uid_t skn_get_userids() {
 
     return real_user_id;
 }
-/**
- * Control-C Program exit
- * ref: http://www.cons.org/cracauer/sigint.html
- *      http://www.chemie.fu-berlin.de/chemnet/use/info/libc/libc_21.html#SEC361
- */
-static void skn_signals_exit_handler(int sig) {
-    gi_exit_flag = sig;
-    skn_logger(SD_NOTICE, "Program Exiting, from signal=%d:%s\n", sig, strsignal(sig));
-}
-
-void skn_signals_init() {
-    signal(SIGINT, skn_signals_exit_handler);  // Ctrl-C
-    signal(SIGQUIT, skn_signals_exit_handler);  // Quit
-    signal(SIGTERM, skn_signals_exit_handler);  // Normal kill command
-}
-
-void skn_signals_cleanup(int sig) {
-    signal(SIGINT, SIG_DFL);
-    signal(SIGQUIT, SIG_DFL);
-    signal(SIGTERM, SIG_DFL);
-
-    if (gi_exit_flag > SKN_RUN_MODE_RUN) { // exit caused by some interrupt -- otherwise it would be exactly 0
-        kill(getpid(), sig);
-    }
-}
 
 void skn_get_default_interface_name_and_ipv4_address(char * intf, char * ipv4) {
     IPBroadcastArray aB;

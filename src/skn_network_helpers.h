@@ -9,6 +9,8 @@
 #define SKN_NETWORK_HELPERS_H__
 
 #include "skn_common_headers.h"
+#include "skn_signal_manager.h"
+
 #include <sys/utsname.h>
 
 //extern PDisplayLine skn_display_manager_add_line(PDisplayManager pdmx, char * client_request_message);
@@ -49,9 +51,6 @@ extern int skn_time_delay_ms(double delay_time);
 //extern void skn_delay_microseconds (int delay_us);
 extern char * skn_strip(char * alpha);
 extern uid_t skn_get_userids();
-
-extern void skn_signals_init();
-extern void skn_signals_cleanup(int sig);
 
 /*
  * Server/Client Communication Routines

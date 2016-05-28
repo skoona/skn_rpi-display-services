@@ -11,9 +11,7 @@
 int main(int argc, char *argv[]) {
 
 	int index = 0;
-	pthread_t sig_thread;
-    sigset_t signal_set;
-    long l_thread_complete = 0;
+    PSknSignalManager pssm = NULL;
 
     char request[SZ_INFO_BUFF];
 
@@ -49,7 +47,8 @@ int main(int argc, char *argv[]) {
 	/*
 	* Setup signal handling before we start
 	*/
-	if (skn_signal_manager_startup(&sig_thread, &signal_set, &l_thread_complete) == EXIT_FAILURE ) {
+    pssm = sknSignalManagerInit(&gi_exit_flag);
+	if ( NULL == pssm ) {
 	  exit(EXIT_FAILURE);
 	}
 
@@ -73,7 +72,7 @@ int main(int argc, char *argv[]) {
 	/*
 	* Cleanup signal handler before exit
 	*/
-	index = skn_signal_manager_shutdown(sig_thread, &signal_set, &l_thread_complete);
+	sknSignalManagerShutdown(pssm);
 
     skn_logger(SD_NOTICE, "\n============================\nShutdown Complete\n============================\n");
 

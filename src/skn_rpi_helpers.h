@@ -39,11 +39,6 @@ extern int skn_scroller_scroll_lines(PDisplayLine pdl, int lcd_handle, int line)
 extern char * skn_scroller_pad_right(char *buffer);
 extern char * skn_scroller_wrap_blanks(char *buffer);
 
-/*
- * Display Manager Communications Routines */
-extern int skn_signal_manager_startup(pthread_t *psig_thread, sigset_t *psignal_set, long *l_thread_complete);
-extern int skn_signal_manager_shutdown(pthread_t sig_thread, sigset_t *psignal_set, long *l_thread_complete);
-
 
 /* WiringPi LCD Interfaces
 */
