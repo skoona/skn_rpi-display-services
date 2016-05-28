@@ -159,7 +159,7 @@ int main(int argc, char *argv[])
             sleep(gd_i_update);
 
             sknGetTemp(&fTemp, &cTemp, nOffset, fScale);
-            snprintf(pnsr->request, sizeof(pnsr->request) -1,  "AIR: %3.1fC %3.1fF", cTemp, fTemp);
+            snprintf(pnsr->request, sizeof(pnsr->request) -1,  "CPU: %3.1fC %3.1fF", cTemp, fTemp);
 
 
         } while(gd_i_update != 0 && gi_exit_flag == SKN_RUN_MODE_RUN);
