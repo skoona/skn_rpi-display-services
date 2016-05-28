@@ -9,8 +9,9 @@
 
 
 int skn_signal_manager_startup(PSknSignalManager pssm);
+int skn_signal_manager_shutdown(PSknSignalManager pssm);
 int skn_signal_manager_process_signals(siginfo_t *signal_info, int exit_flag_value);
-static void *skn_signal_manager_handler_thread(PSknSignalManager pssm);
+static void *skn_signal_manager_handler_thread(void *ptr);
 static void skn_signals_exit_handler(int sig);
 
 /**
@@ -23,13 +24,13 @@ static void skn_signals_exit_handler(int sig) {
     skn_logger(SD_NOTICE, "Program Exiting, from signal=%d:%s\n", sig, strsignal(sig));
 }
 
-static void skn_signals_init() {
+void skn_signals_init() {
     signal(SIGINT, skn_signals_exit_handler);  // Ctrl-C
     signal(SIGQUIT, skn_signals_exit_handler);  // Quit
     signal(SIGTERM, skn_signals_exit_handler);  // Normal kill command
 }
 
-static void skn_signals_cleanup(int sig) {
+void skn_signals_cleanup(int sig) {
     signal(SIGINT, SIG_DFL);
     signal(SIGQUIT, SIG_DFL);
     signal(SIGTERM, SIG_DFL);
@@ -46,7 +47,7 @@ static void skn_signals_cleanup(int sig) {
  * @gi_exit_flag: Integer to signal shutdown because of interrupts
  *
  */
-static PSknSignalManager sknSignalManagerInit(sig_atomic_t *gi_exit_flag) {
+PSknSignalManager sknSignalManagerInit(sig_atomic_t *gi_exit_flag) {
     PSknSignalManager pssm = NULL;
     pssm = (PSknSignalManager)malloc(sizeof(SknSignalManager));
     if (NULL == pssm) {
@@ -62,7 +63,7 @@ static PSknSignalManager sknSignalManagerInit(sig_atomic_t *gi_exit_flag) {
 
     return (pssm);
 }
-static void sknSignalManagerShutdown(PSknSignalManager pssm) {
+void sknSignalManagerShutdown(PSknSignalManager pssm) {
     if (NULL == pssm) {
         return;
     }
@@ -88,7 +89,7 @@ static void sknSignalManagerShutdown(PSknSignalManager pssm) {
  *   returns true (or current value) if nothing needs done
  *   returns 0 or false if exit is required
  */
-static int skn_signal_manager_process_signals(siginfo_t *signal_info, int exit_flag_value) {
+int skn_signal_manager_process_signals(siginfo_t *signal_info, int exit_flag_value) {
     int rval = exit_flag_value; /* use existing value */
     int sig = 0;
     char *pch = "<unknown>";
@@ -170,7 +171,9 @@ static int skn_signal_manager_process_signals(siginfo_t *signal_info, int exit_f
             break;
         case SIGQUIT: /* often used to signal an orderly shutdown */
         case SIGINT: /* often used to signal an orderly shutdown */
+#ifndef __MACH__
         case SIGPWR: /* Power Failure */
+#endif
         case SIGKILL: /* Fatal Exit flag */
         case SIGTERM: /* Immediately Fatal Exit flag */
         default:
@@ -178,9 +181,17 @@ static int skn_signal_manager_process_signals(siginfo_t *signal_info, int exit_f
                 case SI_USER:
                     pch = "kill(2) or raise(3)";
                     break;
+#ifndef __MACH__
                 case SI_KERNEL:
                     pch = "Sent by the kernel.";
                     break;
+                case SI_SIGIO:
+                    pch = "queued SIGIO";
+                    break;
+                case SI_TKILL:
+                    pch = "tkill(2) or tgkill(2)";
+                    break;
+#endif
                 case SI_QUEUE:
                     pch = "sigqueue(2)";
                     break;
@@ -192,12 +203,6 @@ static int skn_signal_manager_process_signals(siginfo_t *signal_info, int exit_f
                     break;
                 case SI_ASYNCIO:
                     pch = "AIO completed";
-                    break;
-                case SI_SIGIO:
-                    pch = "queued SIGIO";
-                    break;
-                case SI_TKILL:
-                    pch = "tkill(2) or tgkill(2)";
                     break;
                 default:
                     pch = "<unknown>";
@@ -223,7 +228,8 @@ static int skn_signal_manager_process_signals(siginfo_t *signal_info, int exit_f
  *      returns and/or set the atomic gint _skn_signal_manager_exit_flag
  *      returns last signal
  */
-static void *skn_signal_manager_handler_thread(PSknSignalManager pssm) {
+static void *skn_signal_manager_handler_thread(void *ptr) {
+    PSknSignalManager pssm = (PSknSignalManager)ptr;
     sigset_t signal_set;
     siginfo_t signal_info;
     int sig = 0;
@@ -236,8 +242,11 @@ static void *skn_signal_manager_handler_thread(PSknSignalManager pssm) {
 
     while (*pssm->gi_exit_flag == SKN_RUN_MODE_RUN) {
         /* wait for any and all signals */
-        /* OLD: sigwait (&signal_set, &sig); */
+#if defined(__MACH__)
+        sig = sigwait (&signal_set, &rval);
+#else
         sig = sigwaitinfo(&signal_set, &signal_info);
+#endif
         if (sig == PLATFORM_ERROR) {
             if (errno == EAGAIN) {
                 continue;
@@ -272,7 +281,7 @@ int skn_signal_manager_shutdown(PSknSignalManager pssm) {
     int rc = EXIT_SUCCESS;
 
     if (*pssm->gi_exit_flag <= SKN_RUN_MODE_STOP) {
-        *pssm-> = SKN_RUN_MODE_STOP; /* shut down the system -- work is done */
+        *pssm->gi_exit_flag = SKN_RUN_MODE_STOP; /* shut down the system -- work is done */
         // need to force theads down or interrupt them
         skn_logger(SD_WARNING, "shutdown caused by application!");
         sleep(1);
@@ -302,7 +311,7 @@ int skn_signal_manager_startup(PSknSignalManager pssm) {
     sigfillset(&pssm->signal_set);
     pthread_sigmask(SIG_BLOCK, &pssm->signal_set, NULL);
 
-    i_thread_rc = pthread_create(&pssm->sig_thread, NULL, skn_signal_manager_handler_thread, pssm);
+    i_thread_rc = pthread_create(&pssm->sig_thread, NULL, skn_signal_manager_handler_thread, (void *)pssm);
     if (i_thread_rc == PLATFORM_ERROR) {
         skn_logger(SD_ERR, "Create signal thread failed: %d:%s", errno, strerror(errno));
         pthread_sigmask(SIG_UNBLOCK, &pssm->signal_set, NULL);

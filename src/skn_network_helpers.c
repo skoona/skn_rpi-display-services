@@ -27,8 +27,6 @@ char * gd_pch_service_name;
 int gd_i_i2c_address = 0;
 
 static void skn_locator_print_usage();
-static void skn_signals_exit_handler(int sig);
-
 
 static void * skn_service_registry_entry_create_helper(char *key, char **name, char **ip, char **port);
 static PServiceRegistry skn_service_registry_create();

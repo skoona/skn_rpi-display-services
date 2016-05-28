@@ -29,5 +29,4 @@ extern PSknSignalManager sknSignalManagerInit(sig_atomic_t *gi_exit_flag);
 extern void sknSignalManagerShutdown(PSknSignalManager pssm);
 
 
-
 #endif // SKN_SIGNAL_MANAGER_H__
