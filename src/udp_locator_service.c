@@ -40,27 +40,27 @@ int main(int argc, char *argv[])
     skn_get_userids();
     skn_logger(SD_NOTICE, "%s-%s is in startup mode as user(%s)", gd_ch_program_name, PACKAGE_VERSION, gd_pch_effective_userid);
 
-    if ((strlen(response) > 16) && (service_registry_valiadate_response_format(response) == EXIT_FAILURE)) {
+    if ((strlen(response) > 16) && (skn_service_registry_valiadate_response_format(response) == EXIT_FAILURE)) {
     	skn_logger(SD_EMERG, "Message format is invalid! cannot proceed.");
-    	service_registry_entry_response_message_log(response);
+    	skn_service_registry_entry_response_message_log(response);
     	exit(EXIT_FAILURE);
     }
 
     /* Initialize Signal handler */
-    signals_init();
+    skn_signals_init();
 
 	gd_i_socket = skn_udp_host_create_broadcast_socket(SKN_FIND_RPI_PORT, 20.0);
 	if (gd_i_socket == EXIT_FAILURE) {
 		skn_logger(SD_EMERG, "Application Host Init Failed! ExitCode=%d", exit_code);
-        signals_cleanup(gi_exit_flag);
+        skn_signals_cleanup(gi_exit_flag);
     	exit(EXIT_FAILURE);		
 	}
 
-	exit_code = service_registry_provider(gd_i_socket, response);
+	exit_code = skn_service_registry_provider(gd_i_socket, response);
 		skn_logger(SD_NOTICE, "Application ExitCode=%d", exit_code);
 	
     if (gd_i_socket) close(gd_i_socket);
-    signals_cleanup(gi_exit_flag);
+    skn_signals_cleanup(gi_exit_flag);
 
     skn_logger(SD_NOTICE, "\n============================\nShutdown Complete\n============================\n");
 

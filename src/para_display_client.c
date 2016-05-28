@@ -36,7 +36,7 @@ int sknGetConstants(int *nOffset, float *fScale) {
 /**
  * Zynq chips temperature
  */
-int sknGetTemp(double *fTemp, double *cTemp, int nOffset, float fScale) {
+int sknGetParaTemp(double *fTemp, double *cTemp, int nOffset, float fScale) {
   FILE *sysfile;
   char  strRead[SZ_INFO_BUFF];
   int  nRaw;
@@ -103,12 +103,12 @@ int main(int argc, char *argv[])
     }
 
 	/* Initialize Signal handler */
-	signals_init();
+	skn_signals_init();
 
 	/* Create local socket for sending requests */
 	gd_i_socket = skn_udp_host_create_broadcast_socket(0, 4.0);
 	if (gd_i_socket == EXIT_FAILURE) {
-        signals_cleanup(gi_exit_flag);
+        skn_signals_cleanup(gi_exit_flag);
     	exit(EXIT_FAILURE);		
 	}
 
@@ -116,8 +116,8 @@ int main(int argc, char *argv[])
 
 	/* Get the ServiceRegistry from Provider
 	 * - could return null if error */
-	psr = service_registry_get_via_udp_broadcast(gd_i_socket, registry);
-	if (psr != NULL && service_registry_entry_count(psr) != 0) {
+	psr = skn_service_registry_get_via_udp_broadcast(gd_i_socket, registry);
+	if (psr != NULL && skn_service_registry_entry_count(psr) != 0) {
 	    char *service_name = "lcd_display_service";
 
 	    if (gd_pch_service_name != NULL) {
@@ -125,7 +125,7 @@ int main(int argc, char *argv[])
 	    }
 
 		/* find a single entry */
-		pre = service_registry_find_entry(psr, service_name);
+		pre = skn_service_registry_find_entry(psr, service_name);
 		if (pre != NULL) {
             skn_logger(" ", "\nLCD DisplayService (%s) is located at IPv4: %s:%d\n", pre->name, pre->ip, pre->port);
 		}
@@ -135,8 +135,8 @@ int main(int argc, char *argv[])
         close(gd_i_socket); gd_i_socket = -1;
         gd_i_socket = skn_udp_host_create_regular_socket(0, 8.0);
         if (gd_i_socket == EXIT_FAILURE) {
-            if (psr != NULL) service_registry_destroy(psr);
-            signals_cleanup(gi_exit_flag);
+            if (psr != NULL) skn_service_registry_destroy(psr);
+            skn_signals_cleanup(gi_exit_flag);
             exit(EXIT_FAILURE);
         }
     }
@@ -158,7 +158,7 @@ int main(int argc, char *argv[])
             }
             sleep(gd_i_update);
 
-            sknGetTemp(&fTemp, &cTemp, nOffset, fScale);
+            sknGetParaTemp(&fTemp, &cTemp, nOffset, fScale);
             snprintf(pnsr->request, sizeof(pnsr->request) -1,  "CPU: %3.1fC %3.1fF", cTemp, fTemp);
 
 
@@ -175,8 +175,8 @@ int main(int argc, char *argv[])
 	 *   otherwise, a normal exit occurs
 	 */
     if (gd_i_socket) close(gd_i_socket);
-    if (psr != NULL) service_registry_destroy(psr);
-    signals_cleanup(gi_exit_flag);
+    if (psr != NULL) skn_service_registry_destroy(psr);
+    skn_signals_cleanup(gi_exit_flag);
 
     exit(EXIT_SUCCESS);
 }

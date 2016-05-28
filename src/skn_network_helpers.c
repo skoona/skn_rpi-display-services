@@ -27,13 +27,13 @@ char * gd_pch_service_name;
 int gd_i_i2c_address = 0;
 
 static void skn_locator_print_usage();
-static void exit_handler(int sig);
+static void skn_signals_exit_handler(int sig);
 
 
-static void * service_registry_entry_create_helper(char *key, char **name, char **ip, char **port);
-static PServiceRegistry service_registry_create();
-static int service_registry_entry_create(PServiceRegistry psreg, char *name, char *ip, char *port, int *errors);
-static int service_registry_response_parse(PServiceRegistry psreg, const char *response, int *errors);
+static void * skn_service_registry_entry_create_helper(char *key, char **name, char **ip, char **port);
+static PServiceRegistry skn_service_registry_create();
+static int skn_service_registry_entry_create(PServiceRegistry psreg, char *name, char *ip, char *port, int *errors);
+static int skn_service_registry_response_parse(PServiceRegistry psreg, const char *response, int *errors);
 
 /*
  * General System Information Utils */
@@ -42,7 +42,7 @@ long skn_get_number_of_cpu_cores() {
 }
 
 
-int generate_loadavg_info(char *msg) {
+int skn_generate_loadavg_info(char *msg) {
     double loadavg[4];
     int rc = 0;
 
@@ -59,7 +59,7 @@ int generate_loadavg_info(char *msg) {
     return rc;
 }
 
-int generate_uname_info(char *msg) {
+int skn_generate_uname_info(char *msg) {
     struct utsname info;
 
     int mLen = 0;
@@ -75,7 +75,7 @@ int generate_uname_info(char *msg) {
     return mLen;
 }
 
-int generate_datetime_info(char *msg) {
+int skn_generate_datetime_info(char *msg) {
     int mLen = 0;
     struct tm *t;
     time_t tim;
@@ -85,7 +85,7 @@ int generate_datetime_info(char *msg) {
 
     mLen = snprintf(msg, SZ_INFO_BUFF -1, "%02d:%02d:%04d %02d:%02d:%02d",
                     t->tm_mon + 1, t->tm_mday, t->tm_year + 1900,
-                    ((t->tm_hour - TZ_ADJUST) < 0 ? (t->tm_hour - TZ_ADJUST + 12) : (t->tm_hour - TZ_ADJUST)), t->tm_min, t->tm_sec);
+                    t->tm_hour, t->tm_min, t->tm_sec);
 
     return mLen;
 }
@@ -93,7 +93,7 @@ int generate_datetime_info(char *msg) {
 /**
  * Traditional Millisecond delay.
  */
-int skn_time_delay(double delay_time) {
+int skn_time_delay_ms(double delay_time) {
     struct timespec timeout;
     if (delay_time == 0.0 || delay_time == 0) delay_time = 0.001;
     timeout.tv_sec = (time_t) delay_time;  // extract integer only
@@ -171,18 +171,18 @@ uid_t skn_get_userids() {
  * ref: http://www.cons.org/cracauer/sigint.html
  *      http://www.chemie.fu-berlin.de/chemnet/use/info/libc/libc_21.html#SEC361
  */
-static void exit_handler(int sig) {
+static void skn_signals_exit_handler(int sig) {
     gi_exit_flag = sig;
     skn_logger(SD_NOTICE, "Program Exiting, from signal=%d:%s\n", sig, strsignal(sig));
 }
 
-void signals_init() {
-    signal(SIGINT, exit_handler);  // Ctrl-C
-    signal(SIGQUIT, exit_handler);  // Quit
-    signal(SIGTERM, exit_handler);  // Normal kill command
+void skn_signals_init() {
+    signal(SIGINT, skn_signals_exit_handler);  // Ctrl-C
+    signal(SIGQUIT, skn_signals_exit_handler);  // Quit
+    signal(SIGTERM, skn_signals_exit_handler);  // Normal kill command
 }
 
-void signals_cleanup(int sig) {
+void skn_signals_cleanup(int sig) {
     signal(SIGINT, SIG_DFL);
     signal(SIGQUIT, SIG_DFL);
     signal(SIGTERM, SIG_DFL);
@@ -192,11 +192,10 @@ void signals_cleanup(int sig) {
     }
 }
 
-
-void get_default_interface_name_and_ipv4_address(char * intf, char * ipv4) {
+void skn_get_default_interface_name_and_ipv4_address(char * intf, char * ipv4) {
     IPBroadcastArray aB;
 
-    if (get_broadcast_ip_array(&aB) != PLATFORM_ERROR) {
+    if (skn_get_broadcast_ip_array(&aB) != PLATFORM_ERROR) {
         memcpy(intf, aB.chDefaultIntfName, SZ_CHAR_BUFF);
         memcpy(ipv4, aB.ipAddrStr[aB.defaultIndex], SZ_CHAR_BUFF);
     } else {
@@ -211,7 +210,7 @@ void get_default_interface_name_and_ipv4_address(char * intf, char * ipv4) {
  * - Return -1 on error, or count of interfaces
  * - contains this ipAddress in paB->ipAddrStr[paB->defaultIndex]
  */
-int get_broadcast_ip_array(PIPBroadcastArray paB) {
+int skn_get_broadcast_ip_array(PIPBroadcastArray paB) {
     struct ifaddrs * ifap;
     struct ifaddrs * p;
     int rc = 0;
@@ -221,7 +220,7 @@ int get_broadcast_ip_array(PIPBroadcastArray paB) {
     paB->defaultIndex = 0;
     strcpy(paB->cbName, "IPBroadcastArray");
 
-    rc = get_default_interface_name(paB->chDefaultIntfName);
+    rc = skn_get_default_interface_name(paB->chDefaultIntfName);
     if (rc == EXIT_FAILURE) { // Alternate method for Mac: 'route -n -A inet'
         skn_logger(SD_ERR, "No Default Network Interfaces Found!.");
         paB->chDefaultIntfName[0] = 0;
@@ -272,7 +271,7 @@ int get_broadcast_ip_array(PIPBroadcastArray paB) {
  *       0         0         0         0         0         0      1500         0
  *
 */
-int get_default_interface_name(char *pchDefaultInterfaceName) {
+int skn_get_default_interface_name(char *pchDefaultInterfaceName) {
     FILE *f_route;
     char line[SZ_INFO_BUFF], *dRoute = NULL, *iName = NULL;
 
@@ -689,7 +688,7 @@ int skn_udp_service_request(PServiceRequest psr) {
     return (EXIT_SUCCESS);
 }
 
-int service_registry_provider(int i_socket, char *response) {
+int skn_service_registry_provider(int i_socket, char *response) {
     struct sockaddr_in remaddr; /* remote address */
     socklen_t addrlen = sizeof(remaddr); /* length of addresses */
     IPBroadcastArray aB;
@@ -702,7 +701,7 @@ int service_registry_provider(int i_socket, char *response) {
     memset(request, 0, sizeof(request));
     memset(recvHostName, 0, sizeof(recvHostName));
 
-    rc = get_broadcast_ip_array(&aB);
+    rc = skn_get_broadcast_ip_array(&aB);
     if (rc == PLATFORM_ERROR) {
         return EXIT_FAILURE;
     }
@@ -725,7 +724,7 @@ int service_registry_provider(int i_socket, char *response) {
                             aB.ipAddrStr[aB.defaultIndex], SKN_FIND_RPI_PORT);
         }
     }
-    service_registry_entry_response_message_log(response);
+    skn_service_registry_entry_response_message_log(response);
 
     skn_logger(SD_DEBUG, "Socket Bound to %s:%s", aB.chDefaultIntfName, aB.ipAddrStr[aB.defaultIndex]);
 
@@ -758,7 +757,7 @@ int service_registry_provider(int i_socket, char *response) {
         /*
          * Add new registry entry by command */
         if ((strncmp("ADD ", request, sizeof("ADD")) == 0) &&
-            (service_registry_valiadate_response_format(&request[4]) == EXIT_SUCCESS)) {
+            (skn_service_registry_valiadate_response_format(&request[4]) == EXIT_SUCCESS)) {
             if ((response[i_response_len-1] == '|') ||
                 (response[i_response_len-1] == '%') ||
                 (response[i_response_len-1] == ';')) {
@@ -794,7 +793,7 @@ int service_registry_provider(int i_socket, char *response) {
  * - Collection of Services and their locations
  * - Returns the Registry
  */
-static PServiceRegistry service_registry_create() {
+static PServiceRegistry skn_service_registry_create() {
     PServiceRegistry psreg = NULL;
 
     psreg = (PServiceRegistry) malloc(sizeof(ServiceRegistry));
@@ -814,7 +813,7 @@ static PServiceRegistry service_registry_create() {
  * - Create a Service Entry and adds it to the Registry collection
  * - Returns EXIT_FAILURE/SUCCESS
 */
-static int service_registry_entry_create(PServiceRegistry psreg, char *name, char *ip, char *port, int *errors) {
+static int skn_service_registry_entry_create(PServiceRegistry psreg, char *name, char *ip, char *port, int *errors) {
     PRegistryEntry prent = NULL;
 
     if ((psreg == NULL) || (name == NULL) || (ip == NULL) || (port == NULL)) {
@@ -833,7 +832,7 @@ static int service_registry_entry_create(PServiceRegistry psreg, char *name, cha
 
     /* update or create entry */
     if (gd_i_unique_registry) {
-        prent = service_registry_find_entry(psreg, name);
+        prent = skn_service_registry_find_entry(psreg, name);
     }
     if (prent == NULL) {
         prent = (PRegistryEntry) malloc(sizeof(RegistryEntry));
@@ -866,12 +865,12 @@ static int service_registry_entry_create(PServiceRegistry psreg, char *name, cha
  * - Validates a text registry entry format
  * - Returns EXIT_FAILURE/SUCCESS
 */
-int service_registry_valiadate_response_format(const char *response) {
+int skn_service_registry_valiadate_response_format(const char *response) {
     int errors = 0; // false
 
-    PServiceRegistry psr = service_registry_create();
-    service_registry_response_parse(psr, response, &errors);
-    service_registry_destroy(psr);
+    PServiceRegistry psr = skn_service_registry_create();
+    skn_service_registry_response_parse(psr, response, &errors);
+    skn_service_registry_destroy(psr);
 
     if (errors > 0) {
         return EXIT_FAILURE; // false
@@ -886,11 +885,11 @@ int service_registry_valiadate_response_format(const char *response) {
  * - Validate the text formatted entry and return registry collection
  * - Returns a Registry with one entry
 */
-PServiceRegistry service_registry_valiadated_registry(const char *response) {
+PServiceRegistry skn_service_registry_valiadated_registry(const char *response) {
     int errors = 0;
 
-    PServiceRegistry psr = service_registry_create();
-    service_registry_response_parse(psr, response, &errors);
+    PServiceRegistry psr = skn_service_registry_create();
+    skn_service_registry_response_parse(psr, response, &errors);
     if (errors > 0) {
         free(psr);
         return NULL; // false
@@ -904,7 +903,7 @@ PServiceRegistry service_registry_valiadated_registry(const char *response) {
  *
  * - Prints each pair of values from a text registry entry
 */
-void service_registry_entry_response_message_log(const char * response) {
+void skn_service_registry_entry_response_message_log(const char * response) {
     char * worker = NULL, *parser = NULL, *base = strdup(response);
     parser = base;
     skn_logger(SD_NOTICE, "Response Message:");
@@ -923,7 +922,7 @@ void service_registry_entry_response_message_log(const char * response) {
  * - Finds an existing entry
  * - Returns EXIT_FAILURE/SUCCESS
 */
-PRegistryEntry service_registry_find_entry(PServiceRegistry psreg, char *serviceName) {
+PRegistryEntry skn_service_registry_find_entry(PServiceRegistry psreg, char *serviceName) {
     PRegistryEntry prent = NULL;
     int index = 0;
 
@@ -944,14 +943,14 @@ PRegistryEntry service_registry_find_entry(PServiceRegistry psreg, char *service
 /**
  * Returns the number of services in registry
  */
-int service_registry_entry_count(PServiceRegistry psr) {
+int skn_service_registry_entry_count(PServiceRegistry psr) {
     return psr->count;
 }
 
 /**
  * Logs each entry in service registry
  */
-int service_registry_list_entries(PServiceRegistry psr) {
+int skn_service_registry_list_entries(PServiceRegistry psr) {
     int index = 0;
 
     skn_logger(" ", "\nServiceRegistry:");
@@ -966,7 +965,7 @@ int service_registry_list_entries(PServiceRegistry psr) {
  * - compute the address of each field on demand, from struct
  * - Returns the address offset of the registry field requested
 */
-void * service_registry_get_entry_field_ref(PRegistryEntry prent, char *field) {
+void * skn_service_registry_get_entry_field_ref(PRegistryEntry prent, char *field) {
     int index = 0;
     void * result = NULL;
     char * names[4] = { "name", "ip", "port", NULL };
@@ -990,7 +989,7 @@ void * service_registry_get_entry_field_ref(PRegistryEntry prent, char *field) {
  * - compute the address of each field on demand, from local vars
  * - Returns the address offset of the registry field requested
 */
-static void * service_registry_entry_create_helper(char *key, char **name, char **ip, char **port) {
+static void * skn_service_registry_entry_create_helper(char *key, char **name, char **ip, char **port) {
     int index = 0;
     char * guess = NULL;
     void * result = NULL;
@@ -1028,7 +1027,7 @@ static void * service_registry_entry_create_helper(char *key, char **name, char 
  *  the vertical bar char '|' is the line separator, % and ; are also supported
  *
 */
-static int service_registry_response_parse(PServiceRegistry psreg, const char *response, int *errors) {
+static int skn_service_registry_response_parse(PServiceRegistry psreg, const char *response, int *errors) {
     int control = 1;
     char *base = NULL, *psep = NULL, *resp = NULL, *line = NULL,
          *keypair = NULL, *element = NULL,
@@ -1060,7 +1059,7 @@ static int service_registry_response_parse(PServiceRegistry psreg, const char *r
             element = strstr(keypair, "=");
             if (element != NULL) {
                 element[0] = 0;
-                meta = service_registry_entry_create_helper(keypair, &name, &ip, &pport);
+                meta = skn_service_registry_entry_create_helper(keypair, &name, &ip, &pport);
                 if (meta != NULL && (element[1] != 0)) {
                     *meta = skn_strip(++element);
                 } else {
@@ -1074,7 +1073,7 @@ static int service_registry_response_parse(PServiceRegistry psreg, const char *r
         } // end while line
 
         if (control == 1) { // catch a breakout caused by no value
-            service_registry_entry_create(psreg, name, ip, pport, errors);
+            skn_service_registry_entry_create(psreg, name, ip, pport, errors);
         }
 
     } // end while buffer
@@ -1091,7 +1090,7 @@ static int service_registry_response_parse(PServiceRegistry psreg, const char *r
  *
  * - Returns Populated Registry
 */
-PServiceRegistry service_registry_get_via_udp_broadcast(int i_socket, char *request) {
+PServiceRegistry skn_service_registry_get_via_udp_broadcast(int i_socket, char *request) {
     struct sockaddr_in remaddr; /* remote address */
     socklen_t addrlen = sizeof(remaddr); /* length of addresses */
     IPBroadcastArray aB;
@@ -1104,7 +1103,7 @@ PServiceRegistry service_registry_get_via_udp_broadcast(int i_socket, char *requ
     memset(response, 0, sizeof(response));
     memset(recvHostName, 0, sizeof(recvHostName));
 
-    get_broadcast_ip_array(&aB);
+    skn_get_broadcast_ip_array(&aB);
     strncpy(gd_ch_intfName, aB.chDefaultIntfName, SZ_CHAR_BUFF);
     strncpy(gd_ch_ipAddress, aB.ipAddrStr[aB.defaultIndex], SZ_CHAR_BUFF);
 
@@ -1124,7 +1123,7 @@ PServiceRegistry service_registry_get_via_udp_broadcast(int i_socket, char *requ
         skn_logger(SD_NOTICE, "Message Broadcasted on %s:%s:%d", aB.ifNameStr[vIndex], aB.broadAddrStr[vIndex], SKN_FIND_RPI_PORT);
     }
 
-    PServiceRegistry psr = service_registry_create();
+    PServiceRegistry psr = skn_service_registry_create();
     skn_logger(SD_DEBUG, "Waiting for all responses\n");
     while (gi_exit_flag == SKN_RUN_MODE_RUN) { // depends on a socket timeout of 5 seconds
 
@@ -1146,7 +1145,7 @@ PServiceRegistry service_registry_get_via_udp_broadcast(int i_socket, char *requ
                         inet_ntoa(remaddr.sin_addr),
                         ntohs(remaddr.sin_port)
                   );
-        service_registry_response_parse(psr, response, NULL);
+        skn_service_registry_response_parse(psr, response, NULL);
     }
 
     return (psr);
@@ -1156,7 +1155,7 @@ PServiceRegistry service_registry_get_via_udp_broadcast(int i_socket, char *requ
  * service_registry_destroy()
  * - Free each entry, then the Registry itself.
 */
-void service_registry_destroy(PServiceRegistry psreg) {
+void skn_service_registry_destroy(PServiceRegistry psreg) {
     int index = 0;
 
     if (psreg == NULL)

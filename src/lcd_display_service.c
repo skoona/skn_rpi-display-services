@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
 
 	/*
 	 * Set the global interface name and ip address parms */
-    get_default_interface_name_and_ipv4_address(gd_ch_intfName, gd_ch_ipAddress);
+    skn_get_default_interface_name_and_ipv4_address(gd_ch_intfName, gd_ch_ipAddress);
 
 	/*
 	* Setup signal handling before we start

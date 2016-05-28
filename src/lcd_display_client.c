@@ -12,6 +12,10 @@
  * DO NOT USE THIS IN MODULES THAT HANDLE A I2C Based LCD
  * RPi cannot handle I2C and GetCpuTemp() without locking the process
  * in an uniterrupted sleep; forcing a power cycle.
+ *
+ * Redhat/Centos: /sys/class/hwmon/hwmon0/device/temp1_input
+ * Ubuntu/Debian: /sys/class/thermal/thermal_zone0/temp
+ *
 */
 long getCpuTemps(PCpuTemps temps) {
     long lRaw = 0;
@@ -19,8 +23,12 @@ long getCpuTemps(PCpuTemps temps) {
 
     FILE *sysFs = fopen("/sys/class/thermal/thermal_zone0/temp", "r");
     if (sysFs == NULL) {
-        skn_logger(SD_WARNING, "Warning: Failed to OPEN CPU temperature: %d:%s\n", errno, strerror(errno));
-        return -1;
+        skn_logger(SD_WARNING, "Warning: Failed to open Debian CPU temperature: %d:%s\n", errno, strerror(errno));
+        sysFs = fopen("/sys/class/hwmon/hwmon0/device/temp1_input", "r");
+        if (sysFs == NULL) {
+            skn_logger(SD_WARNING, "Warning: Failed to open Centos CPU temperature: %d:%s\n", errno, strerror(errno));
+            return -1;
+        }
     }
 
     rc = fscanf(sysFs, "%ld", &lRaw);
@@ -41,6 +49,7 @@ long getCpuTemps(PCpuTemps temps) {
     return lRaw;
 }
 
+
 /**
  * DO NOT USE THIS IN MODULES THAT HANDLE A I2C Based LCD
  * RPi cannot handle I2C and GetCpuTemp() without locking the process
@@ -52,7 +61,7 @@ int generate_cpu_temps_info(char *msg) {
 
     memset(&cpuTemp, 0, sizeof(CpuTemps));
     if ( getCpuTemps(&cpuTemp) != -1 ) {
-        mLen = snprintf(msg, SZ_INFO_BUFF-1, "%s %s", cpuTemp.c, cpuTemp.f);
+        mLen = snprintf(msg, SZ_INFO_BUFF-1, "CPU: %s %s", cpuTemp.c, cpuTemp.f);
     } else {
         mLen = snprintf(msg, SZ_INFO_BUFF-1, "Temp: N/A");
     }
@@ -97,12 +106,12 @@ int main(int argc, char *argv[])
 	skn_logger(SD_DEBUG, "Registry Message [%s]", registry);
 
 	/* Initialize Signal handler */
-	signals_init();
+	skn_signals_init();
 
 	/* Create local socket for sending requests */
 	gd_i_socket = skn_udp_host_create_broadcast_socket(0, 4.0);
 	if (gd_i_socket == EXIT_FAILURE) {
-        signals_cleanup(gi_exit_flag);
+        skn_signals_cleanup(gi_exit_flag);
     	    exit(EXIT_FAILURE);
 	}
 
@@ -110,8 +119,8 @@ int main(int argc, char *argv[])
 
 	/* Get the ServiceRegistry from Provider
 	 * - could return null if error */
-	psr = service_registry_get_via_udp_broadcast(gd_i_socket, registry);
-	if (psr != NULL && service_registry_entry_count(psr) != 0) {
+	psr = skn_service_registry_get_via_udp_broadcast(gd_i_socket, registry);
+	if (psr != NULL && skn_service_registry_entry_count(psr) != 0) {
 	    char *service_name = "lcd_display_service";
 
 	    if (gd_pch_service_name != NULL) {
@@ -119,7 +128,7 @@ int main(int argc, char *argv[])
 	    }
 
 		/* find a single entry */
-		pre = service_registry_find_entry(psr, service_name);
+		pre = skn_service_registry_find_entry(psr, service_name);
 		if (pre != NULL) {
             skn_logger(" ", "\nLCD DisplayService (%s) is located at IPv4: %s:%d\n", pre->name, pre->ip, pre->port);
 		}
@@ -129,8 +138,8 @@ int main(int argc, char *argv[])
         close(gd_i_socket); gd_i_socket = -1;
         gd_i_socket = skn_udp_host_create_regular_socket(0, 8.0);
         if (gd_i_socket == EXIT_FAILURE) {
-            if (psr != NULL) service_registry_destroy(psr);
-            signals_cleanup(gi_exit_flag);
+            if (psr != NULL) skn_service_registry_destroy(psr);
+            skn_signals_cleanup(gi_exit_flag);
             exit(EXIT_FAILURE);
         }
     }
@@ -153,13 +162,13 @@ int main(int argc, char *argv[])
 
             switch (host_update_cycle++) {  // cycle through other info
                 case 0:
-                    generate_loadavg_info(pnsr->request);
+                    skn_generate_loadavg_info(pnsr->request);
                     break;
                 case 1:
-                    generate_datetime_info(pnsr->request);
+                    skn_generate_datetime_info(pnsr->request);
                     break;
                 case 2:
-                    generate_uname_info(pnsr->request);
+                    skn_generate_uname_info(pnsr->request);
                 break;
                 case 3:
                     generate_cpu_temps_info(pnsr->request);
@@ -180,8 +189,8 @@ int main(int argc, char *argv[])
 	 *   otherwise, a normal exit occurs
 	 */
     if (gd_i_socket) close(gd_i_socket);
-    if (psr != NULL) service_registry_destroy(psr);
-    signals_cleanup(gi_exit_flag);
+    if (psr != NULL) skn_service_registry_destroy(psr);
+    skn_signals_cleanup(gi_exit_flag);
 
     exit(EXIT_SUCCESS);
 }

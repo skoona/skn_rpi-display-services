@@ -38,20 +38,20 @@ extern int gd_i_i2c_address;
  * General Utilities
 */
 extern long skn_get_number_of_cpu_cores();
-extern int generate_loadavg_info(char *msg);
-extern int generate_uname_info(char *msg);
-extern int generate_datetime_info(char *msg);
+extern int skn_generate_loadavg_info(char *msg);
+extern int skn_generate_uname_info(char *msg);
+extern int skn_generate_datetime_info(char *msg);
 extern double skn_duration_in_milliseconds(struct timeval *pstart, struct timeval *pend);
 extern void skn_program_name_and_description_set(const char *name, const char *desc);
 extern int skn_logger(const char *level, const char *format, ...);
 extern int skn_handle_locator_command_line(int argc, char **argv);
-extern int skn_time_delay(double delay_time);
+extern int skn_time_delay_ms(double delay_time);
 //extern void skn_delay_microseconds (int delay_us);
 extern char * skn_strip(char * alpha);
 extern uid_t skn_get_userids();
 
-extern void signals_init();
-extern void signals_cleanup(int sig);
+extern void skn_signals_init();
+extern void skn_signals_cleanup(int sig);
 
 /*
  * Server/Client Communication Routines
@@ -63,22 +63,22 @@ extern int skn_udp_service_request(PServiceRequest psr);
 extern int skn_display_manager_message_consumer_startup(PDisplayManager pdm);
 extern void skn_display_manager_message_consumer_shutdown(PDisplayManager pdm);
 
-extern int get_default_interface_name(char *pchDefaultInterfaceName);
-extern int get_broadcast_ip_array(PIPBroadcastArray paB);
-extern void service_registry_entry_response_message_log(const char * response);
-extern void get_default_interface_name_and_ipv4_address(char * intf, char * ipv4);
+extern int skn_get_default_interface_name(char *pchDefaultInterfaceName);
+extern int skn_get_broadcast_ip_array(PIPBroadcastArray paB);
+extern void skn_service_registry_entry_response_message_log(const char * response);
+extern void skn_get_default_interface_name_and_ipv4_address(char * intf, char * ipv4);
 
 /*
  * Service Registry Public Routines
  */
-extern PServiceRegistry service_registry_valiadated_registry(const char *response);
-extern int service_registry_valiadate_response_format(const char *response);
-extern int service_registry_provider(int i_socket, char *response);
-extern PServiceRegistry service_registry_get_via_udp_broadcast(int i_socket, char *request);
-extern int service_registry_entry_count(PServiceRegistry psr);
-extern int service_registry_list_entries(PServiceRegistry psr);
-extern PRegistryEntry service_registry_find_entry(PServiceRegistry psreg, char *serviceName);
-extern void * service_registry_get_entry_field_ref(PRegistryEntry prent, char *field);
-extern void service_registry_destroy(PServiceRegistry psreg);
+extern PServiceRegistry skn_service_registry_valiadated_registry(const char *response);
+extern int skn_service_registry_valiadate_response_format(const char *response);
+extern int skn_service_registry_provider(int i_socket, char *response);
+extern PServiceRegistry skn_service_registry_get_via_udp_broadcast(int i_socket, char *request);
+extern int skn_service_registry_entry_count(PServiceRegistry psr);
+extern int skn_service_registry_list_entries(PServiceRegistry psr);
+extern PRegistryEntry skn_service_registry_find_entry(PServiceRegistry psreg, char *serviceName);
+extern void * skn_service_registry_get_entry_field_ref(PRegistryEntry prent, char *field);
+extern void skn_service_registry_destroy(PServiceRegistry psreg);
 
 #endif // SKN_NETWORK_HELPERS_H__

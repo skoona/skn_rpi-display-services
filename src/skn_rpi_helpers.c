@@ -417,7 +417,7 @@ int skn_scroller_scroll_lines(PDisplayLine pdl, int lcd_handle, int line)
     if (strcmp("ser", gd_pch_device_name) == 0 ) {
         set_col_row_position[3] = (unsigned int)line + 1;
         write(lcd_handle, set_col_row_position, sizeof(set_col_row_position));
-        skn_time_delay(0.2); // delay(200);
+        skn_time_delay_ms(0.2); // delay(200);
         write(lcd_handle, buf, gd_i_cols - 1);
     } else {
         lcdPosition(lcd_handle, 0, line);
@@ -541,11 +541,11 @@ int skn_display_manager_do_work(char * client_request_message) {
         skn_logger(SD_ERR, "Display Manager cannot acquire needed resources. DMCreate()");
         return gi_exit_flag;
     }
-    generate_datetime_info (ch_lcd_message[0]);
+    skn_generate_datetime_info (ch_lcd_message[0]);
     generate_rpi_model_info(ch_lcd_message[1]);
 //    generate_cpu_temps_info(ch_lcd_message[2]);
-    generate_uname_info    (ch_lcd_message[2]);
-    generate_loadavg_info  (ch_lcd_message[3]);
+    skn_generate_uname_info    (ch_lcd_message[2]);
+    skn_generate_loadavg_info  (ch_lcd_message[3]);
     skn_display_manager_add_line(pdm, ch_lcd_message[0]);
     skn_display_manager_add_line(pdm, ch_lcd_message[1]);
     skn_display_manager_add_line(pdm, ch_lcd_message[2]);
@@ -577,15 +577,15 @@ int skn_display_manager_do_work(char * client_request_message) {
         for (index = 0; index < pdm->dsp_rows; index++) {
             if (pdl->active == 1) {
                 skn_scroller_scroll_lines(pdl, pdm->lcd_handle, dsp_line_number++);
-                skn_time_delay(0.18); // delay(180);
+                skn_time_delay_ms(0.18); // delay(180);
             }
             pdl = (PDisplayLine) pdl->next;
         }
 
         if ((host_update_cycle++ % 900) == 0) {  // roughly every fifteen minutes
-            generate_datetime_info (ch_lcd_message[0]);
+            skn_generate_datetime_info (ch_lcd_message[0]);
 //            generate_cpu_temps_info(ch_lcd_message[2]);
-            generate_loadavg_info  (ch_lcd_message[3]);
+            skn_generate_loadavg_info  (ch_lcd_message[3]);
             skn_display_manager_add_line(pdm, ch_lcd_message[0]);
             skn_display_manager_add_line(pdm, ch_lcd_message[1]);
             skn_display_manager_add_line(pdm, ch_lcd_message[2]);
@@ -685,7 +685,7 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
     bzero(request, sizeof(request));
     memset(recvHostName, 0, sizeof(recvHostName));
 
-    rc = get_broadcast_ip_array(&aB);
+    rc = skn_get_broadcast_ip_array(&aB);
     if (rc == -1) {
         exit_code = rc;
         pthread_exit((void *) exit_code);
@@ -742,7 +742,7 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
     }
     gi_exit_flag = SKN_RUN_MODE_STOP;  // shutdown
 //    kill(getpid(), SIGUSR1); // cause a shutdown
-    skn_time_delay(0.5);
+    skn_time_delay_ms(0.5);
 
     skn_logger(SD_NOTICE, "Display Manager Thread: shutdown complete: (%ld)", exit_code);
 
