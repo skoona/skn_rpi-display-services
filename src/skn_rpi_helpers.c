@@ -290,7 +290,7 @@ int skn_device_manager_LCD_shutdown(PDisplayManager pdm) {
  * Ubuntu/Debian: /sys/class/thermal/thermal_zone0/temp
  *
 */
-long getCpuTemps(PCpuTemps temps) {
+long sknGetCpuTemps(PCpuTemps temps) {
     long lRaw = 0;
     int rc = 0;
 
@@ -325,7 +325,7 @@ long getCpuTemps(PCpuTemps temps) {
 /*
  * Message Builders exclusively for Raspberry Pis
  */
-int generate_rpi_model_info(char *msg) {
+int sknGenerateRpiModelInfo(char *msg) {
     int model = 0, rev = 0, mem = 0, maker = 0, overVolted = 0, mLen = 0;
     char * message = "Device has an unknown model type.\n";
 
@@ -334,7 +334,7 @@ int generate_rpi_model_info(char *msg) {
         mLen = snprintf(msg, SZ_INFO_BUFF -1, "%s", message);
     } else {
         mLen = snprintf(msg, SZ_INFO_BUFF -1, "Device: %s, Cpus: %ld, Rev: %s, Mem: %dMB, Maker: %s %s, %s:%s", piModelNames[model],
-                        skn_get_number_of_cpu_cores(), piRevisionNames[rev], mem, piMakerNames[maker], overVolted ? "[OV]" : "", gd_ch_intfName,
+                        sknGetNumberCpuCores(), piRevisionNames[rev], mem, piMakerNames[maker], overVolted ? "[OV]" : "", gd_ch_intfName,
                         gd_ch_ipAddress);
     }
     return mLen;
@@ -345,12 +345,12 @@ int generate_rpi_model_info(char *msg) {
  * RPi cannot handle I2C and GetCpuTemp() without locking the process
  * in an uniterrupted sleep; forcing a power cycle.
 */
-int generate_cpu_temps_info(char *msg) {
+int sknGenerateCpuTempsInfo(char *msg) {
     static CpuTemps cpuTemp;
     int mLen = 0;
 
     memset(&cpuTemp, 0, sizeof(CpuTemps));
-    if ( getCpuTemps(&cpuTemp) != -1 ) {
+    if ( sknGetCpuTemps(&cpuTemp) != -1 ) {
         mLen = snprintf(msg, SZ_INFO_BUFF-1, "CPU: %s %s", cpuTemp.c, cpuTemp.f);
     } else {
         mLen = snprintf(msg, SZ_INFO_BUFF-1, "Temp: N/A");
@@ -541,11 +541,11 @@ int skn_display_manager_do_work(char * client_request_message) {
         skn_logger(SD_ERR, "Display Manager cannot acquire needed resources. DMCreate()");
         return gi_exit_flag;
     }
-    skn_generate_datetime_info (ch_lcd_message[0]);
-    generate_rpi_model_info(ch_lcd_message[1]);
+    sknGenerateDatetimeInfo (ch_lcd_message[0]);
+    sknGenerateRpiModelInfo(ch_lcd_message[1]);
 //    generate_cpu_temps_info(ch_lcd_message[2]);
-    skn_generate_uname_info    (ch_lcd_message[2]);
-    skn_generate_loadavg_info  (ch_lcd_message[3]);
+    sknGenerateUnameInfo    (ch_lcd_message[2]);
+    sknGenerateLoadavgInfo  (ch_lcd_message[3]);
     skn_display_manager_add_line(pdm, ch_lcd_message[0]);
     skn_display_manager_add_line(pdm, ch_lcd_message[1]);
     skn_display_manager_add_line(pdm, ch_lcd_message[2]);
@@ -583,9 +583,9 @@ int skn_display_manager_do_work(char * client_request_message) {
         }
 
         if ((host_update_cycle++ % 900) == 0) {  // roughly every fifteen minutes
-            skn_generate_datetime_info (ch_lcd_message[0]);
+            sknGenerateDatetimeInfo (ch_lcd_message[0]);
 //            generate_cpu_temps_info(ch_lcd_message[2]);
-            skn_generate_loadavg_info  (ch_lcd_message[3]);
+            sknGenerateLoadavgInfo  (ch_lcd_message[3]);
             skn_display_manager_add_line(pdm, ch_lcd_message[0]);
             skn_display_manager_add_line(pdm, ch_lcd_message[1]);
             skn_display_manager_add_line(pdm, ch_lcd_message[2]);

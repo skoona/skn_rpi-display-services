@@ -27,20 +27,23 @@ char * gd_pch_service_name;
 int gd_i_i2c_address = 0;
 
 static void skn_locator_print_usage();
+PServiceRegistry skn_service_registry_valiadated_registry(const char *response);
+          void * skn_service_registry_get_entry_field_ref(PRegistryEntry prent, char *field);
+          void * skn_service_registry_entry_create_helper(char *key, char **name, char **ip, char **port);
+             int skn_service_registry_entry_create(PServiceRegistry psreg, char *name, char *ip, char *port, int *errors);
+             int skn_service_registry_response_parse(PServiceRegistry psreg, const char *response, int *errors);
+PServiceRegistry skn_service_registry_create();
 
-static void * skn_service_registry_entry_create_helper(char *key, char **name, char **ip, char **port);
-static PServiceRegistry skn_service_registry_create();
-static int skn_service_registry_entry_create(PServiceRegistry psreg, char *name, char *ip, char *port, int *errors);
-static int skn_service_registry_response_parse(PServiceRegistry psreg, const char *response, int *errors);
+
 
 /*
  * General System Information Utils */
-long skn_get_number_of_cpu_cores() {
+long sknGetNumberCpuCores() {
     return sysconf(_SC_NPROCESSORS_ONLN);
 }
 
 
-int skn_generate_loadavg_info(char *msg) {
+int sknGenerateLoadavgInfo(char *msg) {
     double loadavg[4];
     int rc = 0;
 
@@ -57,7 +60,7 @@ int skn_generate_loadavg_info(char *msg) {
     return rc;
 }
 
-int skn_generate_uname_info(char *msg) {
+int sknGenerateUnameInfo(char *msg) {
     struct utsname info;
 
     int mLen = 0;
@@ -68,12 +71,12 @@ int skn_generate_uname_info(char *msg) {
     } else {
         mLen = snprintf(msg, SZ_INFO_BUFF -1, "%s %s, %s %s | Cores=%ld",
                         info.sysname, info.release, info.version, info.machine,
-                        skn_get_number_of_cpu_cores());
+                        sknGetNumberCpuCores());
     }
     return mLen;
 }
 
-int skn_generate_datetime_info(char *msg) {
+int sknGenerateDatetimeInfo(char *msg) {
     int mLen = 0;
     struct tm *t;
     time_t tim;
@@ -97,6 +100,28 @@ int skn_time_delay_ms(double delay_time) {
     timeout.tv_sec = (time_t) delay_time;  // extract integer only
     timeout.tv_nsec = (long) ((delay_time - timeout.tv_sec) * 1000000000L); // 1e+9
     return nanosleep(&timeout, NULL);
+}
+
+
+/**
+ * skn_duration_in_microseconds()
+ * - expressed in %1.6us  seconds.miroseconds
+ */
+double skn_duration_in_milliseconds(struct timeval *pstart, struct timeval *pend) {
+    long secs_used = 0;
+    double total_micros_used = 0.0;
+    struct timeval end;
+
+    if (pend == NULL) {   // calc running duration
+        pend = &end;
+        gettimeofday(pend, NULL);
+    }
+
+    secs_used=(pend->tv_sec - pstart->tv_sec); //avoid overflow by subtracting first
+    total_micros_used = secs_used * 1000.0; // sec to ms
+    total_micros_used += (pend->tv_usec - pstart->tv_usec) / 1000.0; // us to ms
+
+    return total_micros_used / 1000.0; // express in seconds.milliseconds
 }
 
 /**
@@ -572,7 +597,10 @@ int skn_udp_host_create_broadcast_socket(int port, double rcvTimeout) {
     return i_socket;
 }
 
-PServiceRequest skn_service_request_create(PRegistryEntry pre, int host_socket, char *request) {
+/*
+ * Remote Service Registry routines
+*/
+PServiceRequest skn_udp_service_provider_service_request_new(PRegistryEntry pre, int host_socket, char *request) {
     PServiceRequest psr = NULL;
 
     if (pre == NULL) {
@@ -588,80 +616,15 @@ PServiceRequest skn_service_request_create(PRegistryEntry pre, int host_socket, 
 }
 
 /**
- * skn_duration_in_microseconds()
- * - expressed in %1.6us  seconds.miroseconds
- */
-double skn_duration_in_milliseconds(struct timeval *pstart, struct timeval *pend) {
-    long secs_used = 0;
-    double total_micros_used = 0.0;
-    struct timeval end;
-
-    if (pend == NULL) {   // calc running duration
-        pend = &end;
-        gettimeofday(pend, NULL);
-    }
-
-    secs_used=(pend->tv_sec - pstart->tv_sec); //avoid overflow by subtracting first
-    total_micros_used = secs_used * 1000.0; // sec to ms
-    total_micros_used += (pend->tv_usec - pstart->tv_usec) / 1000.0; // us to ms
-
-    return total_micros_used / 1000.0; // express in seconds.milliseconds
-}
-
-/**
- * skn_udp_service_request()
- * - side effects: none
+ * skn_udp_service_provider_registry_responder
+ * - Listen for Registry requests and responder with our entries,
+ *   until gi_exit_flag == SKN_RUN_MODE_RUN
  *
- * - returns EXIT_SUCCESS | EXIT_FAILURE
+ * @param i_socket
+ * @param response
+ * @return
  */
-int skn_udp_service_request(PServiceRequest psr) {
-    struct sockaddr_in remaddr; /* remote address */
-    socklen_t addrlen = sizeof(remaddr); /* length of addresses */
-    signed int vIndex = 0;
-    struct timeval start, end;
-
-    memset(&remaddr, 0, sizeof(remaddr));
-    remaddr.sin_family = AF_INET;
-    remaddr.sin_addr.s_addr = inet_addr(psr->pre->ip);
-    remaddr.sin_port = htons(psr->pre->port);
-
-    /*
-     * SEND */
-    gettimeofday(&start, NULL);
-    if (sendto(psr->socket, psr->request, strlen(psr->request), 0, (struct sockaddr *) &remaddr, addrlen) < 0) {
-        gettimeofday(&end, NULL);
-        skn_logger(SD_WARNING, "ServiceRequest: SendTo(%1.6f) Timed out; Failure code=%d, etext=%s", skn_duration_in_milliseconds(&start,&end), errno, strerror(errno));
-        return EXIT_FAILURE;
-    }
-    skn_logger(SD_NOTICE, "ServiceRequest sent to %s:%s:%d", psr->pre->name, psr->pre->ip, psr->pre->port);
-
-    /*
-     * RECEIVE */
-    vIndex = recvfrom(psr->socket, psr->response, (SZ_INFO_BUFF - 1), 0, (struct sockaddr *) &remaddr, &addrlen);
-    if (vIndex == PLATFORM_ERROR) {
-        gettimeofday(&end, NULL);
-        skn_logger(SD_WARNING, "ServiceRequest: recvfrom(%1.6f) Failure code=%d, etext=%s", skn_duration_in_milliseconds(&start,&end), errno, strerror(errno));
-        return EXIT_FAILURE;
-    }
-    psr->response[vIndex] = 0;
-    gettimeofday(&end, NULL);
-
-    skn_logger(SD_INFO, "Response(%1.3fs) received from [%s] %s:%d",
-                    skn_duration_in_milliseconds(&start,&end),
-                    psr->response,
-                    inet_ntoa(remaddr.sin_addr),
-                    ntohs(remaddr.sin_port)
-              );
-
-    if (strcmp(psr->response, "QUIT!") == 0) {
-        skn_logger(SD_NOTICE, "Shutdown Requested!");
-        return EXIT_FAILURE;
-    }
-
-    return (EXIT_SUCCESS);
-}
-
-int skn_service_registry_provider(int i_socket, char *response) {
+int skn_udp_service_provider_registry_responder(int i_socket, char *response) {
     struct sockaddr_in remaddr; /* remote address */
     socklen_t addrlen = sizeof(remaddr); /* length of addresses */
     IPBroadcastArray aB;
@@ -697,7 +660,7 @@ int skn_service_registry_provider(int i_socket, char *response) {
                             aB.ipAddrStr[aB.defaultIndex], SKN_FIND_RPI_PORT);
         }
     }
-    skn_service_registry_entry_response_message_log(response);
+    skn_udp_service_provider_registry_entry_response_logger(response);
 
     skn_logger(SD_DEBUG, "Socket Bound to %s:%s", aB.chDefaultIntfName, aB.ipAddrStr[aB.defaultIndex]);
 
@@ -757,16 +720,85 @@ int skn_service_registry_provider(int i_socket, char *response) {
     return exit_code;
 }
 
-/*
- * Remote Service Registry routines
+/**
+ * skn_udp_service_provider_registry_entry_response_logger()
+ *
+ * - Prints each pair of values from a text registry entry
 */
+void skn_udp_service_provider_registry_entry_response_logger(const char * response) {
+    char * worker = NULL, *parser = NULL, *base = strdup(response);
+    parser = base;
+    skn_logger(SD_NOTICE, "Response Message:");
+    while (( ((worker = strsep(&parser, "|")) != NULL) ||
+          ((worker = strsep(&parser, "%")) != NULL) ||
+          ((worker = strsep(&parser, ";")) != NULL)) &&
+          (strlen(worker) > 8)) {
+        skn_logger(SD_NOTICE, "[%s]", worker);
+    }
+    free(base);
+}
+
+/**
+ * skn_udp_service_provider_send()
+ * - side effects: none
+ *
+ * - returns EXIT_SUCCESS | EXIT_FAILURE
+ */
+int skn_udp_service_provider_send(PServiceRequest psr) {
+    struct sockaddr_in remaddr; /* remote address */
+    socklen_t addrlen = sizeof(remaddr); /* length of addresses */
+    signed int vIndex = 0;
+    struct timeval start, end;
+
+    memset(&remaddr, 0, sizeof(remaddr));
+    remaddr.sin_family = AF_INET;
+    remaddr.sin_addr.s_addr = inet_addr(psr->pre->ip);
+    remaddr.sin_port = htons(psr->pre->port);
+
+    /*
+     * SEND */
+    gettimeofday(&start, NULL);
+    if (sendto(psr->socket, psr->request, strlen(psr->request), 0, (struct sockaddr *) &remaddr, addrlen) < 0) {
+        gettimeofday(&end, NULL);
+        skn_logger(SD_WARNING, "ServiceRequest: SendTo(%1.6f) Timed out; Failure code=%d, etext=%s", skn_duration_in_milliseconds(&start,&end), errno, strerror(errno));
+        return EXIT_FAILURE;
+    }
+    skn_logger(SD_NOTICE, "ServiceRequest sent to %s:%s:%d", psr->pre->name, psr->pre->ip, psr->pre->port);
+
+    /*
+     * RECEIVE */
+    vIndex = recvfrom(psr->socket, psr->response, (SZ_INFO_BUFF - 1), 0, (struct sockaddr *) &remaddr, &addrlen);
+    if (vIndex == PLATFORM_ERROR) {
+        gettimeofday(&end, NULL);
+        skn_logger(SD_WARNING, "ServiceRequest: recvfrom(%1.6f) Failure code=%d, etext=%s", skn_duration_in_milliseconds(&start,&end), errno, strerror(errno));
+        return EXIT_FAILURE;
+    }
+    psr->response[vIndex] = 0;
+    gettimeofday(&end, NULL);
+
+    skn_logger(SD_INFO, "Response(%1.3fs) received from [%s] %s:%d",
+                    skn_duration_in_milliseconds(&start,&end),
+                    psr->response,
+                    inet_ntoa(remaddr.sin_addr),
+                    ntohs(remaddr.sin_port)
+              );
+
+    if (strcmp(psr->response, "QUIT!") == 0) {
+        skn_logger(SD_NOTICE, "Shutdown Requested!");
+        return EXIT_FAILURE;
+    }
+
+    return (EXIT_SUCCESS);
+}
+
+
 /**
  * service_registry_create()
  *
  * - Collection of Services and their locations
  * - Returns the Registry
  */
-static PServiceRegistry skn_service_registry_create() {
+PServiceRegistry skn_service_registry_create() {
     PServiceRegistry psreg = NULL;
 
     psreg = (PServiceRegistry) malloc(sizeof(ServiceRegistry));
@@ -786,7 +818,7 @@ static PServiceRegistry skn_service_registry_create() {
  * - Create a Service Entry and adds it to the Registry collection
  * - Returns EXIT_FAILURE/SUCCESS
 */
-static int skn_service_registry_entry_create(PServiceRegistry psreg, char *name, char *ip, char *port, int *errors) {
+int skn_service_registry_entry_create(PServiceRegistry psreg, char *name, char *ip, char *port, int *errors) {
     PRegistryEntry prent = NULL;
 
     if ((psreg == NULL) || (name == NULL) || (ip == NULL) || (port == NULL)) {
@@ -872,24 +904,6 @@ PServiceRegistry skn_service_registry_valiadated_registry(const char *response) 
 }
 
 /**
- * service_registry_entry_response_message_log()
- *
- * - Prints each pair of values from a text registry entry
-*/
-void skn_service_registry_entry_response_message_log(const char * response) {
-    char * worker = NULL, *parser = NULL, *base = strdup(response);
-    parser = base;
-    skn_logger(SD_NOTICE, "Response Message:");
-    while (( ((worker = strsep(&parser, "|")) != NULL) ||
-          ((worker = strsep(&parser, "%")) != NULL) ||
-          ((worker = strsep(&parser, ";")) != NULL)) &&
-          (strlen(worker) > 8)) {
-        skn_logger(SD_NOTICE, "[%s]", worker);
-    }
-    free(base);
-}
-
-/**
  * service_registry_find_entry()
  *
  * - Finds an existing entry
@@ -962,7 +976,7 @@ void * skn_service_registry_get_entry_field_ref(PRegistryEntry prent, char *fiel
  * - compute the address of each field on demand, from local vars
  * - Returns the address offset of the registry field requested
 */
-static void * skn_service_registry_entry_create_helper(char *key, char **name, char **ip, char **port) {
+void * skn_service_registry_entry_create_helper(char *key, char **name, char **ip, char **port) {
     int index = 0;
     char * guess = NULL;
     void * result = NULL;
@@ -1000,7 +1014,7 @@ static void * skn_service_registry_entry_create_helper(char *key, char **name, c
  *  the vertical bar char '|' is the line separator, % and ; are also supported
  *
 */
-static int skn_service_registry_response_parse(PServiceRegistry psreg, const char *response, int *errors) {
+int skn_service_registry_response_parse(PServiceRegistry psreg, const char *response, int *errors) {
     int control = 1;
     char *base = NULL, *psep = NULL, *resp = NULL, *line = NULL,
          *keypair = NULL, *element = NULL,
@@ -1056,14 +1070,15 @@ static int skn_service_registry_response_parse(PServiceRegistry psreg, const cha
 }
 
 /**
- * service_registry_get_via_udp_broadcast()
+ * skn_service_registry_new()
  *
  * - Retrieves entries from every service that responds to the broadcast
  *   parses and builds a new Registry of all entries, or unique entries.
  *
  * - Returns Populated Registry
 */
-PServiceRegistry skn_service_registry_get_via_udp_broadcast(int i_socket, char *request) {
+PServiceRegistry skn_service_registry_new(char *request) {
+    int i_socket = EXIT_FAILURE;
     struct sockaddr_in remaddr; /* remote address */
     socklen_t addrlen = sizeof(remaddr); /* length of addresses */
     IPBroadcastArray aB;
@@ -1075,6 +1090,12 @@ PServiceRegistry skn_service_registry_get_via_udp_broadcast(int i_socket, char *
 
     memset(response, 0, sizeof(response));
     memset(recvHostName, 0, sizeof(recvHostName));
+
+    /* Create local socket for sending requests */
+    i_socket = skn_udp_host_create_broadcast_socket(0, 4.0);
+    if (i_socket == EXIT_FAILURE) {
+        return (NULL);
+    }
 
     skn_get_broadcast_ip_array(&aB);
     strncpy(gd_ch_intfName, aB.chDefaultIntfName, SZ_CHAR_BUFF);
@@ -1119,6 +1140,9 @@ PServiceRegistry skn_service_registry_get_via_udp_broadcast(int i_socket, char *
                         ntohs(remaddr.sin_port)
                   );
         skn_service_registry_response_parse(psr, response, NULL);
+    }
+    if (i_socket) {
+        close(i_socket);
     }
 
     return (psr);

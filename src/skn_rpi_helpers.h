@@ -52,7 +52,7 @@ extern int skn_handle_display_command_line(int argc, char **argv);
 
 /* Scrolling Display Info Messages
 */
-extern int generate_rpi_model_info(char *msg);
-extern int generate_cpu_temps_info(char *msg);
+extern int sknGenerateRpiModelInfo(char *msg);
+extern int sknGenerateCpuTempsInfo(char *msg);
 
 #endif // SKN_RPI_HELPERS_H__

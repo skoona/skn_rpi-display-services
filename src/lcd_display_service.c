@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
     char request[SZ_INFO_BUFF];
 
     memset(request, 0, sizeof(request));
-	snprintf(request, sizeof(request), "%02ld Cpus Online.", skn_get_number_of_cpu_cores() );
+	snprintf(request, sizeof(request), "%02ld Cpus Online.", sknGetNumberCpuCores() );
 
     skn_program_name_and_description_set(
     		"lcd_display_service",

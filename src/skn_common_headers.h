@@ -97,7 +97,6 @@
 #define SZ_COMM_BUFF 256
 
 #define ARY_MAX_INTF 8
-#define ARY_MAX_REGISTRY 128
 #define ARY_MAX_DM_LINES 24
 #define SKN_RUN_MODE_RUN  0
 #define SKN_RUN_MODE_STOP 1
@@ -239,44 +238,9 @@ typedef struct _IICLCD {
     int (*setup)(const int, const int);
 } LCDDevice, *PLCDDevice;
 
-
-typedef struct _ipBroadcastArray {
-	char cbName[SZ_CHAR_BUFF];
-	char chDefaultIntfName[SZ_CHAR_BUFF];
-	char ifNameStr[ARY_MAX_INTF][SZ_CHAR_BUFF];
-    char ipAddrStr[ARY_MAX_INTF][SZ_CHAR_BUFF];
-    char maskAddrStr[ARY_MAX_INTF][SZ_CHAR_BUFF];
-    char broadAddrStr[ARY_MAX_INTF][SZ_CHAR_BUFF];
-    int defaultIndex;
-    int count; // index = count - 1
-} IPBroadcastArray, *PIPBroadcastArray;
-
-typedef struct _serviceEntry {
-	char cbName[SZ_CHAR_BUFF];
-	char name[SZ_INFO_BUFF];
-	char ip[SZ_INFO_BUFF];
-	int port;
-} RegistryEntry, *PRegistryEntry;
-
-typedef struct _serviceRegistry {
-	char cbName[SZ_CHAR_BUFF];
-    int count;  // current number of entries
-    int computedMax; // computed container size of .entry
-    PRegistryEntry entry[ARY_MAX_REGISTRY];
-} ServiceRegistry, *PServiceRegistry;
-
-typedef struct _serviceRequest {
-	char cbName[SZ_CHAR_BUFF];
-	PRegistryEntry pre;
-	char request[SZ_INFO_BUFF];
-	char response[SZ_INFO_BUFF];
-	int socket;
-} ServiceRequest, *PServiceRequest;
-
 /*
  * Char bufs for cpu temperature
 */
-#define TZ_ADJUST 4
 typedef struct _temps {
 	char cbName[SZ_CHAR_LABEL];
 	char c[SZ_CHAR_LABEL];

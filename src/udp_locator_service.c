@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
 
     if ((strlen(response) > 16) && (skn_service_registry_valiadate_response_format(response) == EXIT_FAILURE)) {
     	skn_logger(SD_EMERG, "Message format is invalid! cannot proceed.");
-    	skn_service_registry_entry_response_message_log(response);
+    	skn_udp_service_provider_registry_entry_response_logger(response);
     	exit(EXIT_FAILURE);
     }
 
@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
     	exit(EXIT_FAILURE);		
 	}
 
-	exit_code = skn_service_registry_provider(gd_i_socket, response);
+	exit_code = skn_udp_service_provider_registry_responder(gd_i_socket, response);
 		skn_logger(SD_NOTICE, "Application ExitCode=%d", exit_code);
 	
     if (gd_i_socket) close(gd_i_socket);

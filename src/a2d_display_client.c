@@ -229,7 +229,7 @@ int main(int argc, char *argv[])
 
 	/* Get the ServiceRegistry from Provider
 	 * - could return null if error */
-	psr = skn_service_registry_get_via_udp_broadcast(gd_i_socket, registry);
+	psr = skn_service_registry_new(gd_i_socket, registry);
 	if (psr != NULL && skn_service_registry_entry_count(psr) != 0) {
 	    char *service_name = "lcd_display_service";
 
@@ -259,7 +259,7 @@ int main(int argc, char *argv[])
 	    if (request[0] == 0) {
 	        sknGetModuleTemp(request);
 	    }
-	    pnsr = skn_service_request_create(pre, gd_i_socket, request);
+	    pnsr = skn_udp_service_provider_service_request_new(pre, gd_i_socket, request);
 	}
 	if (pnsr != NULL) {
         do {
@@ -268,7 +268,7 @@ int main(int argc, char *argv[])
             /*
              * Do Work */
             sknGetModuleTemp(pnsr->request);
-            vIndex = skn_udp_service_request(pnsr);
+            vIndex = skn_udp_service_provider_send(pnsr);
             if ((vIndex == EXIT_FAILURE) && (gd_i_update == 0)) { // ignore if non-stop is set
                 break;
             }
@@ -278,7 +278,7 @@ int main(int argc, char *argv[])
             /*
              * Do Work */
             sknGetModuleBright(pnsr->request);
-            vIndex = skn_udp_service_request(pnsr);
+            vIndex = skn_udp_service_provider_send(pnsr);
             if ((vIndex == EXIT_FAILURE) && (gd_i_update == 0)) { // ignore if non-stop is set
                 break;
             }

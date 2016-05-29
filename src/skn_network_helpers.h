@@ -13,7 +13,54 @@
 
 #include <sys/utsname.h>
 
-//extern PDisplayLine skn_display_manager_add_line(PDisplayManager pdmx, char * client_request_message);
+typedef struct _ipBroadcastArray {
+    char cbName[SZ_CHAR_BUFF];
+    char chDefaultIntfName[SZ_CHAR_BUFF];
+    char ifNameStr[ARY_MAX_INTF][SZ_CHAR_BUFF];
+    char ipAddrStr[ARY_MAX_INTF][SZ_CHAR_BUFF];
+    char maskAddrStr[ARY_MAX_INTF][SZ_CHAR_BUFF];
+    char broadAddrStr[ARY_MAX_INTF][SZ_CHAR_BUFF];
+    int defaultIndex;
+    int count; // index = count - 1
+} IPBroadcastArray, *PIPBroadcastArray;
+
+#define ARY_MAX_REGISTRY 128
+
+typedef struct _registryEntry {
+    char cbName[SZ_CHAR_BUFF];
+    char name[SZ_INFO_BUFF];
+    char ip[SZ_INFO_BUFF];
+    int port;
+} RegistryEntry, *PRegistryEntry;
+
+typedef struct _serviceRegistry {
+    char cbName[SZ_CHAR_BUFF];
+    int iSocket; /* active socket */
+    int count;   /* current number of entries */
+    int computedMax; /* computed container size of .entry */
+    PRegistryEntry entry[ARY_MAX_REGISTRY];
+} ServiceRegistry, *PServiceRegistry;
+
+typedef struct _UDPServiceProvider *PUDPServiceProvider;
+
+typedef struct _serviceRequest {
+    char cbName[SZ_CHAR_BUFF];
+    PUDPServiceProvider provider;
+    PRegistryEntry pre;
+    char request[SZ_INFO_BUFF];
+    char response[SZ_INFO_BUFF];
+    int socket;
+} ServiceRequest, *PServiceRequest;
+
+struct _UDPServiceProvider {
+    char cbName[SZ_CHAR_BUFF];
+    int iStatus;     /* active=1 inactive != 1 */
+    int broSocket;   /* broadcast socket */
+    int regSocket;   /* regular socket */
+    PServiceRequest  pservice;
+    ServiceRegistry  registry;
+    IPBroadcastArray ipb;
+} UDPServiceProvider;
 
 
 /*
@@ -36,13 +83,25 @@ extern int gd_i_update;
 extern char * gd_pch_service_name;
 extern int gd_i_i2c_address;
 
+
+/*
+ * Service Registry Public Routines
+ */
+extern PServiceRegistry skn_service_registry_new(char *request);
+
+extern int skn_service_registry_entry_count(PServiceRegistry psr);
+extern int skn_service_registry_list_entries(PServiceRegistry psr);
+extern PRegistryEntry skn_service_registry_find_entry(PServiceRegistry psreg, char *serviceName);
+extern void skn_service_registry_destroy(PServiceRegistry psreg);
+
+
 /*
  * General Utilities
 */
-extern long skn_get_number_of_cpu_cores();
-extern int skn_generate_loadavg_info(char *msg);
-extern int skn_generate_uname_info(char *msg);
-extern int skn_generate_datetime_info(char *msg);
+extern long sknGetNumberCpuCores();
+extern int sknGenerateLoadavgInfo(char *msg);
+extern int sknGenerateUnameInfo(char *msg);
+extern int sknGenerateDatetimeInfo(char *msg);
 extern double skn_duration_in_milliseconds(struct timeval *pstart, struct timeval *pend);
 extern void skn_program_name_and_description_set(const char *name, const char *desc);
 extern int skn_logger(const char *level, const char *format, ...);
@@ -57,27 +116,22 @@ extern uid_t skn_get_userids();
 */
 extern int skn_udp_host_create_broadcast_socket(int port, double rcvTimeout);
 extern int skn_udp_host_create_regular_socket(int port, double rcvTimeout);
-extern PServiceRequest skn_service_request_create(PRegistryEntry pre, int host_socket, char *request);
-extern int skn_udp_service_request(PServiceRequest psr);
-extern int skn_display_manager_message_consumer_startup(PDisplayManager pdm);
+extern PServiceRequest skn_udp_service_provider_service_request_new(PRegistryEntry pre, int host_socket, char *request);
+
+extern int  skn_display_manager_message_consumer_startup(PDisplayManager pdm);
 extern void skn_display_manager_message_consumer_shutdown(PDisplayManager pdm);
 
-extern int skn_get_default_interface_name(char *pchDefaultInterfaceName);
-extern int skn_get_broadcast_ip_array(PIPBroadcastArray paB);
-extern void skn_service_registry_entry_response_message_log(const char * response);
+extern int  skn_get_default_interface_name(char *pchDefaultInterfaceName);
+extern int  skn_get_broadcast_ip_array(PIPBroadcastArray paB);
 extern void skn_get_default_interface_name_and_ipv4_address(char * intf, char * ipv4);
 
 /*
- * Service Registry Public Routines
+ * Service Provider
  */
-extern PServiceRegistry skn_service_registry_valiadated_registry(const char *response);
-extern int skn_service_registry_valiadate_response_format(const char *response);
-extern int skn_service_registry_provider(int i_socket, char *response);
-extern PServiceRegistry skn_service_registry_get_via_udp_broadcast(int i_socket, char *request);
-extern int skn_service_registry_entry_count(PServiceRegistry psr);
-extern int skn_service_registry_list_entries(PServiceRegistry psr);
-extern PRegistryEntry skn_service_registry_find_entry(PServiceRegistry psreg, char *serviceName);
-extern void * skn_service_registry_get_entry_field_ref(PRegistryEntry prent, char *field);
-extern void skn_service_registry_destroy(PServiceRegistry psreg);
+extern int  skn_udp_service_provider_registry_responder(int i_socket, char *response);
+extern void skn_udp_service_provider_registry_entry_response_logger(const char * response);
+extern int  skn_udp_service_provider_send(PServiceRequest psr);
+extern int  skn_service_registry_valiadate_response_format(const char *response);
+
 
 #endif // SKN_NETWORK_HELPERS_H__

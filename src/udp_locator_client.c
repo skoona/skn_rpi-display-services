@@ -37,16 +37,9 @@ int main(int argc, char *argv[])
 	/* Initialize Signal handler */
 	skn_signals_init();
 
-	/* Create local socket for sending requests */
-	gd_i_socket = skn_udp_host_create_broadcast_socket(0, 8.0);
-	if (gd_i_socket == EXIT_FAILURE) {
-        skn_signals_cleanup(gi_exit_flag);
-    	exit(EXIT_FAILURE);		
-	}
-
 	/* Get the ServiceRegistry from Provider
 	 * - could return null if error */
-	PServiceRegistry psr = skn_service_registry_get_via_udp_broadcast(gd_i_socket, request);
+	PServiceRegistry psr = skn_service_registry_new(request);
 	if (psr != NULL && skn_service_registry_entry_count(psr) != 0) {
         char *service_name = "lcd_display_service";
 

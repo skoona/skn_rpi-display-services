@@ -17,7 +17,7 @@
  * Ubuntu/Debian: /sys/class/thermal/thermal_zone0/temp
  *
 */
-long getCpuTemps(PCpuTemps temps) {
+long sknGetCpuTemps(PCpuTemps temps) {
     long lRaw = 0;
     int rc = 0;
 
@@ -55,12 +55,12 @@ long getCpuTemps(PCpuTemps temps) {
  * RPi cannot handle I2C and GetCpuTemp() without locking the process
  * in an uniterrupted sleep; forcing a power cycle.
 */
-int generate_cpu_temps_info(char *msg) {
+int sknGenerateCpuTempsInfo(char *msg) {
     static CpuTemps cpuTemp;
     int mLen = 0;
 
     memset(&cpuTemp, 0, sizeof(CpuTemps));
-    if ( getCpuTemps(&cpuTemp) != -1 ) {
+    if ( sknGetCpuTemps(&cpuTemp) != -1 ) {
         mLen = snprintf(msg, SZ_INFO_BUFF-1, "CPU: %s %s", cpuTemp.c, cpuTemp.f);
     } else {
         mLen = snprintf(msg, SZ_INFO_BUFF-1, "Temp: N/A");
@@ -108,18 +108,11 @@ int main(int argc, char *argv[])
 	/* Initialize Signal handler */
 	skn_signals_init();
 
-	/* Create local socket for sending requests */
-	gd_i_socket = skn_udp_host_create_broadcast_socket(0, 4.0);
-	if (gd_i_socket == EXIT_FAILURE) {
-        skn_signals_cleanup(gi_exit_flag);
-    	    exit(EXIT_FAILURE);
-	}
-
     skn_logger(SD_NOTICE, "Application Active...");
 
 	/* Get the ServiceRegistry from Provider
 	 * - could return null if error */
-	psr = skn_service_registry_get_via_udp_broadcast(gd_i_socket, registry);
+	psr = skn_service_registry_new(registry);
 	if (psr != NULL && skn_service_registry_entry_count(psr) != 0) {
 	    char *service_name = "lcd_display_service";
 
@@ -135,7 +128,6 @@ int main(int argc, char *argv[])
 
         /*
          * Switch to non-broadcast type socket */
-        close(gd_i_socket); gd_i_socket = -1;
         gd_i_socket = skn_udp_host_create_regular_socket(0, 8.0);
         if (gd_i_socket == EXIT_FAILURE) {
             if (psr != NULL) skn_service_registry_destroy(psr);
@@ -148,13 +140,13 @@ int main(int argc, char *argv[])
 	// we have the location
 	if (pre != NULL) {
 	    if (request[0] == 0) {
-	        snprintf(request, sizeof(request), "%02ld Cores Available.",  skn_get_number_of_cpu_cores() );
+	        snprintf(request, sizeof(request), "%02ld Cores Available.",  sknGetNumberCpuCores() );
 	    }
-	    pnsr = skn_service_request_create(pre, gd_i_socket, request);
+	    pnsr = skn_udp_service_provider_service_request_new(pre, gd_i_socket, request);
 	}
 	if (pnsr != NULL) {
         do {
-            vIndex = skn_udp_service_request(pnsr);
+            vIndex = skn_udp_service_provider_send(pnsr);
             if ((vIndex == EXIT_FAILURE) && (gd_i_update == 0)) { // ignore if non-stop is set
                 break;
             }
@@ -162,16 +154,16 @@ int main(int argc, char *argv[])
 
             switch (host_update_cycle++) {  // cycle through other info
                 case 0:
-                    skn_generate_loadavg_info(pnsr->request);
+                    sknGenerateLoadavgInfo(pnsr->request);
                     break;
                 case 1:
-                    skn_generate_datetime_info(pnsr->request);
+                    sknGenerateDatetimeInfo(pnsr->request);
                     break;
                 case 2:
-                    skn_generate_uname_info(pnsr->request);
+                    sknGenerateUnameInfo(pnsr->request);
                 break;
                 case 3:
-                    generate_cpu_temps_info(pnsr->request);
+                    sknGenerateCpuTempsInfo(pnsr->request);
                     host_update_cycle = 0;
                 break;
             }
