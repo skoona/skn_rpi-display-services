@@ -95,6 +95,7 @@
 #define SZ_CHAR_BUFF 128
 #define SZ_LINE_BUFF 512
 #define SZ_COMM_BUFF 256
+#define SZ_REGISTRY_BUFF 1024
 
 #define ARY_MAX_INTF 8
 #define ARY_MAX_DM_LINES 24

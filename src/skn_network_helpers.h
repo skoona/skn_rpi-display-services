@@ -45,23 +45,30 @@ typedef struct _UDPServiceProvider *PUDPServiceProvider;
 
 typedef struct _serviceRequest {
     char cbName[SZ_CHAR_BUFF];
-    PUDPServiceProvider provider;
-    PRegistryEntry pre;
-    char request[SZ_INFO_BUFF];
-    char response[SZ_INFO_BUFF];
-    int socket;
+    PUDPServiceProvider provider;     /* Main Service Provider Object */
+    PRegistryEntry pre;               /* Targeted Registry Entry */
+    int iSocket;                      /* regular socket */
+    struct sockaddr_in remote_addr;   /* remote address */
+    socklen_t addrlen;                /* length of addresses -- sizeof(remote_addr) */
+    char remote_host[SZ_INFO_BUFF];   /* Last Remote Host ip or node name */
+    char error_message[SZ_INFO_BUFF];
+    int  error_flag;                  /* != 0 is error */
+    char request[SZ_INFO_BUFF];       /* message to send */
+    int  req_size;
+    char response[SZ_INFO_BUFF];      /* message recieved */
+    int  rsp_size;
 } ServiceRequest, *PServiceRequest;
 
 struct _UDPServiceProvider {
     char cbName[SZ_CHAR_BUFF];
-    int iStatus;     /* active=1 inactive != 1 */
-    int broSocket;   /* broadcast socket */
-    int regSocket;   /* regular socket */
-    PServiceRequest  pservice;
+    char chRegistry[SZ_REGISTRY_BUFF];  /* Responder locator message */
+    int iType;     /* 0=inactive, 1=internal, 2=external, 3=threaded-internal, 4-threaded-external */
+    pthread_t sp_thread;   /* related thread - likely responder thread */
+    int *exit_flag;  /* pointer to exit flag, != 0 will exit */
+    int iSocket;   /* broadcast socket */
     ServiceRegistry  registry;
     IPBroadcastArray ipb;
 } UDPServiceProvider;
-
 
 /*
  * Globals defined in skn_network_helpers.c

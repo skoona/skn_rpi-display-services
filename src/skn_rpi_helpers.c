@@ -724,7 +724,7 @@ static void * skn_display_manager_message_consumer_thread(void * ptr) {
         snprintf(strPrefix, sizeof(strPrefix) -1 , "%s|%s", pch, request);
         skn_display_manager_add_line(pdm, strPrefix);
 
-        if (sendto(pdm->i_socket, "200 Accepted", strlen("200 Accepted"), 0, (struct sockaddr *) &remaddr, addrlen) < 0) {
+        if (sendto(pdm->i_socket, "202 Accepted", strlen("202 Accepted"), 0, (struct sockaddr *) &remaddr, addrlen) < 0) {
             skn_logger(SD_ERR, "SendTo() Failure code=%d, etext=%s", errno, strerror(errno));
             exit_code = errno;
             break;
