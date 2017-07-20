@@ -5,8 +5,6 @@
 #ifndef SKN_RPI_HELPERS_H__
 #define SKN_RPI_HELPERS_H__
 
-#include "skn_common_headers.h"
-
 #include <sys/utsname.h>
 
 #include <wiringPi.h>
@@ -15,12 +13,11 @@
 #include <mcp23017.h>
 #include <wiringSerial.h>   // http://wiringpi.com/reference/serial-library/
 #include <lcd.h>
+#include "skn_commons.h"
 
 
 /*
  *  Global Defines */
-extern int gd_i_rows;
-extern int gd_i_cols;
 extern int gd_i_i2c_address;
 extern char *gd_pch_serial_port;
 extern char *gd_pch_device_name;
@@ -32,12 +29,6 @@ extern PLCDDevice skn_device_manager_SerialPort(PDisplayManager pdm);
 extern PLCDDevice skn_device_manager_MCP23008(PDisplayManager pdm);
 extern PLCDDevice skn_device_manager_MCP23017(PDisplayManager pdm);
 extern PLCDDevice skn_device_manager_PCF8574(PDisplayManager pdm);
-extern PDisplayManager skn_get_display_manager_ref();
-extern int skn_display_manager_do_work(char * client_request_message);
-extern PDisplayLine skn_display_manager_add_line(PDisplayManager pdmx, char * client_request_message);
-extern int skn_scroller_scroll_lines(PDisplayLine pdl, int lcd_handle, int line);
-extern char * skn_scroller_pad_right(char *buffer);
-extern char * skn_scroller_wrap_blanks(char *buffer);
 
 
 /* WiringPi LCD Interfaces
@@ -48,11 +39,11 @@ extern int skn_device_manager_LCD_shutdown(PDisplayManager pdm);
 
 /* General Utilities
 */
-extern int skn_handle_display_command_line(int argc, char **argv);
+extern int skn_display_service_command_line_parse(int argc, char **argv);
 
 /* Scrolling Display Info Messages
 */
-extern int sknGenerateRpiModelInfo(char *msg);
-extern int sknGenerateCpuTempsInfo(char *msg);
+extern int skn_util_generate_rpi_model_info(char *msg);
+extern int skn_util_generate_cpu_temp_info(char *msg);
 
 #endif // SKN_RPI_HELPERS_H__

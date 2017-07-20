@@ -75,14 +75,14 @@ int main(int argc, char *argv[])
     memset(request, 0, sizeof(request));
 	strncpy(registry, "DisplayClient: Raspberry Pi where are you?", sizeof(registry) - 1);
 
-    skn_program_name_and_description_set(
+    skn_util_set_program_name_and_description(
     		"para_display_client",
 			"Send Epiphany III ( Zynq ) Temperature to Display Service."
 			);
 
 	/* Parse any command line options,
 	 * like request string override */
-    if (skn_handle_locator_command_line(argc, argv) == EXIT_FAILURE) {
+    if (skn_locator_client_command_line_parse(argc, argv) == EXIT_FAILURE) {
         exit(EXIT_FAILURE);
     }
     if (gd_pch_message != NULL) {
@@ -93,12 +93,12 @@ int main(int argc, char *argv[])
     	    strcpy(request, argv[1]);
     }
 
-	skn_logger(SD_DEBUG, "Request  Message [%s]", request);
-	skn_logger(SD_DEBUG, "Registry Message [%s]", registry);
+	skn_util_logger(SD_DEBUG, "Request  Message [%s]", request);
+	skn_util_logger(SD_DEBUG, "Registry Message [%s]", registry);
 
     // get some platform constants
     if(sknGetConstants(&nOffset, &fScale)) {
-        skn_logger(SD_ERR, "GetConstants() Failed! Shutting Down!");
+        skn_util_logger(SD_ERR, "GetConstants() Failed! Shutting Down!");
         exit(EXIT_FAILURE);
     }
 
@@ -112,7 +112,7 @@ int main(int argc, char *argv[])
     	exit(EXIT_FAILURE);		
 	}
 
-    skn_logger(SD_NOTICE, "Application Active...");
+    skn_util_logger(SD_NOTICE, "Application Active...");
 
 	/* Get the ServiceRegistry from Provider
 	 * - could return null if error */
@@ -127,7 +127,7 @@ int main(int argc, char *argv[])
 		/* find a single entry */
 		pre = skn_service_registry_find_entry(psr, service_name);
 		if (pre != NULL) {
-            skn_logger(" ", "\nLCD DisplayService (%s) is located at IPv4: %s:%d\n", pre->name, pre->ip, pre->port);
+            skn_util_logger(" ", "\nLCD DisplayService (%s) is located at IPv4: %s:%d\n", pre->name, pre->ip, pre->port);
 		}
 
         /*
@@ -144,7 +144,7 @@ int main(int argc, char *argv[])
 	// we have the location
 	if (pre != NULL) {
 	    if (request[0] == 0) {
-	        snprintf(request, sizeof(request), "%02ld Cores Available.",  sknGetNumberCpuCores() );
+	        snprintf(request, sizeof(request), "%02ld Cores Available.",  skn_util_generate_number_cpu_cores() );
 	    }
 	    pnsr = skn_udp_service_provider_service_request_new(pre, gd_i_socket, request);
 	}
@@ -166,7 +166,7 @@ int main(int argc, char *argv[])
         free(pnsr);  // Done
 
     } else {
-        skn_logger(SD_WARNING, "Unable to create Network Request.");
+        skn_util_logger(SD_WARNING, "Unable to create Network Request.");
     }
 
 	/* Cleanup and shutdown

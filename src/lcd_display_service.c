@@ -16,16 +16,16 @@ int main(int argc, char *argv[]) {
     char request[SZ_INFO_BUFF];
 
     memset(request, 0, sizeof(request));
-	snprintf(request, sizeof(request), "%02ld Cpus Online.", sknGetNumberCpuCores() );
+	snprintf(request, sizeof(request), "%02ld Cpus Online.", skn_util_generate_number_cpu_cores() );
 
-    skn_program_name_and_description_set(
+    skn_util_set_program_name_and_description(
     		"lcd_display_service",
 			"LCD 4x20 Display Provider."
 			);
 
 	/* Parse any command line options,
 	 * - check request string override */
-    if (skn_handle_display_command_line(argc, argv) == EXIT_FAILURE) {
+    if (skn_display_service_command_line_parse(argc, argv) == EXIT_FAILURE) {
     	exit(EXIT_FAILURE);
     }
     if (gd_pch_message != NULL) {
@@ -35,14 +35,14 @@ int main(int argc, char *argv[]) {
     } else if (argc == 2) {
     	strcpy(request, argv[1]);
     }
-    skn_get_userids();
-    skn_logger(SD_NOTICE, "%s-%s is in startup mode as user(%s)", gd_ch_program_name, PACKAGE_VERSION, gd_pch_effective_userid);
+    skn_util_get_userids();
+    skn_util_logger(SD_NOTICE, "%s-%s is in startup mode as user(%s)", gd_ch_program_name, PACKAGE_VERSION, gd_pch_effective_userid);
 
-	skn_logger(SD_DEBUG, "Welcome Message [%s]", request);
+	skn_util_logger(SD_DEBUG, "Welcome Message [%s]", request);
 
 	/*
 	 * Set the global interface name and ip address parms */
-    skn_get_default_interface_name_and_ipv4_address(gd_ch_intfName, gd_ch_ipAddress);
+    skn_util_get_default_interface_name_and_ipv4_address(gd_ch_intfName, gd_ch_ipAddress);
 
 	/*
 	* Setup signal handling before we start
@@ -67,14 +67,14 @@ int main(int argc, char *argv[]) {
 	* - collect user threads
 	* - close open resources
 	*/
-	skn_logger(SD_NOTICE, "Application beginning orderly shutdown...");
+	skn_util_logger(SD_NOTICE, "Application beginning orderly shutdown...");
 
 	/*
 	* Cleanup signal handler before exit
 	*/
 	sknSignalManagerShutdown(pssm);
 
-    skn_logger(SD_NOTICE, "\n============================\nShutdown Complete\n============================\n");
+    skn_util_logger(SD_NOTICE, "\n============================\nShutdown Complete\n============================\n");
 
 	exit(index);
 }

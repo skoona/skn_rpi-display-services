@@ -182,14 +182,14 @@ int main(int argc, char *argv[])
     memset(request, 0, sizeof(request));
 	strncpy(registry, "DisplayClient: Raspberry Pi where are you?", sizeof(registry) - 1);
 
-    skn_program_name_and_description_set(
+    skn_util_set_program_name_and_description(
     		"a2d_display_client",
 			"Send Measured Temperature and Light(lux) to Display Service."
     );
 
 	/* Parse any command line options,
 	 * like request string override */
-    if (skn_handle_locator_command_line(argc, argv) == EXIT_FAILURE) {
+    if (skn_locator_client_command_line_parse(argc, argv) == EXIT_FAILURE) {
         exit(EXIT_FAILURE);
     }
     if (gd_pch_message != NULL) {
@@ -200,8 +200,8 @@ int main(int argc, char *argv[])
     	    strcpy(request, argv[1]);
     }
 
-	skn_logger(SD_DEBUG, "Request  Message [%s]", request);
-	skn_logger(SD_DEBUG, "Registry Message [%s]", registry);
+	skn_util_logger(SD_DEBUG, "Request  Message [%s]", request);
+	skn_util_logger(SD_DEBUG, "Registry Message [%s]", registry);
 
 	/* Initialize Signal handler */
 	skn_signals_init();
@@ -225,7 +225,7 @@ int main(int argc, char *argv[])
     	exit(EXIT_FAILURE);		
 	}
 
-    skn_logger(SD_NOTICE, "Application Active...");
+    skn_util_logger(SD_NOTICE, "Application Active...");
 
 	/* Get the ServiceRegistry from Provider
 	 * - could return null if error */
@@ -240,7 +240,7 @@ int main(int argc, char *argv[])
 		/* find a single entry */
 		pre = skn_service_registry_find_entry(psr, service_name);
 		if (pre != NULL) {
-            skn_logger(" ", "\nLCD DisplayService (%s) is located at IPv4: %s:%d\n", pre->name, pre->ip, pre->port);
+            skn_util_logger(" ", "\nLCD DisplayService (%s) is located at IPv4: %s:%d\n", pre->name, pre->ip, pre->port);
 		}
 
         /*
@@ -290,7 +290,7 @@ int main(int argc, char *argv[])
         free(pnsr);  // Done
 
     } else {
-        skn_logger(SD_WARNING, "Unable to create Network Request.");
+        skn_util_logger(SD_WARNING, "Unable to create Network Request.");
     }
 
 	/* Cleanup and shutdown

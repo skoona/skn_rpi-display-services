@@ -9,8 +9,8 @@
 #ifndef SKN_SIGNAL_MANAGER_H__
 #define SKN_SIGNAL_MANAGER_H__
 
-#include "skn_common_headers.h"
 #include <sys/utsname.h>
+#include "skn_commons.h"
 
 typedef struct _sigManager {
     pthread_t sig_thread;

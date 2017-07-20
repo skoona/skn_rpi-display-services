@@ -24,12 +24,12 @@ int main(int argc, char *argv[])
 
     memset(response, 0, sizeof(response));
 
-    skn_program_name_and_description_set(
+    skn_util_set_program_name_and_description(
     		"udp_locator_service",
 			"Provides IPv4 Address/Port Service info."
 			);
 
-    if (skn_handle_locator_command_line(argc, argv) == EXIT_FAILURE) {
+    if (skn_locator_client_command_line_parse(argc, argv) == EXIT_FAILURE) {
     	exit(EXIT_FAILURE);
     }
     if (gd_pch_message != NULL) {
@@ -37,11 +37,11 @@ int main(int argc, char *argv[])
 	    free(gd_pch_message); // from strdup()
 	    gd_pch_message = response;
     }
-    skn_get_userids();
-    skn_logger(SD_NOTICE, "%s-%s is in startup mode as user(%s)", gd_ch_program_name, PACKAGE_VERSION, gd_pch_effective_userid);
+    skn_util_get_userids();
+    skn_util_logger(SD_NOTICE, "%s-%s is in startup mode as user(%s)", gd_ch_program_name, PACKAGE_VERSION, gd_pch_effective_userid);
 
     if ((strlen(response) > 16) && (skn_service_registry_valiadate_response_format(response) == EXIT_FAILURE)) {
-    	skn_logger(SD_EMERG, "Message format is invalid! cannot proceed.");
+    	skn_util_logger(SD_EMERG, "Message format is invalid! cannot proceed.");
     	skn_udp_service_provider_registry_entry_response_logger(response);
     	exit(EXIT_FAILURE);
     }
@@ -51,18 +51,18 @@ int main(int argc, char *argv[])
 
 	gd_i_socket = skn_udp_host_create_broadcast_socket(SKN_FIND_RPI_PORT, 20.0);
 	if (gd_i_socket == EXIT_FAILURE) {
-		skn_logger(SD_EMERG, "Application Host Init Failed! ExitCode=%d", exit_code);
+		skn_util_logger(SD_EMERG, "Application Host Init Failed! ExitCode=%d", exit_code);
         skn_signals_cleanup(gi_exit_flag);
     	exit(EXIT_FAILURE);		
 	}
 
 	exit_code = skn_udp_service_provider_registry_responder(gd_i_socket, response);
-		skn_logger(SD_NOTICE, "Application ExitCode=%d", exit_code);
+		skn_util_logger(SD_NOTICE, "Application ExitCode=%d", exit_code);
 	
     if (gd_i_socket) close(gd_i_socket);
     skn_signals_cleanup(gi_exit_flag);
 
-    skn_logger(SD_NOTICE, "\n============================\nShutdown Complete\n============================\n");
+    skn_util_logger(SD_NOTICE, "\n============================\nShutdown Complete\n============================\n");
 
     exit(exit_code);
 }

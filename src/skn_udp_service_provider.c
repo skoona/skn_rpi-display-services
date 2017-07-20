@@ -91,3 +91,24 @@
 
 #include "skn_udp_service_provider.h"
 
+
+
+/**
+ * skn_udp_service_request_new()
+ * - Establishes UDP Communications with serviceName using the service lookup registry protocol
+ * - Optionally returns a high-level provider object is passed the address of a pointer to save to
+ *
+ * @param provider
+ * @param serviceName
+ * @return PServiceRequest service request object
+ */
+PServiceRequest skn_udp_service_request_new(PUDPServiceProvider *provider, char * serviceName) {
+    PServiceRequest psr = NULL;
+    PUDPServiceProvider pusp = NULL;
+
+    // Do Registry Lookup
+    // Initialize Request block
+
+
+    return (psr);
+}

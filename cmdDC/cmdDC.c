@@ -126,17 +126,17 @@ static gboolean cb_udp_comm_response_handler(GSocket *gSock, GIOCondition condit
 static gboolean cb_udp_broadcast_response_handler(GSocket *gSock, GIOCondition condition, PControlData pctrl);
 static gboolean cb_udp_registry_select_handler(PControlData pctrl);
 
-PIPBroadcastArray skn_get_default_interface_name_and_ipv4_address(char * intf, char * ipv4);
-gint skn_get_broadcast_ip_array(PIPBroadcastArray paB);
-gint skn_get_default_interface_name(char *pchDefaultInterfaceName);
+PIPBroadcastArray skn_util_get_default_interface_name_and_ipv4_address(char * intf, char * ipv4);
+gint skn_util_get_broadcast_ip_array(PIPBroadcastArray paB);
+gint skn_util_get_default_interface_name(char *pchDefaultInterfaceName);
 gboolean skn_udp_network_broadcast_all_interfaces(GSocket *gSock, PIPBroadcastArray pab);
-gchar * skn_strip(gchar * alpha);
+gchar * skn_util_strip(gchar * alpha);
 
 /**
  * Remove Trailing and Leading Blanks
  * - caution: pointers from argv are readonly and segfault on 'alpha[end] = 0'
  */
-gchar * skn_strip(gchar * alpha) {
+gchar * skn_util_strip(gchar * alpha) {
     if (alpha == NULL || strlen(alpha) < 1)
         return(alpha);
 
@@ -162,10 +162,10 @@ gchar * skn_strip(gchar * alpha) {
     return(alpha);
 }
 
-PIPBroadcastArray skn_get_default_interface_name_and_ipv4_address(gchar * intf, gchar * ipv4) {
+PIPBroadcastArray skn_util_get_default_interface_name_and_ipv4_address(gchar * intf, gchar * ipv4) {
     PIPBroadcastArray paB = g_new0(IPBroadcastArray, 1);
 
-    if (skn_get_broadcast_ip_array(paB) != PLATFORM_ERROR) {
+    if (skn_util_get_broadcast_ip_array(paB) != PLATFORM_ERROR) {
         g_utf8_strncpy(intf, paB->chDefaultIntfName, SZ_CHAR_BUFF);
         g_utf8_strncpy(ipv4, paB->ipAddrStr[paB->defaultIndex], SZ_CHAR_BUFF);
     } else {
@@ -182,7 +182,7 @@ PIPBroadcastArray skn_get_default_interface_name_and_ipv4_address(gchar * intf, 
  * - Return -1 on error, or count of interfaces
  * - contains this ipAddress in paB->ipAddrStr[paB->defaultIndex]
  */
-gint skn_get_broadcast_ip_array(PIPBroadcastArray paB) {
+gint skn_util_get_broadcast_ip_array(PIPBroadcastArray paB) {
     struct ifaddrs * ifap;
     struct ifaddrs * p;
     gint rc = 0;
@@ -192,7 +192,7 @@ gint skn_get_broadcast_ip_array(PIPBroadcastArray paB) {
     paB->defaultIndex = 0;
     strcpy(paB->cbName, "IPBroadcastArray");
 
-    rc = skn_get_default_interface_name(paB->chDefaultIntfName);
+    rc = skn_util_get_default_interface_name(paB->chDefaultIntfName);
     if (rc == EXIT_FAILURE) { // Alternate method for Mac: 'route -n -A inet'
         g_warning("[REGISTRY] No Default Network Interfaces Found!.");
         paB->chDefaultIntfName[0] = 0;
@@ -243,7 +243,7 @@ gint skn_get_broadcast_ip_array(PIPBroadcastArray paB) {
  *       0         0         0         0         0         0      1500         0
  *
 */
-gint skn_get_default_interface_name(char *pchDefaultInterfaceName) {
+gint skn_util_get_default_interface_name(char *pchDefaultInterfaceName) {
     FILE *f_route;
     char line[SZ_INFO_BUFF], *dRoute = NULL, *iName = NULL;
 
@@ -271,8 +271,8 @@ gint skn_get_default_interface_name(char *pchDefaultInterfaceName) {
         while (fgets(line, SZ_INFO_BUFF - 1, f_route)) {
             dRoute = strtok(line, ":");
             iName = strtok(NULL, "\n");
-            if (strcmp(skn_strip(dRoute), "interface") == 0) {
-                strncpy(pchDefaultInterfaceName, skn_strip(iName), (SZ_INFO_BUFF - 1));
+            if (strcmp(skn_util_strip(dRoute), "interface") == 0) {
+                strncpy(pchDefaultInterfaceName, skn_util_strip(iName), (SZ_INFO_BUFF - 1));
                 break;
             }
         }
@@ -806,7 +806,7 @@ int main(int argc, char **argv) {
     }
 
     cData.paB = NULL;
-    cData.paB = skn_get_default_interface_name_and_ipv4_address((char *)&cData.ch_intfName, (char *)&cData.ch_this_ip);
+    cData.paB = skn_util_get_default_interface_name_and_ipv4_address((char *)&cData.ch_intfName, (char *)&cData.ch_this_ip);
     if (NULL == cData.paB) {
         g_error("skn_skn_get_default_interface_name_and_ipv4_address() => Unable to discover network interface or non-available.");
         exit(EXIT_FAILURE);

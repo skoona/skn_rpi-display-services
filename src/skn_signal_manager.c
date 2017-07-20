@@ -21,7 +21,7 @@ static void skn_signals_exit_handler(int sig);
  */
 static void skn_signals_exit_handler(int sig) {
     gi_exit_flag = sig;
-    skn_logger(SD_NOTICE, "Program Exiting, from signal=%d:%s\n", sig, strsignal(sig));
+    skn_util_logger(SD_NOTICE, "Program Exiting, from signal=%d:%s\n", sig, strsignal(sig));
 }
 
 void skn_signals_init() {
@@ -104,7 +104,7 @@ int skn_signal_manager_process_signals(siginfo_t *signal_info, int exit_flag_val
     switch (sig) {
         case SIGHUP: /* often used to reload configuration */
 //      rval = 33; /* flag a reload of the ip address info */
-            skn_logger(SD_NOTICE, "%s received: Requesting IP Address Info reload => [pid=%d, uid=%d]", strsignal(sig), signal_info->si_pid,
+            skn_util_logger(SD_NOTICE, "%s received: Requesting IP Address Info reload => [pid=%d, uid=%d]", strsignal(sig), signal_info->si_pid,
                        signal_info->si_uid);
             break;
         case SIGUSR1: /* Any user function */
@@ -139,7 +139,7 @@ int skn_signal_manager_process_signals(siginfo_t *signal_info, int exit_flag_val
                     pch = "<unknown>";
                     break;
             }
-            skn_logger(SD_NOTICE, "%s received from => %s ?[pid=%d, uid=%d] signaling application shutdown.", strsignal(sig), pch, signal_info->si_pid, signal_info->si_uid);
+            skn_util_logger(SD_NOTICE, "%s received from => %s ?[pid=%d, uid=%d] signaling application shutdown.", strsignal(sig), pch, signal_info->si_pid, signal_info->si_uid);
             rval = sig;
             break;
         case SIGCHLD: /* some child ended */
@@ -166,7 +166,7 @@ int skn_signal_manager_process_signals(siginfo_t *signal_info, int exit_flag_val
                     pch = "<unknown>";
                     break;
             }
-            skn_logger(SD_NOTICE, "%s received for pid => %d, w/rc => %d for this reason => %s {Ignored}", strsignal(sig), signal_info->si_pid,
+            skn_util_logger(SD_NOTICE, "%s received for pid => %d, w/rc => %d for this reason => %s {Ignored}", strsignal(sig), signal_info->si_pid,
                        signal_info->si_status, pch);
             break;
         case SIGQUIT: /* often used to signal an orderly shutdown */
@@ -208,7 +208,7 @@ int skn_signal_manager_process_signals(siginfo_t *signal_info, int exit_flag_val
                     pch = "<unknown>";
                     break;
             }
-            skn_logger(SD_NOTICE, "%s received from => %s ?[pid=%d, uid=%d]{Exiting}", strsignal(sig), pch, signal_info->si_pid, signal_info->si_uid);
+            skn_util_logger(SD_NOTICE, "%s received from => %s ?[pid=%d, uid=%d]{Exiting}", strsignal(sig), pch, signal_info->si_pid, signal_info->si_uid);
             rval = sig;
             break;
     } /* end switch */
@@ -238,7 +238,7 @@ static void *skn_signal_manager_handler_thread(void *ptr) {
 
     *threadC = 1;
     sigfillset(&signal_set);
-    skn_logger(SD_NOTICE, "SignalManager: Startup Successful...");
+    skn_util_logger(SD_NOTICE, "SignalManager: Startup Successful...");
 
     while (*pssm->gi_exit_flag == SKN_RUN_MODE_RUN) {
         /* wait for any and all signals */
@@ -251,7 +251,7 @@ static void *skn_signal_manager_handler_thread(void *ptr) {
             if (errno == EAGAIN) {
                 continue;
             }
-            skn_logger(SD_WARNING, "SignalManager: sigwaitinfo() returned an error => {%s}", strerror(errno));
+            skn_util_logger(SD_WARNING, "SignalManager: sigwaitinfo() returned an error => {%s}", strerror(errno));
             *pssm->gi_exit_flag = SKN_RUN_MODE_STOP;
             break;
         }
@@ -263,7 +263,7 @@ static void *skn_signal_manager_handler_thread(void *ptr) {
 
     pthread_sigmask(SIG_UNBLOCK, &signal_set, NULL);
 
-    skn_logger(SD_NOTICE, "SignalManager: Thread Shutdown Complete.");
+    skn_util_logger(SD_NOTICE, "SignalManager: Thread Shutdown Complete.");
 
     *threadC = 0;
 
@@ -283,19 +283,19 @@ int skn_signal_manager_shutdown(PSknSignalManager pssm) {
     if (*pssm->gi_exit_flag <= SKN_RUN_MODE_STOP) {
         *pssm->gi_exit_flag = SKN_RUN_MODE_STOP; /* shut down the system -- work is done */
         // need to force theads down or interrupt them
-        skn_logger(SD_WARNING, "shutdown caused by application!");
+        skn_util_logger(SD_WARNING, "shutdown caused by application!");
         sleep(1);
         if (pssm->l_thread_complete != 0) {
             pthread_cancel(pssm->sig_thread);
             sleep(1);
         }
-        skn_logger(SD_WARNING, "Collecting (cleanup) threads.");
+        skn_util_logger(SD_WARNING, "Collecting (cleanup) threads.");
         pthread_join(pssm->sig_thread, &trc);
     } else {
         rc = EXIT_FAILURE;
-        skn_logger(SD_NOTICE, "Collecting signal thread's return code.");
+        skn_util_logger(SD_NOTICE, "Collecting signal thread's return code.");
         pthread_join(pssm->sig_thread, &trc);
-        skn_logger(SD_NOTICE, "Signal thread was ended by a %d:%s signal.", *pssm->gi_exit_flag, strsignal((int) (long int) trc));
+        skn_util_logger(SD_NOTICE, "Signal thread was ended by a %d:%s signal.", *pssm->gi_exit_flag, strsignal((int) (long int) trc));
     }
     pthread_sigmask(SIG_UNBLOCK, &pssm->signal_set, NULL);
 
@@ -313,7 +313,7 @@ int skn_signal_manager_startup(PSknSignalManager pssm) {
 
     i_thread_rc = pthread_create(&pssm->sig_thread, NULL, skn_signal_manager_handler_thread, (void *)pssm);
     if (i_thread_rc == PLATFORM_ERROR) {
-        skn_logger(SD_ERR, "Create signal thread failed: %d:%s", errno, strerror(errno));
+        skn_util_logger(SD_ERR, "Create signal thread failed: %d:%s", errno, strerror(errno));
         pthread_sigmask(SIG_UNBLOCK, &pssm->signal_set, NULL);
         i_thread_rc = EXIT_FAILURE;
     }

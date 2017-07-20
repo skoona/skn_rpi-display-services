@@ -5,8 +5,8 @@
  *      Author: jscott
  */
 
-#ifndef SRC_SKN_COMMON_HEADERS_H_
-#define SRC_SKN_COMMON_HEADERS_H_
+#ifndef SRC_SKN_COMMONS_H_
+#define SRC_SKN_COMMONS_H_
 
 #include <sys/types.h>
 #include <pwd.h>        /* umask() */
@@ -249,33 +249,44 @@ typedef struct _temps {
 	long raw;
 } CpuTemps, *PCpuTemps;
 
-typedef struct _DISPLAY_LINE {
-	char cbName[SZ_CHAR_BUFF];
-	int  active;
-    char ch_display_msg[SZ_INFO_BUFF];
-    int  msg_len;
-    int  display_pos;
-    int  scroll_enabled;
-    void * next;
-    void * prev;
-} DisplayLine, *PDisplayLine;
+/*
+ * Globals defined in skn_network_helpers.c
+*/
+extern sig_atomic_t gi_exit_flag;
 
-typedef struct _DISPLAY_MANAGER {
-	char cbName[SZ_CHAR_BUFF];
-    char ch_welcome_msg[SZ_INFO_BUFF];
-    int  msg_len;
-    int  display_pos;
-    int  dsp_rows;
-    int  dsp_cols;
-	PDisplayLine pdsp_collection[ARY_MAX_DM_LINES]; // all available lines
-	int  current_line; // top of display
-    int  next_line;  // actual index  -- should be within display_lines of current
-    int  lcd_handle;
-    pthread_t dm_thread;   // new message thread
-    long thread_complete;
-    int  i_socket;
-    LCDDevice lcd;  // selected device
-} DisplayManager, *PDisplayManager;
+extern char *gd_pch_message;
+extern signed int gd_i_debug;
+extern int  gd_i_socket;
+extern char gd_ch_program_name[SZ_INFO_BUFF];
+extern char gd_ch_program_desc[SZ_INFO_BUFF];
+extern char *gd_pch_effective_userid;
+extern char gd_ch_ipAddress[SZ_CHAR_BUFF];
+extern char gd_ch_intfName[SZ_CHAR_BUFF];
+extern char gd_ch_hostName[SZ_CHAR_BUFF];
+extern char gd_ch_hostShortName[SZ_CHAR_BUFF];
+extern int  gd_i_display;
+extern int  gd_i_unique_registry;
+extern int  gd_i_update;
+extern char * gd_pch_service_name;
+extern int  gd_i_i2c_address;
 
 
-#endif /* SRC_SKN_COMMON_HEADERS_H_ */
+extern long skn_util_generate_number_cpu_cores();
+extern int  skn_util_generate_loadavg_info(char *msg);
+extern int  skn_util_generate_uname_info(char *msg);
+extern int  skn_util_generate_datetime_info(char *msg);
+extern double skn_util_duration_in_ms(struct timeval *pstart, struct timeval *pend);
+extern void skn_util_set_program_name_and_description(const char *name, const char *desc);
+extern int  skn_util_logger(const char *level, const char *format, ...);
+extern int  skn_util_time_delay_ms(double delay_time);
+//extern void skn_delay_microseconds (int delay_us);
+extern char * skn_util_strip(char * alpha);
+extern uid_t skn_util_get_userids();
+
+
+extern int  skn_util_get_default_interface_name(char *pchDefaultInterfaceName);
+extern int  skn_util_get_broadcast_ip_array(PIPBroadcastArray paB);
+extern void skn_util_get_default_interface_name_and_ipv4_address(char * intf, char * ipv4);
+
+
+#endif /* SRC_SKN_COMMONS_H_ */

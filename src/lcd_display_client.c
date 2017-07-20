@@ -17,16 +17,16 @@
  * Ubuntu/Debian: /sys/class/thermal/thermal_zone0/temp
  *
 */
-long sknGetCpuTemps(PCpuTemps temps) {
+long skn_util_get_cpu_temp(PCpuTemps temps) {
     long lRaw = 0;
     int rc = 0;
 
     FILE *sysFs = fopen("/sys/class/thermal/thermal_zone0/temp", "r");
     if (sysFs == NULL) {
-        skn_logger(SD_WARNING, "Warning: Failed to open Debian CPU temperature: %d:%s\n", errno, strerror(errno));
+        skn_util_logger(SD_WARNING, "Warning: Failed to open Debian CPU temperature: %d:%s\n", errno, strerror(errno));
         sysFs = fopen("/sys/class/hwmon/hwmon0/device/temp1_input", "r");
         if (sysFs == NULL) {
-            skn_logger(SD_WARNING, "Warning: Failed to open Centos CPU temperature: %d:%s\n", errno, strerror(errno));
+            skn_util_logger(SD_WARNING, "Warning: Failed to open Centos CPU temperature: %d:%s\n", errno, strerror(errno));
             return -1;
         }
     }
@@ -35,7 +35,7 @@ long sknGetCpuTemps(PCpuTemps temps) {
     fclose(sysFs);
 
     if (rc != 1 || lRaw < 0) {
-        skn_logger(SD_WARNING, "Warning: Failed to READ CPU temperature: %d:%s\n", strerror(errno));
+        skn_util_logger(SD_WARNING, "Warning: Failed to READ CPU temperature: %d:%s\n", strerror(errno));
         return -1;
     }
 
@@ -55,12 +55,12 @@ long sknGetCpuTemps(PCpuTemps temps) {
  * RPi cannot handle I2C and GetCpuTemp() without locking the process
  * in an uniterrupted sleep; forcing a power cycle.
 */
-int sknGenerateCpuTempsInfo(char *msg) {
+int skn_util_generate_cpu_temp_info(char *msg) {
     static CpuTemps cpuTemp;
     int mLen = 0;
 
     memset(&cpuTemp, 0, sizeof(CpuTemps));
-    if ( sknGetCpuTemps(&cpuTemp) != -1 ) {
+    if ( skn_util_get_cpu_temp(&cpuTemp) != -1 ) {
         mLen = snprintf(msg, SZ_INFO_BUFF-1, "CPU: %s %s", cpuTemp.c, cpuTemp.f);
     } else {
         mLen = snprintf(msg, SZ_INFO_BUFF-1, "Temp: N/A");
@@ -84,14 +84,14 @@ int main(int argc, char *argv[])
     memset(request, 0, sizeof(request));
 	strncpy(registry, "DisplayClient: Raspberry Pi where are you?", sizeof(registry) - 1);
 
-    skn_program_name_and_description_set(
+    skn_util_set_program_name_and_description(
     		"lcd_display_client",
 			"Send messages to the Display Service."
 			);
 
 	/* Parse any command line options,
 	 * like request string override */
-    if (skn_handle_locator_command_line(argc, argv) == EXIT_FAILURE) {
+    if (skn_locator_client_command_line_parse(argc, argv) == EXIT_FAILURE) {
     	    exit(EXIT_FAILURE);
     }
     if (gd_pch_message != NULL) {
@@ -102,13 +102,13 @@ int main(int argc, char *argv[])
     	    strcpy(request, argv[1]);
     }
 
-	skn_logger(SD_DEBUG, "Request  Message [%s]", request);
-	skn_logger(SD_DEBUG, "Registry Message [%s]", registry);
+	skn_util_logger(SD_DEBUG, "Request  Message [%s]", request);
+	skn_util_logger(SD_DEBUG, "Registry Message [%s]", registry);
 
 	/* Initialize Signal handler */
 	skn_signals_init();
 
-    skn_logger(SD_NOTICE, "Application Active...");
+    skn_util_logger(SD_NOTICE, "Application Active...");
 
 	/* Get the ServiceRegistry from Provider
 	 * - could return null if error */
@@ -123,7 +123,7 @@ int main(int argc, char *argv[])
 		/* find a single entry */
 		pre = skn_service_registry_find_entry(psr, service_name);
 		if (pre != NULL) {
-            skn_logger(" ", "\nLCD DisplayService (%s) is located at IPv4: %s:%d\n", pre->name, pre->ip, pre->port);
+            skn_util_logger(" ", "\nLCD DisplayService (%s) is located at IPv4: %s:%d\n", pre->name, pre->ip, pre->port);
 		}
 
         /*
@@ -140,7 +140,7 @@ int main(int argc, char *argv[])
 	// we have the location
 	if (pre != NULL) {
 	    if (request[0] == 0) {
-	        snprintf(request, sizeof(request), "%02ld Cores Available.",  sknGetNumberCpuCores() );
+	        snprintf(request, sizeof(request), "%02ld Cores Available.",  skn_util_generate_number_cpu_cores() );
 	    }
 	    pnsr = skn_udp_service_provider_service_request_new(pre, gd_i_socket, request);
 	}
@@ -154,16 +154,16 @@ int main(int argc, char *argv[])
 
             switch (host_update_cycle++) {  // cycle through other info
                 case 0:
-                    sknGenerateLoadavgInfo(pnsr->request);
+                    skn_util_generate_loadavg_info(pnsr->request);
                     break;
                 case 1:
-                    sknGenerateDatetimeInfo(pnsr->request);
+                    skn_util_generate_datetime_info(pnsr->request);
                     break;
                 case 2:
-                    sknGenerateUnameInfo(pnsr->request);
+                    skn_util_generate_uname_info(pnsr->request);
                 break;
                 case 3:
-                    sknGenerateCpuTempsInfo(pnsr->request);
+                    skn_util_generate_cpu_temp_info(pnsr->request);
                     host_update_cycle = 0;
                 break;
             }
@@ -172,7 +172,7 @@ int main(int argc, char *argv[])
         free(pnsr);  // Done
 
     } else {
-        skn_logger(SD_WARNING, "Unable to create Network Request.");
+        skn_util_logger(SD_WARNING, "Unable to create Network Request.");
     }
 
 	/* Cleanup and shutdown
